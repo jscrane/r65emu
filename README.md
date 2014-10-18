@@ -3,7 +3,7 @@ r65emu
 
 Emulation library for 6502-based 8-bit microcomputers.
 
-Software:
+Libraries:
 ---------
 - [My port](https://github.com/jscrane/UTFT-Energia) 
 of Henning Karlsen's [UTFT library]
@@ -21,5 +21,5 @@ Hardware:
 - A PS/2 keyboard.
 - A 23k256 SPI RAM chip (optional)
 
-See hardare.h for wiring details and other options.
+See _hardware.h_ for wiring details and other options.
 
