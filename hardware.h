@@ -22,6 +22,7 @@
 #define SPIRAM_CS       PE_0
 #define SPIRAM_SPI      1
 #define SPIRAM_DEV      SPI_for_SD
+#define SPIRAM_SIZE	32768
 
 // PS/2 keyboard
 #define KBD_DATA	PE_4
