@@ -32,4 +32,11 @@
 #define SD_CS		PF_3
 #define SD_SPI		1
 
+bool hardware_init(void);
+
+extern class PS2Driver ps2;
+extern class spiram sram;
+extern class UTFT utft;
+extern class Memory memory;
+
 #endif
