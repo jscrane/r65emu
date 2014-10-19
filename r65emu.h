@@ -8,6 +8,7 @@
 #include "spiram.h"
 #include "prom.h"
 #include "ps2drv.h"
+#include "utftdisplay.h"
 #include "hardware.h"
 
 #endif
