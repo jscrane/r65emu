@@ -6,6 +6,14 @@
 
 typedef unsigned char byte;
 
+class Stream;
+
+class Checkpointable {
+public:
+	virtual void checkpoint(Stream &s) = 0;
+	virtual void restore(Stream &s) = 0;
+};
+
 class Memory {
 public:
 	typedef unsigned short address;

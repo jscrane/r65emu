@@ -9,6 +9,7 @@
 #include "prom.h"
 #include "ps2drv.h"
 #include "utftdisplay.h"
+#include "keyboard.h"
 #include "hardware.h"
 
 #endif
