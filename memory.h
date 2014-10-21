@@ -19,10 +19,11 @@ public:
 	typedef unsigned short address;
 	static const int page_size = 256;
 
-	class Device {
+	class Device: public Checkpointable {
 	public:
 		Device (int bytes): _pages(bytes/page_size) {}
 		virtual ~Device () {}
+
 		int pages () const { return _pages; }
 		void access (address a) { _acc=a-_base; }
 		void base (address a) { _base=a; }
@@ -30,6 +31,9 @@ public:
 
 		virtual void operator= (byte) =0;
 		virtual operator byte () =0;
+
+		virtual void checkpoint(Stream &s) {};
+		virtual void restore(Stream &s) {};
 
 	protected:
 		address _acc, _base;

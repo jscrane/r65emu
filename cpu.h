@@ -8,7 +8,7 @@
 #include <setjmp.h>
 #endif
 
-class CPU {
+class CPU: public Checkpointable {
 public:
 	virtual void reset () =0;
 	virtual Memory::address run (unsigned instructions) =0;
@@ -16,6 +16,9 @@ public:
 	virtual char *status () =0;
 
 	typedef void (*statfn) (const char *, ...);
+
+	virtual void checkpoint(Stream &s) = 0;
+	virtual void restore(Stream &s) = 0;
 
 protected:
 	CPU (Memory *m, jmp_buf *e, statfn s): _memory(m), _err(e), _status(s){}

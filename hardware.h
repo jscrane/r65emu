@@ -32,7 +32,9 @@
 #define SD_CS		PF_3
 #define SD_SPI		1
 
-bool hardware_init(void);
+bool hardware_init(class CPU &);
+void hardware_checkpoint(Stream &);	// FIXME: make a path?
+void hardware_restore(Stream &);
 
 extern class PS2Driver ps2;
 extern class spiram sram;

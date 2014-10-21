@@ -3,7 +3,7 @@
 
 class Stream;
 
-class UTFTDisplay: public Memory::Device, public Checkpointable {
+class UTFTDisplay: public Memory::Device {
 public:
 	void begin(unsigned bg, unsigned fg);
 	void clear();

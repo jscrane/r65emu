@@ -1,7 +1,7 @@
 #ifndef __SPIRAM_H__
 #define __SPIRAM_H__
 
-class spiram: public Memory::Device, public Checkpointable {
+class spiram: public Memory::Device {
 public:
 	virtual void operator= (byte c);
 	virtual operator byte ();
