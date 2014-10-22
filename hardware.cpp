@@ -36,25 +36,27 @@ bool hardware_init(CPU &cpu) {
 }
 
 void hardware_checkpoint(Stream &s) {
-	_cpu->checkpoint(s);
-	Memory::Device *d = 0;
-	for (unsigned i = 0; i < 0x10000; i += Memory::page_size) {
+	unsigned ds = 0;
+	for (unsigned i = 0; i < 0x10000; i += ds) {
 		Memory::Device *dev = memory.get(i);
-		if (dev && dev != d) {
-			d = dev;
-			d->checkpoint(s);
-		}
+		if (dev) {
+			dev->checkpoint(s);
+			ds = dev->pages() * Memory::page_size;
+		} else
+			ds = Memory::page_size;
 	}
+	_cpu->checkpoint(s);
 }
 
 void hardware_restore(Stream &s) {
-	_cpu->restore(s);
-	Memory::Device *d = 0;
-	for (unsigned i = 0; i < 0x10000; i += Memory::page_size) {
+	unsigned ds = 0;
+	for (unsigned i = 0; i < 0x10000; i += ds) {
 		Memory::Device *dev = memory.get(i);
-		if (dev && dev != d) {
-			d = dev;
-			d->restore(s);
-		}
+		if (dev) {
+			dev->restore(s);
+			ds = dev->pages() * Memory::page_size;
+		} else
+			ds = Memory::page_size;
 	}
+	_cpu->restore(s);
 }
