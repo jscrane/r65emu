@@ -10,6 +10,7 @@
 #include "ps2drv.h"
 #include "utftdisplay.h"
 #include "keyboard.h"
+#include "sdtape.h"
 #include "hardware.h"
 
 #endif
