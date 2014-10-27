@@ -17,7 +17,7 @@ public:
 class Memory {
 public:
 	typedef unsigned short address;
-	static const int page_size = 256;
+	static const unsigned int page_size = 256;
 
 	class Device: public Checkpointable {
 	public:
