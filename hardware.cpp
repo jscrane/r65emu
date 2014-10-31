@@ -44,11 +44,8 @@ void hardware_checkpoint(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
 		Memory::Device *dev = memory.get(i);
-		if (dev) {
-			dev->checkpoint(s);
-			ds = dev->pages() * Memory::page_size;
-		} else
-			ds = Memory::page_size;
+		dev->checkpoint(s);
+		ds = dev->pages() * Memory::page_size;
 	}
 	_cpu->checkpoint(s);
 }
@@ -57,11 +54,8 @@ void hardware_restore(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
 		Memory::Device *dev = memory.get(i);
-		if (dev) {
-			dev->restore(s);
-			ds = dev->pages() * Memory::page_size;
-		} else
-			ds = Memory::page_size;
+		dev->restore(s);
+		ds = dev->pages() * Memory::page_size;
 	}
 	_cpu->restore(s);
 }

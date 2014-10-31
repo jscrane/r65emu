@@ -19,4 +19,5 @@ public:
 
 void Memory::begin() {
 	put(nd, 0);
+	nd._pages = 1;	// hack for checkpointing
 }
