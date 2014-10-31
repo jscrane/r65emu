@@ -57,7 +57,7 @@ public:
 		return *d;
 	}
 
-        Memory();
+        void begin();
 private:
 	Device *_pages[256];
 };

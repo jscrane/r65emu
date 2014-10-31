@@ -17,6 +17,6 @@ public:
 	operator byte() { return 0; }
 } nd;
 
-Memory::Memory() {
+void Memory::begin() {
 	put(nd, 0);
 }
