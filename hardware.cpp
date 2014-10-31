@@ -14,15 +14,10 @@ spiram sram(SPIRAM_SIZE);
 UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST);
 static CPU *_cpu;
 
-bool hardware_init(CPU &cpu) {
-	_cpu = &cpu;
-	ps2.begin(KBD_DATA, KBD_IRQ);
-
-	pinMode(SD_CS, OUTPUT);
+bool hardware_reset() {
 	bool sd = SD.begin(SD_CS, 3, SD_SPI);
 
 #if defined(TFT_BACKLIGHT)
-	pinMode(TFT_BACKLIGHT, OUTPUT);
 	digitalWrite(TFT_BACKLIGHT, HIGH);
 #endif
 	utft.InitLCD();
@@ -31,8 +26,18 @@ bool hardware_init(CPU &cpu) {
 
 	sram.begin(SPIRAM_CS, SPIRAM_SPI);
  
-	cpu.reset();
+	_cpu->reset();
 	return sd;
+}
+
+void hardware_init(CPU &cpu) {
+	_cpu = &cpu;
+	memory.begin();
+	ps2.begin(KBD_DATA, KBD_IRQ);
+	pinMode(SD_CS, OUTPUT);
+#if defined(TFT_BACKLIGHT)
+	pinMode(TFT_BACKLIGHT, OUTPUT);
+#endif
 }
 
 void hardware_checkpoint(Stream &s) {
