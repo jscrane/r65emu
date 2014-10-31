@@ -10,7 +10,8 @@ Memory::address r6502::run (unsigned clocks) {
   {
     byte op = (*_memory)[PC];
 #ifdef CPU_DEBUG
-    _status ("%04x: %02x [%02x %02x %02x, %02x]\r", PC, op, A, X, Y, flags());
+    if (_debug)
+      _status ("%04x: %02x [%02x %02x %02x, %02x]\r", PC, op, A, X, Y, flags());
 #endif
     PC++;
     (this->*_ops[op])();
@@ -180,6 +181,7 @@ void r6502::ill () {
 
 void r6502::reset ()
 {
+  _debug = false;
   P.value = 0;
   P.bits._ = 1;
   P.bits.B = 1;

@@ -20,10 +20,13 @@ public:
 	virtual void checkpoint(Stream &s) = 0;
 	virtual void restore(Stream &s) = 0;
 
+	void debug() { _debug = !_debug; }
+
 protected:
 	CPU (Memory *m, jmp_buf *e, statfn s): _memory(m), _err(e), _status(s){}
 	Memory *_memory;
 	jmp_buf *_err;
 	statfn _status;
+	bool _debug;
 };
 #endif
