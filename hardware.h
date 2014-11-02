@@ -18,24 +18,28 @@
 #define TFT_CS		PC_7
 #define TFT_RST		PC_4
 
-// SPI-RAM
-#define SPIRAM_CS       PE_0
-#define SPIRAM_SPI      1
-#define SPIRAM_DEV      SPI_for_SD
-#define SPIRAM_SIZE	32768
-
 // PS/2 keyboard
 #define KBD_DATA	PE_4
 #define KBD_IRQ		PE_5
 
+// SPI-RAM
+#define SPIRAM_CS       PE_0
+//#define SPIRAM_CS       PF_3
+#define SPIRAM_SPI      1
+#define SPIRAM_DEV      SPI_for_SD
+#define SPIRAM_SIZE	32768
+
 // "tape" storage...
 #define SD_CS		PF_3
+//#define SD_CS		PE_0
 #define SD_SPI		1
+
+#define SPI_CS		PF_3
 
 bool hardware_reset();
 void hardware_init(class CPU &);
-void hardware_checkpoint(Stream &);	// FIXME: make a path?
-void hardware_restore(Stream &);
+void hardware_checkpoint(class Stream &);
+void hardware_restore(class Stream &);
 
 extern class PS2Driver ps2;
 extern class spiram sram;

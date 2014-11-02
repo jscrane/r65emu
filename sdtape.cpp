@@ -19,10 +19,8 @@ bool sdtape::more()
 		_pos = 0;
 		_len = file.read(_buf, sizeof(_buf));
 
-		if (_len == 0) {
-			file.close();
-			return false;	// eof
-		}
+		if (_len == 0)	// eof
+			return false;
 	}
 	return true;
 }
