@@ -1,5 +1,5 @@
-#ifndef _KEYBOARD_H
-#define _KEYBOARD_H
+#ifndef __KEYBOARD_H__
+#define __KEYBOARD_H__
 
 class Keyboard {
 public:

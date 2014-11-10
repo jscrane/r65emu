@@ -2,8 +2,8 @@
  * The hardware configuration of the machine. 
  * (This should be the same for all emulated devices.)
  */
-#ifndef __HARDWARE_H
-#define __HARDWARE_H
+#ifndef __HARDWARE_H__
+#define __HARDWARE_H__
 
 // TFT display...
 // NOTE: edit memorysaver.h to select the correct chip for your display!
@@ -41,9 +41,17 @@ void hardware_init(class CPU &);
 void hardware_checkpoint(class Stream &);
 void hardware_restore(class Stream &);
 
+#ifdef __PS2DRV_H__
 extern class PS2Driver ps2;
+#endif
+#ifdef __SPIRAM_H__
 extern class spiram sram;
+#endif
+#ifdef UTFT_h
 extern class UTFT utft;
+#endif
+#ifdef __MEMORY_H__
 extern class Memory memory;
+#endif
 
 #endif

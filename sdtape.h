@@ -1,5 +1,5 @@
-#ifndef _SDTAPE_H
-#define _SDTAPE_H
+#ifndef __SDTAPE_H__
+#define __SDTAPE_H__
 
 class sdtape {
 public:

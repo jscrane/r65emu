@@ -1,5 +1,5 @@
-#ifndef _UTFT_DISPLAY_H
-#define _UTFT_DISPLAY_H
+#ifndef __UTFT_DISPLAY_H__
+#define __UTFT_DISPLAY_H__
 
 class Stream;
 

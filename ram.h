@@ -1,5 +1,5 @@
-#ifndef _RAM_H
-#define _RAM_H
+#ifndef __RAM_H__
+#define __RAM_H__
 
 class ram: public Memory::Device {
 public:

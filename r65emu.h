@@ -1,5 +1,5 @@
-#ifndef _R65EMU_H
-#define _R65EMU_H
+#ifndef __R65EMU_H__
+#define __R65EMU_H__
 
 #include "memory.h"
 #include "cpu.h"

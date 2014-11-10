@@ -1,3 +1,6 @@
+#ifndef __PROM_H__
+#define __PROM_H__
+
 class prom: public Memory::Device {
 public:
 	virtual void operator= (byte) {}
@@ -8,3 +11,5 @@ public:
 private:
 	const byte *_mem;
 };
+
+#endif

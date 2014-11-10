@@ -1,8 +1,5 @@
-/*
- * memory.h
- */
-#ifndef _MEMORY_H
-#define _MEMORY_H
+#ifndef __MEMORY_H__
+#define __MEMORY_H__
 
 typedef unsigned char byte;
 
