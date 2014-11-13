@@ -11,6 +11,7 @@
 #include "utftdisplay.h"
 #include "keyboard.h"
 #include "sdtape.h"
+#include "timed.h"
 #include "hardware.h"
 
 #endif
