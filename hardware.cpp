@@ -30,8 +30,6 @@ bool hardware_reset() {
 	digitalWrite(TFT_BACKLIGHT, HIGH);
 #endif
 	utft.InitLCD();
-	extern uint8_t SmallFont[];
-	utft.setFont(SmallFont);
 
 	_cpu->reset();
 	return sd;

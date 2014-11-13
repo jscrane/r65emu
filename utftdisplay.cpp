@@ -5,11 +5,14 @@
 
 extern UTFT utft;
 
-void UTFTDisplay::begin(unsigned bg, unsigned fg) {
+void UTFTDisplay::begin(unsigned bg, unsigned fg, uint8_t *font) {
 	_bg = bg;
 	_fg = fg;
 	_dx = utft.getDisplayXSize();
 	_dy = utft.getDisplayYSize();
+
+	utft.setFont(font);
+	utft.setColor(fg);
 	_cx = utft.getFontXsize();  
 	_cy = utft.getFontYsize();
 	_oxs = _dx;
