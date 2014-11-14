@@ -13,5 +13,6 @@
 #include "sdtape.h"
 #include "timed.h"
 #include "hardware.h"
+#include "checkpoint.h"
 
 #endif
