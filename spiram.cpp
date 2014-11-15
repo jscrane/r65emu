@@ -20,18 +20,18 @@ spiram::operator byte()
 
 void spiram::checkpoint(Stream &s)
 {
-	char buf[Memory::page_size];
+	byte buf[Memory::page_size];
 	for (int i = 0; i < pages(); i++) {
 		spiRam.read_stream(i * 256, buf, sizeof(buf));
-		s.write((byte *)buf, sizeof(buf));
+		s.write(buf, sizeof(buf));
 	}
 }
 
 void spiram::restore(Stream &s)
 {
-	char buf[Memory::page_size];
+	byte buf[Memory::page_size];
 	for (int i = 0; i < pages(); i++) {
-		s.readBytes(buf, sizeof(buf));
+		s.readBytes((char *)buf, sizeof(buf));
 		spiRam.write_stream(i * 256, buf, sizeof(buf));
 	}
 }

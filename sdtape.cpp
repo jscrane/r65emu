@@ -6,6 +6,7 @@ static File file, dir;
 void sdtape::start(const char *programs)
 {
 	dir = SD.open(programs);
+	_pos = _len = 0;
 }
 
 void sdtape::stop()
