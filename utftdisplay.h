@@ -2,11 +2,10 @@
 #define __UTFT_DISPLAY_H__
 
 class Stream;
-extern uint8_t SmallFont[];
 
 class UTFTDisplay: public Memory::Device {
 public:
-	void begin(unsigned bg, unsigned fg, uint8_t *font = SmallFont);
+	void begin(unsigned bg, unsigned fg);
 	void clear();
 	void error(char *);
 	void status(const char *);

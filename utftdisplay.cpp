@@ -2,16 +2,17 @@
 
 #include "memory.h"
 #include "utftdisplay.h"
+#include "TinyFont.h"
 
 extern UTFT utft;
 
-void UTFTDisplay::begin(unsigned bg, unsigned fg, uint8_t *font) {
+void UTFTDisplay::begin(unsigned bg, unsigned fg) {
 	_bg = bg;
 	_fg = fg;
 	_dx = utft.getDisplayXSize();
 	_dy = utft.getDisplayYSize();
 
-	utft.setFont(font);
+	utft.setFont((uint8_t *)TinyFont);
 	utft.setColor(fg);
 	_cx = utft.getFontXsize();  
 	_cy = utft.getFontYsize();
