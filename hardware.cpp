@@ -20,7 +20,8 @@ bool hardware_reset() {
 	extern SPIClass SPIRAM_DEV;
 	SPIRAM_DEV.begin();
 	SPIRAM_DEV.setModule(SPIRAM_SPI);
-	SPIRAM_DEV.setClockDivider(SPI_CLOCK_DIV8);
+//	SPIRAM_DEV.setClockDivider(SPI_CLOCK_DIV2);
+	SPIRAM_DEV.setClockDivider(1);
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
 
 	bool sd = SD.begin(SD_CS, 2, SD_SPI);
