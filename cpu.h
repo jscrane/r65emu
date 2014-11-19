@@ -7,8 +7,9 @@
 
 class CPU: public Checkpointable {
 public:
+	virtual Memory::address run(unsigned instructions) =0;
 	virtual void reset () =0;
-	virtual Memory::address run (unsigned instructions) =0;
+	virtual Memory::address step() =0;
 	virtual void raise (int level) =0;
 	virtual char *status () =0;
 

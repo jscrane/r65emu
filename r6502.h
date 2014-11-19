@@ -8,6 +8,7 @@ class r6502: public CPU {
 public:
 	void raise(int);
 	void reset();
+	Memory::address step();
 	Memory::address run(unsigned);
 	char *status();
 	void checkpoint(Stream &);
