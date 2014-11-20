@@ -10,7 +10,7 @@
 		 	P.bits.D,P.bits.I,P.bits.Z,P.bits.C,PC
 
 inline void r6502::step() {
-	byte op = (*_memory)[PC];
+	byte op = _memory[PC];
 #ifdef CPU_DEBUG
 	if (_debug) {
 		flags();
@@ -200,7 +200,7 @@ void r6502::reset ()
 	PC = vector(resvec);
 }
 
-r6502::r6502 (Memory *m, jmp_buf *e, CPU::statfn s): CPU (m,e,s) {
+r6502::r6502 (Memory &m, jmp_buf *e, CPU::statfn s): CPU (m,e,s) {
 
 	for (int i=0; i < 256; i++) {
 		_fromBCD[i] = ((i >> 4) & 0x0f)*10 + (i & 0x0f);
