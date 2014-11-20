@@ -8,8 +8,7 @@ class r6502: public CPU {
 public:
 	void raise(int);
 	void reset();
-	Memory::address step();
-	Memory::address run(unsigned);
+	void run(unsigned);
 	char *status();
 	void checkpoint(Stream &);
 	void restore(Stream &);
@@ -36,6 +35,7 @@ private:
 	byte _toBCD[256], _fromBCD[256];	// BCD maps
 	bool _irq;				// interrupt pending?
 
+	void step();
 	void irq();
 	void nmi();
 	byte flags();

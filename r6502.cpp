@@ -5,25 +5,31 @@
 #include "cpu.h"
 #include "r6502.h"
 
-Memory::address r6502::step() {
+#define CPU_STATE_FMT "%02x %02x %02x %02x %d%d%d%d%d%d%d%d	%04x\r",\
+		 	A,X,Y,S,P.bits.N,P.bits.V,P.bits._,P.bits.B,\
+		 	P.bits.D,P.bits.I,P.bits.Z,P.bits.C,PC
+
+inline void r6502::step() {
 	byte op = (*_memory)[PC];
 #ifdef CPU_DEBUG
-	if (_debug)
-		_status ("%04x: %02x [%02x %02x %02x, %02x]\r", PC, op, A, X, Y, flags());
+	if (_debug) {
+		flags();
+		_status(CPU_STATE_FMT);
+	}
 #endif
 	PC++;
 	(this->*_ops[op])();
-	return PC;
 }
 
-Memory::address r6502::run(unsigned clocks) {
+void r6502::run(unsigned clocks) {
 #ifdef CPU_DEBUG
-	if (_debug)
-		return step();
+	if (_debug) {
+		step();
+		return;
+	}
 #endif
 	while (clocks--) 
 		step();
-	return PC;
 }
 
 byte r6502::flags() {
@@ -38,10 +44,7 @@ byte r6502::flags() {
 char *r6502::status () {
 	static char buf[128];
 	flags();
-	sprintf (buf, "aa xx yy sp nv_bdizc	_pc_\r\n"
-		 "%02x %02x %02x %02x %d%d%d%d%d%d%d%d	%04x\r\n", 
-		 A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B, 
-		 P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC);
+	sprintf (buf, "aa xx yy sp nv_bdizc	_pc_\r" CPU_STATE_FMT);
 	return buf;
 }
 
