@@ -10,7 +10,7 @@
 		 	P.bits.D,P.bits.I,P.bits.Z,P.bits.C,PC
 
 inline void r6502::step() {
-	byte op = _memory[PC];
+	byte op = _mem[PC];
 #ifdef CPU_DEBUG
 	if (_debug) {
 		flags();

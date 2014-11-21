@@ -20,8 +20,8 @@ public:
 	void debug() { _debug = !_debug; }
 
 protected:
-	CPU (Memory &m, jmp_buf *e, statfn s): _memory(m), _err(e), _status(s){}
-	Memory &_memory;
+	CPU (Memory &mem, jmp_buf *e, statfn s): _mem(mem), _err(e), _status(s){}
+	Memory &_mem;
 	jmp_buf *_err;
 	statfn _status;
 	bool _debug;
