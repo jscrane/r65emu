@@ -14,14 +14,14 @@ public:
 class Memory {
 public:
 	typedef unsigned short address;
-	static const unsigned int page_size = 256;
+	static const unsigned page_size = 256;
 
 	class Device: public Checkpointable {
 	public:
-		Device (int bytes): _pages(bytes/page_size) {}
+		Device (unsigned bytes): _pages(bytes/page_size) {}
 		virtual ~Device () {}
 
-		int pages () const { return _pages; }
+		unsigned pages () const { return _pages; }
 		void access (address a) { _acc=a-_base; }
 		void base (address a) { _base=a; }
 		address base () const { return _base; }
@@ -37,13 +37,13 @@ public:
 
 	private:
 		friend class Memory;
-		int _pages;
+		unsigned _pages;
 	};
 
 	// insert a new device instance
 	//
 	void put (Device &d, address at);
-	void put (Device &d, address at, int ep) { d._pages = ep; put(d, at); }
+	void put (Device &d, address at, unsigned ep) { d._pages = ep; put(d, at); }
 	Device *get (address at) const { return _pages[at/page_size]; }
 
 	// primary access interface
