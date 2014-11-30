@@ -6,9 +6,10 @@
 
 extern UTFT utft;
 
-void UTFTDisplay::begin(unsigned bg, unsigned fg) {
+void UTFTDisplay::begin(unsigned bg, unsigned fg, int orient) {
 	_bg = bg;
 	_fg = fg;
+	utft.InitLCD(orient);
 	_dx = utft.getDisplayXSize();
 	_dy = utft.getDisplayYSize();
 
