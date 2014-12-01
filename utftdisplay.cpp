@@ -6,7 +6,7 @@
 
 extern UTFT utft;
 
-void UTFTDisplay::begin(unsigned bg, unsigned fg, int orient) {
+void UTFTDisplay::begin(unsigned bg, unsigned fg, orientation_t orient) {
 	_bg = bg;
 	_fg = fg;
 	utft.InitLCD(orient);

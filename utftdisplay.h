@@ -1,12 +1,13 @@
 #ifndef __UTFT_DISPLAY_H__
 #define __UTFT_DISPLAY_H__
 
-#define PORTRAIT	0
-#define LANDSCAPE	1
+typedef enum {
+	portrait, landscape
+} orientation_t;
 
 class UTFTDisplay {
 public:
-	void begin(unsigned bg, unsigned fg, int orient = LANDSCAPE);
+	void begin(unsigned bg, unsigned fg, orientation_t o = landscape);
 	void clear();
 	void error(char *);
 	void status(const char *);
