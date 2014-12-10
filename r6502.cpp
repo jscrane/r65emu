@@ -184,12 +184,12 @@ void r6502::sbcd (byte d) {
 	// V not tested for: http://www.6502.org/tutorials/decimal_mode.html
 }
 
-void r6502::ill () {
-	_status ("Illegal instruction at %04x!\r\n%s", (PC-1), status());
-	longjmp (*_err, 1);
+void r6502::ill() {
+	_status("Illegal instruction at %04x!\r\n%s", (PC-1), status());
+	longjmp(_err, 1);
 }
 
-void r6502::reset ()
+void r6502::reset()
 {
 	_debug = false;
 	P.value = 0;
@@ -200,7 +200,7 @@ void r6502::reset ()
 	PC = vector(resvec);
 }
 
-r6502::r6502 (Memory &m, jmp_buf *e, CPU::statfn s): CPU (m,e,s) {
+r6502::r6502 (Memory &m, jmp_buf &e, CPU::statfn s): CPU (m,e,s) {
 
 	for (int i=0; i < 256; i++) {
 		_fromBCD[i] = ((i >> 4) & 0x0f)*10 + (i & 0x0f);

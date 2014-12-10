@@ -95,7 +95,7 @@ void i8080::daa() {
 
 void i8080::hlt() {
 	_status("CPU halted at %04x\r%s", (PC-1), status());
-	longjmp(*_err, 1);
+	longjmp(_err, 1);
 }
 
 int i8080::parity_table[] = {
@@ -117,7 +117,7 @@ int i8080::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 };
 
-i8080::i8080(Memory &m, jmp_buf *jb, CPU::statfn s, Ports &d): CPU(m, jb, s)
+i8080::i8080(Memory &m, jmp_buf &jb, CPU::statfn s, Ports &d): CPU(m, jb, s)
 {
 	_ports = &d;
 

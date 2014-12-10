@@ -13,7 +13,7 @@ public:
 		virtual byte in(byte p, i8080 *cpu) =0;
 	};
 
-	i8080(Memory &, jmp_buf *, CPU::statfn, Ports &);
+	i8080(Memory &, jmp_buf &, CPU::statfn, Ports &);
 
 	void run(unsigned);
 	void reset();

@@ -13,7 +13,7 @@ public:
 	void checkpoint(Stream &);
 	void restore(Stream &);
 
-	r6502 (Memory &, jmp_buf *, CPU::statfn);
+	r6502 (Memory &, jmp_buf &, CPU::statfn);
 private:
 	/* registers */
 	Memory::address PC;
