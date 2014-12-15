@@ -28,6 +28,10 @@ public:
 	 * If there is no char available, -1 is returned.
 	 */
 	int read();
+
+	unsigned peek();
+
+	unsigned read2();
 };
 
 #define PS2_F1	0x05
