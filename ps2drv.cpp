@@ -80,7 +80,7 @@ unsigned PS2Driver::read2() {
 	tail = i;
 	if (buffer[i] != 0xf0)
 		return buffer[i];
-	return 0x0100 | read2();
+	return 0xf000 | read2();
 }
 
 unsigned PS2Driver::peek() {
@@ -91,7 +91,7 @@ unsigned PS2Driver::peek() {
 	if (i == BUFFER_SIZE) i = 0;
 	if (buffer[i] == 0xf0) {
 		if (++i == BUFFER_SIZE) i = 0;
-		return 0x0100 | buffer[i];
+		return 0xf000 | buffer[i];
 	}
 	return buffer[i];
 }
