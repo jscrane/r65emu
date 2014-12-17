@@ -27,6 +27,8 @@ public:
 	unsigned read2();
 };
 
+#define is_down(scan) ((scan) < 0x100)
+
 #define PS2_F1	0x05
 #define PS2_F2	0x06
 #define PS2_F3	0x04
