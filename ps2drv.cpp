@@ -4,7 +4,6 @@
 #define BUFFER_SIZE 16
 static volatile uint8_t buffer[BUFFER_SIZE];
 static volatile uint8_t head, tail;
-static bool isbrk;
 static uint8_t DataPin;
 
 // The ISR for the external interrupt
@@ -49,26 +48,6 @@ bool PS2Driver::available() {
 	if (buffer[i] == 0xf0)
 		return i != head;
 	return true;
-}
-
-bool PS2Driver::isbreak() {
-	bool b = isbrk;
-	isbrk = false;
-	return b;
-}
-
-int PS2Driver::read() {
-	if (head == tail)
-		return -1;
-
-	uint8_t i = tail+1;
-	if (i == BUFFER_SIZE) i = 0;
-	tail = i;
-	if (buffer[i] == 0xf0) {
-		isbrk = true;
-		return read();
-	}
-	return buffer[i];
 }
 
 unsigned PS2Driver::read2() {

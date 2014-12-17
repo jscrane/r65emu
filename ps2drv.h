@@ -19,16 +19,9 @@ public:
 	bool available();
 
 	/**
-	 * returns true if the key has been released
-	 */
-	bool isbreak();
-
-	/**
 	 * Returns the scancode last received from the keyboard.
-	 * If there is no char available, -1 is returned.
+	 * If there is no char available, 0 is returned.
 	 */
-	int read();
-
 	unsigned peek();
 
 	unsigned read2();
