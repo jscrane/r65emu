@@ -6,14 +6,7 @@
 
 class i8080: public CPU {
 public:
-
-	class Ports {
-	public:
-		virtual void out(byte p, byte v, i8080 *cpu) =0;
-		virtual byte in(byte p, i8080 *cpu) =0;
-	};
-
-	i8080(Memory &, jmp_buf &, CPU::statfn, Ports &);
+	i8080(Memory &, jmp_buf &, CPU::statfn, PortDevice<i8080> &);
 
 	void run(unsigned);
 	void reset();
@@ -51,7 +44,7 @@ private:
 		struct { byte L, H; };
 		word HL;
 	};
-	Memory::address PC, SP;
+	Memory::address SP;
 	union {
 		struct {
 			unsigned C:1;
@@ -66,7 +59,7 @@ private:
 		byte SR;
 	};
 	int _irq_pending;
-	Ports *_ports;
+	PortDevice<i8080> *_ports;
 
 	typedef void (i8080::*OP)(); 
 	OP _ops[256];
@@ -322,7 +315,8 @@ private:
 	inline void _and(byte b) {
 		A = A & b;
 		_szp(A);
-		flags.C = flags.H = 0;
+		flags.C = 0;
+		flags.H = 1;
 	}
 
 	void anab() { _and(B); }

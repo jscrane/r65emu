@@ -27,7 +27,7 @@
 //#define SPIRAM_CS       PF_3
 #define SPIRAM_SPI      1
 #define SPIRAM_DEV      SPI_for_SD
-#define SPIRAM_SIZE	32768
+#define SPIRAM_SIZE	65536
 
 // "tape" storage...
 #define SD_CS		PF_3

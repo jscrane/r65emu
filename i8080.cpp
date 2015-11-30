@@ -2,6 +2,7 @@
 
 #include "memory.h"
 #include "cpu.h"
+#include "ports.h"
 #include "i8080.h"
 
 #define CPU_STATE_FMT "%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d\r",\
@@ -117,7 +118,7 @@ int i8080::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 };
 
-i8080::i8080(Memory &m, jmp_buf &jb, CPU::statfn s, Ports &d): CPU(m, jb, s)
+i8080::i8080(Memory &m, jmp_buf &jb, CPU::statfn s, PortDevice<i8080> &d): CPU(m, jb, s)
 {
 	_ports = &d;
 

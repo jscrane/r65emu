@@ -16,7 +16,6 @@ public:
 	r6502 (Memory &, jmp_buf &, CPU::statfn);
 private:
 	/* registers */
-	Memory::address PC;
 	byte S, A, X, Y;
 	byte N, V, B, D, I, Z, C;
 	union {
