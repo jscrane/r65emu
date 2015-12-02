@@ -1,7 +1,7 @@
 #include <Energia.h>
 
 #include "memory.h"
-#include "cpu.h"
+#include "CPU.h"
 #include "ports.h"
 #include "i8080.h"
 

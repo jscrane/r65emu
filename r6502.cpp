@@ -2,7 +2,7 @@
 #include <Stream.h>
 
 #include "memory.h"
-#include "cpu.h"
+#include "CPU.h"
 #include "r6502.h"
 
 #define CPU_STATE_FMT "%02x %02x %02x %02x %d%d%d%d%d%d%d%d	%04x\r",\

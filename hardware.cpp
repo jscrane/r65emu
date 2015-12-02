@@ -7,7 +7,7 @@
 #include "memory.h"
 #include "spiram.h"
 
-#include "cpu.h"
+#include "CPU.h"
 #include "hardware.h"
 
 Memory memory;

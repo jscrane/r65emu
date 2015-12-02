@@ -2,7 +2,7 @@
 
 #include "memory.h"
 #include "ports.h"
-#include "cpu.h"
+#include "CPU.h"
 #include "z80.h"
 
 #define CPU_STATE_FMT "%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d\r\n",\
