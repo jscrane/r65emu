@@ -64,6 +64,7 @@ public:
 
 	inline unsigned long ts() { return _ts; }
 	inline void ts(int t) { _ts += t; }
+	inline void reset_ts() { _ts = 0; }
 
 private:
 	void _handle_interrupt();

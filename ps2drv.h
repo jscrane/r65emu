@@ -29,6 +29,19 @@ public:
 
 #define is_down(scan) ((scan) < 0x100)
 
+#undef PS2_F1
+#undef PS2_F2
+#undef PS2_F3
+#undef PS2_F4
+#undef PS2_F5
+#undef PS2_F6
+#undef PS2_F7
+#undef PS2_F8
+#undef PS2_F9
+#undef PS2_F10
+#undef PS2_F11
+#undef PS2_F12
+
 #define PS2_F1	0x05
 #define PS2_F2	0x06
 #define PS2_F3	0x04
