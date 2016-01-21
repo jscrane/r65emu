@@ -5,14 +5,17 @@
 #include "CPU.h"
 #include "z80.h"
 
-#define CPU_STATE_FMT "%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d\r\n",\
-			PC, op, A, BC, DE, HL, SP, flags.S, flags.Z,\
-			flags._5, flags.H, flags._3, flags.P, flags.N, flags.C
+#define CPU_STATE_FMT 
 
 char *z80::status() {
-	static char buf[128];
+	static char buf[256];
 	byte op = _mem[PC];
-	sprintf(buf, "_pc_ op aa _bc_ _de_ _hl_ _sp_ szih_p_c\r\n" CPU_STATE_FMT);
+	sprintf(buf, "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff " 
+		"_sp_ sz5h3pnc\r\n" 
+		"%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d " 
+		"%04x %d%d%d%d%d%d%d%d\r\n",
+		PC, op, AF, BC, DE, HL, AF_, BC_, DE_, HL_, IR, _im, _iff1, _iff2, 
+		SP, flags.S, flags.Z, flags._5, flags.H, flags._3, flags.P, flags.N, flags.C);
 	return buf;
 }
 
