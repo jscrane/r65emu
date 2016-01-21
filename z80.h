@@ -312,12 +312,18 @@ private:
 		flags.N = 1;
 	}
 
+	inline word _ads(word a, byte b) {
+		word w = a + b;
+		if (b > 127) w -= 0x100;
+		return w;
+	}
+
 	inline void _incO(Memory::address a) {
-		char o = (char)_rb(PC);
+		byte o = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		word w = a + o;
+		word w = _ads(a, o);
 		byte b = _rb(w);
 		_mc(w, 1);
 		_inc(b);
@@ -325,11 +331,11 @@ private:
 	}
 
 	inline void _decO(Memory::address a) {
-		char o = (char)_rb(PC);
+		byte o = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		word w = a + o;
+		word w = _ads(a, o);
 		byte b = _rb(w);
 		_mc(w, 1);
 		_dec(b);
@@ -337,27 +343,27 @@ private:
 	}
 
 	inline void _sbO(Memory::address a) {
-		char o = (char)_rb(PC++);
+		byte o = _rb(PC++);
 		byte b = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		_sb(a + o, b);
+		_sb(_ads(a, o), b);
 	}
 
 	inline byte _rbO(Memory::address a) {
-		char o = (char)_rb(PC);
+		byte o = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		return _rb(a + o);
+		return _rb(_ads(a, o));
 	}
 
 	inline void _sbO(Memory::address a, byte b) {
-		char o = (char)_rb(PC);
+		byte o = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		_sb(a + o, b);
+		_sb(_ads(a, o), b);
 	}
 
 	inline void _exSP(word &reg) {
@@ -417,7 +423,11 @@ private:
 	}
 
 	// 0x18
-	void jr() { char o = (char)_rb(PC); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); PC += o + 1; }
+	void jr() { 
+		byte b = _rb(PC); 
+		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); 
+		PC = _ads(PC, b+1);
+	}
 	void addhlde() { _add16(HL, DE); }
 	void ldaDE() { A = _rb(DE); }
 	void decde() { DE--; _mc(IR, 1); _mc(IR, 1); }
@@ -1163,7 +1173,7 @@ private:
 	// 0xDDCB extended instructions
 
 	inline word _rbIX(byte &b, byte o) {
-		word a = IX + (char)o;
+		word a = _ads(IX, o);
 		b = _rb(a);
 		_mc(a, 1);
 		return a;
@@ -1274,7 +1284,7 @@ private:
 	void srlIXA(byte o) { _srlIX(A, o); }
 
 	// 0x40
-	inline void _bitIX(int i, byte o) { _bitI(i, IX + (char)o); }
+	inline void _bitIX(int i, byte o) { _bitI(i, _ads(IX, o)); }
 
 	void bit0IX(byte o) { _bitIX(0, o); }
 
@@ -1301,7 +1311,7 @@ private:
 
 	// 0x80
 	void _resIX(byte &b, byte o, byte m) {
-		word a = IX + (char)o;
+		word a = _ads(IX, o);
 		b = _rb(a) & m;
 		_mc(a, 1);
 		_sb(a, b);
@@ -1387,7 +1397,7 @@ private:
 
 	// 0xc0
 	void _setIX(byte &b, byte o, byte m) {
-		word a = IX + (char)o;
+		word a = _ads(IX, o);
 		b = _rb(a) | m;
 		_mc(a, 1);
 		_sb(a, b);
@@ -1474,7 +1484,7 @@ private:
 	// 0xFDCB extended instructions
 
 	inline word _rbIY(byte &b, byte o) {
-		word a = IY + (char)o;
+		word a = _ads(IY, o);
 		b = _rb(a);
 		_mc(a, 1);
 		return a;
@@ -1585,7 +1595,7 @@ private:
 	void srlIYA(byte o) { _srlIY(A, o); }
 
 	// 0x40
-	inline void _bitIY(int i, byte o) { _bitI(i, IY + (char)o); }
+	inline void _bitIY(int i, byte o) { _bitI(i, _ads(IY, o)); }
 
 	void bit0IY(byte o) { _bitIY(0, o); }
 
@@ -1612,7 +1622,7 @@ private:
 
 	// 0x80
 	void _resIY(byte &b, byte o, byte m) {
-		word a = IY + (char)o;
+		word a = _ads(IY, o);
 		b = _rb(a) & m;
 		_mc(a, 1);
 		_sb(a, b);
@@ -1698,7 +1708,7 @@ private:
 
 	// 0xc0
 	void _setIY(byte &b, byte o, byte m) {
-		word a = IY + (char)o;
+		word a = _ads(IY, o);
 		b = _rb(a) | m;
 		_mc(a, 1);
 		_sb(a, b);

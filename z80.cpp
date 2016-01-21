@@ -64,7 +64,7 @@ byte z80::_fetch_op() {
 	_mc(PC, 4);
 	byte op = _mem[PC];
 #if defined(CPU_DEBUG)
-	printf("%5d MR %04x %02x\n", _ts, PC, op);
+	_status("%5d MR %04x %02x\n", _ts, PC, op);
 #endif
 	PC++;
 	R++;
