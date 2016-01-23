@@ -6,12 +6,12 @@
 
 class i8080: public CPU {
 public:
-	i8080(Memory &, jmp_buf &, CPU::statfn, PortDevice<i8080> &);
+	i8080(Memory &, PortDevice<i8080> &);
 
 	void run(unsigned);
 	void reset();
 	void raise(int);
-	char *status();
+	char *status(char *buf, size_t n);
 
 	void checkpoint(Stream &);
 	void restore(Stream &);
@@ -29,8 +29,6 @@ public:
 	inline byte sr() { return SR; }
 
 private:
-	inline void step();
-
 	byte A;
 	union {
 		struct { byte C, B; };
@@ -232,7 +230,7 @@ private:
 	void movme() { _mem[HL] = E; }
 	void movmh() { _mem[HL] = H; }
 	void movml() { _mem[HL] = L; }
-	void hlt();
+	void hlt() { _halted = true; PC--; }
 	void movma() { _mem[HL] = A; }
 
 	void movab() { A = B; }

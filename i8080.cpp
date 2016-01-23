@@ -5,29 +5,14 @@
 #include "ports.h"
 #include "i8080.h"
 
-#define CPU_STATE_FMT "%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d\r",\
-			PC, op, A, BC, DE, HL, SP, flags.S, flags.Z,\
-			flags.I, flags.H, flags._, flags.P, flags.__, flags.C
-
-void i8080::step() {
-	byte op = _mem[PC];
-#if defined(CPU_DEBUG)
-	if (_debug)
-		_status(CPU_STATE_FMT);
-#endif
-	PC++;
-	(this->*_ops[op])();
-}
-
 void i8080::run(unsigned clocks) {
-#if defined(CPU_DEBUG)
-	if (_debug) {
-		step();
-		return;
+	while (clocks--) {
+		byte op = _mem[PC];
+		PC++;
+		(this->*_ops[op])();
+		if (_halted)
+			break;
 	}
-#endif
-	while (clocks--)
-		step();
 }
 
 void i8080::reset() {
@@ -35,6 +20,7 @@ void i8080::reset() {
 	_sr(0);
 	BC = DE = HL = PC = SP = 0;
 	_irq_pending = 0;
+	_halted = false;
 }
 
 void i8080::raise(int level) {
@@ -53,10 +39,12 @@ void i8080::ei() {
 		raise(_irq_pending);
 }
 
-char *i8080::status() {
-	static char buf[128];
+char *i8080::status(char *buf, size_t n) {
 	byte op = _mem[PC];
-	sprintf(buf, "_pc_ op aa _bc_ _de_ _hl_ _sp_ szih_p_c\r" CPU_STATE_FMT);
+	snprintf(buf, n, "_pc_ op aa _bc_ _de_ _hl_ _sp_ szih_p_c\r" 
+		"%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d\r",
+		PC, op, A, BC, DE, HL, SP, flags.S, flags.Z, flags.I, flags.H,
+		flags._, flags.P, flags.__, flags.C);
 	return buf;
 }
 
@@ -94,11 +82,6 @@ void i8080::daa() {
 	flags.C = c;
 }
 
-void i8080::hlt() {
-	_status("CPU halted at %04x\r%s", (PC-1), status());
-	longjmp(_err, 1);
-}
-
 int i8080::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
@@ -118,7 +101,7 @@ int i8080::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 };
 
-i8080::i8080(Memory &m, jmp_buf &jb, CPU::statfn s, PortDevice<i8080> &d): CPU(m, jb, s)
+i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m)
 {
 	_ports = &d;
 

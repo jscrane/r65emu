@@ -5,12 +5,9 @@
 #include "CPU.h"
 #include "z80.h"
 
-#define CPU_STATE_FMT 
-
-char *z80::status() {
-	static char buf[256];
+char *z80::status(char *buf, size_t n) {
 	byte op = _mem[PC];
-	sprintf(buf, "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff " 
+	snprintf(buf, n, "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff "
 		"_sp_ sz5h3pnc\r\n" 
 		"%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d " 
 		"%04x %d%d%d%d%d%d%d%d\r\n",
@@ -67,7 +64,7 @@ byte z80::_fetch_op() {
 	_mc(PC, 4);
 	byte op = _mem[PC];
 #if defined(CPU_DEBUG)
-	_status("%5d MR %04x %02x\n", _ts, PC, op);
+	printf("%5d MR %04x %02x\n", _ts, PC, op);
 #endif
 	PC++;
 	R++;
@@ -76,15 +73,11 @@ byte z80::_fetch_op() {
 
 void z80::run(unsigned clocks) {
 	while (clocks--) {
-		step();
-#if !defined(CPU_DEBUG)
-		if (_halted) {
-			_status("CPU halted at %04x\r\n%s", PC, status());
-			longjmp(_err, 1);
-		}
-#endif
-		if (_irq_pending && _iff1)
+		if (_irq_pending)
 			_handle_interrupt();
+		step();
+		if (_halted)
+			break;
 	}
 }
 
@@ -100,19 +93,25 @@ void z80::reset() {
 }
 
 void z80::_handle_interrupt() {
-	_iff1 = false;
-	_push(PC);
-	if (_irq_pending < 0) {	// NMI
-		PC = 0x0066;
-		ts(11);
-	} else {
-		_iff2 = false;
-		R++;
-		if (_im == 0 || _im == 1)
-			PC = 0x0038;
-		else if (_im == 2)
-			PC = _rw(_irq_pending + (0x100 * I));
-		ts(7);
+	if (_irq_pending < 0 || _iff1) {
+		if (_halted) {
+			_halted = false;
+			PC++;
+		}
+		_push(PC);
+		if (_irq_pending < 0) {	// NMI
+			_iff2 = _iff1;
+			PC = 0x0066;
+			ts(11);
+		} else {
+			_iff1 = _iff2 = false;
+			R++;
+			if (_im == 0 || _im == 1)
+				PC = 0x0038;
+			else if (_im == 2)
+				PC = _rw(_irq_pending + (0x100 * I));
+			ts(7);
+		}
 	}
 	_irq_pending = 0;
 }
@@ -871,7 +870,7 @@ int z80::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 };
 
-z80::z80(Memory &m, jmp_buf &jb, CPU::statfn s, PortDevice<z80> &ports): CPU(m, jb, s)
+z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
 {
 	_ports = &ports;
 	_debug = false;

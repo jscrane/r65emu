@@ -5,31 +5,14 @@
 #include "CPU.h"
 #include "r6502.h"
 
-#define CPU_STATE_FMT "%02x %02x %02x %02x %d%d%d%d%d%d%d%d	%04x\r",\
-		 	A,X,Y,S,P.bits.N,P.bits.V,P.bits._,P.bits.B,\
-		 	P.bits.D,P.bits.I,P.bits.Z,P.bits.C,PC
-
-inline void r6502::step() {
-	byte op = _mem[PC];
-#ifdef CPU_DEBUG
-	if (_debug) {
-		flags();
-		_status(CPU_STATE_FMT);
-	}
-#endif
-	PC++;
-	(this->*_ops[op])();
-}
-
 void r6502::run(unsigned clocks) {
-#ifdef CPU_DEBUG
-	if (_debug) {
-		step();
-		return;
+	while (clocks--) {
+		byte op = _mem[PC];
+		PC++;
+		(this->*_ops[op])();
+		if (_halted)
+			break;
 	}
-#endif
-	while (clocks--) 
-		step();
 }
 
 byte r6502::flags() {
@@ -38,13 +21,16 @@ byte r6502::flags() {
 	P.bits.Z = !Z;
 	P.bits.C = C;
 	P.bits._ = 1;
-	return P.value;
+	return P.flags;
 }
 
-char *r6502::status () {
-	static char buf[128];
+char *r6502::status(char *buf, size_t n) {
 	flags();
-	sprintf (buf, "aa xx yy sp nv_bdizc	_pc_\r" CPU_STATE_FMT);
+	snprintf(buf, n, "aa xx yy sp nv_bdizc _pc_\r"
+		"%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x\r",
+		 A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
+		 P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC);
+
 	return buf;
 }
 
@@ -52,18 +38,18 @@ void r6502::checkpoint(Stream &s)
 {
 	s.write(PC / 0xff);
 	s.write(PC % 0xff);
-	s.write(S);	
-	s.write(A);	
-	s.write(X);	
-	s.write(Y);	
-	s.write(N);	
-	s.write(V);	
-	s.write(B);	
-	s.write(D);	
-	s.write(I);	
-	s.write(Z);	
-	s.write(C);	
-	s.write(P.value);	
+	s.write(S);
+	s.write(A);
+	s.write(X);
+	s.write(Y);
+	s.write(N);
+	s.write(V);
+	s.write(B);
+	s.write(D);
+	s.write(I);
+	s.write(Z);
+	s.write(C);
+	s.write(P.flags);
 }
 
 void r6502::restore(Stream &s)
@@ -81,83 +67,83 @@ void r6502::restore(Stream &s)
 	I = s.read();
 	Z = s.read();
 	C = s.read();
-	P.value = s.read();
+	P.flags = s.read();
 }
 
-void r6502::raise (int level) {
+void r6502::raise(int level) {
 	if (level < 0)
-		nmi ();
+		nmi();
 	else if (!P.bits.I)
-		irq ();
+		irq();
 	else
 		_irq = true;
 }
 
-void r6502::irq () {
-	pusha (PC);
+void r6502::irq() {
+	pusha(PC);
 	P.bits.B = 0;
-	pushb (flags ());
+	pushb(flags());
 	P.bits.B = 1;
 	P.bits.I = 1;
-	PC = vector (ibvec);
+	PC = vector(ibvec);
 	_irq = false;
 }
 
-void r6502::brk () {
+void r6502::brk() {
 	if (!P.bits.I) {
-		pusha (PC);
+		pusha(PC);
 		P.bits.B = 1;
-		php ();
+		php();
 		P.bits.I = 1;
-		PC = vector (ibvec);
+		PC = vector(ibvec);
 	}
 	P.bits.B = 1;
 	P.bits._ = 1;
 }
 
-void r6502::rti () {
-	plp ();
-	PC = popa ();
+void r6502::rti() {
+	plp();
+	PC = popa();
 }
 
-void r6502::cli () {
+void r6502::cli() {
 	P.bits.I = 0;
 	if (_irq)
 		irq();
 }
 
-void r6502::nmi () {
-	pusha (PC);
-	php ();
+void r6502::nmi() {
+	pusha(PC);
+	php();
 	P.bits.I = 1;
-	PC = vector (nmivec);
+	PC = vector(nmivec);
 }
 
 // php and plp are complicated by the representation
 // of the processor state for efficient normal operation
-void r6502::php () {
+void r6502::php() {
 	P.bits.B = 1;
-	pushb (flags ());
+	pushb(flags());
 }
 
-void r6502::plp () {
-	P.value = popb ();
+void r6502::plp() {
+	P.flags = popb();
 	N = P.bits.N? 0x80: 0;
 	V = P.bits.V;
 	Z = !P.bits.Z;
 	C = P.bits.C;
 }
 
-void r6502::rts () {
-	PC = popa ()+1;
+void r6502::rts() {
+	PC = popa()+1;
 }
 
-void r6502::jsr () {
-	pusha (PC+1);
-	PC = vector (PC);
+void r6502::jsr() {
+	pusha(PC+1);
+	PC = vector(PC);
 }
 
-void r6502::_adc (byte d) {
+void r6502::_adc(byte d) {
 	if (P.bits.D) {
 		int r = _fromBCD[A] + _fromBCD[d] + C;
 		C = (r > 99);
@@ -174,7 +160,7 @@ void r6502::_adc (byte d) {
 	Z = A;
 }
 
-void r6502::sbcd (byte d) {
+void r6502::sbcd(byte d) {
 	int r = _fromBCD[A] - _fromBCD[d] - !C;
 	C = (r >= 0);
 	if (r < 0) r += 100;
@@ -185,14 +171,14 @@ void r6502::sbcd (byte d) {
 }
 
 void r6502::ill() {
-	_status("Illegal instruction at %04x!\r\n%s", (PC-1), status());
-	longjmp(_err, 1);
+	--PC;
+	_halted = true;
 }
 
 void r6502::reset()
 {
-	_debug = false;
-	P.value = 0;
+	_debug = _halted = false;
+	P.flags = 0;
 	P.bits._ = 1;
 	P.bits.B = 1;
 	_irq = false;
@@ -200,13 +186,13 @@ void r6502::reset()
 	PC = vector(resvec);
 }
 
-r6502::r6502 (Memory &m, jmp_buf &e, CPU::statfn s): CPU (m,e,s) {
+r6502::r6502(Memory &m): CPU(m) {
 
 	for (int i=0; i < 256; i++) {
 		_fromBCD[i] = ((i >> 4) & 0x0f)*10 + (i & 0x0f);
 		_toBCD[i] = (((i % 100) / 10) << 4) | (i % 10);
 	}
-		
+
 	OP *p = _ops;
 	*p++=&r6502::brk; *p++=&r6502::ora_ix; *p++=&r6502::ill; *p++=&r6502::ill; 
 	*p++=&r6502::nop2; *p++=&r6502::ora_z; *p++=&r6502::asl_z; *p++=&r6502::ill;
