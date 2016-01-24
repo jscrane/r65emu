@@ -9,7 +9,7 @@ public:
 	void raise(int);
 	void reset();
 	void run(unsigned);
-	char *status(char *buf, size_t n);
+	char *status(char *buf, size_t n, bool hdr);
 	void checkpoint(Stream &);
 	void restore(Stream &);
 
