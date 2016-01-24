@@ -91,8 +91,7 @@ void r6502::irq() {
 
 void r6502::brk() {
 	if (!P.bits.I) {
-		pusha(PC);
-		P.bits.B = 1;
+		pusha(PC+1);
 		php();
 		P.bits.I = 1;
 		PC = vector(ibvec);
