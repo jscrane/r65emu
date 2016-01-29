@@ -668,7 +668,7 @@ private:
 	void callnz() { _call(!flags.Z); }
 	void pushbc() { _mc(IR, 1); _push(BC); }
 	void adda() { _add(_rb(PC++)); }
-	void rst00() { _mc(IR, 1); _push(PC); PC = 0x00; }
+	void rst00() { _mc(IR, 11); _push(PC); PC = 0x00; }
 
 	// 0xc8
 	void retz() { _ret(flags.Z); }
@@ -678,7 +678,7 @@ private:
 	void callz() { _call(flags.Z); }
 	void call() { word pc = _rw(PC); _mc(PC+1, 1); _push(PC+2); PC = pc; }
 	void adca() { _adc(_rb(PC++)); }
-	void rst08() { _mc(IR, 1); _push(PC); PC = 0x08; }
+	void rst08() { _mc(IR, 11); _push(PC); PC = 0x08; }
 
 	// 0xd0
 	void retnc() { _ret(!flags.C); }
@@ -691,7 +691,7 @@ private:
 	void callnc() { _call(!flags.C); }
 	void pushde() { _mc(IR, 1); _push(DE); }
 	void suba() { _sub(_rb(PC++)); }
-	void rst10() { _mc(IR, 1); _push(PC); PC = 0x10; }
+	void rst10() { _mc(IR, 11); _push(PC); PC = 0x10; }
 
 	// 0xd8
 	void retc() { _ret(flags.C); }
@@ -704,7 +704,7 @@ private:
 	void callc() { _call(flags.C); }
 	void dd() { _ddfd(IX, IXL, IXH, _ddcb); }
 	void sbca() { _sbc(_rb(PC++)); }
-	void rst18() { _mc(IR, 1); _push(PC); PC = 0x18; }
+	void rst18() { _mc(IR, 11); _push(PC); PC = 0x18; }
 
 	// 0xe0
 	void retpo() { _ret(!flags.P); }
@@ -714,7 +714,7 @@ private:
 	void callpo() { _call(!flags.P); }
 	void pushhl() { _mc(IR, 1); _push(HL); }
 	void and() { _and(_rb(PC++)); }
-	void rst20() { _mc(IR, 1); _push(PC); PC = 0x20; }
+	void rst20() { _mc(IR, 11); _push(PC); PC = 0x20; }
 
 	// 0xe8
 	inline byte _inr(word p) {
@@ -734,7 +734,7 @@ private:
 	void callpe() { _call(flags.P); }
 	void ed();
 	void xor() { _xor(_rb(PC++)); }
-	void rst28() { _mc(IR, 1); _push(PC); PC = 0x28; }
+	void rst28() { _mc(IR, 11); _push(PC); PC = 0x28; }
 
 	// 0xf0
 	void retp() { _ret(!flags.S); }
@@ -744,7 +744,7 @@ private:
 	void callp() { _call(!flags.S); }
 	void pushaf() { _mc(IR, 1); _push(AF); }
 	void or() { _or(_rb(PC++)); }
-	void rst30() { _mc(IR, 1); _push(PC); PC = 0x30; }
+	void rst30() { _mc(IR, 11); _push(PC); PC = 0x30; }
 
 	// 0xf8
 	void retm() { _ret(flags.S); }
@@ -754,7 +754,7 @@ private:
 	void callm() { _call(flags.S); }
 	void fd() { _ddfd(IY, IYL, IYH, _fdcb); }
 	void cp() { _cmp(_rb(PC++)); }
-	void rst38() { _mc(IR, 1); _push(PC); PC = 0x38; }
+	void rst38() { _mc(IR, 11); _push(PC); PC = 0x38; }
 
 	// 0xCB extended instructions
 
