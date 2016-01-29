@@ -55,4 +55,16 @@ public:
 #define PS2_F11	0x78
 #define PS2_F12	0x07
 
+#define PS2_KP_DOT	0x71
+#define PS2_KP_0	0x70
+#define PS2_KP_1	0x69
+#define PS2_KP_2	0x72
+#define PS2_KP_3	0x7a
+#define PS2_KP_4	0x6b
+#define PS2_KP_5	0x73
+#define PS2_KP_6	0x74
+#define PS2_KP_7	0x6c
+#define PS2_KP_8	0x75
+#define PS2_KP_9	0x7d
+
 #endif
