@@ -1020,17 +1020,17 @@ z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
 	*p++ = &z80::retpo; *p++ = &z80::pophl;
 	*p++ = &z80::jppo; *p++ = &z80::exSPhl;
 	*p++ = &z80::callpo; *p++ = &z80::pushhl;
-	*p++ = &z80::and; *p++ = &z80::rst20;
+	*p++ = &z80::and_; *p++ = &z80::rst20;
 	*p++ = &z80::retpe; *p++ = &z80::jphl;
 	*p++ = &z80::jppe; *p++ = &z80::exdehl;
 	*p++ = &z80::callpe; *p++ = &z80::ed;
-	*p++ = &z80::xor; *p++ = &z80::rst28;
+	*p++ = &z80::xor_; *p++ = &z80::rst28;
 
 	// 0xf0
 	*p++ = &z80::retp; *p++ = &z80::popaf;
 	*p++ = &z80::jpp; *p++ = &z80::di;
 	*p++ = &z80::callp; *p++ = &z80::pushaf;
-	*p++ = &z80::or; *p++ = &z80::rst30;
+	*p++ = &z80::or_; *p++ = &z80::rst30;
 	*p++ = &z80::retm; *p++ = &z80::ldsphl;
 	*p++ = &z80::jpm; *p++ = &z80::ei;
 	*p++ = &z80::callm; *p++ = &z80::fd;

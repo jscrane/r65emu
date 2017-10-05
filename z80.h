@@ -713,7 +713,7 @@ private:
 	void exSPhl() { _exSP(HL); }
 	void callpo() { _call(!flags.P); }
 	void pushhl() { _mc(IR, 1); _push(HL); }
-	void and() { _and(_rb(PC++)); }
+	void and_() { _and(_rb(PC++)); }
 	void rst20() { _mc(IR, 11); _push(PC); PC = 0x20; }
 
 	// 0xe8
@@ -733,7 +733,7 @@ private:
 	void exdehl() { _exch(DE, HL); }
 	void callpe() { _call(flags.P); }
 	void ed();
-	void xor() { _xor(_rb(PC++)); }
+	void xor_() { _xor(_rb(PC++)); }
 	void rst28() { _mc(IR, 11); _push(PC); PC = 0x28; }
 
 	// 0xf0
@@ -743,7 +743,7 @@ private:
 	void di() { _iff1 = _iff2 = false; }
 	void callp() { _call(!flags.S); }
 	void pushaf() { _mc(IR, 1); _push(AF); }
-	void or() { _or(_rb(PC++)); }
+	void or_() { _or(_rb(PC++)); }
 	void rst30() { _mc(IR, 11); _push(PC); PC = 0x30; }
 
 	// 0xf8
