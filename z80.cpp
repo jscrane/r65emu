@@ -64,7 +64,7 @@ byte z80::_fetch_op() {
 	_mc(PC, 4);
 	byte op = _mem[PC];
 #if defined(CPU_DEBUG)
-	printf("%5d MR %04x %02x\n", _ts, PC, op);
+	printf("%5ld MR %04x %02x\n", _ts, PC, op);
 #endif
 	PC++;
 	R++;
@@ -137,14 +137,14 @@ void z80::_step_idx(OP_IDX ops[]) {
 	_mc(PC, 3);
 	byte off = _mem[PC];
 #if defined(CPU_DEBUG)
-	printf("%5d MR %04x %02x\n", _ts, PC, off);
+	printf("%5ld MR %04x %02x\n", _ts, PC, off);
 #endif
 	PC++;
 
 	_mc(PC, 3);
 	byte op = _mem[PC];
 #if defined(CPU_DEBUG)
-	printf("%5d MR %04x %02x\n", _ts, PC, op);
+	printf("%5ld MR %04x %02x\n", _ts, PC, op);
 #endif
 	_mc(PC, 1);
 	_mc(PC, 1);

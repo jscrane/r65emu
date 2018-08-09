@@ -147,29 +147,29 @@ private:
 
 	inline byte _rb(Memory::address a) {
 #if defined(CPU_DEBUG)
-		printf("%5d MC %04x\n", _ts, a);
+		printf("%5ld MC %04x\n", _ts, a);
 #endif
 		ts(3);
 #if defined(CPU_DEBUG)
-		printf("%5d MR %04x %02x\n", _ts, a, (byte)_mem[a]);
+		printf("%5ld MR %04x %02x\n", _ts, a, (byte)_mem[a]);
 #endif
 		return _mem[a];
 	}
 
 	inline void _sb(Memory::address a, byte b) {
 #if defined(CPU_DEBUG)
-		printf("%5d MC %04x\n", _ts, a);
+		printf("%5ld MC %04x\n", _ts, a);
 #endif
 		ts(3);
 #if defined(CPU_DEBUG)
-		printf("%5d MW %04x %02x\n", _ts, a, b);
+		printf("%5ld MW %04x %02x\n", _ts, a, b);
 #endif
 		_mem[a] = b;
 	}
 
 	inline void _mc(Memory::address a, int i) {
 #if defined(CPU_DEBUG)
-		printf("%5d MC %04x\n", _ts, a);
+		printf("%5ld MC %04x\n", _ts, a);
 #endif
 		ts(i);
 	}
