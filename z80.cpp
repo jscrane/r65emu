@@ -1,4 +1,5 @@
-#include <Energia.h>
+#include <stdio.h>
+#include <Stream.h>
 
 #include "memory.h"
 #include "ports.h"
@@ -7,11 +8,11 @@
 
 char *z80::status(char *buf, size_t n, bool hdr) {
 	byte op = _mem[PC];
-	snprintf(buf, n, 
+	snprintf(buf, n,
 		"%s%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d "
 		"%04x %d%d%d%d%d%d%d%d",
 		hdr?  "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff _sp_ sz5h3pnc\r\n": "",
-		PC, op, AF, BC, DE, HL, AF_, BC_, DE_, HL_, IR, _im, _iff1, _iff2, 
+		PC, op, AF, BC, DE, HL, AF_, BC_, DE_, HL_, IR, _im, _iff1, _iff2,
 		SP, flags.S, flags.Z, flags._5, flags.H, flags._3, flags.P, flags.N, flags.C);
 	return buf;
 }
@@ -877,7 +878,7 @@ z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
 	OP *p = _ops;
 
 	// 0x00
-	*p++ = &z80::nop; *p++ = &z80::ldbcpc; 
+	*p++ = &z80::nop; *p++ = &z80::ldbcpc;
 	*p++ = &z80::ldBCa; *p++ = &z80::incbc;
 	*p++ = &z80::incb; *p++ = &z80::decb;
 	*p++ = &z80::ldb; *p++ = &z80::rlca;
@@ -887,7 +888,7 @@ z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
 	*p++ = &z80::ldc; *p++ = &z80::rrca;
 
 	// 0x10
-	*p++ = &z80::djnz; *p++ = &z80::lddepc; 
+	*p++ = &z80::djnz; *p++ = &z80::lddepc;
 	*p++ = &z80::ldDEa; *p++ = &z80::incde;
 	*p++ = &z80::incd; *p++ = &z80::decd;
 	*p++ = &z80::ldd; *p++ = &z80::rla;
@@ -901,10 +902,10 @@ z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
 	*p++ = &z80::ldPChl; *p++ = &z80::inchl;
 	*p++ = &z80::inch; *p++ = &z80::dech;
 	*p++ = &z80::ldh; *p++ = &z80::daa;
-	*p++ = &z80::jrz; *p++ = &z80::addhlhl; 
-	*p++ = &z80::ldhlPC; *p++ = &z80::dechl; 
-	*p++ = &z80::incl; *p++ = &z80::decl; 
-	*p++ = &z80::ldl; *p++ = &z80::cpl; 
+	*p++ = &z80::jrz; *p++ = &z80::addhlhl;
+	*p++ = &z80::ldhlPC; *p++ = &z80::dechl;
+	*p++ = &z80::incl; *p++ = &z80::decl;
+	*p++ = &z80::ldl; *p++ = &z80::cpl;
 
 	// 0x30
 	*p++ = &z80::jrnc; *p++ = &z80::ldsppc;

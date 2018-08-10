@@ -3,6 +3,8 @@
 
 #undef PC
 
+class Stream;
+
 class CPU: public Checkpointable {
 public:
 	virtual void run(unsigned instructions) =0;

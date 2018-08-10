@@ -1,4 +1,4 @@
-#include <Energia.h>
+#include <Arduino.h>
 #include "ps2drv.h"
 
 #define BUFFER_SIZE 16

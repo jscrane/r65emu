@@ -59,13 +59,13 @@ private:
 	int _irq_pending;
 	PortDevice<i8080> *_ports;
 
-	typedef void (i8080::*OP)(); 
+	typedef void (i8080::*OP)();
 	OP _ops[256];
 
 	static int parity_table[256];
 
-	inline word _rw(Memory::address a) { 
-		return _mem[a] + (_mem[a+1] << 8); 
+	inline word _rw(Memory::address a) {
+		return _mem[a] + (_mem[a+1] << 8);
 	}
 	inline void _sw(Memory::address a, word w) {
 		_mem[a] = (w & 0xff);
@@ -128,7 +128,7 @@ private:
 	void inrd() { _inc(D); }
 	void dcrd() { _dec(D); }
 	void mvid() { D = _mem[PC++]; }
-	void ral() { 
+	void ral() {
 		byte b = (A << 1) | flags.C;
 		flags.C = (A & 0x80) >> 7;
 		A = b;

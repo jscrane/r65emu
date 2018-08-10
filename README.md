@@ -1,7 +1,7 @@
 r65emu
 ======
 
-Emulation library for 6502-based 8-bit microcomputers.
+Emulation library for 8-bit microcomputers based on 6502, i8080 and z80.
 
 Libraries:
 ---------
@@ -22,4 +22,3 @@ Hardware:
 - A 23k256 SPI RAM chip (optional)
 
 See _hardware.h_ for wiring details and other options.
-

@@ -2,6 +2,7 @@
 #define __MEMORY_H__
 
 typedef unsigned char byte;
+typedef unsigned int word;
 
 class Stream;
 
@@ -48,7 +49,7 @@ public:
 
 	// primary access interface
 	//
-	Device &operator[] (address a) { 
+	Device &operator[] (address a) {
 		Device *d = get (a);
 		d->access (a);
 		return *d;

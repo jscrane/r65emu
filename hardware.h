@@ -1,5 +1,5 @@
 /*
- * The hardware configuration of the machine. 
+ * The hardware configuration of the machine.
  * (This should be the same for all emulated devices.)
  */
 #ifndef __HARDWARE_H__

@@ -1,4 +1,5 @@
-#include <Energia.h>
+#include <stdio.h>
+#include <Stream.h>
 
 #include "memory.h"
 #include "CPU.h"
@@ -109,7 +110,7 @@ i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m)
 	OP *p = _ops;
 
 	// 0x
-	*p++ = &i8080::nop; *p++ = &i8080::lxib; 
+	*p++ = &i8080::nop; *p++ = &i8080::lxib;
 	*p++ = &i8080::staxb; *p++ = &i8080::inxb;
 	*p++ = &i8080::inrb; *p++ = &i8080::dcrb;
 	*p++ = &i8080::mvib; *p++ = &i8080::rlc;
@@ -119,7 +120,7 @@ i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m)
 	*p++ = &i8080::mvic; *p++ = &i8080::rrc;
 
 	// 1x
-	*p++ = &i8080::nop; *p++ = &i8080::lxid; 
+	*p++ = &i8080::nop; *p++ = &i8080::lxid;
 	*p++ = &i8080::staxd; *p++ = &i8080::inxd;
 	*p++ = &i8080::inrd; *p++ = &i8080::dcrd;
 	*p++ = &i8080::mvid; *p++ = &i8080::ral;
@@ -133,10 +134,10 @@ i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m)
 	*p++ = &i8080::shld; *p++ = &i8080::inxh;
 	*p++ = &i8080::inrh; *p++ = &i8080::dcrh;
 	*p++ = &i8080::mvih; *p++ = &i8080::daa;
-	*p++ = &i8080::nop; *p++ = &i8080::dadh; 
-	*p++ = &i8080::lhld; *p++ = &i8080::dcxh; 
-	*p++ = &i8080::inrl; *p++ = &i8080::dcrl; 
-	*p++ = &i8080::mvil; *p++ = &i8080::cma; 
+	*p++ = &i8080::nop; *p++ = &i8080::dadh;
+	*p++ = &i8080::lhld; *p++ = &i8080::dcxh;
+	*p++ = &i8080::inrl; *p++ = &i8080::dcrl;
+	*p++ = &i8080::mvil; *p++ = &i8080::cma;
 
 	// 3x
 	*p++ = &i8080::nop; *p++ = &i8080::lxisp;

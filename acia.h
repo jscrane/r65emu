@@ -30,7 +30,7 @@ struct acia {
 	static const byte ws8e1 = 6 << 2;
 	static const byte ws8o1 = 7 << 2;
 
-	static const byte lrts_dti = 0 << 5;		// /rts, disable trans irq 
+	static const byte lrts_dti = 0 << 5;		// /rts, disable trans irq
 	static const byte lrts_eti = 1 << 5;		// /rts, enable
 	static const byte hrts_dti = 2 << 5;		// rts, disable
 	static const byte lrts_dti_brk = 3 << 5;	// /rts, disable, send brk

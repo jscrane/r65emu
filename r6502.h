@@ -77,7 +77,7 @@ private:
 	inline void _ldy(byte a) { Z=N=Y=a; }
 
 	/* modes */
-	inline Memory::address _a() { 
+	inline Memory::address _a() {
 		Memory::address a = _mem[PC++];
 		return a | (_mem[PC++] << 8);
 	}
@@ -86,8 +86,8 @@ private:
 	inline Memory::address _z() { return _mem[PC++]; }
 	inline Memory::address _zx() { return (_z()+X) & 0xff; }
 	inline Memory::address _zy() { return (_z()+Y) & 0xff; }
-	inline Memory::address _i(Memory::address a) { 
-		return (_mem[a+1]<<8)|_mem[a]; 
+	inline Memory::address _i(Memory::address a) {
+		return (_mem[a+1]<<8)|_mem[a];
 	}
 	inline Memory::address _ix() { return _i(_zx()); }
 	inline Memory::address _iy() { return _i(_mem[PC++])+Y; }

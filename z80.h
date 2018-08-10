@@ -68,14 +68,14 @@ public:
 private:
 	void _handle_interrupt();
 
-	typedef void (z80::*OP)(); 
+	typedef void (z80::*OP)();
 	void _step(OP ops[]);
 
 	byte _fetch_op();
 
 	inline void step() { (this->*_ops[_fetch_op()])(); }
 
-	typedef void (z80::*OP_IDX)(byte); 
+	typedef void (z80::*OP_IDX)(byte);
 	void _step_idx(OP_IDX ops[]);
 
 	void _ddfd(word &ix, byte &ixL, byte &ixH, OP_IDX ops[]);
@@ -174,8 +174,8 @@ private:
 		ts(i);
 	}
 
-	inline word _rw(Memory::address a) { 
-		return _rb(a) + (_rb(a+1) << 8); 
+	inline word _rw(Memory::address a) {
+		return _rb(a) + (_rb(a+1) << 8);
 	}
 
 	inline void _sw(Memory::address a, word w) {
@@ -399,10 +399,10 @@ private:
 	void incc() { _inc(C); }
 	void decc() { _dec(C); }
 	void ldc() { C = _rb(PC++); }
-	void rrca() { 
+	void rrca() {
 		flags.H = flags.N = 0;
-		flags.C = (A & 0x01); 
-		A = (A >> 1) | (flags.C << 7); 
+		flags.C = (A & 0x01);
+		A = (A >> 1) | (flags.C << 7);
 		_35(A);
 	}
 
@@ -414,16 +414,16 @@ private:
 	void incd() { _inc(D); }
 	void decd() { _dec(D); }
 	void ldd() { D = _rb(PC++); }
-	void rla() { 
+	void rla() {
 		byte b = (A << 1) | flags.C;
 		flags.C = (A & 0x80) >> 7;
 		A = b;
 	}
 
 	// 0x18
-	void jr() { 
-		byte b = _rb(PC); 
-		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); 
+	void jr() {
+		byte b = _rb(PC);
+		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		PC = _ads(PC, b+1);
 	}
 	void addhlde() { _add16(HL, DE); }
@@ -1162,8 +1162,8 @@ private:
 	void set7a() { A |= 0x80; }
 
 	inline void _bitI(int i, word a) {
-		byte b = _rb(a); 
-		_mc(a, 1); 
+		byte b = _rb(a);
+		_mc(a, 1);
 		_bit(i, b);
 		_35(a >> 8);
 	}
@@ -1178,8 +1178,8 @@ private:
 	}
 
 	// 0x00
-	inline void _rlcIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _rlc(b); _sb(a, b); 
+	inline void _rlcIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _rlc(b); _sb(a, b);
 	}
 	void rlcIXB(byte o) { _rlcIX(B, o); }
 	void rlcIXC(byte o) { _rlcIX(C, o); }
@@ -1191,8 +1191,8 @@ private:
 	void rlcIXA(byte o) { _rlcIX(A, o); }
 
 	// 0x08
-	inline void _rrcIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _rrc(b); _sb(a, b); 
+	inline void _rrcIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _rrc(b); _sb(a, b);
 	}
 	void rrcIXB(byte o) { _rrcIX(B, o); }
 	void rrcIXC(byte o) { _rrcIX(C, o); }
@@ -1204,8 +1204,8 @@ private:
 	void rrcIXA(byte o) { _rrcIX(A, o); }
 
 	// 0x10
-	inline void _rlIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _rl(b); _sb(a, b); 
+	inline void _rlIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _rl(b); _sb(a, b);
 	}
 	void rlIXB(byte o) { _rlIX(B, o); }
 	void rlIXC(byte o) { _rlIX(C, o); }
@@ -1217,8 +1217,8 @@ private:
 	void rlIXA(byte o) { _rlIX(A, o); }
 
 	// 0x18
-	inline void _rrIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _rr(b); _sb(a, b); 
+	inline void _rrIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _rr(b); _sb(a, b);
 	}
 	void rrIXB(byte o) { _rrIX(B, o); }
 	void rrIXC(byte o) { _rrIX(C, o); }
@@ -1230,8 +1230,8 @@ private:
 	void rrIXA(byte o) { _rrIX(A, o); }
 
 	// 0x20
-	inline void _slaIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _sla(b); _sb(a, b); 
+	inline void _slaIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _sla(b); _sb(a, b);
 	}
 	void slaIXB(byte o) { _slaIX(B, o); }
 	void slaIXC(byte o) { _slaIX(C, o); }
@@ -1243,8 +1243,8 @@ private:
 	void slaIXA(byte o) { _slaIX(A, o); }
 
 	// 0x28
-	inline void _sraIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _sra(b); _sb(a, b); 
+	inline void _sraIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _sra(b); _sb(a, b);
 	}
 	void sraIXB(byte o) { _sraIX(B, o); }
 	void sraIXC(byte o) { _sraIX(C, o); }
@@ -1256,8 +1256,8 @@ private:
 	void sraIXA(byte o) { _sraIX(A, o); }
 
 	// 0x30
-	inline void _sllIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _sll(b); _sb(a, b); 
+	inline void _sllIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _sll(b); _sb(a, b);
 	}
 	void sllIXB(byte o) { _sllIX(B, o); }
 	void sllIXC(byte o) { _sllIX(C, o); }
@@ -1269,8 +1269,8 @@ private:
 	void sllIXA(byte o) { _sllIX(A, o); }
 
 	// 0x38
-	inline void _srlIX(byte &b, byte o) { 
-		word a = _rbIX(b, o); _srl(b); _sb(a, b); 
+	inline void _srlIX(byte &b, byte o) {
+		word a = _rbIX(b, o); _srl(b); _sb(a, b);
 	}
 	void srlIXB(byte o) { _srlIX(B, o); }
 	void srlIXC(byte o) { _srlIX(C, o); }
@@ -1489,8 +1489,8 @@ private:
 	}
 
 	// 0x00
-	inline void _rlcIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _rlc(b); _sb(a, b); 
+	inline void _rlcIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _rlc(b); _sb(a, b);
 	}
 	void rlcIYB(byte o) { _rlcIY(B, o); }
 	void rlcIYC(byte o) { _rlcIY(C, o); }
@@ -1502,8 +1502,8 @@ private:
 	void rlcIYA(byte o) { _rlcIY(A, o); }
 
 	// 0x08
-	inline void _rrcIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _rrc(b); _sb(a, b); 
+	inline void _rrcIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _rrc(b); _sb(a, b);
 	}
 	void rrcIYB(byte o) { _rrcIY(B, o); }
 	void rrcIYC(byte o) { _rrcIY(C, o); }
@@ -1515,8 +1515,8 @@ private:
 	void rrcIYA(byte o) { _rrcIY(A, o); }
 
 	// 0x10
-	inline void _rlIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _rl(b); _sb(a, b); 
+	inline void _rlIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _rl(b); _sb(a, b);
 	}
 	void rlIYB(byte o) { _rlIY(B, o); }
 	void rlIYC(byte o) { _rlIY(C, o); }
@@ -1528,8 +1528,8 @@ private:
 	void rlIYA(byte o) { _rlIY(A, o); }
 
 	// 0x18
-	inline void _rrIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _rr(b); _sb(a, b); 
+	inline void _rrIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _rr(b); _sb(a, b);
 	}
 	void rrIYB(byte o) { _rrIY(B, o); }
 	void rrIYC(byte o) { _rrIY(C, o); }
@@ -1541,8 +1541,8 @@ private:
 	void rrIYA(byte o) { _rrIY(A, o); }
 
 	// 0x20
-	inline void _slaIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _sla(b); _sb(a, b); 
+	inline void _slaIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _sla(b); _sb(a, b);
 	}
 	void slaIYB(byte o) { _slaIY(B, o); }
 	void slaIYC(byte o) { _slaIY(C, o); }
@@ -1554,8 +1554,8 @@ private:
 	void slaIYA(byte o) { _slaIY(A, o); }
 
 	// 0x28
-	inline void _sraIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _sra(b); _sb(a, b); 
+	inline void _sraIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _sra(b); _sb(a, b);
 	}
 	void sraIYB(byte o) { _sraIY(B, o); }
 	void sraIYC(byte o) { _sraIY(C, o); }
@@ -1567,8 +1567,8 @@ private:
 	void sraIYA(byte o) { _sraIY(A, o); }
 
 	// 0x30
-	inline void _sllIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _sll(b); _sb(a, b); 
+	inline void _sllIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _sll(b); _sb(a, b);
 	}
 	void sllIYB(byte o) { _sllIY(B, o); }
 	void sllIYC(byte o) { _sllIY(C, o); }
@@ -1580,8 +1580,8 @@ private:
 	void sllIYA(byte o) { _sllIY(A, o); }
 
 	// 0x38
-	inline void _srlIY(byte &b, byte o) { 
-		word a = _rbIY(b, o); _srl(b); _sb(a, b); 
+	inline void _srlIY(byte &b, byte o) {
+		word a = _rbIY(b, o); _srl(b); _sb(a, b);
 	}
 	void srlIYB(byte o) { _srlIY(B, o); }
 	void srlIYC(byte o) { _srlIY(C, o); }
