@@ -1,6 +1,6 @@
-#include <UTFT.h>
 #include <SPI.h>
 #include <SD.h>
+#include <UTFT.h>
 #include <SpiRAM.h>
 
 #include "ps2drv.h"
@@ -12,26 +12,36 @@
 
 Memory memory;
 PS2Driver ps2;
+
+#if defined(SPIRAM_CS)
 spiram sram(SPIRAM_SIZE);
+#endif
+
 UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST);
 static CPU *_cpu;
 
 bool hardware_reset() {
+	bool success = true;
+
+#if defined(SPIRAM_CS)
 	extern SPIClass SPIRAM_DEV;
 	SPIRAM_DEV.begin();
 	SPIRAM_DEV.setModule(SPIRAM_SPI);
 	SPIRAM_DEV.setClockDivider(1);
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
+#endif
 
-	bool sd = SD.begin(SD_CS, 2, SD_SPI);
+#if defined(SD_CS)
+	success = SD.begin(SD_CS, 2, SD_SPI);
 	pinMode(SPI_CS, OUTPUT);	// without this, the SPI-RAM isn't seen
- 
+#endif
+
 #if defined(TFT_BACKLIGHT)
 	digitalWrite(TFT_BACKLIGHT, HIGH);
 #endif
 
 	_cpu->reset();
-	return sd;
+	return success;
 }
 
 void hardware_init(CPU &cpu) {
@@ -42,10 +52,16 @@ void hardware_init(CPU &cpu) {
 #if defined(TFT_BACKLIGHT)
 	pinMode(TFT_BACKLIGHT, OUTPUT);
 #endif
+
+#if defined(SD_CS)
 	pinMode(SD_CS, OUTPUT);
 	digitalWrite(SD_CS, HIGH);
+#endif
+
+#if defined(SPIRAM_CS)
 	pinMode(SPIRAM_CS, OUTPUT);
 	digitalWrite(SPIRAM_CS, HIGH);
+#endif
 }
 
 void hardware_checkpoint(Stream &s) {
