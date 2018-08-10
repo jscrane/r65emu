@@ -1,3 +1,5 @@
+#ifdef notdef
+
 #include <Energia.h>
 #include <stdint.h>
 #include <inc/hw_ints.h>
@@ -25,3 +27,4 @@ void timer_create(unsigned freq, Timed *client) {
 	ROM_TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet() / freq);
 }
+#endif

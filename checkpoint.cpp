@@ -3,6 +3,8 @@
 #include "checkpoint.h"
 #include "hardware.h"
 
+#ifdef notdef
+
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
@@ -27,3 +29,4 @@ void restore(sdtape &tape, const char *dir, const char *filename) {
 	cpid = (n == 1)? 0: cpid+1;
 	tape.start(dir);
 }
+#endif
