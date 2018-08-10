@@ -44,7 +44,7 @@ void hardware_restore(class Stream &);
 #ifdef __PS2DRV_H__
 extern class PS2Driver ps2;
 #endif
-#ifdef __SPIRAM_H__
+#if defined(__SPIRAM_H__) && defined(SPIRAM_CS)
 extern class spiram sram;
 #endif
 #ifdef UTFT_h

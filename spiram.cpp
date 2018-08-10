@@ -4,6 +4,8 @@
 #include "spiram.h"
 #include "hardware.h"
 
+#if defined(SPIRAM_CS)
+
 extern SPIClass SPIRAM_DEV;
 
 SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
@@ -36,3 +38,4 @@ void spiram::restore(Stream &s)
 	}
 }
 
+#endif
