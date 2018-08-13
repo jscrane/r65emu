@@ -16,8 +16,8 @@ public:
 	r6502(Memory &);
 private:
 	/* registers */
-	byte S, A, X, Y;
-	byte N, V, B, D, I, Z, C;
+	uint8_t S, A, X, Y;
+	uint8_t N, V, B, D, I, Z, C;
 	union {
 		struct {
 			unsigned C:1;
@@ -29,14 +29,14 @@ private:
 			unsigned V:1;
 			unsigned N:1;
 		} bits;
-		byte flags;
+		uint8_t flags;
 	} P;
-	byte _toBCD[256], _fromBCD[256];	// BCD maps
+	uint8_t _toBCD[256], _fromBCD[256];	// BCD maps
 	bool _irq;				// interrupt pending?
 
 	void irq();
 	void nmi();
-	byte flags();
+	uint8_t flags();
 
 	/* stack */
 	inline void pusha(Memory::address ret) {
@@ -44,16 +44,16 @@ private:
 		_mem[0x0100+S--] = ret & 0xff;
 	}
 
-	inline void pushb(byte b) {
+	inline void pushb(uint8_t b) {
 		_mem[0x0100+S--] = b;
 	}
 
-	inline byte popb() {
+	inline uint8_t popb() {
 		return _mem[++S+0x0100];
 	}
 
 	inline Memory::address popa() {
-		byte b = popb();
+		uint8_t b = popb();
 		return (popb() << 8) | b;
 	}
 
@@ -66,15 +66,15 @@ private:
 	}
 
 	/* operators */
-	inline void _cmp(byte a) { Z=N=A-a; C=(A>=a); }
-	inline void _cpx(byte a) { Z=N=X-a; C=(X>=a); }
-	inline void _cpy(byte a) { Z=N=Y-a; C=(Y>=a); }
-	inline void _and(byte a) { Z=N=A&=a; }
-	inline void _eor(byte a) { Z=N=A^=a; }
-	inline void _ora(byte a) { Z=N=A|=a; }
-	inline void _lda(byte a) { Z=N=A=a; }
-	inline void _ldx(byte a) { Z=N=X=a; }
-	inline void _ldy(byte a) { Z=N=Y=a; }
+	inline void _cmp(uint8_t a) { Z=N=A-a; C=(A>=a); }
+	inline void _cpx(uint8_t a) { Z=N=X-a; C=(X>=a); }
+	inline void _cpy(uint8_t a) { Z=N=Y-a; C=(Y>=a); }
+	inline void _and(uint8_t a) { Z=N=A&=a; }
+	inline void _eor(uint8_t a) { Z=N=A^=a; }
+	inline void _ora(uint8_t a) { Z=N=A|=a; }
+	inline void _lda(uint8_t a) { Z=N=A=a; }
+	inline void _ldx(uint8_t a) { Z=N=X=a; }
+	inline void _ldy(uint8_t a) { Z=N=Y=a; }
 
 	/* modes */
 	inline Memory::address _a() {
@@ -92,27 +92,27 @@ private:
 	inline Memory::address _ix() { return _i(_zx()); }
 	inline Memory::address _iy() { return _i(_mem[PC++])+Y; }
 
-	void _adc(byte a);
-	void _sbc(byte a) { if (P.bits.D) sbcd(a); else _adc(~a); }
-	void sbcd(byte a);
+	void _adc(uint8_t a);
+	void _sbc(uint8_t a) { if (P.bits.D) sbcd(a); else _adc(~a); }
+	void sbcd(uint8_t a);
 
-	inline byte __ror(byte b) {
+	inline uint8_t __ror(uint8_t b) {
 		N=b>>1; if (C) N|=0x80; C=b&1; return Z=N;
 	}
 	inline void _ror(Memory::address a) {
 		_mem[a] = __ror(_mem[a]);
 	}
-	inline byte __rol(byte b) {
+	inline uint8_t __rol(uint8_t b) {
 		N=b<<1; if (C) N|=1; C=(b&0x80)!=0; return Z=N;
 	}
 	inline void _rol(Memory::address a) {
 		_mem[a] = __rol(_mem[a]);
 	}
-	inline byte __asl(byte b) { C=(b&0x80)!=0; return Z=N=b<<1; }
+	inline uint8_t __asl(uint8_t b) { C=(b&0x80)!=0; return Z=N=b<<1; }
 	inline void _asl(Memory::address a) {
 		_mem[a] = __asl(_mem[a]);
 	}
-	inline byte __lsr(byte b) { C=b&1; Z=b>>1; N=0; return Z; }
+	inline uint8_t __lsr(uint8_t b) { C=b&1; Z=b>>1; N=0; return Z; }
 	inline void _lsr(Memory::address a) {
 		_mem[a] = __lsr(_mem[a]);
 	}
@@ -122,9 +122,9 @@ private:
 	inline void _dec(Memory::address a) {
 		Z=N=_mem[a]-1; _mem[a]=Z;
 	}
-	inline void _bit(byte z) { V=((z & 0x40)!=0); N=(z & 0x80); Z=(A & z); }
+	inline void _bit(uint8_t z) { V=((z & 0x40)!=0); N=(z & 0x80); Z=(A & z); }
 	inline void _bra() {
-		byte b = _mem[PC];
+		uint8_t b = _mem[PC];
 		PC += b;
 		if (b > 127) PC -= 0x0100;
 	}

@@ -11,11 +11,11 @@ public:
 	
 	sdtape(): _pos(0), _len(0) {}
 
-	byte read() { return _buf[_pos++]; }
+	uint8_t read() { return _buf[_pos++]; }
 	bool more();
 
 private:
 	unsigned int _pos, _len;
-	byte _buf[128];
+	uint8_t _buf[128];
 };
 #endif

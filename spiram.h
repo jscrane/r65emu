@@ -3,14 +3,14 @@
 
 class spiram: public Memory::Device {
 public:
-	virtual void operator= (byte c);
-	virtual operator byte ();
+	virtual void operator= (uint8_t c);
+	virtual operator uint8_t ();
 
 	virtual void checkpoint(Stream &s);
 	virtual void restore(Stream &s);
 
 	spiram(int bytes): Memory::Device(bytes) {}
-	void begin(byte cs, int module);
+	void begin(uint8_t cs, int module);
 };
 
 #endif

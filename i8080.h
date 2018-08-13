@@ -16,31 +16,31 @@ public:
 	void checkpoint(Stream &);
 	void restore(Stream &);
 
-	inline byte a() { return A; }
-	inline byte b() { return B; }
-	inline byte c() { return C; }
-	inline byte d() { return D; }
-	inline byte e() { return E; }
-	inline byte h() { return H; }
-	inline byte l() { return L; }
-	inline word bc() { return BC; }
-	inline word de() { return DE; }
-	inline word hl() { return HL; }
-	inline byte sr() { return SR; }
+	inline uint8_t a() { return A; }
+	inline uint8_t b() { return B; }
+	inline uint8_t c() { return C; }
+	inline uint8_t d() { return D; }
+	inline uint8_t e() { return E; }
+	inline uint8_t h() { return H; }
+	inline uint8_t l() { return L; }
+	inline uint16_t bc() { return BC; }
+	inline uint16_t de() { return DE; }
+	inline uint16_t hl() { return HL; }
+	inline uint8_t sr() { return SR; }
 
 private:
-	byte A;
+	uint8_t A;
 	union {
-		struct { byte C, B; };
-		word BC;
+		struct { uint8_t C, B; };
+		uint16_t BC;
 	};
 	union {
-		struct { byte E, D; };
-		word DE;
+		struct { uint8_t E, D; };
+		uint16_t DE;
 	};
 	union {
-		struct { byte L, H; };
-		word HL;
+		struct { uint8_t L, H; };
+		uint16_t HL;
 	};
 	Memory::address SP;
 	union {
@@ -54,7 +54,7 @@ private:
 			unsigned Z:1;
 			unsigned S:1;
 		} flags;
-		byte SR;
+		uint8_t SR;
 	};
 	int _irq_pending;
 	PortDevice<i8080> *_ports;
@@ -64,42 +64,42 @@ private:
 
 	static int parity_table[256];
 
-	inline word _rw(Memory::address a) {
+	inline uint16_t _rw(Memory::address a) {
 		return _mem[a] + (_mem[a+1] << 8);
 	}
-	inline void _sw(Memory::address a, word w) {
+	inline void _sw(Memory::address a, uint16_t w) {
 		_mem[a] = (w & 0xff);
 		_mem[a+1] = (w >> 8);
 	}
 
-	inline void _szp(byte r) {
+	inline void _szp(uint8_t r) {
 		flags.S = ((r & 0x80) != 0);
 		flags.Z = (r == 0);
 		flags.P = parity_table[r];
 	}
 
-	inline void _szhp(byte b, byte r) {
+	inline void _szhp(uint8_t b, uint8_t r) {
 		_szp(r);
 		flags.H = ((b & 0x0f) > (r & 0x0f));
 	}
 
-	inline void _inc(byte &b) {
-		word w = b + 1;
-		byte r = w & 0xff;
+	inline void _inc(uint8_t &b) {
+		uint16_t w = b + 1;
+		uint8_t r = w & 0xff;
 		_szhp(b, r);
 		b = r;
 	}
 
-	inline void _dec(byte &b) {
-		word w = b - 1;
-		byte r = w & 0xff;
+	inline void _dec(uint8_t &b) {
+		uint16_t w = b - 1;
+		uint8_t r = w & 0xff;
 		_szhp(b, r);
 		b = r;
 	}
 
-	inline void _sr(byte b) { SR = b; flags._ = 0; flags.__ = 1; }
+	inline void _sr(uint8_t b) { SR = b; flags._ = 0; flags.__ = 1; }
 
-	inline void _dad(word w) {
+	inline void _dad(uint16_t w) {
 		unsigned long r = HL + w;
 		HL = (r & 0xffff);
 		flags.C = (r > 0xffff);
@@ -129,7 +129,7 @@ private:
 	void dcrd() { _dec(D); }
 	void mvid() { D = _mem[PC++]; }
 	void ral() {
-		byte b = (A << 1) | flags.C;
+		uint8_t b = (A << 1) | flags.C;
 		flags.C = (A & 0x80) >> 7;
 		A = b;
 	}
@@ -141,7 +141,7 @@ private:
 	void dcre() { _dec(E); }
 	void mvie() { E = _mem[PC++]; }
 	void rar() {
-		byte b = (A >> 1) | (flags.C << 7);
+		uint8_t b = (A >> 1) | (flags.C << 7);
 		flags.C = (A & 1);
 		A = b;
 	}
@@ -164,9 +164,9 @@ private:
 	void lxisp() { SP = _rw(PC); PC += 2; }
 	void sta() { _mem[_rw(PC)] = A; PC += 2; }
 	void inxsp() { SP++; }
-	void inrm() { byte b = _mem[HL]; _inc(b); _mem[HL] = b; }
-	void dcrm() { byte b = _mem[HL]; _dec(b); _mem[HL] = b; }
-	void mvim() { byte b = _mem[PC++]; _mem[HL] = b; }
+	void inrm() { uint8_t b = _mem[HL]; _inc(b); _mem[HL] = b; }
+	void dcrm() { uint8_t b = _mem[HL]; _dec(b); _mem[HL] = b; }
+	void mvim() { uint8_t b = _mem[PC++]; _mem[HL] = b; }
 	void stc() { flags.C = 1; }
 
 	void dadsp() { _dad(SP); }
@@ -242,9 +242,9 @@ private:
 	void movam() { A = _mem[HL]; }
 	void movaa() {}
 
-	inline void _add(byte x) {
-		word w = A + x;
-		byte b = A;
+	inline void _add(uint8_t x) {
+		uint16_t w = A + x;
+		uint8_t b = A;
 		A = w & 0xff;
 		_szhp(b, A);
 		flags.C = w > 0xff;
@@ -259,9 +259,9 @@ private:
 	void addm() { _add(_mem[HL]); }
 	void adda() { _add(A); }
 
-	inline void _adc(byte x) {
-		word w = A + x + flags.C;
-		byte b = A;
+	inline void _adc(uint8_t x) {
+		uint16_t w = A + x + flags.C;
+		uint8_t b = A;
 		A = w & 0xff;
 		_szhp(b, A);
 		flags.C = w > 0xff;
@@ -276,9 +276,9 @@ private:
 	void adcm() { _adc(_mem[HL]); }
 	void adca() { _adc(A); }
 
-	inline void _sub(byte x) {
-		word w = A - x;
-		byte b = A;
+	inline void _sub(uint8_t x) {
+		uint16_t w = A - x;
+		uint8_t b = A;
 		A = w & 0xff;
 		_szhp(b, A);
 		flags.C = w > 0xff;
@@ -293,9 +293,9 @@ private:
 	void subm() { _sub(_mem[HL]); }
 	void suba() { _sub(A); }
 
-	inline void _sbc(byte x) {
-		word w = A - x - flags.C;
-		byte b = A;
+	inline void _sbc(uint8_t x) {
+		uint16_t w = A - x - flags.C;
+		uint8_t b = A;
 		A = w & 0xff;
 		_szhp(b, A);
 		flags.C = w > 0xff;
@@ -310,7 +310,7 @@ private:
 	void sbbm() { _sbc(_mem[HL]); }
 	void sbba() { _sbc(A); }
 
-	inline void _and(byte b) {
+	inline void _and(uint8_t b) {
 		A = A & b;
 		_szp(A);
 		flags.C = 0;
@@ -326,7 +326,7 @@ private:
 	void anam() { _and(_mem[HL]); }
 	void anaa() { _and(A); }
 
-	inline void _xor(byte b) {
+	inline void _xor(uint8_t b) {
 		A = A ^ b;
 		_szp(A);
 		flags.C = flags.H = 0;
@@ -341,7 +341,7 @@ private:
 	void xram() { _xor(_mem[HL]); }
 	void xraa() { _xor(A); }
 
-	inline void _or(byte b) {
+	inline void _or(uint8_t b) {
 		A = A | b;
 		_szp(A);
 		flags.C = flags.H = 0;
@@ -356,8 +356,8 @@ private:
 	void oram() { _or(_mem[HL]); }
 	void oraa() { _or(A); }
 
-	inline void _cmp(byte b) {
-		word w = A - b;
+	inline void _cmp(uint8_t b) {
+		uint16_t w = A - b;
 		_szhp(b, w & 0xff);
 		flags.C = w > 0xff;
 	}
@@ -371,14 +371,14 @@ private:
 	void cmpm() { _cmp(_mem[HL]); }
 	void cmpa() { _cmp(A); }
 
-	inline byte _popb() { return _mem[SP++]; }
-	inline void _pushb(byte b) { _mem[--SP] = b; }
-	inline word _pop() { word w = _rw(SP); SP += 2; return w; }
-	inline void _push(word w) { SP -= 2; _sw(SP, w); }
+	inline uint8_t _popb() { return _mem[SP++]; }
+	inline void _pushb(uint8_t b) { _mem[--SP] = b; }
+	inline uint16_t _pop() { uint16_t w = _rw(SP); SP += 2; return w; }
+	inline void _push(uint16_t w) { SP -= 2; _sw(SP, w); }
 
-	inline void _jmp(byte c) { if (c) jmp(); else PC += 2; }
-	inline void _ret(byte c) { if (c) ret(); }
-	inline void _call(byte c) { if (c) call(); else PC += 2; }
+	inline void _jmp(uint8_t c) { if (c) jmp(); else PC += 2; }
+	inline void _ret(uint8_t c) { if (c) ret(); }
+	inline void _call(uint8_t c) { if (c) call(); else PC += 2; }
 
 	void rnz() { _ret(!flags.Z); }
 	void popb() { BC = _pop(); }
@@ -415,7 +415,7 @@ private:
 	void rpo() { _ret(!flags.P); }
 	void poph() { HL = _pop(); }
 	void jpo() { _jmp(!flags.P); }
-	void xthl() { word w = _pop(); _push(HL); HL = w; }
+	void xthl() { uint16_t w = _pop(); _push(HL); HL = w; }
 	void cpo() { _call(!flags.P); }
 	void pushh() { _push(HL); }
 	void ani() { _and(_mem[PC++]); }
@@ -423,7 +423,7 @@ private:
 	void rpe() { _ret(flags.P); }
 	void pchl() { PC = HL; }
 	void jpe() { _jmp(flags.P); }
-	void xchg() { word w = DE; DE = HL; HL = w; }
+	void xchg() { uint16_t w = DE; DE = HL; HL = w; }
 	void cpe() { _call(flags.P); }
 
 	void xri() { _xor(_mem[PC++]); }

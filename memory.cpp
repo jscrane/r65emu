@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "memory.h"
 
 void Memory::put (Device &dev, address b) {
@@ -13,8 +14,8 @@ void Memory::put (Device &dev, address b) {
 class NullDevice: public Memory::Device {
 public:
 	NullDevice(): Memory::Device(65536) {}
-	void operator= (byte b) {}
-	operator byte() { return 0; }
+	void operator= (uint8_t b) {}
+	operator uint8_t() { return 0; }
 } nd;
 
 void Memory::begin() {

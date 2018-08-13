@@ -3,8 +3,8 @@
 
 class ram: public Memory::Device {
 public:
-	virtual void operator= (byte c) { _mem[_acc] = c; }
-	virtual operator byte () { return _mem[_acc]; }
+	virtual void operator= (uint8_t c) { _mem[_acc] = c; }
+	virtual operator uint8_t () { return _mem[_acc]; }
 
 	virtual void checkpoint(Stream &s) { s.write(_mem, sizeof(_mem)); }
 	virtual void restore(Stream &s) { s.readBytes((char *)_mem, sizeof(_mem)); }
@@ -12,6 +12,6 @@ public:
 	ram (): Memory::Device(sizeof(_mem)) {}
 
 private:
-	byte _mem[1024];
+	uint8_t _mem[1024];
 };
 #endif

@@ -7,7 +7,7 @@
 
 void r6502::run(unsigned clocks) {
 	while (clocks--) {
-		byte op = _mem[PC];
+		uint8_t op = _mem[PC];
 		PC++;
 		(this->*_ops[op])();
 		if (_halted)
@@ -15,7 +15,7 @@ void r6502::run(unsigned clocks) {
 	}
 }
 
-byte r6502::flags() {
+uint8_t r6502::flags() {
 	P.bits.N = ((N & 0x80) != 0);
 	P.bits.V = V;
 	P.bits.Z = !Z;
@@ -54,7 +54,7 @@ void r6502::checkpoint(Stream &s)
 
 void r6502::restore(Stream &s)
 {
-	byte hi = s.read(), lo = s.read();
+	uint8_t hi = s.read(), lo = s.read();
 	PC = hi * 0xff + lo;
 	S = s.read();
 	A = s.read();
@@ -142,7 +142,7 @@ void r6502::jsr() {
 	PC = vector(PC);
 }
 
-void r6502::_adc(byte d) {
+void r6502::_adc(uint8_t d) {
 	if (P.bits.D) {
 		int r = _fromBCD[A] + _fromBCD[d] + C;
 		C = (r > 99);
@@ -159,7 +159,7 @@ void r6502::_adc(byte d) {
 	Z = A;
 }
 
-void r6502::sbcd(byte d) {
+void r6502::sbcd(uint8_t d) {
 	int r = _fromBCD[A] - _fromBCD[d] - !C;
 	C = (r >= 0);
 	if (r < 0) r += 100;
