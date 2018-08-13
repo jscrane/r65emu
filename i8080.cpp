@@ -8,7 +8,7 @@
 
 void i8080::run(unsigned clocks) {
 	while (clocks--) {
-		byte op = _mem[PC];
+		uint8_t op = _mem[PC];
 		PC++;
 		(this->*_ops[op])();
 		if (_halted)
@@ -41,7 +41,7 @@ void i8080::ei() {
 }
 
 char *i8080::status(char *buf, size_t n, bool hdr) {
-	byte op = _mem[PC];
+	uint8_t op = _mem[PC];
 	snprintf(buf, n,
 		"%s%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d",
 		hdr? "_pc_ op aa _bc_ _de_ _hl_ _sp_ szih_p_c\r": "",
@@ -73,7 +73,7 @@ void i8080::restore(Stream &s) {
 }
 
 void i8080::daa() {
-	byte c = flags.C, a = 0, hi = (A & 0xf0) >> 4, lo = A & 0x0f;
+	uint8_t c = flags.C, a = 0, hi = (A & 0xf0) >> 4, lo = A & 0x0f;
 	if (flags.H || lo > 9)
 		a = 0x06;
 	if (flags.C || hi > 0x9 || (hi >= 0x9 && lo > 9)) {

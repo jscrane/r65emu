@@ -7,7 +7,7 @@
 #include "z80.h"
 
 char *z80::status(char *buf, size_t n, bool hdr) {
-	byte op = _mem[PC];
+	uint8_t op = _mem[PC];
 	snprintf(buf, n,
 		"%s%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d "
 		"%04x %d%d%d%d%d%d%d%d",
@@ -61,9 +61,9 @@ void z80::restore(Stream &s) {
 	_irq_pending = s.read();
 }
 
-byte z80::_fetch_op() {
+uint8_t z80::_fetch_op() {
 	_mc(PC, 4);
-	byte op = _mem[PC];
+	uint8_t op = _mem[PC];
 #if defined(CPU_DEBUG)
 	printf("%5ld MR %04x %02x\n", _ts, PC, op);
 #endif
@@ -118,7 +118,7 @@ void z80::_handle_interrupt() {
 }
 
 void z80::daa() {
-	byte c = flags.C, a = 0, lo = A & 0x0f;
+	uint8_t c = flags.C, a = 0, lo = A & 0x0f;
 	if (flags.H || lo > 9)
 		a = 0x06;
 	if (c || A > 0x99) {
@@ -136,14 +136,14 @@ void z80::daa() {
 void z80::_step_idx(OP_IDX ops[]) {
 
 	_mc(PC, 3);
-	byte off = _mem[PC];
+	uint8_t off = _mem[PC];
 #if defined(CPU_DEBUG)
 	printf("%5ld MR %04x %02x\n", _ts, PC, off);
 #endif
 	PC++;
 
 	_mc(PC, 3);
-	byte op = _mem[PC];
+	uint8_t op = _mem[PC];
 #if defined(CPU_DEBUG)
 	printf("%5ld MR %04x %02x\n", _ts, PC, op);
 #endif
@@ -153,7 +153,7 @@ void z80::_step_idx(OP_IDX ops[]) {
 	(this->*ops[op])(off);
 }
 
-void z80::_ddfd(word &ix, byte &ixL, byte &ixH, OP_IDX ops[]) {
+void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, OP_IDX ops[]) {
 	switch (_fetch_op()) {
 	case 0x09:
 		_add16(ix, BC);
@@ -419,7 +419,7 @@ void z80::_ddfd(word &ix, byte &ixL, byte &ixH, OP_IDX ops[]) {
 }
 
 void z80::ed() {
-	byte b, c, f;
+	uint8_t b, c, f;
 	switch (_fetch_op()) {
 	case 0x40:
 		B = _inr(BC);

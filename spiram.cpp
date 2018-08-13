@@ -10,19 +10,19 @@ extern SPIClass SPIRAM_DEV;
 
 SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
 
-void spiram::operator=(byte b)
+void spiram::operator=(uint8_t b)
 {
-	spiRam.write_byte(_acc, b);
+	spiRam.write_uint8_t(_acc, b);
 }
 
-spiram::operator byte()
+spiram::operator uint8_t()
 {
-	return spiRam.read_byte(_acc);
+	return spiRam.read_uint8_t(_acc);
 }
 
 void spiram::checkpoint(Stream &s)
 {
-	byte buf[Memory::page_size];
+	uint8_t buf[Memory::page_size];
 	for (unsigned i = 0; i < pages(); i++) {
 		spiRam.read_stream(i * 256, buf, sizeof(buf));
 		s.write(buf, sizeof(buf));
@@ -31,7 +31,7 @@ void spiram::checkpoint(Stream &s)
 
 void spiram::restore(Stream &s)
 {
-	byte buf[Memory::page_size];
+	uint8_t buf[Memory::page_size];
 	for (unsigned i = 0; i < pages(); i++) {
 		s.readBytes((char *)buf, sizeof(buf));
 		spiRam.write_stream(i * 256, buf, sizeof(buf));

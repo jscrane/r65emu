@@ -1,9 +1,6 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
-typedef unsigned char byte;
-typedef unsigned int word;
-
 class Stream;
 
 class Checkpointable {
@@ -14,12 +11,12 @@ public:
 
 class Memory {
 public:
-	typedef unsigned short address;
+	typedef uint16_t address;
 	static const unsigned page_size = 256;
 
 	class Device: public Checkpointable {
 	public:
-		Device (unsigned bytes): _pages(bytes/page_size) {}
+		Device (unsigned uint8_ts): _pages(uint8_ts/page_size) {}
 		virtual ~Device () {}
 
 		unsigned pages () const { return _pages; }
@@ -27,8 +24,8 @@ public:
 		void base (address a) { _base=a; }
 		address base () const { return _base; }
 
-		virtual void operator= (byte) =0;
-		virtual operator byte () =0;
+		virtual void operator= (uint8_t) =0;
+		virtual operator uint8_t () =0;
 
 		virtual void checkpoint(Stream &s) {};
 		virtual void restore(Stream &s) {};
