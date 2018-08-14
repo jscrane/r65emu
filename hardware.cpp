@@ -1,21 +1,29 @@
+#include "hardware.h"
+
 #include <SPI.h>
+
+#if defined(SD_CS)
 #include <SD.h>
+#endif
+
+#if defined(USE_SPIFFS)
+#include <SPIFFS.h>
+#endif
+
 #include <UTFT.h>
+
+#if defined(SPIRAM_CS)
 #include <SpiRAM.h>
+#include "spiram.h"
+spiram sram(SPIRAM_SIZE);
+#endif
 
 #include "ps2drv.h"
 #include "memory.h"
-#include "spiram.h"
-
 #include "CPU.h"
-#include "hardware.h"
 
 Memory memory;
 PS2Driver ps2;
-
-#if defined(SPIRAM_CS)
-spiram sram(SPIRAM_SIZE);
-#endif
 
 UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST);
 static CPU *_cpu;
@@ -34,6 +42,10 @@ bool hardware_reset() {
 #if defined(SD_CS)
 	success = SD.begin(SD_CS, 2, SD_SPI);
 	pinMode(SPI_CS, OUTPUT);	// without this, the SPI-RAM isn't seen
+#endif
+
+#if defined(USE_SPIFFS)
+	success = SPIFFS.begin();
 #endif
 
 #if defined(TFT_BACKLIGHT)

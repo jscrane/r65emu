@@ -30,6 +30,7 @@
 #define SPIRAM_SIZE	65536
 
 // "tape" storage...
+<<<<<<< HEAD
 #define SD_CS		PF_3
 //#define SD_CS		PE_0
 #define SD_SPI		1
