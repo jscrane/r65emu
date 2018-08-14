@@ -22,6 +22,7 @@
 
 // "tape" storage...
 #undef SD_CS
+#define USE_SPIFFS	1
 
 bool hardware_reset();
 void hardware_init(class CPU &);

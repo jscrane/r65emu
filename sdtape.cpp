@@ -1,11 +1,20 @@
+#include "hardware.h"
+
+#if defined(SD_CS)
 #include <SD.h>
+#define DISK	SD
+#elif defined(USE_SPIFFS)
+#include <SPIFFS.h>
+#define DISK	SPIFFS
+#endif
+
 #include "sdtape.h"
 
 static File file, dir;
 
 void sdtape::start(const char *programs)
 {
-	dir = SD.open(programs);
+	dir = DISK.open(programs);
 	_pos = _len = 0;
 }
 
