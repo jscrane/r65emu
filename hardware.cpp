@@ -12,15 +12,15 @@
 
 #include <UTFT.h>
 
+#include "memory.h"
+#include "ps2drv.h"
+#include "CPU.h"
+
 #if defined(SPIRAM_CS)
 #include <SpiRAM.h>
 #include "spiram.h"
 spiram sram(SPIRAM_SIZE);
 #endif
-
-#include "ps2drv.h"
-#include "memory.h"
-#include "CPU.h"
 
 Memory memory;
 PS2Driver ps2;
