@@ -12,12 +12,12 @@ SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
 
 void spiram::operator=(uint8_t b)
 {
-	spiRam.write_uint8_t(_acc, b);
+	spiRam.write_byte(_acc, b);
 }
 
 spiram::operator uint8_t()
 {
-	return spiRam.read_uint8_t(_acc);
+	return spiRam.read_byte(_acc);
 }
 
 void spiram::checkpoint(Stream &s)
