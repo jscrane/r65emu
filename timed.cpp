@@ -1,15 +1,19 @@
-#include <Energia.h>
+#include <Arduino.h>
 #include <stdint.h>
+
+#if defined(__LM4F120H5QR__)
 #include <inc/hw_ints.h>
 #include <driverlib/interrupt.h>
 #include <driverlib/sysctl.h>
 #include <driverlib/timer.h>
+#endif
 
 #include "timed.h"
 
 static Timed *t;
 
 // FIXME: disable timer when tick() returns false
+#if defined(__LM4F120H5QR__)
 static void timer0isr(void) {
 	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	t->tick();
@@ -25,3 +29,4 @@ void timer_create(unsigned freq, Timed *client) {
 	ROM_TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet() / freq);
 }
+#endif
