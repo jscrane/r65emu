@@ -13,5 +13,6 @@
 #include "timed.h"
 #include "hardware.h"
 #include "checkpoint.h"
+#include "sound.h"
 
 #endif
