@@ -37,4 +37,5 @@ void spiram::restore(Stream &s)
 		spiRam.write_stream(i * 256, buf, sizeof(buf));
 	}
 }
+
 #endif
