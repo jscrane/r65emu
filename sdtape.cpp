@@ -12,10 +12,14 @@
 
 static File file, dir;
 
-void sdtape::start(const char *programs)
+bool sdtape::start(const char *programs)
 {
 	dir = DISK.open(programs);
+	if (!dir)
+		return false;
+
 	_pos = _len = 0;
+	return true;
 }
 
 void sdtape::stop()
