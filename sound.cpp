@@ -3,17 +3,19 @@
 #include "timed.h"
 #include "sound.h"
 
+static Sound *s;
+
 #if defined(DAC_SOUND) && defined(ESP_PLATFORM)
 #include <driver/dac.h>
 
 static portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED;
-
 static dac_channel_t channel;
 
-static volatile const uint8_t *_bytes;
-static volatile unsigned _size, _off;
-
 void IRAM_ATTR timer_callback() {
+	s->on_tick();
+}
+
+void IRAM_ATTR Sound::on_tick() {
 	portENTER_CRITICAL_ISR(&mux);
 
 	if (_off < _size)
@@ -32,6 +34,7 @@ void Sound::begin(unsigned pin, unsigned freq) {
 	else if (pin == 26)
 		channel = DAC_CHANNEL_2;
 
+	s = this;
 	timer_create(freq, &timer_callback);
 }
 
