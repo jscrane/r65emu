@@ -45,7 +45,7 @@ bool hardware_reset() {
 #endif
 
 #if defined(USE_SPIFFS)
-	success = SPIFFS.begin();
+	success = SPIFFS.begin(true);
 #endif
 
 #if defined(TFT_BACKLIGHT)
