@@ -15,7 +15,7 @@
 
 // PS/2 keyboard
 #define KBD_DATA	14
-#define KBD_IRQ		12
+#define KBD_IRQ		0
 
 // SPI-RAM
 #undef SPIRAM_CS
@@ -23,6 +23,9 @@
 // "tape" storage...
 #undef SD_CS
 #define USE_SPIFFS	1
+
+// sound
+#define DAC_SOUND	25
 
 bool hardware_reset();
 void hardware_init(class CPU &);
