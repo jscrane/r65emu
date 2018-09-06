@@ -15,10 +15,10 @@ of Phil Stewart's [SpiRAM library](http://playground.arduino.cc/Main/SpiRAM)
 
 Hardware:
 ---------
-- A [Stellaris Launchpad](http://www.energia.nu/Guide_StellarisLaunchPad.html),
+- A [Stellaris Launchpad](http://www.energia.nu/Guide_StellarisLaunchPad.html) or ESP32-based board, e.g., [Node32s](https://www.esp32.com/viewtopic.php?t=459),
+- An SD drive to store programs (for Stellarpad),
+- A 23k256 SPI RAM chip (for Stellarpad, optional),
 - A supported TFT screen, such as [this one](http://forum.stellarisiti.com/topic/626-ssd1289-32-320x240-tft-16bit-parallel-interface-touch-libraries/),
-- An SD drive,
 - A PS/2 keyboard.
-- A 23k256 SPI RAM chip (optional)
 
 See _hardware.h_ for wiring details and other options.
