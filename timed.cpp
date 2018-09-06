@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <stdint.h>
 
 #if defined(__LM4F120H5QR__)
 #include <inc/hw_ints.h>
@@ -28,5 +27,17 @@ void timer_create(unsigned freq, Timed *client) {
 	ROM_IntEnable(INT_TIMER0A);
 	ROM_TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	ROM_TimerLoadSet(TIMER0_BASE, TIMER_A, ROM_SysCtlClockGet() / freq);
+}
+#elif defined(ESP_PLATFORM)
+
+void IRAM_ATTR onTimer() {
+	t->tick();
+}
+
+void timer_create(unsigned freq, Timed *client) {
+	hw_timer_t *timer = timerBegin(3, 80, true);	// prescaler of 80
+	timerAttachInterrupt(timer, &onTimer, true);
+	timerAlarmWrite(timer, 1000000 / freq, true);
+	timerAlarmEnable(timer);
 }
 #endif
