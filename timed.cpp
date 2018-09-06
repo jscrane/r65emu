@@ -9,17 +9,16 @@
 
 #include "timed.h"
 
-static Timed *t;
-
-// FIXME: disable timer when tick() returns false
 #if defined(__LM4F120H5QR__)
+static void (*client_handler)(void);
+
 static void timer0isr(void) {
 	ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-	t->tick();
+	client_handler();
 }
 
-void timer_create(unsigned freq, Timed *client) {
-	t = client;
+void timer_create(unsigned freq, void (*handler)(void)) {
+	client_handler = handler;
 	ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
 	ROM_TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
 	TimerIntRegister(TIMER0_BASE, TIMER_A, timer0isr);
@@ -30,13 +29,9 @@ void timer_create(unsigned freq, Timed *client) {
 }
 #elif defined(ESP_PLATFORM)
 
-void IRAM_ATTR onTimer() {
-	t->tick();
-}
-
-void timer_create(unsigned freq, Timed *client) {
+void timer_create(unsigned freq, void (*handler)(void)) {
 	hw_timer_t *timer = timerBegin(3, 80, true);	// prescaler of 80
-	timerAttachInterrupt(timer, &onTimer, true);
+	timerAttachInterrupt(timer, handler, true);
 	timerAlarmWrite(timer, 1000000 / freq, true);
 	timerAlarmEnable(timer);
 }

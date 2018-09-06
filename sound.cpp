@@ -12,17 +12,15 @@ static dac_channel_t channel;
 
 static volatile const uint8_t *_bytes;
 static volatile unsigned _size, _off;
-static hw_timer_t *timer;
 
 void IRAM_ATTR timer_callback() {
 	portENTER_CRITICAL_ISR(&mux);
 
 	if (_off < _size)
 		dac_output_voltage(channel, _bytes[_off++]);
-	else {
+	else if (_bytes) {
 		_bytes = 0;
 		dac_output_disable(channel);
-		timerAlarmDisable(timer);
 	}
 
 	portEXIT_CRITICAL_ISR(&mux);
@@ -34,9 +32,7 @@ void Sound::begin(unsigned pin, unsigned freq) {
 	else if (pin == 26)
 		channel = DAC_CHANNEL_2;
 
-	timer = timerBegin(1, 80, true);
-	timerAttachInterrupt(timer, &timer_callback, true);
-	timerAlarmWrite(timer, 1000000 / freq, true);
+	timer_create(freq, &timer_callback);
 }
 
 const uint8_t *Sound::play(const uint8_t *bytes, unsigned size) {
@@ -48,7 +44,6 @@ const uint8_t *Sound::play(const uint8_t *bytes, unsigned size) {
 		_size = size;
 		_off = 0;
 		dac_output_enable(channel);
-		timerAlarmEnable(timer);
 		play = bytes;
 	}
 
