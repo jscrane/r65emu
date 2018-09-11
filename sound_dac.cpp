@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include <hardware.h>
 #include "timed.h"
-#include "sound.h"
+#include "sound_dac.h"
 
-static Sound *s;
+static DAC *s;
 
 #if defined(DAC_SOUND) && defined(ESP_PLATFORM)
 #include <driver/dac.h>
@@ -15,7 +15,7 @@ void IRAM_ATTR timer_callback() {
 	s->on_tick();
 }
 
-void IRAM_ATTR Sound::on_tick() {
+void IRAM_ATTR DAC::on_tick() {
 	portENTER_CRITICAL_ISR(&mux);
 
 	if (_off < _size)
@@ -28,7 +28,7 @@ void IRAM_ATTR Sound::on_tick() {
 	portEXIT_CRITICAL_ISR(&mux);
 }
 
-void Sound::begin(unsigned pin, unsigned freq) {
+void DAC::begin(unsigned pin, unsigned freq) {
 	if (pin == 25)
 		channel = DAC_CHANNEL_1;
 	else if (pin == 26)
@@ -38,7 +38,7 @@ void Sound::begin(unsigned pin, unsigned freq) {
 	timer_create(freq, &timer_callback);
 }
 
-const uint8_t *Sound::play(const uint8_t *bytes, unsigned size) {
+const uint8_t *DAC::play(const uint8_t *bytes, unsigned size) {
 	portENTER_CRITICAL_ISR(&mux);
 
 	const uint8_t *play = (const uint8_t *)_bytes;
@@ -56,10 +56,10 @@ const uint8_t *Sound::play(const uint8_t *bytes, unsigned size) {
 
 #else
 // does nothing by default
-void Sound::begin(unsigned channel, unsigned freq) {
+void DAC::begin(unsigned channel, unsigned freq) {
 }
 
-const uint8_t *Sound::play(const uint8_t *bytes, unsigned size) {
+const uint8_t *DAC::play(const uint8_t *bytes, unsigned size) {
 	return 0;
 }
 #endif

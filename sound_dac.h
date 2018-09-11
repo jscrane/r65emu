@@ -1,7 +1,7 @@
-#ifndef __SOUND_H__
-#define __SOUND_H__
+#ifndef __SOUND_DAC_H__
+#define __SOUND_DAC_H__
 
-class Sound {
+class DAC {
 public:
 	void begin(unsigned pin, unsigned freq);
 	const uint8_t *play(const uint8_t *bytes, unsigned size);
