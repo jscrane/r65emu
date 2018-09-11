@@ -14,8 +14,8 @@
 #define TFT_RST		26
 
 // PS/2 keyboard
-#define KBD_DATA	14
-#define KBD_IRQ		0
+#define KBD_DATA	34
+#define KBD_IRQ		35
 
 // SPI-RAM
 #undef SPIRAM_CS
@@ -26,6 +26,8 @@
 
 // sound
 #define DAC_SOUND	25
+#define PWM_SOUND	25
+#define PWM_DUTY	20	// 20/1024 -> volume
 
 bool hardware_reset();
 void hardware_init(class CPU &);
