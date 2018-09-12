@@ -14,8 +14,8 @@
 #define TFT_RST		26
 
 // PS/2 keyboard
-#define KBD_DATA	34
-#define KBD_IRQ		35
+#define KBD_DATA	14
+#define KBD_IRQ		0
 
 // SPI-RAM
 #undef SPIRAM_CS
