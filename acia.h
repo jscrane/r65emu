@@ -1,8 +1,21 @@
 #ifndef __ACIA_H__
 #define __ACIA_H__
 
-struct acia {
-	
+class SerialDevice {
+public:
+	virtual void reset() {}
+	virtual void write(uint8_t) {}
+	virtual uint8_t read() {}
+	virtual bool more() { return false; }
+};
+
+class acia: public Memory::Device {
+public:
+	void operator= (uint8_t);
+	operator uint8_t();
+
+	acia(SerialDevice *d): Memory::Device(256), _device(d) {}
+
 	// status bits
 	//
 	static const uint8_t rdrf = 1 << 0;
@@ -20,21 +33,27 @@ struct acia {
 	static const uint8_t cd16 = 0x01;	// divide by 16
 	static const uint8_t cd64 = 0x02;	// divide by 64
 	static const uint8_t reset = 0x03;	// master reset
-	
-	static const uint8_t ws7e2 = 0 << 2;	// parity
+	static const uint8_t cd_mask = 0x03;
+
+	static const uint8_t ws7e2 = 0 << 2;	// 7-bits, even parity, 2-stop
 	static const uint8_t ws7o2 = 1 << 2;
 	static const uint8_t ws7e1 = 2 << 2;
 	static const uint8_t ws7o1 = 3 << 2;
-	static const uint8_t ws8n2 = 4 << 2;
+	static const uint8_t ws8n2 = 4 << 2;	// 8-bits, no parity, 2-stop
 	static const uint8_t ws8n1 = 5 << 2;
 	static const uint8_t ws8e1 = 6 << 2;
 	static const uint8_t ws8o1 = 7 << 2;
+	static const uint8_t ws_mask = 0x1c;
 
 	static const uint8_t lrts_dti = 0 << 5;		// /rts, disable trans irq
 	static const uint8_t lrts_eti = 1 << 5;		// /rts, enable
 	static const uint8_t hrts_dti = 2 << 5;		// rts, disable
 	static const uint8_t lrts_dti_brk = 3 << 5;	// /rts, disable, send brk
+	static const uint8_t tc_mask = 0x60;
 
 	static const uint8_t eri = 1 << 7;	// enable receive interrupt
+
+private:
+	SerialDevice *_device;
 };
 #endif
