@@ -1,10 +1,19 @@
 #ifndef __ACIA_H__
 #define __ACIA_H__
 
+enum parity {
+	none,
+	even,
+	odd,
+};
+
 class SerialDevice {
 public:
 	virtual void reset() {}
+	virtual void framing(unsigned data_bits, unsigned stop_bits, parity p) {}
+
 	virtual void write(uint8_t) {}
+
 	virtual uint8_t read() {}
 	virtual bool more() { return false; }
 };
