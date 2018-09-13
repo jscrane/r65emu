@@ -11,7 +11,7 @@ public:
 	void run(unsigned);
 	void reset();
 	void raise(int level) { _irq_pending = level; }
-	char *status(char *buf, size_t n, bool hdr);
+	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
 	void restore(Stream &);

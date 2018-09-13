@@ -11,7 +11,7 @@ public:
 	void raise(int);
 	void reset();
 	void run(unsigned);
-	char *status(char *buf, size_t n, bool hdr);
+	char *status(char *buf, size_t n, bool hdr=false);
 	void checkpoint(Stream &);
 	void restore(Stream &);
 
