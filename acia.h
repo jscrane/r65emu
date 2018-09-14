@@ -14,7 +14,7 @@ public:
 
 	virtual void write(uint8_t) {}
 
-	virtual uint8_t read() {}
+	virtual uint8_t read() =0;
 	virtual bool more() { return false; }
 };
 
