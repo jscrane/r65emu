@@ -43,7 +43,7 @@ void PWM::set_freq(unsigned freq) {
 void PWM::begin(unsigned gpio) {
 }
 
-void PWM::start(unsigned duty) {
+void PWM::set_duty(unsigned duty) {
 }
 
 void PWM::stop() {
