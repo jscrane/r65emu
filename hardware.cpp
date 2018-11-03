@@ -10,8 +10,6 @@
 #include <SPIFFS.h>
 #endif
 
-#include <UTFT.h>
-
 #include "memory.h"
 #include "ps2drv.h"
 #include "CPU.h"
@@ -25,7 +23,6 @@ spiram sram(SPIRAM_SIZE);
 Memory memory;
 PS2Driver ps2;
 
-UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST);
 static CPU *_cpu;
 
 bool hardware_reset() {
