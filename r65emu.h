@@ -7,7 +7,7 @@
 #include "spiram.h"
 #include "prom.h"
 #include "ps2drv.h"
-#include "utftdisplay.h"
+#include "tftdisplay.h"
 #include "keyboard.h"
 #include "sdtape.h"
 #include "timed.h"

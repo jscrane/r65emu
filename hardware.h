@@ -6,6 +6,10 @@
 #define __HARDWARE_H__
 
 // TFT display...
+//#define USE_UTFT
+#define USE_ESPI
+
+#if defined(USE_UTFT)
 #undef TFT_BACKLIGHT
 #define TFT_MODEL	ILI9325C
 #define TFT_RS		32
@@ -13,16 +17,33 @@
 #define TFT_CS		27
 #define TFT_RST		26
 
+#elif defined(USE_ESPI)
+//#define USER_SETUP_LOADED
+//#define ILI9163_DRIVER
+//#define TFT_CS		5
+//#define TFT_DC		2
+//#define TFT_MOSI	23
+//#define TFT_MISO	-1
+//#define TFT_SCLK	18
+//#define TFT_RST		-1
+//#define SPI_FREQUENCY	40000000
+//#define LOAD_GLCD
+#endif
+
 // PS/2 keyboard
-#define KBD_DATA	14
-#define KBD_IRQ		0
+//#define KBD_DATA	14
+//#define KBD_IRQ	0
+#define KBD_DATA	34
+#define KBD_IRQ		35
 
 // SPI-RAM
 #undef SPIRAM_CS
 
 // "tape" storage...
 #undef SD_CS
-#define USE_SPIFFS	1
+#if defined(ESP32)
+#define USE_SPIFFS
+#endif
 
 // sound
 #define DAC_SOUND	25
@@ -39,9 +60,6 @@ extern class PS2Driver ps2;
 #endif
 #if defined(__SPIRAM_H__) && defined(SPIRAM_CS)
 extern class spiram sram;
-#endif
-#ifdef UTFT_h
-extern class UTFT utft;
 #endif
 #ifdef __MEMORY_H__
 extern class Memory memory;
