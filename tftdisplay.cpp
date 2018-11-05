@@ -10,6 +10,7 @@
 static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST);
 
 #elif defined(USE_ESPI)
+#pragma message "Configure TFT_eSPI in Makefile or User_Setup.h"
 #include <TFT_eSPI.h>
 
 static TFT_eSPI espi;
