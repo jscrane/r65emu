@@ -6,8 +6,7 @@ Emulation library for 8-bit microcomputers based on 6502, i8080 and z80.
 Libraries:
 ---------
 - [My port](https://github.com/jscrane/UTFT-Energia) 
-of Henning Karlsen's [UTFT library]
-(http://henningkarlsen.com/electronics/library.php?id=52),
+of Henning Karlsen's [UTFT library](http://henningkarlsen.com/electronics/library.php?id=52),
 - [Rei Vilo's port](https://github.com/rei-vilo/SD_TM4C) of 
 Adafruit/Sparkfun's [SD library](https://github.com/adafruit/SD),
 - [My port](https://github.com/jscrane/SpiRAM) 
