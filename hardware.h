@@ -5,50 +5,11 @@
 #ifndef __HARDWARE_H__
 #define __HARDWARE_H__
 
-// TFT display...
-//#define USE_UTFT
-#define USE_ESPI
-
-#if defined(USE_UTFT)
-#undef TFT_BACKLIGHT
-#define TFT_MODEL	ILI9325C
-#define TFT_RS		32
-#define TFT_WR		33
-#define TFT_CS		27
-#define TFT_RST		26
-
-#elif defined(USE_ESPI)
-//#define USER_SETUP_LOADED
-//#define ILI9163_DRIVER
-//#define TFT_CS		5
-//#define TFT_DC		2
-//#define TFT_MOSI	23
-//#define TFT_MISO	-1
-//#define TFT_SCLK	18
-//#define TFT_RST		-1
-//#define SPI_FREQUENCY	40000000
-//#define LOAD_GLCD
-#endif
-
-// PS/2 keyboard
-//#define KBD_DATA	14
-//#define KBD_IRQ	0
-#define KBD_DATA	34
-#define KBD_IRQ		35
-
-// SPI-RAM
-#undef SPIRAM_CS
-
-// "tape" storage...
-#undef SD_CS
 #if defined(ESP32)
-#define USE_SPIFFS
+#include "hw/esp32-utft-dac.h"
+#elif defined(ESP8266)
+#include "hw/esp8266-pwm.h"
 #endif
-
-// sound
-#define DAC_SOUND	25
-#define PWM_SOUND	25
-#define PWM_DUTY	20	// 20/1024 -> volume
 
 bool hardware_reset();
 void hardware_init(class CPU &);
