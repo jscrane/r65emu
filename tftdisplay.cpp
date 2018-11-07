@@ -101,6 +101,6 @@ void TFTDisplay::drawPixel(unsigned x, unsigned y, colour_t col) {
 	utft.setColor(col);
 	utft.drawPixel(x, y);
 #elif defined(USE_ESPI)
-	espi.drawPixel(x, y, col);
+	espi.drawPixel(_dx - x, y, col);
 #endif
 }
