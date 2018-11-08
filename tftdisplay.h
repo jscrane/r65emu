@@ -2,7 +2,7 @@
 #define __TFTDISPLAY_H__
 
 typedef enum {
-	portrait, landscape
+	portrait, landscape, reverse_portrait, reverse_landscape
 } orientation_t;
 
 typedef unsigned colour_t;
