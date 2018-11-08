@@ -10,8 +10,8 @@
 #include "hw/esp32-utft-dac.h"
 #elif defined(ESP8266)
 #include "hw/esp8266-pwm.h"
-#elif defined(LM4F)
-#include "hw/lm4f-utft-sd.h"
+#else
+#error "unknown architecture"
 #endif
 
 bool hardware_reset();
