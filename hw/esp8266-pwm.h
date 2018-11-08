@@ -1,8 +1,6 @@
-/*
- * esp8266-pwm.h
- */
-
+// TFT display...
 #define USE_ESPI
+//must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED
 //#define ILI9163_DRIVER
 //#define TFT_CS		5
