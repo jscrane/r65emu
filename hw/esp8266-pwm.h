@@ -3,12 +3,11 @@
 //must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED
 //#define ILI9163_DRIVER
-//#define TFT_CS		5
-//#define TFT_DC		2
-//#define TFT_MOSI	23
-//#define TFT_MISO	-1
-//#define TFT_SCLK	18
-//#define TFT_RST		-1
+//#define TFT_CS	PIN_D6
+//#define TFT_DC	PIN_D8
+//#define TFT_WIDTH	240
+//#define TFT_HEIGHT	320
+//#define TFT_RST	-1
 //#define SPI_FREQUENCY	40000000
 //#define LOAD_GLCD
 
@@ -21,7 +20,9 @@
 
 // "tape" storage...
 #undef SD_CS
+#undef USE_SPIFFS
 
 // sound
-#define PWM_SOUND	25
+#define PWM_SOUND	D2
 #define PWM_DUTY	20	// 20/1024 -> volume
+#define PWM_TOP		1024

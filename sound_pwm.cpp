@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "sound_pwm.h"
 #include "hardware.h"
 
@@ -40,15 +41,22 @@ void PWM::set_freq(unsigned freq) {
 }
 
 #else
+static unsigned pin;
+
 void PWM::begin(unsigned gpio) {
+	pin = gpio;
+	analogWriteRange(PWM_TOP);
 }
 
 void PWM::set_duty(unsigned duty) {
+	analogWrite(pin, duty);
 }
 
 void PWM::stop() {
+	analogWrite(pin, 0);
 }
 
 void PWM::set_freq(unsigned freq) {
+	analogWriteFreq(freq);
 }
 #endif
