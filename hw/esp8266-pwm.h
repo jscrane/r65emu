@@ -19,7 +19,7 @@
 #undef SPIRAM_CS
 
 // "tape" storage...
-#undef SD_CS
+#undef USE_SD
 #undef USE_SPIFFS
 
 // sound

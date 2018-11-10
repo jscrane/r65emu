@@ -2,7 +2,7 @@
 
 #include <SPI.h>
 
-#if defined(SD_CS)
+#if defined(USE_SD)
 #include <SD.h>
 #endif
 
@@ -36,7 +36,7 @@ bool hardware_reset() {
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
 #endif
 
-#if defined(SD_CS)
+#if defined(USE_SD)
 	success = SD.begin(SD_CS, 2, SD_SPI);
 	pinMode(SPI_CS, OUTPUT);	// without this, the SPI-RAM isn't seen
 #endif
@@ -62,7 +62,7 @@ void hardware_init(CPU &cpu) {
 	pinMode(TFT_BACKLIGHT, OUTPUT);
 #endif
 
-#if defined(SD_CS)
+#if defined(USE_SD)
 	pinMode(SD_CS, OUTPUT);
 	digitalWrite(SD_CS, HIGH);
 #endif
