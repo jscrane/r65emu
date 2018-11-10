@@ -90,9 +90,10 @@ void TFTDisplay::status(const char *s) {
 	utft.print(s, xs, y);
 	_oxs = xs;
 #elif defined(USE_ESPI)
-	espi.fillRect(_oxs, _dx, _dy - _cy, _dy, _bg);
+	espi.fillRect(_dx - _oxs, _dy - _cy, _oxs, _cy, _bg);
 	_oxs = espi.textWidth(s);
-	espi.drawRightString(s, _oxs, _dy - _cy, 0);
+	espi.setTextDatum(BR_DATUM);
+	espi.drawString(s, _dx, _dy);
 #endif
 }
 
@@ -101,6 +102,6 @@ void TFTDisplay::drawPixel(unsigned x, unsigned y, colour_t col) {
 	utft.setColor(col);
 	utft.drawPixel(x, y);
 #elif defined(USE_ESPI)
-	espi.drawPixel(_dx - x, y, col);
+	espi.drawPixel(x, y, col);
 #endif
 }

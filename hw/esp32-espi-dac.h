@@ -1,7 +1,7 @@
 // TFT display...
 #define USE_ESPI
 //#define USER_SETUP_LOADED
-//#define ILI9163_DRIVER
+//#define ILI9341_DRIVER
 //#define TFT_CS		5
 //#define TFT_DC		2
 //#define TFT_MOSI	23

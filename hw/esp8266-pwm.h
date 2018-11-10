@@ -2,7 +2,7 @@
 #define USE_ESPI
 //must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED
-//#define ILI9163_DRIVER
+//#define ILI9341_DRIVER
 //#define TFT_CS	PIN_D6
 //#define TFT_DC	PIN_D8
 //#define TFT_WIDTH	240
