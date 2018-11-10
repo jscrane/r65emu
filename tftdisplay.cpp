@@ -56,30 +56,6 @@ void TFTDisplay::clear() {
 #endif
 }
 
-void TFTDisplay::error(char *s) {
-	setColor(_fg);
-	char *lines[5];
-	int l = 0;
-	for (char *p = s, *q = s; *p; p++)
-		if (*p == '\n') {
-			*p++ = 0;
-			lines[l++] = q;
-			q = p;
-		}
-	unsigned y = (_dy - l*_cy)/2;
-	for (int i = 0; i < l; i++) {
-		char *p = lines[i];
-#if defined(USE_UTFT)
-		unsigned x = (_dx - strlen(p)*_cx)/2;
-		utft.print(p, x, y);
-#elif defined(USE_ESPI)
-		unsigned x = (_dx - espi.textWidth(p))/2;
-		espi.drawCentreString(p, x, y, 0);
-#endif
-		y += _cy;
-	}
-}
-
 void TFTDisplay::status(const char *s) {
 	setColor(_fg);
 
