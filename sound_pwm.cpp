@@ -40,7 +40,7 @@ void PWM::set_freq(unsigned freq) {
       ESP_ERROR_CHECK(::ledc_set_freq(SPEED_MODE, TIMER, freq));
 }
 
-#else
+#elif defined(PWM_SOUND)
 static unsigned pin;
 
 void PWM::begin(unsigned gpio) {
@@ -58,5 +58,19 @@ void PWM::stop() {
 
 void PWM::set_freq(unsigned freq) {
 	analogWriteFreq(freq);
+}
+
+#else
+
+void PWM::begin(unsigned gpio) {
+}
+
+void PWM::set_duty(unsigned duty) {
+}
+
+void PWM::stop() {
+}
+
+void PWM::set_freq(unsigned freq) {
 }
 #endif
