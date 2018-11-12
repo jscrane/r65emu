@@ -31,9 +31,10 @@ class TFTDisplay {
 public:
 	void begin(colour_t bg, colour_t fg, orientation_t o = landscape);
 	void clear();
-	void status(const char *);
+	void status(const char *s);
 
 	void drawPixel(unsigned x, unsigned y, colour_t col);
+	void drawString(const char *s, unsigned x, unsigned y);
 
 protected:
 	unsigned _bg, _fg, _cx, _cy, _dx, _dy, _oxs;

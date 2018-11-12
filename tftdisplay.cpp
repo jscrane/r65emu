@@ -81,3 +81,11 @@ void TFTDisplay::drawPixel(unsigned x, unsigned y, colour_t col) {
 	espi.drawPixel(x, y, col);
 #endif
 }
+
+void TFTDisplay::drawString(const char *s, unsigned x, unsigned y) {
+#if defined(USE_UTFT)
+	utft.print(s, x, y);
+#elif defined(USE_ESPI)
+	espi.drawString(s, x, y);
+#endif
+}
