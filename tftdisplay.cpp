@@ -42,6 +42,7 @@ void TFTDisplay::begin(unsigned bg, unsigned fg, orientation_t orient) {
 	_dx = espi.width();
 	_dy = espi.height();
 	_cy = espi.fontHeight();
+	_cx = 6;	// FIXME
 #endif
 
 	setColor(fg);
@@ -86,6 +87,9 @@ void TFTDisplay::drawString(const char *s, unsigned x, unsigned y) {
 #if defined(USE_UTFT)
 	utft.print(s, x, y);
 #elif defined(USE_ESPI)
+	espi.setTextDatum(TL_DATUM);
+	unsigned w = espi.textWidth(s);
+	espi.fillRect(x, y, w, _cy, _bg);
 	espi.drawString(s, x, y);
 #endif
 }
