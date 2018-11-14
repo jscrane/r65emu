@@ -10,6 +10,10 @@
 #include <SPIFFS.h>
 #endif
 
+#if defined(ESP8266)
+#include <FS.h>
+#endif
+
 #include "memory.h"
 #include "ps2drv.h"
 #include "CPU.h"
@@ -39,10 +43,12 @@ bool hardware_reset() {
 #if defined(USE_SD)
 	success = SD.begin(SD_CS, 2, SD_SPI);
 	pinMode(SPI_CS, OUTPUT);	// without this, the SPI-RAM isn't seen
-#endif
 
-#if defined(USE_SPIFFS)
+#elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
+
+#elif defined(ESP8266)
+	success = SPIFFS.begin();
 #endif
 
 #if defined(TFT_BACKLIGHT)

@@ -23,7 +23,6 @@ static Dir dir;
 bool sdtape::start(const char *programs)
 {
 #if defined(ESP8266)
-	SPIFFS.begin();
 	dir = SPIFFS.openDir("/");
 #elif defined(DISK)
 	dir = DISK.open(programs);
