@@ -18,13 +18,10 @@ static File file, dir;
 #elif defined(USE_FS)
 static File file;
 static Dir dir;
+static const char *programs;
 #endif
 
 #define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
-
-#if defined(USE_FS)
-static const char *programs;
-#endif
 
 bool sdtape::start(const char *programs)
 {
