@@ -14,15 +14,9 @@
 #define KBD_IRQ		PE_5
 
 // SPI-RAM
-#define USE_SPIRAM
-#define SPIRAM_CS       PE_0
-#define SPIRAM_SPI      1
-#define SPIRAM_DEV      SPI_for_SD
-#define SPIRAM_SIZE	65536
+#undef USE_SPIRAM
 
 // "tape" storage...
-#define USE_SD
-#define SD_CS		PF_3
-#define SD_SPI		1
+#undef USE_SD
 
 #define SPI_CS		PF_3

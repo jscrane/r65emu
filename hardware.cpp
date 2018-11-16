@@ -18,7 +18,7 @@
 #include "ps2drv.h"
 #include "CPU.h"
 
-#if defined(SPIRAM_CS)
+#if defined(USE_SPIRAM)
 #include <SpiRAM.h>
 #include "spiram.h"
 spiram sram(SPIRAM_SIZE);
@@ -32,7 +32,7 @@ static CPU *_cpu;
 bool hardware_reset() {
 	bool success = true;
 
-#if defined(SPIRAM_CS)
+#if defined(USE_SPIRAM)
 	extern SPIClass SPIRAM_DEV;
 	SPIRAM_DEV.begin();
 	SPIRAM_DEV.setModule(SPIRAM_SPI);
@@ -73,7 +73,7 @@ void hardware_init(CPU &cpu) {
 	digitalWrite(SD_CS, HIGH);
 #endif
 
-#if defined(SPIRAM_CS)
+#if defined(USE_SPIRAM)
 	pinMode(SPIRAM_CS, OUTPUT);
 	digitalWrite(SPIRAM_CS, HIGH);
 #endif

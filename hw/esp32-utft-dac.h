@@ -12,7 +12,7 @@
 #define KBD_IRQ		35
 
 // SPI-RAM
-#undef SPIRAM_CS
+#undef USE_SPIRAM
 
 // "tape" storage...
 #undef USE_SD

@@ -1,10 +1,10 @@
+#include "hardware.h"
+
+#if defined(USE_SPIRAM)
 #include <SPI.h>
 #include <SpiRAM.h>
 #include "memory.h"
 #include "spiram.h"
-#include "hardware.h"
-
-#if defined(SPIRAM_CS)
 
 extern SPIClass SPIRAM_DEV;
 
