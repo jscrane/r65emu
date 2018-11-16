@@ -22,10 +22,15 @@ static Dir dir;
 
 #define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 
+#if defined(USE_FS)
+static const char *programs;
+#endif
+
 bool sdtape::start(const char *programs)
 {
 #if defined(USE_FS)
-	dir = SPIFFS.openDir("/");
+	::programs = programs;
+	dir = SPIFFS.openDir(programs);
 #elif defined(DISK)
 	dir = DISK.open(programs);
 	if (!dir)
@@ -45,15 +50,14 @@ void sdtape::stop()
 
 bool sdtape::more()
 {
-#if defined(STORAGE)
 	if (_pos >= _len) {
 		_pos = 0;
+#if defined(STORAGE)
 		_len = file.read(_buf, sizeof(_buf));
-
+#endif
 		if (_len == 0)	// eof
 			return false;
 	}
-#endif
 	return true;
 }
 
@@ -68,7 +72,7 @@ const char *sdtape::advance() {
 			file = dir.openFile("r");
 			break;
 		}
-		dir = SPIFFS.openDir("/");
+		dir = SPIFFS.openDir(programs);
 	}
 	strncpy(buf, dir.fileName().c_str(), sizeof(buf));
 	return buf;
