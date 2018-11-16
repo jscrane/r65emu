@@ -7,7 +7,7 @@
 #elif defined(USE_SPIFFS)
 #include <SPIFFS.h>
 #define DISK	SPIFFS
-#elif defined(ESP8266)
+#elif defined(USE_FS)
 #include <FS.h>
 #endif
 
@@ -15,14 +15,16 @@
 
 #if defined(DISK)
 static File file, dir;
-#elif defined(ESP8266)
+#elif defined(USE_FS)
 static File file;
 static Dir dir;
 #endif
 
+#define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
+
 bool sdtape::start(const char *programs)
 {
-#if defined(ESP8266)
+#if defined(USE_FS)
 	dir = SPIFFS.openDir("/");
 #elif defined(DISK)
 	dir = DISK.open(programs);
@@ -36,14 +38,14 @@ bool sdtape::start(const char *programs)
 
 void sdtape::stop()
 {
-#if defined(DISK) || defined(ESP8266)
+#if defined(STORAGE)
 	file.close();
 #endif
 }
 
 bool sdtape::more()
 {
-#if defined(DISK) || defined(ESP8266)
+#if defined(STORAGE)
 	if (_pos >= _len) {
 		_pos = 0;
 		_len = file.read(_buf, sizeof(_buf));
@@ -56,10 +58,10 @@ bool sdtape::more()
 }
 
 const char *sdtape::advance() {
-#if defined(DISK) || defined(ESP8266)
+#if defined(STORAGE)
 	bool rewound = false;
 	file.close();
-#if defined(ESP8266)
+#if defined(USE_FS)
 	static char buf[32];
 	while (true) {
 		if (dir.next()) {
@@ -92,7 +94,7 @@ const char *sdtape::advance() {
 }
 
 const char *sdtape::rewind() {
-#if defined(DISK) && !defined(ESP8266)
+#if defined(DISK)
 	dir.rewindDirectory();
 #endif
 	return advance();
