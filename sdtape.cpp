@@ -40,7 +40,7 @@ bool sdtape::start(const char *programs)
 
 void sdtape::stop()
 {
-#if defined(STORAGE)
+#if STORAGE
 	file.close();
 #endif
 }
@@ -49,7 +49,7 @@ bool sdtape::more()
 {
 	if (_pos >= _len) {
 		_pos = 0;
-#if defined(STORAGE)
+#if STORAGE
 		_len = file.read(_buf, sizeof(_buf));
 #endif
 		if (_len == 0)	// eof
@@ -59,7 +59,7 @@ bool sdtape::more()
 }
 
 const char *sdtape::advance() {
-#if defined(STORAGE)
+#if STORAGE
 	bool rewound = false;
 	file.close();
 #if defined(USE_FS)
