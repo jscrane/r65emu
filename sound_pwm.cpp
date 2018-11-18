@@ -40,28 +40,32 @@ void PWM::set_freq(unsigned freq) {
       ESP_ERROR_CHECK(::ledc_set_freq(SPEED_MODE, TIMER, freq));
 }
 
-#elif defined(PWM_SOUND)
-static unsigned pin;
+#elif defined(ESP8266)
+#include <core_esp8266_waveform.h>
+
+static unsigned gpio, duty;
+const unsigned period = 1024;
 
 void PWM::begin(unsigned gpio) {
-	pin = gpio;
-	analogWriteRange(PWM_TOP);
+	::gpio = gpio;
+	pinMode(gpio, OUTPUT);
 }
 
 void PWM::set_duty(unsigned duty) {
-	analogWrite(pin, duty);
+	::duty = duty;
 }
 
 void PWM::stop() {
-	analogWrite(pin, 0);
+	stopWaveform(gpio);
 }
 
 void PWM::set_freq(unsigned freq) {
-	analogWriteFreq(freq);
+	uint32_t t = 1000000 / freq;
+	uint32_t h = duty * t / period;
+	startWaveform(gpio, h, t-h, 0);
 }
 
 #else
-
 void PWM::begin(unsigned gpio) {
 }
 
