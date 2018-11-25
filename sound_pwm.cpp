@@ -2,7 +2,7 @@
 #include "sound_pwm.h"
 #include "hardware.h"
 
-#if defined(ESP32)
+#if defined(PWM_SOUND) && defined(ESP32)
 #include <driver/ledc.h>
 
 #define CHANNEL		LEDC_CHANNEL_0
@@ -40,7 +40,7 @@ void PWM::set_freq(unsigned freq) {
       ESP_ERROR_CHECK(::ledc_set_freq(SPEED_MODE, TIMER, freq));
 }
 
-#elif defined(ESP8266)
+#elif defined(PWM_SOUND) && defined(ESP8266)
 #include <core_esp8266_waveform.h>
 
 static unsigned gpio, duty;
@@ -66,6 +66,8 @@ void PWM::set_freq(unsigned freq) {
 }
 
 #else
+#pragma message "No PWM"
+
 void PWM::begin(unsigned gpio) {
 }
 

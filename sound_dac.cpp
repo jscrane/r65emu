@@ -55,6 +55,8 @@ const uint8_t *DAC::play(const uint8_t *bytes, unsigned size) {
 }
 
 #else
+#pragma message "No DAC"
+
 // does nothing by default
 void DAC::begin(unsigned channel, unsigned freq) {
 }
