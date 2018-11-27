@@ -41,12 +41,14 @@ void i8080::ei() {
 }
 
 char *i8080::status(char *buf, size_t n, bool hdr) {
+#if defined(CPU_DEBUG)
 	uint8_t op = _mem[PC];
 	snprintf(buf, n,
 		"%s%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d",
 		hdr? "_pc_ op aa _bc_ _de_ _hl_ _sp_ szih_p_c\r": "",
 		PC, op, A, BC, DE, HL, SP, flags.S, flags.Z, flags.I, flags.H,
 		flags._, flags.P, flags.__, flags.C);
+#endif
 	return buf;
 }
 

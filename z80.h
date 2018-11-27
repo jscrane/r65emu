@@ -3,6 +3,7 @@
 
 #undef sbi
 #undef inch
+#undef SP
 
 class z80: public CPU {
 public:

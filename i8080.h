@@ -3,6 +3,7 @@
 
 #undef sbi
 #undef PC
+#undef SP
 
 class i8080: public CPU {
 public:

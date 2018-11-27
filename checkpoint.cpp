@@ -18,10 +18,10 @@ static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 
 const char *checkpoint(sdtape &tape, const char *dir) {
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
 	tape.stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", dir, chkpt, cpid++);
 
-#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
 #if defined(USE_SD)
 	File file = SD.open(buf, O_WRITE | O_CREAT | O_TRUNC);
 #elif defined(USE_SPIFFS)
@@ -31,16 +31,16 @@ const char *checkpoint(sdtape &tape, const char *dir) {
 #endif
 	hardware_checkpoint(file);
 	file.close();
-#endif
 	tape.start(dir);
+#endif
 	return buf;
 }
 
 void restore(sdtape &tape, const char *dir, const char *filename) {
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
 	tape.stop();
 	snprintf(buf, sizeof(buf), "%s%s", dir, filename);
 
-#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
 #if defined(USE_SD)
 	File file = SD.open(buf, O_READ);
 #elif defined(USE_SPIFFS)
@@ -50,8 +50,8 @@ void restore(sdtape &tape, const char *dir, const char *filename) {
 #endif
 	hardware_restore(file);
 	file.close();
-#endif
 	int n = sscanf(buf + strlen(dir), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;
+#endif
 	tape.start(dir);
 }

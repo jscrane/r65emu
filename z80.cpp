@@ -7,6 +7,7 @@
 #include "z80.h"
 
 char *z80::status(char *buf, size_t n, bool hdr) {
+#if defined(CPU_DEBUG)
 	uint8_t op = _mem[PC];
 	snprintf(buf, n,
 		"%s%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d "
@@ -14,6 +15,7 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 		hdr?  "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff _sp_ sz5h3pnc\r\n": "",
 		PC, op, AF, BC, DE, HL, AF_, BC_, DE_, HL_, IR, _im, _iff1, _iff2,
 		SP, flags.S, flags.Z, flags._5, flags.H, flags._3, flags.P, flags.N, flags.C);
+#endif
 	return buf;
 }
 
