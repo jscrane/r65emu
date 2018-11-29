@@ -4,13 +4,9 @@
 
 #if defined(USE_SD)
 #include <SD.h>
-#endif
-
-#if defined(USE_SPIFFS)
+#elif defined(USE_SPIFFS)
 #include <SPIFFS.h>
-#endif
-
-#if defined(ESP8266)
+#elif defined(USE_FS)
 #include <FS.h>
 #endif
 
@@ -41,13 +37,17 @@ bool hardware_reset() {
 #endif
 
 #if defined(USE_SD)
+#if defined(SD_SPI)
 	success = SD.begin(SD_CS, 2, SD_SPI);
 	pinMode(SPI_CS, OUTPUT);	// without this, the SPI-RAM isn't seen
+#else
+	success = SD.begin(SD_CS);
+#endif
 
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
 
-#elif defined(ESP8266)
+#elif defined(USE_FS)
 	success = SPIFFS.begin();
 #endif
 
