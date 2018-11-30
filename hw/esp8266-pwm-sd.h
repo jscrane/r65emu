@@ -3,8 +3,8 @@
 //must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED
 //#define ILI9341_DRIVER
-//#define TFT_CS	PIN_D6
-//#define TFT_DC	PIN_D8
+//#define TFT_CS	PIN_D8
+//#define TFT_DC	PIN_D1
 //#define TFT_WIDTH	240
 //#define TFT_HEIGHT	320
 //#define TFT_RST	-1

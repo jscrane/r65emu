@@ -9,7 +9,7 @@
 #elif defined(ESP32)
 #include "hw/esp32-espi-dac.h"
 #elif defined(ESP8266)
-#include "hw/esp8266-pwm.h"
+#include "hw/esp8266-pwm-fs.h"
 #else
 #error "unknown architecture"
 #endif

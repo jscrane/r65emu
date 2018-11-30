@@ -21,7 +21,7 @@
 // "tape" storage...
 #undef USE_SD
 #undef USE_SPIFFS
-#undef USE_FS
+#define USE_FS
 
 // sound
 #define PWM_SOUND	D2
