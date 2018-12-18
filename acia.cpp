@@ -45,5 +45,5 @@ acia::operator uint8_t() {
 	if (_acc & 1)
 		return _device->read();
 
-	return _device->more()? rdrf | tdre: 0;
+	return _device->more()? rdrf | tdre: tdre;
 }
