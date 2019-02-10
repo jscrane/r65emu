@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "hardware.h"
-#include "sdtape.h"
+#include "filer.h"
 #include "checkpoint.h"
 
 #if defined(USE_SD)
@@ -17,9 +17,9 @@ static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 
-const char *checkpoint(sdtape &tape, const char *dir) {
+const char *checkpoint(filer &f, const char *dir) {
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
-	tape.stop();
+	f.stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", dir, chkpt, cpid++);
 
 #if defined(USE_SD)
@@ -31,14 +31,14 @@ const char *checkpoint(sdtape &tape, const char *dir) {
 #endif
 	hardware_checkpoint(file);
 	file.close();
-	tape.start(dir);
+	f.start(dir);
 #endif
 	return buf;
 }
 
-void restore(sdtape &tape, const char *dir, const char *filename) {
+void restore(filer &f, const char *dir, const char *filename) {
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
-	tape.stop();
+	f.stop();
 	snprintf(buf, sizeof(buf), "%s%s", dir, filename);
 
 #if defined(USE_SD)
@@ -53,5 +53,5 @@ void restore(sdtape &tape, const char *dir, const char *filename) {
 	int n = sscanf(buf + strlen(dir), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;
 #endif
-	tape.start(dir);
+	f.start(dir);
 }

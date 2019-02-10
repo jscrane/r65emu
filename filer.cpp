@@ -11,7 +11,7 @@
 #include <FS.h>
 #endif
 
-#include "sdtape.h"
+#include "filer.h"
 
 #if defined(DISK)
 static File file, dir;
@@ -23,7 +23,7 @@ static const char *programs;
 
 #define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 
-bool sdtape::start(const char *programs)
+bool flash_filer::start(const char *programs)
 {
 #if defined(USE_FS)
 	::programs = programs;
@@ -38,14 +38,14 @@ bool sdtape::start(const char *programs)
 	return true;
 }
 
-void sdtape::stop()
+void flash_filer::stop()
 {
 #if STORAGE
 	file.close();
 #endif
 }
 
-bool sdtape::more()
+bool flash_filer::more()
 {
 	if (_pos >= _len) {
 		_pos = 0;
@@ -58,7 +58,7 @@ bool sdtape::more()
 	return true;
 }
 
-const char *sdtape::advance() {
+const char *flash_filer::advance() {
 #if STORAGE
 	bool rewound = false;
 	file.close();
@@ -94,7 +94,7 @@ const char *sdtape::advance() {
 #endif
 }
 
-const char *sdtape::rewind() {
+const char *flash_filer::rewind() {
 #if defined(DISK)
 	dir.rewindDirectory();
 #endif

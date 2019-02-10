@@ -7,7 +7,7 @@ enum parity {
 	odd,
 };
 
-class SerialDevice {
+class serialio {
 public:
 	virtual void reset() {}
 	virtual void framing(unsigned data_bits, unsigned stop_bits, parity p) {}
@@ -23,7 +23,7 @@ public:
 	void operator= (uint8_t);
 	operator uint8_t();
 
-	acia(SerialDevice *d): Memory::Device(256), _device(d) {}
+	acia(serialio &d): Memory::Device(256), _device(&d) {}
 
 	// status bits
 	//
@@ -63,6 +63,6 @@ public:
 	static const uint8_t eri = 1 << 7;	// enable receive interrupt
 
 private:
-	SerialDevice *_device;
+	serialio *_device;
 };
 #endif
