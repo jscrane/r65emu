@@ -11,6 +11,7 @@
 #include <FS.h>
 #endif
 
+#include "serialio.h"
 #include "filer.h"
 
 #if defined(DISK)

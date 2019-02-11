@@ -1,7 +1,7 @@
 #ifndef __FILER_H__
 #define __FILER_H__
 
-class filer {
+class filer: public serialio {
 public:
 	virtual const char *advance() =0;
 	virtual const char *rewind() =0;
@@ -10,6 +10,8 @@ public:
 	virtual void stop() =0;
 };
 
+// split into sd_filer and fs_filer
+// implement write to new file (like checkpoint)
 class flash_filer: public filer {
 public:
 	const char *advance();

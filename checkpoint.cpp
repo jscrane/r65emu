@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "hardware.h"
+#include "serialio.h"
 #include "filer.h"
 #include "checkpoint.h"
 

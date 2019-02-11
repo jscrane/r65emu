@@ -1,6 +1,7 @@
 #include <stdint.h>
 
 #include "memory.h"
+#include "serialio.h"
 #include "acia.h"
 
 void acia::operator=(uint8_t b) {

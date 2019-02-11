@@ -9,6 +9,7 @@
 #include "ps2drv.h"
 #include "tftdisplay.h"
 #include "keyboard.h"
+#include "serialio.h"
 #include "filer.h"
 #include "timed.h"
 #include "hardware.h"
