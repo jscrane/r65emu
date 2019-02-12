@@ -6,8 +6,12 @@
 #include "serial_filer.h"
 
 bool serial_filer::start(const char *) {
+#if defined(TERM_SPEED)
 	Serial.begin(TERM_SPEED);
 	return true;
+#else
+	return false;
+#endif
 }
 
 void serial_filer::write(uint8_t b) {
@@ -23,8 +27,10 @@ bool serial_filer::more() {
 }
 
 const char *serial_filer::checkpoint() {
+	// FIXME
 	return 0;
 }
 
 void serial_filer::restore(const char *) {
+	// FIXME
 }
