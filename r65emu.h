@@ -11,6 +11,7 @@
 #include "keyboard.h"
 #include "serialio.h"
 #include "filer.h"
+#include "serial_filer.h"
 #include "timed.h"
 #include "hardware.h"
 #include "sound_dac.h"
