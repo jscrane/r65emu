@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <stdint.h>
 #include "hardware.h"
 
@@ -19,15 +20,16 @@ static File file, dir;
 #elif defined(USE_FS)
 static File file;
 static Dir dir;
-static const char *programs;
 #endif
+
+static const char *programs;
 
 #define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 
 bool flash_filer::start(const char *programs)
 {
-#if defined(USE_FS)
 	::programs = programs;
+#if defined(USE_FS)
 	dir = SPIFFS.openDir(programs);
 #elif defined(DISK)
 	dir = DISK.open(programs);
@@ -100,4 +102,47 @@ const char *flash_filer::rewind() {
 	dir.rewindDirectory();
 #endif
 	return advance();
+}
+
+static char buf[32];
+static char chkpt[] = { "CHKPOINT" };
+static int cpid = 0;
+
+const char *flash_filer::checkpoint() {
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
+	stop();
+	snprintf(buf, sizeof(buf), "%s%s.%03d", ::programs, chkpt, cpid++);
+
+#if defined(USE_SD)
+	File file = SD.open(buf, O_WRITE | O_CREAT | O_TRUNC);
+#elif defined(USE_SPIFFS)
+	File file = SPIFFS.open(buf, FILE_WRITE);
+#else
+	File file = SPIFFS.open(buf, "w");
+#endif
+	hardware_checkpoint(file);
+	file.close();
+	start(::programs);
+#endif
+	return buf;
+}
+
+void flash_filer::restore(const char *filename) {
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
+	stop();
+	snprintf(buf, sizeof(buf), "%s%s", ::programs, filename);
+
+#if defined(USE_SD)
+	File file = SD.open(buf, O_READ);
+#elif defined(USE_SPIFFS)
+	File file = SPIFFS.open(buf, FILE_READ);
+#else
+	File file = SPIFFS.open(buf, "r");
+#endif
+	hardware_restore(file);
+	file.close();
+	int n = sscanf(buf + strlen(::programs), "%[A-Z0-9].%d", chkpt, &cpid);
+	cpid = (n == 1)? 0: cpid+1;
+#endif
+	start(::programs);
 }
