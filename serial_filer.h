@@ -1,9 +1,11 @@
 #ifndef __SERIAL_FILER_H__
 #define __SERIAL_FILER_H__
 
+// see https://playground.arduino.cc/Interfacing/LinuxTTY
+// FIXME: do this in minicom config file
 class serial_filer: public filer {
 public:
-	const char *advance() { return "serial"; }
+	const char *advance();
 	const char *rewind() { return advance(); }
 
 	const char *checkpoint();
