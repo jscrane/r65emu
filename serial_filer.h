@@ -6,7 +6,7 @@
 class serial_filer: public filer {
 public:
 	const char *advance();
-	const char *rewind() { return advance(); }
+	const char *rewind() { _currsp = 0; return advance(); }
 
 	const char *checkpoint();
 	void restore(const char *);
@@ -17,5 +17,8 @@ public:
 	uint8_t read();
 	bool more();
 	void write(uint8_t);
+
+private:
+	unsigned _currsp;
 };
 #endif
