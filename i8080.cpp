@@ -10,7 +10,7 @@ void i8080::run(unsigned clocks) {
 	while (clocks--) {
 		uint8_t op = _mem[PC];
 		PC++;
-		(this->*_ops[op])();
+		_op(op);
 		if (_halted)
 			break;
 	}
@@ -32,12 +32,6 @@ void i8080::raise(int level) {
 		PC = level * 8;
 	} else
 		_irq_pending = level;
-}
-
-void i8080::ei() {
-	flags.I = 1;
-	if (_irq_pending)
-		raise(_irq_pending);
 }
 
 char *i8080::status(char *buf, size_t n, bool hdr) {
@@ -105,169 +99,173 @@ int i8080::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 };
 
-i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m)
+i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m), _ports(&d)
 {
-	_ports = &d;
+}
 
-	OP *p = _ops;
+void i8080::_op(uint8_t op) {
 
+#define O(o, e) case o: e; break;
+
+	switch(op) {
 	// 0x
-	*p++ = &i8080::nop; *p++ = &i8080::lxib;
-	*p++ = &i8080::staxb; *p++ = &i8080::inxb;
-	*p++ = &i8080::inrb; *p++ = &i8080::dcrb;
-	*p++ = &i8080::mvib; *p++ = &i8080::rlc;
-	*p++ = &i8080::nop; *p++ = &i8080::dadb;
-	*p++ = &i8080::ldaxb; *p++ = &i8080::dcxb;
-	*p++ = &i8080::inrc; *p++ = &i8080::dcrc;
-	*p++ = &i8080::mvic; *p++ = &i8080::rrc;
+	O(0x00, nop()); O(0x01, lxib());
+	O(0x02, staxb()); O(0x03, inxb());
+	O(0x04, inrb()); O(0x05, dcrb());
+	O(0x06, mvib()); O(0x07, rlc());
+	O(0x08, nop()); O(0x09, dadb());
+	O(0x0a, ldaxb()); O(0x0b, dcxb());
+	O(0x0c, inrc()); O(0x0d, dcrc());
+	O(0x0e, mvic()); O(0x0f, rrc());
 
 	// 1x
-	*p++ = &i8080::nop; *p++ = &i8080::lxid;
-	*p++ = &i8080::staxd; *p++ = &i8080::inxd;
-	*p++ = &i8080::inrd; *p++ = &i8080::dcrd;
-	*p++ = &i8080::mvid; *p++ = &i8080::ral;
-	*p++ = &i8080::nop; *p++ = &i8080::dadd;
-	*p++ = &i8080::ldaxd; *p++ = &i8080::dcxd;
-	*p++ = &i8080::inre; *p++ = &i8080::dcre;
-	*p++ = &i8080::mvie; *p++ = &i8080::rar;
+	O(0x10, nop()); O(0x11, lxid());
+	O(0x12, staxd()); O(0x13, inxd());
+	O(0x14, inrd()); O(0x15, dcrd());
+	O(0x16, mvid()); O(0x17, ral());
+	O(0x18, nop()); O(0x19, dadd());
+	O(0x1a, ldaxd()); O(0x1b, dcxd());
+	O(0x1c, inre()); O(0x1d, dcre());
+	O(0x1e, mvie()); O(0x1f, rar());
 
 	// 2x
-	*p++ = &i8080::nop; *p++ = &i8080::lxih;
-	*p++ = &i8080::shld; *p++ = &i8080::inxh;
-	*p++ = &i8080::inrh; *p++ = &i8080::dcrh;
-	*p++ = &i8080::mvih; *p++ = &i8080::daa;
-	*p++ = &i8080::nop; *p++ = &i8080::dadh;
-	*p++ = &i8080::lhld; *p++ = &i8080::dcxh;
-	*p++ = &i8080::inrl; *p++ = &i8080::dcrl;
-	*p++ = &i8080::mvil; *p++ = &i8080::cma;
+	O(0x20, nop()); O(0x21, lxih());
+	O(0x22, shld()); O(0x23, inxh());
+	O(0x24, inrh()); O(0x25, dcrh());
+	O(0x26, mvih()); O(0x27, daa());
+	O(0x28, nop()); O(0x29, dadh());
+	O(0x2a, lhld()); O(0x2b, dcxh());
+	O(0x2c, inrl()); O(0x2d, dcrl());
+	O(0x2e, mvil()); O(0x2f, cma());
 
 	// 3x
-	*p++ = &i8080::nop; *p++ = &i8080::lxisp;
-	*p++ = &i8080::sta; *p++ = &i8080::inxsp;
-	*p++ = &i8080::inrm; *p++ = &i8080::dcrm;
-	*p++ = &i8080::mvim; *p++ = &i8080::stc;
-	*p++ = &i8080::nop; *p++ = &i8080::dadsp;
-	*p++ = &i8080::lda; *p++ = &i8080::dcxsp;
-	*p++ = &i8080::inra; *p++ = &i8080::dcra;
-	*p++ = &i8080::mvia; *p++ = &i8080::cmc;
+	O(0x30, nop()); O(0x31, lxisp());
+	O(0x32, sta()); O(0x33, inxsp());
+	O(0x34, inrm()); O(0x35, dcrm());
+	O(0x36, mvim()); O(0x37, stc());
+	O(0x38, nop()); O(0x39, dadsp());
+	O(0x3a, lda()); O(0x3b, dcxsp());
+	O(0x3c, inra()); O(0x3d, dcra());
+	O(0x3e, mvia()); O(0x3f, cmc());
 
 	// 4x
-	*p++ = &i8080::movbb; *p++ = &i8080::movbc;
-	*p++ = &i8080::movbd; *p++ = &i8080::movbe;
-	*p++ = &i8080::movbh; *p++ = &i8080::movbl;
-	*p++ = &i8080::movbm; *p++ = &i8080::movba;
-	*p++ = &i8080::movcb; *p++ = &i8080::movcc;
-	*p++ = &i8080::movcd; *p++ = &i8080::movce;
-	*p++ = &i8080::movch; *p++ = &i8080::movcl;
-	*p++ = &i8080::movcm; *p++ = &i8080::movca;
+	O(0x40, movbb()); O(0x41, movbc());
+	O(0x42, movbd()); O(0x43, movbe());
+	O(0x44, movbh()); O(0x45, movbl());
+	O(0x46, movbm()); O(0x47, movba());
+	O(0x48, movcb()); O(0x49, movcc());
+	O(0x4a, movcd()); O(0x4b, movce());
+	O(0x4c, movch()); O(0x4d, movcl());
+	O(0x4e, movcm()); O(0x4f, movca());
 
 	// 5x
-	*p++ = &i8080::movdb; *p++ = &i8080::movdc;
-	*p++ = &i8080::movdd; *p++ = &i8080::movde;
-	*p++ = &i8080::movdh; *p++ = &i8080::movdl;
-	*p++ = &i8080::movdm; *p++ = &i8080::movda;
-	*p++ = &i8080::moveb; *p++ = &i8080::movec;
-	*p++ = &i8080::moved; *p++ = &i8080::movee;
-	*p++ = &i8080::moveh; *p++ = &i8080::movel;
-	*p++ = &i8080::movem; *p++ = &i8080::movea;
+	O(0x50, movdb()); O(0x51, movdc());
+	O(0x52, movdd()); O(0x53, movde());
+	O(0x54, movdh()); O(0x55, movdl());
+	O(0x56, movdm()); O(0x57, movda());
+	O(0x58, moveb()); O(0x59, movec());
+	O(0x5a, moved()); O(0x5b, movee());
+	O(0x5c, moveh()); O(0x5d, movel());
+	O(0x5e, movem()); O(0x5f, movea());
 
 	// 6x
-	*p++ = &i8080::movhb; *p++ = &i8080::movhc;
-	*p++ = &i8080::movhd; *p++ = &i8080::movhe;
-	*p++ = &i8080::movhh; *p++ = &i8080::movhl;
-	*p++ = &i8080::movhm; *p++ = &i8080::movha;
-	*p++ = &i8080::movlb; *p++ = &i8080::movlc;
-	*p++ = &i8080::movld; *p++ = &i8080::movle;
-	*p++ = &i8080::movlh; *p++ = &i8080::movll;
-	*p++ = &i8080::movlm; *p++ = &i8080::movla;
+	O(0x60, movhb()); O(0x61, movhc());
+	O(0x62, movhd()); O(0x63, movhe());
+	O(0x64, movhh()); O(0x65, movhl());
+	O(0x66, movhm()); O(0x67, movha());
+	O(0x68, movlb()); O(0x69, movlc());
+	O(0x6a, movld()); O(0x6b, movle());
+	O(0x6c, movlh()); O(0x6d, movll());
+	O(0x6e, movlm()); O(0x6f, movla());
 
 	// 7x
-	*p++ = &i8080::movmb; *p++ = &i8080::movmc;
-	*p++ = &i8080::movmd; *p++ = &i8080::movme;
-	*p++ = &i8080::movmh; *p++ = &i8080::movml;
-	*p++ = &i8080::hlt; *p++ = &i8080::movma;
-	*p++ = &i8080::movab; *p++ = &i8080::movac;
-	*p++ = &i8080::movad; *p++ = &i8080::movae;
-	*p++ = &i8080::movah; *p++ = &i8080::moval;
-	*p++ = &i8080::movam; *p++ = &i8080::movaa;
+	O(0x70, movmb()); O(0x71, movmc());
+	O(0x72, movmd()); O(0x73, movme());
+	O(0x74, movmh()); O(0x75, movml());
+	O(0x76, hlt()); O(0x77, movma());
+	O(0x78, movab()); O(0x79, movac());
+	O(0x7a, movad()); O(0x7b, movae());
+	O(0x7c, movah()); O(0x7d, moval());
+	O(0x7e, movam()); O(0x7f, movaa());
 
 	// 8x
-	*p++ = &i8080::addb; *p++ = &i8080::addc;
-	*p++ = &i8080::addd; *p++ = &i8080::adde;
-	*p++ = &i8080::addh; *p++ = &i8080::addl;
-	*p++ = &i8080::addm; *p++ = &i8080::adda;
-	*p++ = &i8080::adcb; *p++ = &i8080::adcc;
-	*p++ = &i8080::adcd; *p++ = &i8080::adce;
-	*p++ = &i8080::adch; *p++ = &i8080::adcl;
-	*p++ = &i8080::adcm; *p++ = &i8080::adca;
+	O(0x80, addb()); O(0x81, addc());
+	O(0x82, addd()); O(0x83, adde());
+	O(0x84, addh()); O(0x85, addl());
+	O(0x86, addm()); O(0x87, adda());
+	O(0x88, adcb()); O(0x89, adcc());
+	O(0x8a, adcd()); O(0x8b, adce());
+	O(0x8c, adch()); O(0x8d, adcl());
+	O(0x8e, adcm()); O(0x8f, adca());
 
 	// 9x
-	*p++ = &i8080::subb; *p++ = &i8080::subc;
-	*p++ = &i8080::subd; *p++ = &i8080::sube;
-	*p++ = &i8080::subh; *p++ = &i8080::subl;
-	*p++ = &i8080::subm; *p++ = &i8080::suba;
-	*p++ = &i8080::sbbb; *p++ = &i8080::sbbc;
-	*p++ = &i8080::sbbd; *p++ = &i8080::sbbe;
-	*p++ = &i8080::sbbh; *p++ = &i8080::sbbl;
-	*p++ = &i8080::sbbm; *p++ = &i8080::sbba;
+	O(0x90, subb()); O(0x91, subc());
+	O(0x92, subd()); O(0x93, sube());
+	O(0x94, subh()); O(0x95, subl());
+	O(0x96, subm()); O(0x97, suba());
+	O(0x98, sbbb()); O(0x99, sbbc());
+	O(0x9a, sbbd()); O(0x9b, sbbe());
+	O(0x9c, sbbh()); O(0x9d, sbbl());
+	O(0x9e, sbbm()); O(0x9f, sbba());
 
 	// Ax
-	*p++ = &i8080::anab; *p++ = &i8080::anac;
-	*p++ = &i8080::anad; *p++ = &i8080::anae;
-	*p++ = &i8080::anah; *p++ = &i8080::anal;
-	*p++ = &i8080::anam; *p++ = &i8080::anaa;
-	*p++ = &i8080::xrab; *p++ = &i8080::xrac;
-	*p++ = &i8080::xrad; *p++ = &i8080::xrae;
-	*p++ = &i8080::xrah; *p++ = &i8080::xral;
-	*p++ = &i8080::xram; *p++ = &i8080::xraa;
+	O(0xa0, anab()); O(0xa1, anac());
+	O(0xa2, anad()); O(0xa3, anae());
+	O(0xa4, anah()); O(0xa5, anal());
+	O(0xa6, anam()); O(0xa7, anaa());
+	O(0xa8, xrab()); O(0xa9, xrac());
+	O(0xaa, xrad()); O(0xab, xrae());
+	O(0xac, xrah()); O(0xad, xral());
+	O(0xae, xram()); O(0xaf, xraa());
 
 	// Bx
-	*p++ = &i8080::orab; *p++ = &i8080::orac;
-	*p++ = &i8080::orad; *p++ = &i8080::orae;
-	*p++ = &i8080::orah; *p++ = &i8080::oral;
-	*p++ = &i8080::oram; *p++ = &i8080::oraa;
-	*p++ = &i8080::cmpb; *p++ = &i8080::cmpc;
-	*p++ = &i8080::cmpd; *p++ = &i8080::cmpe;
-	*p++ = &i8080::cmph; *p++ = &i8080::cmpl;
-	*p++ = &i8080::cmpm; *p++ = &i8080::cmpa;
+	O(0xb0, orab()); O(0xb1, orac());
+	O(0xb2, orad()); O(0xb3, orae());
+	O(0xb4, orah()); O(0xb5, oral());
+	O(0xb6, oram()); O(0xb7, oraa());
+	O(0xb8, cmpb()); O(0xb9, cmpc());
+	O(0xba, cmpd()); O(0xbb, cmpe());
+	O(0xbc, cmph()); O(0xbd, cmpl());
+	O(0xbe, cmpm()); O(0xbf, cmpa());
 
 	// Cx
-	*p++ = &i8080::rnz; *p++ = &i8080::popb;
-	*p++ = &i8080::jnz; *p++ = &i8080::jmp;
-	*p++ = &i8080::cnz; *p++ = &i8080::pushb;
-	*p++ = &i8080::adi; *p++ = &i8080::rst0;
-	*p++ = &i8080::rz; *p++ = &i8080::ret;
-	*p++ = &i8080::jz; *p++ = &i8080::jmp;
-	*p++ = &i8080::cz; *p++ = &i8080::call;
-	*p++ = &i8080::aci; *p++ = &i8080::rst1;
+	O(0xc0, rnz()); O(0xc1, popb());
+	O(0xc2, jnz()); O(0xc3, jmp());
+	O(0xc4, cnz()); O(0xc5, pushb());
+	O(0xc6, adi()); O(0xc7, rst0());
+	O(0xc8, rz()); O(0xc9, ret());
+	O(0xca, jz()); O(0xcb, jmp());
+	O(0xcc, cz()); O(0xcd, call());
+	O(0xce, aci()); O(0xcf, rst1());
 
 	// Dx
-	*p++ = &i8080::rnc; *p++ = &i8080::popd;
-	*p++ = &i8080::jnc; *p++ = &i8080::out;
-	*p++ = &i8080::cnc; *p++ = &i8080::pushd;
-	*p++ = &i8080::sui; *p++ = &i8080::rst2;
-	*p++ = &i8080::rc; *p++ = &i8080::ret;
-	*p++ = &i8080::jc; *p++ = &i8080::in;
-	*p++ = &i8080::cc; *p++ = &i8080::call;
-	*p++ = &i8080::sbi; *p++ = &i8080::rst3;
+	O(0xd0, rnc()); O(0xd1, popd());
+	O(0xd2, jnc()); O(0xd3, out());
+	O(0xd4, cnc()); O(0xd5, pushd());
+	O(0xd6, sui()); O(0xd7, rst2());
+	O(0xd8, rc()); O(0xd9, ret());
+	O(0xda, jc()); O(0xdb, in());
+	O(0xdc, cc()); O(0xdd, call());
+	O(0xde, sbi()); O(0xdf, rst3());
 
 	// Ex
-	*p++ = &i8080::rpo; *p++ = &i8080::poph;
-	*p++ = &i8080::jpo; *p++ = &i8080::xthl;
-	*p++ = &i8080::cpo; *p++ = &i8080::pushh;
-	*p++ = &i8080::ani; *p++ = &i8080::rst4;
-	*p++ = &i8080::rpe; *p++ = &i8080::pchl;
-	*p++ = &i8080::jpe; *p++ = &i8080::xchg;
-	*p++ = &i8080::cpe; *p++ = &i8080::call;
-	*p++ = &i8080::xri; *p++ = &i8080::rst5;
+	O(0xe0, rpo()); O(0xe1, poph());
+	O(0xe2, jpo()); O(0xe3, xthl());
+	O(0xe4, cpo()); O(0xe5, pushh());
+	O(0xe6, ani()); O(0xe7, rst4());
+	O(0xe8, rpe()); O(0xe9, pchl());
+	O(0xea, jpe()); O(0xeb, xchg());
+	O(0xec, cpe()); O(0xed, call());
+	O(0xee, xri()); O(0xef, rst5());
 
 	// Fx
-	*p++ = &i8080::rp; *p++ = &i8080::pop;
-	*p++ = &i8080::jp; *p++ = &i8080::di;
-	*p++ = &i8080::cp; *p++ = &i8080::push;
-	*p++ = &i8080::ori; *p++ = &i8080::rst6;
-	*p++ = &i8080::rm; *p++ = &i8080::sphl;
-	*p++ = &i8080::jm; *p++ = &i8080::ei;
-	*p++ = &i8080::cm; *p++ = &i8080::call;
-	*p++ = &i8080::cpi; *p++ = &i8080::rst7;
+	O(0xf0, rp()); O(0xf1, pop());
+	O(0xf2, jp()); O(0xf3, di());
+	O(0xf4, cp()); O(0xf5, push());
+	O(0xf6, ori()); O(0xf7, rst6());
+	O(0xf8, rm()); O(0xf9, sphl());
+	O(0xfa, jm()); O(0xfb, ei());
+	O(0xfc, cm()); O(0xfd, call());
+	O(0xfe, cpi()); O(0xff, rst7());
+	}
 }
