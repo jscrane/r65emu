@@ -5,9 +5,11 @@
 #undef PC
 #undef SP
 
+uint8_t parity_tbl(uint8_t);
+
 class i8080: public CPU {
 public:
-	i8080(Memory &, PortDevice<i8080> &);
+	i8080(Memory &m, PortDevice<i8080> &d): CPU(m), _ports(&d) {}
 
 	void run(unsigned);
 	void reset();
@@ -62,8 +64,6 @@ private:
 
 	void _op(uint8_t op);
 
-	static int parity_table[256];
-
 	inline uint16_t _rw(Memory::address a) {
 		return _mem[a] + (_mem[a+1] << 8);
 	}
@@ -76,7 +76,7 @@ private:
 	inline void _szp(uint8_t r) {
 		flags.S = ((r & 0x80) != 0);
 		flags.Z = (r == 0);
-		flags.P = parity_table[r];
+		flags.P = parity_tbl(r);
 	}
 
 	inline void _szhp(uint8_t b, uint8_t r) {

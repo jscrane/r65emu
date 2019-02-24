@@ -84,7 +84,7 @@ void i8080::daa() {
 	flags.C = c;
 }
 
-int i8080::parity_table[] = {
+const uint8_t parity_table[] PROGMEM = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
 	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
@@ -103,8 +103,8 @@ int i8080::parity_table[] = {
 	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
 };
 
-i8080::i8080(Memory &m, PortDevice<i8080> &d): CPU(m), _ports(&d)
-{
+uint8_t parity_tbl(uint8_t r) {
+	return pgm_read_byte(parity_table + r);
 }
 
 void i8080::_op(uint8_t op) {
