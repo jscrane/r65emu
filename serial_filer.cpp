@@ -35,6 +35,7 @@ bool serial_filer::more() {
 	return Serial.available() > 0;
 }
 
+#if !defined(NO_CHECKPOINT)
 const char *serial_filer::checkpoint() {
 	// FIXME
 	return 0;
@@ -43,3 +44,4 @@ const char *serial_filer::checkpoint() {
 void serial_filer::restore(const char *) {
 	// FIXME
 }
+#endif

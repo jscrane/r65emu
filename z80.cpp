@@ -20,6 +20,7 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 }
 
 void z80::checkpoint(Stream &s) {
+#if !defined(NO_CHECKPOINT)
 	s.write(AF);
 	s.write(BC);
 	s.write(DE);
@@ -39,9 +40,11 @@ void z80::checkpoint(Stream &s) {
 	s.write(_ts);
 	s.write(_halted);
 	s.write(_irq_pending);
+#endif
 }
 
 void z80::restore(Stream &s) {
+#if !defined(NO_CHECKPOINT)
 	AF = s.read();
 	BC = s.read();
 	DE = s.read();
@@ -61,6 +64,7 @@ void z80::restore(Stream &s) {
 	_ts = s.read();
 	_halted = s.read();
 	_irq_pending = s.read();
+#endif
 }
 
 uint8_t z80::_fetch_op() {

@@ -47,6 +47,7 @@ char *i8080::status(char *buf, size_t n, bool hdr) {
 }
 
 void i8080::checkpoint(Stream &s) {
+#if !defined(NO_CHECKPOINT)
 	s.write(A);
 	s.write(SR);
 	s.write(BC);
@@ -55,9 +56,11 @@ void i8080::checkpoint(Stream &s) {
 	s.write(PC);
 	s.write(SP);
 	s.write(_irq_pending);
+#endif
 }
 
 void i8080::restore(Stream &s) {
+#if !defined(NO_CHECKPOINT)
 	A = s.read();
 	SR = s.read();
 	BC = s.read();
@@ -66,6 +69,7 @@ void i8080::restore(Stream &s) {
 	PC = s.read();
 	SP = s.read();
 	_irq_pending = s.read();
+#endif
 }
 
 void i8080::daa() {

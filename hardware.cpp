@@ -79,6 +79,7 @@ void hardware_init(CPU &cpu) {
 #endif
 }
 
+#if !defined(NO_CHECKPOINT)
 void hardware_checkpoint(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
@@ -98,3 +99,4 @@ void hardware_restore(Stream &s) {
 	}
 	_cpu->restore(s);
 }
+#endif

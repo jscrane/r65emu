@@ -38,6 +38,7 @@ char *r6502::status(char *buf, size_t n, bool hdr) {
 
 void r6502::checkpoint(Stream &s)
 {
+#if !defined(NO_CHECKPOINT)
 	s.write(PC / 0xff);
 	s.write(PC % 0xff);
 	s.write(S);
@@ -52,10 +53,12 @@ void r6502::checkpoint(Stream &s)
 	s.write(Z);
 	s.write(C);
 	s.write(P.flags);
+#endif
 }
 
 void r6502::restore(Stream &s)
 {
+#if !defined(NO_CHECKPOINT)
 	uint8_t hi = s.read(), lo = s.read();
 	PC = hi * 0xff + lo;
 	S = s.read();
@@ -70,6 +73,7 @@ void r6502::restore(Stream &s)
 	Z = s.read();
 	C = s.read();
 	P.flags = s.read();
+#endif
 }
 
 void r6502::raise(int level) {

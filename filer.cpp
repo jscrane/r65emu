@@ -104,6 +104,7 @@ const char *flash_filer::rewind() {
 	return advance();
 }
 
+#if !defined(NO_CHECKPOINT)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
@@ -146,3 +147,4 @@ void flash_filer::restore(const char *filename) {
 #endif
 	start(::programs);
 }
+#endif
