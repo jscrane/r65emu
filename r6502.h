@@ -33,7 +33,6 @@ private:
 		} bits;
 		uint8_t flags;
 	} P;
-	uint8_t _toBCD[256], _fromBCD[256];	// BCD maps
 	bool _irq;				// interrupt pending?
 
 	void irq();

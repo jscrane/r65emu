@@ -148,12 +148,20 @@ void r6502::jsr() {
 	PC = vector(PC);
 }
 
+static inline uint8_t fromBCD(uint8_t i) {
+	return ((i >> 4) & 0x0f)*10 + (i & 0x0f);
+}
+
+static inline uint8_t toBCD(uint8_t i) {
+	return (((i % 100) / 10) << 4) | (i % 10);
+}
+
 void r6502::_adc(uint8_t d) {
 	if (P.bits.D) {
-		int r = _fromBCD[A] + _fromBCD[d] + C;
+		int r = fromBCD(A) + fromBCD(d) + C;
 		C = (r > 99);
 		if (C) r -= 100;
-		A = _toBCD[r];
+		A = toBCD(r);
 	} else {
 		unsigned short u = (unsigned short)A + (unsigned short)d + (unsigned short)C;
 		short s = (char)A + (char)d + (char)C;
@@ -166,10 +174,10 @@ void r6502::_adc(uint8_t d) {
 }
 
 void r6502::sbcd(uint8_t d) {
-	int r = _fromBCD[A] - _fromBCD[d] - !C;
+	int r = fromBCD(A) - fromBCD(d) - !C;
 	C = (r >= 0);
 	if (r < 0) r += 100;
-	A = _toBCD[r & 0xff];
+	A = toBCD(r & 0xff);
 	N = (A & 0x80);
 	Z = A;
 	// V not tested for: http://www.6502.org/tutorials/decimal_mode.html
@@ -192,11 +200,6 @@ void r6502::reset()
 }
 
 r6502::r6502(Memory &m): CPU(m) {
-
-	for (int i=0; i < 256; i++) {
-		_fromBCD[i] = ((i >> 4) & 0x0f)*10 + (i & 0x0f);
-		_toBCD[i] = (((i % 100) / 10) << 4) | (i % 10);
-	}
 
 	OP *p = _ops;
 	*p++=&r6502::brk; *p++=&r6502::ora_ix; *p++=&r6502::ill; *p++=&r6502::ill;
