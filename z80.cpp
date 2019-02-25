@@ -487,7 +487,6 @@ void z80::ed() {
 	case 0x4f:
 		_mc(IR, 1);
 		R = A;
-		// FIXME?
 		break;
 	case 0x50:
 		D = _inr(BC);
@@ -611,8 +610,7 @@ void z80::ed() {
 		HL++;
 		b += A;
 		flags.P = (BC != 0);
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
+		_35(b);
 		flags.N = flags.H = 0;
 		break;
 	case 0xa1:
@@ -629,8 +627,7 @@ void z80::ed() {
 		if (flags.H) b--;
 		flags.C = f;
 		flags.P = (BC != 0);
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
+		_35(b);
 		break;
 	case 0xa2:
 		_mc(IR, 1);
@@ -666,8 +663,7 @@ void z80::ed() {
 		HL--;
 		b += A;
 		flags.P = (BC != 0);
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
+		_35(b);
 		flags.N = flags.H = 0;
 		break;
 	case 0xa9:
@@ -679,11 +675,8 @@ void z80::ed() {
 		BC--;
 		flags.N = 1;
 		flags.P = (BC != 0);
-		flags.Z = (c == 0);
-		flags.S = (c & 0x80) != 0;
-		flags._3 = (c & 0x08) != 0;
-		flags._5 = (c & 0x02) != 0;
-		// FIXME: flags 3, 5, H
+		_sz35(c);
+		// FIXME: flag H
 		break;
 	case 0xaa:
 		_mc(IR, 1);
@@ -717,8 +710,7 @@ void z80::ed() {
 		_mc(DE, 1);
 		b += A;
 		flags.P = (BC != 0);
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
+		_35(b);
 		flags.N = flags.H = 0;
 		if (BC) {
 			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
@@ -741,8 +733,7 @@ void z80::ed() {
 		flags.C = f;
 		flags.P = (BC != 0);
 		if (flags.H) b--;
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
+		_35(b);
 		if (!flags.Z) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
@@ -792,8 +783,7 @@ void z80::ed() {
 		_mc(DE, 1);
 		b += A;
 		flags.P = (BC != 0);
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
+		_35(b);
 		flags.N = flags.H = 0;
 		if (BC) {
 			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
@@ -811,9 +801,8 @@ void z80::ed() {
 		BC--;
 		flags.N = 1;
 		flags.P = (BC != 0);
-		flags.Z = (c == 0);
-		flags.S = (c & 0x80) != 0;
-		// FIXME: flags 3, 5, H
+		_sz35(c);
+		// FIXME: flag H
 		if (BC) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
