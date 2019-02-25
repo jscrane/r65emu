@@ -144,7 +144,7 @@ private:
 	OP _ops[256], _cb[256];
 	OP_IDX _ddcb[256], _fdcb[256];
 
-	static int parity_table[256];
+	uint8_t parity_table(uint8_t);
 
 	inline uint8_t _rb(Memory::address a) {
 #if defined(CPU_DEBUG)
@@ -211,7 +211,7 @@ private:
 
 	inline void _szp35(uint8_t r) {
 		_sz35(r);
-		flags.P = parity_table[r];
+		flags.P = parity_table(r);
 	}
 
 	inline void _inc(uint8_t &b) {

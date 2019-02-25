@@ -136,7 +136,7 @@ void z80::daa() {
 	else
 		_add(a);
 	flags.C = c;
-	flags.P = parity_table[A];
+	flags.P = parity_table(A);
 }
 
 void z80::_step_idx(OP_IDX ops[]) {
@@ -641,7 +641,7 @@ void z80::ed() {
 		c = b + C + 1;
 		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		break;
 	case 0xa3:
@@ -653,7 +653,7 @@ void z80::ed() {
 		c = b + L;
 		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		break;
 	case 0xa8:
@@ -694,7 +694,7 @@ void z80::ed() {
 		c = b + C - 1;
 		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		break;
 	case 0xab:
@@ -706,7 +706,7 @@ void z80::ed() {
 		c = b + L;
 		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		break;
 	case 0xb0:
@@ -758,7 +758,7 @@ void z80::ed() {
 		c = b + flags.C + 1;
 		flags.N = (c & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		if (B) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
@@ -776,7 +776,7 @@ void z80::ed() {
 		c = b + L;
 		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		if (B) {
 			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
@@ -829,7 +829,7 @@ void z80::ed() {
 		c = b + flags.C + 1;
 		flags.N = (c & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		if (B) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
@@ -847,7 +847,7 @@ void z80::ed() {
 		c = b + L;
 		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
-		flags.P = parity_table[(c & 0x07) ^ B];
+		flags.P = parity_table((c & 0x07) ^ B);
 		_sz35(B);
 		if (B) {
 			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
@@ -858,24 +858,18 @@ void z80::ed() {
 	}
 }
 
-int z80::parity_table[] = {
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,
-	1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,
+const uint8_t partab[] PROGMEM = {
+	0x69, 0x96, 0x96, 0x69, 0x96, 0x69, 0x69, 0x96,
+	0x96, 0x69, 0x69, 0x96, 0x69, 0x96, 0x96, 0x69,
+	0x96, 0x69, 0x69, 0x96, 0x69, 0x96, 0x96, 0x69,
+	0x69, 0x96, 0x96, 0x69, 0x96, 0x69, 0x69, 0x96,
 };
+
+uint8_t z80::parity_table(uint8_t r) {
+	uint8_t i = r / 8, b = pgm_read_byte(partab + i);
+	uint8_t m = (1 << (r % 8));
+	return m == (b & m);
+}
 
 z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
 {
