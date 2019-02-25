@@ -174,9 +174,6 @@ void r6502::reset()
 	PC = vector(resvec);
 }
 
-#define O(o, e) case o: e(); break;
-#define D(e) default: e(); break;
-
 void r6502::_op(uint8_t op) {
 
 	switch (op) {

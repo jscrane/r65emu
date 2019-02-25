@@ -97,9 +97,6 @@ uint8_t parity_tbl(uint8_t r) {
 	return m == (b & m);
 }
 
-#define O(o, e) case o: e(); break;
-#define D(e) default: e(); break;
-
 void i8080::_op(uint8_t op) {
 
 	switch(op) {
