@@ -15,7 +15,8 @@ public:
 	void checkpoint(Stream &);
 	void restore(Stream &);
 
-	r6502(Memory &);
+	r6502(Memory &m): CPU(m) {}
+
 private:
 	/* registers */
 	uint8_t S, A, X, Y;
@@ -94,7 +95,9 @@ private:
 	inline Memory::address _iy() { return _i(_mem[PC++])+Y; }
 
 	void _adc(uint8_t a);
-	void _sbc(uint8_t a) { if (P.bits.D) sbcd(a); else _adc(~a); }
+	void _sbc(uint8_t a) {
+		if (P.bits.D) sbcd(a); else _adc(~a);
+	}
 	void sbcd(uint8_t a);
 
 	inline uint8_t __ror(uint8_t b) {
@@ -109,11 +112,15 @@ private:
 	inline void _rol(Memory::address a) {
 		_mem[a] = __rol(_mem[a]);
 	}
-	inline uint8_t __asl(uint8_t b) { C=(b&0x80)!=0; return Z=N=b<<1; }
+	inline uint8_t __asl(uint8_t b) {
+		C=(b&0x80)!=0; return Z=N=b<<1;
+	}
 	inline void _asl(Memory::address a) {
 		_mem[a] = __asl(_mem[a]);
 	}
-	inline uint8_t __lsr(uint8_t b) { C=b&1; Z=b>>1; N=0; return Z; }
+	inline uint8_t __lsr(uint8_t b) {
+		C=b&1; Z=b>>1; N=0; return Z;
+	}
 	inline void _lsr(Memory::address a) {
 		_mem[a] = __lsr(_mem[a]);
 	}
@@ -123,191 +130,192 @@ private:
 	inline void _dec(Memory::address a) {
 		Z=N=_mem[a]-1; _mem[a]=Z;
 	}
-	inline void _bit(uint8_t z) { V=((z & 0x40)!=0); N=(z & 0x80); Z=(A & z); }
+	inline void _bit(uint8_t z) {
+		V=((z & 0x40)!=0); N=(z & 0x80); Z=(A & z);
+	}
 	inline void _bra() {
 		uint8_t b = _mem[PC];
 		PC += b;
 		if (b > 127) PC -= 0x0100;
 	}
 
-	/* dispatch table */
-	typedef void (r6502::*OP)(); OP _ops[256];
+	void _op(uint8_t);
 
 	/* operations */
-	void brk();
-	void ora_ix() { _ora(_mem[_ix()]); }
-	void ill();
-	void nop2() { PC++; }
-	void ora_z() { _ora(_mem[_z()]); }
-	void asl_z() { _asl(_z()); }
-	void php();
-	void ora_() { _ora(_mem[PC++]); }
-	void asl() { C=(A&0x80)!=0; Z=N=A<<=1; }
-	void nop3() { PC+=2; }
-	void ora_a() { _ora(_mem[_a()]); }
-	void asl_a() { _asl(_a()); }
+	inline void brk();
+	inline void ora_ix() { _ora(_mem[_ix()]); }
+	inline void ill() { --PC; _halted = true; }
+	inline void nop2() { PC++; }
+	inline void ora_z() { _ora(_mem[_z()]); }
+	inline void asl_z() { _asl(_z()); }
+	inline void php();
+	inline void ora_() { _ora(_mem[PC++]); }
+	inline void asl() { C=(A&0x80)!=0; Z=N=A<<=1; }
+	inline void nop3() { PC+=2; }
+	inline void ora_a() { _ora(_mem[_a()]); }
+	inline void asl_a() { _asl(_a()); }
 	// 10
-	void bpl() { if (!(N & 0x80)) _bra(); PC++; }
-	void ora_iy() { _ora(_mem[_iy()]); }
-	void ora_zx() { _ora(_mem[_zx()]); }
-	void asl_zx() { _asl(_zx()); }
-	void clc() { C=0; }
-	void ora_ay() { _ora(_mem[_ay()]); }
-	void nop() {}
-	void ora_ax() { _ora(_mem[_ax()]); }
-	void asl_ax() { _asl(_ax()); }
+	inline void bpl() { if (!(N & 0x80)) _bra(); PC++; }
+	inline void ora_iy() { _ora(_mem[_iy()]); }
+	inline void ora_zx() { _ora(_mem[_zx()]); }
+	inline void asl_zx() { _asl(_zx()); }
+	inline void clc() { C=0; }
+	inline void ora_ay() { _ora(_mem[_ay()]); }
+	inline void nop() {}
+	inline void ora_ax() { _ora(_mem[_ax()]); }
+	inline void asl_ax() { _asl(_ax()); }
 	// 20
-	void jsr();
-	void and_ix() { _and(_mem[_ix()]); }
-	void bit_z() { _bit(_mem[_z()]); }
-	void and_z() { _and(_mem[_z()]); }
-	void rol_z() { _rol(_z()); }
-	void plp();
-	void and_() { _and(_mem[PC++]); }
-	void rol() { A=__rol(A); }
-	void bit_a() { _bit(_mem[_a()]); }
-	void and_a() { _and(_mem[_a()]); }
-	void rol_a() { _rol(_a()); }
+	inline void jsr() { pusha(PC+1); PC = vector(PC); }
+	inline void and_ix() { _and(_mem[_ix()]); }
+	inline void bit_z() { _bit(_mem[_z()]); }
+	inline void and_z() { _and(_mem[_z()]); }
+	inline void rol_z() { _rol(_z()); }
+	inline void plp();
+	inline void and_() { _and(_mem[PC++]); }
+	inline void rol() { A=__rol(A); }
+	inline void bit_a() { _bit(_mem[_a()]); }
+	inline void and_a() { _and(_mem[_a()]); }
+	inline void rol_a() { _rol(_a()); }
 	// 30
-	void bmi() { if (N & 0x80) _bra(); PC++; }
-	void and_iy() { _and(_mem[_iy()]); }
-	void and_zx() { _and(_mem[_zx()]); }
-	void rol_zx() { _rol(_zx()); }
-	void sec() { C=1; }
-	void and_ay() { _and(_mem[_ay()]); }
-	void and_ax() { _and(_mem[_ax()]); }
-	void rol_ax() { _rol(_ax()); }
+	inline void bmi() { if (N & 0x80) _bra(); PC++; }
+	inline void and_iy() { _and(_mem[_iy()]); }
+	inline void and_zx() { _and(_mem[_zx()]); }
+	inline void rol_zx() { _rol(_zx()); }
+	inline void sec() { C=1; }
+	inline void and_ay() { _and(_mem[_ay()]); }
+	inline void and_ax() { _and(_mem[_ax()]); }
+	inline void rol_ax() { _rol(_ax()); }
 	// 40
-	void rti();
-	void eor_ix() { _eor(_mem[_ix()]); }
-	void eor_z() { _eor(_mem[_z()]); }
-	void lsr_z() { _lsr(_z()); }
-	void pha() { pushb(A); }
-	void eor_() { _eor(_mem[PC++]); }
-	void lsr_() { A=__lsr(A); }
-	void jmp() { PC = _a(); }
-	void eor_a() { _eor(_mem[_a()]); }
-	void lsr_a() { _lsr(_a()); }
+	inline void rti() { plp(); PC = popa(); }
+	inline void eor_ix() { _eor(_mem[_ix()]); }
+	inline void eor_z() { _eor(_mem[_z()]); }
+	inline void lsr_z() { _lsr(_z()); }
+	inline void pha() { pushb(A); }
+	inline void eor_() { _eor(_mem[PC++]); }
+	inline void lsr_() { A=__lsr(A); }
+	inline void jmp() { PC = _a(); }
+	inline void eor_a() { _eor(_mem[_a()]); }
+	inline void lsr_a() { _lsr(_a()); }
 	// 50
-	void bvc() { if (!V) _bra(); PC++; }
-	void eor_iy() { _eor(_mem[_iy()]); }
-	void eor_zx() { _eor(_mem[_zx()]); }
-	void lsr_zx() { _lsr(_zx()); }
-	void cli();
-	void eor_ay() { _eor(_mem[_ay()]); }
-	void eor_ax() { _eor(_mem[_ax()]); }
-	void lsr_ax() { _lsr(_ax()); }
+	inline void bvc() { if (!V) _bra(); PC++; }
+	inline void eor_iy() { _eor(_mem[_iy()]); }
+	inline void eor_zx() { _eor(_mem[_zx()]); }
+	inline void lsr_zx() { _lsr(_zx()); }
+	inline void cli() { P.bits.I = 0; if (_irq) irq(); }
+	inline void eor_ay() { _eor(_mem[_ay()]); }
+	inline void eor_ax() { _eor(_mem[_ax()]); }
+	inline void lsr_ax() { _lsr(_ax()); }
 	// 60
-	void rts();
-	void adc_ix() { _adc(_mem[_ix()]); }
-	void adc_z() { _adc(_mem[_z()]); }
-	void ror_z() { _ror(_z()); }
-	void pla() { Z=N=A=popb(); }
-	void adc_() { _adc(_mem[PC++]); }
-	void ror_() { A=__ror(A); }
-	void jmp_i() { PC = _i(_a()); }
-	void adc_a() { _adc(_mem[_a()]); }
-	void ror_a() { _ror(_a()); }
+	inline void rts() { PC = popa()+1; }
+	inline void adc_ix() { _adc(_mem[_ix()]); }
+	inline void adc_z() { _adc(_mem[_z()]); }
+	inline void ror_z() { _ror(_z()); }
+	inline void pla() { Z=N=A=popb(); }
+	inline void adc_() { _adc(_mem[PC++]); }
+	inline void ror_() { A=__ror(A); }
+	inline void jmp_i() { PC = _i(_a()); }
+	inline void adc_a() { _adc(_mem[_a()]); }
+	inline void ror_a() { _ror(_a()); }
 	// 70
-	void bvs() { if (V) _bra(); PC++; }
-	void adc_iy() { _adc(_mem[_iy()]); }
-	void adc_zx() { _adc(_mem[_zx()]); }
-	void ror_zx() { _ror(_zx()); }
-	void sei() { P.bits.I = 1; }
-	void adc_ay() { _adc(_mem[_ay()]); }
-	void adc_ax() { _adc(_mem[_ax()]); }
-	void ror_ax() { _ror(_ax()); }
+	inline void bvs() { if (V) _bra(); PC++; }
+	inline void adc_iy() { _adc(_mem[_iy()]); }
+	inline void adc_zx() { _adc(_mem[_zx()]); }
+	inline void ror_zx() { _ror(_zx()); }
+	inline void sei() { P.bits.I = 1; }
+	inline void adc_ay() { _adc(_mem[_ay()]); }
+	inline void adc_ax() { _adc(_mem[_ax()]); }
+	inline void ror_ax() { _ror(_ax()); }
 	// 80
-	void sta_ix() { _mem[_ix()] = A; }
-	void sty_z() { _mem[_z()] = Y; }
-	void sta_z() { _mem[_z()] = A; }
-	void stx_z() { _mem[_z()] = X; }
-	void dey() { Z=N=--Y; }
-	void txa() { Z=N=A=X; }
-	void sty_a() { _mem[_a()] = Y; }
-	void sta_a() { _mem[_a()] = A; }
-	void stx_a() { _mem[_a()] = X; }
+	inline void sta_ix() { _mem[_ix()] = A; }
+	inline void sty_z() { _mem[_z()] = Y; }
+	inline void sta_z() { _mem[_z()] = A; }
+	inline void stx_z() { _mem[_z()] = X; }
+	inline void dey() { Z=N=--Y; }
+	inline void txa() { Z=N=A=X; }
+	inline void sty_a() { _mem[_a()] = Y; }
+	inline void sta_a() { _mem[_a()] = A; }
+	inline void stx_a() { _mem[_a()] = X; }
 	// 90
-	void bcc() { if (!C) _bra(); PC++; }
-	void sta_iy() { _mem[_iy()] = A; }
-	void sty_zx() { _mem[_zx()] = Y; }
-	void sta_zx() { _mem[_zx()] = A; }
-	void stx_zy() { _mem[_zy()] = X; }
-	void tya() { Z=N=A=Y; }
-	void sta_ay() { _mem[_ay()] = A; }
-	void txs() { S=X; }
-	void sta_ax() { _mem[_ax()] = A; }
+	inline void bcc() { if (!C) _bra(); PC++; }
+	inline void sta_iy() { _mem[_iy()] = A; }
+	inline void sty_zx() { _mem[_zx()] = Y; }
+	inline void sta_zx() { _mem[_zx()] = A; }
+	inline void stx_zy() { _mem[_zy()] = X; }
+	inline void tya() { Z=N=A=Y; }
+	inline void sta_ay() { _mem[_ay()] = A; }
+	inline void txs() { S=X; }
+	inline void sta_ax() { _mem[_ax()] = A; }
 	// a0
-	void ldy_() { _ldy(_mem[PC++]); }
-	void lda_ix() { _lda(_mem[_ix()]); }
-	void ldx_() { _ldx(_mem[PC++]); }
-	void lax_ix() { lda_ix(); X=A; }
-	void ldy_z() { _ldy(_mem[_z()]); }
-	void lda_z() { _lda(_mem[_z()]); }
-	void ldx_z() { _ldx(_mem[_z()]); }
-	void lax_z() { lda_z(); X=A; }
-	void tay() { Z=N=Y=A; }
-	void lda_() { _lda(_mem[PC++]); }
-	void tax() { Z=N=X=A; }
-	void ldy_a() { _ldy(_mem[_a()]); }
-	void lda_a() { _lda(_mem[_a()]); }
-	void ldx_a() { _ldx(_mem[_a()]); }
-	void lax_a() { lda_a(); X=A; }
+	inline void ldy_() { _ldy(_mem[PC++]); }
+	inline void lda_ix() { _lda(_mem[_ix()]); }
+	inline void ldx_() { _ldx(_mem[PC++]); }
+	inline void lax_ix() { lda_ix(); X=A; }
+	inline void ldy_z() { _ldy(_mem[_z()]); }
+	inline void lda_z() { _lda(_mem[_z()]); }
+	inline void ldx_z() { _ldx(_mem[_z()]); }
+	inline void lax_z() { lda_z(); X=A; }
+	inline void tay() { Z=N=Y=A; }
+	inline void lda_() { _lda(_mem[PC++]); }
+	inline void tax() { Z=N=X=A; }
+	inline void ldy_a() { _ldy(_mem[_a()]); }
+	inline void lda_a() { _lda(_mem[_a()]); }
+	inline void ldx_a() { _ldx(_mem[_a()]); }
+	inline void lax_a() { lda_a(); X=A; }
 	// b0
-	void bcs() { if (C) _bra(); PC++; }
-	void lda_iy() { _lda(_mem[_iy()]); }
-	void lax_iy() { lda_iy(); X=A; }
-	void ldy_zx() { _ldy(_mem[_zx()]); }
-	void lda_zx() { _lda(_mem[_zx()]); }
-	void ldx_zy() { _ldx(_mem[_zy()]); }
-	void lax_zy() { ldx_zy(); A=X; }
-	void clv() { V=0; }
-	void lda_ay() { _lda(_mem[_ay()]); }
-	void tsx() { Z=N=X=S; }
-	void ldy_ax() { _ldy(_mem[_ax()]); }
-	void lda_ax() { _lda(_mem[_ax()]); }
-	void ldx_ay() { _ldx(_mem[_ay()]); }
-	void lax_ay() { ldx_ay(); A=X; }
+	inline void bcs() { if (C) _bra(); PC++; }
+	inline void lda_iy() { _lda(_mem[_iy()]); }
+	inline void lax_iy() { lda_iy(); X=A; }
+	inline void ldy_zx() { _ldy(_mem[_zx()]); }
+	inline void lda_zx() { _lda(_mem[_zx()]); }
+	inline void ldx_zy() { _ldx(_mem[_zy()]); }
+	inline void lax_zy() { ldx_zy(); A=X; }
+	inline void clv() { V=0; }
+	inline void lda_ay() { _lda(_mem[_ay()]); }
+	inline void tsx() { Z=N=X=S; }
+	inline void ldy_ax() { _ldy(_mem[_ax()]); }
+	inline void lda_ax() { _lda(_mem[_ax()]); }
+	inline void ldx_ay() { _ldx(_mem[_ay()]); }
+	inline void lax_ay() { ldx_ay(); A=X; }
 	// c0
-	void cpy_() { _cpy(_mem[PC++]); }
-	void cmp_ix() { _cmp(_mem[_ix()]); }
-	void cpy_z() { _cpy(_mem[_z()]); }
-	void cmp_z() { _cmp(_mem[_z()]); }
-	void dec_z() { _dec(_z()); }
-	void iny() { Z=N=++Y; }
-	void cmp_() { _cmp(_mem[PC++]); }
-	void dex() { Z=N=--X; }
-	void cpy_a() { _cpy(_mem[_a()]); }
-	void cmp_a() { _cmp(_mem[_a()]); }
-	void dec_a() { _dec(_a()); }
+	inline void cpy_() { _cpy(_mem[PC++]); }
+	inline void cmp_ix() { _cmp(_mem[_ix()]); }
+	inline void cpy_z() { _cpy(_mem[_z()]); }
+	inline void cmp_z() { _cmp(_mem[_z()]); }
+	inline void dec_z() { _dec(_z()); }
+	inline void iny() { Z=N=++Y; }
+	inline void cmp_() { _cmp(_mem[PC++]); }
+	inline void dex() { Z=N=--X; }
+	inline void cpy_a() { _cpy(_mem[_a()]); }
+	inline void cmp_a() { _cmp(_mem[_a()]); }
+	inline void dec_a() { _dec(_a()); }
 	// d0
-	void bne() { if (Z) _bra(); PC++; }
-	void cmp_iy() { _cmp(_mem[_iy()]); }
-	void cmp_zx() { _cmp(_mem[_zx()]); }
-	void dec_zx() { _dec(_zx()); }
-	void cld() { P.bits.D = 0; }
-	void cmp_ay() { _cmp(_mem[_ay()]); }
-	void cmp_ax() { _cmp(_mem[_ax()]); }
-	void dec_ax() { _dec(_ax()); }
+	inline void bne() { if (Z) _bra(); PC++; }
+	inline void cmp_iy() { _cmp(_mem[_iy()]); }
+	inline void cmp_zx() { _cmp(_mem[_zx()]); }
+	inline void dec_zx() { _dec(_zx()); }
+	inline void cld() { P.bits.D = 0; }
+	inline void cmp_ay() { _cmp(_mem[_ay()]); }
+	inline void cmp_ax() { _cmp(_mem[_ax()]); }
+	inline void dec_ax() { _dec(_ax()); }
 	// e0
-	void cpx_() { _cpx(_mem[PC++]); }
-	void sbc_ix() { _sbc(_mem[_ix()]); }
-	void cpx_z() { _cpx(_mem[_z()]); }
-	void sbc_z() { _sbc(_mem[_z()]); }
-	void inc_z() { _inc(_z()); }
-	void inx() { Z=N=++X; }
-	void sbc_() { _sbc(_mem[PC++]); }
-	void cpx_a() { _cpx(_mem[_a()]); }
-	void sbc_a() { _sbc(_mem[_a()]); }
-	void inc_a() { _inc(_a()); }
+	inline void cpx_() { _cpx(_mem[PC++]); }
+	inline void sbc_ix() { _sbc(_mem[_ix()]); }
+	inline void cpx_z() { _cpx(_mem[_z()]); }
+	inline void sbc_z() { _sbc(_mem[_z()]); }
+	inline void inc_z() { _inc(_z()); }
+	inline void inx() { Z=N=++X; }
+	inline void sbc_() { _sbc(_mem[PC++]); }
+	inline void cpx_a() { _cpx(_mem[_a()]); }
+	inline void sbc_a() { _sbc(_mem[_a()]); }
+	inline void inc_a() { _inc(_a()); }
 	// f0
-	void beq() { if (!Z) _bra(); PC++; }
-	void sbc_iy() { _sbc(_mem[_iy()]); }
-	void sbc_zx() { _sbc(_mem[_zx()]); }
-	void inc_zx() { _inc(_zx()); }
-	void sed() { P.bits.D = 1; }
-	void sbc_ay() { _sbc(_mem[_ay()]); }
-	void sbc_ax() { _sbc(_mem[_ax()]); }
-	void inc_ax() { _inc(_ax()); }
+	inline void beq() { if (!Z) _bra(); PC++; }
+	inline void sbc_iy() { _sbc(_mem[_iy()]); }
+	inline void sbc_zx() { _sbc(_mem[_zx()]); }
+	inline void inc_zx() { _inc(_zx()); }
+	inline void sed() { P.bits.D = 1; }
+	inline void sbc_ay() { _sbc(_mem[_ay()]); }
+	inline void sbc_ax() { _sbc(_mem[_ax()]); }
+	inline void inc_ax() { _inc(_ax()); }
 };
 #endif

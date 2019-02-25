@@ -9,7 +9,7 @@ void r6502::run(unsigned clocks) {
 	while (clocks--) {
 		uint8_t op = _mem[PC];
 		PC++;
-		(this->*_ops[op])();
+		_op(op);
 		if (_halted)
 			break;
 	}
@@ -106,17 +106,6 @@ void r6502::brk() {
 	P.bits._ = 1;
 }
 
-void r6502::rti() {
-	plp();
-	PC = popa();
-}
-
-void r6502::cli() {
-	P.bits.I = 0;
-	if (_irq)
-		irq();
-}
-
 void r6502::nmi() {
 	pusha(PC);
 	php();
@@ -137,15 +126,6 @@ void r6502::plp() {
 	V = P.bits.V;
 	Z = !P.bits.Z;
 	C = P.bits.C;
-}
-
-void r6502::rts() {
-	PC = popa()+1;
-}
-
-void r6502::jsr() {
-	pusha(PC+1);
-	PC = vector(PC);
 }
 
 static inline uint8_t fromBCD(uint8_t i) {
@@ -183,11 +163,6 @@ void r6502::sbcd(uint8_t d) {
 	// V not tested for: http://www.6502.org/tutorials/decimal_mode.html
 }
 
-void r6502::ill() {
-	--PC;
-	_halted = true;
-}
-
 void r6502::reset()
 {
 	_halted = false;
@@ -199,72 +174,74 @@ void r6502::reset()
 	PC = vector(resvec);
 }
 
-r6502::r6502(Memory &m): CPU(m) {
+void r6502::_op(uint8_t op) {
+#define O(o, e) case o: e; break;
 
-	OP *p = _ops;
-	*p++=&r6502::brk; *p++=&r6502::ora_ix; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::ora_z; *p++=&r6502::asl_z; *p++=&r6502::ill;
-	*p++=&r6502::php; *p++=&r6502::ora_; *p++=&r6502::asl; *p++=&r6502::ill;
-	*p++=&r6502::nop3; *p++=&r6502::ora_a; *p++=&r6502::asl_a; *p++=&r6502::ill;
-	*p++=&r6502::bpl; *p++=&r6502::ora_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::ora_zx; *p++=&r6502::asl_zx; *p++=&r6502::ill;
-	*p++=&r6502::clc; *p++=&r6502::ora_ay; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::ora_ax; *p++=&r6502::asl_ax; *p++=&r6502::ill;
-	*p++=&r6502::jsr; *p++=&r6502::and_ix; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::bit_z; *p++=&r6502::and_z; *p++=&r6502::rol_z; *p++=&r6502::ill;
-	*p++=&r6502::plp; *p++=&r6502::and_; *p++=&r6502::rol; *p++=&r6502::ill;
-	*p++=&r6502::bit_a; *p++=&r6502::and_a; *p++=&r6502::rol_a; *p++=&r6502::ill;
-	*p++=&r6502::bmi; *p++=&r6502::and_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::and_zx; *p++=&r6502::rol_zx; *p++=&r6502::ill;
-	*p++=&r6502::sec; *p++=&r6502::and_ay; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::nop3; *p++=&r6502::and_ax; *p++=&r6502::rol_ax; *p++=&r6502::ill;
-	*p++=&r6502::rti; *p++=&r6502::eor_ix; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::eor_z; *p++=&r6502::lsr_z; *p++=&r6502::ill;
-	*p++=&r6502::pha; *p++=&r6502::eor_; *p++=&r6502::lsr_; *p++=&r6502::ill;
-	*p++=&r6502::jmp; *p++=&r6502::eor_a; *p++=&r6502::lsr_a; *p++=&r6502::ill;
-	*p++=&r6502::bvc; *p++=&r6502::eor_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::eor_zx; *p++=&r6502::lsr_zx; *p++=&r6502::ill;
-	*p++=&r6502::cli; *p++=&r6502::eor_ay; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::nop3; *p++=&r6502::eor_ax; *p++=&r6502::lsr_ax; *p++=&r6502::ill;
-	*p++=&r6502::rts; *p++=&r6502::adc_ix; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::adc_z; *p++=&r6502::ror_z; *p++=&r6502::ill;
-	*p++=&r6502::pla; *p++=&r6502::adc_; *p++=&r6502::ror_; *p++=&r6502::ill;
-	*p++=&r6502::jmp_i; *p++=&r6502::adc_a; *p++=&r6502::ror_a; *p++=&r6502::ill;
-	*p++=&r6502::bvs; *p++=&r6502::adc_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::adc_zx; *p++=&r6502::ror_zx; *p++=&r6502::ill;
-	*p++=&r6502::sei; *p++=&r6502::adc_ay; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::nop3; *p++=&r6502::adc_ax; *p++=&r6502::ror_ax; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::sta_ix; *p++=&r6502::nop2; *p++=&r6502::ill;
-	*p++=&r6502::sty_z; *p++=&r6502::sta_z; *p++=&r6502::stx_z; *p++=&r6502::ill;
-	*p++=&r6502::dey; *p++=&r6502::nop2; *p++=&r6502::txa; *p++=&r6502::ill;
-	*p++=&r6502::sty_a; *p++=&r6502::sta_a; *p++=&r6502::stx_a; *p++=&r6502::ill;
-	*p++=&r6502::bcc; *p++=&r6502::sta_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::sty_zx; *p++=&r6502::sta_zx; *p++=&r6502::stx_zy; *p++=&r6502::ill;
-	*p++=&r6502::tya; *p++=&r6502::sta_ay; *p++=&r6502::txs; *p++=&r6502::ill;
-	*p++=&r6502::ill; *p++=&r6502::sta_ax; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::ldy_; *p++=&r6502::lda_ix; *p++=&r6502::ldx_; *p++=&r6502::lax_ix;
-	*p++=&r6502::ldy_z; *p++=&r6502::lda_z; *p++=&r6502::ldx_z; *p++=&r6502::lax_z;
-	*p++=&r6502::tay; *p++=&r6502::lda_; *p++=&r6502::tax; *p++=&r6502::ill;
-	*p++=&r6502::ldy_a; *p++=&r6502::lda_a; *p++=&r6502::ldx_a; *p++=&r6502::lax_a;
-	*p++=&r6502::bcs; *p++=&r6502::lda_iy; *p++=&r6502::ill; *p++=&r6502::lax_iy;
-	*p++=&r6502::ldy_zx; *p++=&r6502::lda_zx; *p++=&r6502::ldx_zy; *p++=&r6502::lax_zy;
-	*p++=&r6502::clv; *p++=&r6502::lda_ay; *p++=&r6502::tsx; *p++=&r6502::ill;
-	*p++=&r6502::ldy_ax; *p++=&r6502::lda_ax; *p++=&r6502::ldx_ay; *p++=&r6502::lax_ay;
-	*p++=&r6502::cpy_; *p++=&r6502::cmp_ix; *p++=&r6502::nop2; *p++=&r6502::ill;
-	*p++=&r6502::cpy_z; *p++=&r6502::cmp_z; *p++=&r6502::dec_z; *p++=&r6502::ill;
-	*p++=&r6502::iny; *p++=&r6502::cmp_; *p++=&r6502::dex; *p++=&r6502::ill;
-	*p++=&r6502::cpy_a; *p++=&r6502::cmp_a; *p++=&r6502::dec_a; *p++=&r6502::ill;
-	*p++=&r6502::bne; *p++=&r6502::cmp_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::cmp_zx; *p++=&r6502::dec_zx; *p++=&r6502::ill;
-	*p++=&r6502::cld; *p++=&r6502::cmp_ay; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::nop3; *p++=&r6502::cmp_ax; *p++=&r6502::dec_ax; *p++=&r6502::ill;
-	*p++=&r6502::cpx_; *p++=&r6502::sbc_ix; *p++=&r6502::nop2; *p++=&r6502::ill;
-	*p++=&r6502::cpx_z; *p++=&r6502::sbc_z; *p++=&r6502::inc_z; *p++=&r6502::ill;
-	*p++=&r6502::inx; *p++=&r6502::sbc_; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::cpx_a; *p++=&r6502::sbc_a; *p++=&r6502::inc_a; *p++=&r6502::ill;
-	*p++=&r6502::beq; *p++=&r6502::sbc_iy; *p++=&r6502::ill; *p++=&r6502::ill;
-	*p++=&r6502::nop2; *p++=&r6502::sbc_zx; *p++=&r6502::inc_zx; *p++=&r6502::ill;
-	*p++=&r6502::sed; *p++=&r6502::sbc_ay; *p++=&r6502::nop; *p++=&r6502::ill;
-	*p++=&r6502::nop3; *p++=&r6502::sbc_ax; *p++=&r6502::inc_ax; *p++=&r6502::ill;
+	switch (op) {
+	O(0x00, brk()); O(0x01, ora_ix());
+	O(0x04, nop2()); O(0x05, ora_z()); O(0x06, asl_z());
+	O(0x08, php()); O(0x09, ora_()); O(0x0a, asl());
+	O(0x0c, nop3()); O(0x0d, ora_a()); O(0x0e, asl_a());
+	O(0x10, bpl()); O(0x11, ora_iy());
+	O(0x14, nop2()); O(0x15, ora_zx()); O(0x16, asl_zx());
+	O(0x18, clc()); O(0x19, ora_ay()); O(0x1a, nop());
+	O(0x1c, nop2()); O(0x1d, ora_ax()); O(0x1e, asl_ax());
+	O(0x20, jsr()); O(0x21, and_ix());
+	O(0x24, bit_z()); O(0x25, and_z()); O(0x26, rol_z());
+	O(0x28, plp()); O(0x29, and_()); O(0x2a, rol());
+	O(0x2c, bit_a()); O(0x2d, and_a()); O(0x2e, rol_a());
+	O(0x30, bmi()); O(0x31, and_iy());
+	O(0x34, nop2()); O(0x35, and_zx()); O(0x36, rol_zx());
+	O(0x38, sec()); O(0x39, and_ay()); O(0x3a, nop());
+	O(0x3c, nop3()); O(0x3d, and_ax()); O(0x3e, rol_ax());
+	O(0x40, rti()); O(0x41, eor_ix());
+	O(0x44, nop2()); O(0x45, eor_z()); O(0x46, lsr_z());
+	O(0x48, pha()); O(0x49, eor_()); O(0x4a, lsr_());
+	O(0x4c, jmp()); O(0x4d, eor_a()); O(0x4e, lsr_a());
+	O(0x50, bvc()); O(0x51, eor_iy());
+	O(0x54, nop2()); O(0x55, eor_zx()); O(0x56, lsr_zx());
+	O(0x58, cli()); O(0x59, eor_ay()); O(0x5a, nop());
+	O(0x5c, nop3()); O(0x5d, eor_ax()); O(0x5e, lsr_ax());
+	O(0x60, rts()); O(0x61, adc_ix());
+	O(0x64, nop2()); O(0x65, adc_z()); O(0x66, ror_z());
+	O(0x68, pla()); O(0x69, adc_()); O(0x6a, ror_());
+	O(0x6c, jmp_i()); O(0x6d, adc_a()); O(0x6e, ror_a());
+	O(0x70, bvs()); O(0x71, adc_iy());
+	O(0x74, nop2()); O(0x75, adc_zx()); O(0x76, ror_zx());
+	O(0x78, sei()); O(0x79, adc_ay()); O(0x7a, nop());
+	O(0x7c, nop3()); O(0x7d, adc_ax()); O(0x7e, ror_ax());
+	O(0x80, nop2()); O(0x81, sta_ix()); O(0x82, nop2());
+	O(0x84, sty_z()); O(0x85, sta_z()); O(0x86, stx_z());
+	O(0x88, dey()); O(0x89, nop2()); O(0x8a, txa());
+	O(0x8c, sty_a()); O(0x8d, sta_a()); O(0x8e, stx_a());
+	O(0x90, bcc()); O(0x91, sta_iy());
+	O(0x94, sty_zx()); O(0x95, sta_zx()); O(0x96, stx_zy());
+	O(0x98, tya()); O(0x99, sta_ay()); O(0x9a, txs());
+	O(0x9d, sta_ax());
+	O(0xa0, ldy_()); O(0xa1, lda_ix()); O(0xa2, ldx_()); O(0xa3, lax_ix());
+	O(0xa4, ldy_z()); O(0xa5, lda_z()); O(0xa6, ldx_z()); O(0xa7, lax_z());
+	O(0xa8, tay()); O(0xa9, lda_()); O(0xaa, tax());
+	O(0xac, ldy_a()); O(0xad, lda_a()); O(0xae, ldx_a()); O(0xaf, lax_a());
+	O(0xb0, bcs()); O(0xb1, lda_iy()); O(0xb3, lax_iy());
+	O(0xb4, ldy_zx()); O(0xb5, lda_zx()); O(0xb6, ldx_zy()); O(0xb7, lax_zy());
+	O(0xb8, clv()); O(0xb9, lda_ay()); O(0xba, tsx());
+	O(0xbc, ldy_ax()); O(0xbd, lda_ax()); O(0xbe, ldx_ay()); O(0xbf, lax_ay());
+	O(0xc0, cpy_()); O(0xc1, cmp_ix()); O(0xc2, nop2());
+	O(0xc4, cpy_z()); O(0xc5, cmp_z()); O(0xc6, dec_z());
+	O(0xc8, iny()); O(0xc9, cmp_()); O(0xca, dex());
+	O(0xcc, cpy_a()); O(0xcd, cmp_a()); O(0xce, dec_a());
+	O(0xd0, bne()); O(0xd1, cmp_iy());
+	O(0xd4, nop2()); O(0xd5, cmp_zx()); O(0xd6, dec_zx());
+	O(0xd8, cld()); O(0xd9, cmp_ay()); O(0xda, nop());
+	O(0xdc, nop3()); O(0xdd, cmp_ax()); O(0xde, dec_ax());
+	O(0xe0, cpx_()); O(0xe1, sbc_ix()); O(0xe2, nop2());
+	O(0xe4, cpx_z()); O(0xe5, sbc_z()); O(0xe6, inc_z());
+	O(0xe8, inx()); O(0xe9, sbc_()); O(0xea, nop());
+	O(0xec, cpx_a()); O(0xed, sbc_a()); O(0xee, inc_a());
+	O(0xf0, beq()); O(0xf1, sbc_iy());
+	O(0xf4, nop2()); O(0xf5, sbc_zx()); O(0xf6, inc_zx());
+	O(0xf8, sed()); O(0xf9, sbc_ay()); O(0xfa, nop());
+	O(0xfc, nop3()); O(0xfd, sbc_ax()); O(0xfe, inc_ax());
+	default: ill();
+	}
 }
-
