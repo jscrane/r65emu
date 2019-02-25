@@ -139,7 +139,7 @@ void z80::daa() {
 	flags.P = parity_table(A);
 }
 
-void z80::_step_idx(OP_IDX ops[]) {
+void z80::_step_idx(EXT_OP f) {
 
 	_mc(PC, 3);
 	uint8_t off = _mem[PC];
@@ -156,10 +156,10 @@ void z80::_step_idx(OP_IDX ops[]) {
 	_mc(PC, 1);
 	_mc(PC, 1);
 	PC++;
-	(this->*ops[op])(off);
+	(this->*f)(op, off);
 }
 
-void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, OP_IDX ops[]) {
+void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	switch (_fetch_op()) {
 	case 0x09:
 		_add16(ix, BC);
@@ -402,7 +402,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, OP_IDX ops[]) {
 		_cmp(_rbO(ix));
 		break;
 	case 0xcb:
-		_step_idx(ops);
+		_step_idx(op);
 		break;
 	case 0xe1:
 		ix = _pop();
@@ -871,335 +871,6 @@ uint8_t z80::parity_table(uint8_t r) {
 	return m == (b & m);
 }
 
-z80::z80(Memory &m, PortDevice<z80> &ports): CPU(m)
-{
-	_ports = &ports;
-
-	OP_IDX *d = _ddcb;
-
-	// 0x00
-	*d++ = &z80::rlcIXB; *d++ = &z80::rlcIXC;
-	*d++ = &z80::rlcIXD; *d++ = &z80::rlcIXE;
-	*d++ = &z80::rlcIXH; *d++ = &z80::rlcIXL;
-	*d++ = &z80::rlcIX; *d++ = &z80::rlcIXA;
-	*d++ = &z80::rrcIXB; *d++ = &z80::rrcIXC;
-	*d++ = &z80::rrcIXD; *d++ = &z80::rrcIXE;
-	*d++ = &z80::rrcIXH; *d++ = &z80::rrcIXL;
-	*d++ = &z80::rrcIX; *d++ = &z80::rrcIXA;
-
-	// 0x10
-	*d++ = &z80::rlIXB; *d++ = &z80::rlIXC;
-	*d++ = &z80::rlIXD; *d++ = &z80::rlIXE;
-	*d++ = &z80::rlIXH; *d++ = &z80::rlIXL;
-	*d++ = &z80::rlIX; *d++ = &z80::rlIXA;
-	*d++ = &z80::rrIXB; *d++ = &z80::rrIXC;
-	*d++ = &z80::rrIXD; *d++ = &z80::rrIXE;
-	*d++ = &z80::rrIXH; *d++ = &z80::rrIXL;
-	*d++ = &z80::rrIX; *d++ = &z80::rrIXA;
-
-	// 0x20
-	*d++ = &z80::slaIXB; *d++ = &z80::slaIXC;
-	*d++ = &z80::slaIXD; *d++ = &z80::slaIXE;
-	*d++ = &z80::slaIXH; *d++ = &z80::slaIXL;
-	*d++ = &z80::slaIX; *d++ = &z80::slaIXA;
-	*d++ = &z80::sraIXB; *d++ = &z80::sraIXC;
-	*d++ = &z80::sraIXD; *d++ = &z80::sraIXE;
-	*d++ = &z80::sraIXH; *d++ = &z80::sraIXL;
-	*d++ = &z80::sraIX; *d++ = &z80::sraIXA;
-
-	// 0x30
-	*d++ = &z80::sllIXB; *d++ = &z80::sllIXC;
-	*d++ = &z80::sllIXD; *d++ = &z80::sllIXE;
-	*d++ = &z80::sllIXH; *d++ = &z80::sllIXL;
-	*d++ = &z80::sllIX; *d++ = &z80::sllIXA;
-	*d++ = &z80::srlIXB; *d++ = &z80::srlIXC;
-	*d++ = &z80::srlIXD; *d++ = &z80::srlIXE;
-	*d++ = &z80::srlIXH; *d++ = &z80::srlIXL;
-	*d++ = &z80::srlIX; *d++ = &z80::srlIXA;
-
-	// 0x40
-	*d++ = &z80::bit0IX; *d++ = &z80::bit0IX;
-	*d++ = &z80::bit0IX; *d++ = &z80::bit0IX;
-	*d++ = &z80::bit0IX; *d++ = &z80::bit0IX;
-	*d++ = &z80::bit0IX; *d++ = &z80::bit0IX;
-	*d++ = &z80::bit1IX; *d++ = &z80::bit1IX;
-	*d++ = &z80::bit1IX; *d++ = &z80::bit1IX;
-	*d++ = &z80::bit1IX; *d++ = &z80::bit1IX;
-	*d++ = &z80::bit1IX; *d++ = &z80::bit1IX;
-
-	// 0x50
-	*d++ = &z80::bit2IX; *d++ = &z80::bit2IX;
-	*d++ = &z80::bit2IX; *d++ = &z80::bit2IX;
-	*d++ = &z80::bit2IX; *d++ = &z80::bit2IX;
-	*d++ = &z80::bit2IX; *d++ = &z80::bit2IX;
-	*d++ = &z80::bit3IX; *d++ = &z80::bit3IX;
-	*d++ = &z80::bit3IX; *d++ = &z80::bit3IX;
-	*d++ = &z80::bit3IX; *d++ = &z80::bit3IX;
-	*d++ = &z80::bit3IX; *d++ = &z80::bit3IX;
-
-	// 0x60
-	*d++ = &z80::bit4IX; *d++ = &z80::bit4IX;
-	*d++ = &z80::bit4IX; *d++ = &z80::bit4IX;
-	*d++ = &z80::bit4IX; *d++ = &z80::bit4IX;
-	*d++ = &z80::bit4IX; *d++ = &z80::bit4IX;
-	*d++ = &z80::bit5IX; *d++ = &z80::bit5IX;
-	*d++ = &z80::bit5IX; *d++ = &z80::bit5IX;
-	*d++ = &z80::bit5IX; *d++ = &z80::bit5IX;
-	*d++ = &z80::bit5IX; *d++ = &z80::bit5IX;
-
-	// 0x70
-	*d++ = &z80::bit6IX; *d++ = &z80::bit6IX;
-	*d++ = &z80::bit6IX; *d++ = &z80::bit6IX;
-	*d++ = &z80::bit6IX; *d++ = &z80::bit6IX;
-	*d++ = &z80::bit6IX; *d++ = &z80::bit6IX;
-	*d++ = &z80::bit7IX; *d++ = &z80::bit7IX;
-	*d++ = &z80::bit7IX; *d++ = &z80::bit7IX;
-	*d++ = &z80::bit7IX; *d++ = &z80::bit7IX;
-	*d++ = &z80::bit7IX; *d++ = &z80::bit7IX;
-
-	// 0x80
-	*d++ = &z80::res0IXB; *d++ = &z80::res0IXC;
-	*d++ = &z80::res0IXD; *d++ = &z80::res0IXE;
-	*d++ = &z80::res0IXH; *d++ = &z80::res0IXL;
-	*d++ = &z80::res0IX; *d++ = &z80::res0IXA;
-	*d++ = &z80::res1IXB; *d++ = &z80::res1IXC;
-	*d++ = &z80::res1IXD; *d++ = &z80::res1IXE;
-	*d++ = &z80::res1IXH; *d++ = &z80::res1IXL;
-	*d++ = &z80::res1IX; *d++ = &z80::res1IXA;
-
-	// 0x90
-	*d++ = &z80::res2IXB; *d++ = &z80::res2IXC;
-	*d++ = &z80::res2IXD; *d++ = &z80::res2IXE;
-	*d++ = &z80::res2IXH; *d++ = &z80::res2IXL;
-	*d++ = &z80::res2IX; *d++ = &z80::res2IXA;
-	*d++ = &z80::res3IXB; *d++ = &z80::res3IXC;
-	*d++ = &z80::res3IXD; *d++ = &z80::res3IXE;
-	*d++ = &z80::res3IXH; *d++ = &z80::res3IXL;
-	*d++ = &z80::res3IX; *d++ = &z80::res3IXA;
-
-	// 0xa0
-	*d++ = &z80::res4IXB; *d++ = &z80::res4IXC;
-	*d++ = &z80::res4IXD; *d++ = &z80::res4IXE;
-	*d++ = &z80::res4IXH; *d++ = &z80::res4IXL;
-	*d++ = &z80::res4IX; *d++ = &z80::res4IXA;
-	*d++ = &z80::res5IXB; *d++ = &z80::res5IXC;
-	*d++ = &z80::res5IXD; *d++ = &z80::res5IXE;
-	*d++ = &z80::res5IXH; *d++ = &z80::res5IXL;
-	*d++ = &z80::res5IX; *d++ = &z80::res5IXA;
-
-	// 0xb0
-	*d++ = &z80::res6IXB; *d++ = &z80::res6IXC;
-	*d++ = &z80::res6IXD; *d++ = &z80::res6IXE;
-	*d++ = &z80::res6IXH; *d++ = &z80::res6IXL;
-	*d++ = &z80::res6IX; *d++ = &z80::res6IXA;
-	*d++ = &z80::res7IXB; *d++ = &z80::res7IXC;
-	*d++ = &z80::res7IXD; *d++ = &z80::res7IXE;
-	*d++ = &z80::res7IXH; *d++ = &z80::res7IXL;
-	*d++ = &z80::res7IX; *d++ = &z80::res7IXA;
-
-	// 0xc0
-	*d++ = &z80::set0IXB; *d++ = &z80::set0IXC;
-	*d++ = &z80::set0IXD; *d++ = &z80::set0IXE;
-	*d++ = &z80::set0IXH; *d++ = &z80::set0IXL;
-	*d++ = &z80::set0IX; *d++ = &z80::set0IXA;
-	*d++ = &z80::set1IXB; *d++ = &z80::set1IXC;
-	*d++ = &z80::set1IXD; *d++ = &z80::set1IXE;
-	*d++ = &z80::set1IXH; *d++ = &z80::set1IXL;
-	*d++ = &z80::set1IX; *d++ = &z80::set1IXA;
-
-	// 0xd0
-	*d++ = &z80::set2IXB; *d++ = &z80::set2IXC;
-	*d++ = &z80::set2IXD; *d++ = &z80::set2IXE;
-	*d++ = &z80::set2IXH; *d++ = &z80::set2IXL;
-	*d++ = &z80::set2IX; *d++ = &z80::set2IXA;
-	*d++ = &z80::set3IXB; *d++ = &z80::set3IXC;
-	*d++ = &z80::set3IXD; *d++ = &z80::set3IXE;
-	*d++ = &z80::set3IXH; *d++ = &z80::set3IXL;
-	*d++ = &z80::set3IX; *d++ = &z80::set3IXA;
-
-	// 0xe0
-	*d++ = &z80::set4IXB; *d++ = &z80::set4IXC;
-	*d++ = &z80::set4IXD; *d++ = &z80::set4IXE;
-	*d++ = &z80::set4IXH; *d++ = &z80::set4IXL;
-	*d++ = &z80::set4IX; *d++ = &z80::set4IXA;
-	*d++ = &z80::set5IXB; *d++ = &z80::set5IXC;
-	*d++ = &z80::set5IXD; *d++ = &z80::set5IXE;
-	*d++ = &z80::set5IXH; *d++ = &z80::set5IXL;
-	*d++ = &z80::set5IX; *d++ = &z80::set5IXA;
-
-	// 0xf0
-	*d++ = &z80::set6IXB; *d++ = &z80::set6IXC;
-	*d++ = &z80::set6IXD; *d++ = &z80::set6IXE;
-	*d++ = &z80::set6IXH; *d++ = &z80::set6IXL;
-	*d++ = &z80::set6IX; *d++ = &z80::set6IXA;
-	*d++ = &z80::set7IXB; *d++ = &z80::set7IXC;
-	*d++ = &z80::set7IXD; *d++ = &z80::set7IXE;
-	*d++ = &z80::set7IXH; *d++ = &z80::set7IXL;
-	*d++ = &z80::set7IX; *d++ = &z80::set7IXA;
-
-	d = _fdcb;
-
-	// 0x00
-	*d++ = &z80::rlcIYB; *d++ = &z80::rlcIYC;
-	*d++ = &z80::rlcIYD; *d++ = &z80::rlcIYE;
-	*d++ = &z80::rlcIYH; *d++ = &z80::rlcIYL;
-	*d++ = &z80::rlcIY; *d++ = &z80::rlcIYA;
-	*d++ = &z80::rrcIYB; *d++ = &z80::rrcIYC;
-	*d++ = &z80::rrcIYD; *d++ = &z80::rrcIYE;
-	*d++ = &z80::rrcIYH; *d++ = &z80::rrcIYL;
-	*d++ = &z80::rrcIY; *d++ = &z80::rrcIYA;
-
-	// 0x10
-	*d++ = &z80::rlIYB; *d++ = &z80::rlIYC;
-	*d++ = &z80::rlIYD; *d++ = &z80::rlIYE;
-	*d++ = &z80::rlIYH; *d++ = &z80::rlIYL;
-	*d++ = &z80::rlIY; *d++ = &z80::rlIYA;
-	*d++ = &z80::rrIYB; *d++ = &z80::rrIYC;
-	*d++ = &z80::rrIYD; *d++ = &z80::rrIYE;
-	*d++ = &z80::rrIYH; *d++ = &z80::rrIYL;
-	*d++ = &z80::rrIY; *d++ = &z80::rrIYA;
-
-	// 0x20
-	*d++ = &z80::slaIYB; *d++ = &z80::slaIYC;
-	*d++ = &z80::slaIYD; *d++ = &z80::slaIYE;
-	*d++ = &z80::slaIYH; *d++ = &z80::slaIYL;
-	*d++ = &z80::slaIY; *d++ = &z80::slaIYA;
-	*d++ = &z80::sraIYB; *d++ = &z80::sraIYC;
-	*d++ = &z80::sraIYD; *d++ = &z80::sraIYE;
-	*d++ = &z80::sraIYH; *d++ = &z80::sraIYL;
-	*d++ = &z80::sraIY; *d++ = &z80::sraIYA;
-
-	// 0x30
-	*d++ = &z80::sllIYB; *d++ = &z80::sllIYC;
-	*d++ = &z80::sllIYD; *d++ = &z80::sllIYE;
-	*d++ = &z80::sllIYH; *d++ = &z80::sllIYL;
-	*d++ = &z80::sllIY; *d++ = &z80::sllIYA;
-	*d++ = &z80::srlIYB; *d++ = &z80::srlIYC;
-	*d++ = &z80::srlIYD; *d++ = &z80::srlIYE;
-	*d++ = &z80::srlIYH; *d++ = &z80::srlIYL;
-	*d++ = &z80::srlIY; *d++ = &z80::srlIYA;
-
-	// 0x40
-	*d++ = &z80::bit0IY; *d++ = &z80::bit0IY;
-	*d++ = &z80::bit0IY; *d++ = &z80::bit0IY;
-	*d++ = &z80::bit0IY; *d++ = &z80::bit0IY;
-	*d++ = &z80::bit0IY; *d++ = &z80::bit0IY;
-	*d++ = &z80::bit1IY; *d++ = &z80::bit1IY;
-	*d++ = &z80::bit1IY; *d++ = &z80::bit1IY;
-	*d++ = &z80::bit1IY; *d++ = &z80::bit1IY;
-	*d++ = &z80::bit1IY; *d++ = &z80::bit1IY;
-
-	// 0x50
-	*d++ = &z80::bit2IY; *d++ = &z80::bit2IY;
-	*d++ = &z80::bit2IY; *d++ = &z80::bit2IY;
-	*d++ = &z80::bit2IY; *d++ = &z80::bit2IY;
-	*d++ = &z80::bit2IY; *d++ = &z80::bit2IY;
-	*d++ = &z80::bit3IY; *d++ = &z80::bit3IY;
-	*d++ = &z80::bit3IY; *d++ = &z80::bit3IY;
-	*d++ = &z80::bit3IY; *d++ = &z80::bit3IY;
-	*d++ = &z80::bit3IY; *d++ = &z80::bit3IY;
-
-	// 0x60
-	*d++ = &z80::bit4IY; *d++ = &z80::bit4IY;
-	*d++ = &z80::bit4IY; *d++ = &z80::bit4IY;
-	*d++ = &z80::bit4IY; *d++ = &z80::bit4IY;
-	*d++ = &z80::bit4IY; *d++ = &z80::bit4IY;
-	*d++ = &z80::bit5IY; *d++ = &z80::bit5IY;
-	*d++ = &z80::bit5IY; *d++ = &z80::bit5IY;
-	*d++ = &z80::bit5IY; *d++ = &z80::bit5IY;
-	*d++ = &z80::bit5IY; *d++ = &z80::bit5IY;
-
-	// 0x70
-	*d++ = &z80::bit6IY; *d++ = &z80::bit6IY;
-	*d++ = &z80::bit6IY; *d++ = &z80::bit6IY;
-	*d++ = &z80::bit6IY; *d++ = &z80::bit6IY;
-	*d++ = &z80::bit6IY; *d++ = &z80::bit6IY;
-	*d++ = &z80::bit7IY; *d++ = &z80::bit7IY;
-	*d++ = &z80::bit7IY; *d++ = &z80::bit7IY;
-	*d++ = &z80::bit7IY; *d++ = &z80::bit7IY;
-	*d++ = &z80::bit7IY; *d++ = &z80::bit7IY;
-
-	// 0x80
-	*d++ = &z80::res0IYB; *d++ = &z80::res0IYC;
-	*d++ = &z80::res0IYD; *d++ = &z80::res0IYE;
-	*d++ = &z80::res0IYH; *d++ = &z80::res0IYL;
-	*d++ = &z80::res0IY; *d++ = &z80::res0IYA;
-	*d++ = &z80::res1IYB; *d++ = &z80::res1IYC;
-	*d++ = &z80::res1IYD; *d++ = &z80::res1IYE;
-	*d++ = &z80::res1IYH; *d++ = &z80::res1IYL;
-	*d++ = &z80::res1IY; *d++ = &z80::res1IYA;
-
-	// 0x90
-	*d++ = &z80::res2IYB; *d++ = &z80::res2IYC;
-	*d++ = &z80::res2IYD; *d++ = &z80::res2IYE;
-	*d++ = &z80::res2IYH; *d++ = &z80::res2IYL;
-	*d++ = &z80::res2IY; *d++ = &z80::res2IYA;
-	*d++ = &z80::res3IYB; *d++ = &z80::res3IYC;
-	*d++ = &z80::res3IYD; *d++ = &z80::res3IYE;
-	*d++ = &z80::res3IYH; *d++ = &z80::res3IYL;
-	*d++ = &z80::res3IY; *d++ = &z80::res3IYA;
-
-	// 0xa0
-	*d++ = &z80::res4IYB; *d++ = &z80::res4IYC;
-	*d++ = &z80::res4IYD; *d++ = &z80::res4IYE;
-	*d++ = &z80::res4IYH; *d++ = &z80::res4IYL;
-	*d++ = &z80::res4IY; *d++ = &z80::res4IYA;
-	*d++ = &z80::res5IYB; *d++ = &z80::res5IYC;
-	*d++ = &z80::res5IYD; *d++ = &z80::res5IYE;
-	*d++ = &z80::res5IYH; *d++ = &z80::res5IYL;
-	*d++ = &z80::res5IY; *d++ = &z80::res5IYA;
-
-	// 0xb0
-	*d++ = &z80::res6IYB; *d++ = &z80::res6IYC;
-	*d++ = &z80::res6IYD; *d++ = &z80::res6IYE;
-	*d++ = &z80::res6IYH; *d++ = &z80::res6IYL;
-	*d++ = &z80::res6IY; *d++ = &z80::res6IYA;
-	*d++ = &z80::res7IYB; *d++ = &z80::res7IYC;
-	*d++ = &z80::res7IYD; *d++ = &z80::res7IYE;
-	*d++ = &z80::res7IYH; *d++ = &z80::res7IYL;
-	*d++ = &z80::res7IY; *d++ = &z80::res7IYA;
-
-	// 0xc0
-	*d++ = &z80::set0IYB; *d++ = &z80::set0IYC;
-	*d++ = &z80::set0IYD; *d++ = &z80::set0IYE;
-	*d++ = &z80::set0IYH; *d++ = &z80::set0IYL;
-	*d++ = &z80::set0IY; *d++ = &z80::set0IYA;
-	*d++ = &z80::set1IYB; *d++ = &z80::set1IYC;
-	*d++ = &z80::set1IYD; *d++ = &z80::set1IYE;
-	*d++ = &z80::set1IYH; *d++ = &z80::set1IYL;
-	*d++ = &z80::set1IY; *d++ = &z80::set1IYA;
-
-	// 0xd0
-	*d++ = &z80::set2IYB; *d++ = &z80::set2IYC;
-	*d++ = &z80::set2IYD; *d++ = &z80::set2IYE;
-	*d++ = &z80::set2IYH; *d++ = &z80::set2IYL;
-	*d++ = &z80::set2IY; *d++ = &z80::set2IYA;
-	*d++ = &z80::set3IYB; *d++ = &z80::set3IYC;
-	*d++ = &z80::set3IYD; *d++ = &z80::set3IYE;
-	*d++ = &z80::set3IYH; *d++ = &z80::set3IYL;
-	*d++ = &z80::set3IY; *d++ = &z80::set3IYA;
-
-	// 0xe0
-	*d++ = &z80::set4IYB; *d++ = &z80::set4IYC;
-	*d++ = &z80::set4IYD; *d++ = &z80::set4IYE;
-	*d++ = &z80::set4IYH; *d++ = &z80::set4IYL;
-	*d++ = &z80::set4IY; *d++ = &z80::set4IYA;
-	*d++ = &z80::set5IYB; *d++ = &z80::set5IYC;
-	*d++ = &z80::set5IYD; *d++ = &z80::set5IYE;
-	*d++ = &z80::set5IYH; *d++ = &z80::set5IYL;
-	*d++ = &z80::set5IY; *d++ = &z80::set5IYA;
-
-	// 0xf0
-	*d++ = &z80::set6IYB; *d++ = &z80::set6IYC;
-	*d++ = &z80::set6IYD; *d++ = &z80::set6IYE;
-	*d++ = &z80::set6IYH; *d++ = &z80::set6IYL;
-	*d++ = &z80::set6IY; *d++ = &z80::set6IYA;
-	*d++ = &z80::set7IYB; *d++ = &z80::set7IYC;
-	*d++ = &z80::set7IYD; *d++ = &z80::set7IYE;
-	*d++ = &z80::set7IYH; *d++ = &z80::set7IYL;
-	*d++ = &z80::set7IY; *d++ = &z80::set7IYA;
-}
-
 void z80::cb() {
 
 	switch(_fetch_op()) {
@@ -1494,5 +1165,304 @@ void z80::op(uint8_t op) {
 	O(0xfa, jpm);		O(0xfb, ei);
 	O(0xfc, callm);		O(0xfd, fd);
 	O(0xfe, cp);		O(0xff, rst38);
+	}
+}
+
+#define A(o, e, a) case o: e(a); break;
+
+void z80::fdcb(uint8_t op, uint8_t a) {
+	switch (op) {
+	A(0x00, rlcIYB, a);	A(0x01, rlcIYC, a);
+	A(0x02, rlcIYD, a);	A(0x03, rlcIYE, a);
+	A(0x04, rlcIYH, a);	A(0x05, rlcIYL, a);
+	A(0x06, rlcIY, a);	A(0x07, rlcIYA, a);
+	A(0x08, rrcIYB, a);	A(0x09, rrcIYC, a);
+	A(0x0a, rrcIYD, a);	A(0x0b, rrcIYE, a);
+	A(0x0c, rrcIYH, a);	A(0x0d, rrcIYL, a);
+	A(0x0e, rrcIY, a);	A(0x0f, rrcIYA, a);
+
+	A(0x10, rlIYB, a);	A(0x11, rlIYC, a);
+	A(0x12, rlIYD, a);	A(0x13, rlIYE, a);
+	A(0x14, rlIYH, a);	A(0x15, rlIYL, a);
+	A(0x16, rlIY, a);	A(0x17, rlIYA, a);
+	A(0x18, rrIYB, a);	A(0x19, rrIYC, a);
+	A(0x1a, rrIYD, a);	A(0x1b, rrIYE, a);
+	A(0x1c, rrIYH, a);	A(0x1d, rrIYL, a);
+	A(0x1e, rrIY, a);	A(0x1f, rrIYA, a);
+
+	A(0x20, slaIYB, a);	A(0x21, slaIYC, a);
+	A(0x22, slaIYD, a);	A(0x23, slaIYE, a);
+	A(0x24, slaIYH, a);	A(0x25, slaIYL, a);
+	A(0x26, slaIY, a);	A(0x27, slaIYA, a);
+	A(0x28, sraIYB, a);	A(0x29, sraIYC, a);
+	A(0x2a, sraIYD, a);	A(0x2b, sraIYE, a);
+	A(0x2c, sraIYH, a);	A(0x2d, sraIYL, a);
+	A(0x2e, sraIY, a);	A(0x2f, sraIYA, a);
+
+	A(0x30, sllIYB, a);	A(0x31, sllIYC, a);
+	A(0x32, sllIYD, a);	A(0x33, sllIYE, a);
+	A(0x34, sllIYH, a);	A(0x35, sllIYL, a);
+	A(0x36, sllIY, a);	A(0x37, sllIYA, a);
+	A(0x38, srlIYB, a);	A(0x39, srlIYC, a);
+	A(0x3a, srlIYD, a);	A(0x3b, srlIYE, a);
+	A(0x3c, srlIYH, a);	A(0x3d, srlIYL, a);
+	A(0x3e, srlIY, a);	A(0x3f, srlIYA, a);
+
+	A(0x40, bit0IY, a);	A(0x41, bit0IY, a);
+	A(0x42, bit0IY, a);	A(0x43, bit0IY, a);
+	A(0x44, bit0IY, a);	A(0x45, bit0IY, a);
+	A(0x46, bit0IY, a);	A(0x47, bit0IY, a);
+	A(0x48, bit1IY, a);	A(0x49, bit1IY, a);
+	A(0x4a, bit1IY, a);	A(0x4b, bit1IY, a);
+	A(0x4c, bit1IY, a);	A(0x4d, bit1IY, a);
+	A(0x4e, bit1IY, a);	A(0x4f, bit1IY, a);
+
+	A(0x50, bit2IY, a);	A(0x51, bit2IY, a);
+	A(0x52, bit2IY, a);	A(0x53, bit2IY, a);
+	A(0x54, bit2IY, a);	A(0x55, bit2IY, a);
+	A(0x56, bit2IY, a);	A(0x57, bit2IY, a);
+	A(0x58, bit3IY, a);	A(0x59, bit3IY, a);
+	A(0x5a, bit3IY, a);	A(0x5b, bit3IY, a);
+	A(0x5c, bit3IY, a);	A(0x5d, bit3IY, a);
+	A(0x5e, bit3IY, a);	A(0x5f, bit3IY, a);
+
+	A(0x60, bit4IY, a);	A(0x61, bit4IY, a);
+	A(0x62, bit4IY, a);	A(0x63, bit4IY, a);
+	A(0x64, bit4IY, a);	A(0x65, bit4IY, a);
+	A(0x66, bit4IY, a);	A(0x67, bit4IY, a);
+	A(0x68, bit5IY, a);	A(0x69, bit5IY, a);
+	A(0x6a, bit5IY, a);	A(0x6b, bit5IY, a);
+	A(0x6c, bit5IY, a);	A(0x6d, bit5IY, a);
+	A(0x6e, bit5IY, a);	A(0x6f, bit5IY, a);
+
+	A(0x70, bit6IY, a);	A(0x71, bit6IY, a);
+	A(0x72, bit6IY, a);	A(0x73, bit6IY, a);
+	A(0x74, bit6IY, a);	A(0x75, bit6IY, a);
+	A(0x76, bit6IY, a);	A(0x77, bit6IY, a);
+	A(0x78, bit7IY, a);	A(0x79, bit7IY, a);
+	A(0x7a, bit7IY, a);	A(0x7b, bit7IY, a);
+	A(0x7c, bit7IY, a);	A(0x7d, bit7IY, a);
+	A(0x7e, bit7IY, a);	A(0x7f, bit7IY, a);
+
+	A(0x80, res0IYB, a);	A(0x81, res0IYC, a);
+	A(0x82, res0IYD, a);	A(0x83, res0IYE, a);
+	A(0x84, res0IYH, a);	A(0x85, res0IYL, a);
+	A(0x86, res0IY, a);	A(0x87, res0IYA, a);
+	A(0x88, res1IYB, a);	A(0x89, res1IYC, a);
+	A(0x8a, res1IYD, a);	A(0x8b, res1IYE, a);
+	A(0x8c, res1IYH, a);	A(0x8d, res1IYL, a);
+	A(0x8e, res1IY, a);	A(0x8f, res1IYA, a);
+
+	A(0x90, res2IYB, a);	A(0x91, res2IYC, a);
+	A(0x92, res2IYD, a);	A(0x93, res2IYE, a);
+	A(0x94, res2IYH, a);	A(0x95, res2IYL, a);
+	A(0x96, res2IY, a);	A(0x97, res2IYA, a);
+	A(0x98, res3IYB, a);	A(0x99, res3IYC, a);
+	A(0x9a, res3IYD, a);	A(0x9b, res3IYE, a);
+	A(0x9c, res3IYH, a);	A(0x9d, res3IYL, a);
+	A(0x9e, res3IY, a);	A(0x9f, res3IYA, a);
+
+	A(0xa0, res4IYB, a);	A(0xa1, res4IYC, a);
+	A(0xa2, res4IYD, a);	A(0xa3, res4IYE, a);
+	A(0xa4, res4IYH, a);	A(0xa5, res4IYL, a);
+	A(0xa6, res4IY, a);	A(0xa7, res4IYA, a);
+	A(0xa8, res5IYB, a);	A(0xa9, res5IYC, a);
+	A(0xaa, res5IYD, a);	A(0xab, res5IYE, a);
+	A(0xac, res5IYH, a);	A(0xad, res5IYL, a);
+	A(0xae, res5IY, a);	A(0xaf, res5IYA, a);
+
+	A(0xb0, res6IYB, a);	A(0xb1, res6IYC, a);
+	A(0xb2, res6IYD, a);	A(0xb3, res6IYE, a);
+	A(0xb4, res6IYH, a);	A(0xb5, res6IYL, a);
+	A(0xb6, res6IY, a);	A(0xb7, res6IYA, a);
+	A(0xb8, res7IYB, a);	A(0xb9, res7IYC, a);
+	A(0xba, res7IYD, a);	A(0xbb, res7IYE, a);
+	A(0xbc, res7IYH, a);	A(0xbd, res7IYL, a);
+	A(0xbe, res7IY, a);	A(0xbf, res7IYA, a);
+
+	A(0xc0, set0IYB, a);	A(0xc1, set0IYC, a);
+	A(0xc2, set0IYD, a);	A(0xc3, set0IYE, a);
+	A(0xc4, set0IYH, a);	A(0xc5, set0IYL, a);
+	A(0xc6, set0IY, a);	A(0xc7, set0IYA, a);
+	A(0xc8, set1IYB, a);	A(0xc9, set1IYC, a);
+	A(0xca, set1IYD, a);	A(0xcb, set1IYE, a);
+	A(0xcc, set1IYH, a);	A(0xcd, set1IYL, a);
+	A(0xce, set1IY, a);	A(0xcf, set1IYA, a);
+
+	A(0xd0, set2IYB, a);	A(0xd1, set2IYC, a);
+	A(0xd2, set2IYD, a);	A(0xd3, set2IYE, a);
+	A(0xd4, set2IYH, a);	A(0xd5, set2IYL, a);
+	A(0xd6, set2IY, a);	A(0xd7, set2IYA, a);
+	A(0xd8, set3IYB, a);	A(0xd9, set3IYC, a);
+	A(0xda, set3IYD, a);	A(0xdb, set3IYE, a);
+	A(0xdc, set3IYH, a);	A(0xdd, set3IYL, a);
+	A(0xde, set3IY, a);	A(0xdf, set3IYA, a);
+
+	A(0xe0, set4IYB, a);	A(0xe1, set4IYC, a);
+	A(0xe2, set4IYD, a);	A(0xe3, set4IYE, a);
+	A(0xe4, set4IYH, a);	A(0xe5, set4IYL, a);
+	A(0xe6, set4IY, a);	A(0xe7, set4IYA, a);
+	A(0xe8, set5IYB, a);	A(0xe9, set5IYC, a);
+	A(0xea, set5IYD, a);	A(0xeb, set5IYE, a);
+	A(0xec, set5IYH, a);	A(0xed, set5IYL, a);
+	A(0xee, set5IY, a);	A(0xef, set5IYA, a);
+
+	A(0xf0, set6IYB, a);	A(0xf1, set6IYC, a);
+	A(0xf2, set6IYD, a);	A(0xf3, set6IYE, a);
+	A(0xf4, set6IYH, a);	A(0xf5, set6IYL, a);
+	A(0xf6, set6IY, a);	A(0xf7, set6IYA, a);
+	A(0xf8, set7IYB, a);	A(0xf9, set7IYC, a);
+	A(0xfa, set7IYD, a);	A(0xfb, set7IYE, a);
+	A(0xfc, set7IYH, a);	A(0xfd, set7IYL, a);
+	A(0xfe, set7IY, a);	A(0xff, set7IYA, a);
+	}
+}
+
+void z80::ddcb(uint8_t op, uint8_t a) {
+
+	switch (op) {
+	A(0x00, rlcIXB, a);	A(0x01, rlcIXC, a);
+	A(0x02, rlcIXD, a);	A(0x03, rlcIXE, a);
+	A(0x04, rlcIXH, a);	A(0x05, rlcIXL, a);
+	A(0x06, rlcIX, a);	A(0x07, rlcIXA, a);
+	A(0x08, rrcIXB, a);	A(0x09, rrcIXC, a);
+	A(0x0a, rrcIXD, a);	A(0x0b, rrcIXE, a);
+	A(0x0c, rrcIXH, a);	A(0x0d, rrcIXL, a);
+	A(0x0e, rrcIX, a);	A(0x0f, rrcIXA, a);
+
+	A(0x10, rlIXB, a);	A(0x11, rlIXC, a);
+	A(0x12, rlIXD, a);	A(0x13, rlIXE, a);
+	A(0x14, rlIXH, a);	A(0x15, rlIXL, a);
+	A(0x16, rlIX, a);	A(0x17, rlIXA, a);
+	A(0x18, rrIXB, a);	A(0x19, rrIXC, a);
+	A(0x1a, rrIXD, a);	A(0x1b, rrIXE, a);
+	A(0x1c, rrIXH, a);	A(0x1d, rrIXL, a);
+	A(0x1e, rrIX, a);	A(0x1f, rrIXA, a);
+
+	A(0x20, slaIXB, a);	A(0x21, slaIXC, a);
+	A(0x22, slaIXD, a);	A(0x23, slaIXE, a);
+	A(0x24, slaIXH, a);	A(0x25, slaIXL, a);
+	A(0x26, slaIX, a);	A(0x27, slaIXA, a);
+	A(0x28, sraIXB, a);	A(0x29, sraIXC, a);
+	A(0x2a, sraIXD, a);	A(0x2b, sraIXE, a);
+	A(0x2c, sraIXH, a);	A(0x2d, sraIXL, a);
+	A(0x2e, sraIX, a);	A(0x2f, sraIXA, a);
+
+	A(0x30, sllIXB, a);	A(0x31, sllIXC, a);
+	A(0x32, sllIXD, a);	A(0x33, sllIXE, a);
+	A(0x34, sllIXH, a);	A(0x35, sllIXL, a);
+	A(0x36, sllIX, a);	A(0x37, sllIXA, a);
+	A(0x38, srlIXB, a);	A(0x39, srlIXC, a);
+	A(0x3a, srlIXD, a);	A(0x3b, srlIXE, a);
+	A(0x3c, srlIXH, a);	A(0x3d, srlIXL, a);
+	A(0x3e, srlIX, a);	A(0x3f, srlIXA, a);
+
+	A(0x40, bit0IX, a);	A(0x41, bit0IX, a);
+	A(0x42, bit0IX, a);	A(0x43, bit0IX, a);
+	A(0x44, bit0IX, a);	A(0x45, bit0IX, a);
+	A(0x46, bit0IX, a);	A(0x47, bit0IX, a);
+	A(0x48, bit1IX, a);	A(0x49, bit1IX, a);
+	A(0x4a, bit1IX, a);	A(0x4b, bit1IX, a);
+	A(0x4c, bit1IX, a);	A(0x4d, bit1IX, a);
+	A(0x4e, bit1IX, a);	A(0x4f, bit1IX, a);
+
+	A(0x50, bit2IX, a);	A(0x51, bit2IX, a);
+	A(0x52, bit2IX, a);	A(0x53, bit2IX, a);
+	A(0x54, bit2IX, a);	A(0x55, bit2IX, a);
+	A(0x56, bit2IX, a);	A(0x57, bit2IX, a);
+	A(0x58, bit3IX, a);	A(0x59, bit3IX, a);
+	A(0x5a, bit3IX, a);	A(0x5b, bit3IX, a);
+	A(0x5c, bit3IX, a);	A(0x5d, bit3IX, a);
+	A(0x5e, bit3IX, a);	A(0x5f, bit3IX, a);
+
+	A(0x60, bit4IX, a);	A(0x61, bit4IX, a);
+	A(0x62, bit4IX, a);	A(0x63, bit4IX, a);
+	A(0x64, bit4IX, a);	A(0x65, bit4IX, a);
+	A(0x66, bit4IX, a);	A(0x67, bit4IX, a);
+	A(0x68, bit5IX, a);	A(0x69, bit5IX, a);
+	A(0x6a, bit5IX, a);	A(0x6b, bit5IX, a);
+	A(0x6c, bit5IX, a);	A(0x6d, bit5IX, a);
+	A(0x6e, bit5IX, a);	A(0x6f, bit5IX, a);
+
+	A(0x70, bit6IX, a);	A(0x71, bit6IX, a);
+	A(0x72, bit6IX, a);	A(0x73, bit6IX, a);
+	A(0x74, bit6IX, a);	A(0x75, bit6IX, a);
+	A(0x76, bit6IX, a);	A(0x77, bit6IX, a);
+	A(0x78, bit7IX, a);	A(0x79, bit7IX, a);
+	A(0x7a, bit7IX, a);	A(0x7b, bit7IX, a);
+	A(0x7c, bit7IX, a);	A(0x7d, bit7IX, a);
+	A(0x7e, bit7IX, a);	A(0x7f, bit7IX, a);
+
+	A(0x80, res0IXB, a);	A(0x81, res0IXC, a);
+	A(0x82, res0IXD, a);	A(0x83, res0IXE, a);
+	A(0x84, res0IXH, a);	A(0x85, res0IXL, a);
+	A(0x86, res0IX, a);	A(0x87, res0IXA, a);
+	A(0x88, res1IXB, a);	A(0x89, res1IXC, a);
+	A(0x8a, res1IXD, a);	A(0x8b, res1IXE, a);
+	A(0x8c, res1IXH, a);	A(0x8d, res1IXL, a);
+	A(0x8e, res1IX, a);	A(0x8f, res1IXA, a);
+
+	A(0x90, res2IXB, a);	A(0x91, res2IXC, a);
+	A(0x92, res2IXD, a);	A(0x93, res2IXE, a);
+	A(0x94, res2IXH, a);	A(0x95, res2IXL, a);
+	A(0x96, res2IX, a);	A(0x97, res2IXA, a);
+	A(0x98, res3IXB, a);	A(0x99, res3IXC, a);
+	A(0x9a, res3IXD, a);	A(0x9b, res3IXE, a);
+	A(0x9c, res3IXH, a);	A(0x9d, res3IXL, a);
+	A(0x9e, res3IX, a);	A(0x9f, res3IXA, a);
+
+	A(0xa0, res4IXB, a);	A(0xa1, res4IXC, a);
+	A(0xa2, res4IXD, a);	A(0xa3, res4IXE, a);
+	A(0xa4, res4IXH, a);	A(0xa5, res4IXL, a);
+	A(0xa6, res4IX, a);	A(0xa7, res4IXA, a);
+	A(0xa8, res5IXB, a);	A(0xa9, res5IXC, a);
+	A(0xaa, res5IXD, a);	A(0xab, res5IXE, a);
+	A(0xac, res5IXH, a);	A(0xad, res5IXL, a);
+	A(0xae, res5IX, a);	A(0xaf, res5IXA, a);
+
+	A(0xb0, res6IXB, a);	A(0xb1, res6IXC, a);
+	A(0xb2, res6IXD, a);	A(0xb3, res6IXE, a);
+	A(0xb4, res6IXH, a);	A(0xb5, res6IXL, a);
+	A(0xb6, res6IX, a);	A(0xb7, res6IXA, a);
+	A(0xb8, res7IXB, a);	A(0xb9, res7IXC, a);
+	A(0xba, res7IXD, a);	A(0xbb, res7IXE, a);
+	A(0xbc, res7IXH, a);	A(0xbd, res7IXL, a);
+	A(0xbe, res7IX, a);	A(0xbf, res7IXA, a);
+
+	A(0xc0, set0IXB, a);	A(0xc1, set0IXC, a);
+	A(0xc2, set0IXD, a);	A(0xc3, set0IXE, a);
+	A(0xc4, set0IXH, a);	A(0xc5, set0IXL, a);
+	A(0xc6, set0IX, a);	A(0xc7, set0IXA, a);
+	A(0xc8, set1IXB, a);	A(0xc9, set1IXC, a);
+	A(0xca, set1IXD, a);	A(0xcb, set1IXE, a);
+	A(0xcc, set1IXH, a);	A(0xcd, set1IXL, a);
+	A(0xce, set1IX, a);	A(0xcf, set1IXA, a);
+
+	A(0xd0, set2IXB, a);	A(0xd1, set2IXC, a);
+	A(0xd2, set2IXD, a);	A(0xd3, set2IXE, a);
+	A(0xd4, set2IXH, a);	A(0xd5, set2IXL, a);
+	A(0xd6, set2IX, a);	A(0xd7, set2IXA, a);
+	A(0xd8, set3IXB, a);	A(0xd9, set3IXC, a);
+	A(0xda, set3IXD, a);	A(0xdb, set3IXE, a);
+	A(0xdc, set3IXH, a);	A(0xdd, set3IXL, a);
+	A(0xde, set3IX, a);	A(0xdf, set3IXA, a);
+
+	A(0xe0, set4IXB, a);	A(0xe1, set4IXC, a);
+	A(0xe2, set4IXD, a);	A(0xe3, set4IXE, a);
+	A(0xe4, set4IXH, a);	A(0xe5, set4IXL, a);
+	A(0xe6, set4IX, a);	A(0xe7, set4IXA, a);
+	A(0xe8, set5IXB, a);	A(0xe9, set5IXC, a);
+	A(0xea, set5IXD, a);	A(0xeb, set5IXE, a);
+	A(0xec, set5IXH, a);	A(0xed, set5IXL, a);
+	A(0xee, set5IX, a);	A(0xef, set5IXA, a);
+
+	A(0xf0, set6IXB, a);	A(0xf1, set6IXC, a);
+	A(0xf2, set6IXD, a);	A(0xf3, set6IXE, a);
+	A(0xf4, set6IXH, a);	A(0xf5, set6IXL, a);
+	A(0xf6, set6IX, a);	A(0xf7, set6IXA, a);
+	A(0xf8, set7IXB, a);	A(0xf9, set7IXC, a);
+	A(0xfa, set7IXD, a);	A(0xfb, set7IXE, a);
+	A(0xfc, set7IXH, a);	A(0xfd, set7IXL, a);
+	A(0xfe, set7IX, a);	A(0xff, set7IXA, a);
 	}
 }

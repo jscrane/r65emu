@@ -7,7 +7,7 @@
 
 class z80: public CPU {
 public:
-	z80(Memory &, PortDevice<z80> &);
+	z80(Memory &m, PortDevice<z80> &ports): CPU(m), _ports(&ports) {}
 
 	void run(unsigned);
 	void reset();
@@ -73,10 +73,13 @@ private:
 
 	uint8_t _fetch_op();
 
-	typedef void (z80::*OP_IDX)(uint8_t);
-	void _step_idx(OP_IDX ops[]);
+	typedef void (z80::*EXT_OP)(uint8_t, uint8_t);
+	void ddcb(uint8_t op, uint8_t a);
+	void fdcb(uint8_t op, uint8_t a);
 
-	void _ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, OP_IDX ops[]);
+	void _step_idx(EXT_OP op);
+
+	void _ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op);
 
 	union {
 		struct {
@@ -137,8 +140,6 @@ private:
 
 	int _irq_pending;
 	PortDevice<z80> *_ports;
-
-	OP_IDX _ddcb[256], _fdcb[256];
 
 	uint8_t parity_table(uint8_t);
 
@@ -703,7 +704,7 @@ private:
 		A = _ports->in(p, this);
 	}
 	inline void callc() { _call(flags.C); }
-	inline void dd() { _ddfd(IX, IXL, IXH, _ddcb); }
+	inline void dd() { _ddfd(IX, IXL, IXH, &z80::ddcb); }
 	inline void sbca() { _sbc(_rb(PC++)); }
 	inline void rst18() { _mc(IR, 11); _push(PC); PC = 0x18; }
 
@@ -753,7 +754,7 @@ private:
 	inline void jpm() { _jmp(flags.S); }
 	inline void ei() { _iff1 = _iff2 = true; }
 	inline void callm() { _call(flags.S); }
-	inline void fd() { _ddfd(IY, IYL, IYH, _fdcb); }
+	inline void fd() { _ddfd(IY, IYL, IYH, &z80::fdcb); }
 	inline void cp() { _cmp(_rb(PC++)); }
 	inline void rst38() { _mc(IR, 11); _push(PC); PC = 0x38; }
 
@@ -1182,303 +1183,303 @@ private:
 	inline void _rlcIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _rlc(b); _sb(a, b);
 	}
-	void rlcIXB(uint8_t o) { _rlcIX(B, o); }
-	void rlcIXC(uint8_t o) { _rlcIX(C, o); }
-	void rlcIXD(uint8_t o) { _rlcIX(D, o); }
-	void rlcIXE(uint8_t o) { _rlcIX(E, o); }
-	void rlcIXH(uint8_t o) { _rlcIX(H, o); }
-	void rlcIXL(uint8_t o) { _rlcIX(L, o); }
-	void rlcIX(uint8_t o) { uint8_t b; _rlcIX(b, o); }
-	void rlcIXA(uint8_t o) { _rlcIX(A, o); }
+	inline void rlcIXB(uint8_t o) { _rlcIX(B, o); }
+	inline void rlcIXC(uint8_t o) { _rlcIX(C, o); }
+	inline void rlcIXD(uint8_t o) { _rlcIX(D, o); }
+	inline void rlcIXE(uint8_t o) { _rlcIX(E, o); }
+	inline void rlcIXH(uint8_t o) { _rlcIX(H, o); }
+	inline void rlcIXL(uint8_t o) { _rlcIX(L, o); }
+	inline void rlcIX(uint8_t o) { uint8_t b; _rlcIX(b, o); }
+	inline void rlcIXA(uint8_t o) { _rlcIX(A, o); }
 
 	// 0x08
 	inline void _rrcIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _rrc(b); _sb(a, b);
 	}
-	void rrcIXB(uint8_t o) { _rrcIX(B, o); }
-	void rrcIXC(uint8_t o) { _rrcIX(C, o); }
-	void rrcIXD(uint8_t o) { _rrcIX(D, o); }
-	void rrcIXE(uint8_t o) { _rrcIX(E, o); }
-	void rrcIXH(uint8_t o) { _rrcIX(H, o); }
-	void rrcIXL(uint8_t o) { _rrcIX(L, o); }
-	void rrcIX(uint8_t o) { uint8_t b; _rrcIX(b, o); }
-	void rrcIXA(uint8_t o) { _rrcIX(A, o); }
+	inline void rrcIXB(uint8_t o) { _rrcIX(B, o); }
+	inline void rrcIXC(uint8_t o) { _rrcIX(C, o); }
+	inline void rrcIXD(uint8_t o) { _rrcIX(D, o); }
+	inline void rrcIXE(uint8_t o) { _rrcIX(E, o); }
+	inline void rrcIXH(uint8_t o) { _rrcIX(H, o); }
+	inline void rrcIXL(uint8_t o) { _rrcIX(L, o); }
+	inline void rrcIX(uint8_t o) { uint8_t b; _rrcIX(b, o); }
+	inline void rrcIXA(uint8_t o) { _rrcIX(A, o); }
 
 	// 0x10
 	inline void _rlIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _rl(b); _sb(a, b);
 	}
-	void rlIXB(uint8_t o) { _rlIX(B, o); }
-	void rlIXC(uint8_t o) { _rlIX(C, o); }
-	void rlIXD(uint8_t o) { _rlIX(D, o); }
-	void rlIXE(uint8_t o) { _rlIX(E, o); }
-	void rlIXH(uint8_t o) { _rlIX(H, o); }
-	void rlIXL(uint8_t o) { _rlIX(L, o); }
-	void rlIX(uint8_t o) { uint8_t b; _rlIX(b, o); }
-	void rlIXA(uint8_t o) { _rlIX(A, o); }
+	inline void rlIXB(uint8_t o) { _rlIX(B, o); }
+	inline void rlIXC(uint8_t o) { _rlIX(C, o); }
+	inline void rlIXD(uint8_t o) { _rlIX(D, o); }
+	inline void rlIXE(uint8_t o) { _rlIX(E, o); }
+	inline void rlIXH(uint8_t o) { _rlIX(H, o); }
+	inline void rlIXL(uint8_t o) { _rlIX(L, o); }
+	inline void rlIX(uint8_t o) { uint8_t b; _rlIX(b, o); }
+	inline void rlIXA(uint8_t o) { _rlIX(A, o); }
 
 	// 0x18
 	inline void _rrIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _rr(b); _sb(a, b);
 	}
-	void rrIXB(uint8_t o) { _rrIX(B, o); }
-	void rrIXC(uint8_t o) { _rrIX(C, o); }
-	void rrIXD(uint8_t o) { _rrIX(D, o); }
-	void rrIXE(uint8_t o) { _rrIX(E, o); }
-	void rrIXH(uint8_t o) { _rrIX(H, o); }
-	void rrIXL(uint8_t o) { _rrIX(L, o); }
-	void rrIX(uint8_t o) { uint8_t b; _rrIX(b, o); }
-	void rrIXA(uint8_t o) { _rrIX(A, o); }
+	inline void rrIXB(uint8_t o) { _rrIX(B, o); }
+	inline void rrIXC(uint8_t o) { _rrIX(C, o); }
+	inline void rrIXD(uint8_t o) { _rrIX(D, o); }
+	inline void rrIXE(uint8_t o) { _rrIX(E, o); }
+	inline void rrIXH(uint8_t o) { _rrIX(H, o); }
+	inline void rrIXL(uint8_t o) { _rrIX(L, o); }
+	inline void rrIX(uint8_t o) { uint8_t b; _rrIX(b, o); }
+	inline void rrIXA(uint8_t o) { _rrIX(A, o); }
 
 	// 0x20
 	inline void _slaIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _sla(b); _sb(a, b);
 	}
-	void slaIXB(uint8_t o) { _slaIX(B, o); }
-	void slaIXC(uint8_t o) { _slaIX(C, o); }
-	void slaIXD(uint8_t o) { _slaIX(D, o); }
-	void slaIXE(uint8_t o) { _slaIX(E, o); }
-	void slaIXH(uint8_t o) { _slaIX(H, o); }
-	void slaIXL(uint8_t o) { _slaIX(L, o); }
-	void slaIX(uint8_t o) { uint8_t b; _slaIX(b, o); }
-	void slaIXA(uint8_t o) { _slaIX(A, o); }
+	inline void slaIXB(uint8_t o) { _slaIX(B, o); }
+	inline void slaIXC(uint8_t o) { _slaIX(C, o); }
+	inline void slaIXD(uint8_t o) { _slaIX(D, o); }
+	inline void slaIXE(uint8_t o) { _slaIX(E, o); }
+	inline void slaIXH(uint8_t o) { _slaIX(H, o); }
+	inline void slaIXL(uint8_t o) { _slaIX(L, o); }
+	inline void slaIX(uint8_t o) { uint8_t b; _slaIX(b, o); }
+	inline void slaIXA(uint8_t o) { _slaIX(A, o); }
 
 	// 0x28
 	inline void _sraIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _sra(b); _sb(a, b);
 	}
-	void sraIXB(uint8_t o) { _sraIX(B, o); }
-	void sraIXC(uint8_t o) { _sraIX(C, o); }
-	void sraIXD(uint8_t o) { _sraIX(D, o); }
-	void sraIXE(uint8_t o) { _sraIX(E, o); }
-	void sraIXH(uint8_t o) { _sraIX(H, o); }
-	void sraIXL(uint8_t o) { _sraIX(L, o); }
-	void sraIX(uint8_t o) { uint8_t b; _sraIX(b, o); }
-	void sraIXA(uint8_t o) { _sraIX(A, o); }
+	inline void sraIXB(uint8_t o) { _sraIX(B, o); }
+	inline void sraIXC(uint8_t o) { _sraIX(C, o); }
+	inline void sraIXD(uint8_t o) { _sraIX(D, o); }
+	inline void sraIXE(uint8_t o) { _sraIX(E, o); }
+	inline void sraIXH(uint8_t o) { _sraIX(H, o); }
+	inline void sraIXL(uint8_t o) { _sraIX(L, o); }
+	inline void sraIX(uint8_t o) { uint8_t b; _sraIX(b, o); }
+	inline void sraIXA(uint8_t o) { _sraIX(A, o); }
 
 	// 0x30
 	inline void _sllIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _sll(b); _sb(a, b);
 	}
-	void sllIXB(uint8_t o) { _sllIX(B, o); }
-	void sllIXC(uint8_t o) { _sllIX(C, o); }
-	void sllIXD(uint8_t o) { _sllIX(D, o); }
-	void sllIXE(uint8_t o) { _sllIX(E, o); }
-	void sllIXH(uint8_t o) { _sllIX(H, o); }
-	void sllIXL(uint8_t o) { _sllIX(L, o); }
-	void sllIX(uint8_t o) { uint8_t b; _sllIX(b, o); }
-	void sllIXA(uint8_t o) { _sllIX(A, o); }
+	inline void sllIXB(uint8_t o) { _sllIX(B, o); }
+	inline void sllIXC(uint8_t o) { _sllIX(C, o); }
+	inline void sllIXD(uint8_t o) { _sllIX(D, o); }
+	inline void sllIXE(uint8_t o) { _sllIX(E, o); }
+	inline void sllIXH(uint8_t o) { _sllIX(H, o); }
+	inline void sllIXL(uint8_t o) { _sllIX(L, o); }
+	inline void sllIX(uint8_t o) { uint8_t b; _sllIX(b, o); }
+	inline void sllIXA(uint8_t o) { _sllIX(A, o); }
 
 	// 0x38
 	inline void _srlIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIX(b, o); _srl(b); _sb(a, b);
 	}
-	void srlIXB(uint8_t o) { _srlIX(B, o); }
-	void srlIXC(uint8_t o) { _srlIX(C, o); }
-	void srlIXD(uint8_t o) { _srlIX(D, o); }
-	void srlIXE(uint8_t o) { _srlIX(E, o); }
-	void srlIXH(uint8_t o) { _srlIX(H, o); }
-	void srlIXL(uint8_t o) { _srlIX(L, o); }
-	void srlIX(uint8_t o) { uint8_t b; _srlIX(b, o); }
-	void srlIXA(uint8_t o) { _srlIX(A, o); }
+	inline void srlIXB(uint8_t o) { _srlIX(B, o); }
+	inline void srlIXC(uint8_t o) { _srlIX(C, o); }
+	inline void srlIXD(uint8_t o) { _srlIX(D, o); }
+	inline void srlIXE(uint8_t o) { _srlIX(E, o); }
+	inline void srlIXH(uint8_t o) { _srlIX(H, o); }
+	inline void srlIXL(uint8_t o) { _srlIX(L, o); }
+	inline void srlIX(uint8_t o) { uint8_t b; _srlIX(b, o); }
+	inline void srlIXA(uint8_t o) { _srlIX(A, o); }
 
 	// 0x40
 	inline void _bitIX(int i, uint8_t o) { _bitI(i, _ads(IX, o)); }
 
-	void bit0IX(uint8_t o) { _bitIX(0, o); }
+	inline void bit0IX(uint8_t o) { _bitIX(0, o); }
 
 	// 0x48
-	void bit1IX(uint8_t o) { _bitIX(1, o); }
+	inline void bit1IX(uint8_t o) { _bitIX(1, o); }
 
 	// 0x50
-	void bit2IX(uint8_t o) { _bitIX(2, o); }
+	inline void bit2IX(uint8_t o) { _bitIX(2, o); }
 
 	// 0x58
-	void bit3IX(uint8_t o) { _bitIX(3, o); }
+	inline void bit3IX(uint8_t o) { _bitIX(3, o); }
 
 	// 0x60
-	void bit4IX(uint8_t o) { _bitIX(4, o); }
+	inline void bit4IX(uint8_t o) { _bitIX(4, o); }
 
 	// 0x68
-	void bit5IX(uint8_t o) { _bitIX(5, o); }
+	inline void bit5IX(uint8_t o) { _bitIX(5, o); }
 
 	// 0x70
-	void bit6IX(uint8_t o) { _bitIX(6, o); }
+	inline void bit6IX(uint8_t o) { _bitIX(6, o); }
 
 	// 0x78
-	void bit7IX(uint8_t o) { _bitIX(7, o); }
+	inline void bit7IX(uint8_t o) { _bitIX(7, o); }
 
 	// 0x80
-	void _resIX(uint8_t &b, uint8_t o, uint8_t m) {
+	inline void _resIX(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IX, o);
 		b = _rb(a) & m;
 		_mc(a, 1);
 		_sb(a, b);
 	}
-	void res0IXB(uint8_t o) { _resIX(B, o, 0xfe); }
-	void res0IXC(uint8_t o) { _resIX(C, o, 0xfe); }
-	void res0IXD(uint8_t o) { _resIX(D, o, 0xfe); }
-	void res0IXE(uint8_t o) { _resIX(E, o, 0xfe); }
-	void res0IXH(uint8_t o) { _resIX(H, o, 0xfe); }
-	void res0IXL(uint8_t o) { _resIX(L, o, 0xfe); }
-	void res0IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xfe); }
-	void res0IXA(uint8_t o) { _resIX(A, o, 0xfe); }
+	inline void res0IXB(uint8_t o) { _resIX(B, o, 0xfe); }
+	inline void res0IXC(uint8_t o) { _resIX(C, o, 0xfe); }
+	inline void res0IXD(uint8_t o) { _resIX(D, o, 0xfe); }
+	inline void res0IXE(uint8_t o) { _resIX(E, o, 0xfe); }
+	inline void res0IXH(uint8_t o) { _resIX(H, o, 0xfe); }
+	inline void res0IXL(uint8_t o) { _resIX(L, o, 0xfe); }
+	inline void res0IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xfe); }
+	inline void res0IXA(uint8_t o) { _resIX(A, o, 0xfe); }
 
 	// 0x88
-	void res1IXB(uint8_t o) { _resIX(B, o, 0xfd); }
-	void res1IXC(uint8_t o) { _resIX(C, o, 0xfd); }
-	void res1IXD(uint8_t o) { _resIX(D, o, 0xfd); }
-	void res1IXE(uint8_t o) { _resIX(E, o, 0xfd); }
-	void res1IXH(uint8_t o) { _resIX(H, o, 0xfd); }
-	void res1IXL(uint8_t o) { _resIX(L, o, 0xfd); }
-	void res1IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xfd); }
-	void res1IXA(uint8_t o) { _resIX(A, o, 0xfd); }
+	inline void res1IXB(uint8_t o) { _resIX(B, o, 0xfd); }
+	inline void res1IXC(uint8_t o) { _resIX(C, o, 0xfd); }
+	inline void res1IXD(uint8_t o) { _resIX(D, o, 0xfd); }
+	inline void res1IXE(uint8_t o) { _resIX(E, o, 0xfd); }
+	inline void res1IXH(uint8_t o) { _resIX(H, o, 0xfd); }
+	inline void res1IXL(uint8_t o) { _resIX(L, o, 0xfd); }
+	inline void res1IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xfd); }
+	inline void res1IXA(uint8_t o) { _resIX(A, o, 0xfd); }
 
 	// 0x90
-	void res2IXB(uint8_t o) { _resIX(B, o, 0xfb); }
-	void res2IXC(uint8_t o) { _resIX(C, o, 0xfb); }
-	void res2IXD(uint8_t o) { _resIX(D, o, 0xfb); }
-	void res2IXE(uint8_t o) { _resIX(E, o, 0xfb); }
-	void res2IXH(uint8_t o) { _resIX(H, o, 0xfb); }
-	void res2IXL(uint8_t o) { _resIX(L, o, 0xfb); }
-	void res2IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xfb); }
-	void res2IXA(uint8_t o) { _resIX(A, o, 0xfb); }
+	inline void res2IXB(uint8_t o) { _resIX(B, o, 0xfb); }
+	inline void res2IXC(uint8_t o) { _resIX(C, o, 0xfb); }
+	inline void res2IXD(uint8_t o) { _resIX(D, o, 0xfb); }
+	inline void res2IXE(uint8_t o) { _resIX(E, o, 0xfb); }
+	inline void res2IXH(uint8_t o) { _resIX(H, o, 0xfb); }
+	inline void res2IXL(uint8_t o) { _resIX(L, o, 0xfb); }
+	inline void res2IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xfb); }
+	inline void res2IXA(uint8_t o) { _resIX(A, o, 0xfb); }
 
 	// 0x98
-	void res3IXB(uint8_t o) { _resIX(B, o, 0xf7); }
-	void res3IXC(uint8_t o) { _resIX(C, o, 0xf7); }
-	void res3IXD(uint8_t o) { _resIX(D, o, 0xf7); }
-	void res3IXE(uint8_t o) { _resIX(E, o, 0xf7); }
-	void res3IXH(uint8_t o) { _resIX(H, o, 0xf7); }
-	void res3IXL(uint8_t o) { _resIX(L, o, 0xf7); }
-	void res3IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xf7); }
-	void res3IXA(uint8_t o) { _resIX(A, o, 0xf7); }
+	inline void res3IXB(uint8_t o) { _resIX(B, o, 0xf7); }
+	inline void res3IXC(uint8_t o) { _resIX(C, o, 0xf7); }
+	inline void res3IXD(uint8_t o) { _resIX(D, o, 0xf7); }
+	inline void res3IXE(uint8_t o) { _resIX(E, o, 0xf7); }
+	inline void res3IXH(uint8_t o) { _resIX(H, o, 0xf7); }
+	inline void res3IXL(uint8_t o) { _resIX(L, o, 0xf7); }
+	inline void res3IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xf7); }
+	inline void res3IXA(uint8_t o) { _resIX(A, o, 0xf7); }
 
 	// 0xa0
-	void res4IXB(uint8_t o) { _resIX(B, o, 0xef); }
-	void res4IXC(uint8_t o) { _resIX(C, o, 0xef); }
-	void res4IXD(uint8_t o) { _resIX(D, o, 0xef); }
-	void res4IXE(uint8_t o) { _resIX(E, o, 0xef); }
-	void res4IXH(uint8_t o) { _resIX(H, o, 0xef); }
-	void res4IXL(uint8_t o) { _resIX(L, o, 0xef); }
-	void res4IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xef); }
-	void res4IXA(uint8_t o) { _resIX(A, o, 0xef); }
+	inline void res4IXB(uint8_t o) { _resIX(B, o, 0xef); }
+	inline void res4IXC(uint8_t o) { _resIX(C, o, 0xef); }
+	inline void res4IXD(uint8_t o) { _resIX(D, o, 0xef); }
+	inline void res4IXE(uint8_t o) { _resIX(E, o, 0xef); }
+	inline void res4IXH(uint8_t o) { _resIX(H, o, 0xef); }
+	inline void res4IXL(uint8_t o) { _resIX(L, o, 0xef); }
+	inline void res4IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xef); }
+	inline void res4IXA(uint8_t o) { _resIX(A, o, 0xef); }
 
 	// 0xa8
-	void res5IXB(uint8_t o) { _resIX(B, o, 0xdf); }
-	void res5IXC(uint8_t o) { _resIX(C, o, 0xdf); }
-	void res5IXD(uint8_t o) { _resIX(D, o, 0xdf); }
-	void res5IXE(uint8_t o) { _resIX(E, o, 0xdf); }
-	void res5IXH(uint8_t o) { _resIX(H, o, 0xdf); }
-	void res5IXL(uint8_t o) { _resIX(L, o, 0xdf); }
-	void res5IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xdf); }
-	void res5IXA(uint8_t o) { _resIX(A, o, 0xdf); }
+	inline void res5IXB(uint8_t o) { _resIX(B, o, 0xdf); }
+	inline void res5IXC(uint8_t o) { _resIX(C, o, 0xdf); }
+	inline void res5IXD(uint8_t o) { _resIX(D, o, 0xdf); }
+	inline void res5IXE(uint8_t o) { _resIX(E, o, 0xdf); }
+	inline void res5IXH(uint8_t o) { _resIX(H, o, 0xdf); }
+	inline void res5IXL(uint8_t o) { _resIX(L, o, 0xdf); }
+	inline void res5IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xdf); }
+	inline void res5IXA(uint8_t o) { _resIX(A, o, 0xdf); }
 
 	// 0xb0
-	void res6IXB(uint8_t o) { _resIX(B, o, 0xbf); }
-	void res6IXC(uint8_t o) { _resIX(C, o, 0xbf); }
-	void res6IXD(uint8_t o) { _resIX(D, o, 0xbf); }
-	void res6IXE(uint8_t o) { _resIX(E, o, 0xbf); }
-	void res6IXH(uint8_t o) { _resIX(H, o, 0xbf); }
-	void res6IXL(uint8_t o) { _resIX(L, o, 0xbf); }
-	void res6IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xbf); }
-	void res6IXA(uint8_t o) { _resIX(A, o, 0xbf); }
+	inline void res6IXB(uint8_t o) { _resIX(B, o, 0xbf); }
+	inline void res6IXC(uint8_t o) { _resIX(C, o, 0xbf); }
+	inline void res6IXD(uint8_t o) { _resIX(D, o, 0xbf); }
+	inline void res6IXE(uint8_t o) { _resIX(E, o, 0xbf); }
+	inline void res6IXH(uint8_t o) { _resIX(H, o, 0xbf); }
+	inline void res6IXL(uint8_t o) { _resIX(L, o, 0xbf); }
+	inline void res6IX(uint8_t o) { uint8_t b; _resIX(b, o, 0xbf); }
+	inline void res6IXA(uint8_t o) { _resIX(A, o, 0xbf); }
 
 	// 0xb8
-	void res7IXB(uint8_t o) { _resIX(B, o, 0x7f); }
-	void res7IXC(uint8_t o) { _resIX(C, o, 0x7f); }
-	void res7IXD(uint8_t o) { _resIX(D, o, 0x7f); }
-	void res7IXE(uint8_t o) { _resIX(E, o, 0x7f); }
-	void res7IXH(uint8_t o) { _resIX(H, o, 0x7f); }
-	void res7IXL(uint8_t o) { _resIX(L, o, 0x7f); }
-	void res7IX(uint8_t o) { uint8_t b; _resIX(b, o, 0x7f); }
-	void res7IXA(uint8_t o) { _resIX(A, o, 0x7f); }
+	inline void res7IXB(uint8_t o) { _resIX(B, o, 0x7f); }
+	inline void res7IXC(uint8_t o) { _resIX(C, o, 0x7f); }
+	inline void res7IXD(uint8_t o) { _resIX(D, o, 0x7f); }
+	inline void res7IXE(uint8_t o) { _resIX(E, o, 0x7f); }
+	inline void res7IXH(uint8_t o) { _resIX(H, o, 0x7f); }
+	inline void res7IXL(uint8_t o) { _resIX(L, o, 0x7f); }
+	inline void res7IX(uint8_t o) { uint8_t b; _resIX(b, o, 0x7f); }
+	inline void res7IXA(uint8_t o) { _resIX(A, o, 0x7f); }
 
 	// 0xc0
-	void _setIX(uint8_t &b, uint8_t o, uint8_t m) {
+	inline void _setIX(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IX, o);
 		b = _rb(a) | m;
 		_mc(a, 1);
 		_sb(a, b);
 	}
-	void set0IXB(uint8_t o) { _setIX(B, o, 0x01); }
-	void set0IXC(uint8_t o) { _setIX(C, o, 0x01); }
-	void set0IXD(uint8_t o) { _setIX(D, o, 0x01); }
-	void set0IXE(uint8_t o) { _setIX(E, o, 0x01); }
-	void set0IXH(uint8_t o) { _setIX(H, o, 0x01); }
-	void set0IXL(uint8_t o) { _setIX(L, o, 0x01); }
-	void set0IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x01); }
-	void set0IXA(uint8_t o) { _setIX(A, o, 0x01); }
+	inline void set0IXB(uint8_t o) { _setIX(B, o, 0x01); }
+	inline void set0IXC(uint8_t o) { _setIX(C, o, 0x01); }
+	inline void set0IXD(uint8_t o) { _setIX(D, o, 0x01); }
+	inline void set0IXE(uint8_t o) { _setIX(E, o, 0x01); }
+	inline void set0IXH(uint8_t o) { _setIX(H, o, 0x01); }
+	inline void set0IXL(uint8_t o) { _setIX(L, o, 0x01); }
+	inline void set0IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x01); }
+	inline void set0IXA(uint8_t o) { _setIX(A, o, 0x01); }
 
 	// 0xc8
-	void set1IXB(uint8_t o) { _setIX(B, o, 0x02); }
-	void set1IXC(uint8_t o) { _setIX(C, o, 0x02); }
-	void set1IXD(uint8_t o) { _setIX(D, o, 0x02); }
-	void set1IXE(uint8_t o) { _setIX(E, o, 0x02); }
-	void set1IXH(uint8_t o) { _setIX(H, o, 0x02); }
-	void set1IXL(uint8_t o) { _setIX(L, o, 0x02); }
-	void set1IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x02); }
-	void set1IXA(uint8_t o) { _setIX(A, o, 0x02); }
+	inline void set1IXB(uint8_t o) { _setIX(B, o, 0x02); }
+	inline void set1IXC(uint8_t o) { _setIX(C, o, 0x02); }
+	inline void set1IXD(uint8_t o) { _setIX(D, o, 0x02); }
+	inline void set1IXE(uint8_t o) { _setIX(E, o, 0x02); }
+	inline void set1IXH(uint8_t o) { _setIX(H, o, 0x02); }
+	inline void set1IXL(uint8_t o) { _setIX(L, o, 0x02); }
+	inline void set1IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x02); }
+	inline void set1IXA(uint8_t o) { _setIX(A, o, 0x02); }
 
 	// 0xd0
-	void set2IXB(uint8_t o) { _setIX(B, o, 0x04); }
-	void set2IXC(uint8_t o) { _setIX(C, o, 0x04); }
-	void set2IXD(uint8_t o) { _setIX(D, o, 0x04); }
-	void set2IXE(uint8_t o) { _setIX(E, o, 0x04); }
-	void set2IXH(uint8_t o) { _setIX(H, o, 0x04); }
-	void set2IXL(uint8_t o) { _setIX(L, o, 0x04); }
-	void set2IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x04); }
-	void set2IXA(uint8_t o) { _setIX(A, o, 0x04); }
+	inline void set2IXB(uint8_t o) { _setIX(B, o, 0x04); }
+	inline void set2IXC(uint8_t o) { _setIX(C, o, 0x04); }
+	inline void set2IXD(uint8_t o) { _setIX(D, o, 0x04); }
+	inline void set2IXE(uint8_t o) { _setIX(E, o, 0x04); }
+	inline void set2IXH(uint8_t o) { _setIX(H, o, 0x04); }
+	inline void set2IXL(uint8_t o) { _setIX(L, o, 0x04); }
+	inline void set2IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x04); }
+	inline void set2IXA(uint8_t o) { _setIX(A, o, 0x04); }
 
 	// 0xd8
-	void set3IXB(uint8_t o) { _setIX(B, o, 0x08); }
-	void set3IXC(uint8_t o) { _setIX(C, o, 0x08); }
-	void set3IXD(uint8_t o) { _setIX(D, o, 0x08); }
-	void set3IXE(uint8_t o) { _setIX(E, o, 0x08); }
-	void set3IXH(uint8_t o) { _setIX(H, o, 0x08); }
-	void set3IXL(uint8_t o) { _setIX(L, o, 0x08); }
-	void set3IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x08); }
-	void set3IXA(uint8_t o) { _setIX(A, o, 0x08); }
+	inline void set3IXB(uint8_t o) { _setIX(B, o, 0x08); }
+	inline void set3IXC(uint8_t o) { _setIX(C, o, 0x08); }
+	inline void set3IXD(uint8_t o) { _setIX(D, o, 0x08); }
+	inline void set3IXE(uint8_t o) { _setIX(E, o, 0x08); }
+	inline void set3IXH(uint8_t o) { _setIX(H, o, 0x08); }
+	inline void set3IXL(uint8_t o) { _setIX(L, o, 0x08); }
+	inline void set3IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x08); }
+	inline void set3IXA(uint8_t o) { _setIX(A, o, 0x08); }
 
 	// 0xe0
-	void set4IXB(uint8_t o) { _setIX(B, o, 0x10); }
-	void set4IXC(uint8_t o) { _setIX(C, o, 0x10); }
-	void set4IXD(uint8_t o) { _setIX(D, o, 0x10); }
-	void set4IXE(uint8_t o) { _setIX(E, o, 0x10); }
-	void set4IXH(uint8_t o) { _setIX(H, o, 0x10); }
-	void set4IXL(uint8_t o) { _setIX(L, o, 0x10); }
-	void set4IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x10); }
-	void set4IXA(uint8_t o) { _setIX(A, o, 0x10); }
+	inline void set4IXB(uint8_t o) { _setIX(B, o, 0x10); }
+	inline void set4IXC(uint8_t o) { _setIX(C, o, 0x10); }
+	inline void set4IXD(uint8_t o) { _setIX(D, o, 0x10); }
+	inline void set4IXE(uint8_t o) { _setIX(E, o, 0x10); }
+	inline void set4IXH(uint8_t o) { _setIX(H, o, 0x10); }
+	inline void set4IXL(uint8_t o) { _setIX(L, o, 0x10); }
+	inline void set4IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x10); }
+	inline void set4IXA(uint8_t o) { _setIX(A, o, 0x10); }
 
 	// 0xe8
-	void set5IXB(uint8_t o) { _setIX(B, o, 0x20); }
-	void set5IXC(uint8_t o) { _setIX(C, o, 0x20); }
-	void set5IXD(uint8_t o) { _setIX(D, o, 0x20); }
-	void set5IXE(uint8_t o) { _setIX(E, o, 0x20); }
-	void set5IXH(uint8_t o) { _setIX(H, o, 0x20); }
-	void set5IXL(uint8_t o) { _setIX(L, o, 0x20); }
-	void set5IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x20); }
-	void set5IXA(uint8_t o) { _setIX(A, o, 0x20); }
+	inline void set5IXB(uint8_t o) { _setIX(B, o, 0x20); }
+	inline void set5IXC(uint8_t o) { _setIX(C, o, 0x20); }
+	inline void set5IXD(uint8_t o) { _setIX(D, o, 0x20); }
+	inline void set5IXE(uint8_t o) { _setIX(E, o, 0x20); }
+	inline void set5IXH(uint8_t o) { _setIX(H, o, 0x20); }
+	inline void set5IXL(uint8_t o) { _setIX(L, o, 0x20); }
+	inline void set5IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x20); }
+	inline void set5IXA(uint8_t o) { _setIX(A, o, 0x20); }
 
 	// 0xf0
-	void set6IXB(uint8_t o) { _setIX(B, o, 0x40); }
-	void set6IXC(uint8_t o) { _setIX(C, o, 0x40); }
-	void set6IXD(uint8_t o) { _setIX(D, o, 0x40); }
-	void set6IXE(uint8_t o) { _setIX(E, o, 0x40); }
-	void set6IXH(uint8_t o) { _setIX(H, o, 0x40); }
-	void set6IXL(uint8_t o) { _setIX(L, o, 0x40); }
-	void set6IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x40); }
-	void set6IXA(uint8_t o) { _setIX(A, o, 0x40); }
+	inline void set6IXB(uint8_t o) { _setIX(B, o, 0x40); }
+	inline void set6IXC(uint8_t o) { _setIX(C, o, 0x40); }
+	inline void set6IXD(uint8_t o) { _setIX(D, o, 0x40); }
+	inline void set6IXE(uint8_t o) { _setIX(E, o, 0x40); }
+	inline void set6IXH(uint8_t o) { _setIX(H, o, 0x40); }
+	inline void set6IXL(uint8_t o) { _setIX(L, o, 0x40); }
+	inline void set6IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x40); }
+	inline void set6IXA(uint8_t o) { _setIX(A, o, 0x40); }
 
 	// 0xf8
-	void set7IXB(uint8_t o) { _setIX(B, o, 0x80); }
-	void set7IXC(uint8_t o) { _setIX(C, o, 0x80); }
-	void set7IXD(uint8_t o) { _setIX(D, o, 0x80); }
-	void set7IXE(uint8_t o) { _setIX(E, o, 0x80); }
-	void set7IXH(uint8_t o) { _setIX(H, o, 0x80); }
-	void set7IXL(uint8_t o) { _setIX(L, o, 0x80); }
-	void set7IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x80); }
-	void set7IXA(uint8_t o) { _setIX(A, o, 0x80); }
+	inline void set7IXB(uint8_t o) { _setIX(B, o, 0x80); }
+	inline void set7IXC(uint8_t o) { _setIX(C, o, 0x80); }
+	inline void set7IXD(uint8_t o) { _setIX(D, o, 0x80); }
+	inline void set7IXE(uint8_t o) { _setIX(E, o, 0x80); }
+	inline void set7IXH(uint8_t o) { _setIX(H, o, 0x80); }
+	inline void set7IXL(uint8_t o) { _setIX(L, o, 0x80); }
+	inline void set7IX(uint8_t o) { uint8_t b; _setIX(b, o, 0x80); }
+	inline void set7IXA(uint8_t o) { _setIX(A, o, 0x80); }
 
 	// 0xFDCB extended instructions
 
@@ -1493,303 +1494,303 @@ private:
 	inline void _rlcIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _rlc(b); _sb(a, b);
 	}
-	void rlcIYB(uint8_t o) { _rlcIY(B, o); }
-	void rlcIYC(uint8_t o) { _rlcIY(C, o); }
-	void rlcIYD(uint8_t o) { _rlcIY(D, o); }
-	void rlcIYE(uint8_t o) { _rlcIY(E, o); }
-	void rlcIYH(uint8_t o) { _rlcIY(H, o); }
-	void rlcIYL(uint8_t o) { _rlcIY(L, o); }
-	void rlcIY(uint8_t o) { uint8_t b; _rlcIY(b, o); }
-	void rlcIYA(uint8_t o) { _rlcIY(A, o); }
+	inline void rlcIYB(uint8_t o) { _rlcIY(B, o); }
+	inline void rlcIYC(uint8_t o) { _rlcIY(C, o); }
+	inline void rlcIYD(uint8_t o) { _rlcIY(D, o); }
+	inline void rlcIYE(uint8_t o) { _rlcIY(E, o); }
+	inline void rlcIYH(uint8_t o) { _rlcIY(H, o); }
+	inline void rlcIYL(uint8_t o) { _rlcIY(L, o); }
+	inline void rlcIY(uint8_t o) { uint8_t b; _rlcIY(b, o); }
+	inline void rlcIYA(uint8_t o) { _rlcIY(A, o); }
 
 	// 0x08
 	inline void _rrcIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _rrc(b); _sb(a, b);
 	}
-	void rrcIYB(uint8_t o) { _rrcIY(B, o); }
-	void rrcIYC(uint8_t o) { _rrcIY(C, o); }
-	void rrcIYD(uint8_t o) { _rrcIY(D, o); }
-	void rrcIYE(uint8_t o) { _rrcIY(E, o); }
-	void rrcIYH(uint8_t o) { _rrcIY(H, o); }
-	void rrcIYL(uint8_t o) { _rrcIY(L, o); }
-	void rrcIY(uint8_t o) { uint8_t b; _rrcIY(b, o); }
-	void rrcIYA(uint8_t o) { _rrcIY(A, o); }
+	inline void rrcIYB(uint8_t o) { _rrcIY(B, o); }
+	inline void rrcIYC(uint8_t o) { _rrcIY(C, o); }
+	inline void rrcIYD(uint8_t o) { _rrcIY(D, o); }
+	inline void rrcIYE(uint8_t o) { _rrcIY(E, o); }
+	inline void rrcIYH(uint8_t o) { _rrcIY(H, o); }
+	inline void rrcIYL(uint8_t o) { _rrcIY(L, o); }
+	inline void rrcIY(uint8_t o) { uint8_t b; _rrcIY(b, o); }
+	inline void rrcIYA(uint8_t o) { _rrcIY(A, o); }
 
 	// 0x10
 	inline void _rlIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _rl(b); _sb(a, b);
 	}
-	void rlIYB(uint8_t o) { _rlIY(B, o); }
-	void rlIYC(uint8_t o) { _rlIY(C, o); }
-	void rlIYD(uint8_t o) { _rlIY(D, o); }
-	void rlIYE(uint8_t o) { _rlIY(E, o); }
-	void rlIYH(uint8_t o) { _rlIY(H, o); }
-	void rlIYL(uint8_t o) { _rlIY(L, o); }
-	void rlIY(uint8_t o) { uint8_t b; _rlIY(b, o); }
-	void rlIYA(uint8_t o) { _rlIY(A, o); }
+	inline void rlIYB(uint8_t o) { _rlIY(B, o); }
+	inline void rlIYC(uint8_t o) { _rlIY(C, o); }
+	inline void rlIYD(uint8_t o) { _rlIY(D, o); }
+	inline void rlIYE(uint8_t o) { _rlIY(E, o); }
+	inline void rlIYH(uint8_t o) { _rlIY(H, o); }
+	inline void rlIYL(uint8_t o) { _rlIY(L, o); }
+	inline void rlIY(uint8_t o) { uint8_t b; _rlIY(b, o); }
+	inline void rlIYA(uint8_t o) { _rlIY(A, o); }
 
 	// 0x18
 	inline void _rrIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _rr(b); _sb(a, b);
 	}
-	void rrIYB(uint8_t o) { _rrIY(B, o); }
-	void rrIYC(uint8_t o) { _rrIY(C, o); }
-	void rrIYD(uint8_t o) { _rrIY(D, o); }
-	void rrIYE(uint8_t o) { _rrIY(E, o); }
-	void rrIYH(uint8_t o) { _rrIY(H, o); }
-	void rrIYL(uint8_t o) { _rrIY(L, o); }
-	void rrIY(uint8_t o) { uint8_t b; _rrIY(b, o); }
-	void rrIYA(uint8_t o) { _rrIY(A, o); }
+	inline void rrIYB(uint8_t o) { _rrIY(B, o); }
+	inline void rrIYC(uint8_t o) { _rrIY(C, o); }
+	inline void rrIYD(uint8_t o) { _rrIY(D, o); }
+	inline void rrIYE(uint8_t o) { _rrIY(E, o); }
+	inline void rrIYH(uint8_t o) { _rrIY(H, o); }
+	inline void rrIYL(uint8_t o) { _rrIY(L, o); }
+	inline void rrIY(uint8_t o) { uint8_t b; _rrIY(b, o); }
+	inline void rrIYA(uint8_t o) { _rrIY(A, o); }
 
 	// 0x20
 	inline void _slaIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _sla(b); _sb(a, b);
 	}
-	void slaIYB(uint8_t o) { _slaIY(B, o); }
-	void slaIYC(uint8_t o) { _slaIY(C, o); }
-	void slaIYD(uint8_t o) { _slaIY(D, o); }
-	void slaIYE(uint8_t o) { _slaIY(E, o); }
-	void slaIYH(uint8_t o) { _slaIY(H, o); }
-	void slaIYL(uint8_t o) { _slaIY(L, o); }
-	void slaIY(uint8_t o) { uint8_t b; _slaIY(b, o); }
-	void slaIYA(uint8_t o) { _slaIY(A, o); }
+	inline void slaIYB(uint8_t o) { _slaIY(B, o); }
+	inline void slaIYC(uint8_t o) { _slaIY(C, o); }
+	inline void slaIYD(uint8_t o) { _slaIY(D, o); }
+	inline void slaIYE(uint8_t o) { _slaIY(E, o); }
+	inline void slaIYH(uint8_t o) { _slaIY(H, o); }
+	inline void slaIYL(uint8_t o) { _slaIY(L, o); }
+	inline void slaIY(uint8_t o) { uint8_t b; _slaIY(b, o); }
+	inline void slaIYA(uint8_t o) { _slaIY(A, o); }
 
 	// 0x28
 	inline void _sraIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _sra(b); _sb(a, b);
 	}
-	void sraIYB(uint8_t o) { _sraIY(B, o); }
-	void sraIYC(uint8_t o) { _sraIY(C, o); }
-	void sraIYD(uint8_t o) { _sraIY(D, o); }
-	void sraIYE(uint8_t o) { _sraIY(E, o); }
-	void sraIYH(uint8_t o) { _sraIY(H, o); }
-	void sraIYL(uint8_t o) { _sraIY(L, o); }
-	void sraIY(uint8_t o) { uint8_t b; _sraIY(b, o); }
-	void sraIYA(uint8_t o) { _sraIY(A, o); }
+	inline void sraIYB(uint8_t o) { _sraIY(B, o); }
+	inline void sraIYC(uint8_t o) { _sraIY(C, o); }
+	inline void sraIYD(uint8_t o) { _sraIY(D, o); }
+	inline void sraIYE(uint8_t o) { _sraIY(E, o); }
+	inline void sraIYH(uint8_t o) { _sraIY(H, o); }
+	inline void sraIYL(uint8_t o) { _sraIY(L, o); }
+	inline void sraIY(uint8_t o) { uint8_t b; _sraIY(b, o); }
+	inline void sraIYA(uint8_t o) { _sraIY(A, o); }
 
 	// 0x30
 	inline void _sllIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _sll(b); _sb(a, b);
 	}
-	void sllIYB(uint8_t o) { _sllIY(B, o); }
-	void sllIYC(uint8_t o) { _sllIY(C, o); }
-	void sllIYD(uint8_t o) { _sllIY(D, o); }
-	void sllIYE(uint8_t o) { _sllIY(E, o); }
-	void sllIYH(uint8_t o) { _sllIY(H, o); }
-	void sllIYL(uint8_t o) { _sllIY(L, o); }
-	void sllIY(uint8_t o) { uint8_t b; _sllIY(b, o); }
-	void sllIYA(uint8_t o) { _sllIY(A, o); }
+	inline void sllIYB(uint8_t o) { _sllIY(B, o); }
+	inline void sllIYC(uint8_t o) { _sllIY(C, o); }
+	inline void sllIYD(uint8_t o) { _sllIY(D, o); }
+	inline void sllIYE(uint8_t o) { _sllIY(E, o); }
+	inline void sllIYH(uint8_t o) { _sllIY(H, o); }
+	inline void sllIYL(uint8_t o) { _sllIY(L, o); }
+	inline void sllIY(uint8_t o) { uint8_t b; _sllIY(b, o); }
+	inline void sllIYA(uint8_t o) { _sllIY(A, o); }
 
 	// 0x38
 	inline void _srlIY(uint8_t &b, uint8_t o) {
 		uint16_t a = _rbIY(b, o); _srl(b); _sb(a, b);
 	}
-	void srlIYB(uint8_t o) { _srlIY(B, o); }
-	void srlIYC(uint8_t o) { _srlIY(C, o); }
-	void srlIYD(uint8_t o) { _srlIY(D, o); }
-	void srlIYE(uint8_t o) { _srlIY(E, o); }
-	void srlIYH(uint8_t o) { _srlIY(H, o); }
-	void srlIYL(uint8_t o) { _srlIY(L, o); }
-	void srlIY(uint8_t o) { uint8_t b; _srlIY(b, o); }
-	void srlIYA(uint8_t o) { _srlIY(A, o); }
+	inline void srlIYB(uint8_t o) { _srlIY(B, o); }
+	inline void srlIYC(uint8_t o) { _srlIY(C, o); }
+	inline void srlIYD(uint8_t o) { _srlIY(D, o); }
+	inline void srlIYE(uint8_t o) { _srlIY(E, o); }
+	inline void srlIYH(uint8_t o) { _srlIY(H, o); }
+	inline void srlIYL(uint8_t o) { _srlIY(L, o); }
+	inline void srlIY(uint8_t o) { uint8_t b; _srlIY(b, o); }
+	inline void srlIYA(uint8_t o) { _srlIY(A, o); }
 
 	// 0x40
 	inline void _bitIY(int i, uint8_t o) { _bitI(i, _ads(IY, o)); }
 
-	void bit0IY(uint8_t o) { _bitIY(0, o); }
+	inline void bit0IY(uint8_t o) { _bitIY(0, o); }
 
 	// 0x48
-	void bit1IY(uint8_t o) { _bitIY(1, o); }
+	inline void bit1IY(uint8_t o) { _bitIY(1, o); }
 
 	// 0x50
-	void bit2IY(uint8_t o) { _bitIY(2, o); }
+	inline void bit2IY(uint8_t o) { _bitIY(2, o); }
 
 	// 0x58
-	void bit3IY(uint8_t o) { _bitIY(3, o); }
+	inline void bit3IY(uint8_t o) { _bitIY(3, o); }
 
 	// 0x60
-	void bit4IY(uint8_t o) { _bitIY(4, o); }
+	inline void bit4IY(uint8_t o) { _bitIY(4, o); }
 
 	// 0x68
-	void bit5IY(uint8_t o) { _bitIY(5, o); }
+	inline void bit5IY(uint8_t o) { _bitIY(5, o); }
 
 	// 0x70
-	void bit6IY(uint8_t o) { _bitIY(6, o); }
+	inline void bit6IY(uint8_t o) { _bitIY(6, o); }
 
 	// 0x78
-	void bit7IY(uint8_t o) { _bitIY(7, o); }
+	inline void bit7IY(uint8_t o) { _bitIY(7, o); }
 
 	// 0x80
-	void _resIY(uint8_t &b, uint8_t o, uint8_t m) {
+	inline void _resIY(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IY, o);
 		b = _rb(a) & m;
 		_mc(a, 1);
 		_sb(a, b);
 	}
-	void res0IYB(uint8_t o) { _resIY(B, o, 0xfe); }
-	void res0IYC(uint8_t o) { _resIY(C, o, 0xfe); }
-	void res0IYD(uint8_t o) { _resIY(D, o, 0xfe); }
-	void res0IYE(uint8_t o) { _resIY(E, o, 0xfe); }
-	void res0IYH(uint8_t o) { _resIY(H, o, 0xfe); }
-	void res0IYL(uint8_t o) { _resIY(L, o, 0xfe); }
-	void res0IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xfe); }
-	void res0IYA(uint8_t o) { _resIY(A, o, 0xfe); }
+	inline void res0IYB(uint8_t o) { _resIY(B, o, 0xfe); }
+	inline void res0IYC(uint8_t o) { _resIY(C, o, 0xfe); }
+	inline void res0IYD(uint8_t o) { _resIY(D, o, 0xfe); }
+	inline void res0IYE(uint8_t o) { _resIY(E, o, 0xfe); }
+	inline void res0IYH(uint8_t o) { _resIY(H, o, 0xfe); }
+	inline void res0IYL(uint8_t o) { _resIY(L, o, 0xfe); }
+	inline void res0IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xfe); }
+	inline void res0IYA(uint8_t o) { _resIY(A, o, 0xfe); }
 
 	// 0x88
-	void res1IYB(uint8_t o) { _resIY(B, o, 0xfd); }
-	void res1IYC(uint8_t o) { _resIY(C, o, 0xfd); }
-	void res1IYD(uint8_t o) { _resIY(D, o, 0xfd); }
-	void res1IYE(uint8_t o) { _resIY(E, o, 0xfd); }
-	void res1IYH(uint8_t o) { _resIY(H, o, 0xfd); }
-	void res1IYL(uint8_t o) { _resIY(L, o, 0xfd); }
-	void res1IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xfd); }
-	void res1IYA(uint8_t o) { _resIY(A, o, 0xfd); }
+	inline void res1IYB(uint8_t o) { _resIY(B, o, 0xfd); }
+	inline void res1IYC(uint8_t o) { _resIY(C, o, 0xfd); }
+	inline void res1IYD(uint8_t o) { _resIY(D, o, 0xfd); }
+	inline void res1IYE(uint8_t o) { _resIY(E, o, 0xfd); }
+	inline void res1IYH(uint8_t o) { _resIY(H, o, 0xfd); }
+	inline void res1IYL(uint8_t o) { _resIY(L, o, 0xfd); }
+	inline void res1IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xfd); }
+	inline void res1IYA(uint8_t o) { _resIY(A, o, 0xfd); }
 
 	// 0x90
-	void res2IYB(uint8_t o) { _resIY(B, o, 0xfb); }
-	void res2IYC(uint8_t o) { _resIY(C, o, 0xfb); }
-	void res2IYD(uint8_t o) { _resIY(D, o, 0xfb); }
-	void res2IYE(uint8_t o) { _resIY(E, o, 0xfb); }
-	void res2IYH(uint8_t o) { _resIY(H, o, 0xfb); }
-	void res2IYL(uint8_t o) { _resIY(L, o, 0xfb); }
-	void res2IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xfb); }
-	void res2IYA(uint8_t o) { _resIY(A, o, 0xfb); }
+	inline void res2IYB(uint8_t o) { _resIY(B, o, 0xfb); }
+	inline void res2IYC(uint8_t o) { _resIY(C, o, 0xfb); }
+	inline void res2IYD(uint8_t o) { _resIY(D, o, 0xfb); }
+	inline void res2IYE(uint8_t o) { _resIY(E, o, 0xfb); }
+	inline void res2IYH(uint8_t o) { _resIY(H, o, 0xfb); }
+	inline void res2IYL(uint8_t o) { _resIY(L, o, 0xfb); }
+	inline void res2IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xfb); }
+	inline void res2IYA(uint8_t o) { _resIY(A, o, 0xfb); }
 
 	// 0x98
-	void res3IYB(uint8_t o) { _resIY(B, o, 0xf7); }
-	void res3IYC(uint8_t o) { _resIY(C, o, 0xf7); }
-	void res3IYD(uint8_t o) { _resIY(D, o, 0xf7); }
-	void res3IYE(uint8_t o) { _resIY(E, o, 0xf7); }
-	void res3IYH(uint8_t o) { _resIY(H, o, 0xf7); }
-	void res3IYL(uint8_t o) { _resIY(L, o, 0xf7); }
-	void res3IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xf7); }
-	void res3IYA(uint8_t o) { _resIY(A, o, 0xf7); }
+	inline void res3IYB(uint8_t o) { _resIY(B, o, 0xf7); }
+	inline void res3IYC(uint8_t o) { _resIY(C, o, 0xf7); }
+	inline void res3IYD(uint8_t o) { _resIY(D, o, 0xf7); }
+	inline void res3IYE(uint8_t o) { _resIY(E, o, 0xf7); }
+	inline void res3IYH(uint8_t o) { _resIY(H, o, 0xf7); }
+	inline void res3IYL(uint8_t o) { _resIY(L, o, 0xf7); }
+	inline void res3IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xf7); }
+	inline void res3IYA(uint8_t o) { _resIY(A, o, 0xf7); }
 
 	// 0xa0
-	void res4IYB(uint8_t o) { _resIY(B, o, 0xef); }
-	void res4IYC(uint8_t o) { _resIY(C, o, 0xef); }
-	void res4IYD(uint8_t o) { _resIY(D, o, 0xef); }
-	void res4IYE(uint8_t o) { _resIY(E, o, 0xef); }
-	void res4IYH(uint8_t o) { _resIY(H, o, 0xef); }
-	void res4IYL(uint8_t o) { _resIY(L, o, 0xef); }
-	void res4IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xef); }
-	void res4IYA(uint8_t o) { _resIY(A, o, 0xef); }
+	inline void res4IYB(uint8_t o) { _resIY(B, o, 0xef); }
+	inline void res4IYC(uint8_t o) { _resIY(C, o, 0xef); }
+	inline void res4IYD(uint8_t o) { _resIY(D, o, 0xef); }
+	inline void res4IYE(uint8_t o) { _resIY(E, o, 0xef); }
+	inline void res4IYH(uint8_t o) { _resIY(H, o, 0xef); }
+	inline void res4IYL(uint8_t o) { _resIY(L, o, 0xef); }
+	inline void res4IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xef); }
+	inline void res4IYA(uint8_t o) { _resIY(A, o, 0xef); }
 
 	// 0xa8
-	void res5IYB(uint8_t o) { _resIY(B, o, 0xdf); }
-	void res5IYC(uint8_t o) { _resIY(C, o, 0xdf); }
-	void res5IYD(uint8_t o) { _resIY(D, o, 0xdf); }
-	void res5IYE(uint8_t o) { _resIY(E, o, 0xdf); }
-	void res5IYH(uint8_t o) { _resIY(H, o, 0xdf); }
-	void res5IYL(uint8_t o) { _resIY(L, o, 0xdf); }
-	void res5IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xdf); }
-	void res5IYA(uint8_t o) { _resIY(A, o, 0xdf); }
+	inline void res5IYB(uint8_t o) { _resIY(B, o, 0xdf); }
+	inline void res5IYC(uint8_t o) { _resIY(C, o, 0xdf); }
+	inline void res5IYD(uint8_t o) { _resIY(D, o, 0xdf); }
+	inline void res5IYE(uint8_t o) { _resIY(E, o, 0xdf); }
+	inline void res5IYH(uint8_t o) { _resIY(H, o, 0xdf); }
+	inline void res5IYL(uint8_t o) { _resIY(L, o, 0xdf); }
+	inline void res5IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xdf); }
+	inline void res5IYA(uint8_t o) { _resIY(A, o, 0xdf); }
 
 	// 0xb0
-	void res6IYB(uint8_t o) { _resIY(B, o, 0xbf); }
-	void res6IYC(uint8_t o) { _resIY(C, o, 0xbf); }
-	void res6IYD(uint8_t o) { _resIY(D, o, 0xbf); }
-	void res6IYE(uint8_t o) { _resIY(E, o, 0xbf); }
-	void res6IYH(uint8_t o) { _resIY(H, o, 0xbf); }
-	void res6IYL(uint8_t o) { _resIY(L, o, 0xbf); }
-	void res6IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xbf); }
-	void res6IYA(uint8_t o) { _resIY(A, o, 0xbf); }
+	inline void res6IYB(uint8_t o) { _resIY(B, o, 0xbf); }
+	inline void res6IYC(uint8_t o) { _resIY(C, o, 0xbf); }
+	inline void res6IYD(uint8_t o) { _resIY(D, o, 0xbf); }
+	inline void res6IYE(uint8_t o) { _resIY(E, o, 0xbf); }
+	inline void res6IYH(uint8_t o) { _resIY(H, o, 0xbf); }
+	inline void res6IYL(uint8_t o) { _resIY(L, o, 0xbf); }
+	inline void res6IY(uint8_t o) { uint8_t b; _resIY(b, o, 0xbf); }
+	inline void res6IYA(uint8_t o) { _resIY(A, o, 0xbf); }
 
 	// 0xb8
-	void res7IYB(uint8_t o) { _resIY(B, o, 0x7f); }
-	void res7IYC(uint8_t o) { _resIY(C, o, 0x7f); }
-	void res7IYD(uint8_t o) { _resIY(D, o, 0x7f); }
-	void res7IYE(uint8_t o) { _resIY(E, o, 0x7f); }
-	void res7IYH(uint8_t o) { _resIY(H, o, 0x7f); }
-	void res7IYL(uint8_t o) { _resIY(L, o, 0x7f); }
-	void res7IY(uint8_t o) { uint8_t b; _resIY(b, o, 0x7f); }
-	void res7IYA(uint8_t o) { _resIY(A, o, 0x7f); }
+	inline void res7IYB(uint8_t o) { _resIY(B, o, 0x7f); }
+	inline void res7IYC(uint8_t o) { _resIY(C, o, 0x7f); }
+	inline void res7IYD(uint8_t o) { _resIY(D, o, 0x7f); }
+	inline void res7IYE(uint8_t o) { _resIY(E, o, 0x7f); }
+	inline void res7IYH(uint8_t o) { _resIY(H, o, 0x7f); }
+	inline void res7IYL(uint8_t o) { _resIY(L, o, 0x7f); }
+	inline void res7IY(uint8_t o) { uint8_t b; _resIY(b, o, 0x7f); }
+	inline void res7IYA(uint8_t o) { _resIY(A, o, 0x7f); }
 
 	// 0xc0
-	void _setIY(uint8_t &b, uint8_t o, uint8_t m) {
+	inline void _setIY(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IY, o);
 		b = _rb(a) | m;
 		_mc(a, 1);
 		_sb(a, b);
 	}
-	void set0IYB(uint8_t o) { _setIY(B, o, 0x01); }
-	void set0IYC(uint8_t o) { _setIY(C, o, 0x01); }
-	void set0IYD(uint8_t o) { _setIY(D, o, 0x01); }
-	void set0IYE(uint8_t o) { _setIY(E, o, 0x01); }
-	void set0IYH(uint8_t o) { _setIY(H, o, 0x01); }
-	void set0IYL(uint8_t o) { _setIY(L, o, 0x01); }
-	void set0IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x01); }
-	void set0IYA(uint8_t o) { _setIY(A, o, 0x01); }
+	inline void set0IYB(uint8_t o) { _setIY(B, o, 0x01); }
+	inline void set0IYC(uint8_t o) { _setIY(C, o, 0x01); }
+	inline void set0IYD(uint8_t o) { _setIY(D, o, 0x01); }
+	inline void set0IYE(uint8_t o) { _setIY(E, o, 0x01); }
+	inline void set0IYH(uint8_t o) { _setIY(H, o, 0x01); }
+	inline void set0IYL(uint8_t o) { _setIY(L, o, 0x01); }
+	inline void set0IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x01); }
+	inline void set0IYA(uint8_t o) { _setIY(A, o, 0x01); }
 
 	// 0xc8
-	void set1IYB(uint8_t o) { _setIY(B, o, 0x02); }
-	void set1IYC(uint8_t o) { _setIY(C, o, 0x02); }
-	void set1IYD(uint8_t o) { _setIY(D, o, 0x02); }
-	void set1IYE(uint8_t o) { _setIY(E, o, 0x02); }
-	void set1IYH(uint8_t o) { _setIY(H, o, 0x02); }
-	void set1IYL(uint8_t o) { _setIY(L, o, 0x02); }
-	void set1IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x02); }
-	void set1IYA(uint8_t o) { _setIY(A, o, 0x02); }
+	inline void set1IYB(uint8_t o) { _setIY(B, o, 0x02); }
+	inline void set1IYC(uint8_t o) { _setIY(C, o, 0x02); }
+	inline void set1IYD(uint8_t o) { _setIY(D, o, 0x02); }
+	inline void set1IYE(uint8_t o) { _setIY(E, o, 0x02); }
+	inline void set1IYH(uint8_t o) { _setIY(H, o, 0x02); }
+	inline void set1IYL(uint8_t o) { _setIY(L, o, 0x02); }
+	inline void set1IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x02); }
+	inline void set1IYA(uint8_t o) { _setIY(A, o, 0x02); }
 
 	// 0xd0
-	void set2IYB(uint8_t o) { _setIY(B, o, 0x04); }
-	void set2IYC(uint8_t o) { _setIY(C, o, 0x04); }
-	void set2IYD(uint8_t o) { _setIY(D, o, 0x04); }
-	void set2IYE(uint8_t o) { _setIY(E, o, 0x04); }
-	void set2IYH(uint8_t o) { _setIY(H, o, 0x04); }
-	void set2IYL(uint8_t o) { _setIY(L, o, 0x04); }
-	void set2IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x04); }
-	void set2IYA(uint8_t o) { _setIY(A, o, 0x04); }
+	inline void set2IYB(uint8_t o) { _setIY(B, o, 0x04); }
+	inline void set2IYC(uint8_t o) { _setIY(C, o, 0x04); }
+	inline void set2IYD(uint8_t o) { _setIY(D, o, 0x04); }
+	inline void set2IYE(uint8_t o) { _setIY(E, o, 0x04); }
+	inline void set2IYH(uint8_t o) { _setIY(H, o, 0x04); }
+	inline void set2IYL(uint8_t o) { _setIY(L, o, 0x04); }
+	inline void set2IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x04); }
+	inline void set2IYA(uint8_t o) { _setIY(A, o, 0x04); }
 
 	// 0xd8
-	void set3IYB(uint8_t o) { _setIY(B, o, 0x08); }
-	void set3IYC(uint8_t o) { _setIY(C, o, 0x08); }
-	void set3IYD(uint8_t o) { _setIY(D, o, 0x08); }
-	void set3IYE(uint8_t o) { _setIY(E, o, 0x08); }
-	void set3IYH(uint8_t o) { _setIY(H, o, 0x08); }
-	void set3IYL(uint8_t o) { _setIY(L, o, 0x08); }
-	void set3IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x08); }
-	void set3IYA(uint8_t o) { _setIY(A, o, 0x08); }
+	inline void set3IYB(uint8_t o) { _setIY(B, o, 0x08); }
+	inline void set3IYC(uint8_t o) { _setIY(C, o, 0x08); }
+	inline void set3IYD(uint8_t o) { _setIY(D, o, 0x08); }
+	inline void set3IYE(uint8_t o) { _setIY(E, o, 0x08); }
+	inline void set3IYH(uint8_t o) { _setIY(H, o, 0x08); }
+	inline void set3IYL(uint8_t o) { _setIY(L, o, 0x08); }
+	inline void set3IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x08); }
+	inline void set3IYA(uint8_t o) { _setIY(A, o, 0x08); }
 
 	// 0xe0
-	void set4IYB(uint8_t o) { _setIY(B, o, 0x10); }
-	void set4IYC(uint8_t o) { _setIY(C, o, 0x10); }
-	void set4IYD(uint8_t o) { _setIY(D, o, 0x10); }
-	void set4IYE(uint8_t o) { _setIY(E, o, 0x10); }
-	void set4IYH(uint8_t o) { _setIY(H, o, 0x10); }
-	void set4IYL(uint8_t o) { _setIY(L, o, 0x10); }
-	void set4IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x10); }
-	void set4IYA(uint8_t o) { _setIY(A, o, 0x10); }
+	inline void set4IYB(uint8_t o) { _setIY(B, o, 0x10); }
+	inline void set4IYC(uint8_t o) { _setIY(C, o, 0x10); }
+	inline void set4IYD(uint8_t o) { _setIY(D, o, 0x10); }
+	inline void set4IYE(uint8_t o) { _setIY(E, o, 0x10); }
+	inline void set4IYH(uint8_t o) { _setIY(H, o, 0x10); }
+	inline void set4IYL(uint8_t o) { _setIY(L, o, 0x10); }
+	inline void set4IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x10); }
+	inline void set4IYA(uint8_t o) { _setIY(A, o, 0x10); }
 
 	// 0xe8
-	void set5IYB(uint8_t o) { _setIY(B, o, 0x20); }
-	void set5IYC(uint8_t o) { _setIY(C, o, 0x20); }
-	void set5IYD(uint8_t o) { _setIY(D, o, 0x20); }
-	void set5IYE(uint8_t o) { _setIY(E, o, 0x20); }
-	void set5IYH(uint8_t o) { _setIY(H, o, 0x20); }
-	void set5IYL(uint8_t o) { _setIY(L, o, 0x20); }
-	void set5IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x20); }
-	void set5IYA(uint8_t o) { _setIY(A, o, 0x20); }
+	inline void set5IYB(uint8_t o) { _setIY(B, o, 0x20); }
+	inline void set5IYC(uint8_t o) { _setIY(C, o, 0x20); }
+	inline void set5IYD(uint8_t o) { _setIY(D, o, 0x20); }
+	inline void set5IYE(uint8_t o) { _setIY(E, o, 0x20); }
+	inline void set5IYH(uint8_t o) { _setIY(H, o, 0x20); }
+	inline void set5IYL(uint8_t o) { _setIY(L, o, 0x20); }
+	inline void set5IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x20); }
+	inline void set5IYA(uint8_t o) { _setIY(A, o, 0x20); }
 
 	// 0xf0
-	void set6IYB(uint8_t o) { _setIY(B, o, 0x40); }
-	void set6IYC(uint8_t o) { _setIY(C, o, 0x40); }
-	void set6IYD(uint8_t o) { _setIY(D, o, 0x40); }
-	void set6IYE(uint8_t o) { _setIY(E, o, 0x40); }
-	void set6IYH(uint8_t o) { _setIY(H, o, 0x40); }
-	void set6IYL(uint8_t o) { _setIY(L, o, 0x40); }
-	void set6IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x40); }
-	void set6IYA(uint8_t o) { _setIY(A, o, 0x40); }
+	inline void set6IYB(uint8_t o) { _setIY(B, o, 0x40); }
+	inline void set6IYC(uint8_t o) { _setIY(C, o, 0x40); }
+	inline void set6IYD(uint8_t o) { _setIY(D, o, 0x40); }
+	inline void set6IYE(uint8_t o) { _setIY(E, o, 0x40); }
+	inline void set6IYH(uint8_t o) { _setIY(H, o, 0x40); }
+	inline void set6IYL(uint8_t o) { _setIY(L, o, 0x40); }
+	inline void set6IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x40); }
+	inline void set6IYA(uint8_t o) { _setIY(A, o, 0x40); }
 
 	// 0xf8
-	void set7IYB(uint8_t o) { _setIY(B, o, 0x80); }
-	void set7IYC(uint8_t o) { _setIY(C, o, 0x80); }
-	void set7IYD(uint8_t o) { _setIY(D, o, 0x80); }
-	void set7IYE(uint8_t o) { _setIY(E, o, 0x80); }
-	void set7IYH(uint8_t o) { _setIY(H, o, 0x80); }
-	void set7IYL(uint8_t o) { _setIY(L, o, 0x80); }
-	void set7IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x80); }
-	void set7IYA(uint8_t o) { _setIY(A, o, 0x80); }
+	inline void set7IYB(uint8_t o) { _setIY(B, o, 0x80); }
+	inline void set7IYC(uint8_t o) { _setIY(C, o, 0x80); }
+	inline void set7IYD(uint8_t o) { _setIY(D, o, 0x80); }
+	inline void set7IYE(uint8_t o) { _setIY(E, o, 0x80); }
+	inline void set7IYH(uint8_t o) { _setIY(H, o, 0x80); }
+	inline void set7IYL(uint8_t o) { _setIY(L, o, 0x80); }
+	inline void set7IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x80); }
+	inline void set7IYA(uint8_t o) { _setIY(A, o, 0x80); }
 };
 
 #endif
