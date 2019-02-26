@@ -42,6 +42,7 @@ public:
 	inline bool iff1() { return _iff1; }
 	inline bool iff2() { return _iff2; }
 	inline uint8_t im() { return _im; }
+	inline uint16_t memptr() { return _memptr; }
 
 	inline void af(uint16_t w) { AF = w; }
 	inline void bc(uint16_t w) { BC = w; }
@@ -61,6 +62,7 @@ public:
 	inline void iff1(uint8_t iff1) { _iff1 = iff1 != 0; }
 	inline void iff2(uint8_t iff2) { _iff2 = iff2 != 0; }
 	inline void im(uint8_t im) { _im = im; }
+	inline void memptr(uint16_t memptr) { _memptr = memptr; }
 
 	inline unsigned long ts() { return _ts; }
 	inline void ts(int t) { _ts += t; }
@@ -136,6 +138,11 @@ private:
 	uint8_t _im;
 	bool _iff1, _iff2;
 
+	union {
+		struct { uint8_t MPL, MPH; };
+		uint16_t _memptr;
+	};
+
 	unsigned long _ts;
 
 	int _irq_pending;
@@ -187,11 +194,18 @@ private:
 		return w;
 	}
 
-	inline void _swPC(uint16_t w) { _sw(_rw(PC), w); PC += 2; }
+	inline void _swPC(uint16_t w) {
+		uint16_t m = _rw(PC);
+		_sw(m, w);
+		PC += 2;
+		_memptr = m+1;
+	}
 
 	inline uint16_t _rwPC() {
-		uint16_t w = _rw(_rw(PC));
+		uint16_t a = _rw(PC);
+		uint16_t w = _rw(a);
 		PC += 2;
+		_memptr = a+1;
 		return w;
 	}
 
@@ -273,6 +287,7 @@ private:
 	inline void _add16(uint16_t &reg, uint16_t w) {
 		_mc(IR, 1); _mc(IR, 1); _mc(IR, 1);
 		_mc(IR, 1); _mc(IR, 1); _mc(IR, 1); _mc(IR, 1);
+		_memptr = reg+1;
 		unsigned long r = reg + w;
 		uint8_t o = reg >> 8;
 		reg = (r & 0xffff);
@@ -324,6 +339,7 @@ private:
 		_mc(w, 1);
 		_inc(b);
 		_sb(w, b);
+		_memptr = w;
 	}
 
 	inline void _decO(Memory::address a) {
@@ -336,6 +352,7 @@ private:
 		_mc(w, 1);
 		_dec(b);
 		_sb(w, b);
+		_memptr = w;
 	}
 
 	inline void _sbO(Memory::address a) {
@@ -343,7 +360,9 @@ private:
 		uint8_t b = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		_sb(_ads(a, o), b);
+		uint16_t w = _ads(a, o);
+		_sb(w, b);
+		_memptr = w;
 	}
 
 	inline uint8_t _rbO(Memory::address a) {
@@ -351,7 +370,9 @@ private:
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		return _rb(_ads(a, o));
+		uint16_t w = _ads(a, o);
+		_memptr = w;
+		return _rb(w);
 	}
 
 	inline void _sbO(Memory::address a, uint8_t b) {
@@ -359,34 +380,37 @@ private:
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
 		_mc(PC, 1); _mc(PC, 1);
 		PC++;
-		_sb(_ads(a, o), b);
+		uint16_t w = _ads(a, o);
+		_memptr = w;
+		_sb(w, b);
 	}
 
 	inline void _exSP(uint16_t &reg) {
 		uint16_t w = _pop();
-		_mc(SP, 1);
-		_push(reg); reg = w;
+		_mc(SP-1, 1);
+		_push(reg);
+		_memptr = reg = w;
 		_mc(SP, 1); _mc(SP, 1);
 	}
 
-	inline void _exch(uint16_t &a, uint16_t &b) { 
-		uint16_t t = b; 
-		b = a; 
-		a = t; 
+	inline void _exch(uint16_t &a, uint16_t &b) {
+		uint16_t t = b;
+		b = a;
+		a = t;
 	}
 
 	inline uint16_t _pop() { uint16_t w = _rw(SP); SP += 2; return w; }
 	inline void _push(uint16_t w) { SP -= 2; _sw(SP, w); }
 
-	inline void _jmp(uint8_t c) { if (c) jp(); else { _mc(PC, 3); _mc(PC+1, 3); PC += 2; } }
+	inline void _jmp(uint8_t c) { _memptr = _rw(PC); if (c) PC = _memptr; else PC += 2; }
 	inline void _ret(uint8_t c) { _mc(IR, 1); if (c) ret(); }
-	inline void _call(uint8_t c) { if (c) call(); else { _mc(PC, 3); _mc(PC+1, 3); PC += 2; } }
+	inline void _call(uint8_t c) { _memptr = _rw(PC); if (c) { _mc(PC+1, 1); _push(PC+2); PC = _memptr; } else PC += 2; }
 	inline void _jr(uint8_t c) { if (c) jr(); else { _mc(PC, 3); PC++; } }
 
 	// 0x00
 	inline void nop() {}
 	inline void ldbcpc() { BC = _rwpc(); }
-	inline void ldBCa() { _sb(BC, A); }
+	inline void ldBCa() { _sb(BC, A); MPH = A; MPL = C+1; }
 	inline void incbc() { BC++; _mc(IR, 1); _mc(IR, 1); }
 	inline void incb() { _inc(B); }
 	inline void decb() { _dec(B); }
@@ -395,8 +419,8 @@ private:
 
 	// 0x08
 	inline void exaf() { _exch(AF, AF_); }
-	inline void addhlbc() { _add16(HL, BC); }
-	inline void ldaBC() { A = _rb(BC); }
+	inline void addhlbc() { _memptr = HL+1; _add16(HL, BC); }
+	inline void ldaBC() { A = _rb(BC); _memptr = BC+1; }
 	inline void decbc() { BC--; _mc(IR, 1); _mc(IR, 1); }
 	inline void incc() { _inc(C); }
 	inline void decc() { _dec(C); }
@@ -411,7 +435,7 @@ private:
 	// 0x10
 	inline void djnz() { _mc(IR, 1); _jr(--B); }
 	inline void lddepc() { DE = _rwpc(); }
-	inline void ldDEa() { _sb(DE, A); }
+	inline void ldDEa() { _sb(DE, A); MPH = A; MPL = E+1; }
 	inline void incde() { DE++; _mc(IR, 1); _mc(IR, 1); }
 	inline void incd() { _inc(D); }
 	inline void decd() { _dec(D); }
@@ -426,10 +450,10 @@ private:
 	inline void jr() {
 		uint8_t b = _rb(PC);
 		_mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1); _mc(PC, 1);
-		PC = _ads(PC, b+1);
+		_memptr = PC = _ads(PC, b+1);
 	}
-	inline void addhlde() { _add16(HL, DE); }
-	inline void ldaDE() { A = _rb(DE); }
+	inline void addhlde() { _memptr = HL+1; _add16(HL, DE); }
+	inline void ldaDE() { A = _rb(DE); _memptr = DE+1; }
 	inline void decde() { DE--; _mc(IR, 1); _mc(IR, 1); }
 	inline void ince() { _inc(E); }
 	inline void dece() { _dec(E); }
@@ -463,7 +487,7 @@ private:
 	// 0x30
 	inline void jrnc() { _jr(!flags.C); }
 	inline void ldsppc() { SP = _rwpc(); }
-	inline void ldPCa() { _sb(_rw(PC), A); PC += 2; }
+	inline void ldPCa() { uint16_t a = _rw(PC); _sb(a, A); PC += 2; MPH=A; MPL=a+1; }
 	inline void incsp() { SP++; _mc(IR, 1); _mc(IR, 1); }
 	inline void incHL() { uint8_t b = _rb(HL); _mc(HL, 1); _inc(b); _sb(HL, b); }
 	inline void decHL() { uint8_t b = _rb(HL); _mc(HL, 1); _dec(b); _sb(HL, b); }
@@ -473,7 +497,7 @@ private:
 	// 0x38
 	inline void jrc() { _jr(flags.C); }
 	inline void addhlsp() { _add16(HL, SP); }
-	inline void ldaPC() { A = _rb(_rw(PC)); PC += 2; }
+	inline void ldaPC() { uint16_t a = _rw(PC); A = _rb(a); PC += 2; _memptr = a+1; }
 	inline void decsp() { SP--; _mc(IR, 1); _mc(IR, 1); }
 	inline void inca() { _inc(A); }
 	inline void deca() { _dec(A); }
@@ -666,47 +690,51 @@ private:
 	inline void retnz() { _ret(!flags.Z); }
 	inline void popbc() { BC = _pop(); }
 	inline void jpnz() { _jmp(!flags.Z); }
-	inline void jp() { PC = _rw(PC); }
+	inline void jp() { _memptr = PC = _rw(PC); }
 	inline void callnz() { _call(!flags.Z); }
 	inline void pushbc() { _mc(IR, 1); _push(BC); }
 	inline void adda() { _add(_rb(PC++)); }
-	inline void rst00() { _mc(IR, 11); _push(PC); PC = 0x00; }
+	inline void rst00() { _mc(IR, 1); _push(PC); _memptr = PC = 0x00; }
 
 	// 0xc8
 	inline void retz() { _ret(flags.Z); }
-	inline void ret() { PC = _pop(); }
+	inline void ret() { _memptr = PC = _pop(); }
 	inline void jpz() { _jmp(flags.Z); }
 	inline void cb();
 	inline void callz() { _call(flags.Z); }
-	inline void call() { uint16_t pc = _rw(PC); _mc(PC+1, 1); _push(PC+2); PC = pc; }
+	inline void call() { uint16_t pc = _rw(PC); _mc(PC+1, 1); _push(PC+2); _memptr = PC = pc; }
 	inline void adca() { _adc(_rb(PC++)); }
-	inline void rst08() { _mc(IR, 11); _push(PC); PC = 0x08; }
+	inline void rst08() { _mc(IR, 1); _push(PC); _memptr = PC = 0x08; }
 
 	// 0xd0
 	inline void retnc() { _ret(!flags.C); }
 	inline void popde() { DE = _pop(); }
 	inline void jpnc() { _jmp(!flags.C); }
 	inline void outa() {
-		uint16_t p = _rb(PC++) + (A << 8);
+		uint8_t b = _rb(PC++);
+		uint16_t p = b + (A << 8);
+		MPH = A; MPL = b+1;
 		_ports->out(p, A, this);
 	}
 	inline void callnc() { _call(!flags.C); }
 	inline void pushde() { _mc(IR, 1); _push(DE); }
 	inline void suba() { _sub(_rb(PC++)); }
-	inline void rst10() { _mc(IR, 11); _push(PC); PC = 0x10; }
+	inline void rst10() { _mc(IR, 1); _push(PC); _memptr = PC = 0x10; }
 
 	// 0xd8
 	inline void retc() { _ret(flags.C); }
 	inline void exx() { _exch(BC, BC_); _exch(DE, DE_); _exch(HL, HL_); }
 	inline void jpc() { _jmp(flags.C); }
 	inline void ina() {
-		uint16_t p = _rb(PC++) + (A << 8);
+		uint8_t b = _rb(PC++);
+		uint16_t p = b + (A << 8);
 		A = _ports->in(p, this);
+		MPH = A; MPL = b+1;
 	}
 	inline void callc() { _call(flags.C); }
 	inline void dd() { _ddfd(IX, IXL, IXH, &z80::ddcb); }
 	inline void sbca() { _sbc(_rb(PC++)); }
-	inline void rst18() { _mc(IR, 11); _push(PC); PC = 0x18; }
+	inline void rst18() { _mc(IR, 1); _push(PC); _memptr = PC = 0x18; }
 
 	// 0xe0
 	inline void retpo() { _ret(!flags.P); }
@@ -715,17 +743,19 @@ private:
 	inline void exSPhl() { _exSP(HL); }
 	inline void callpo() { _call(!flags.P); }
 	inline void pushhl() { _mc(IR, 1); _push(HL); }
-	inline void and_() { _and(_rb(PC++)); }
-	inline void rst20() { _mc(IR, 11); _push(PC); PC = 0x20; }
+	inline void and_() { uint16_t a = _rb(PC++); _and(a); }
+	inline void rst20() { _mc(IR, 1); _push(PC); _memptr = PC = 0x20; }
 
 	// 0xe8
 	inline uint8_t _inr(uint16_t p) {
+		_memptr = p+1;
 		uint8_t b = _ports->in(p, this);
 		_szp35(b);
 		flags.N = flags.H = 0;
 		return b;
 	}
 	inline void _outr(uint16_t p, uint8_t b) {
+		_memptr = p+1;
 		_ports->out(p, b, this);
 	}
 
@@ -736,7 +766,7 @@ private:
 	inline void callpe() { _call(flags.P); }
 	inline void ed();
 	inline void xor_() { _xor(_rb(PC++)); }
-	inline void rst28() { _mc(IR, 11); _push(PC); PC = 0x28; }
+	inline void rst28() { _mc(IR, 1); _push(PC); _memptr = PC = 0x28; }
 
 	// 0xf0
 	inline void retp() { _ret(!flags.S); }
@@ -746,7 +776,7 @@ private:
 	inline void callp() { _call(!flags.S); }
 	inline void pushaf() { _mc(IR, 1); _push(AF); }
 	inline void or_() { _or(_rb(PC++)); }
-	inline void rst30() { _mc(IR, 11); _push(PC); PC = 0x30; }
+	inline void rst30() { _mc(IR, 1); _push(PC); _memptr = PC = 0x30; }
 
 	// 0xf8
 	inline void retm() { _ret(flags.S); }
@@ -756,7 +786,7 @@ private:
 	inline void callm() { _call(flags.S); }
 	inline void fd() { _ddfd(IY, IYL, IYH, &z80::fdcb); }
 	inline void cp() { _cmp(_rb(PC++)); }
-	inline void rst38() { _mc(IR, 11); _push(PC); PC = 0x38; }
+	inline void rst38() { _mc(IR, 1); _push(PC); _memptr = PC = 0x38; }
 
 	// 0xCB extended instructions
 
@@ -1174,6 +1204,7 @@ private:
 
 	inline uint16_t _rbIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _ads(IX, o);
+		_memptr = a;
 		b = _rb(a);
 		_mc(a, 1);
 		return a;
@@ -1284,7 +1315,11 @@ private:
 	inline void srlIXA(uint8_t o) { _srlIX(A, o); }
 
 	// 0x40
-	inline void _bitIX(int i, uint8_t o) { _bitI(i, _ads(IX, o)); }
+	inline void _bitIX(int i, uint8_t o) {
+		uint16_t a = _ads(IX, o);
+		_memptr = a;
+		_bitI(i, a);
+	}
 
 	inline void bit0IX(uint8_t o) { _bitIX(0, o); }
 
@@ -1312,6 +1347,7 @@ private:
 	// 0x80
 	inline void _resIX(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IX, o);
+		_memptr = a;
 		b = _rb(a) & m;
 		_mc(a, 1);
 		_sb(a, b);
@@ -1398,6 +1434,7 @@ private:
 	// 0xc0
 	inline void _setIX(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IX, o);
+		_memptr = a;
 		b = _rb(a) | m;
 		_mc(a, 1);
 		_sb(a, b);
@@ -1492,7 +1529,9 @@ private:
 
 	// 0x00
 	inline void _rlcIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _rlc(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_rlc(b); _sb(a, b);
 	}
 	inline void rlcIYB(uint8_t o) { _rlcIY(B, o); }
 	inline void rlcIYC(uint8_t o) { _rlcIY(C, o); }
@@ -1505,7 +1544,9 @@ private:
 
 	// 0x08
 	inline void _rrcIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _rrc(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_rrc(b); _sb(a, b);
 	}
 	inline void rrcIYB(uint8_t o) { _rrcIY(B, o); }
 	inline void rrcIYC(uint8_t o) { _rrcIY(C, o); }
@@ -1518,7 +1559,9 @@ private:
 
 	// 0x10
 	inline void _rlIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _rl(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_rl(b); _sb(a, b);
 	}
 	inline void rlIYB(uint8_t o) { _rlIY(B, o); }
 	inline void rlIYC(uint8_t o) { _rlIY(C, o); }
@@ -1531,7 +1574,9 @@ private:
 
 	// 0x18
 	inline void _rrIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _rr(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_rr(b); _sb(a, b);
 	}
 	inline void rrIYB(uint8_t o) { _rrIY(B, o); }
 	inline void rrIYC(uint8_t o) { _rrIY(C, o); }
@@ -1544,7 +1589,9 @@ private:
 
 	// 0x20
 	inline void _slaIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _sla(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_sla(b); _sb(a, b);
 	}
 	inline void slaIYB(uint8_t o) { _slaIY(B, o); }
 	inline void slaIYC(uint8_t o) { _slaIY(C, o); }
@@ -1557,7 +1604,9 @@ private:
 
 	// 0x28
 	inline void _sraIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _sra(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_sra(b); _sb(a, b);
 	}
 	inline void sraIYB(uint8_t o) { _sraIY(B, o); }
 	inline void sraIYC(uint8_t o) { _sraIY(C, o); }
@@ -1570,7 +1619,9 @@ private:
 
 	// 0x30
 	inline void _sllIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _sll(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_sll(b); _sb(a, b);
 	}
 	inline void sllIYB(uint8_t o) { _sllIY(B, o); }
 	inline void sllIYC(uint8_t o) { _sllIY(C, o); }
@@ -1583,7 +1634,9 @@ private:
 
 	// 0x38
 	inline void _srlIY(uint8_t &b, uint8_t o) {
-		uint16_t a = _rbIY(b, o); _srl(b); _sb(a, b);
+		uint16_t a = _rbIY(b, o);
+		_memptr = a;
+		_srl(b); _sb(a, b);
 	}
 	inline void srlIYB(uint8_t o) { _srlIY(B, o); }
 	inline void srlIYC(uint8_t o) { _srlIY(C, o); }
@@ -1595,7 +1648,11 @@ private:
 	inline void srlIYA(uint8_t o) { _srlIY(A, o); }
 
 	// 0x40
-	inline void _bitIY(int i, uint8_t o) { _bitI(i, _ads(IY, o)); }
+	inline void _bitIY(int i, uint8_t o) {
+		uint16_t a = _ads(IY, o);
+		_memptr = a;
+		_bitI(i, a);
+	}
 
 	inline void bit0IY(uint8_t o) { _bitIY(0, o); }
 
@@ -1623,6 +1680,7 @@ private:
 	// 0x80
 	inline void _resIY(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IY, o);
+		_memptr = a;
 		b = _rb(a) & m;
 		_mc(a, 1);
 		_sb(a, b);
@@ -1709,6 +1767,7 @@ private:
 	// 0xc0
 	inline void _setIY(uint8_t &b, uint8_t o, uint8_t m) {
 		uint16_t a = _ads(IY, o);
+		_memptr = a;
 		b = _rb(a) | m;
 		_mc(a, 1);
 		_sb(a, b);

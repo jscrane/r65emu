@@ -160,6 +160,7 @@ void z80::_step_idx(EXT_OP f) {
 }
 
 void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
+	uint16_t m;
 	switch (_fetch_op()) {
 	case 0x09:
 		_add16(ix, BC);
@@ -190,7 +191,9 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 		_add16(ix, ix);
 		break;
 	case 0x2a:
-		ix = _rw(_rw(PC)); PC += 2;
+		m = _rw(PC);
+		ix = _rw(m); PC += 2;
+		_memptr = m+1;
 		break;
 	case 0x2b:
 		ix--;
@@ -429,11 +432,13 @@ void z80::ed() {
 	switch (_fetch_op()) {
 	case 0x40:
 		B = _inr(BC);
+		_memptr = BC+1;
 		break;
 	case 0x41:
 		_outr(BC, B);
 		break;
 	case 0x42:
+		_memptr = HL+1;
 		_sbc16(BC);
 		break;
 	case 0x43:
@@ -479,6 +484,7 @@ void z80::ed() {
 		_outr(BC, C);
 		break;
 	case 0x4a:
+		_memptr = HL+1;
 		_adc16(BC);
 		break;
 	case 0x4b:
@@ -495,6 +501,7 @@ void z80::ed() {
 		_outr(BC, D);
 		break;
 	case 0x52:
+		_memptr = HL+1;
 		_sbc16(DE);
 		break;
 	case 0x53:
@@ -518,6 +525,7 @@ void z80::ed() {
 		_outr(BC, E);
 		break;
 	case 0x5a:
+		_memptr = HL+1;
 		_adc16(DE);
 		break;
 	case 0x5b:
@@ -541,12 +549,14 @@ void z80::ed() {
 		_outr(BC, H);
 		break;
 	case 0x62:
+		_memptr = HL+1;
 		_sbc16(HL);
 		break;
 	case 0x63:
 		_swPC(HL);
 		break;
 	case 0x67:
+		_memptr = HL+1;
 		b = _rb(HL);
 		_mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
@@ -562,12 +572,14 @@ void z80::ed() {
 		_outr(BC, L);
 		break;
 	case 0x6a:
+		_memptr = HL+1;
 		_adc16(HL);
 		break;
 	case 0x6b:
 		HL = _rwPC();
 		break;
 	case 0x6f:
+		_memptr = HL+1;
 		b = _rb(HL);
 		_mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
@@ -583,6 +595,7 @@ void z80::ed() {
 		_outr(BC, 0);
 		break;
 	case 0x72:
+		_memptr = HL+1;
 		_sbc16(SP);
 		break;
 	case 0x73:
@@ -595,6 +608,7 @@ void z80::ed() {
 		_outr(BC, A);
 		break;
 	case 0x7a:
+		_memptr = HL+1;
 		_adc16(SP);
 		break;
 	case 0x7b:
@@ -628,6 +642,7 @@ void z80::ed() {
 		flags.C = f;
 		flags.P = (BC != 0);
 		_35(b);
+		_memptr++;
 		break;
 	case 0xa2:
 		_mc(IR, 1);
@@ -676,11 +691,13 @@ void z80::ed() {
 		flags.N = 1;
 		flags.P = (BC != 0);
 		_sz35(c);
+		_memptr--;
 		// FIXME: flag H
 		break;
 	case 0xaa:
 		_mc(IR, 1);
 		b = _inr(BC);
+		_memptr = BC-1;
 		_sb(HL, b);
 		B--;
 		HL--;
@@ -695,6 +712,7 @@ void z80::ed() {
 		b = _rb(HL);
 		B--;
 		_outr(BC, b);
+		_memptr = BC-1;
 		HL--;
 		c = b + L;
 		flags.N = (b & 0x80) != 0;
@@ -716,6 +734,7 @@ void z80::ed() {
 			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
 			_mc(DE, 1); _mc(DE, 1);
 			PC -= 2;
+			_memptr = PC+1;
 		}
 		DE++;
 		HL++;
@@ -734,10 +753,12 @@ void z80::ed() {
 		flags.P = (BC != 0);
 		if (flags.H) b--;
 		_35(b);
+		_memptr++;
 		if (!flags.Z) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
+			_memptr = PC+1;
 		}
 		HL++;
 		break;
@@ -789,6 +810,7 @@ void z80::ed() {
 			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
 			_mc(DE, 1); _mc(DE, 1);
 			PC -= 2;
+			_memptr = PC+1;
 		}
 		DE--;
 		HL--;
@@ -803,16 +825,19 @@ void z80::ed() {
 		flags.P = (BC != 0);
 		_sz35(c);
 		// FIXME: flag H
+		_memptr--;
 		if (BC) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
+			_memptr = PC+1;
 		}
 		HL--;
 		break;
 	case 0xba:
 		_mc(IR, 1);
 		b = _inr(BC);
+		_memptr = BC-1;
 		_sb(HL, b);
 		B--;
 		c = b + flags.C + 1;
@@ -832,6 +857,7 @@ void z80::ed() {
 		b = _rb(HL);
 		B--;
 		_outr(BC, b);
+		_memptr = BC-1;
 		HL--;
 		c = b + L;
 		flags.N = (b & 0x80) != 0;
