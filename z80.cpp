@@ -160,7 +160,6 @@ void z80::_step_idx(EXT_OP f) {
 }
 
 void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
-	uint16_t m;
 	switch (_fetch_op()) {
 	case 0x09:
 		_add16(ix, BC);
@@ -191,9 +190,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 		_add16(ix, ix);
 		break;
 	case 0x2a:
-		m = _rw(PC);
-		ix = _rw(m); PC += 2;
-		_memptr = m+1;
+		ix = _rwPC();
 		break;
 	case 0x2b:
 		ix--;
@@ -432,13 +429,11 @@ void z80::ed() {
 	switch (_fetch_op()) {
 	case 0x40:
 		B = _inr(BC);
-		_memptr = BC+1;
 		break;
 	case 0x41:
 		_outr(BC, B);
 		break;
 	case 0x42:
-		_memptr = HL+1;
 		_sbc16(BC);
 		break;
 	case 0x43:
@@ -484,7 +479,6 @@ void z80::ed() {
 		_outr(BC, C);
 		break;
 	case 0x4a:
-		_memptr = HL+1;
 		_adc16(BC);
 		break;
 	case 0x4b:
@@ -501,7 +495,6 @@ void z80::ed() {
 		_outr(BC, D);
 		break;
 	case 0x52:
-		_memptr = HL+1;
 		_sbc16(DE);
 		break;
 	case 0x53:
@@ -525,7 +518,6 @@ void z80::ed() {
 		_outr(BC, E);
 		break;
 	case 0x5a:
-		_memptr = HL+1;
 		_adc16(DE);
 		break;
 	case 0x5b:
@@ -549,7 +541,6 @@ void z80::ed() {
 		_outr(BC, H);
 		break;
 	case 0x62:
-		_memptr = HL+1;
 		_sbc16(HL);
 		break;
 	case 0x63:
@@ -572,7 +563,6 @@ void z80::ed() {
 		_outr(BC, L);
 		break;
 	case 0x6a:
-		_memptr = HL+1;
 		_adc16(HL);
 		break;
 	case 0x6b:
@@ -595,7 +585,6 @@ void z80::ed() {
 		_outr(BC, 0);
 		break;
 	case 0x72:
-		_memptr = HL+1;
 		_sbc16(SP);
 		break;
 	case 0x73:
@@ -608,7 +597,6 @@ void z80::ed() {
 		_outr(BC, A);
 		break;
 	case 0x7a:
-		_memptr = HL+1;
 		_adc16(SP);
 		break;
 	case 0x7b:
