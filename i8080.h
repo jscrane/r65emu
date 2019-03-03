@@ -5,7 +5,7 @@
 #undef PC
 #undef SP
 
-uint8_t parity_tbl(uint8_t);
+uint8_t parity(uint8_t);
 
 class i8080: public CPU {
 public:
@@ -76,7 +76,7 @@ private:
 	inline void _szp(uint8_t r) {
 		flags.S = ((r & 0x80) != 0);
 		flags.Z = (r == 0);
-		flags.P = parity_tbl(r);
+		flags.P = parity(r);
 	}
 
 	inline void _szhp(uint8_t b, uint8_t r) {

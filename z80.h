@@ -148,7 +148,7 @@ private:
 	int _irq_pending;
 	PortDevice<z80> *_ports;
 
-	uint8_t parity_table(uint8_t);
+	uint8_t parity(uint8_t);
 
 	inline uint8_t _rb(Memory::address a) {
 #if defined(CPU_DEBUG)
@@ -222,7 +222,7 @@ private:
 
 	inline void _szp35(uint8_t r) {
 		_sz35(r);
-		flags.P = parity_table(r);
+		flags.P = parity(r);
 	}
 
 	inline void _inc(uint8_t &b) {
@@ -500,7 +500,7 @@ private:
 	inline void inca() { _inc(A); }
 	inline void deca() { _dec(A); }
 	inline void lda() { A = _rb(PC++); }
-	inline void ccf() { flags.C = !flags.C; flags.N = 0; _35(A); }
+	inline void ccf() { flags.H = flags.C; flags.C = flags.N = 0; _35(A); }
 
 	// 0x40
 	inline void ldbb() {}
@@ -937,7 +937,7 @@ private:
 	}
 
 	inline void _bitHL(int i) {
-		uint8_t b = _rb(HL); _mc(HL, 1); _bit(i, b);
+		uint8_t b = _rb(HL); _mc(HL, 1); _bit(i, b); _35(MPH);
 	}
 
 	inline void bit0b() { _bit(0, B); }
