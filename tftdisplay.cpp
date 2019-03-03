@@ -7,7 +7,11 @@
 #include <UTFT.h>
 #include "TinyFont.h"
 
-static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST);
+#if !defined(TFT_SER)
+#define TFT_SER	0
+#endif
+
+static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST, TFT_SER);
 
 #elif defined(USE_ESPI)
 #pragma message "Configure TFT_eSPI in Makefile or User_Setup.h"
