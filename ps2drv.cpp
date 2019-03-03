@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include "ps2drv.h"
 
-#define BUFFER_SIZE 16
-static volatile uint8_t buffer[BUFFER_SIZE];
+#if !defined(KBD_BUFFER)
+#define KBD_BUFFER 16
+#endif
+
+static volatile uint8_t buffer[KBD_BUFFER];
 static volatile uint8_t head, tail;
 static uint8_t DataPin;
 
@@ -29,7 +32,7 @@ void ps2interrupt(void)
 	bitcount++;
 	if (bitcount == 11) {
 		uint8_t i = head + 1;		
-		if (i == BUFFER_SIZE) i = 0;
+		if (i == KBD_BUFFER) i = 0;
 		if (i != tail) {
 			buffer[i] = incoming;
 			head = i;
@@ -44,7 +47,7 @@ bool PS2Driver::available() {
 		return false;
 
 	uint8_t i = tail+1;
-	if (i == BUFFER_SIZE) i = 0;
+	if (i == KBD_BUFFER) i = 0;
 	if (buffer[i] == 0xf0)
 		return i != head;
 	return true;
@@ -55,7 +58,7 @@ unsigned PS2Driver::read2() {
 		return 0;
 
 	uint8_t i = tail+1;
-	if (i == BUFFER_SIZE) i = 0;
+	if (i == KBD_BUFFER) i = 0;
 	tail = i;
 	if (buffer[i] != 0xf0)
 		return buffer[i];
@@ -67,9 +70,9 @@ unsigned PS2Driver::peek() {
 		return 0;
 
 	uint8_t i = tail+1;
-	if (i == BUFFER_SIZE) i = 0;
+	if (i == KBD_BUFFER) i = 0;
 	if (buffer[i] == 0xf0) {
-		if (++i == BUFFER_SIZE) i = 0;
+		if (++i == KBD_BUFFER) i = 0;
 		return 0xf000 | buffer[i];
 	}
 	return buffer[i];
