@@ -11,7 +11,7 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void raise(int level) { _irq_pending = level; }
+	void raise(uint8_t level) { _irq_pending = level; }
 	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
@@ -145,7 +145,7 @@ private:
 
 	unsigned long _ts;
 
-	int _irq_pending;
+	uint8_t _irq_pending;
 	PortDevice<z80> *_ports;
 
 	uint8_t parity(uint8_t);
