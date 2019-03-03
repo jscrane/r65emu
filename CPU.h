@@ -12,7 +12,7 @@ class CPU: public Checkpointable {
 public:
 	virtual void run(unsigned instructions) =0;
 	virtual void reset() =0;
-	virtual void raise(int level) =0;
+	virtual void raise(uint8_t level) =0;
 	virtual char *status(char *buf, size_t n, bool hdr) =0;
 
 	virtual void checkpoint(Stream &s) = 0;

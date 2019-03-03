@@ -24,7 +24,7 @@ void i8080::reset() {
 	_halted = false;
 }
 
-void i8080::raise(int level) {
+void i8080::raise(uint8_t level) {
 	if (flags.I) {
 		flags.I = 0;
 		_irq_pending = 0;

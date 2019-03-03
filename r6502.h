@@ -8,7 +8,7 @@ class Stream;
 
 class r6502: public CPU {
 public:
-	void raise(int);
+	void raise(uint8_t);
 	void reset();
 	void run(unsigned);
 	char *status(char *buf, size_t n, bool hdr=false);
