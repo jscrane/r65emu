@@ -11,7 +11,7 @@
 #elif defined(ESP8266)
 #include "hw/esp8266-pwm-fs.h"
 #else
-#error "unknown architecture"
+#pragma warn "unknown architecture"
 #endif
 
 bool hardware_reset();
