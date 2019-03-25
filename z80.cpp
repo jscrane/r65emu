@@ -425,463 +425,94 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 }
 
 void z80::ed() {
-	uint8_t b, c, f;
 	switch (_fetch_op()) {
-	case 0x40:
-		B = _inr(BC);
-		break;
-	case 0x41:
-		_outr(BC, B);
-		break;
-	case 0x42:
-		_sbc16(BC);
-		break;
-	case 0x43:
-		_swPC(BC);
-		break;
-	case 0x44:
-	case 0x54:
-	case 0x64:
-	case 0x74:
-	case 0x4c:
-	case 0x5c:
-	case 0x6c:
-	case 0x7c:
-		b = A;
-		A = 0;
-		_sub(b);
-		break;
-	case 0x45:
-	case 0x4d:
-	case 0x55:
-	case 0x5d:
-	case 0x65:
-	case 0x6d:
-	case 0x75:
-	case 0x7d:
-		_iff1 = _iff2;
-		ret();
-		break;
-	case 0x46:
-	case 0x4e:
-	case 0x66:
-	case 0x6e:
-		_im = 0;
-		break;
-	case 0x47:
-		_mc(IR, 1);
-		I = A;
-		break;
-	case 0x48:
-		C = _inr(BC);
-		break;
-	case 0x49:
-		_outr(BC, C);
-		break;
-	case 0x4a:
-		_adc16(BC);
-		break;
-	case 0x4b:
-		BC = _rwPC();
-		break;
-	case 0x4f:
-		_mc(IR, 1);
-		R = A;
-		break;
-	case 0x50:
-		D = _inr(BC);
-		break;
-	case 0x51:
-		_outr(BC, D);
-		break;
-	case 0x52:
-		_sbc16(DE);
-		break;
-	case 0x53:
-		_swPC(DE);
-		break;
-	case 0x56:
-	case 0x76:
-		_im = 1;
-		break;
-	case 0x57:
-		_mc(IR, 1);
-		A = I;
-		_sz35(A);
-		flags.P = _iff2;
-		flags.H = flags.N = 0;
-		break;
-	case 0x58:
-		E = _inr(BC);
-		break;
-	case 0x59:
-		_outr(BC, E);
-		break;
-	case 0x5a:
-		_adc16(DE);
-		break;
-	case 0x5b:
-		DE = _rwPC();
-		break;
-	case 0x5e:
-	case 0x7e:
-		_im = 2;
-		break;
-	case 0x5f:
-		_mc(IR, 1);
-		A = R;
-		_sz35(A);
-		flags.P = _iff2;
-		flags.H = flags.N = 0;
-		break;
-	case 0x60:
-		H = _inr(BC);
-		break;
-	case 0x61:
-		_outr(BC, H);
-		break;
-	case 0x62:
-		_sbc16(HL);
-		break;
-	case 0x63:
-		_swPC(HL);
-		break;
-	case 0x67:
-		_memptr = HL+1;
-		b = _rb(HL);
-		_mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		_sb(HL, (A << 4) | (b >> 4));
-		A = (A & 0xf0) | (b & 0x0f);
-		_szp35(A);
-		flags.H = flags.N = 0;
-		break;
-	case 0x68:
-		L = _inr(BC);
-		break;
-	case 0x69:
-		_outr(BC, L);
-		break;
-	case 0x6a:
-		_adc16(HL);
-		break;
-	case 0x6b:
-		HL = _rwPC();
-		break;
-	case 0x6f:
-		_memptr = HL+1;
-		b = _rb(HL);
-		_mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		_sb(HL, (A & 0x0f) | (b << 4));
-		A = (A & 0xf0) | (b >> 4);
-		_szp35(A);
-		flags.N = flags.H = 0;
-		break;
-	case 0x70:
-		_inr(BC);
-		break;
-	case 0x71:
-		_outr(BC, 0);
-		break;
-	case 0x72:
-		_sbc16(SP);
-		break;
-	case 0x73:
-		_swPC(SP);
-		break;
-	case 0x78:
-		A = _inr(BC);
-		break;
-	case 0x79:
-		_outr(BC, A);
-		break;
-	case 0x7a:
-		_adc16(SP);
-		break;
-	case 0x7b:
-		SP = _rwPC();
-		break;
-	case 0xa0:
-		// ldi
-		b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
-		DE++;
-		HL++;
-		b += A;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		break;
-	case 0xa1:
-		// cpi
-		b = _rb(HL);
-		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		c = A;
-		f = (flags.C != 0);
-		_sub(b);
-		HL++;
-		BC--;
-		b = A;
-		A = c;
-		if (flags.H) b--;
-		flags.C = f;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		_memptr++;
-		break;
-	case 0xa2:
-		// ini
-		_mc(IR, 1);
-		b = _inr(BC);
-		_sb(HL, b);
-		B--;
-		HL++;
-		c = b + C + 1;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		break;
-	case 0xa3:
-		// outi
-		_mc(IR, 1);
-		b = _rb(HL);
-		B--;
-		_outr(BC, b);
-		HL++;
-		c = b + L;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		break;
-	case 0xa8:
-		// ldd
-		b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
-		DE--;
-		HL--;
-		b += A;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		break;
-	case 0xa9:
-		// cpd
-		b = _rb(HL);
-		c = A - b - flags.H;
-		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		HL--;
-		BC--;
-		flags.N = 1;
-		flags.P = (BC != 0);
-		_sz35(c);
-		flags._5 = ((c & 0x02) != 0);
-		_memptr--;
-		// FIXME: flag H
-		break;
-	case 0xaa:
-		// ind
-		_mc(IR, 1);
-		b = _inr(BC);
-		_memptr = BC-1;
-		_sb(HL, b);
-		B--;
-		HL--;
-		c = b + C - 1;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		break;
-	case 0xab:
-		// outd
-		_mc(IR, 1);
-		b = _rb(HL);
-		B--;
-		_outr(BC, b);
-		_memptr = BC-1;
-		HL--;
-		c = b + L;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		break;
-	case 0xb0:
-		// ldir
-		b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
-		b += A;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE++;
-		HL++;
-		break;
-	case 0xb1:
-		// cpir
-		b = _rb(HL);
-		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		c = A;
-		f = (flags.C != 0);
-		_sub(b);
-		BC--;
-		b -= A;
-		A = c;
-		flags.C = f;
-		flags.P = (BC != 0);
-		if (flags.H) b--;
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		_memptr++;
-		if (!flags.Z) {
-			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-			_mc(HL, 1); _mc(HL, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		HL++;
-		break;
-	case 0xb2:
-		// inir
-		_mc(IR, 1);
-		b = _inr(BC);
-		_sb(HL, b);
-		B--;
-		c = b + flags.C + 1;
-		flags.N = (c & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		if (B) {
-			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-			_mc(HL, 1); _mc(HL, 1);
-			PC -= 2;
-		}
-		HL++;
-		break;
-	case 0xb3:
-		// outir
-		_mc(IR, 1);
-		b = _rb(HL);
-		B--;
-		_outr(BC, b);
-		HL++;
-		c = b + L;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		if (B) {
-			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
-			_mc(BC, 1); _mc(BC, 1);
-			PC -= 2;
-		}
-		break;
-	case 0xb8:
-		// lddr
-		b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
-		b += A;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE--;
-		HL--;
-		break;
-	case 0xb9:
-		// cpdr
-		b = _rb(HL);
-		c = A - b;
-		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		BC--;
-		flags.N = 1;
-		flags.P = (BC != 0);
-		_sz35(c);
-		flags._5 = ((c & 0x02) != 0);
-		// FIXME: flag H
-		_memptr--;
-		if (BC) {
-			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-			_mc(HL, 1); _mc(HL, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		HL--;
-		break;
-	case 0xba:
-		// indr
-		_mc(IR, 1);
-		b = _inr(BC);
-		_memptr = BC-1;
-		_sb(HL, b);
-		B--;
-		c = b + flags.C + 1;
-		flags.N = (c & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		if (B) {
-			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-			_mc(HL, 1); _mc(HL, 1);
-			PC -= 2;
-		}
-		HL--;
-		break;
-	case 0xbb:
-		// outdr
-		_mc(IR, 1);
-		b = _rb(HL);
-		B--;
-		_outr(BC, b);
-		_memptr = BC-1;
-		HL--;
-		c = b + L;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-		if (B) {
-			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
-			_mc(BC, 1); _mc(BC, 1);
-			PC -= 2;
-		}
-		break;
+	O(0x40, inB);
+	O(0x41, outB);
+	O(0x42, sbcBC);
+	O(0x43, ldPCbc);
+
+	C(0x44);
+	C(0x54);
+	C(0x64);
+	C(0x74);
+	C(0x4c);
+	C(0x5c);
+	C(0x6c);
+	O(0x7c, neg);
+
+	C(0x45);
+	C(0x4d);
+	C(0x55);
+	C(0x5d);
+	C(0x65);
+	C(0x6d);
+	C(0x75);
+	O(0x7d, retn);
+
+	C(0x46);
+	C(0x4e);
+	C(0x66);
+	A(0x6e, im, 0);
+	O(0x47, ldia);
+	O(0x48, inC);
+	O(0x49, outC);
+	O(0x4a, adcBC);
+	O(0x4b, ldbcPC);
+	O(0x4f, ldra);
+	O(0x50, inD);
+	O(0x51, outD);
+	O(0x52, sbcDE);
+	O(0x53, ldPCde);
+
+	C(0x56);
+	A(0x76, im, 1);
+
+	O(0x57, ldai);
+	O(0x58, inE);
+	O(0x59, outE);
+	O(0x5a, adcDE);
+	O(0x5b, lddePC);
+	C(0x5e);
+	A(0x7e, im, 2);
+	O(0x5f, ldar);
+
+	O(0x60, inH);
+	O(0x61, outH);
+	O(0x62, sbcHL);
+	O(0x63, ldPChl);
+	O(0x67, rrd);
+	O(0x68, inL);
+	O(0x69, outL);
+	O(0x6a, adcHL);
+	O(0x6b, ldhlPC);
+	O(0x6f, rld);
+
+	O(0x70, _inr);
+	A(0x71, _outr, 0);
+	O(0x72, sbcSP);
+	O(0x73, ldPCsp);
+	O(0x78, inA);
+	O(0x79, outA);
+	O(0x7a, adcSP);
+	O(0x7b, ldspPC);
+
+	O(0xa0, ldi);
+	O(0xa1, cpi);
+	O(0xa2, ini);
+	O(0xa3, outi);
+	O(0xa8, ldd_);
+	O(0xa9, cpd_);
+	O(0xaa, ind);
+	O(0xab, outd);
+
+	O(0xb0, ldir);
+	O(0xb1, cpir);
+	O(0xb2, inir);
+	O(0xb3, outir);
+	O(0xb8, lddr);
+	O(0xb9, cpdr);
+	O(0xba, indr);
+	O(0xbb, outdr);
 	}
 }
 
@@ -1191,8 +822,6 @@ void z80::op(uint8_t op) {
 	O(0xfe, cp);		O(0xff, rst38);
 	}
 }
-
-#define A(o, e, a) case o: e(a); break;
 
 void z80::fdcb(uint8_t op, uint8_t a) {
 	switch (op) {

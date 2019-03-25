@@ -5,11 +5,14 @@
 
 class Stream;
 
-#define O(o, e) case o: e(); break;
-#define D(e) default: e(); break;
+#define O(o, e) case o: e(); break
+#define A(o, e, a) case o: e(a); break
+#define C(o) case o:
+#define D(e) default: e(); break
 
 class CPU: public Checkpointable {
 public:
+	virtual ~CPU() {}
 	virtual void run(unsigned instructions) =0;
 	virtual void reset() =0;
 	virtual void raise(uint8_t level) =0;
