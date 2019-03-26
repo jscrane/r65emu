@@ -7,7 +7,7 @@
 
 #if !defined(ESP32)
 #pragma message "no socket filer"
-#else
+#elif defined(WIFI_SSID)
 #include <WiFi.h>
 
 static WiFiServer server(23);
@@ -20,11 +20,11 @@ static bool connected() {
 	return client.connected();
 }
 
-// FIXME: hostname
-bool socket_filer::start(const char *) {
+bool socket_filer::start() {
 
 #if defined(WIFI_SSID)
 	WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+	WiFi.setHostname(_hostname);
 
 	for (int i=0; i < 60 && WiFi.status() != WL_CONNECTED; i++)
 		delay(1000);

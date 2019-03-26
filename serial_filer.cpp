@@ -5,10 +5,6 @@
 #include "filer.h"
 #include "serial_filer.h"
 
-bool serial_filer::start(const char *) {
-	return true;
-}
-
 const unsigned speeds[] = {
 	115200, 57600, 19200, 9600, 4800, 2400
 };
@@ -16,7 +12,7 @@ const unsigned speeds[] = {
 const char *serial_filer::advance() {
 	static char buf[16];
 	unsigned s = speeds[_currsp];
-	Serial.begin(s);
+	_serial.begin(s);
 	_currsp++;
 	if (_currsp == sizeof(speeds)/sizeof(speeds[0]))
 		_currsp = 0;
@@ -24,15 +20,15 @@ const char *serial_filer::advance() {
 }
 
 void serial_filer::write(uint8_t b) {
-	Serial.write(b);
+	_serial.write(b);
 }
 
 uint8_t serial_filer::read() {
-	return Serial.read();
+	return _serial.read();
 }
 
 bool serial_filer::more() {
-	return Serial.available() > 0;
+	return _serial.available() > 0;
 }
 
 #if !defined(NO_CHECKPOINT)

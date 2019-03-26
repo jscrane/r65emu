@@ -22,17 +22,14 @@ static File file;
 static Dir dir;
 #endif
 
-static const char *programs;
-
 #define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 
-bool flash_filer::start(const char *programs)
+bool flash_filer::start()
 {
-	::programs = programs;
 #if defined(USE_FS)
-	dir = SPIFFS.openDir(programs);
+	dir = SPIFFS.openDir(_programs);
 #elif defined(DISK)
-	dir = DISK.open(programs);
+	dir = DISK.open(_programs);
 	if (!dir)
 		return false;
 #endif
@@ -72,7 +69,7 @@ const char *flash_filer::advance() {
 			file = dir.openFile("r");
 			break;
 		}
-		dir = SPIFFS.openDir(programs);
+		dir = SPIFFS.openDir(_programs);
 	}
 	strncpy(buf, dir.fileName().c_str(), sizeof(buf));
 	return buf;
@@ -112,7 +109,7 @@ static int cpid = 0;
 const char *flash_filer::checkpoint() {
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
 	stop();
-	snprintf(buf, sizeof(buf), "%s%s.%03d", ::programs, chkpt, cpid++);
+	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 #if defined(USE_SD)
 	File file = SD.open(buf, O_WRITE | O_CREAT | O_TRUNC);
@@ -123,7 +120,7 @@ const char *flash_filer::checkpoint() {
 #endif
 	hardware_checkpoint(file);
 	file.close();
-	start(::programs);
+	start();
 #endif
 	return buf;
 }
@@ -131,7 +128,7 @@ const char *flash_filer::checkpoint() {
 void flash_filer::restore(const char *filename) {
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
 	stop();
-	snprintf(buf, sizeof(buf), "%s%s", ::programs, filename);
+	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 #if defined(USE_SD)
 	File file = SD.open(buf, O_READ);
@@ -142,9 +139,9 @@ void flash_filer::restore(const char *filename) {
 #endif
 	hardware_restore(file);
 	file.close();
-	int n = sscanf(buf + strlen(::programs), "%[A-Z0-9].%d", chkpt, &cpid);
+	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;
 #endif
-	start(::programs);
+	start();
 }
 #endif
