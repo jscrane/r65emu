@@ -14,6 +14,7 @@
 
 #include "serialio.h"
 #include "filer.h"
+#include "flash_filer.h"
 
 #if defined(DISK)
 static File file, dir;

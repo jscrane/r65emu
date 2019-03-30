@@ -5,7 +5,7 @@ class socket_filer: public filer {
 public:
 	socket_filer(const char *hostname): _hostname(hostname) {}
 
-	const char *advance() { return 0; }
+	const char *advance();
 	const char *rewind() { return advance(); }
 
 	const char *checkpoint();

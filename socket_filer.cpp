@@ -20,6 +20,12 @@ static bool connected() {
 	return client.connected();
 }
 
+const char *socket_filer::advance() {
+	if (connected())
+		return "connected";
+	return 0;
+}
+
 bool socket_filer::start() {
 
 #if defined(WIFI_SSID)
@@ -53,12 +59,20 @@ bool socket_filer::more() {
 
 #if !defined(NO_CHECKPOINT)
 const char *socket_filer::checkpoint() {
-	// FIXME
-	return 0;
+	if (connected()) {
+		hardware_checkpoint(client);
+		client.flush();
+		client.stop();
+		return "checkpointed";
+	}
+	return "not connected";
 }
 
 void socket_filer::restore(const char *) {
-	// FIXME
+	if (connected()) {
+		hardware_restore(client);
+		client.stop();
+	}
 }
 #endif
 

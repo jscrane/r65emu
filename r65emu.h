@@ -11,6 +11,7 @@
 #include "keyboard.h"
 #include "serialio.h"
 #include "filer.h"
+#include "flash_filer.h"
 #include "serial_filer.h"
 #include "socket_filer.h"
 #include "timed.h"
