@@ -10,6 +10,9 @@ static volatile uint8_t head, tail;
 static uint8_t DataPin;
 
 // The ISR for the external interrupt
+#if defined(ESP32) || defined(ESP8266)
+ICACHE_RAM_ATTR
+#endif
 void ps2interrupt(void)
 {
 	static uint8_t bitcount=0;
