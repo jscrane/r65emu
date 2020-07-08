@@ -4,6 +4,7 @@
 #include "tftdisplay.h"
 
 #if defined(USE_UTFT)
+#pragma message "UTFT configured"
 #include <UTFT.h>
 #include "TinyFont.h"
 
@@ -18,6 +19,9 @@ static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST, TFT_SER);
 #include <TFT_eSPI.h>
 
 static TFT_eSPI espi;
+
+#else
+#pragma error "Display not configured!"
 #endif
 
 static inline void setColor(colour_t c) {
@@ -40,6 +44,7 @@ void TFTDisplay::begin(unsigned bg, unsigned fg, orientation_t orient) {
 	utft.setFont((uint8_t *)TinyFont);
 	_cx = utft.getFontXsize();  
 	_cy = utft.getFontYsize();
+
 #elif defined(USE_ESPI)
 	espi.init();
 	espi.setRotation(orient);
