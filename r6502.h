@@ -170,7 +170,7 @@ private:
 	inline void bit_z() { _bit(_mem[_z()]); }
 	inline void and_z() { _and(_mem[_z()]); }
 	inline void rol_z() { _rol(_z()); }
-	inline void plp();
+	void plp();
 	inline void and_() { _and(_mem[PC++]); }
 	inline void rol() { A=__rol(A); }
 	inline void bit_a() { _bit(_mem[_a()]); }
