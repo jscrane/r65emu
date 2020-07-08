@@ -6,12 +6,8 @@
 
 #if defined(HARDWARE_H)
 #include HARDWARE_H
-#elif defined(ESP32)
-#include "hw/esp32-espi-dac.h"
-#elif defined(ESP8266)
-#include "hw/esp8266-pwm-fs.h"
 #else
-#pragma warn "unknown architecture"
+#pragma error "define HARDWARE_H"
 #endif
 
 bool hardware_reset();
