@@ -31,10 +31,12 @@ bool hardware_reset() {
 #if defined(USE_SPIRAM)
 	extern SPIClass SPIRAM_DEV;
 	SPIRAM_DEV.begin();
-#if defined(SPIRAM_SPI)
-	SPIRAM_DEV.setModule(SPIRAM_SPI);
+#if defined(SPIRAM_MODULE)
+	SPIRAM_DEV.setModule(SPIRAM_MODULE);
 #endif
-	SPIRAM_DEV.setClockDivider(1);
+#if defined(SPIRAM_CLKDIV)
+	SPIRAM_DEV.setClockDivider(SPIRAM_CLKDIV);
+#endif
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
 #endif
 
