@@ -15,6 +15,8 @@
 #define KBD_DATA	D3
 #define KBD_IRQ		D4
 
+#define RAM_SIZE	32768
+
 // SPI-RAM
 #define USE_SPIRAM
 #define SPIRAM_DEV	SPI

@@ -13,6 +13,8 @@
 #define KBD_DATA	PE_4
 #define KBD_IRQ		PE_5
 
+#define RAM_SIZE	0x3000
+
 // SPI-RAM
 #undef USE_SPIRAM
 
