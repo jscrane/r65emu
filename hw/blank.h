@@ -6,7 +6,7 @@
 #define KBD_DATA	34
 #define KBD_IRQ		35
 
-#define RAM_SIZE	0
+#define RAM_SIZE	0u
 
 // SPI-RAM
 #undef USE_SPIRAM

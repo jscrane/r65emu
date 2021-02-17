@@ -3,6 +3,8 @@
 
 class ram: public Memory::Device {
 public:
+	static const unsigned page_size = 1024;
+
 	virtual void operator= (uint8_t c) { _mem[_acc] = c; }
 	virtual operator uint8_t () { return _mem[_acc]; }
 
@@ -14,6 +16,6 @@ public:
 	ram (): Memory::Device(sizeof(_mem)) {}
 
 private:
-	uint8_t _mem[1024];
+	uint8_t _mem[page_size];
 };
 #endif

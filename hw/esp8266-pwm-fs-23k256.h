@@ -15,13 +15,13 @@
 #define KBD_DATA	D3
 #define KBD_IRQ		D4
 
-#define RAM_SIZE	32768
+#define RAM_SIZE	0x8000u
 
 // SPI-RAM
 #define USE_SPIRAM
 #define SPIRAM_DEV	SPI
 #define SPIRAM_CS       D0
-#define SPIRAM_SIZE	32768
+#define SPIRAM_SIZE	0x8000u
 
 // "tape" storage...
 #undef USE_SD
