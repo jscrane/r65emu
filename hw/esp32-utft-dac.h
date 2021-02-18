@@ -15,6 +15,7 @@
 
 // SPI-RAM
 #undef USE_SPIRAM
+#define SPIRAM_SIZE	0u
 
 // "tape" storage...
 #undef USE_SD

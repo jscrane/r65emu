@@ -21,7 +21,7 @@
 #define SPIRAM_DEV      SPI_for_SD
 #define SPIRAM_MODULE	1
 #define SPIRAM_CLKDIV	1
-#define SPIRAM_SIZE	65536
+#define SPIRAM_SIZE	65536u
 
 // "tape" storage...
 #define USE_SD
