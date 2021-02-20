@@ -12,8 +12,8 @@
 //#define LOAD_GLCD
 
 // PS/2 keyboard
-#define KBD_DATA	D3
-#define KBD_IRQ		D4
+#define KBD_IRQ		D3
+#define KBD_DATA	D4
 
 #define RAM_SIZE	0x8000u
 
