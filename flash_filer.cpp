@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <stdint.h>
 #include "hardware.h"
 
@@ -23,8 +22,6 @@ static File file;
 static Dir dir;
 #endif
 
-#define STORAGE defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
-
 bool flash_filer::start()
 {
 #if defined(USE_FS)
@@ -41,7 +38,7 @@ bool flash_filer::start()
 
 void flash_filer::stop()
 {
-#if STORAGE
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 	file.close();
 #endif
 }
@@ -50,7 +47,7 @@ bool flash_filer::more()
 {
 	if (_pos >= _len) {
 		_pos = 0;
-#if STORAGE
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 		_len = file.read(_buf, sizeof(_buf));
 #endif
 		if (_len == 0)	// eof
@@ -60,7 +57,7 @@ bool flash_filer::more()
 }
 
 const char *flash_filer::advance() {
-#if STORAGE
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 	bool rewound = false;
 	file.close();
 #if defined(USE_FS)
@@ -108,17 +105,11 @@ static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 
 const char *flash_filer::checkpoint() {
-#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
+#if defined(DISK)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
-#if defined(USE_SD)
-	File file = SD.open(buf, O_WRITE | O_CREAT | O_TRUNC);
-#elif defined(USE_SPIFFS)
-	File file = SPIFFS.open(buf, FILE_WRITE);
-#else
-	File file = SPIFFS.open(buf, "w");
-#endif
+	File file = DISK.open(buf, FILE_WRITE);
 	hardware_checkpoint(file);
 	file.close();
 	start();
@@ -127,17 +118,11 @@ const char *flash_filer::checkpoint() {
 }
 
 void flash_filer::restore(const char *filename) {
-#if defined(USE_SD) || defined(USE_SPIFFS) || defined(ESP8266)
+#if defined(DISK)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
-#if defined(USE_SD)
-	File file = SD.open(buf, O_READ);
-#elif defined(USE_SPIFFS)
-	File file = SPIFFS.open(buf, FILE_READ);
-#else
-	File file = SPIFFS.open(buf, "r");
-#endif
+	File file = DISK.open(buf, FILE_READ);
 	hardware_restore(file);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
