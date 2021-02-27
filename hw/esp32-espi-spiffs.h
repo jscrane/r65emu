@@ -2,3 +2,4 @@
 
 #include <hw/esp32/espi.h>
 #include <hw/esp32/kbd.h>
+#include <hw/esp32/spiffs.h>

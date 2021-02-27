@@ -1,28 +1,4 @@
-// TFT display...
-#define USE_UTFT
-#undef TFT_BACKLIGHT
-#define TFT_MODEL	ILI9325C
-#define TFT_RS		32
-#define TFT_WR		33
-#define TFT_CS		27
-#define TFT_RST		26
-
-// PS/2 keyboard
-#define KBD_DATA	34
-#define KBD_IRQ		35
-
 #define RAM_SIZE	0x10000u
 
-// SPI-RAM
-#undef USE_SPIRAM
-#define SPIRAM_SIZE	0u
-
-// "tape" storage...
-#undef USE_SD
-#undef USE_FS
-#define USE_SPIFFS
-
-// sound: dac and pwm
-#define DAC_SOUND	25
-#define PWM_SOUND	25
-#define PWM_DUTY	20	// 20/1024 -> volume
+#include <hw/esp32/utft.h>
+#include <hw/esp32/kbd.h>

@@ -11,7 +11,6 @@
 #endif
 
 #include "memory.h"
-#include "ps2drv.h"
 #include "CPU.h"
 
 #if defined(USE_SPIRAM)
@@ -21,7 +20,11 @@ spiram sram(SPIRAM_SIZE);
 #endif
 
 Memory memory;
+
+#if defined(USE_KBD)
+#include "ps2drv.h"
 PS2Driver ps2;
+#endif
 
 static CPU *_cpu;
 
@@ -66,7 +69,10 @@ bool hardware_reset() {
 void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
 	memory.begin();
+
+#if defined(USE_KBD)
 	ps2.begin(KBD_DATA, KBD_IRQ);
+#endif
 
 #if defined(TFT_BACKLIGHT)
 	pinMode(TFT_BACKLIGHT, OUTPUT);
