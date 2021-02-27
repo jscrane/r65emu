@@ -7,7 +7,7 @@
 #if defined(HARDWARE_H)
 #include HARDWARE_H
 #else
-#pragma error "define HARDWARE_H"
+#include "hw/user.h"
 #endif
 
 bool hardware_reset();
