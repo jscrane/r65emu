@@ -22,6 +22,15 @@ static File file;
 static Dir dir;
 #endif
 
+bool flash_filer::seek(uint32_t pos)
+{
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
+	_pos = _len = 0;
+	return file.seek(pos);
+#endif
+	return false;
+}
+
 bool flash_filer::start()
 {
 #if defined(USE_FS)

@@ -15,6 +15,7 @@ public:
 
 	bool start();
 	void stop();
+	bool seek(uint32_t pos);
 	
 	uint8_t read() { return _buf[_pos++]; }
 	bool more();

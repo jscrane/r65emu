@@ -46,6 +46,6 @@ public:
 	static const uint8_t eri = 1 << 7;	// enable receive interrupt
 
 private:
-	serialio *_device;
+	class serialio *_device;
 };
 #endif
