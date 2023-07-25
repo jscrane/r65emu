@@ -1,5 +1,5 @@
-#ifndef __TFTDISPLAY_H__
-#define __TFTDISPLAY_H__
+#ifndef __DISPLAY_H__
+#define __DISPLAY_H__
 
 typedef enum {
 	portrait, landscape, reverse_portrait, reverse_landscape
@@ -27,7 +27,7 @@ const colour_t ORANGE = 0xFDA0;
 const colour_t GREENYELLOW = 0xB7E0;
 const colour_t PINK = 0xFC9F;
 
-class TFTDisplay {
+class Display {
 public:
 	void begin(colour_t bg, colour_t fg, orientation_t o = landscape);
 	void clear();
