@@ -55,9 +55,18 @@ static inline void setColor(colour_t c) {
 #endif
 }
 
-void Display::begin(unsigned bg, unsigned fg, orientation_t orient) {
+void Display::begin(colour_t bg, colour_t fg, orientation_t orient, unsigned dispx, unsigned dispy) {
+	begin(bg, fg, orient);
+	_xoff = (_dx - dispx) / 2;
+	_yoff = (_dy - dispy) / 2;
+	_dx -= _xoff;
+	_dy -= _yoff;
+}
+
+void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_bg = bg;
 	_fg = fg;
+	_xoff = _yoff = 0;
 
 #if defined(USE_UTFT)
 	utft.InitLCD(orient);
@@ -131,6 +140,8 @@ void Display::status(const char *s) {
 }
 
 void Display::drawPixel(unsigned x, unsigned y, colour_t col) {
+	x += _xoff;
+	y += _yoff;
 #if defined(USE_UTFT)
 	utft.setColor(col);
 	utft.drawPixel(x, y);
@@ -142,6 +153,8 @@ void Display::drawPixel(unsigned x, unsigned y, colour_t col) {
 }
 
 void Display::drawString(const char *s, unsigned x, unsigned y) {
+	x += _xoff;
+	y += _yoff;
 #if defined(USE_UTFT)
 	utft.print(s, x, y);
 #elif defined(USE_ESPI)
