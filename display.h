@@ -29,7 +29,9 @@ const colour_t PINK = 0xFC9F;
 
 class Display {
 public:
-	void begin(colour_t bg, colour_t fg, orientation_t o = landscape);
+	void begin(colour_t bg, colour_t fg, orientation_t o);
+	void begin(colour_t bg, colour_t fg, orientation_t o, unsigned dispx, unsigned dispy);
+
 	void clear();
 	void status(const char *s);
 
@@ -37,7 +39,7 @@ public:
 	void drawString(const char *s, unsigned x, unsigned y);
 
 protected:
-	unsigned _bg, _fg, _cx, _cy, _dx, _dy, _oxs;
+	unsigned _bg, _fg, _cx, _cy, _dx, _dy, _oxs, _xoff, _yoff;
 };
 
 #endif
