@@ -30,13 +30,15 @@ static fabgl::Canvas canvas(&vga);
 static const fabgl::RGB888 rgb(colour_t c) {
 	switch(c) {
 		case BLACK: return Color::Black;
-		case WHITE: return Color::White;
+		case RED: return Color::Red;
 		case GREEN: return Color::Green;
 		case YELLOW: return Color::Yellow;
 		case BLUE: return Color::Blue;
 		case MAGENTA: return Color::Magenta;
 		case CYAN: return Color::Cyan;
+		case WHITE: return Color::White;
 	}
+	return Color::BrightWhite;
 }
 
 #else
