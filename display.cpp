@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "hardware.h"
 #include "memory.h"
-#include "tftdisplay.h"
+#include "display.h"
 
 #if defined(USE_UTFT)
 #pragma message "UTFT configured"
@@ -20,6 +20,27 @@ static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST, TFT_SER);
 
 static TFT_eSPI espi;
 
+#elif defined(USE_VGA)
+#pragma message "FabGL VGA configured"
+#include <fabgl.h>
+
+static fabgl::VGAController vga;
+static fabgl::Canvas canvas(&vga);
+
+static const fabgl::RGB888 rgb(colour_t c) {
+	switch(c) {
+		case BLACK: return Color::Black;
+		case RED: return Color::Red;
+		case GREEN: return Color::Green;
+		case YELLOW: return Color::Yellow;
+		case BLUE: return Color::Blue;
+		case MAGENTA: return Color::Magenta;
+		case CYAN: return Color::Cyan;
+		case WHITE: return Color::White;
+	}
+	return Color::BrightWhite;
+}
+
 #else
 #pragma error "Display not configured!"
 #endif
@@ -29,10 +50,12 @@ static inline void setColor(colour_t c) {
 	utft.setColor(c);
 #elif defined(USE_ESPI)
 	espi.setTextColor(c);
+#elif defined(USE_VGA)
+	canvas.setPenColor(rgb(c));
 #endif
 }
 
-void TFTDisplay::begin(unsigned bg, unsigned fg, orientation_t orient) {
+void Display::begin(unsigned bg, unsigned fg, orientation_t orient) {
 	_bg = bg;
 	_fg = fg;
 
@@ -52,21 +75,41 @@ void TFTDisplay::begin(unsigned bg, unsigned fg, orientation_t orient) {
 	_dy = espi.height();
 	_cy = espi.fontHeight();
 	_cx = 6;	// FIXME
+
+#elif defined(USE_VGA)
+	static bool init;
+
+	if (init)
+		vga.end();
+	init = true;
+	vga.begin();
+	vga.setResolution(VGA_480x300_75Hz);
+
+	canvas.setBrushColor(rgb(_bg));
+	canvas.clear();
+	canvas.setGlyphOptions(GlyphOptions().FillBackground(true));
+	canvas.selectFont(&fabgl::FONT_5x7);
+	_cy = canvas.getFontInfo()->height;
+	_cx = canvas.getFontInfo()->width;
+	_dx = canvas.getWidth();
+	_dy = canvas.getHeight();
 #endif
 
 	setColor(fg);
 	_oxs = _dx;
 }
 
-void TFTDisplay::clear() {
+void Display::clear() {
 #if defined(USE_UTFT)
 	utft.fillScr(_bg);
 #elif defined(USE_ESPI)
 	espi.fillScreen(_bg);
+#elif defined(USE_VGA)
+	canvas.clear();
 #endif
 }
 
-void TFTDisplay::status(const char *s) {
+void Display::status(const char *s) {
 	setColor(_fg);
 
 #if defined(USE_UTFT)
@@ -80,19 +123,25 @@ void TFTDisplay::status(const char *s) {
 	_oxs = espi.textWidth(s);
 	espi.setTextDatum(BR_DATUM);
 	espi.drawString(s, _dx, _dy);
+#elif defined(USE_VGA)
+	canvas.fillRectangle(_dx - _oxs, _dy - _cy, _dx, _dy);
+	_oxs = canvas.textExtent(s) + _cx;
+	canvas.drawText(_dx - _oxs, _dy - _cy, s);
 #endif
 }
 
-void TFTDisplay::drawPixel(unsigned x, unsigned y, colour_t col) {
+void Display::drawPixel(unsigned x, unsigned y, colour_t col) {
 #if defined(USE_UTFT)
 	utft.setColor(col);
 	utft.drawPixel(x, y);
 #elif defined(USE_ESPI)
 	espi.drawPixel(x, y, col);
+#elif defined(USE_VGA)
+	canvas.setPixel(x, y, rgb(col));
 #endif
 }
 
-void TFTDisplay::drawString(const char *s, unsigned x, unsigned y) {
+void Display::drawString(const char *s, unsigned x, unsigned y) {
 #if defined(USE_UTFT)
 	utft.print(s, x, y);
 #elif defined(USE_ESPI)
@@ -100,5 +149,7 @@ void TFTDisplay::drawString(const char *s, unsigned x, unsigned y) {
 	unsigned w = espi.textWidth(s);
 	espi.fillRect(x, y, w, _cy, _bg);
 	espi.drawString(s, x, y);
+#elif defined(USE_VGA)
+	canvas.drawText(x, y, s);
 #endif
 }
