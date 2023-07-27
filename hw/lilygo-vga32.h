@@ -10,11 +10,7 @@
 
 // sound: dac and pwm
 #define DAC_SOUND	25
-
-// PWM doesn't work
-// "assert failed: ledc_clk_cfg_to_global_clk ledc.c:443 (false)"
-//#define PWM_SOUND	25
-//#define PWM_DUTY	20	// 20/1024 -> volume
+#define PWM_SOUND	25
 
 // "tape" storage...
 #undef USE_SD
