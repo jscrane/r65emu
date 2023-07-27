@@ -17,6 +17,5 @@
 #include "timed.h"
 #include "hardware.h"
 #include "sound_dac.h"
-#include "sound_pwm.h"
 
 #endif
