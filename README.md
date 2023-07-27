@@ -21,7 +21,7 @@ Currently the only mass-produced board which is supported is the
 
 Examples are also given for a generic `node32s` board and a homebrew `esp8bit` board.
 
-Copy your configuration file to `user.h`. If the board is also mass-produced, please open a PR with the new file.
+Copy your configuration file to `user.h`. If the board is also mass-produced, please open a PR to add the new file to the library.
 
 Libraries:
 ---------
