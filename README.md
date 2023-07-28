@@ -23,7 +23,10 @@ Examples are also given for a generic `node32s` board and a homebrew `esp8bit` b
 
 Copy your configuration file to `user.h`. If the board is also mass-produced, please open a PR to add the new file to the library.
 
-Some emulations require a filesystem image containing programs to be uploaded. This [arduino plugin](https://github.com/me-no-dev/arduino-esp32fs-plugin) is required for that.
+Some emulations require a filesystem image containing programs to be uploaded:
+- On esp32, this [arduino plugin](https://github.com/me-no-dev/arduino-esp32fs-plugin) is required for that
+- On esp8266, this [arduino plugin](https://github.com/esp8266/arduino-esp8266fs-plugin) should be used
+- Alternatively an SD card can be used.
 
 Libraries
 ---------
