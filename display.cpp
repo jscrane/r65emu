@@ -61,6 +61,11 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient, unsigned dis
 	_yoff = (_dy - dispy) / 2;
 	_dx -= _xoff;
 	_dy -= _yoff;
+
+#if defined(DEBUGGING)
+	Serial.printf("xoff %d yoff %d dx %d dy %d", _xoff, _yoff, _dx, _dy);
+	Serial.println();
+#endif
 }
 
 void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
@@ -102,6 +107,12 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_cx = canvas.getFontInfo()->width;
 	_dx = canvas.getWidth();
 	_dy = canvas.getHeight();
+
+
+#if defined(DEBUGGING)
+	Serial.printf("w %d h %d", _dx, _dy);
+	Serial.println();
+#endif
 #endif
 
 	setColor(fg);
