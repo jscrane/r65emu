@@ -92,7 +92,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 		vga.end();
 	init = true;
 	vga.begin();
-	vga.setResolution(VGA_480x300_75Hz);
+	vga.setResolution(VGA_RESOLUTION);
 
 	canvas.setBrushColor(rgb(_bg));
 	canvas.clear();

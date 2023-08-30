@@ -3,6 +3,10 @@
 
 // Display
 #define USE_VGA
+#if !defined(VGA_RESOLUTION)
+#define VGA_RESOLUTION	VGA_480x300_75Hz
+//#define VGA_RESOLUTION	VGA_320x200_75HzRetro
+#endif
 
 // PS/2 Keyboard
 #define USE_KBD
