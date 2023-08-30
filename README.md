@@ -44,10 +44,6 @@ These are optional if the target board supports it (e.g., esp8266 or esp32 board
 - [Rei Vilo's port](https://github.com/rei-vilo/SD_TM4C) of Adafruit/Sparkfun's [SD library](https://github.com/adafruit/SD),
 - [My port](https://github.com/jscrane/SpiRAM) of Phil Stewart's [SpiRAM library](http://playground.arduino.cc/Main/SpiRAM)
 
-Input
-------
-- [PS2Keyboard](https://github.com/jscrane/PS2Keyboard)
-
 Hardware
 ---------
 - A [Stellaris Launchpad](http://www.energia.nu/Guide_StellarisLaunchPad.html) _or_ 
@@ -57,4 +53,3 @@ ESP32-based board, e.g., [Node32s](https://www.esp32.com/viewtopic.php?t=459),
 - A 23k256 SPI RAM chip (for Stellarpad, optional),
 - A supported TFT screen, such as [this one](http://forum.stellarisiti.com/topic/626-ssd1289-32-320x240-tft-16bit-parallel-interface-touch-libraries/),
 - A PS/2 keyboard.
-
