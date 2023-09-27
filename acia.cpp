@@ -4,8 +4,8 @@
 #include "serialio.h"
 #include "acia.h"
 
-void acia::operator=(uint8_t b) {
-	if (_acc & 1) {
+void ACIA::write(Memory::address a, uint8_t b) {
+	if (a & 1) {
 		_device->write(b);
 		return;
 	}
@@ -42,8 +42,8 @@ void acia::operator=(uint8_t b) {
 	// FIXME: more
 }
 
-acia::operator uint8_t() {
-	if (_acc & 1)
+uint8_t ACIA::read(Memory::address a) {
+	if (a & 1)
 		return _device->read();
 
 	return _device->more()? rdrf | tdre: tdre;
