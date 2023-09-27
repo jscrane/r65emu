@@ -8,7 +8,7 @@ public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	ACIA(serialio &d): _device(&d) {}
+	ACIA(serialio &s): _serial(&s) {}
 
 	// status bits
 	//
@@ -47,7 +47,14 @@ public:
 
 	static const uint8_t eri = 1 << 7;	// enable receive interrupt
 
+protected:
+	// overrideable device memory interface
+	virtual uint8_t read_status();
+	virtual uint8_t read_data();
+	virtual void write_control(uint8_t);
+	virtual void write_data(uint8_t);
+
 private:
-	class serialio *_device;
+	class serialio *_serial;
 };
 #endif
