@@ -1,12 +1,14 @@
 #ifndef __ACIA_H__
 #define __ACIA_H__
 
-class acia: public Memory::Device {
-public:
-	void operator= (uint8_t);
-	operator uint8_t();
+// Motorola 6850 ACIA
 
-	acia(serialio &d): Memory::Device(256), _device(&d) {}
+class ACIA {
+public:
+	void write(Memory::address, uint8_t);
+	uint8_t read(Memory::address);
+
+	ACIA(serialio &d): _device(&d) {}
 
 	// status bits
 	//
