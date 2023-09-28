@@ -177,3 +177,17 @@ uint8_t PIA::read_portb() {
 	irq_b1 = irq_b2 = false;
 	return (inb & ~ddrb) | (outb & ddrb);
 }
+
+void PIA::write_porta_in_bit(uint8_t mask, bool state) {
+	if (state)
+		ina |= mask;
+	else
+		ina &= ~mask;
+}
+
+void PIA::write_portb_in_bit(uint8_t mask, bool state) {
+	if (state)
+		inb |= mask;
+	else
+		inb &= ~mask;
+}

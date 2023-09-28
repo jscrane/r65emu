@@ -25,4 +25,10 @@ extern class spiram sram;
 extern class Memory memory;
 #endif
 
+#if defined(DEBUGGING)
+#define DBG(x) Serial.x
+#else
+#define DBG(x)
+#endif
+
 #endif

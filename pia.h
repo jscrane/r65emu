@@ -23,9 +23,11 @@ public:
 
 	// device input (external) interface
 	void write_porta_in(uint8_t b) { ina = b; }
+	void write_porta_in_bit(uint8_t, bool);
 	void write_ca1(bool);
 	void write_ca2(bool);
 	void write_portb_in(uint8_t b) { inb = b; }
+	void write_portb_in_bit(uint8_t, bool);
 	void write_cb1(bool);
 	void write_cb2(bool);
 
