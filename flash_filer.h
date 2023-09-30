@@ -17,12 +17,11 @@ public:
 	void stop();
 	bool seek(uint32_t pos);
 	
-	uint8_t read() { return _buf[_pos++]; }
 	bool more();
+	uint8_t read();
+	void write(uint8_t);
 
 private:
 	const char *_programs;
-	unsigned _pos, _len;
-	uint8_t _buf[128];
 };
 #endif

@@ -25,10 +25,10 @@ static Dir dir;
 bool flash_filer::seek(uint32_t pos)
 {
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
-	_pos = _len = 0;
 	return file.seek(pos);
-#endif
+#else
 	return false;
+#endif
 }
 
 bool flash_filer::start()
@@ -41,7 +41,6 @@ bool flash_filer::start()
 		return false;
 #endif
 
-	_pos = _len = 0;
 	return true;
 }
 
@@ -54,15 +53,25 @@ void flash_filer::stop()
 
 bool flash_filer::more()
 {
-	if (_pos >= _len) {
-		_pos = 0;
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
-		_len = file.read(_buf, sizeof(_buf));
+	return file.available() > 0;
+#else
+	return false;
 #endif
-		if (_len == 0)	// eof
-			return false;
-	}
-	return true;
+}
+
+uint8_t flash_filer::read() {
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
+	return file.read();
+#else
+	return 0xff;
+#endif
+}
+
+void flash_filer::write(uint8_t b) {
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
+	file.write(b);
+#endif
 }
 
 const char *flash_filer::advance() {
@@ -73,7 +82,7 @@ const char *flash_filer::advance() {
 	static char buf[32];
 	while (true) {
 		if (dir.next()) {
-			file = dir.openFile("r");
+			file = dir.openFile("rb+");
 			break;
 		}
 		dir = SPIFFS.openDir(_programs);
