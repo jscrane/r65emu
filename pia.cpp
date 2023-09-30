@@ -27,7 +27,7 @@ void PIA::write(Memory::address a, uint8_t b) {
 	Serial.print(' ');
 	Serial.println(b, 16);
 #endif
-	switch(a % 4) {
+	switch(a & 3) {
 	case 0:
 		output_selected(cra)? write_porta(b): write_ddra(b);
 		break;
@@ -49,7 +49,7 @@ uint8_t PIA::read(Memory::address a) {
 	Serial.print(" < ");
 	Serial.println(a, 16);
 #endif
-	switch (a % 4) {
+	switch (a & 3) {
 	case 0:
 		return output_selected(cra)? read_porta(): read_ddra();
 	case 1:
@@ -59,7 +59,6 @@ uint8_t PIA::read(Memory::address a) {
 	case 3:
 		return read_crb();
 	}
-	return 0xff;
 }
 
 void PIA::checkpoint(Stream &s) {
