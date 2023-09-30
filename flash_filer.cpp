@@ -71,6 +71,7 @@ uint8_t flash_filer::read() {
 void flash_filer::write(uint8_t b) {
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_FS)
 	file.write(b);
+	file.flush();
 #endif
 }
 
