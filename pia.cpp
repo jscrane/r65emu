@@ -59,6 +59,7 @@ uint8_t PIA::read(Memory::address a) {
 	case 3:
 		return read_crb();
 	}
+	return 0xff;
 }
 
 void PIA::checkpoint(Stream &s) {

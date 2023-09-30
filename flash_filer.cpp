@@ -82,7 +82,7 @@ const char *flash_filer::advance() {
 	static char buf[32];
 	while (true) {
 		if (dir.next()) {
-			file = dir.openFile("rb+");
+			file = dir.openFile("r+");
 			break;
 		}
 		dir = SPIFFS.openDir(_programs);
