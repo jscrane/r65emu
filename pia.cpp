@@ -20,7 +20,7 @@ inline bool c2_high_to_low(uint8_t cr) { return !c2_low_to_high(cr); }
 inline bool output_selected(uint8_t cr) { return cr & 0x04; }
 
 void PIA::write(Memory::address a, uint8_t b) {
-#if defined(DEBUGGING)
+#if defined(DEBUG_PIA)
 	Serial.print(millis());
 	Serial.print(" > ");
 	Serial.print(a, 16);
@@ -44,7 +44,7 @@ void PIA::write(Memory::address a, uint8_t b) {
 }
 
 uint8_t PIA::read(Memory::address a) {
-#if defined(DEBUGGING)
+#if defined(DEBUG_PIA)
 	Serial.print(millis());
 	Serial.print(" < ");
 	Serial.println(a, 16);
