@@ -31,10 +31,7 @@
 #undef USE_SD
 //#define SD_CS		D0
 #undef USE_SPIFFS
-#undef USE_FS
-
-#undef USE_SPIFFS
-#define USE_FS
+#define USE_LITTLEFS
 
 // sound
 #define PWM_SOUND	D2

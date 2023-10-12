@@ -28,9 +28,9 @@
 #define KBD_DATA	34
 #define KBD_IRQ		35
 
-// "tape" storage...
+// storage
 #undef USE_SD
-#undef USE_FS
+#undef USE_LITTLEFS
 #define USE_SPIFFS
 
 // sound: dac and pwm
