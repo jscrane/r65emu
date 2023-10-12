@@ -22,5 +22,5 @@
 
 // "tape" storage...
 #undef USE_SD
-#undef USE_FS
+#undef USE_LITTLEFS
 #define USE_SPIFFS

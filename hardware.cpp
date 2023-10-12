@@ -6,8 +6,9 @@
 #include <SD.h>
 #elif defined(USE_SPIFFS)
 #include <SPIFFS.h>
-#elif defined(USE_FS)
+#elif defined(USE_LITTLEFS)
 #include <FS.h>
+#include <LittleFS.h>
 #endif
 
 #include "memory.h"
@@ -54,8 +55,8 @@ bool hardware_reset() {
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
 
-#elif defined(USE_FS)
-	success = SPIFFS.begin();
+#elif defined(USE_LITTLEFS)
+	success = LittleFS.begin();
 #endif
 
 #if defined(TFT_BACKLIGHT)

@@ -1,9 +1,9 @@
-#ifndef __FLASH_FILER_H__
-#define __FLASH_FILER_H__
+#ifndef __SD_FILER_H__
+#define __SD_FILER_H__
 
-class flash_filer: public filer {
+class sd_filer: public filer {
 public:
-	flash_filer(const char *programs): _programs(programs) {}
+	sd_filer(const char *programs): _programs(programs) {}
 
 	const char *advance();
 	const char *rewind();
