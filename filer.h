@@ -1,7 +1,7 @@
 #ifndef __FILER_H__
 #define __FILER_H__
 
-class filer: public serialio {
+class filer: virtual public serialio {
 public:
 	virtual const char *advance() =0;
 	virtual const char *rewind() =0;

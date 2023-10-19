@@ -12,17 +12,18 @@
 #include "filer.h"
 #include "flash_filer.h"
 
+static File files[MAX_FILES];
+
 #if defined(USE_SPIFFS)
-static File file, dir;
+static File dir;
 #elif defined(USE_LITTLEFS)
-static File file;
 static Dir dir;
 #endif
 
-bool flash_filer::seek(uint32_t pos)
+bool flash_file::seek(uint32_t pos)
 {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	return file.seek(pos);
+	return files[_fd].seek(pos);
 #else
 	return false;
 #endif
@@ -44,43 +45,44 @@ bool flash_filer::start()
 void flash_filer::stop()
 {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	file.close();
+	for (int i = 0; i < MAX_FILES; i++)
+		files[i].close();
 #endif
 }
 
-bool flash_filer::more()
+bool flash_file::more()
 {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	return file.available() > 0;
+	return files[_fd].available() > 0;
 #else
 	return false;
 #endif
 }
 
-uint8_t flash_filer::read() {
+uint8_t flash_file::read() {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	return file.read();
+	return files[_fd].read();
 #else
 	return 0xff;
 #endif
 }
 
-void flash_filer::write(uint8_t b) {
+void flash_file::write(uint8_t b) {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	file.write(b);
-	file.flush();
+	files[_fd].write(b);
+	files[_fd].flush();
 #endif
 }
 
 const char *flash_filer::advance() {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
 	bool rewound = false;
-	file.close();
+	files[_current].close();
 #if defined(USE_LITTLEFS)
 	static char buf[32];
 	while (true) {
 		if (dir.next()) {
-			file = dir.openFile("r+");
+			files[_current] = dir.openFile("r+");
 			break;
 		}
 		dir = LittleFS.openDir(_programs);
@@ -89,10 +91,10 @@ const char *flash_filer::advance() {
 	return buf;
 #else
 	while (true) {
-		file = dir.openNextFile();
-		if (file) {
-			if (file.isDirectory())
-				file.close();
+		files[_current] = dir.openNextFile();
+		if (files[_current]) {
+			if (files[_current].isDirectory())
+				files[_current].close();
 			else
 				break;
 		} else if (!rewound) {
@@ -101,7 +103,7 @@ const char *flash_filer::advance() {
 		} else
 			return 0;
 	}
-	return file.name();
+	return files[_current].name();
 #endif
 #else
 	return 0;
