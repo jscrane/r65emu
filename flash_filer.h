@@ -1,7 +1,23 @@
 #ifndef __FLASH_FILER_H__
 #define __FLASH_FILER_H__
 
-class flash_filer: public filer {
+#define MAX_FILES	3
+
+class flash_file: virtual public serialio {
+public:
+	flash_file(uint8_t fd = 0): _fd(fd) {}
+
+	virtual bool more();
+	virtual uint8_t read();
+	virtual void write(uint8_t);
+
+	bool seek(uint32_t pos);
+
+private:
+	const uint8_t _fd;
+};
+
+class flash_filer: public filer, public flash_file {
 public:
 	flash_filer(const char *programs): _programs(programs) {}
 
@@ -13,13 +29,11 @@ public:
 
 	bool start();
 	void stop();
-	bool seek(uint32_t pos);
-	
-	bool more();
-	uint8_t read();
-	void write(uint8_t);
+
+	void select(uint8_t f) { _current = f; }
 
 private:
 	const char *_programs;
+	uint8_t _current;
 };
 #endif
