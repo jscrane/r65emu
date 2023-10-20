@@ -29,6 +29,38 @@ bool flash_file::seek(uint32_t pos)
 #endif
 }
 
+bool flash_file::more()
+{
+#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+	return files[_fd].available() > 0;
+#else
+	return false;
+#endif
+}
+
+uint8_t flash_file::read() {
+#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+	return files[_fd].read();
+#else
+	return 0xff;
+#endif
+}
+
+flash_file::operator bool() const {
+#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+	return files[_fd];
+#else
+	return false;
+#endif
+}
+
+void flash_file::write(uint8_t b) {
+#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+	files[_fd].write(b);
+	files[_fd].flush();
+#endif
+}
+
 bool flash_filer::start()
 {
 #if defined(USE_LITTLEFS)
@@ -47,30 +79,6 @@ void flash_filer::stop()
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
 	for (int i = 0; i < MAX_FILES; i++)
 		files[i].close();
-#endif
-}
-
-bool flash_file::more()
-{
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	return files[_fd].available() > 0;
-#else
-	return false;
-#endif
-}
-
-uint8_t flash_file::read() {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	return files[_fd].read();
-#else
-	return 0xff;
-#endif
-}
-
-void flash_file::write(uint8_t b) {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	files[_fd].write(b);
-	files[_fd].flush();
 #endif
 }
 

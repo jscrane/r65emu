@@ -9,6 +9,7 @@ public:
 	uint8_t read(Memory::address);
 
 	ACIA(serialio &s): _serial(&s) {}
+	void set_device(serialio *s) { _serial = s; }
 
 	// status bits
 	//
@@ -55,6 +56,6 @@ protected:
 	virtual void write_data(uint8_t);
 
 private:
-	class serialio *_serial;
+	serialio *_serial;
 };
 #endif

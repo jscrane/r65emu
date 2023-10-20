@@ -1,7 +1,7 @@
 #ifndef __FLASH_FILER_H__
 #define __FLASH_FILER_H__
 
-#define MAX_FILES	3
+#define MAX_FILES	5
 
 class flash_file: virtual public serialio {
 public:
@@ -12,6 +12,7 @@ public:
 	virtual void write(uint8_t);
 
 	bool seek(uint32_t pos);
+	operator bool() const;
 
 private:
 	const uint8_t _fd;
