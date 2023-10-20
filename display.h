@@ -34,6 +34,7 @@ public:
 
 	void clear();
 	void status(const char *s);
+	void statusf(const char *fmt, ...);
 
 	void drawPixel(unsigned x, unsigned y, colour_t col);
 	void drawString(const char *s, unsigned x, unsigned y);

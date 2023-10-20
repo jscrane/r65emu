@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #include <stdint.h>
 #include "hardware.h"
 #include "memory.h"
@@ -148,6 +149,15 @@ void Display::status(const char *s) {
 	_oxs = canvas.textExtent(s) + _cx;
 	canvas.drawText(_dx - _oxs, _dy - _cy, s);
 #endif
+}
+
+void Display::statusf(const char *fmt, ...) {
+	va_list args;
+	char buf[80];
+	va_start(args, fmt);
+	vsnprintf(buf, sizeof(buf), fmt, args);
+	va_end(args);
+	status(buf);
 }
 
 void Display::drawPixel(unsigned x, unsigned y, colour_t col) {
