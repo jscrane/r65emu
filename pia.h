@@ -5,9 +5,9 @@
 // https://en.wikipedia.org/wiki/Peripheral_Interface_Adapter
 class PIA {
 public:
-	PIA(): outb(0), inb(0), crb(0), outa(0), ina(0), cra(0), ddrb(0), ddra(0),
-		ca1(false), ca2(false), cb1(false), cb2(false),
-		irq_a1(false), irq_a2(false), irq_b1(false), irq_b2(false) {}
+	PIA(): cra(0), ina(0), outa(0), ddra(0), crb(0), inb(0), outb(0), ddrb(0),
+		ca1(false), ca2(false), irq_a1(false), irq_a2(false),
+		cb1(false), cb2(false), irq_b1(false), irq_b2(false) {}
 
 	virtual void reset() {
 		outb = inb = crb = ddrb = outa = ina = cra = ddra = 0;

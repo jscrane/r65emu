@@ -11,7 +11,7 @@ static uint8_t DataPin;
 
 // The ISR for the external interrupt
 #if defined(ESP32) || defined(ESP8266)
-ICACHE_RAM_ATTR
+IRAM_ATTR
 #endif
 void ps2interrupt(void)
 {

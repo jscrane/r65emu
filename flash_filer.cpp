@@ -84,7 +84,6 @@ void flash_filer::stop()
 
 const char *flash_filer::advance() {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	bool rewound = false;
 	files[_current].close();
 #if defined(USE_LITTLEFS)
 	static char buf[32];
@@ -98,6 +97,7 @@ const char *flash_filer::advance() {
 	strncpy(buf, dir.fileName().c_str(), sizeof(buf));
 	return buf;
 #else
+	bool rewound = false;
 	while (true) {
 		files[_current] = dir.openNextFile();
 		if (files[_current]) {
@@ -126,9 +126,11 @@ const char *flash_filer::rewind() {
 }
 
 #if !defined(NO_CHECKPOINT)
+#if defined(USE_SPIFFS)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
+#endif
 
 const char *flash_filer::checkpoint() {
 #if defined(USE_SPIFFS)
