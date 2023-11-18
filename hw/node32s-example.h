@@ -28,10 +28,12 @@
 #define KBD_DATA	34
 #define KBD_IRQ		35
 
-// storage
+// Storage
+#if !defined(NO_STORAGE)
 #undef USE_SD
 #undef USE_LITTLEFS
 #define USE_SPIFFS
+#endif
 
 // sound: dac and pwm
 #define DAC_SOUND	25

@@ -11,6 +11,7 @@ Sample Applications
 - [Pacman](https://github.com/jscrane/pacman)
 - [Commodore PET](https://github.com/jscrane/PET)
 - [Compukit UK101](https://github.com/jscrane/UK101)
+- [Commodore Chessmate](https://github.com/jscrane/Chessmate)
 
 Configuration for Arduino
 --------------
@@ -51,5 +52,5 @@ ESP8266 board, e.g., [WeMOS](https://www.wemos.cc/en/latest/d1/d1_mini.html), _o
 ESP32-based board, e.g., [Node32s](https://www.esp32.com/viewtopic.php?t=459),
 - An SD drive to store programs (for Stellarpad),
 - A 23k256 SPI RAM chip (for Stellarpad, optional),
-- A supported TFT screen, such as [this one](http://forum.stellarisiti.com/topic/626-ssd1289-32-320x240-tft-16bit-parallel-interface-touch-libraries/),
+- A supported TFT screen (if not using a board with VGA),
 - A PS/2 keyboard.

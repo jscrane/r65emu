@@ -22,10 +22,12 @@
 #define KBD_DATA	D4
 
 // SPI-RAM
+#if !defined(NO_SPIRAM)
 #define USE_SPIRAM
 #define SPIRAM_DEV	SPI
 #define SPIRAM_CS       D0
 #define SPIRAM_SIZE	0x8000u
+#endif
 
 // flash storage
 #if !defined(NO_STORAGE)

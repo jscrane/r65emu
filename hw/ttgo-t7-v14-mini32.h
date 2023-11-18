@@ -20,7 +20,9 @@
 #define DAC_SOUND	25
 #define PWM_SOUND	25
 
-// "tape" storage...
+// Storage
+#if !defined(NO_STORAGE)
 #undef USE_SD
 #undef USE_LITTLEFS
 #define USE_SPIFFS
+#endif

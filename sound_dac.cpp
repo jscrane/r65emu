@@ -3,9 +3,9 @@
 #include "timed.h"
 #include "sound_dac.h"
 
+#if defined(DAC_SOUND) && defined(ESP_PLATFORM)
 static DAC *s;
 
-#if defined(DAC_SOUND) && defined(ESP_PLATFORM)
 #include <driver/dac.h>
 
 static portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED;

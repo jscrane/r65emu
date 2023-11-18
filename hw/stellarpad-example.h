@@ -7,12 +7,15 @@
 #define KBD_DATA	PE_4
 #define KBD_IRQ		PE_5
 
-// "tape" storage...
+// Storage
+#if !defined(NO_STORAGE)
 #define USE_SD
 #define SD_CS		PF_3
 #define SD_SPI		1
+#endif
 
 // 23k256 SPI-RAM
+#if !defined(NO_SPIRAM)
 #define USE_SPIRAM
 #define SPI_CS		PF_3
 #define SPIRAM_CS       PE_0
@@ -20,6 +23,7 @@
 #define SPIRAM_MODULE	1
 #define SPIRAM_CLKDIV	1
 #define SPIRAM_SIZE	0x8000u
+#endif
 
 // TFT display...
 // NOTE: edit memorysaver.h to select the correct chip for your display!

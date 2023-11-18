@@ -193,7 +193,7 @@ void Display::drawCircle(unsigned x, unsigned y, unsigned r, colour_t col) {
 #elif defined(USE_ESPI)
 	espi.drawCircle(x, y, r, col);
 #elif defined(USE_VGA)
-	canvas.setBrushColor(rgb(col));
+	canvas.setPenColor(rgb(col));
 	canvas.fillEllipse(x, y, r, r);
 #endif
 }
@@ -207,7 +207,7 @@ void Display::fillCircle(unsigned x, unsigned y, unsigned r, colour_t col) {
 #elif defined(USE_ESPI)
 	espi.fillCircle(x, y, r, col);
 #elif defined(USE_VGA)
-	canvas.setPenColor(rgb(col));
+	canvas.setBrushColor(rgb(col));
 	canvas.drawEllipse(x, y, r, r);
 #endif
 }
@@ -221,7 +221,7 @@ void Display::drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 #elif defined(USE_ESPI)
 	espi.drawRect(x, y, w, h, col);
 #elif defined(USE_VGA)
-	canvas.setBrushColor(rgb(col));
+	canvas.setPenColor(rgb(col));
 	canvas.fillRectangle(x, y, x+w, y+h);
 #endif
 }
@@ -235,7 +235,7 @@ void Display::fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 #elif defined(USE_ESPI)
 	espi.fillRect(x, y, w, h, col);
 #elif defined(USE_VGA)
-	canvas.setPenColor(rgb(col));
+	canvas.setBrushColor(rgb(col));
 	canvas.drawRectangle(x, y, x+w, y+h);
 #endif
 }
