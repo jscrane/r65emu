@@ -27,7 +27,7 @@
 #define SPIRAM_CS       D0
 #define SPIRAM_SIZE	0x8000u
 
-// "tape" storage...
+// flash storage
 #undef USE_SD
 //#define SD_CS		D0
 #undef USE_SPIFFS
