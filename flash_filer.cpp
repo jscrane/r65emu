@@ -141,8 +141,10 @@ const char *flash_filer::checkpoint() {
 	hardware_checkpoint(file);
 	file.close();
 	start();
-#endif
 	return buf;
+#else
+	return "";
+#endif
 }
 
 void flash_filer::restore(const char *filename) {
