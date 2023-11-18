@@ -1,9 +1,10 @@
 #ifndef __RAM_H__
 #define __RAM_H__
 
+template<unsigned n = 1024>
 class ram: public Memory::Device {
 public:
-	static const unsigned page_size = 1024;
+	static const unsigned page_size = n;
 
 	virtual void operator= (uint8_t c) { _mem[_acc] = c; }
 	virtual operator uint8_t () { return _mem[_acc]; }
