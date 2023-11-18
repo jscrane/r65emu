@@ -28,10 +28,12 @@
 #define SPIRAM_SIZE	0x8000u
 
 // flash storage
+#if !defined(NO_STORAGE)
 #undef USE_SD
 //#define SD_CS		D0
 #undef USE_SPIFFS
 #define USE_LITTLEFS
+#endif
 
 // sound
 #define PWM_SOUND	D2

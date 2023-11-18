@@ -12,7 +12,9 @@
 #include "filer.h"
 #include "flash_filer.h"
 
+#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
 static File files[MAX_FILES];
+#endif
 
 #if defined(USE_SPIFFS)
 static File dir;

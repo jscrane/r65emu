@@ -179,7 +179,8 @@ void Display::drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colou
 #elif defined(USE_ESPI)
 	espi.drawLine(x1, y1, x2, y2, col);
 #elif defined(USE_VGA)
-	canvas.drawLine(x1, y1, x2, y2, rgb(col));
+	canvas.setPenColor(rgb(col));
+	canvas.drawLine(x1, y1, x2, y2);
 #endif
 }
 
@@ -192,7 +193,7 @@ void Display::drawCircle(unsigned x, unsigned y, unsigned r, colour_t col) {
 #elif defined(USE_ESPI)
 	espi.drawCircle(x, y, r, col);
 #elif defined(USE_VGA)
-	canvas.setBrushColor(col);
+	canvas.setBrushColor(rgb(col));
 	canvas.fillEllipse(x, y, r, r);
 #endif
 }
@@ -206,7 +207,7 @@ void Display::fillCircle(unsigned x, unsigned y, unsigned r, colour_t col) {
 #elif defined(USE_ESPI)
 	espi.fillCircle(x, y, r, col);
 #elif defined(USE_VGA)
-	canvas.setPenColor(col);
+	canvas.setPenColor(rgb(col));
 	canvas.drawEllipse(x, y, r, r);
 #endif
 }
@@ -220,7 +221,7 @@ void Display::drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 #elif defined(USE_ESPI)
 	espi.drawRect(x, y, w, h, col);
 #elif defined(USE_VGA)
-	canvas.setBrushColor(col);
+	canvas.setBrushColor(rgb(col));
 	canvas.fillRectangle(x, y, x+w, y+h);
 #endif
 }
@@ -234,7 +235,7 @@ void Display::fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 #elif defined(USE_ESPI)
 	espi.fillRect(x, y, w, h, col);
 #elif defined(USE_VGA)
-	canvas.setPenColor(col);
+	canvas.setPenColor(rgb(col));
 	canvas.drawRectangle(x, y, x+w, y+h);
 #endif
 }
@@ -247,15 +248,10 @@ void Display::drawString(const char *s, unsigned x, unsigned y, colour_t col) {
 	utft.print(s, x, y);
 #elif defined(USE_ESPI)
 	espi.setTextDatum(TL_DATUM);
-	/*
-	unsigned w = espi.textWidth(s);
-	espi.fillRect(x, y, w, _cy, _bg);
-	espi.drawString(s, x, y);
-	*/
 	espi.setTextColor(col, _bg, true);
 	espi.drawString(s, x, y);
 #elif defined(USE_VGA)
-	canvas.setPenColor(col);
+	canvas.setPenColor(rgb(col));
 	canvas.drawText(x, y, s);
 #endif
 }
