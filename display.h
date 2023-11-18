@@ -37,7 +37,25 @@ public:
 	void statusf(const char *fmt, ...);
 
 	void drawPixel(unsigned x, unsigned y, colour_t col);
-	void drawString(const char *s, unsigned x, unsigned y);
+	void drawPixel(unsigned x, unsigned y) { drawPixel(x, y, _fg); }
+
+	void drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colour_t col);
+	void drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2) { drawLine(x1, y1, x2, y2, _fg); }
+
+	void drawCircle(unsigned x, unsigned y, unsigned r, colour_t col);
+	void drawCircle(unsigned x, unsigned y, unsigned r) { drawCircle(x, y, r, _fg); }
+
+	void fillCircle(unsigned x, unsigned y, unsigned r, colour_t col);
+	void fillCircle(unsigned x, unsigned y, unsigned r) { fillCircle(x, y, r, _fg); }
+
+	void drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t col);
+	void drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h) { drawRectangle(x, y, w, h, _fg); }
+
+	void fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t col);
+	void fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h) { fillRectangle(x, y, w, h, _fg); }
+
+	void drawString(const char *s, unsigned x, unsigned y, colour_t col);
+	void drawString(const char *s, unsigned x, unsigned y) { drawString(s, x, y, _fg); }
 
 protected:
 	unsigned _bg, _fg, _cx, _cy, _dx, _dy, _oxs, _xoff, _yoff;

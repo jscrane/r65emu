@@ -63,10 +63,8 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient, unsigned dis
 	_dx -= _xoff;
 	_dy -= _yoff;
 
-#if defined(DEBUGGING)
-	Serial.printf("xoff %d yoff %d dx %d dy %d", _xoff, _yoff, _dx, _dy);
-	Serial.println();
-#endif
+	DBG(printf("xoff %d yoff %d dx %d dy %d", _xoff, _yoff, _dx, _dy));
+	DBG(println());
 }
 
 void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
@@ -109,11 +107,8 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dx = canvas.getWidth();
 	_dy = canvas.getHeight();
 
-
-#if defined(DEBUGGING)
-	Serial.printf("w %d h %d", _dx, _dy);
-	Serial.println();
-#endif
+	DBG(printf("w %d h %d", _dx, _dy));
+	DBG(println());
 #endif
 
 	setColor(fg);
@@ -173,17 +168,94 @@ void Display::drawPixel(unsigned x, unsigned y, colour_t col) {
 #endif
 }
 
-void Display::drawString(const char *s, unsigned x, unsigned y) {
+void Display::drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colour_t col) {
+	x1 += _xoff;
+	y1 += _yoff;
+	x2 += _xoff;
+	y2 += _yoff;
+#if defined(USE_UTFT)
+	utft.setColor(col);
+	utft.drawLine(x1, y1, x2, y2);
+#elif defined(USE_ESPI)
+	espi.drawLine(x1, y1, x2, y2, col);
+#elif defined(USE_VGA)
+	canvas.drawLine(x1, y1, x2, y2, rgb(col));
+#endif
+}
+
+void Display::drawCircle(unsigned x, unsigned y, unsigned r, colour_t col) {
 	x += _xoff;
 	y += _yoff;
 #if defined(USE_UTFT)
+	utft.setColor(col);
+	utft.drawCircle(x, y, r);
+#elif defined(USE_ESPI)
+	espi.drawCircle(x, y, r, col);
+#elif defined(USE_VGA)
+	canvas.setBrushColor(col);
+	canvas.fillEllipse(x, y, r, r);
+#endif
+}
+
+void Display::fillCircle(unsigned x, unsigned y, unsigned r, colour_t col) {
+	x += _xoff;
+	y += _yoff;
+#if defined(USE_UTFT)
+	utft.setColor(col);
+	utft.fillCircle(x, y, r);
+#elif defined(USE_ESPI)
+	espi.fillCircle(x, y, r, col);
+#elif defined(USE_VGA)
+	canvas.setPenColor(col);
+	canvas.drawEllipse(x, y, r, r);
+#endif
+}
+
+void Display::drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t col) {
+	x += _xoff;
+	y += _yoff;
+#if defined(USE_UTFT)
+	utft.setColor(col);
+	utft.drawRect(x, y, x+w, y+h);
+#elif defined(USE_ESPI)
+	espi.drawRect(x, y, w, h, col);
+#elif defined(USE_VGA)
+	canvas.setBrushColor(col);
+	canvas.fillRectangle(x, y, x+w, y+h);
+#endif
+}
+
+void Display::fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t col) {
+	x += _xoff;
+	y += _yoff;
+#if defined(USE_UTFT)
+	utft.setColor(col);
+	utft.fillRect(x, y, x+w, y+h);
+#elif defined(USE_ESPI)
+	espi.fillRect(x, y, w, h, col);
+#elif defined(USE_VGA)
+	canvas.setPenColor(col);
+	canvas.drawRectangle(x, y, x+w, y+h);
+#endif
+}
+
+void Display::drawString(const char *s, unsigned x, unsigned y, colour_t col) {
+	x += _xoff;
+	y += _yoff;
+#if defined(USE_UTFT)
+	utft.setColor(col);
 	utft.print(s, x, y);
 #elif defined(USE_ESPI)
 	espi.setTextDatum(TL_DATUM);
+	/*
 	unsigned w = espi.textWidth(s);
 	espi.fillRect(x, y, w, _cy, _bg);
 	espi.drawString(s, x, y);
+	*/
+	espi.setTextColor(col, _bg, true);
+	espi.drawString(s, x, y);
 #elif defined(USE_VGA)
+	canvas.setPenColor(col);
 	canvas.drawText(x, y, s);
 #endif
 }
