@@ -50,7 +50,11 @@ void ACIA::write_data(uint8_t b) {
 }
 
 uint8_t ACIA::read(Memory::address a) {
-	return (a & 1)? read_data(): read_status();
+	if (a == 0)
+		return read_status();
+	if (a == 1)
+		return read_data();
+	return 0;
 }
 
 uint8_t ACIA::read_data() {
