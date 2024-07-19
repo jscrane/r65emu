@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <stdint.h>
+#include <Arduino.h>
 #include "hardware.h"
 #include "memory.h"
 #include "display.h"

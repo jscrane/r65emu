@@ -1,6 +1,10 @@
+#include <stdint.h>
+#include <stddef.h>
 #include "hardware.h"
 
+#if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>
+#endif
 
 #if defined(USE_SD)
 #include <SD.h>

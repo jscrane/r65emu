@@ -8,8 +8,7 @@ public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	ACIA(serialio &s): _serial(&s) {}
-	void set_device(serialio *s) { _serial = s; }
+	virtual void acia_reset() {}
 
 	// status bits
 	//
@@ -51,11 +50,10 @@ public:
 protected:
 	// overrideable device memory interface
 	virtual uint8_t read_status();
-	virtual uint8_t read_data();
+	virtual uint8_t read_data() = 0;
 	virtual void write_control(uint8_t);
-	virtual void write_data(uint8_t);
-
-private:
-	serialio *_serial;
+	virtual void write_data(uint8_t) = 0;
+	virtual void acia_framing(uint32_t config) {}
+	virtual bool acia_more() = 0;
 };
 #endif

@@ -1,3 +1,3 @@
 // user-configured hardware description
 
-#error "hw/user.h not configured!"
+#warning "hw/user.h not configured!"
