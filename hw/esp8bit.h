@@ -17,9 +17,11 @@
 //#define LOAD_GLCD
 
 // PS/2 keyboard
-#define USE_KBD
-#define KBD_IRQ		D3
-#define KBD_DATA	D4
+#if !defined(USE_OWN_KBD)
+#define USE_PS2_KBD
+#define PS2_KBD_IRQ	D3
+#define PS2_KBD_DATA	D4
+#endif
 
 // SPI-RAM
 #if !defined(NO_SPIRAM)

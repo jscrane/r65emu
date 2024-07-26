@@ -24,9 +24,11 @@
 //#define TFT_RST		26
 
 // PS/2 keyboard
-#define USE_KBD
-#define KBD_DATA	34
-#define KBD_IRQ		35
+#if !defined(USE_OWN_KBD)
+#define USE_PS2_KBD
+#define PS2_KBD_DATA	34
+#define PS2_KBD_IRQ	35
+#endif
 
 // Storage
 #if !defined(NO_STORAGE)

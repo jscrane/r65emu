@@ -15,7 +15,7 @@ void hardware_init(class CPU &);
 void hardware_checkpoint(class Stream &);
 void hardware_restore(class Stream &);
 
-#if defined(__PS2DRV_H__) && defined(USE_KBD)
+#if defined(__PS2DRV_H__) && defined(USE_PS2_KBD)
 extern class PS2Driver ps2;
 #endif
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)

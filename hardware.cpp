@@ -26,7 +26,7 @@ spiram sram(SPIRAM_SIZE);
 
 Memory memory;
 
-#if defined(USE_KBD)
+#if defined(USE_PS2_KBD) && !defined(USE_OWN_KBD)
 #include "ps2drv.h"
 PS2Driver ps2;
 #endif
@@ -75,8 +75,8 @@ void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
 	memory.begin();
 
-#if defined(USE_KBD)
-	ps2.begin(KBD_DATA, KBD_IRQ);
+#if defined(USE_PS2_KBD) && !defined(USE_OWN_KBD)
+	ps2.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 #endif
 
 #if defined(TFT_BACKLIGHT)

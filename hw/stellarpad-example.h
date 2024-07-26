@@ -3,9 +3,11 @@
 #define RAM_SIZE 	0x3000u
 
 // PS/2 keyboard
-#define USE_KBD
-#define KBD_DATA	PE_4
-#define KBD_IRQ		PE_5
+#if !defined(USE_OWN_KBD)
+#define USE_PS2_KBD
+#define PS2_KBD_DATA	PE_4
+#define PS2_KBD_IRQ	PE_5
+#endif
 
 // Storage
 #if !defined(NO_STORAGE)
