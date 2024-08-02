@@ -5,9 +5,9 @@
 // PS/2 keyboard
 #if !defined(USE_OWN_KBD)
 #define USE_PS2_KBD
+#endif
 #define PS2_KBD_DATA	PE_4
 #define PS2_KBD_IRQ	PE_5
-#endif
 
 // Storage
 #if !defined(NO_STORAGE)

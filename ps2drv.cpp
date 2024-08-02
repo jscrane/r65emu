@@ -1,4 +1,7 @@
 #include <Arduino.h>
+#include "hardware.h"
+
+#if defined(USE_PS2_KBD)
 #include "ps2drv.h"
 
 #if !defined(KBD_BUFFER)
@@ -13,7 +16,7 @@ static uint8_t DataPin;
 #if defined(ESP32) || defined(ESP8266)
 IRAM_ATTR
 #endif
-void ps2interrupt(void)
+void ps2interrupt_handler(void)
 {
 	static uint8_t bitcount=0;
 	static uint8_t incoming=0;
@@ -86,6 +89,7 @@ void PS2Driver::begin(uint8_t data_pin, uint8_t irq_pin)
 	DataPin = data_pin;
 	pinMode(irq_pin, INPUT_PULLUP);
 	pinMode(data_pin, INPUT_PULLUP);
-	attachInterrupt(irq_pin, ps2interrupt, FALLING);
+	attachInterrupt(irq_pin, ps2interrupt_handler, FALLING);
 	head = tail = 0;
 }
+#endif

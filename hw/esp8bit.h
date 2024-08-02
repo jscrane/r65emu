@@ -19,9 +19,9 @@
 // PS/2 keyboard
 #if !defined(USE_OWN_KBD)
 #define USE_PS2_KBD
+#endif
 #define PS2_KBD_IRQ	D3
 #define PS2_KBD_DATA	D4
-#endif
 
 // SPI-RAM
 #if !defined(NO_SPIRAM)

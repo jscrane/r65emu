@@ -11,9 +11,9 @@
 // PS/2 Keyboard
 #if !defined(USE_OWN_KBD)
 #define USE_PS2_KBD
+#endif
 #define PS2_KBD_DATA	32
 #define PS2_KBD_IRQ	33
-#endif
 
 // 64kB RAM
 #define RAM_SIZE	0x10000u
