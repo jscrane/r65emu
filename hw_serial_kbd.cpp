@@ -11,9 +11,9 @@ int hw_serial_kbd::read() {
 	if (!_serial.available())
 		return -1;
 
-	uint8_t k = _serial.read();
-	if ((k >= 1) && (k <= 12)) {
-		fnkey(k);
+	int k = _serial.read();
+	if ((k >= 0x0e) && (k <= 0x19)) {
+		fnkey(k - 0x0d);
 		return -1;
 	}
 	return k;
