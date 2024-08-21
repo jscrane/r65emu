@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <stdint.h>
 #include <stddef.h>
 #include "hardware.h"
@@ -75,6 +76,10 @@ void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
 	memory.begin();
 
+#if defined(DEBUGGING) || defined(CPU_DEBUG)
+	Serial.begin(TERMINAL_SPEED);
+#endif
+
 #if defined(USE_PS2_KBD) && !defined(USE_OWN_KBD)
 	ps2.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 #endif
@@ -92,6 +97,37 @@ void hardware_init(CPU &cpu) {
 	pinMode(SPIRAM_CS, OUTPUT);
 	digitalWrite(SPIRAM_CS, HIGH);
 #endif
+}
+
+#if defined(CPU_DEBUG)
+bool cpu_debug = CPU_DEBUG;
+#endif
+
+bool hardware_debug_cpu() {
+#if defined(CPU_DEBUG)
+	cpu_debug = !cpu_debug;
+	return cpu_debug;
+#else
+	return false;
+#endif
+}
+
+bool hardware_run() {
+	if (_cpu->halted())
+		return false;
+
+#if defined(CPU_DEBUG)
+	if (cpu_debug) {
+		char buf[256];
+		Serial.println(_cpu->status(buf, sizeof(buf)));
+		_cpu->run(1);
+	} else
+		_cpu->run(CPU_INSTRUCTIONS);
+#else
+	_cpu->run(CPU_INSTRUCTIONS);
+#endif
+
+	return !_cpu->halted();
 }
 
 #if !defined(NO_CHECKPOINT)

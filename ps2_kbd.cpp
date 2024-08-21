@@ -1,9 +1,9 @@
 #include <stdint.h>
-#include "ps2_kbd.h"
-
-#if defined(USE_PS2_KBD)
 #include "ps2drv.h"
 #include "hardware.h"
+
+#if defined(USE_PS2_KBD)
+#include "ps2_kbd.h"
 
 bool ps2_kbd::available() {
 	return ps2.available();
