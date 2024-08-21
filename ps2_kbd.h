@@ -15,6 +15,8 @@ public:
 	bool is_ctrl(uint16_t scan);
 	uint8_t key(uint16_t scan);
 
+	void poll(class matrix_keyboard &);
+
 protected:
 	void fnkey(uint8_t k) { if (_f) _f(k); }
 

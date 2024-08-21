@@ -3,6 +3,7 @@
 #include "hardware.h"
 
 #if defined(USE_PS2_KBD)
+#include "keyboard.h"
 #include "ps2_kbd.h"
 
 bool ps2_kbd::available() {
@@ -60,4 +61,16 @@ bool ps2_kbd::is_ctrl(uint16_t scan) {
 uint8_t ps2_kbd::key(uint16_t scan) {
 	return scan & 0xff;
 }
+
+void ps2_kbd::poll(matrix_keyboard &kbd) {
+	if (available()) {
+		uint16_t scan = read();
+		uint8_t k = key(scan);
+		if (is_up(scan))
+			kbd.up(k);
+		else
+			kbd.down(k);
+	}
+}
+
 #endif
