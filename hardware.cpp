@@ -113,8 +113,6 @@ bool hardware_debug_cpu() {
 }
 
 bool hardware_run() {
-	if (_cpu->halted())
-		return false;
 
 #if defined(CPU_DEBUG)
 	if (cpu_debug) {
