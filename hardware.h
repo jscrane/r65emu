@@ -10,14 +10,21 @@
 #include "hw/user.h"
 #endif
 
+#if !defined(CPU_INSTRUCTIONS)
+#define CPU_INSTRUCTIONS 	1000
+#endif
+
+#if !defined(TERMINAL_SPEED)
+#define TERMINAL_SPEED		115200
+#endif
+
 bool hardware_reset();
 void hardware_init(class CPU &);
 void hardware_checkpoint(class Stream &);
 void hardware_restore(class Stream &);
+bool hardware_run(unsigned instructions = CPU_INSTRUCTIONS);
+bool hardware_debug_cpu();
 
-#if defined(__PS2DRV_H__) && defined(USE_PS2_KBD)
-extern class PS2Driver ps2;
-#endif
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
 extern class spiram sram;
 #endif
