@@ -3,7 +3,6 @@
 
 #if defined(USE_PS2_KBD)
 #include <PS2KeyRaw.h>
-#include "keyboard.h"
 #include "ps2_raw_kbd.h"
 
 static PS2KeyRaw keyboard;
@@ -53,7 +52,7 @@ uint16_t ps2_raw_kbd::read() {
 	if (s < 0)
 		return 0;
 
-	uint8_t k = key(s);
+	uint8_t k = (s & 0xff);
 	if (k == 0xf0) {
 		brk = true;
 		return 0;
@@ -75,27 +74,11 @@ void ps2_raw_kbd::reset() {
 	_m.reset();
 }
 
-bool ps2_raw_kbd::is_up(uint16_t scan) {
-	return scan & 0x8000;
-}
-
-bool ps2_raw_kbd::is_shift(uint16_t scan) {
-	return scan == 0x12 || scan == 0x59;
-}
-
-bool ps2_raw_kbd::is_ctrl(uint16_t scan) {
-	return scan == 0x14;
-}
-
-uint8_t ps2_raw_kbd::key(uint16_t scan) {
-	return scan & 0xff;
-}
-
 void ps2_raw_kbd::poll() {
 	if (available()) {
 		uint16_t scan = read();
-		uint8_t k = key(scan);
-		if (is_up(scan))
+		uint8_t k = (scan & 0xff);
+		if (scan & 0x8000)
 			_m.up(k);
 		else
 			_m.down(k);

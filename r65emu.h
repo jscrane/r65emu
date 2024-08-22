@@ -7,7 +7,6 @@
 #include "spiram.h"
 #include "prom.h"
 #include "display.h"
-#include "keyboard.h"
 #include "serialio.h"
 #include "filer.h"
 #include "flash_filer.h"
