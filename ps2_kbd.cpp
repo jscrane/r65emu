@@ -1,14 +1,29 @@
 #include <stdint.h>
-#include "ps2drv.h"
 #include "hardware.h"
 
 #if defined(USE_PS2_KBD)
+#include <PS2KeyRaw.h>
 #include "keyboard.h"
 #include "ps2_kbd.h"
 
+static PS2KeyRaw keyboard;
+
 bool ps2_kbd::available() {
-	return ps2.available();
+	return keyboard.available();
 }
+
+#define PS2_F1  0x05
+#define PS2_F2  0x06
+#define PS2_F3  0x04
+#define PS2_F4  0x0C
+#define PS2_F5  0x03
+#define PS2_F6  0x0B
+#define PS2_F7  0x83
+#define PS2_F8  0x0A
+#define PS2_F9  0x01
+#define PS2_F10 0x09
+#define PS2_F11 0x78
+#define PS2_F12 0x07
 
 static uint8_t fn(uint8_t key) {
 	switch(key) {
@@ -28,26 +43,39 @@ static uint8_t fn(uint8_t key) {
 	return 0;
 }
 
+static bool brk = false;
+
 uint16_t ps2_kbd::read() {
 	if (!available())
 		return 0;
 
-	uint16_t s = ps2.read2();
-	uint8_t k = key(s), f = fn(k);
+	int s = keyboard.read();
+	if (s < 0)
+		return 0;
 
-	if (f >= 1 && is_up(s)) {
-		fnkey(f);
+	uint8_t k = key(s);
+	if (k == 0xf0) {
+		brk = true;
 		return 0;
 	}
-	return s;
+
+	uint8_t f = fn(k);
+	if (f >= 1 && brk) {
+		fnkey(f);
+		brk = false;
+		return 0;
+	}
+	uint16_t r = brk? (0x8000 | k): k;
+	brk = false;
+	return r;
 }
 
 void ps2_kbd::reset() {
-	ps2.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
+	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 }
 
 bool ps2_kbd::is_up(uint16_t scan) {
-	return scan >= 0x100;
+	return scan & 0x8000;
 }
 
 bool ps2_kbd::is_shift(uint16_t scan) {

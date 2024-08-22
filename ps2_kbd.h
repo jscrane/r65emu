@@ -10,10 +10,10 @@ public:
 	void reset();
 	void register_fnkey_handler(fnkey_handler f) { _f = f; }
 
-	bool is_up(uint16_t scan);
-	bool is_shift(uint16_t scan);
-	bool is_ctrl(uint16_t scan);
-	uint8_t key(uint16_t scan);
+	static bool is_up(uint16_t scan);
+	static bool is_shift(uint16_t scan);
+	static bool is_ctrl(uint16_t scan);
+	static uint8_t key(uint16_t scan);
 
 	void poll(class matrix_keyboard &);
 

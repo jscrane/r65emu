@@ -27,11 +27,6 @@ spiram sram(SPIRAM_SIZE);
 
 Memory memory;
 
-#if defined(USE_PS2_KBD) && !defined(USE_OWN_KBD)
-#include "ps2drv.h"
-PS2Driver ps2;
-#endif
-
 static CPU *_cpu;
 
 bool hardware_reset() {
@@ -78,10 +73,6 @@ void hardware_init(CPU &cpu) {
 
 #if defined(DEBUGGING) || defined(CPU_DEBUG)
 	Serial.begin(TERMINAL_SPEED);
-#endif
-
-#if defined(USE_PS2_KBD) && !defined(USE_OWN_KBD)
-	ps2.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 #endif
 
 #if defined(TFT_BACKLIGHT)

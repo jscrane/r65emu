@@ -23,9 +23,6 @@ void hardware_restore(class Stream &);
 bool hardware_run();
 bool hardware_debug_cpu();
 
-#if defined(__PS2DRV_H__) && defined(USE_PS2_KBD)
-extern class PS2Driver ps2;
-#endif
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
 extern class spiram sram;
 #endif

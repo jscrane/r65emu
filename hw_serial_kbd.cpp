@@ -1,6 +1,5 @@
 #include <Arduino.h>
-
-#include "config.h"
+#include "hardware.h"
 
 #if defined(HW_SERIAL_KBD)
 #include "serial_kbd.h"
