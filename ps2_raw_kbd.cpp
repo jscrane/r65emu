@@ -4,11 +4,11 @@
 #if defined(USE_PS2_KBD)
 #include <PS2KeyRaw.h>
 #include "keyboard.h"
-#include "ps2_kbd.h"
+#include "ps2_raw_kbd.h"
 
 static PS2KeyRaw keyboard;
 
-bool ps2_kbd::available() {
+bool ps2_raw_kbd::available() {
 	return keyboard.available();
 }
 
@@ -45,7 +45,7 @@ static uint8_t fn(uint8_t key) {
 
 static bool brk = false;
 
-uint16_t ps2_kbd::read() {
+uint16_t ps2_raw_kbd::read() {
 	if (!available())
 		return 0;
 
@@ -70,34 +70,35 @@ uint16_t ps2_kbd::read() {
 	return r;
 }
 
-void ps2_kbd::reset() {
+void ps2_raw_kbd::reset() {
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
+	_m.reset();
 }
 
-bool ps2_kbd::is_up(uint16_t scan) {
+bool ps2_raw_kbd::is_up(uint16_t scan) {
 	return scan & 0x8000;
 }
 
-bool ps2_kbd::is_shift(uint16_t scan) {
+bool ps2_raw_kbd::is_shift(uint16_t scan) {
 	return scan == 0x12 || scan == 0x59;
 }
 
-bool ps2_kbd::is_ctrl(uint16_t scan) {
+bool ps2_raw_kbd::is_ctrl(uint16_t scan) {
 	return scan == 0x14;
 }
 
-uint8_t ps2_kbd::key(uint16_t scan) {
+uint8_t ps2_raw_kbd::key(uint16_t scan) {
 	return scan & 0xff;
 }
 
-void ps2_kbd::poll(matrix_keyboard &kbd) {
+void ps2_raw_kbd::poll() {
 	if (available()) {
 		uint16_t scan = read();
 		uint8_t k = key(scan);
 		if (is_up(scan))
-			kbd.up(k);
+			_m.up(k);
 		else
-			kbd.down(k);
+			_m.down(k);
 	}
 }
 

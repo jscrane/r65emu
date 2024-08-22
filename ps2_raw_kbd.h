@@ -3,25 +3,30 @@
 
 typedef void (*fnkey_handler)(uint8_t);
 
-class ps2_kbd {
+class matrix_keyboard;
+
+class ps2_raw_kbd {
 public:
+	ps2_raw_kbd(matrix_keyboard &m): _m(m) {}
+
+	void register_fnkey_handler(fnkey_handler f) { _f = f; }
+	void poll();
+	void reset();
+
+protected:
+	void fnkey(uint8_t k) { if (_f) _f(k); }
+
+private:
 	uint16_t read();
 	bool available();
-	void reset();
-	void register_fnkey_handler(fnkey_handler f) { _f = f; }
 
 	static bool is_up(uint16_t scan);
 	static bool is_shift(uint16_t scan);
 	static bool is_ctrl(uint16_t scan);
 	static uint8_t key(uint16_t scan);
 
-	void poll(class matrix_keyboard &);
-
-protected:
-	void fnkey(uint8_t k) { if (_f) _f(k); }
-
-private:
 	fnkey_handler _f;
+	matrix_keyboard &_m;
 };
 
 #endif
