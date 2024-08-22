@@ -103,7 +103,7 @@ bool hardware_debug_cpu() {
 #endif
 }
 
-bool hardware_run() {
+bool hardware_run(unsigned instructions) {
 
 #if defined(CPU_DEBUG)
 	if (cpu_debug) {
@@ -111,9 +111,9 @@ bool hardware_run() {
 		Serial.println(_cpu->status(buf, sizeof(buf)));
 		_cpu->run(1);
 	} else
-		_cpu->run(CPU_INSTRUCTIONS);
+		_cpu->run(instructions);
 #else
-	_cpu->run(CPU_INSTRUCTIONS);
+	_cpu->run(instructions);
 #endif
 
 	return !_cpu->halted();
