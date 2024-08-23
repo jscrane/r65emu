@@ -31,13 +31,27 @@
 #define SPIRAM_SIZE	0x8000u
 #endif
 
-// flash storage
-#if !defined(NO_STORAGE)
+// flash storage (default is LittleFS)
+#if defined(USE_SD)
+#define SD_CS		D0
+#undef USE_SPIFFS
+#undef USE_LITTLEFS
+
+#elif defined(USE_SPIFFS)
 #undef USE_SD
-//#define SD_CS		D0
+#undef USE_LITTLEFS
+
+#elif defined(USE_LITTLEFS)
+#undef USE_SD
+#undef USE_SPIFFS
+
+#elif !defined(NO_STORAGE)
+#undef USE_SD
 #undef USE_SPIFFS
 #define USE_LITTLEFS
 #endif
 
 // sound
+#if !defined(NO_SOUND)
 #define PWM_SOUND	D2
+#endif
