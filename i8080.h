@@ -9,7 +9,7 @@ uint8_t parity(uint8_t);
 
 class i8080: public CPU {
 public:
-	i8080(Memory &m, PortDevice<i8080> &d): CPU(m), _ports(&d) {}
+	i8080(Memory &m, PortDevice &d): CPU(m), _ports(d) {}
 
 	void run(unsigned);
 	void reset();
@@ -60,7 +60,7 @@ private:
 		uint8_t SR;
 	};
 	uint8_t _irq_pending;
-	PortDevice<i8080> *_ports;
+	PortDevice &_ports;
 
 	void _op(uint8_t op);
 
@@ -400,7 +400,7 @@ private:
 	inline void rnc() { _ret(!flags.C); }
 	inline void popd() { DE = _pop(); }
 	inline void jnc() { _jmp(!flags.C); }
-	inline void out() { _ports->out(_mem[PC++], A, this); }
+	inline void out() { _ports.out(_mem[PC++], A); }
 	inline void cnc() { _call(!flags.C); }
 	inline void pushd() { _push(DE); }
 	inline void sui() { _sub(_mem[PC++]); }
@@ -408,7 +408,7 @@ private:
 	inline void rc() { _ret(flags.C); }
 
 	inline void jc() { _jmp(flags.C); }
-	inline void in() { A = _ports->in(_mem[PC++], this); }
+	inline void in() { A = _ports.in(_mem[PC++]); }
 	inline void cc() { _call(flags.C); }
 
 	inline void sbi() { _sbc(_mem[PC++]); }

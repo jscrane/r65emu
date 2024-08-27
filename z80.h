@@ -7,7 +7,7 @@
 
 class z80: public CPU {
 public:
-	z80(Memory &m, PortDevice<z80> &ports): CPU(m), _ports(&ports) {}
+	z80(Memory &m, PortDevice &ports): CPU(m), _ports(ports) {}
 
 	void run(unsigned);
 	void reset();
@@ -146,7 +146,7 @@ private:
 	unsigned long _ts;
 
 	uint8_t _irq_pending;
-	PortDevice<z80> *_ports;
+	PortDevice &_ports;
 
 	uint8_t parity(uint8_t);
 
@@ -712,7 +712,7 @@ private:
 		uint8_t b = _rb(PC++);
 		uint16_t p = b + (A << 8);
 		MPH = A; MPL = b+1;
-		_ports->out(p, A, this);
+		_ports.out(p, A);
 	}
 	inline void callnc() { _call(!flags.C); }
 	inline void pushde() { _mc(IR, 1); _push(DE); }
@@ -726,7 +726,7 @@ private:
 	inline void ina() {
 		uint8_t b = _rb(PC++);
 		uint16_t p = b + (A << 8);
-		A = _ports->in(p, this);
+		A = _ports.in(p);
 		MPH = A; MPL = b+1;
 	}
 	inline void callc() { _call(flags.C); }
@@ -747,14 +747,14 @@ private:
 	// 0xe8
 	inline uint8_t _inr() {
 		_memptr = BC+1;
-		uint8_t b = _ports->in(BC, this);
+		uint8_t b = _ports.in(BC);
 		_szp35(b);
 		flags.N = flags.H = 0;
 		return b;
 	}
 	inline void _outr(uint8_t b) {
 		_memptr = BC+1;
-		_ports->out(BC, b, this);
+		_ports.out(BC, b);
 	}
 
 	inline void retpe() { _ret(flags.P); }
