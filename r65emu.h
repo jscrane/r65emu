@@ -19,5 +19,7 @@
 #include "serial_kbd.h"
 #include "ps2_serial_kbd.h"
 #include "hw_serial_kbd.h"
+#include "serial_dsp.h"
+#include "hw_serial_dsp.h"
 
 #endif
