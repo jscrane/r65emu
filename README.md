@@ -10,19 +10,21 @@ Sample Applications
 - [Space Invaders](https://github.com/jscrane/invaders)
 - [Pacman](https://github.com/jscrane/pacman)
 - [Commodore PET](https://github.com/jscrane/PET)
-- [Compukit UK101](https://github.com/jscrane/UK101)
+- [Compukit UK101](https://github.com/jscrane/UK101) and [MicroUK101](https://github.com/jscrane/UK101)
 - [Commodore Chessmate](https://github.com/jscrane/Chessmate)
 
 Configuration for Arduino
 --------------
-If building using the Arduino IDE, `r65emu/hw/user.h` must be configured correctly.
+If building using the Arduino IDE, `r65emu/src/hw/user.h` must be configured correctly.
 
 Currently the only mass-produced board which is supported is the 
 [LilyGO TTGO](https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-vga32-esp32).
 
 Examples are also given for a generic `node32s` board and a homebrew `esp8bit` board.
 
-Copy your configuration file to `user.h`. If the board is also mass-produced, please open a PR to add the new file to the library.
+Copy your configuration file to `user.h`. If the board is also mass-produced, please open a 
+[PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+to add the new file to the library.
 
 Some emulations require a filesystem image containing programs to be uploaded:
 - On esp32, this [arduino plugin](https://github.com/me-no-dev/arduino-esp32fs-plugin) is required for that
