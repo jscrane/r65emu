@@ -71,7 +71,7 @@ void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
 	memory.begin();
 
-#if defined(DEBUGGING) || defined(CPU_DEBUG)
+#if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(USE_SERIAL)
 	Serial.begin(TERMINAL_SPEED);
 #endif
 
