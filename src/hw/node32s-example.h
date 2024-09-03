@@ -30,8 +30,17 @@
 #define PS2_KBD_DATA	34
 #define PS2_KBD_IRQ	35
 
-// Storage
-#if !defined(NO_STORAGE)
+// flash storage (default is SPIFFS)
+#if defined(USE_SD)
+#define SD_CS		SS
+#undef USE_LITTLEFS
+#undef USE_SPIFFS
+
+#elif defined(USE_SPIFFS)
+#undef USE_SD
+#undef USE_LITTLEFS
+
+#elif !defined(NO_STORAGE)
 #undef USE_SD
 #undef USE_LITTLEFS
 #define USE_SPIFFS
