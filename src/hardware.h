@@ -28,9 +28,6 @@ bool hardware_debug_cpu();
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
 extern class spiram sram;
 #endif
-#ifdef __MEMORY_H__
-extern class Memory memory;
-#endif
 
 #if defined(DEBUGGING)
 #define DBG(x) Serial.x
