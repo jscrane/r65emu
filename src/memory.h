@@ -16,7 +16,7 @@ public:
 
 	class Device: public Checkpointable {
 	public:
-		Device (unsigned uint8_ts): _pages(uint8_ts/page_size) {}
+		Device (unsigned bytes): _pages(bytes / page_size) {}
 		virtual ~Device () {}
 
 		unsigned pages () const { return _pages; }
@@ -38,14 +38,11 @@ public:
 		unsigned _pages;
 	};
 
-	// insert a new device instance
-	//
 	void put (Device &d, address at);
 	void put (Device &d, address at, unsigned ep) { d._pages = ep; put(d, at); }
-	Device *get (address at) const { return _pages[at/page_size]; }
 
-	// primary access interface
-	//
+	virtual Device *get (address at) const { return _pages[at/page_size]; }
+
 	Device &operator[] (address a) {
 		Device *d = get (a);
 		d->access (a);

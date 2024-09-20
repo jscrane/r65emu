@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 #include <stddef.h>
+#include "memory.h"
 #include "hardware.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
@@ -16,7 +17,6 @@
 #include <LittleFS.h>
 #endif
 
-#include "memory.h"
 #include "CPU.h"
 
 #if defined(USE_SPIRAM)
@@ -24,8 +24,6 @@
 #include "spiram.h"
 spiram sram(SPIRAM_SIZE);
 #endif
-
-Memory memory;
 
 static CPU *_cpu;
 
@@ -69,7 +67,7 @@ bool hardware_reset() {
 
 void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
-	memory.begin();
+	cpu.memory().begin();
 
 #if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(USE_SERIAL)
 	Serial.begin(TERMINAL_SPEED);
@@ -123,7 +121,7 @@ bool hardware_run(unsigned instructions) {
 void hardware_checkpoint(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
-		Memory::Device *dev = memory.get(i);
+		Memory::Device *dev = _cpu->memory().get(i);
 		dev->checkpoint(s);
 		ds = dev->pages() * Memory::page_size;
 	}
@@ -133,7 +131,7 @@ void hardware_checkpoint(Stream &s) {
 void hardware_restore(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
-		Memory::Device *dev = memory.get(i);
+		Memory::Device *dev = _cpu->memory().get(i);
 		dev->restore(s);
 		ds = dev->pages() * Memory::page_size;
 	}

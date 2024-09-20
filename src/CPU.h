@@ -23,6 +23,8 @@ public:
 
 	inline bool halted() { return _halted; }
 
+	Memory &memory() const { return _mem; }
+
 protected:
 	CPU(Memory &mem): _mem(mem), _halted(false) {}
 	Memory &_mem;
