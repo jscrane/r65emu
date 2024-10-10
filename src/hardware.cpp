@@ -71,6 +71,7 @@ void hardware_init(CPU &cpu) {
 
 #if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(USE_SERIAL)
 	Serial.begin(TERMINAL_SPEED);
+	while (!Serial);
 #endif
 
 #if defined(TFT_BACKLIGHT)

@@ -4,7 +4,6 @@
 #undef PC
 #undef cli
 #undef sei
-class Stream;
 
 class r6502: public CPU {
 public:

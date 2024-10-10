@@ -3,8 +3,6 @@
 
 #undef PC
 
-class Stream;
-
 #define O(o, e) case o: e(); break
 #define A(o, e, a) case o: e(a); break
 #define C(o) case o:

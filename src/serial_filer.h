@@ -1,8 +1,6 @@
 #ifndef __SERIAL_FILER_H__
 #define __SERIAL_FILER_H__
 
-class HardwareSerial;
-
 // see https://playground.arduino.cc/Interfacing/LinuxTTY
 // FIXME: do this in minicom config file
 class serial_filer: public filer {
