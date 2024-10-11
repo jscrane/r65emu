@@ -70,13 +70,12 @@ bool flash_filer::start()
 {
 #if defined(USE_LITTLEFS)
 	dir = LittleFS.openDir(_programs);
+	return true;
 #elif defined(USE_SPIFFS)
 	dir = SPIFFS.open(_programs);
-	if (!dir)
-		return false;
+	return (bool)dir;
 #endif
-
-	return true;
+	return false;
 }
 
 void flash_filer::stop()
@@ -98,6 +97,8 @@ const char *flash_filer::advance() {
 			break;
 		}
 		dir = LittleFS.openDir(_programs);
+		if (!dir.isDirectory())
+			return 0;
 	}
 	strncpy(buf, dir.fileName().c_str(), sizeof(buf));
 	return buf;

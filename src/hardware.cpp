@@ -28,7 +28,7 @@ spiram sram(SPIRAM_SIZE);
 static CPU *_cpu;
 
 bool hardware_reset() {
-	bool success = true;
+	bool success = false;
 
 #if defined(USE_SPIRAM)
 	extern SPIClass SPIRAM_DEV;
@@ -72,6 +72,7 @@ void hardware_init(CPU &cpu) {
 #if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(USE_SERIAL)
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
+	delay(800);
 #endif
 
 #if defined(TFT_BACKLIGHT)
