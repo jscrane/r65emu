@@ -58,8 +58,8 @@ int64_t alarm_callback(alarm_id_t, void *) {
 }
 
 void timer_create(unsigned freq, handler_t handler) {
-	period = 1000 / freq;
+	period = 1000000 / freq;
 	client_handler = handler;
-	add_alarm_in_ms(period, alarm_callback, 0, false);
+	add_alarm_in_us(period, alarm_callback, 0, false);
 }
 #endif
