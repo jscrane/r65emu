@@ -7,6 +7,7 @@ typedef enum {
 
 typedef unsigned colour_t;
 
+// 5-6-5 colours
 const colour_t BLACK = 0x0000;
 const colour_t NAVY = 0x000F;
 const colour_t DARKGREEN = 0x03E0;
