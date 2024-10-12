@@ -5,16 +5,23 @@
 // #define DAC_SOUND
 // #define PWM_SOUND
 
+// PS/2 keyboard
+// Note: this requires the keyboard to operate at 3.3v (e.g., Dell QuietKey)
+// https://github.com/lurk101/pico-ps2kbd
+// GPIO14 is labelled SCK and GPIO15 MO on the board
+// https://learn.adafruit.com/assets/119662
 #if !defined(USE_OWN_KBD)
 #define USE_PS2_KBD
+#endif
 #if !defined(PS2_KBD_DATA)
-#error "PS2_KBD_DATA not defined"
+#define PS2_KBD_DATA    14
 #endif
 #if !defined(PS2_KBD_IRQ)
-#error "PS2_KBD_IRQ not defined"
-#endif
+#define PS2_KBD_IRQ     15
 #endif
 
+// Display
+// https://cdn-learn.adafruit.com/downloads/pdf/picodvi-arduino-library-video-out-for-rp2040-boards.pdf
 #define USE_DVI
 #if !defined(DVI_DEVICE)
 #define DVI_DEVICE		DVIGFX8

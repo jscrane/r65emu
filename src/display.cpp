@@ -109,10 +109,15 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dx = espi.width();
 	_dy = espi.height();
 	_cy = espi.fontHeight();
-	_cx = 6;	// FIXME
+	_cx = 6;
 
 #elif defined(USE_DVI)
-	bool success = dvi.begin();
+	static bool init;
+	bool success = true;
+	if (!init) {
+		init = true;
+		success = dvi.begin();
+	}
 	_dx = dvi.width();
 	_dy = dvi.height();
 	// Adafruit_GFX default font size
