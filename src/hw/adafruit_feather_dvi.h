@@ -3,7 +3,11 @@
 
 // FIXME:
 // #define DAC_SOUND
-// #define PWM_SOUND
+// see https://arduino-pico.readthedocs.io/en/stable/i2s.html
+
+#if !defined(PWM_SOUND)
+#define PWM_SOUND	25
+#endif
 
 // PS/2 keyboard
 // Note: this requires the keyboard to operate at 3.3v (e.g., Dell QuietKey)
@@ -23,16 +27,23 @@
 // Display
 // https://cdn-learn.adafruit.com/downloads/pdf/picodvi-arduino-library-video-out-for-rp2040-boards.pdf
 #define USE_DVI
-#if !defined(DVI_DEVICE)
-#define DVI_DEVICE		DVIGFX8
+#define DVI_CONFIG		adafruit_feather_dvi_cfg
+
+#if !defined(DVI_BIT_DEPTH)
+#define DVI_BIT_DEPTH		8
+//#define DVI_BIT_DEPTH		1
+//#define DVI_BIT_DEPTH		16
 #endif
+
 #if !defined(DVI_RESOLUTION)
 #define DVI_RESOLUTION		DVI_RES_320x240p60
+//#define DVI_RESOLUTION	DVI_RES_640X480p60
 #endif
+
 #if !defined(DVI_DOUBLE_BUFFERED)
 #define DVI_DOUBLE_BUFFERED	false
+//#define DVI_DOUBLE_BUFFERED	true
 #endif
-#define DVI_CONFIG		adafruit_feather_dvi_cfg
 
 // 64kB RAM
 #define RAM_SIZE	0x10000u

@@ -46,7 +46,13 @@ static const fabgl::RGB888 rgb(colour_t c) {
 #pragma message "PicoDVI configured"
 #include <PicoDVI.h>
 
-static DVI_DEVICE dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
+#if DVI_BIT_DEPTH == 8
+static DVIGFX8 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
+#elif DVI_BIT_DEPTH == 1
+static DVIGFX1 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
+#elif DVI_BIT_DEPTH == 16
+static DVIGFX16 dvi(DVI_RESOLUTION, DVI_CONFIG);
+#endif
 
 static const colour_t colours[] = {
 	BLACK, WHITE, NAVY, DARKGREEN, DARKCYAN, MAROON, PURPLE, OLIVE, LIGHTGREY, DARKGREY, BLUE, GREEN, CYAN, RED, MAGENTA, YELLOW, ORANGE, GREENYELLOW, PINK,
@@ -55,10 +61,26 @@ static const colour_t colours[] = {
 #define NCOLOURS (sizeof(colours) / sizeof(colour_t))
 
 inline int col(colour_t c) {
+#if DVI_BIT_DEPTH == 8
 	for (int i = 0; i < NCOLOURS; i++)
 		if (c == colours[i])
 			return i;
 	return 1;
+#elif DVI_BIT_DEPTH == 1
+	return c != 0;
+#elif DVI_BIT_DEPTH == 16
+	return c;
+#endif
+}
+
+inline int rot(orientation_t r) {
+	switch(r) {
+	case landscape: return 0;
+	case portrait: return 1;
+	case reverse_portrait: return 3;
+	case reverse_landscape: return 2;
+	}
+	return 0;
 }
 
 #else
@@ -114,19 +136,23 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 #elif defined(USE_DVI)
 	static bool init;
 	bool success = true;
-	if (!init) {
-		init = true;
+	if (!init)
 		success = dvi.begin();
-	}
+
+	init = true;
 	_dx = dvi.width();
 	_dy = dvi.height();
+
 	// Adafruit_GFX default font size
 	_cx = 6;
 	_cy = 8;
-	// FIXME: Adafruit_GFX is different
-	//dvi.setRotation(orient);
+
+	dvi.setRotation(rot(orient));
+
+#if DVI_BIT_DEPTH == 8
 	for (int i = 0; i < NCOLOURS; i++)
 		dvi.setColor(i, colours[i]);
+#endif
 	DBG(printf("DVI: %d: w %d h %d\r\n", success, _dx, _dy));
 
 #elif defined(USE_VGA)
