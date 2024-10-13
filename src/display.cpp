@@ -48,6 +48,8 @@ static const fabgl::RGB888 rgb(colour_t c) {
 
 #if DVI_BIT_DEPTH == 8
 static DVIGFX8 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
+#elif DVI_BIT_DEPTH == 0
+static DVItext1 dvi(DVI_RESOLUTION, DVI_CONFIG);
 #elif DVI_BIT_DEPTH == 1
 static DVIGFX1 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
 #elif DVI_BIT_DEPTH == 16
@@ -66,7 +68,7 @@ inline int col(colour_t c) {
 		if (c == colours[i])
 			return i;
 	return 1;
-#elif DVI_BIT_DEPTH == 1
+#elif DVI_BIT_DEPTH == 1 || DVI_BIT_DEPTH == 0
 	return c != 0;
 #elif DVI_BIT_DEPTH == 16
 	return c;
@@ -217,7 +219,7 @@ void Display::status(const char *s) {
 	dvi.getTextBounds(s, 0, 0, &x, &y, &w, &h);
 	dvi.setCursor(_dx - w, _dy - h);
 	dvi.print(s);
-	_oxs = x;
+	_oxs = _dx - w;
 #endif
 }
 
