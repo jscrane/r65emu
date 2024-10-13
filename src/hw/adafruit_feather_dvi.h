@@ -31,13 +31,17 @@
 
 #if !defined(DVI_BIT_DEPTH)
 #define DVI_BIT_DEPTH		8
+//#define DVI_BIT_DEPTH		0	// 1-bit text
 //#define DVI_BIT_DEPTH		1
 //#define DVI_BIT_DEPTH		16
 #endif
 
 #if !defined(DVI_RESOLUTION)
 #define DVI_RESOLUTION		DVI_RES_320x240p60
-//#define DVI_RESOLUTION	DVI_RES_640X480p60
+//#define DVI_RESOLUTION	DVI_RES_640x480p60
+//#define DVI_RESOLUTION	DVI_RES_400x240p60
+//#define DVI_RESOLUTION	DVI_RES_640x240p60
+//#define DVI_RESOLUTION	DVI_RES_800x480p60
 #endif
 
 #if !defined(DVI_DOUBLE_BUFFERED)
