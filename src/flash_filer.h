@@ -20,7 +20,7 @@ private:
 
 class flash_filer: public filer, public flash_file {
 public:
-	flash_filer(const char *programs): _programs(programs) {}
+	flash_filer(const char *programs): _programs(programs), _current(0) {}
 
 	const char *advance();
 	const char *rewind();

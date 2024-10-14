@@ -11,7 +11,7 @@ inline bool c1_high_to_low(uint8_t cr) { return !c1_low_to_high(cr); }
 
 inline bool c2_output(uint8_t cr) { return cr & 0x20; }
 
-inline bool c2_input(uint8_t cr) { return !c2_input(cr); }
+inline bool c2_input(uint8_t cr) { return !c2_output(cr); }
 
 inline bool c2_low_to_high(uint8_t cr) { return cr & 0x10; }
 
