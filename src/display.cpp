@@ -101,15 +101,15 @@ static inline void setColor(colour_t c) {
 #endif
 }
 
-void Display::begin(colour_t bg, colour_t fg, orientation_t orient, unsigned dispx, unsigned dispy) {
-	begin(bg, fg, orient);
-	_xoff = (_dx - dispx) / 2;
-	_yoff = (_dy - dispy) / 2;
-	_dx -= _xoff;
-	_dy -= _yoff;
-
-	DBG(printf("xoff %d yoff %d dx %d dy %d", _xoff, _yoff, _dx, _dy));
-	DBG(println());
+void Display::setScreen(unsigned sx, unsigned sy) {
+	if (sx < _w) {
+		_xoff = (_w - sx) / 2;
+		_dx = _w - _xoff;
+	}
+	if (sy < _h) {
+		_yoff = (_h - sy) / 2;
+		_dy = _h - _yoff;
+	}
 }
 
 void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
@@ -180,6 +180,8 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 
 	setColor(fg);
 	_oxs = _dx;
+	_w = _dx;
+	_h = _dy;
 }
 
 void Display::clear() {
