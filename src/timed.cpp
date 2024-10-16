@@ -47,4 +47,19 @@ void timer_create(unsigned freq, handler_t handler) {
 	os_timer_setfn(&t, (os_timer_func_t *)handler, 0);
 	os_timer_arm(&t, 1000 / freq, true);
 }
+#elif defined(ARDUINO_ARCH_rp2040)
+
+static handler_t client_handler;
+static int64_t period;
+
+int64_t alarm_callback(alarm_id_t, void *) {
+	client_handler();
+	return -period;
+}
+
+void timer_create(unsigned freq, handler_t handler) {
+	period = 1000000 / freq;
+	client_handler = handler;
+	add_alarm_in_us(period, alarm_callback, 0, false);
+}
 #endif

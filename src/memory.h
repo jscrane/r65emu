@@ -1,8 +1,6 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
-class Stream;
-
 class Checkpointable {
 public:
 	virtual void checkpoint(Stream &s) = 0;

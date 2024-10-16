@@ -7,6 +7,7 @@ typedef enum {
 
 typedef unsigned colour_t;
 
+// 5-6-5 colours
 const colour_t BLACK = 0x0000;
 const colour_t NAVY = 0x000F;
 const colour_t DARKGREEN = 0x03E0;
@@ -29,10 +30,14 @@ const colour_t PINK = 0xFC9F;
 
 class Display {
 public:
+	void begin(colour_t bg, colour_t fg, orientation_t o, unsigned sx, unsigned sy) {
+		begin(bg, fg, o);
+		setScreen(sx, sy);
+	}
 	void begin(colour_t bg, colour_t fg, orientation_t o);
-	void begin(colour_t bg, colour_t fg, orientation_t o, unsigned dispx, unsigned dispy);
-
+	void setScreen(unsigned sx, unsigned sy);
 	void clear();
+
 	void status(const char *s);
 	void statusf(const char *fmt, ...);
 
@@ -57,8 +62,21 @@ public:
 	void drawString(const char *s, unsigned x, unsigned y, colour_t col);
 	void drawString(const char *s, unsigned x, unsigned y) { drawString(s, x, y, _fg); }
 
-protected:
-	unsigned _bg, _fg, _cx, _cy, _dx, _dy, _oxs, _xoff, _yoff;
+	unsigned screenWidth() const { return _dx; }
+	unsigned screenHeight() const { return _dy; }
+
+	unsigned width() const { return _w; }
+	unsigned height() const { return _h; }
+
+	unsigned charWidth() const { return _cx; }
+	unsigned charHeight() const { return _cy; }
+
+private:
+	unsigned _bg, _fg;
+	unsigned _cx, _cy;
+	unsigned _dx, _dy;
+	unsigned _oxs, _xoff, _yoff;
+	unsigned _w, _h;
 };
 
 #endif

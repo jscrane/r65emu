@@ -1,3 +1,6 @@
+#if defined(ARDUINO)
+#include <Arduino.h>
+#endif
 #include <stdint.h>
 #include "hardware.h"
 
@@ -20,6 +23,10 @@ static File files[MAX_FILES];
 static File dir;
 #elif defined(USE_LITTLEFS)
 static Dir dir;
+#endif
+
+#if defined(USE_LITTLEFS) && !defined(LITTLEFS_READ_MODE)
+#define LITTLEFS_READ_MODE	"r+"
 #endif
 
 bool flash_file::seek(uint32_t pos)
@@ -67,13 +74,12 @@ bool flash_filer::start()
 {
 #if defined(USE_LITTLEFS)
 	dir = LittleFS.openDir(_programs);
+	return true;
 #elif defined(USE_SPIFFS)
 	dir = SPIFFS.open(_programs);
-	if (!dir)
-		return false;
+	return (bool)dir;
 #endif
-
-	return true;
+	return false;
 }
 
 void flash_filer::stop()
@@ -86,25 +92,27 @@ void flash_filer::stop()
 
 const char *flash_filer::advance() {
 #if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
-	files[_current].close();
+	File &f = files[_current];
+	f.close();
 #if defined(USE_LITTLEFS)
-	static char buf[32];
 	while (true) {
 		if (dir.next()) {
-			files[_current] = dir.openFile("r+");
+			DBG(println(dir.fileName()));
+			if (!dir.isFile())
+				continue;
+			f = dir.openFile(LITTLEFS_READ_MODE);
 			break;
 		}
-		dir = LittleFS.openDir(_programs);
+		dir.rewind();
 	}
-	strncpy(buf, dir.fileName().c_str(), sizeof(buf));
-	return buf;
+	return f.name();
 #else
 	bool rewound = false;
 	while (true) {
-		files[_current] = dir.openNextFile();
-		if (files[_current]) {
-			if (files[_current].isDirectory())
-				files[_current].close();
+		f = dir.openNextFile();
+		if (f) {
+			if (f.isDirectory())
+				f.close();
 			else
 				break;
 		} else if (!rewound) {
@@ -113,7 +121,7 @@ const char *flash_filer::advance() {
 		} else
 			return 0;
 	}
-	return files[_current].name();
+	return f.name();
 #endif
 #else
 	return 0;
@@ -123,6 +131,8 @@ const char *flash_filer::advance() {
 const char *flash_filer::rewind() {
 #if defined(USE_SPIFFS)
 	dir.rewindDirectory();
+#elif defined(USE_LITTLEFS)
+	dir.rewind();
 #endif
 	return advance();
 }
