@@ -347,7 +347,7 @@ void Display::drawString(const char *s, unsigned x, unsigned y, colour_t c) {
 #elif defined(USE_DVI)
 	dvi.setTextColor(col(c));
 	dvi.setCursor(x, y);
-	dvi.fillRect(x, y, x+_cx*strlen(s), y+_cy, _bg);
+	dvi.fillRect(x, y, _cx*strlen(s), _cy, _bg);
 	dvi.print(s);
 #endif
 }
