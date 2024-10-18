@@ -159,8 +159,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	espi.setRotation(orient);
 	_dx = espi.width();
 	_dy = espi.height();
-	_cy = espi.fontHeight();
-	_cx = espi.textWidth("M");
+	setFont(ESPI_DEFAULT_FONT);
 
 #elif defined(USE_DVI)
 	static bool init;
@@ -169,10 +168,10 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 		success = dvi.begin();
 
 	init = true;
+	dvi.setRotation(rot(orient));
 	_dx = dvi.width();
 	_dy = dvi.height();
-	textSize("M", _cx, _cy);
-	dvi.setRotation(rot(orient));
+	setFont(DVI_DEFAULT_FONT);
 
 #if DVI_BIT_DEPTH == 8
 	for (int i = 0; i < NCOLOURS; i++)
