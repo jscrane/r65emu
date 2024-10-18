@@ -18,6 +18,7 @@ static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST, TFT_SER);
 #elif defined(USE_ESPI)
 #pragma message "Configure TFT_eSPI in Makefile or <TFT_eSPI/User_Setup.h>"
 #include <TFT_eSPI.h>
+#include <Fonts/GFXFF/gfxfont.h>
 
 static TFT_eSPI espi;
 
@@ -85,6 +86,14 @@ inline int rot(orientation_t r) {
 	return 0;
 }
 
+inline void textSize(const char *s, unsigned &w, unsigned &h) {
+	int16_t x, y;
+	uint16_t width, height;
+	dvi.getTextBounds(s, 0, 0, &x, &y, &width, &height);
+	w = width;
+	h = height;
+}
+
 #else
 #pragma error "Display not configured!"
 #endif
@@ -112,6 +121,27 @@ void Display::setScreen(unsigned sx, unsigned sy) {
 	}
 }
 
+void Display::setFont(const void *font) {
+#if defined(USE_UTFT)
+	utft.setFont((uint8_t *)font);
+	_cx = utft.getFontXsize();
+	_cy = utft.getFontYsize();
+#elif defined(USE_ESPI)
+	const GFXfont *f = (const GFXfont *)font;
+	espi.setFreeFont(f);
+	_cy = espi.fontHeight();
+	_cx = espi.textWidth("M");
+#elif defined(USE_DVI)
+	dvi.setFont((const GFXfont *)font);
+	textSize("M", _cx, _cy);
+#elif defined(USE_VGA)
+	fabgl::FontInfo const *f = (fabgl::FontInfo const *)font;
+	canvas.selectFont(f);
+	_cy = f->height;
+	_cx = f->width;
+#endif
+}
+
 void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_bg = bg;
 	_fg = fg;
@@ -122,10 +152,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	utft.setBackColor(_bg);
 	_dx = utft.getDisplayXSize();
 	_dy = utft.getDisplayYSize();
-
-	utft.setFont((uint8_t *)TinyFont);
-	_cx = utft.getFontXsize();  
-	_cy = utft.getFontYsize();
+	setFont(TinyFont);
 
 #elif defined(USE_ESPI)
 	espi.init();
@@ -133,7 +160,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dx = espi.width();
 	_dy = espi.height();
 	_cy = espi.fontHeight();
-	_cx = 6;
+	_cx = espi.textWidth("M");
 
 #elif defined(USE_DVI)
 	static bool init;
@@ -144,11 +171,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	init = true;
 	_dx = dvi.width();
 	_dy = dvi.height();
-
-	// Adafruit_GFX default font size
-	_cx = 6;
-	_cy = 8;
-
+	textSize("M", _cx, _cy);
 	dvi.setRotation(rot(orient));
 
 #if DVI_BIT_DEPTH == 8
@@ -165,15 +188,13 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	init = true;
 	vga.begin();
 	vga.setResolution(VGA_RESOLUTION);
+	_dx = canvas.getWidth();
+	_dy = canvas.getHeight();
 
 	canvas.setBrushColor(rgb(_bg));
 	canvas.clear();
 	canvas.setGlyphOptions(GlyphOptions().FillBackground(true));
-	canvas.selectFont(&fabgl::FONT_5x7);
-	_cy = canvas.getFontInfo()->height;
-	_cx = canvas.getFontInfo()->width;
-	_dx = canvas.getWidth();
-	_dy = canvas.getHeight();
+	setFont(VGA_DEFAULT_FONT);
 
 	DBG(printf("VGA: w %d h %d\r\n", _dx, _dy));
 #endif
@@ -216,9 +237,9 @@ void Display::status(const char *s) {
 	canvas.drawText(_dx - _oxs, _dy - _cy, s);
 #elif defined(USE_DVI)
 	int16_t x, y;
-	uint16_t w, h;
+	unsigned w, h;
 	dvi.fillRect(_dx - _oxs, _dy - _cy, _oxs, _cy, _bg);
-	dvi.getTextBounds(s, 0, 0, &x, &y, &w, &h);
+	textSize(s, w, h);
 	dvi.setCursor(_dx - w, _dy - h);
 	dvi.print(s);
 	_oxs = _dx - w;
