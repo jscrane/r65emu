@@ -7,6 +7,9 @@
 #define VGA_RESOLUTION	VGA_480x300_75Hz
 //#define VGA_RESOLUTION	VGA_320x200_75HzRetro
 #endif
+#if !defined(VGA_DEFAULT_FONT)
+#define VGA_DEFAULT_FONT &fabgl::FONT_6x10
+#endif
 
 // PS/2 Keyboard
 #if !defined(USE_OWN_KBD)

@@ -37,6 +37,7 @@ public:
 	void begin(colour_t bg, colour_t fg, orientation_t o);
 	void setScreen(unsigned sx, unsigned sy);
 	void clear();
+	void setFont(const void *font);
 
 	void status(const char *s);
 	void statusf(const char *fmt, ...);

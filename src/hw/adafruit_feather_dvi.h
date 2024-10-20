@@ -49,6 +49,10 @@
 //#define DVI_DOUBLE_BUFFERED	true
 #endif
 
+#if !defined(DVI_DEFAULT_FONT)
+#define DVI_DEFAULT_FONT	0
+#endif
+
 // 64kB RAM
 #define RAM_SIZE	0x10000u
 

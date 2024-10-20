@@ -13,6 +13,10 @@
 //#define TFT_RST		-1
 //#define SPI_FREQUENCY	40000000
 //#define LOAD_GLCD
+//#define LOAD_GFXFF
+#if !defined(ESPI_DEFAULT_FONT)
+#define ESPI_DEFAULT_FONT	0
+#endif
 
 // use alternative TFT display library...
 //#define USE_UTFT
