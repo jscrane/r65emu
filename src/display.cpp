@@ -127,8 +127,10 @@ void Display::setFont(const void *font) {
 	_cx = utft.getFontXsize();
 	_cy = utft.getFontYsize();
 #elif defined(USE_ESPI)
+#if defined(LOAD_GFXFF)
 	const GFXfont *f = (const GFXfont *)font;
 	espi.setFreeFont(f);
+#endif
 	_cy = espi.fontHeight();
 	_cx = espi.textWidth("M");
 #elif defined(USE_DVI)

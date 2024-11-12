@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <memory.h>
-#include <line.h>
 #include <via.h>
 
 #define VPORTB	0x00
@@ -117,7 +116,7 @@ void VIA::write_sr(uint8_t b) {
 
 void VIA::write_pcr(uint8_t b) {
 	_pcr = b;
-	CA2.set(b & 0x02);
+	_ca2_handler(b & 0x02);
 }
 
 void VIA::write_acr(uint8_t b) {
