@@ -15,8 +15,8 @@ public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	void write_vporta_in_bit(uint8_t, bool);
-	void write_vportb_in_bit(uint8_t, bool);
+	void write_porta_in_bit(uint8_t, bool);
+	void write_portb_in_bit(uint8_t, bool);
 
 	void tick();
 
@@ -27,6 +27,21 @@ public:
 	void register_ca2_handler(std::function<void(bool)> fn) {
 		_ca2_handler = fn;
 	}
+
+	// hacks for PET sound
+	void register_sr_write_handler(std::function<void(uint8_t)> fn) {
+		_sr_write_handler = fn;
+	}
+
+	void register_acr_write_handler(std::function<void(uint8_t)> fn) {
+		_acr_write_handler = fn;
+	}
+
+	void register_t2lo_write_handler(std::function<void(uint8_t)> fn) {
+		_t2lo_write_handler = fn;
+	}
+
+	void set_interrupt() { if (_irq_handler) _irq_handler(true); }
 
 	// acr
 	static const uint8_t ACR_SHIFT_MASK = 0x1c;
@@ -46,27 +61,24 @@ public:
 	static const uint8_t INT_CA2_ACTIVE = 0x01;
 
 protected:
-	virtual void write_vportb(uint8_t);
-	virtual void write_vporta(uint8_t);
-	virtual void write_vddrb(uint8_t b) { _ddrb = b; }
-	virtual void write_vddra(uint8_t b) { _ddra = b; }
+	virtual void write_portb(uint8_t);
+	virtual void write_porta(uint8_t);
+	virtual void write_ddrb(uint8_t b) { _ddrb = b; }
+	virtual void write_ddra(uint8_t b) { _ddra = b; }
 	virtual void write_t1lo(uint8_t b) { write_t1llo(b); }
 	virtual void write_t1hi(uint8_t);
 	virtual void write_t1llo(uint8_t);
 	virtual void write_t1lhi(uint8_t);
-	virtual void write_t2lo(uint8_t);
 	virtual void write_t2hi(uint8_t);
-	virtual void write_sr(uint8_t);
-	virtual void write_acr(uint8_t b);
 	virtual void write_pcr(uint8_t b);
 	virtual void write_ifr(uint8_t b) { _ifr &= ~b; }
 	virtual void write_ier(uint8_t);
-	virtual void write_vporta_nh(uint8_t);
+	virtual void write_porta_nh(uint8_t);
 
-	virtual uint8_t read_vportb();
-	virtual uint8_t read_vporta();
-	virtual uint8_t read_vddrb() { return _ddrb; }
-	virtual uint8_t read_vddra() { return _ddra; }
+	virtual uint8_t read_portb();
+	virtual uint8_t read_porta();
+	virtual uint8_t read_ddrb() { return _ddrb; }
+	virtual uint8_t read_ddra() { return _ddra; }
 	virtual uint8_t read_t1lo();
 	virtual uint8_t read_t1hi() { return _t1 / 0xff; }
 	virtual uint8_t read_t1llo() { return _t1_latch & 0xff; }
@@ -78,13 +90,19 @@ protected:
 	virtual uint8_t read_pcr() { return _pcr; }
 	virtual uint8_t read_ifr() { return _ifr; }
 	virtual uint8_t read_ier() { return _ier | 0x80; }
-	virtual uint8_t read_vporta_nh();
-
-	void set_interrupt() { if (_irq_handler) _irq_handler(true); }
+	virtual uint8_t read_porta_nh();
 
 private:
+	void write_sr(uint8_t);
+	void write_acr(uint8_t b);
+	void write_t2lo(uint8_t);
+
 	std::function<void(bool)> _irq_handler;
 	std::function<void(bool)> _ca2_handler;
+
+	std::function<void(uint8_t)> _sr_write_handler;
+	std::function<void(uint8_t)> _acr_write_handler;
+	std::function<void(uint8_t)> _t2lo_write_handler;
 
 	void set_int(uint8_t);
 	void clear_int(uint8_t);

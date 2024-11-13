@@ -2,8 +2,8 @@
 #include <memory.h>
 #include <via.h>
 
-#define VPORTB	0x00
-#define VPORTA	0x01
+#define PORTB	0x00
+#define PORTA	0x01
 #define DDRB	0x02
 #define DDRA	0x03
 #define T1LO	0x04
@@ -17,21 +17,21 @@
 #define PCR	0x0c
 #define IFR	0x0d
 #define IER	0x0e
-#define VPORTA_NH	0x0f
+#define PORTA_NH	0x0f
 
 void VIA::write(Memory::address a, uint8_t b) {
 	switch (a & 0x0f) {
-	case VPORTB:
-		write_vportb(b);
+	case PORTB:
+		write_portb(b);
 		break;
-	case VPORTA:
-		write_vporta(b);
+	case PORTA:
+		write_porta(b);
 		break;
 	case DDRB:
-		write_vddrb(b);
+		write_ddrb(b);
 		break;
 	case DDRA:
-		write_vddra(b);
+		write_ddra(b);
 		break;
 	case T1LO:
 		write_t1lo(b);
@@ -66,18 +66,18 @@ void VIA::write(Memory::address a, uint8_t b) {
 	case IER:
 		write_ier(b);
 		break;
-	case VPORTA_NH:
-		write_vporta_nh(b);
+	case PORTA_NH:
+		write_porta_nh(b);
 		break;
 	}
 }
 
-void VIA::write_vportb(uint8_t b) {
+void VIA::write_portb(uint8_t b) {
 	_portb = (b & _ddrb);
 	clear_int(INT_CB1_ACTIVE | INT_CB2_ACTIVE);
 }
 
-void VIA::write_vporta(uint8_t b) {
+void VIA::write_porta(uint8_t b) {
 	_porta = (b & _ddra);
 	clear_int(INT_CA1_ACTIVE | INT_CA2_ACTIVE);
 }
@@ -101,6 +101,8 @@ void VIA::write_t2lo(uint8_t b) {
 	_t2 = b;
 	_timer2 = false;
 	clear_int(INT_TIMER2);
+	if (_t2lo_write_handler)
+		_t2lo_write_handler(b);
 }
 
 void VIA::write_t2hi(uint8_t b) {
@@ -112,6 +114,8 @@ void VIA::write_t2hi(uint8_t b) {
 void VIA::write_sr(uint8_t b) {
 	_sr = b;
 	clear_int(INT_SR);
+	if (_sr_write_handler)
+		_sr_write_handler(b);
 }
 
 void VIA::write_pcr(uint8_t b) {
@@ -123,6 +127,8 @@ void VIA::write_acr(uint8_t b) {
 	_acr = b;
 	if (b & ACR_T1_CONTINUOUS)
 		start_timer1();
+	if (_acr_write_handler)
+		_acr_write_handler(b);
 }
 
 void VIA::write_ier(uint8_t b) {
@@ -132,20 +138,20 @@ void VIA::write_ier(uint8_t b) {
 		_ier &= ~(b & 0x7f);
 }
 
-void VIA::write_vporta_nh(uint8_t b) {
+void VIA::write_porta_nh(uint8_t b) {
 	_porta = (b & _ddra);
 }
 
 uint8_t VIA::read(Memory::address a) {
 	switch (a & 0x0f) {
-	case VPORTB:
-		return read_vportb();
-	case VPORTA:
-		return read_vporta();
+	case PORTB:
+		return read_portb();
+	case PORTA:
+		return read_porta();
 	case DDRB:
-		return read_vddrb();
+		return read_ddrb();
 	case DDRA:
-		return read_vddra();
+		return read_ddra();
 	case T1LO:
 		return read_t1lo();
 	case T1HI:
@@ -168,17 +174,17 @@ uint8_t VIA::read(Memory::address a) {
 		return read_ifr();
 	case IER:
 		return read_ier();
-	case VPORTA_NH:
-		return read_vporta_nh();
+	case PORTA_NH:
+		return read_porta_nh();
 	}
 	return 0x00;
 }
 
-uint8_t VIA::read_vportb() {
+uint8_t VIA::read_portb() {
 	return (_portb & _ddrb) | ~_ddrb;
 }
 
-uint8_t VIA::read_vporta() {
+uint8_t VIA::read_porta() {
 	return (_porta & _ddra) | ~_ddra;
 }
 
@@ -197,7 +203,7 @@ uint8_t VIA::read_sr() {
 	return _sr;
 }
 
-uint8_t VIA::read_vporta_nh() {
+uint8_t VIA::read_porta_nh() {
 	return (_porta & _ddra) | ~_ddra;
 }
 
@@ -239,14 +245,14 @@ void VIA::clear_int(uint8_t i) {
 	_ifr &= ~i;
 }
 
-void VIA::write_vporta_in_bit(uint8_t bit, bool state) {
+void VIA::write_porta_in_bit(uint8_t bit, bool state) {
 	if (state)
 		_porta |= bit;
 	else
 		_porta &= ~bit;
 }
 
-void VIA::write_vportb_in_bit(uint8_t bit, bool state) {
+void VIA::write_portb_in_bit(uint8_t bit, bool state) {
 	if (state)
 		_portb |= bit;
 	else
