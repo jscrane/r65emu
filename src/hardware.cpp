@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <SimpleTimer.h>
 #include <stdint.h>
 #include <stddef.h>
 #include "memory.h"
@@ -26,6 +27,7 @@ spiram sram(SPIRAM_SIZE);
 #endif
 
 static CPU *_cpu;
+static SimpleTimer timers;
 
 bool hardware_reset() {
 	bool success = false;
@@ -105,6 +107,8 @@ bool hardware_debug_cpu() {
 
 bool hardware_run(unsigned instructions) {
 
+	timers.run();
+
 #if defined(CPU_DEBUG)
 	if (cpu_debug) {
 		char buf[256];
@@ -117,6 +121,14 @@ bool hardware_run(unsigned instructions) {
 #endif
 
 	return !_cpu->halted();
+}
+
+int hardware_interval_timer(uint32_t interval, std::function<void(void)> cb) {
+	return timers.setInterval(interval, cb);
+}
+
+int hardware_oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
+	return timers.setTimeout(interval, cb);
 }
 
 #if !defined(NO_CHECKPOINT)

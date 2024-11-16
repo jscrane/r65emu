@@ -11,7 +11,7 @@
 #endif
 
 #if !defined(CPU_INSTRUCTIONS)
-#define CPU_INSTRUCTIONS 	1000
+#define CPU_INSTRUCTIONS 	250
 #endif
 
 #if !defined(TERMINAL_SPEED)
@@ -24,6 +24,8 @@ void hardware_checkpoint(class Stream &);
 void hardware_restore(class Stream &);
 bool hardware_run(unsigned instructions = CPU_INSTRUCTIONS);
 bool hardware_debug_cpu();
+int hardware_interval_timer(uint32_t ms, std::function<void(void)> cb);
+int hardware_oneshot_timer(uint32_t ms, std::function<void(void)> cb);
 
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
 extern class spiram sram;
