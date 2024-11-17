@@ -1,6 +1,8 @@
+// FIXME: does this really belong in the core library?
+// it only works on esp32 and is only used by invaders
+
 #include <Arduino.h>
 #include <hardware.h>
-#include "timed.h"
 #include "sound_dac.h"
 
 #if defined(DAC_SOUND) && defined(ESP_PLATFORM)
@@ -13,6 +15,15 @@ static dac_channel_t channel;
 
 void IRAM_ATTR timer_callback() {
 	s->on_tick();
+}
+
+typedef void (*handler_t)(void);
+
+static void timer_create(unsigned freq, handler_t handler) {
+	hw_timer_t *timer = timerBegin(3, 80, true);	// prescaler of 80
+	timerAttachInterrupt(timer, handler, true);
+	timerAlarmWrite(timer, 1000000 / freq, true);
+	timerAlarmEnable(timer);
 }
 
 void IRAM_ATTR DAC::on_tick() {

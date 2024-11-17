@@ -11,7 +11,7 @@
 #endif
 
 #if !defined(CPU_INSTRUCTIONS)
-#define CPU_INSTRUCTIONS 	250
+#define CPU_INSTRUCTIONS 	500
 #endif
 
 #if !defined(TERMINAL_SPEED)
