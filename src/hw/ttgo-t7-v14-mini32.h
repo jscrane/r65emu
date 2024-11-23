@@ -2,6 +2,7 @@
 // https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-vga32-esp32
 
 // Display
+#if !defined(USE_OWN_DISPLAY)
 #define USE_VGA
 #if !defined(VGA_RESOLUTION)
 #define VGA_RESOLUTION	VGA_480x300_75Hz
@@ -9,6 +10,7 @@
 #endif
 #if !defined(VGA_DEFAULT_FONT)
 #define VGA_DEFAULT_FONT &fabgl::FONT_6x10
+#endif
 #endif
 
 // PS/2 Keyboard

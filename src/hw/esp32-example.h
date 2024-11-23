@@ -1,6 +1,7 @@
 #define RAM_SIZE	0x10000u
 
 // TFT display...
+#if !defined(USE_OWN_DISPLAY)
 #define USE_ESPI
 // must be configured in uC-Makefile, or platformio, or TFT_eSPI's User_Setup.h
 //#define USER_SETUP_LOADED
@@ -26,6 +27,7 @@
 //#define TFT_WR		33
 //#define TFT_CS		27
 //#define TFT_RST		26
+#endif
 
 // PS/2 keyboard
 #if !defined(USE_OWN_KBD)

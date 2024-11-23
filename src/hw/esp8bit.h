@@ -4,6 +4,7 @@
 #define RAM_SIZE	0x8000u
 
 // TFT display...
+#if !defined(USE_OWN_DISPLAY)
 #define USE_ESPI
 //must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED
@@ -18,6 +19,7 @@
 //#define LOAD_GFXFF
 #if !defined(ESPI_DEFAULT_FONT)
 #define ESPI_DEFAULT_FONT	0
+#endif
 #endif
 
 // PS/2 keyboard

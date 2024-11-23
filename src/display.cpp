@@ -4,6 +4,8 @@
 #include "memory.h"
 #include "display.h"
 
+#if !defined(USE_OWN_DISPLAY)
+
 #if defined(USE_UTFT)
 #pragma message "UTFT configured"
 #include <UTFT.h>
@@ -373,3 +375,4 @@ void Display::drawString(const char *s, unsigned x, unsigned y, colour_t c) {
 	dvi.print(s);
 #endif
 }
+#endif

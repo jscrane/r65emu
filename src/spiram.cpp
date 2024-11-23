@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "hardware.h"
 
 #if defined(USE_SPIRAM)

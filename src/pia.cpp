@@ -100,6 +100,22 @@ void PIA::restore(Stream &s) {
 	ca2 = s.read();
 }
 
+void PIA::write_porta(uint8_t b) {
+
+	outa = b;
+
+	if (porta_write_handler)
+		porta_write_handler(b);
+}
+
+void PIA::write_portb(uint8_t b) {
+
+	outb = b;
+
+	if (portb_write_handler)
+		portb_write_handler(b);
+}
+
 void PIA::write_ca1(bool state) {
 
 	if (ca1 == state)
@@ -169,11 +185,19 @@ uint8_t PIA::read_crb() {
 }
 
 uint8_t PIA::read_porta() {
+
+	if (porta_read_handler)
+		ina = porta_read_handler();
+
 	irq_a1 = irq_a2 = false;
 	return (ina & ~ddra) | (outa & ddra);
 }
 
 uint8_t PIA::read_portb() {
+
+	if (portb_read_handler)
+		inb = portb_read_handler();
+
 	irq_b1 = irq_b2 = false;
 	return (inb & ~ddrb) | (outb & ddrb);
 }

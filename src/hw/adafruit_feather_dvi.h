@@ -26,6 +26,7 @@
 
 // Display
 // https://cdn-learn.adafruit.com/downloads/pdf/picodvi-arduino-library-video-out-for-rp2040-boards.pdf
+#if !defined(USE_OWN_DISPLAY)
 #define USE_DVI
 #define DVI_CONFIG		adafruit_feather_dvi_cfg
 
@@ -51,6 +52,7 @@
 
 #if !defined(DVI_DEFAULT_FONT)
 #define DVI_DEFAULT_FONT	0
+#endif
 #endif
 
 // 64kB RAM
