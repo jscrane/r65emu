@@ -35,7 +35,7 @@ static uint8_t fn(uint8_t key) {
 	case PS2_F7: return 7;
 	case PS2_F8: return 8;
 	case PS2_F9: return 9;
-	case PS2_F10: return 01;
+	case PS2_F10: return 10;
 	case PS2_F11: return 11;
 	case PS2_F12: return 12;
 	}

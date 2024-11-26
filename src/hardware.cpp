@@ -71,7 +71,7 @@ void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
 	cpu.memory().begin();
 
-#if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(USE_SERIAL)
+#if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(PIA_DEBUG) || defined(VIA_DEBUG) || defined(USE_SERIAL)
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
 	delay(800);
@@ -93,7 +93,7 @@ void hardware_init(CPU &cpu) {
 }
 
 #if defined(CPU_DEBUG)
-bool cpu_debug = CPU_DEBUG;
+static bool cpu_debug = CPU_DEBUG;
 #endif
 
 bool hardware_debug_cpu() {

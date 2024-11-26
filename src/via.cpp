@@ -2,24 +2,36 @@
 #include <memory.h>
 #include <via.h>
 
-#define PORTB	0x00
-#define PORTA	0x01
-#define DDRB	0x02
-#define DDRA	0x03
-#define T1LO	0x04
-#define T1HI	0x05
-#define T1LLO	0x06
-#define T1LHI	0x07
-#define T2LO	0x08
-#define T2HI	0x09
-#define SHIFT	0x0a
-#define ACR	0x0b
-#define PCR	0x0c
-#define IFR	0x0d
-#define IER	0x0e
+#if defined(VIA_DEBUG)
+#define DEBUGGING
+#endif
+#include <hardware.h>
+
+#define PORTB		0x00
+#define PORTA		0x01
+#define DDRB		0x02
+#define DDRA		0x03
+#define T1LO		0x04
+#define T1HI		0x05
+#define T1LLO		0x06
+#define T1LHI		0x07
+#define T2LO		0x08
+#define T2HI		0x09
+#define SHIFT		0x0a
+#define ACR		0x0b
+#define PCR		0x0c
+#define IFR		0x0d
+#define IER		0x0e
 #define PORTA_NH	0x0f
 
 void VIA::write(Memory::address a, uint8_t b) {
+
+	DBG(print(millis()));
+	DBG(print(F(" via > ")));
+	DBG(print(a, 16));
+	DBG(print(' '));
+	DBG(println(b, 16));
+
 	switch (a & 0x0f) {
 	case PORTB:
 		write_portb(b);
@@ -133,7 +145,7 @@ void VIA::write_acr(uint8_t b) {
 
 void VIA::write_ier(uint8_t b) {
 	if (b & INT_MASTER)
-		_ier |= b & 0x7f;
+		_ier |= (b & 0x7f);
 	else
 		_ier &= ~(b & 0x7f);
 }
@@ -143,40 +155,64 @@ void VIA::write_porta_nh(uint8_t b) {
 }
 
 uint8_t VIA::read(Memory::address a) {
+	uint8_t b = 0x00;
+
 	switch (a & 0x0f) {
 	case PORTB:
-		return read_portb();
+		b = read_portb();
+		break;
 	case PORTA:
-		return read_porta();
+		b = read_porta();
+		break;
 	case DDRB:
-		return read_ddrb();
+		b = read_ddrb();
+		break;
 	case DDRA:
-		return read_ddra();
+		b = read_ddra();
+		break;
 	case T1LO:
-		return read_t1lo();
+		b = read_t1lo();
+		break;
 	case T1HI:
-		return read_t1hi();
+		b = read_t1hi();
+		break;
 	case T1LLO:
-		return read_t1llo();
+		b = read_t1llo();
+		break;
 	case T1LHI:
-		return read_t1lhi();
+		b = read_t1lhi();
+		break;
 	case T2LO:
-		return read_t2lo();
+		b = read_t2lo();
+		break;
 	case T2HI:
-		return read_t2hi();
+		b = read_t2hi();
+		break;
 	case SHIFT:
-		return read_sr();
+		b = read_sr();
+		break;
 	case ACR:
-		return read_acr();
+		b = read_acr();
+		break;
 	case PCR:
-		return read_pcr();
+		b = read_pcr();
+		break;
 	case IFR:
-		return read_ifr();
+		b = read_ifr();
+		break;
 	case IER:
-		return read_ier();
+		b = read_ier();
+		break;
 	case PORTA_NH:
-		return read_porta_nh();
+		b = read_porta_nh();
+		break;
 	}
+
+	DBG(print(millis()));
+	DBG(print(F(" via < ")));
+	DBG(print(a, 16));
+	DBG(print(' '));
+	DBG(println(b, 16));
 	return 0x00;
 }
 
@@ -211,25 +247,25 @@ void VIA::tick() {
 
 	uint32_t now = millis();
 	if (_timer1) {
-		uint32_t interval = now - _t1_tick;
-		if (_t1 < interval) {
+		uint32_t elapsed = now - _t1_tick;
+		if (_t1 < elapsed) {
 			_t1 = 0;
 			_timer1 = false;
 			set_int(INT_TIMER1);
 		} else {
-			_t1 -= interval;
+			_t1 -= elapsed;
 			_t1_tick = now;
 		}
 	}
 
 	if (_timer2) {
-		uint32_t interval = now - _t1_tick;
-		if (_t2 < interval) {
+		uint32_t elapsed = now - _t2_tick;
+		if (_t2 < elapsed) {
 			_t2 = 0;
 			_timer2 = false;
 			set_int(INT_TIMER2);
 		} else {
-			_t2 -= interval;
+			_t2 -= elapsed;
 			_t2_tick = now;
 		}
 	}

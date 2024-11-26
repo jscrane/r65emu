@@ -1,5 +1,11 @@
 #include <Arduino.h>
 #include <memory.h>
+
+#if defined(PIA_DEBUG)
+#define DEBUGGING
+#endif
+#include <hardware.h>
+
 #include "pia.h"
 
 // see: https://github.com/mamedev/mame/blob/master/src/devices/machine/6821pia.cpp
@@ -20,13 +26,13 @@ inline bool c2_high_to_low(uint8_t cr) { return !c2_low_to_high(cr); }
 inline bool output_selected(uint8_t cr) { return cr & 0x04; }
 
 void PIA::write(Memory::address a, uint8_t b) {
-#if defined(DEBUG_PIA)
-	Serial.print(millis());
-	Serial.print(" > ");
-	Serial.print(a, 16);
-	Serial.print(' ');
-	Serial.println(b, 16);
-#endif
+
+	DBG(print(millis()));
+	DBG(print(F(" pia > ")));
+	DBG(print(a, 16));
+	DBG(print(' '));
+	DBG(println(b, 16));
+
 	switch(a & 3) {
 	case 0:
 		output_selected(cra)? write_porta(b): write_ddra(b);
@@ -44,22 +50,30 @@ void PIA::write(Memory::address a, uint8_t b) {
 }
 
 uint8_t PIA::read(Memory::address a) {
-#if defined(DEBUG_PIA)
-	Serial.print(millis());
-	Serial.print(" < ");
-	Serial.println(a, 16);
-#endif
+
+	uint8_t b = 0xff;
+
 	switch (a & 3) {
 	case 0:
-		return output_selected(cra)? read_porta(): read_ddra();
+		b = output_selected(cra)? read_porta(): read_ddra();
+		break;
 	case 1:
-		return read_cra();
+		b = read_cra();
+		break;
 	case 2:
-		return output_selected(crb)? read_portb(): read_ddrb();
+		b = output_selected(crb)? read_portb(): read_ddrb();
+		break;
 	case 3:
-		return read_crb();
+		b = read_crb();
+		break;
 	}
-	return 0xff;
+
+	DBG(print(millis()));
+	DBG(print(F(" pia < ")));
+	DBG(print(a, 16));
+	DBG(print(' '));
+	DBG(println(b, 16));
+	return b;
 }
 
 void PIA::checkpoint(Stream &s) {

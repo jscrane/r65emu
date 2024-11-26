@@ -1,8 +1,4 @@
-/*
- * The hardware configuration of the machine.
- */
-#ifndef __HARDWARE_H__
-#define __HARDWARE_H__
+#pragma once
 
 #if defined(HARDWARE_H)
 #include HARDWARE_H
@@ -31,10 +27,9 @@ int hardware_oneshot_timer(uint32_t ms, std::function<void(void)> cb);
 extern class spiram sram;
 #endif
 
+//#define DEBUGGING
 #if defined(DEBUGGING)
 #define DBG(x) Serial.x
 #else
 #define DBG(x)
-#endif
-
 #endif
