@@ -24,15 +24,26 @@
 #define IER		0x0e
 #define PORTA_NH	0x0f
 
+#if defined(DEBUGGING)
+const char *regs[] = {
+	"portb", "porta", "ddrb", "ddra",
+	"t1lo", "t1hi", "t1llo", "t1lhi",
+	"t2lo", "t2hi", "sr", "acr",
+	"pcr", "ifr", "ier", "portanh"
+};
+#endif
+
 void VIA::write(Memory::address a, uint8_t b) {
+
+	a &= 0x0f;
 
 	DBG(print(millis()));
 	DBG(print(F(" via > ")));
-	DBG(print(a, 16));
+	DBG(print(regs[a]));
 	DBG(print(' '));
 	DBG(println(b, 16));
 
-	switch (a & 0x0f) {
+	switch (a) {
 	case PORTB:
 		write_portb(b);
 		break;
@@ -156,8 +167,9 @@ void VIA::write_porta_nh(uint8_t b) {
 
 uint8_t VIA::read(Memory::address a) {
 	uint8_t b = 0x00;
+	a &= 0x0f;
 
-	switch (a & 0x0f) {
+	switch (a) {
 	case PORTB:
 		b = read_portb();
 		break;
@@ -210,10 +222,10 @@ uint8_t VIA::read(Memory::address a) {
 
 	DBG(print(millis()));
 	DBG(print(F(" via < ")));
-	DBG(print(a, 16));
+	DBG(print(regs[a]));
 	DBG(print(' '));
 	DBG(println(b, 16));
-	return 0x00;
+	return b;
 }
 
 uint8_t VIA::read_portb() {
@@ -245,29 +257,17 @@ uint8_t VIA::read_porta_nh() {
 
 void VIA::tick() {
 
-	uint32_t now = millis();
-	if (_timer1) {
-		uint32_t elapsed = now - _t1_tick;
-		if (_t1 < elapsed) {
-			_t1 = 0;
-			_timer1 = false;
-			set_int(INT_TIMER1);
-		} else {
-			_t1 -= elapsed;
-			_t1_tick = now;
-		}
+	uint32_t now = micros();
+	if (_timer1 && _t1_expiry < now) {
+		_t1 = 0;
+		_timer1 = false;
+		set_int(INT_TIMER1);
 	}
 
-	if (_timer2) {
-		uint32_t elapsed = now - _t2_tick;
-		if (_t2 < elapsed) {
-			_t2 = 0;
-			_timer2 = false;
-			set_int(INT_TIMER2);
-		} else {
-			_t2 -= elapsed;
-			_t2_tick = now;
-		}
+	if (_timer2 && _t2_expiry < now) {
+		_t2 = 0;
+		_timer2 = false;
+		set_int(INT_TIMER2);
 	}
 }
 
@@ -296,11 +296,11 @@ void VIA::write_portb_in_bit(uint8_t bit, bool state) {
 }
 
 void VIA::start_timer1() {
-	_t1_tick = millis();
+	_t1_expiry = micros() + _t1;
 	_timer1 = true;
 }
 
 void VIA::start_timer2() {
-	_t2_tick = millis();
+	_t2_expiry = micros() + _t2;
 	_timer2 = true;
 }

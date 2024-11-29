@@ -1,5 +1,4 @@
-#ifndef _VIA_H
-#define _VIA_H
+#pragma once
 
 class VIA {
 public:
@@ -8,7 +7,8 @@ public:
 
 	virtual void reset() {
 		_timer1 = _timer2 = false;
-		_t1 = _t2 = _t1_latch = 0;
+		_t1 = _t1_latch = 0xdfff;
+		_t2 = 0xffff;
 		_sr = _acr = _pcr = _ier = _ifr = _porta = _portb = _ddra = _ddrb = 0;
 	}
 
@@ -112,10 +112,8 @@ private:
 	volatile bool _timer1, _timer2;
 	volatile uint16_t _t1, _t2;
 	uint16_t _t1_latch;
-	volatile uint32_t _t1_tick, _t2_tick;
+	uint32_t _t1_expiry, _t2_expiry;
 
 	uint8_t _sr, _acr, _pcr, _ier, _ifr, _ddra, _ddrb;
 	volatile uint8_t _porta, _portb;
 };
-
-#endif
