@@ -20,8 +20,9 @@ void hardware_checkpoint(class Stream &);
 void hardware_restore(class Stream &);
 bool hardware_run(unsigned instructions = CPU_INSTRUCTIONS);
 bool hardware_debug_cpu();
-int hardware_interval_timer(unsigned long dt, std::function<void(void)> cb);
-int hardware_oneshot_timer(unsigned long dt, std::function<void(void)> cb);
+int hardware_interval_timer(uint32_t dt, std::function<void(void)> cb);
+int hardware_oneshot_timer(uint32_t dt, std::function<void(void)> cb);
+void hardware_cancel_timer(int timer);
 
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
 extern class spiram sram;

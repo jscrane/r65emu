@@ -127,12 +127,16 @@ bool hardware_run(unsigned instructions) {
 	return !_cpu->halted();
 }
 
-int hardware_interval_timer(unsigned long interval, std::function<void(void)> cb) {
+int hardware_interval_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setInterval(interval, cb);
 }
 
-int hardware_oneshot_timer(unsigned long interval, std::function<void(void)> cb) {
+int hardware_oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setTimeout(interval, cb);
+}
+
+void hardware_cancel_timer(int timer) {
+	timers.deleteTimer(timer);
 }
 
 #if !defined(NO_CHECKPOINT)
