@@ -122,10 +122,9 @@ void VIA::write_t1hi(uint8_t b) {
 
 void VIA::write_t2lo(uint8_t b) {
 	_t2 = b;
+	_t2_ll = b;
 	_timer2 = false;
 	clear_int(INT_TIMER2);
-	if (_t2lo_write_handler)
-		_t2lo_write_handler(b);
 }
 
 void VIA::write_t2hi(uint8_t b) {
@@ -137,8 +136,8 @@ void VIA::write_t2hi(uint8_t b) {
 void VIA::write_sr(uint8_t b) {
 	_sr = b;
 	clear_int(INT_SR);
-	if (_sr_write_handler)
-		_sr_write_handler(b);
+	if (_acr & ACR_SO_T2_RATE)
+		start_sr_timer();
 }
 
 void VIA::write_pcr(uint8_t b) {
@@ -148,10 +147,8 @@ void VIA::write_pcr(uint8_t b) {
 
 void VIA::write_acr(uint8_t b) {
 	_acr = b;
-	if (b & ACR_T1_CONTINUOUS)
+	if (_acr & ACR_T1_CONTINUOUS)
 		start_timer1();
-	if (_acr_write_handler)
-		_acr_write_handler(b);
 }
 
 void VIA::write_ier(uint8_t b) {
@@ -303,4 +300,21 @@ void VIA::start_timer1() {
 void VIA::start_timer2() {
 	_t2_expiry = micros() + _t2;
 	_timer2 = true;
+}
+
+void VIA::start_sr_timer() {
+	if (_sr_timer < 0)
+		_sr_timer = hardware_oneshot_timer(2*_t2_ll + 2, [this]() {
+			shift_out();
+			_sr_timer = -1;
+			if (_acr & ACR_SO_T2_RATE)
+				start_sr_timer();
+		});
+}
+
+void VIA::shift_out() {
+	uint8_t cb2 = (_sr >> 7) & 1;
+	_sr = (_sr << 1) | cb2;
+	if (_cb2_handler)
+		_cb2_handler(cb2);
 }

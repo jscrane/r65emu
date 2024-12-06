@@ -9,6 +9,8 @@ public:
 		_timer1 = _timer2 = false;
 		_t1 = _t1_latch = 0xdfff;
 		_t2 = 0xffff;
+		_sr_timer = -1;
+		_t2_ll = 0xff;
 		_sr = _acr = _pcr = _ier = _ifr = _porta = _portb = _ddra = _ddrb = 0;
 	}
 
@@ -28,17 +30,8 @@ public:
 		_ca2_handler = fn;
 	}
 
-	// hacks for PET sound
-	void register_sr_write_handler(std::function<void(uint8_t)> fn) {
-		_sr_write_handler = fn;
-	}
-
-	void register_acr_write_handler(std::function<void(uint8_t)> fn) {
-		_acr_write_handler = fn;
-	}
-
-	void register_t2lo_write_handler(std::function<void(uint8_t)> fn) {
-		_t2lo_write_handler = fn;
+	void register_cb2_handler(std::function<void(bool)> fn) {
+		_cb2_handler = fn;
 	}
 
 	void set_interrupt() { if (_irq_handler) _irq_handler(true); }
@@ -94,26 +87,28 @@ protected:
 
 private:
 	void write_sr(uint8_t);
-	void write_acr(uint8_t b);
+	void write_acr(uint8_t);
 	void write_t2lo(uint8_t);
 
 	std::function<void(bool)> _irq_handler;
 	std::function<void(bool)> _ca2_handler;
-
-	std::function<void(uint8_t)> _sr_write_handler;
-	std::function<void(uint8_t)> _acr_write_handler;
-	std::function<void(uint8_t)> _t2lo_write_handler;
+	std::function<void(bool)> _cb2_handler;
 
 	void set_int(uint8_t);
 	void clear_int(uint8_t);
 
 	void start_timer1();
 	void start_timer2();
-	volatile bool _timer1, _timer2;
-	volatile uint16_t _t1, _t2;
+	bool _timer1, _timer2;
+	uint16_t _t1, _t2;
 	uint16_t _t1_latch;
 	uint32_t _t1_expiry, _t2_expiry;
 
+	void start_sr_timer();
+	void shift_out();
+	uint8_t _t2_ll;
+	int _sr_timer;
+
 	uint8_t _sr, _acr, _pcr, _ier, _ifr, _ddra, _ddrb;
-	volatile uint8_t _porta, _portb;
+	uint8_t _porta, _portb;
 };
