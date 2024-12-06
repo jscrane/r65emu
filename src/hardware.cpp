@@ -77,6 +77,10 @@ void hardware_init(CPU &cpu) {
 	delay(800);
 #endif
 
+#if defined(PWM_SOUND)
+	pinMode(PWM_SOUND, OUTPUT);
+#endif
+
 #if defined(TFT_BACKLIGHT)
 	pinMode(TFT_BACKLIGHT, OUTPUT);
 #endif
@@ -123,11 +127,11 @@ bool hardware_run(unsigned instructions) {
 	return !_cpu->halted();
 }
 
-int hardware_interval_timer(uint32_t interval, std::function<void(void)> cb) {
+int hardware_interval_timer(unsigned long interval, std::function<void(void)> cb) {
 	return timers.setInterval(interval, cb);
 }
 
-int hardware_oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
+int hardware_oneshot_timer(unsigned long interval, std::function<void(void)> cb) {
 	return timers.setTimeout(interval, cb);
 }
 
