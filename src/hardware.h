@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 #if defined(HARDWARE_H)
 #include HARDWARE_H
 #else

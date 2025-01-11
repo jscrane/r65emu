@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 class matrix_keyboard {
 public:
 	virtual void up(uint8_t) = 0;

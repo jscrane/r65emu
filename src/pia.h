@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 // Motorola 6820 / 6821 PIA
 // https://en.wikipedia.org/wiki/Peripheral_Interface_Adapter
 class PIA {

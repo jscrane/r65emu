@@ -19,7 +19,8 @@ public:
 	virtual void checkpoint(Stream &s) = 0;
 	virtual void restore(Stream &s) = 0;
 
-	inline bool halted() { return _halted; }
+	inline bool halted() const { return _halted; }
+	inline Memory::address pc() const { return PC; }
 
 	Memory &memory() const { return _mem; }
 

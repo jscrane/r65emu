@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 class serial_kbd {
 public:
 	virtual int read() = 0;

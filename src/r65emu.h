@@ -1,6 +1,6 @@
-#ifndef __R65EMU_H__
-#define __R65EMU_H__
+#pragma once
 
+#include <functional>
 #include "memory.h"
 #include "CPU.h"
 #include "ram.h"
@@ -20,5 +20,3 @@
 #include "hw_serial_kbd.h"
 #include "serial_dsp.h"
 #include "hw_serial_dsp.h"
-
-#endif

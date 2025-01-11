@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 class VIA {
 public:
 	VIA(): _timer1(false), _timer2(false), _t1(0), _t2(0), _t1_latch(0),
