@@ -54,20 +54,15 @@ static const fabgl::RGB888 rgb(colour_t c) {
 static VGA6Bit vga;
 #elif VGA_BIT_DEPTH == 3
 static VGA3Bit vga;
+#elif VGA_BIT_DEPTH == 1
+static VGA1BitI vga;
 #endif
 
 static uint8_t rgb(colour_t c) {
-	switch(c) {
-		case BLACK: return vga.RGB(0, 0, 0);
-		case RED: return vga.RGB(255, 0, 0);
-		case GREEN: return vga.RGB(0, 255, 0);
-		case YELLOW: return vga.RGB(255, 255, 0);
-		case BLUE: return vga.RGB(0, 0, 255);
-		case MAGENTA: return vga.RGB(255, 0, 255);
-		case CYAN: return vga.RGB(0, 255, 255);
-		case WHITE: return vga.RGB(255, 255, 255);
-	}
-	return vga.RGB(255, 255, 255);
+	uint8_t r = ((c & 0xf800) >> 11);
+	uint8_t g = ((c & 0x07e0) >> 5);
+	uint8_t b = (c & 0x001f);
+	return vga.RGB(r << 3, g << 2, b << 3);
 }
 
 #elif defined(USE_DVI)
@@ -145,7 +140,7 @@ void Display::setScreen(unsigned sx, unsigned sy) {
 		_dx = _w - _xoff;
 	}
 	if (sy < _h) {
-		_yoff = (_h - sy) / 2;
+		_yoff = (_h - sy - _cy) / 2;
 		_dy = _h - _yoff;
 	}
 }
@@ -240,7 +235,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 #if VGA_BIT_DEPTH == 6
 		Mode mode = VGA_RESOLUTION;
 		vga.init(mode, R0, R1, G0, G1, B0, B1, HSYNC, VSYNC);
-#elif VGA_BIT_DEPTH == 3
+#elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
 		vga.init(VGA_RESOLUTION, R0, G0, B0, HSYNC, VSYNC);
 #endif
 		init = true;

@@ -21,7 +21,7 @@
 #define VGA_BIT_DEPTH	3
 #endif
 #if !defined(VGA_RESOLUTION)
-#define VGA_RESOLUTION VGAMode::MODE400x300
+#define VGA_RESOLUTION VGAMode::MODE320x200
 #endif
 #if !defined(VGA_DEFAULT_FONT)
 #define VGA_DEFAULT_FONT	&Font6x8
