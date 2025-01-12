@@ -5,7 +5,11 @@
 #include <hardware.h>
 #include "sound_dac.h"
 
-#if defined(DAC_SOUND) && defined(ESP_PLATFORM)
+#if defined(ESP_PLATFORM)
+#define UNSUPPORTED_ESP_ARDUINO_VERSION ESP_ARDUINO_VERSION_VAL(3,0,0)
+#endif
+
+#if defined(DAC_SOUND) && defined(ESP_PLATFORM) && ESP_ARDUINO_VERSION < UNSUPPORTED_ESP_ARDUINO_VERSION
 static DAC *s;
 
 #include <driver/dac.h>
