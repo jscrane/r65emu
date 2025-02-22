@@ -30,9 +30,34 @@ void hardware_cancel_timer(int timer);
 extern class spiram sram;
 #endif
 
-//#define DEBUGGING
-#if defined(DEBUGGING)
-#define DBG(x) Serial.x
-#else
-#define DBG(x)
+#define DEBUG_NONE	0x00000000
+#define DEBUG_CPU	0x00000001
+#define DEBUG_INI	0x00000002
+#define DEBUG_PIA	0x00000004
+#define DEBUG_VIA	0x00000008
+#define DEBUG_DSP	0x00000010
+#define DEBUG_EMU	0x00000011
+#define DEBUG_ANY	0xffffffff
+
+#if !defined(DEBUGGING)
+#define DEBUGGING	DEBUG_NONE
 #endif
+
+#if defined(CPU_DEBUG)
+#define DEBUGGING	(DEBUGGING | DEBUG_CPU)
+#endif
+
+#define _DBG(lvl, x)	if (DEBUGGING & lvl) Serial.x
+
+#if DEBUGGING == DEBUG_NONE
+#define DBG(x)
+#else
+#define DBG(x)		_DBG(DEBUG_ANY, x)
+#endif
+
+#define DBG_CPU(x)	_DBG(DEBUG_CPU, x)
+#define DBG_INI(x)	_DBG(DEBUG_INI, x)
+#define DBG_PIA(x)	_DBG(DEBUG_PIA, x)
+#define DBG_VIA(x)	_DBG(DEBUG_VIA, x)
+#define DBG_DSP(x)	_DBG(DEBUG_DSP, x)
+#define DBG_EMU(x)	_DBG(DEBUG_EMU, x)

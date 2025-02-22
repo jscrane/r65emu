@@ -7,7 +7,7 @@
 #include "z80.h"
 
 char *z80::status(char *buf, size_t n, bool hdr) {
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	uint8_t op = _mem[PC];
 	snprintf(buf, n,
 		"%s%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d "
@@ -70,7 +70,7 @@ void z80::restore(Stream &s) {
 uint8_t z80::_fetch_op() {
 	_mc(PC, 4);
 	uint8_t op = _mem[PC];
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	printf("%5ld MR %04x %02x\n", _ts, PC, op);
 #endif
 	PC++;
@@ -143,14 +143,14 @@ void z80::_step_idx(EXT_OP f) {
 
 	_mc(PC, 3);
 	uint8_t off = _mem[PC];
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	printf("%5ld MR %04x %02x\n", _ts, PC, off);
 #endif
 	PC++;
 
 	_mc(PC, 3);
 	uint8_t op = _mem[PC];
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	printf("%5ld MR %04x %02x\n", _ts, PC, op);
 #endif
 	_mc(PC, 1);

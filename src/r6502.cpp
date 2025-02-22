@@ -25,7 +25,7 @@ uint8_t r6502::flags() {
 }
 
 char *r6502::status(char *buf, size_t n, bool hdr) {
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	flags();
 	snprintf(buf, n,
 		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x",

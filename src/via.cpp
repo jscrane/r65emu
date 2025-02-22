@@ -1,11 +1,8 @@
 #include <Arduino.h>
-#include <memory.h>
-#include <via.h>
 
-#if defined(VIA_DEBUG)
-#define DEBUGGING
-#endif
-#include <hardware.h>
+#include "memory.h"
+#include "via.h"
+#include "hardware.h"
 
 #define PORTB		0x00
 #define PORTA		0x01
@@ -37,11 +34,11 @@ void VIA::write(Memory::address a, uint8_t b) {
 
 	a &= 0x0f;
 
-	DBG(print(millis()));
-	DBG(print(F(" via > ")));
-	DBG(print(regs[a]));
-	DBG(print(' '));
-	DBG(println(b, 16));
+	DBG_VIA(print(millis()));
+	DBG_VIA(print(F(" via > ")));
+	DBG_VIA(print(regs[a]));
+	DBG_VIA(print(' '));
+	DBG_VIA(println(b, 16));
 
 	switch (a) {
 	case PORTB:
@@ -217,11 +214,11 @@ uint8_t VIA::read(Memory::address a) {
 		break;
 	}
 
-	DBG(print(millis()));
-	DBG(print(F(" via < ")));
-	DBG(print(regs[a]));
-	DBG(print(' '));
-	DBG(println(b, 16));
+	DBG_VIA(print(millis()));
+	DBG_VIA(print(F(" via < ")));
+	DBG_VIA(print(regs[a]));
+	DBG_VIA(print(' '));
+	DBG_VIA(println(b, 16));
 	return b;
 }
 

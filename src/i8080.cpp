@@ -35,7 +35,7 @@ void i8080::raise(uint8_t level) {
 }
 
 char *i8080::status(char *buf, size_t n, bool hdr) {
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	uint8_t op = _mem[PC];
 	snprintf(buf, n,
 		"%s%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d",
