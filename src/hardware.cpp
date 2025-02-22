@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include "memory.h"
 #include "hardware.h"
+#include "dbg.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>
@@ -71,7 +72,7 @@ void hardware_init(CPU &cpu) {
 	_cpu = &cpu;
 	cpu.memory().begin();
 
-#if defined(DEBUGGING) || defined(CPU_DEBUG) || defined(PIA_DEBUG) || defined(VIA_DEBUG) || defined(USE_SERIAL)
+#if DEBUGGING != DEBUG_NONE
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
 	delay(800);
@@ -96,12 +97,15 @@ void hardware_init(CPU &cpu) {
 #endif
 }
 
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
+#if !defined(CPU_DEBUG)
+#define CPU_DEBUG	false
+#endif
 static bool cpu_debug = CPU_DEBUG;
 #endif
 
 bool hardware_debug_cpu() {
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	cpu_debug = !cpu_debug;
 	return cpu_debug;
 #else
@@ -113,10 +117,10 @@ bool hardware_run(unsigned instructions) {
 
 	timers.run();
 
-#if defined(CPU_DEBUG)
+#if DEBUGGING & DEBUG_CPU
 	if (cpu_debug) {
 		char buf[256];
-		Serial.println(_cpu->status(buf, sizeof(buf)));
+		DBG_CPU(println(_cpu->status(buf, sizeof(buf))));
 		_cpu->run(1);
 	} else
 		_cpu->run(instructions);

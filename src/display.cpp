@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <stdarg.h>
 #include "hardware.h"
+#include "dbg.h"
 #include "memory.h"
 #include "display.h"
 
@@ -208,7 +209,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	for (int i = 0; i < NCOLOURS; i++)
 		dvi.setColor(i, colours[i]);
 #endif
-	DBG(printf("DVI: %d: w %d h %d\r\n", success, _dx, _dy));
+	DBG_DSP(printf("DVI: %d: w %d h %d\r\n", success, _dx, _dy));
 
 #elif defined(USE_VGA_FABGL)
 	static bool init;
@@ -226,7 +227,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	canvas.setGlyphOptions(GlyphOptions().FillBackground(true));
 	setFont(VGA_DEFAULT_FONT);
 
-	DBG(printf("FabGL: w %d h %d\r\n", _dx, _dy));
+	DBG_DSP(printf("FabGL: w %d h %d\r\n", _dx, _dy));
 
 #elif defined(USE_VGA_BITLUNI)
 	static bool init;
@@ -245,7 +246,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dy = vga.yres;
 	setFont(VGA_DEFAULT_FONT);
 
-	DBG(printf("Bitluni: w %d h %d\r\n", _dx, _dy));
+	DBG_DSP(printf("Bitluni: w %d h %d\r\n", _dx, _dy));
 #endif
 
 	setColor(fg);

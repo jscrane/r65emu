@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include "dbg.h"
 #include "memory.h"
 #include "CPU.h"
 #include "ram.h"

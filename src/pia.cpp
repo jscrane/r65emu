@@ -1,10 +1,8 @@
 #include <Arduino.h>
 #include <memory.h>
 
-#if defined(PIA_DEBUG)
-#define DEBUGGING
-#endif
-#include <hardware.h>
+#include "dbg.h"
+#include "hardware.h"
 
 #include "pia.h"
 
@@ -27,11 +25,11 @@ inline bool output_selected(uint8_t cr) { return cr & 0x04; }
 
 void PIA::write(Memory::address a, uint8_t b) {
 
-	DBG(print(millis()));
-	DBG(print(F(" pia > ")));
-	DBG(print(a, 16));
-	DBG(print(' '));
-	DBG(println(b, 16));
+	DBG_PIA(print(millis()));
+	DBG_PIA(print(F(" pia > ")));
+	DBG_PIA(print(a, 16));
+	DBG_PIA(print(' '));
+	DBG_PIA(println(b, 16));
 
 	switch(a & 3) {
 	case 0:
@@ -68,11 +66,11 @@ uint8_t PIA::read(Memory::address a) {
 		break;
 	}
 
-	DBG(print(millis()));
-	DBG(print(F(" pia < ")));
-	DBG(print(a, 16));
-	DBG(print(' '));
-	DBG(println(b, 16));
+	DBG_PIA(print(millis()));
+	DBG_PIA(print(F(" pia < ")));
+	DBG_PIA(print(a, 16));
+	DBG_PIA(print(' '));
+	DBG_PIA(println(b, 16));
 	return b;
 }
 

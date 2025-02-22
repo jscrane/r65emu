@@ -29,10 +29,3 @@ void hardware_cancel_timer(int timer);
 #if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
 extern class spiram sram;
 #endif
-
-//#define DEBUGGING
-#if defined(DEBUGGING)
-#define DBG(x) Serial.x
-#else
-#define DBG(x)
-#endif

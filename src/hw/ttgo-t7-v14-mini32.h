@@ -39,6 +39,8 @@
 #define VSYNC	15
 #endif
 
+#define USE_VGA	(USE_VGA_FABGL | USE_VGA_BITLUNI)
+
 // PS/2 Keyboard
 #if !defined(USE_OWN_KBD)
 #define USE_PS2_KBD
