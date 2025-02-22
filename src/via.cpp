@@ -1,8 +1,8 @@
 #include <Arduino.h>
+
 #include "memory.h"
 #include "via.h"
 #include "hardware.h"
-#include "dbg.h"
 
 #define PORTB		0x00
 #define PORTA		0x01

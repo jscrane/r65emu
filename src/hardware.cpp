@@ -4,7 +4,6 @@
 #include <stddef.h>
 #include "memory.h"
 #include "hardware.h"
-#include "dbg.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>

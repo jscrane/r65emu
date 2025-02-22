@@ -1,9 +1,7 @@
 #include <Arduino.h>
 #include <memory.h>
 
-#include "dbg.h"
 #include "hardware.h"
-
 #include "pia.h"
 
 // see: https://github.com/mamedev/mame/blob/master/src/devices/machine/6821pia.cpp
