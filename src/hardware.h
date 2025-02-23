@@ -36,7 +36,7 @@ extern class spiram sram;
 #define DEBUG_PIA	0x00000004
 #define DEBUG_VIA	0x00000008
 #define DEBUG_DSP	0x00000010
-#define DEBUG_EMU	0x00000011
+#define DEBUG_EMU	0x00000020
 #define DEBUG_ANY	0xffffffff
 
 #if !defined(DEBUGGING)
