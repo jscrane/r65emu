@@ -1,14 +1,33 @@
-#ifndef __ACIA_H__
-#define __ACIA_H__
+#pragma once
 
 // Motorola 6850 ACIA
+
+#include <functional>
 
 class ACIA {
 public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	virtual void acia_reset() {}
+	void register_write_data_handler(std::function<void(uint8_t)> fn) {
+		write_data_handler = fn;
+	}
+
+	void register_read_data_handler(std::function<uint8_t(void)> fn) {
+		read_data_handler = fn;
+	}
+
+	void register_reset_handler(std::function<void(void)> fn) {
+		reset_handler = fn;
+	}
+
+	void register_framing_handler(std::function<void(uint32_t)> fn) {
+		framing_handler = fn;
+	}
+
+	void register_can_rw_handler(std::function<uint8_t(void)> fn) {
+		can_rw_handler = fn;
+	}
 
 	// status bits
 	//
@@ -47,13 +66,32 @@ public:
 
 	static const uint8_t eri = 1 << 7;	// enable receive interrupt
 
-protected:
-	// overrideable device memory interface
-	virtual uint8_t read_status();
-	virtual uint8_t read_data() = 0;
-	virtual void write_control(uint8_t);
-	virtual void write_data(uint8_t) = 0;
-	virtual void acia_framing(uint32_t config) {}
-	virtual bool acia_more() = 0;
+private:
+	void write_control(uint8_t);
+	uint8_t read_status();
+
+	uint8_t read_data() {
+		return read_data_handler? read_data_handler(): 0;
+	}
+
+	void write_data(uint8_t b) {
+		if (write_data_handler)
+			write_data_handler(b);
+	}
+
+	void device_reset() {
+		if (reset_handler)
+			reset_handler();
+	}
+
+	void framing(uint32_t cfg) {
+		if (framing_handler)
+			framing_handler(cfg);
+	}
+
+	std::function<void(uint8_t)> write_data_handler;
+	std::function<uint8_t(void)> read_data_handler;
+	std::function<void(void)> reset_handler;
+	std::function<void(uint32_t)> framing_handler;
+	std::function<bool(void)> can_rw_handler;
 };
-#endif
