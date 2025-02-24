@@ -32,6 +32,9 @@ public:
 	void write_cb1(bool);
 	void write_cb2(bool);
 
+	uint8_t read_porta();
+	uint8_t read_portb();
+
 	static const uint8_t IRQ1 = 0x80;
 	static const uint8_t IRQ2 = 0x40;
 
@@ -51,25 +54,19 @@ public:
 		portb_read_handler = fn;
 	}
 
-protected:
-	// FIXME: overrideable device memory interface
-	// should be non-virtual and private
-	virtual uint8_t read_porta();
-	virtual uint8_t read_portb();
-	virtual void write_portb(uint8_t b);
-
 private:
 	void write_ddra(uint8_t b) { ddra = b; }
 	void write_ddrb(uint8_t b) { ddrb = b; }
 	uint8_t read_ddra() { return ddra; }
 	uint8_t read_ddrb() { return ddrb; }
 
+	void write_porta(uint8_t b);
+	void write_portb(uint8_t b);
+
 	void write_cra(uint8_t b) { cra = (b & 0x3f); }
 	void write_crb(uint8_t b) { crb = (b & 0x3f); }
 	uint8_t read_cra();
 	uint8_t read_crb();
-
-	void write_porta(uint8_t b);
 
 	std::function<void(uint8_t)> porta_write_handler;
 	std::function<void(uint8_t)> portb_write_handler;
