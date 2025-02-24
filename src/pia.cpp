@@ -112,18 +112,18 @@ void PIA::restore(Stream &s) {
 
 void PIA::write_porta(uint8_t b) {
 
-	outa = b;
-
 	if (porta_write_handler)
 		porta_write_handler(b);
+
+	outa = b;
 }
 
 void PIA::write_portb(uint8_t b) {
 
-	outb = b;
-
 	if (portb_write_handler)
 		portb_write_handler(b);
+
+	outb = b;
 }
 
 void PIA::write_ca1(bool state) {
