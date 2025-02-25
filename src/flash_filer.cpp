@@ -137,6 +137,21 @@ const char *flash_filer::rewind() {
 	return advance();
 }
 
+const char *flash_filer::filename() const {
+#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+	File &f = files[_current];
+	if (f)
+		return f.name();
+#endif
+	return 0;
+}
+
+void flash_filer::next_device() {
+	_current++;
+	if (_current == MAX_FILES)
+		_current = 0;
+}
+
 #if !defined(NO_CHECKPOINT)
 #if defined(USE_SPIFFS)
 static char buf[32];

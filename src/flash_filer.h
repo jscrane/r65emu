@@ -24,14 +24,18 @@ public:
 
 	const char *advance();
 	const char *rewind();
+	const char *filename() const;
+	void next_file() { advance(); }
 
 	const char *checkpoint();
 	void restore(const char *);
 
 	bool start();
 	void stop();
+	void reset() { stop(); start(); }
 
-	void select(uint8_t f) { _current = f; }
+	void next_device();
+	uint8_t device() const { return _current; }
 
 private:
 	const char *_programs;
