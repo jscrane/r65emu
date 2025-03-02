@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <Stream.h>
+#include <Arduino.h>
 
 #include "memory.h"
+#include "hardware.h"
 #include "ports.h"
 #include "CPU.h"
 #include "z80.h"
@@ -70,9 +70,7 @@ void z80::restore(Stream &s) {
 uint8_t z80::_fetch_op() {
 	_mc(PC, 4);
 	uint8_t op = _mem[PC];
-#if DEBUGGING & DEBUG_CPU
-	printf("%5ld MR %04x %02x\n", _ts, PC, op);
-#endif
+	DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC, op));
 	PC++;
 	R++;
 	return op;
@@ -143,16 +141,12 @@ void z80::_step_idx(EXT_OP f) {
 
 	_mc(PC, 3);
 	uint8_t off = _mem[PC];
-#if DEBUGGING & DEBUG_CPU
-	printf("%5ld MR %04x %02x\n", _ts, PC, off);
-#endif
+	DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC, off));
 	PC++;
 
 	_mc(PC, 3);
 	uint8_t op = _mem[PC];
-#if DEBUGGING & DEBUG_CPU
-	printf("%5ld MR %04x %02x\n", _ts, PC, op);
-#endif
+	DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC, op));
 	_mc(PC, 1);
 	_mc(PC, 1);
 	PC++;

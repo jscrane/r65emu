@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <Stream.h>
+#include <Arduino.h>
 
 #include "memory.h"
+#include "hardware.h"
 #include "CPU.h"
 #include "ports.h"
 #include "i8080.h"

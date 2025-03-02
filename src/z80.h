@@ -151,31 +151,21 @@ private:
 	uint8_t parity(uint8_t);
 
 	inline uint8_t _rb(Memory::address a) {
-#if DEBUGGING & DEBUG_CPU
-		printf("%5ld MC %04x\n", _ts, a);
-#endif
+		DBG_MEM(printf("%5ld MC %04x\n", _ts, a));
 		ts(3);
-#if DEBUGGING & DEBUG_CPU
-		printf("%5ld MR %04x %02x\n", _ts, a, (uint8_t)_mem[a]);
-#endif
+		DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, a, (uint8_t)_mem[a]));
 		return _mem[a];
 	}
 
 	inline void _sb(Memory::address a, uint8_t b) {
-#if DEBUGGING & DEBUG_CPU
-		printf("%5ld MC %04x\n", _ts, a);
-#endif
+		DBG_MEM(printf("%5ld MC %04x\n", _ts, a));
 		ts(3);
-#if DEBUGGING & DEBUG_CPU
-		printf("%5ld MW %04x %02x\n", _ts, a, b);
-#endif
+		DBG_MEM(printf("%5ld MW %04x %02x\n", _ts, a, b));
 		_mem[a] = b;
 	}
 
 	inline void _mc(Memory::address a, int i) {
-#if DEBUGGING & DEBUG_CPU
-		printf("%5ld MC %04x\n", _ts, a);
-#endif
+		DBG_MEM(printf("%5ld MC %04x\n", _ts, a));
 		ts(i);
 	}
 

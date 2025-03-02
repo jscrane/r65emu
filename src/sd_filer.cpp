@@ -61,6 +61,7 @@ const char *sd_filer::advance() {
 
 const char *sd_filer::rewind() {
 	dir.rewindDirectory();
+	return advance();
 }
 
 #if !defined(NO_CHECKPOINT)
