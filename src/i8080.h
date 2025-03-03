@@ -13,7 +13,7 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void raise(uint8_t);
+	void raise(int);
 	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
@@ -59,7 +59,7 @@ private:
 		} flags;
 		uint8_t SR;
 	};
-	uint8_t _irq_pending;
+	int _irq_pending;
 	PortDevice &_ports;
 
 	void _op(uint8_t op);

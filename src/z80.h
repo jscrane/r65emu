@@ -11,7 +11,7 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void raise(uint8_t level) { _irq_pending = level; }
+	void raise(int level) { _irq_pending = level; }
 	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
@@ -145,7 +145,7 @@ private:
 
 	unsigned long _ts;
 
-	uint8_t _irq_pending;
+	int _irq_pending;
 	PortDevice &_ports;
 
 	uint8_t parity(uint8_t);
@@ -431,6 +431,7 @@ private:
 	inline void rla() {
 		uint8_t b = (A << 1) | flags.C;
 		flags.C = (A & 0x80) >> 7;
+		flags.H = flags.N = 0;
 		A = b;
 	}
 
@@ -449,6 +450,7 @@ private:
 	inline void rra() {
 		uint8_t b = (A >> 1) | (flags.C << 7);
 		flags.C = (A & 1);
+		flags.H = flags.N = 0;
 		A = b;
 	}
 
@@ -490,7 +492,17 @@ private:
 	inline void inca() { _inc(A); }
 	inline void deca() { _dec(A); }
 	inline void lda() { A = _rb(PC++); }
-	inline void ccf() { flags.H = flags.C; flags.C = flags.N = 0; _35(A); }
+	inline void ccf() {
+		if (flags.C) {
+			flags.C = 0;
+			flags.H = 1;
+		} else {
+			flags.H = 0;
+			flags.C = 1;
+		}
+		flags.N = 0;
+		_35(A);
+	}
 
 	// 0x40
 	inline void ldbb() {}

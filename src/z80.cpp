@@ -8,13 +8,14 @@
 
 char *z80::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
+	static bool first = true;
 	uint8_t op = _mem[PC];
 	snprintf(buf, n,
-		"%s%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d "
-		"%04x %d%d%d%d%d%d%d%d",
-		hdr?  "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff _sp_ sz5h3pnc\r\n": "",
-		PC, op, AF, BC, DE, HL, AF_, BC_, DE_, HL_, IR, _im, _iff1, _iff2,
-		SP, flags.S, flags.Z, flags._5, flags.H, flags._3, flags.P, flags.N, flags.C);
+		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %02x",
+		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP  OP\r\n": "",
+		PC, A, flags.S, flags.Z, flags.H, flags.P, flags.N, flags.C, I, R & 0x7f, _iff1, _iff2,
+		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP, op);
+	first = false;
 #endif
 	return buf;
 }
@@ -98,27 +99,47 @@ void z80::reset() {
 }
 
 void z80::_handle_interrupt() {
-	if (_irq_pending < 0 || _iff1) {
-		if (_halted) {
-			_halted = false;
-			PC++;
-		}
-		_push(PC);
-		if (_irq_pending < 0) {	// NMI
-			_iff2 = _iff1;
-			PC = 0x0066;
-			ts(11);
-		} else {
-			_iff1 = _iff2 = false;
-			R++;
-			if (_im == 0 || _im == 1)
-				PC = 0x0038;
-			else if (_im == 2)
-				PC = _rw(_irq_pending + (0x100 * I));
-			ts(7);
-		}
-	}
+
+	int irq = _irq_pending;
 	_irq_pending = 0;
+
+	if (!irq && !_iff1) {
+		DBG_CPU(println("No interrupt!"));
+		return;
+	}
+
+	if (_halted) {
+		_halted = false;
+		PC++;
+	}
+	_push(PC);
+	if (irq < 0) {	// NMI
+		DBG_CPU(println("NMI"));
+		_iff2 = _iff1;
+		PC = 0x66;
+		ts(11);
+		return;
+	}
+	_iff1 = _iff2 = false;
+	R++;
+	if (_im == 0)
+		switch (irq) {
+		case 0xc7: PC = 0x00; break;
+		case 0xcf: PC = 0x08; break;
+		case 0xd7: PC = 0x10; break;
+		case 0xdf: PC = 0x18; break;
+		case 0xe7: PC = 0x20; break;
+		case 0xef: PC = 0x28; break;
+		case 0xf7: PC = 0x30; break;
+		case 0xff: PC = 0x38; break;
+		}
+	else if (_im == 1)
+		PC = 0x38;
+	else if (_im == 2)
+		PC = _rw(irq + (0x100 * I));
+	ts(7);
+
+	DBG_CPU(printf("IM: %d PC: %04x\r\n", _im, PC));
 }
 
 void z80::daa() {
