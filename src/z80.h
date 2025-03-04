@@ -403,7 +403,11 @@ private:
 	inline void incb() { _inc(B); }
 	inline void decb() { _dec(B); }
 	inline void ldb() { B = _rb(PC++); }
-	inline void rlca() { flags.C = ((A & 0x80) >> 7); A = (A << 1) | flags.C; }
+	inline void rlca() {
+		flags.H = flags.N = 0;
+		flags.C = ((A & 0x80) >> 7);
+		A = (A << 1) | flags.C;
+	}
 
 	// 0x08
 	inline void exaf() { _exch(AF, AF_); }
@@ -1378,26 +1382,22 @@ private:
 		_sz35(B);
 	}
 	inline void ldir() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
+		uint8_t b;
+		do {
+			b = _rb(HL);
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			DE++;
+			HL++;
+		} while (--BC);
 		b += A;
-		flags.P = (BC != 0);
 		_35(b);
 		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE++;
-		HL++;
+		flags.N = flags.P = flags.H = 0;
 	}
 	inline void cpir() {
+		/*
 		uint8_t b = _rb(HL);
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
@@ -1420,8 +1420,22 @@ private:
 			_memptr = PC+1;
 		}
 		HL++;
+		*/
+		uint8_t b, d;
+		do {
+			b = _rb(HL);
+			flags.H = ((b & 0x0f) > (A & 0xf));
+			d = A - b;
+		} while (--BC && d);
+		flags.N = 1;
+		flags.P = BC;
+		flags.Z = !d;
+		flags.S = (d & 0x80);
+		_35(b);
+		flags._5 = ((b & 0x02) != 0);
 	}
 	inline void inir() {
+		DBG(println("inir"));
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
@@ -1439,6 +1453,7 @@ private:
 		HL++;
 	}
 	inline void outir() {
+		DBG(println("outir"));
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
@@ -1456,26 +1471,22 @@ private:
 		}
 	}
 	inline void lddr() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
+		uint8_t b;
+		do {
+			b = _rb(HL);
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			DE--;
+			HL--;
+		} while (--BC);
 		b += A;
-		flags.P = (BC != 0);
 		_35(b);
 		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE--;
-		HL--;
+		flags.N = flags.H = flags.P = 0;
 	}
 	inline void cpdr() {
+		DBG(println("cpdr"));
 		uint8_t b = _rb(HL);
 		uint8_t c = A - b;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
@@ -1496,6 +1507,7 @@ private:
 		HL--;
 	}
 	inline void indr() {
+		DBG(println("indr"));
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_memptr = BC-1;
@@ -1514,6 +1526,7 @@ private:
 		HL--;
 	}
 	inline void outdr() {
+		DBG(println("outdr"));
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
@@ -1531,8 +1544,8 @@ private:
 			PC -= 2;
 		}
 	}
-	// 0xDDCB extended instructions
 
+	// 0xDDCB extended instructions
 	inline uint16_t _rbIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _ads(IX, o);
 		_memptr = a;

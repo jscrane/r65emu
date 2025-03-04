@@ -9,13 +9,25 @@
 char *z80::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	static bool first = true;
-	uint8_t op = _mem[PC];
 	snprintf(buf, n,
-		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %02x",
-		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP  OP\r\n": "",
+		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x ",
+		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP   OP\r\n": "",
 		PC, A, flags.S, flags.Z, flags.H, flags.P, flags.N, flags.C, I, R & 0x7f, _iff1, _iff2,
-		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP, op);
+		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP);
 	first = false;
+
+	uint8_t op = _mem[PC], op1 = _mem[PC+1];
+	char obuf[16];
+	if (op == 0xdd || op == 0xfd) {
+		if (op1 == 0xcb)
+			snprintf(obuf, sizeof(obuf), "%02x cb %02x %02x", op, (byte)_mem[PC+2], (byte)_mem[PC+3]);
+		else
+			snprintf(obuf, sizeof(obuf), "%02x %02x", op, op1);
+	} else if (op == 0xed)
+		snprintf(obuf, sizeof(obuf), "ed %02x", op1);
+	else
+		snprintf(obuf, sizeof(obuf), "%02x", op);
+	strncat(buf, obuf, n);
 #endif
 	return buf;
 }
