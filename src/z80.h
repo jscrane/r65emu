@@ -1286,6 +1286,7 @@ private:
 		flags.N = flags.H = 0;
 	}
 	inline void cpi() {
+		/*
 		uint8_t b = _rb(HL);
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
@@ -1300,6 +1301,19 @@ private:
 		flags.C = f;
 		flags.P = (BC != 0);
 		_35(b);
+		flags._5 = ((b & 0x02) != 0);
+		_memptr++;
+		*/
+		uint8_t b = _rb(HL);
+		flags.H = ((b & 0x0f) > (A & 0x0f));
+		b = A - b;
+		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
+		_mc(HL, 1); _mc(HL, 1);
+		HL++;
+		BC--;
+		flags.N = 1;
+		flags.P = (BC != 0);
+		_sz35(b);
 		flags._5 = ((b & 0x02) != 0);
 		_memptr++;
 	}
@@ -1342,6 +1356,7 @@ private:
 		flags.N = flags.H = 0;
 	}
 	inline void cpd_() {
+		/*
 		uint8_t b = _rb(HL);
 		uint8_t c = A - b - flags.H;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
@@ -1354,6 +1369,19 @@ private:
 		flags._5 = ((c & 0x02) != 0);
 		_memptr--;
 		// FIXME: flag H
+		*/
+		uint8_t b = _rb(HL);
+		flags.H = ((b & 0x0f) > (A & 0x0f));
+		b = A - b;
+		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
+		_mc(HL, 1); _mc(HL, 1);
+		HL--;
+		BC--;
+		flags.N = 1;
+		flags.P = (BC != 0);
+		_sz35(b);
+		flags._5 = ((b & 0x02) != 0);
+		_memptr--;
 	}
 	inline void ind() {
 		_mc(IR, 1);
@@ -1423,14 +1451,16 @@ private:
 		*/
 		uint8_t b, d;
 		do {
-			b = _rb(HL);
+			b = _rb(HL++);
+			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
+			_mc(HL, 1); _mc(HL, 1);
 			flags.H = ((b & 0x0f) > (A & 0xf));
 			d = A - b;
 		} while (--BC && d);
 		flags.N = 1;
-		flags.P = BC;
-		flags.Z = !d;
-		flags.S = (d & 0x80);
+		flags.P = (BC != 0);
+		flags.Z = (d == 0);
+		flags.S = ((d & 0x80) != 0);
 		_35(b);
 		flags._5 = ((b & 0x02) != 0);
 	}
@@ -1486,6 +1516,7 @@ private:
 		flags.N = flags.H = flags.P = 0;
 	}
 	inline void cpdr() {
+		/*
 		DBG(println("cpdr"));
 		uint8_t b = _rb(HL);
 		uint8_t c = A - b;
@@ -1505,6 +1536,21 @@ private:
 			_memptr = PC+1;
 		}
 		HL--;
+		*/
+		uint8_t b, d;
+		do {
+			b = _rb(HL--);
+			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
+			_mc(HL, 1); _mc(HL, 1);
+			flags.H = ((b & 0x0f) > (A & 0xf));
+			d = A - b;
+		} while (--BC && d);
+		flags.N = 1;
+		flags.P = (BC != 0);
+		flags.Z = (d == 0);
+		flags.S = ((d & 0x80) != 0);
+		_35(b);
+		flags._5 = ((b & 0x02) != 0);
 	}
 	inline void indr() {
 		DBG(println("indr"));
