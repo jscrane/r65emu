@@ -3,10 +3,17 @@
 
 #undef PC
 
-#define O(o, e) case o: e(); break
-#define A(o, e, a) case o: e(a); break
-#define C(o) case o:
-#define D(e) default: e(); break
+#define E(op, expr)	case op: expr; break
+#define O(op, fn) 	E(op, fn())
+#define A(op, e, a) 	E(op, e(a))
+#define C(op) 		case op:
+#define D(fn) 		default: fn(); break
+
+#if defined(UNDOCUMENTED_OPS)
+#define U(op, expr)	case op: expr; break
+#else
+#define U(op, expr)	case op: break
+#endif
 
 class CPU: public Checkpointable {
 public:

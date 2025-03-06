@@ -187,7 +187,9 @@ void z80::_step_idx(EXT_OP f) {
 }
 
 void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
-	switch (_fetch_op()) {
+
+	uint8_t o = _fetch_op();
+	switch (o) {
 	case 0x09:
 		_add16(ix, BC);
 		break;
@@ -448,11 +450,15 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 		_mc(IR, 1); _mc(IR, 1);
 		SP = ix;
 		break;
+	default:
+		ERR(printf("unimplemented dd/fd op: %02x\r\n", o));
 	}
 }
 
 void z80::ed() {
-	switch (_fetch_op()) {
+
+	uint8_t op = _fetch_op();
+	switch (op) {
 	O(0x40, inB);
 	O(0x41, outB);
 	O(0x42, sbcBC);
@@ -540,6 +546,9 @@ void z80::ed() {
 	O(0xb9, cpdr);
 	O(0xba, indr);
 	O(0xbb, outdr);
+
+	default:
+		ERR(printf("unimplemented ed op: %02x\r\n", op));
 	}
 }
 
