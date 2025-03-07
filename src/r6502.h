@@ -7,7 +7,7 @@
 
 class r6502: public CPU {
 public:
-	void raise(uint8_t);
+	void raise(int);
 	void reset();
 	void run(unsigned);
 	char *status(char *buf, size_t n, bool hdr=false);

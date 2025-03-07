@@ -11,7 +11,7 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void raise(uint8_t level) { _irq_pending = level; }
+	void raise(int level) { _irq_pending = level; }
 	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
@@ -145,7 +145,7 @@ private:
 
 	unsigned long _ts;
 
-	uint8_t _irq_pending;
+	int _irq_pending;
 	PortDevice &_ports;
 
 	uint8_t parity(uint8_t);
@@ -403,7 +403,11 @@ private:
 	inline void incb() { _inc(B); }
 	inline void decb() { _dec(B); }
 	inline void ldb() { B = _rb(PC++); }
-	inline void rlca() { flags.C = ((A & 0x80) >> 7); A = (A << 1) | flags.C; }
+	inline void rlca() {
+		flags.H = flags.N = 0;
+		flags.C = ((A & 0x80) >> 7);
+		A = (A << 1) | flags.C;
+	}
 
 	// 0x08
 	inline void exaf() { _exch(AF, AF_); }
@@ -431,6 +435,7 @@ private:
 	inline void rla() {
 		uint8_t b = (A << 1) | flags.C;
 		flags.C = (A & 0x80) >> 7;
+		flags.H = flags.N = 0;
 		A = b;
 	}
 
@@ -449,6 +454,7 @@ private:
 	inline void rra() {
 		uint8_t b = (A >> 1) | (flags.C << 7);
 		flags.C = (A & 1);
+		flags.H = flags.N = 0;
 		A = b;
 	}
 
@@ -490,7 +496,17 @@ private:
 	inline void inca() { _inc(A); }
 	inline void deca() { _dec(A); }
 	inline void lda() { A = _rb(PC++); }
-	inline void ccf() { flags.H = flags.C; flags.C = flags.N = 0; _35(A); }
+	inline void ccf() {
+		if (flags.C) {
+			flags.C = 0;
+			flags.H = 1;
+		} else {
+			flags.H = 0;
+			flags.C = 1;
+		}
+		flags.N = 0;
+		_35(A);
+	}
 
 	// 0x40
 	inline void ldbb() {}
@@ -1271,19 +1287,15 @@ private:
 	}
 	inline void cpi() {
 		uint8_t b = _rb(HL);
+		flags.H = ((b & 0x0f) > (A & 0x0f));
+		b = A - b;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
-		uint8_t c = A;
-		uint8_t f = (flags.C != 0);
-		_sub(b);
 		HL++;
 		BC--;
-		b = A;
-		A = c;
-		if (flags.H) b--;
-		flags.C = f;
+		flags.N = 1;
 		flags.P = (BC != 0);
-		_35(b);
+		_sz35(b);
 		flags._5 = ((b & 0x02) != 0);
 		_memptr++;
 	}
@@ -1327,17 +1339,17 @@ private:
 	}
 	inline void cpd_() {
 		uint8_t b = _rb(HL);
-		uint8_t c = A - b - flags.H;
+		flags.H = ((b & 0x0f) > (A & 0x0f));
+		b = A - b;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
 		HL--;
 		BC--;
 		flags.N = 1;
 		flags.P = (BC != 0);
-		_sz35(c);
-		flags._5 = ((c & 0x02) != 0);
+		_sz35(b);
+		flags._5 = ((b & 0x02) != 0);
 		_memptr--;
-		// FIXME: flag H
 	}
 	inline void ind() {
 		_mc(IR, 1);
@@ -1366,48 +1378,33 @@ private:
 		_sz35(B);
 	}
 	inline void ldir() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
+		uint8_t b;
+		do {
+			b = _rb(HL);
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			DE++;
+			HL++;
+		} while (--BC);
 		b += A;
-		flags.P = (BC != 0);
 		_35(b);
 		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE++;
-		HL++;
+		flags.N = flags.P = flags.H = 0;
 	}
 	inline void cpir() {
-		uint8_t b = _rb(HL);
-		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		uint8_t c = A;
-		uint8_t f = (flags.C != 0);
-		_sub(b);
-		BC--;
-		b -= A;
-		A = c;
-		flags.C = f;
-		flags.P = (BC != 0);
-		if (flags.H) b--;
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		_memptr++;
-		if (!flags.Z) {
+		uint8_t d;
+		do {
+			uint8_t b = _rb(HL++);
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		HL++;
+			flags.H = ((b & 0x0f) > (A & 0xf));
+			d = A - b;
+		} while (--BC && d);
+		flags.N = 1;
+		flags.P = (BC != 0);
+		_sz35(d);
+		flags._5 = ((d & 0x02) != 0);
 	}
 	inline void inir() {
 		_mc(IR, 1);
@@ -1444,44 +1441,33 @@ private:
 		}
 	}
 	inline void lddr() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
+		uint8_t b;
+		do {
+			b = _rb(HL);
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			DE--;
+			HL--;
+		} while (--BC);
 		b += A;
-		flags.P = (BC != 0);
 		_35(b);
 		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE--;
-		HL--;
+		flags.N = flags.H = flags.P = 0;
 	}
 	inline void cpdr() {
-		uint8_t b = _rb(HL);
-		uint8_t c = A - b;
-		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-		_mc(HL, 1); _mc(HL, 1);
-		BC--;
-		flags.N = 1;
-		flags.P = (BC != 0);
-		_sz35(c);
-		flags._5 = ((c & 0x02) != 0);
-		// FIXME: flag H
-		_memptr--;
-		if (BC) {
+		uint8_t d;
+		do {
+			uint8_t b = _rb(HL--);
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		HL--;
+			flags.H = ((b & 0x0f) > (A & 0xf));
+			d = A - b;
+		} while (--BC && d);
+		flags.N = 1;
+		flags.P = (BC != 0);
+		_sz35(d);
+		flags._5 = ((d & 0x02) != 0);
 	}
 	inline void indr() {
 		_mc(IR, 1);
@@ -1519,8 +1505,8 @@ private:
 			PC -= 2;
 		}
 	}
-	// 0xDDCB extended instructions
 
+	// 0xDDCB extended instructions
 	inline uint16_t _rbIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _ads(IX, o);
 		_memptr = a;
