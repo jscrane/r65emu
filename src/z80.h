@@ -1407,7 +1407,6 @@ private:
 		flags._5 = ((d & 0x02) != 0);
 	}
 	inline void inir() {
-		DBG(println("inir"));
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
@@ -1425,7 +1424,6 @@ private:
 		HL++;
 	}
 	inline void outir() {
-		DBG(println("outir"));
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
@@ -1472,7 +1470,6 @@ private:
 		flags._5 = ((d & 0x02) != 0);
 	}
 	inline void indr() {
-		DBG(println("indr"));
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_memptr = BC-1;
@@ -1491,7 +1488,6 @@ private:
 		HL--;
 	}
 	inline void outdr() {
-		DBG(println("outdr"));
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;

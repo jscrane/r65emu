@@ -12,7 +12,7 @@
 #if defined(UNDOCUMENTED_OPS)
 #define U(op, expr)	case op: expr; break
 #else
-#define U(op, expr)	case op: break
+#define U(op, expr)
 #endif
 
 class CPU: public Checkpointable {
