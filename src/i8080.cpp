@@ -9,7 +9,6 @@
 #include "memory.h"
 #include "hardware.h"
 #include "CPU.h"
-#include "ports.h"
 #include "i8080.h"
 
 void i8080::run(unsigned clocks) {

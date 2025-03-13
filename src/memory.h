@@ -42,7 +42,7 @@ public:
 
 	virtual Device *get (address at) const { return _pages[at/page_size]; }
 
-	Device &operator[] (address a) {
+	Device &operator[] (address a) const {
 		Device *d = get (a);
 		d->access (a);
 		return *d;

@@ -1,5 +1,5 @@
 CPPFLAGS=-I.. -DDEBUGGING=0x41 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x'
-CXXFLAGS=-g -fno-operator-names
+CXXFLAGS=-g -fno-operator-names -Wall
 
 all: z80test tests.me sum
 

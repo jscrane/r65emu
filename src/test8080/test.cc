@@ -3,42 +3,16 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <functional>
 
 #include "memory.h"
-#include "ports.h"
 #include "CPU.h"
 #include "i8080.h"
 #include "ram.h"
 
-// FIXME: need to find some nice way of doing this!
 // the test program calls BDOS CONOUT via the BDOS entry point at 05H
 // http://www.mccm.hetlab.tk/millennium/milc/disk/topic_18.htm
 // The function number is in register C: 2 for char output or 9 for string
-
-class Ports: public PortDevice {
-public:
-	Ports(Memory &mem): _mem(mem) {}
-
-	void cpu(i8080 &cpu) { _cpu = &cpu; }
-
-	void out(uint16_t port, uint8_t a) {
-		if (port == 0) {
-			if (a == 2)
-				putchar(_cpu->e());
-			else if (a == 9) {
-				char c;
-				uint16_t a = _cpu->de();
-				while ((c = _mem[a++]) != '$')
-					putchar(c);
-				putchar('\n');
-			}
-		}
-	}
-	uint8_t in(uint16_t port) { return 0; }
-private:
-	Memory &_mem;
-	i8080 *_cpu;
-};
 
 int load_hex(Memory &memory, const char *file) {
 	FILE *f = fopen(file, "r");
@@ -103,10 +77,22 @@ int main(int argc, char *argv[])
 	if (0 > load_com(memory, argv[1], 0x100))
 		return -1;
 
-	Ports ports(memory);
-	i8080 cpu(memory, ports);
-	ports.cpu(cpu);
+	i8080 cpu(memory);
+	cpu.set_port_out_handler([&cpu, &memory](uint16_t port, uint8_t a) {
+		if (port == 0) {
+			if (a == 2)
+				putchar(cpu.e());
+			else if (a == 9) {
+				char c;
+				uint16_t a = cpu.de();
+				while ((c = memory[a++]) != '$')
+					putchar(c);
+				putchar('\n');
+			}
+		}
+	});
 	cpu.reset();
+
 	cpu.run(256);
 	memory[0] = 0x76;	// hlt
 	memory[5] = 0x79;	// movac

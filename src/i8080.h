@@ -9,7 +9,7 @@ uint8_t parity(uint8_t);
 
 class i8080: public CPU {
 public:
-	i8080(Memory &m, PortDevice &d): CPU(m), _ports(d) {}
+	i8080(Memory &m): CPU(m) {}
 
 	void run(unsigned);
 	void reset();
@@ -19,17 +19,25 @@ public:
 	void checkpoint(Stream &);
 	void restore(Stream &);
 
-	inline uint8_t a() { return A; }
-	inline uint8_t b() { return B; }
-	inline uint8_t c() { return C; }
-	inline uint8_t d() { return D; }
-	inline uint8_t e() { return E; }
-	inline uint8_t h() { return H; }
-	inline uint8_t l() { return L; }
-	inline uint16_t bc() { return BC; }
-	inline uint16_t de() { return DE; }
-	inline uint16_t hl() { return HL; }
-	inline uint8_t sr() { return SR; }
+	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
+		port_out_handler = fn;
+	}
+
+	void set_port_in_handler(std::function<uint8_t(uint16_t)> fn) {
+		port_in_handler = fn;
+	}
+
+	inline uint8_t a() const { return A; }
+	inline uint8_t b() const { return B; }
+	inline uint8_t c() const { return C; }
+	inline uint8_t d() const { return D; }
+	inline uint8_t e() const { return E; }
+	inline uint8_t h() const { return H; }
+	inline uint8_t l() const { return L; }
+	inline uint16_t bc() const { return BC; }
+	inline uint16_t de() const { return DE; }
+	inline uint16_t hl() const { return HL; }
+	inline uint8_t sr() const { return SR; }
 
 private:
 	uint8_t A;
@@ -60,7 +68,17 @@ private:
 		uint8_t SR;
 	};
 	int _irq_pending;
-	PortDevice &_ports;
+
+	std::function<void(uint16_t, uint8_t)> port_out_handler;
+	std::function<uint8_t(uint16_t)> port_in_handler;
+
+	inline void _out(uint16_t p, uint8_t v) {
+		if (port_out_handler) port_out_handler(p, v);
+	}
+
+	inline uint8_t _in(uint16_t p) {
+		return port_in_handler? port_in_handler(p): 0;
+	}
 
 	void _op(uint8_t op);
 
@@ -400,7 +418,7 @@ private:
 	inline void rnc() { _ret(!flags.C); }
 	inline void popd() { DE = _pop(); }
 	inline void jnc() { _jmp(!flags.C); }
-	inline void out() { _ports.out(_mem[PC++], A); }
+	inline void out() { _out(_mem[PC++], A); }
 	inline void cnc() { _call(!flags.C); }
 	inline void pushd() { _push(DE); }
 	inline void sui() { _sub(_mem[PC++]); }
@@ -408,7 +426,7 @@ private:
 	inline void rc() { _ret(flags.C); }
 
 	inline void jc() { _jmp(flags.C); }
-	inline void in() { A = _ports.in(_mem[PC++]); }
+	inline void in() { A = _in(_mem[PC++]); }
 	inline void cc() { _call(flags.C); }
 
 	inline void sbi() { _sbc(_mem[PC++]); }

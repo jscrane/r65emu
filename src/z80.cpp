@@ -9,7 +9,6 @@
 
 #include "memory.h"
 #include "hardware.h"
-#include "ports.h"
 #include "CPU.h"
 #include "z80.h"
 

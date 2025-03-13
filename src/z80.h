@@ -9,7 +9,7 @@ class Stream;
 
 class z80: public CPU {
 public:
-	z80(Memory &m, PortDevice &ports): CPU(m), _ports(ports) {}
+	z80(Memory &m): CPU(m) {}
 
 	void run(unsigned);
 	void reset();
@@ -18,6 +18,14 @@ public:
 
 	void checkpoint(Stream &);
 	void restore(Stream &);
+
+	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
+		port_out_handler = fn;
+	}
+
+	void set_port_in_handler(std::function<uint8_t(uint16_t)> fn) {
+		port_in_handler = fn;
+	}
 
 	inline uint8_t a() { return A; }
 	inline uint8_t b() { return B; }
@@ -148,7 +156,17 @@ private:
 	unsigned long _ts;
 
 	int _irq_pending;
-	PortDevice &_ports;
+
+	std::function<void(uint16_t, uint8_t)> port_out_handler;
+	std::function<uint8_t(uint16_t)> port_in_handler;
+
+	inline void _out(uint16_t p, uint8_t v) {
+		if (port_out_handler) port_out_handler(p, v);
+	}
+
+	inline uint8_t _in(uint16_t p) {
+		return port_in_handler? port_in_handler(p): 0;
+	}
 
 	uint8_t parity(uint8_t);
 
@@ -723,7 +741,7 @@ private:
 		uint8_t b = _rb(PC++);
 		uint16_t p = b + (A << 8);
 		MPH = A; MPL = b+1;
-		_ports.out(p, A);
+		_out(p, A);
 	}
 	inline void callnc() { _call(!flags.C); }
 	inline void pushde() { _mc(IR, 1); _push(DE); }
@@ -737,7 +755,7 @@ private:
 	inline void ina() {
 		uint8_t b = _rb(PC++);
 		uint16_t p = b + (A << 8);
-		A = _ports.in(p);
+		A = _in(p);
 		MPH = A; MPL = b+1;
 	}
 	inline void callc() { _call(flags.C); }
@@ -758,14 +776,14 @@ private:
 	// 0xe8
 	inline uint8_t _inr() {
 		_memptr = BC+1;
-		uint8_t b = _ports.in(BC);
+		uint8_t b = _in(BC);
 		_szp35(b);
 		flags.N = flags.H = 0;
 		return b;
 	}
 	inline void _outr(uint8_t b) {
 		_memptr = BC+1;
-		_ports.out(BC, b);
+		_out(BC, b);
 	}
 
 	inline void retpe() { _ret(flags.P); }

@@ -9,55 +9,52 @@ class Stream;
 
 #include "memory.h"
 #include "CPU.h"
-#include "ports.h"
 #include "hardware.h"
 #include "z80.h"
 #include "ram.h"
 
-class Ports: public PortDevice {
+class Ports {
 public:
-	Ports(Memory &mem): _mem(mem) {}
-
-	void cpu(z80 &cpu) { _cpu = &cpu; }
+	Ports(Memory &mem, z80 &cpu): _mem(mem), _cpu(cpu) {}
 
 	// not sure what this is all about, spectrum-specific stuff?
-	void pre(uint16_t p, z80 *c) {
+	void pre(uint16_t p) const {
 		if ((p & 0xc000) == 0x4000)
-			printf("%5d PC %04x\n", c->ts(), p);
-		c->ts(1);
+			printf("%5ld PC %04x\n", _cpu.ts(), p);
+		_cpu.ts(1);
 	}
 
-	void post(uint16_t p, z80 *c) {
+	void post(uint16_t p) const {
 		if (p & 0x0001) {
 			if ((p & 0xc000) == 0x4000) {
-				printf("%5d PC %04x\n", c->ts(), p); c->ts(1);
-				printf("%5d PC %04x\n", c->ts(), p); c->ts(1);
-				printf("%5d PC %04x\n", c->ts(), p); c->ts(1);
+				printf("%5ld PC %04x\n", _cpu.ts(), p); _cpu.ts(1);
+				printf("%5ld PC %04x\n", _cpu.ts(), p); _cpu.ts(1);
+				printf("%5ld PC %04x\n", _cpu.ts(), p); _cpu.ts(1);
 			} else
-				_cpu->ts(3);
+				_cpu.ts(3);
 		} else {
-			printf("%5d PC %04x\n", c->ts(), p);
-			c->ts(3);
+			printf("%5ld PC %04x\n", _cpu.ts(), p);
+			_cpu.ts(3);
 		}
 	}
 	
-	void out(uint16_t port, uint8_t a) {
-		pre(port, _cpu);
-		printf("%5d PW %04x %02x\n", _cpu->ts(), port, a);
-		post(port, _cpu);
+	void out(uint16_t port, uint8_t a) const {
+		pre(port);
+		printf("%5ld PW %04x %02x\n", _cpu.ts(), port, a);
+		post(port);
 	}
 
-	uint8_t in(uint16_t port) {
+	uint8_t in(uint16_t port) const {
 		uint8_t r = port >> 8;
-		pre(port, _cpu);
-		printf("%5d PR %04x %02x\n", _cpu->ts(), port, r);
-		post(port, _cpu);
+		pre(port);
+		printf("%5ld PR %04x %02x\n", _cpu.ts(), port, r);
+		post(port);
 		return r;
 	}
 
 private:
-	z80 *_cpu;
 	Memory &_mem;
+	z80 &_cpu;
 };
 
 int read_test(FILE *f, z80 &z, Memory &m) {
@@ -127,7 +124,7 @@ void dump_cpu_state(z80 &z) {
 	printf("%04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x\n",
 		z.af(), z.bc(), z.de(), z.hl(), z.af_(), z.bc_(), z.de_(), 
 		z.hl_(), z.ix(), z.iy(), z.sp(), z.pc(), z.memptr());
-	printf("%02x %02x %d %d %d %d %d\n",
+	printf("%02x %02x %d %d %d %d %ld\n",
 		z.i(), z.r(), z.iff1(), z.iff2(), z.im(), z.halted(), z.ts());
 }
 
@@ -150,9 +147,10 @@ int main(int argc, char *argv[]) {
 	ram<65536> ram;
 	memory.put(ram, 0x0000);
 
-	Ports ports(memory);
-	z80 cpu(memory, ports);
-	ports.cpu(cpu);
+	z80 cpu(memory);
+	Ports ports(memory, cpu);
+	cpu.set_port_out_handler([ports](uint16_t p, uint8_t v) { ports.out(p, v); });
+	cpu.set_port_in_handler([ports](uint16_t p) { return ports.in(p); });
 	cpu.reset();
 
 	FILE *fp = fopen(argv[1], "r");
@@ -175,7 +173,7 @@ int main(int argc, char *argv[]) {
 		for (unsigned i = 0; i < 0x10000; i++)
 			backup[i] = memory[i];
 
-		while (cpu.ts() < end_ts)
+		while (cpu.ts() < (uint32_t)end_ts)
 			cpu.run(1);
 
 		dump_cpu_state(cpu);
