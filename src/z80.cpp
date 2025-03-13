@@ -1,4 +1,11 @@
+#if defined(ARDUINO)
 #include <Arduino.h>
+#else
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#define println(x)	puts(x)
+#endif
 
 #include "memory.h"
 #include "hardware.h"
@@ -20,7 +27,7 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 	char obuf[16];
 	if (op == 0xdd || op == 0xfd) {
 		if (op1 == 0xcb)
-			snprintf(obuf, sizeof(obuf), "%02x cb %02x %02x", op, (byte)_mem[PC+2], (byte)_mem[PC+3]);
+			snprintf(obuf, sizeof(obuf), "%02x cb %02x %02x", op, (uint8_t)_mem[PC+2], (uint8_t)_mem[PC+3]);
 		else
 			snprintf(obuf, sizeof(obuf), "%02x %02x", op, op1);
 	} else if (op == 0xed)
@@ -316,12 +323,12 @@ void z80::ed() {
 	O(0x43, ldPCbc);
 
 	C(0x44);
-	C(0x54);
-	C(0x64);
-	C(0x74);
 	C(0x4c);
+	C(0x54);
 	C(0x5c);
+	C(0x64);
 	C(0x6c);
+	C(0x74);
 	O(0x7c, neg);
 
 	C(0x45);

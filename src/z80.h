@@ -5,6 +5,8 @@
 #undef inch
 #undef SP
 
+class Stream;
+
 class z80: public CPU {
 public:
 	z80(Memory &m, PortDevice &ports): CPU(m), _ports(ports) {}
@@ -407,6 +409,7 @@ private:
 		flags.H = flags.N = 0;
 		flags.C = ((A & 0x80) >> 7);
 		A = (A << 1) | flags.C;
+		_35(A);
 	}
 
 	// 0x08
@@ -437,6 +440,7 @@ private:
 		flags.C = (A & 0x80) >> 7;
 		flags.H = flags.N = 0;
 		A = b;
+		_35(A);
 	}
 
 	// 0x18
@@ -456,6 +460,7 @@ private:
 		flags.C = (A & 1);
 		flags.H = flags.N = 0;
 		A = b;
+		_35(A);
 	}
 
 	// 0x20
@@ -1288,11 +1293,17 @@ private:
 	inline void cpi() {
 		uint8_t b = _rb(HL);
 		flags.H = ((b & 0x0f) > (A & 0x0f));
-		b = A - b;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
+		uint8_t c = A;
+		uint8_t f = (flags.C != 0);
+		_sub(b);
 		HL++;
 		BC--;
+		b = A;
+		A = c;
+		if (flags.H) b--;
+		flags.C = f;
 		flags.N = 1;
 		flags.P = (BC != 0);
 		_sz35(b);
@@ -1340,11 +1351,17 @@ private:
 	inline void cpd_() {
 		uint8_t b = _rb(HL);
 		flags.H = ((b & 0x0f) > (A & 0x0f));
-		b = A - b;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
+		uint8_t c = A;
+		uint8_t f = (flags.C != 0);
+		_sub(b);
 		HL--;
 		BC--;
+		b = A;
+		A = c;
+		if (flags.H) b--;
+		flags.C = f;
 		flags.N = 1;
 		flags.P = (BC != 0);
 		_sz35(b);
@@ -1378,40 +1395,55 @@ private:
 		_sz35(B);
 	}
 	inline void ldir() {
-		uint8_t b;
-		do {
-			b = _rb(HL);
-			_sb(DE, b);
-			_mc(DE, 1);
-			_mc(DE, 1);
-			DE++;
-			HL++;
-		} while (--BC);
+		uint8_t b = _rb(HL);
+		BC--;
+		_sb(DE, b);
+		_mc(DE, 1);
+		_mc(DE, 1);
 		b += A;
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.P = flags.H = 0;
+		flags.P = (BC != 0);
+		flags._3 = (b & 0x08) != 0;
+		flags._5 = (b & 0x02) != 0;
+		flags.N = flags.H = 0;
+		if (BC) {
+			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
+			_mc(DE, 1); _mc(DE, 1);
+			PC -= 2;
+			_memptr = PC+1;
+		}
+		DE++;
+		HL++;
 	}
 	inline void cpir() {
-		uint8_t d;
-		do {
-			uint8_t b = _rb(HL++);
+		uint8_t b = _rb(HL);
+		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
+		_mc(HL, 1); _mc(HL, 1);
+		uint8_t c = A;
+		uint8_t f = (flags.C != 0);
+		_sub(b);
+		BC--;
+		b -= A;
+		A = c;
+		flags.C = f;
+		flags.P = (BC != 0);
+		if (flags.H) b--;
+		flags._3 = ((b & 0x08) != 0);
+		flags._5 = ((b & 0x02) != 0);
+		_memptr++;
+		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
-			flags.H = ((b & 0x0f) > (A & 0xf));
-			d = A - b;
-		} while (--BC && d);
-		flags.N = 1;
-		flags.P = (BC != 0);
-		_sz35(d);
-		flags._5 = ((d & 0x02) != 0);
+			PC -= 2;
+			_memptr = PC+1;
+		}
+		HL++;
 	}
 	inline void inir() {
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
 		B--;
-		uint8_t c = b + flags.C + 1;
+		uint8_t c = b + C + 1;
 		flags.N = (c & 0x80) != 0;
 		flags.C = flags.H = (c < b);
 		flags.P = parity((c & 0x07) ^ B);
@@ -1441,42 +1473,58 @@ private:
 		}
 	}
 	inline void lddr() {
-		uint8_t b;
-		do {
-			b = _rb(HL);
-			_sb(DE, b);
-			_mc(DE, 1);
-			_mc(DE, 1);
-			DE--;
-			HL--;
-		} while (--BC);
+		uint8_t b = _rb(HL);
+		BC--;
+		_sb(DE, b);
+		_mc(DE, 1);
+		_mc(DE, 1);
 		b += A;
+		flags.P = (BC != 0);
 		_35(b);
 		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = flags.P = 0;
+		flags.N = flags.H = 0;
+		if (BC) {
+			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
+			_mc(DE, 1); _mc(DE, 1);
+			PC -= 2;
+			_memptr = PC+1;
+		}
+		DE--;
+		HL--;
 	}
 	inline void cpdr() {
-		uint8_t d;
-		do {
-			uint8_t b = _rb(HL--);
+		uint8_t b = _rb(HL);
+		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
+		_mc(HL, 1); _mc(HL, 1);
+		uint8_t c = A;
+		uint8_t f = (flags.C != 0);
+		_sub(b);
+		BC--;
+		b -= A;
+		A = c;
+		flags.C = f;
+		flags.P = (BC != 0);
+		flags.N = 1;
+		if (flags.H) b--;
+		flags._3 = (b & 0x08) != 0;
+		flags._5 = (b & 0x02) != 0;
+		_memptr--;
+		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
-			flags.H = ((b & 0x0f) > (A & 0xf));
-			d = A - b;
-		} while (--BC && d);
-		flags.N = 1;
-		flags.P = (BC != 0);
-		_sz35(d);
-		flags._5 = ((d & 0x02) != 0);
+			PC -= 2;
+			_memptr = PC+1;
+		}
+		HL--;
 	}
 	inline void indr() {
 		_mc(IR, 1);
 		uint8_t b = _inr();
-		_memptr = BC-1;
 		_sb(HL, b);
+		_memptr = BC-1;
 		B--;
-		uint8_t c = b + flags.C + 1;
-		flags.N = (c & 0x80) != 0;
+		uint8_t c = b + C - 1;
+		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
 		flags.P = parity((c & 0x07) ^ B);
 		_sz35(B);

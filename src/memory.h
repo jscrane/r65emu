@@ -1,5 +1,6 @@
-#ifndef __MEMORY_H__
-#define __MEMORY_H__
+#pragma once
+
+class Stream;
 
 class Checkpointable {
 public:
@@ -51,4 +52,3 @@ public:
 private:
 	Device *_pages[256];
 };
-#endif
