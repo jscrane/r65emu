@@ -1,4 +1,10 @@
+#if defined(ARDUINO)
 #include <Arduino.h>
+#else
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#endif
 
 #include "memory.h"
 #include "hardware.h"
