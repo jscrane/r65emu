@@ -118,46 +118,39 @@ void z80::reset() {
 
 void z80::_handle_interrupt() {
 
-	int irq = _irq_pending;
-	_irq_pending = 0;
-
-	if (!irq && !_iff1) {
-		DBG_CPU(println("No interrupt!"));
-		return;
-	}
-
-	if (_halted) {
-		_halted = false;
-		PC++;
-	}
-	_push(PC);
-	if (irq < 0) {	// NMI
-		DBG_CPU(println("NMI"));
-		_iff2 = _iff1;
-		PC = 0x66;
-		ts(11);
-		return;
-	}
-	_iff1 = _iff2 = false;
-	R++;
-	if (_im == 0)
-		switch (irq) {
-		case 0xc7: PC = 0x00; break;
-		case 0xcf: PC = 0x08; break;
-		case 0xd7: PC = 0x10; break;
-		case 0xdf: PC = 0x18; break;
-		case 0xe7: PC = 0x20; break;
-		case 0xef: PC = 0x28; break;
-		case 0xf7: PC = 0x30; break;
-		case 0xff: PC = 0x38; break;
+       if (_irq_pending < 0 || _iff1) {
+		if (_halted) {
+			_halted = false;
+			PC++;
 		}
-	else if (_im == 1)
-		PC = 0x38;
-	else if (_im == 2)
-		PC = _rw(irq + (0x100 * I));
-	ts(7);
-
-	DBG_CPU(printf("IM: %d PC: %04x\r\n", _im, PC));
+		_push(PC);
+		if (_irq_pending < 0) { // NMI
+			DBG_CPU(println("NMI"));
+			_iff2 = _iff1;
+			PC = 0x0066;
+			ts(11);
+			return;
+		}
+		_iff1 = _iff2 = false;
+		R++;
+		if (_im == 0)
+			switch (_irq_pending) {
+			case 0xc7: PC = 0x00; break;
+			case 0xcf: PC = 0x08; break;
+			case 0xd7: PC = 0x10; break;
+			case 0xdf: PC = 0x18; break;
+			case 0xe7: PC = 0x20; break;
+			case 0xef: PC = 0x28; break;
+			case 0xf7: PC = 0x30; break;
+			case 0xff: PC = 0x38; break;
+		}
+		if (_im == 1)
+			PC = 0x0038;
+		else if (_im == 2)
+			PC = _rw(_irq_pending + (0x100 * I));
+		ts(7);
+		DBG_CPU(printf("IM: %d PC: %04x\r\n", _im, PC));
+	}
 }
 
 void z80::daa() {

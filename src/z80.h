@@ -13,7 +13,7 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void raise(int level) { _irq_pending = level; }
+	void raise(uint8_t level) { _irq_pending = level; }
 	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
@@ -155,7 +155,7 @@ private:
 
 	unsigned long _ts;
 
-	int _irq_pending;
+	uint8_t _irq_pending;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
