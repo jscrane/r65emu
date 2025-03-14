@@ -76,7 +76,7 @@ void r6502::restore(Stream &s)
 #endif
 }
 
-void r6502::raise(int level) {
+void r6502::raise(uint8_t level) {
 	if (level < 0)
 		nmi();
 	else if (!P.bits.I)
