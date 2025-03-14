@@ -1,5 +1,4 @@
-#ifndef __I8080_H__
-#define __I8080_H__
+#pragma once
 
 #undef sbi
 #undef PC
@@ -464,5 +463,3 @@ private:
 	inline void cpi() { _cmp(_mem[PC++]); }
 	inline void rst7() { _push(PC); PC = 0x38; }
 };
-
-#endif

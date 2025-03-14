@@ -6,9 +6,10 @@
 #include <cstring>
 #define println(x)	puts(x)
 #endif
+#include <functional>
 
 #include "memory.h"
-#include "hardware.h"
+#include "debugging.h"
 #include "CPU.h"
 #include "z80.h"
 

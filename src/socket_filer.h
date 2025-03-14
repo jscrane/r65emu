@@ -1,5 +1,4 @@
-#ifndef __SOCKET_FILER_H__
-#define __SOCKET_FILER_H__
+#pragma once
 
 class socket_filer: public filer {
 public:
@@ -21,4 +20,3 @@ public:
 private:
 	const char *_hostname;
 };
-#endif

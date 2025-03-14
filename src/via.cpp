@@ -3,6 +3,7 @@
 #include "memory.h"
 #include "via.h"
 #include "hardware.h"
+#include "debugging.h"
 
 #define PORTB		0x00
 #define PORTA		0x01

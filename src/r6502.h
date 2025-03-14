@@ -1,5 +1,4 @@
-#ifndef __R6502_H__
-#define __R6502_H__
+#pragma once
 
 #undef PC
 #undef cli
@@ -319,4 +318,3 @@ private:
 	inline void sbc_ax() { _sbc(_mem[_ax()]); }
 	inline void inc_ax() { _inc(_ax()); }
 };
-#endif

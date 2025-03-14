@@ -9,7 +9,7 @@
 #include "memory.h"
 #include "CPU.h"
 #include "r6502.h"
-#include "hardware.h"
+#include "debugging.h"
 
 void r6502::run(unsigned clocks) {
 	while (clocks--) {

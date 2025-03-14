@@ -6,8 +6,9 @@
 #include <cstring>
 #endif
 
+#include <functional>
 #include "memory.h"
-#include "hardware.h"
+#include "debugging.h"
 #include "CPU.h"
 #include "i8080.h"
 

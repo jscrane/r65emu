@@ -1,5 +1,4 @@
-#ifndef __RAM_H__
-#define __RAM_H__
+#pragma once
 
 template<unsigned n = 1024>
 class ram: public Memory::Device {
@@ -19,4 +18,3 @@ public:
 private:
 	uint8_t _mem[page_size];
 };
-#endif

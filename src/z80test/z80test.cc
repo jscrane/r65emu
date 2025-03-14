@@ -4,12 +4,13 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <string.h>
+#include <functional>
 
 class Stream;
 
 #include "memory.h"
 #include "CPU.h"
-#include "hardware.h"
+#include "debugging.h"
 #include "z80.h"
 #include "ram.h"
 

@@ -1,5 +1,4 @@
-#ifndef __SERIALIO_H__
-#define __SERIALIO_H__
+#pragma once
 
 #if !defined(SERIAL_5N1)
 #define SERIAL_5N1 0x00
@@ -43,4 +42,3 @@ public:
 	virtual uint8_t read() =0;
 	virtual bool more() { return false; }
 };
-#endif

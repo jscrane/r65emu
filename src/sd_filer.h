@@ -1,5 +1,4 @@
-#ifndef __SD_FILER_H__
-#define __SD_FILER_H__
+#pragma once
 
 class sd_filer: public filer {
 public:
@@ -22,4 +21,3 @@ public:
 private:
 	const char *_programs;
 };
-#endif

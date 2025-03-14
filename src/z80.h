@@ -1,5 +1,4 @@
-#ifndef __Z80_H__
-#define __Z80_H__
+#pragma once
 
 #undef sbi
 #undef inch
@@ -2215,5 +2214,3 @@ private:
 	inline void set7IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x80); }
 	inline void set7IYA(uint8_t o) { _setIY(A, o, 0x80); }
 };
-
-#endif

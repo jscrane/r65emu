@@ -1,5 +1,4 @@
-#ifndef __PROM_H__
-#define __PROM_H__
+#pragma once
 
 class prom: public Memory::Device {
 public:
@@ -11,5 +10,3 @@ public:
 private:
 	const uint8_t *_mem;
 };
-
-#endif

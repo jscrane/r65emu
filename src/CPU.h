@@ -1,5 +1,4 @@
-#ifndef __CPU_H__
-#define __CPU_H__
+#pragma once
 
 #undef PC
 
@@ -36,4 +35,3 @@ protected:
 	Memory::address PC;
 	bool _halted;
 };
-#endif
