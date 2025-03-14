@@ -3,24 +3,17 @@
 
 #undef PC
 
-#define E(op, expr)	case op: expr; break
-#define O(op, fn) 	E(op, fn())
-#define A(op, e, a) 	E(op, e(a))
-#define C(op) 		case op:
-#define D(fn) 		default: fn(); break
-
-#if defined(UNDOCUMENTED_OPS)
-#define U(op, expr)	case op: expr; break
-#else
-#define U(op, expr)
-#endif
+#define O(o, e) case o: e(); break
+#define A(o, e, a) case o: e(a); break
+#define C(o) case o:
+#define D(e) default: e(); break
 
 class CPU: public Checkpointable {
 public:
 	virtual ~CPU() {}
 	virtual void run(unsigned instructions) =0;
 	virtual void reset() =0;
-	virtual void raise(int level) =0;
+	virtual void raise(uint8_t level) =0;
 	virtual char *status(char *buf, size_t n, bool hdr = false) =0;
 
 	virtual void checkpoint(Stream &s) = 0;
