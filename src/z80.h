@@ -13,8 +13,9 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void raise(uint8_t level) { _irq_pending = level; }
-	char *status(char *buf, size_t n, bool hdr=false);
+	void nmi() { _int_nmi = true; }
+	void irq(uint8_t b) { _int_irq = true; _irq_data = b; }
+	char *status(char *buf, size_t n, bool hdr = false);
 
 	void checkpoint(Stream &);
 	void restore(Stream &);
@@ -79,6 +80,7 @@ public:
 	inline void reset_ts() { _ts = 0; }
 
 private:
+	void _handle_nmi();
 	void _handle_interrupt();
 
 	void op(uint8_t);
@@ -148,14 +150,15 @@ private:
 	uint8_t _im;
 	bool _iff1, _iff2;
 
+	bool _int_nmi, _int_irq, _int_prot;
+	uint8_t _irq_data;
+
 	union {
 		struct { uint8_t MPL, MPH; };
 		uint16_t _memptr;
 	};
 
 	unsigned long _ts;
-
-	uint8_t _irq_pending;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -809,7 +812,7 @@ private:
 	inline void retm() { _ret(flags.S); }
 	inline void ldsphl() { _mc(IR, 1); _mc(IR, 1); SP = HL; }
 	inline void jpm() { _jmp(flags.S); }
-	inline void ei() { _iff1 = _iff2 = true; }
+	inline void ei() { _iff1 = _iff2 = _int_prot = true; }
 	inline void callm() { _call(flags.S); }
 	inline void fd() { _ddfd(IY, IYL, IYH, &z80::fdcb); }
 	inline void cp() { _cmp(_rb(PC++)); }
