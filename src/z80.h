@@ -1,21 +1,31 @@
-#ifndef __Z80_H__
-#define __Z80_H__
+#pragma once
 
 #undef sbi
 #undef inch
 #undef SP
 
+class Stream;
+
 class z80: public CPU {
 public:
-	z80(Memory &m, PortDevice &ports): CPU(m), _ports(ports) {}
+	z80(Memory &m): CPU(m) {}
 
 	void run(unsigned);
 	void reset();
-	void raise(uint8_t level) { _irq_pending = level; }
-	char *status(char *buf, size_t n, bool hdr=false);
+	void nmi() { _int_nmi = true; }
+	void irq(uint8_t b) { _int_irq = true; _irq_data = b; }
+	char *status(char *buf, size_t n, bool hdr = false);
 
 	void checkpoint(Stream &);
 	void restore(Stream &);
+
+	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
+		port_out_handler = fn;
+	}
+
+	void set_port_in_handler(std::function<uint8_t(uint16_t)> fn) {
+		port_in_handler = fn;
+	}
 
 	inline uint8_t a() { return A; }
 	inline uint8_t b() { return B; }
@@ -69,6 +79,7 @@ public:
 	inline void reset_ts() { _ts = 0; }
 
 private:
+	void _handle_nmi();
 	void _handle_interrupt();
 
 	void op(uint8_t);
@@ -138,6 +149,9 @@ private:
 	uint8_t _im;
 	bool _iff1, _iff2;
 
+	bool _int_nmi, _int_irq, _int_prot;
+	uint8_t _irq_data;
+
 	union {
 		struct { uint8_t MPL, MPH; };
 		uint16_t _memptr;
@@ -145,8 +159,16 @@ private:
 
 	unsigned long _ts;
 
-	uint8_t _irq_pending;
-	PortDevice &_ports;
+	std::function<void(uint16_t, uint8_t)> port_out_handler;
+	std::function<uint8_t(uint16_t)> port_in_handler;
+
+	inline void _out(uint16_t p, uint8_t v) {
+		if (port_out_handler) port_out_handler(p, v);
+	}
+
+	inline uint8_t _in(uint16_t p) {
+		return port_in_handler? port_in_handler(p): 0;
+	}
 
 	uint8_t parity(uint8_t);
 
@@ -403,7 +425,12 @@ private:
 	inline void incb() { _inc(B); }
 	inline void decb() { _dec(B); }
 	inline void ldb() { B = _rb(PC++); }
-	inline void rlca() { flags.C = ((A & 0x80) >> 7); A = (A << 1) | flags.C; }
+	inline void rlca() {
+		flags.H = flags.N = 0;
+		flags.C = ((A & 0x80) >> 7);
+		A = (A << 1) | flags.C;
+		_35(A);
+	}
 
 	// 0x08
 	inline void exaf() { _exch(AF, AF_); }
@@ -431,7 +458,9 @@ private:
 	inline void rla() {
 		uint8_t b = (A << 1) | flags.C;
 		flags.C = (A & 0x80) >> 7;
+		flags.H = flags.N = 0;
 		A = b;
+		_35(A);
 	}
 
 	// 0x18
@@ -449,7 +478,9 @@ private:
 	inline void rra() {
 		uint8_t b = (A >> 1) | (flags.C << 7);
 		flags.C = (A & 1);
+		flags.H = flags.N = 0;
 		A = b;
+		_35(A);
 	}
 
 	// 0x20
@@ -490,7 +521,17 @@ private:
 	inline void inca() { _inc(A); }
 	inline void deca() { _dec(A); }
 	inline void lda() { A = _rb(PC++); }
-	inline void ccf() { flags.H = flags.C; flags.C = flags.N = 0; _35(A); }
+	inline void ccf() {
+		if (flags.C) {
+			flags.C = 0;
+			flags.H = 1;
+		} else {
+			flags.H = 0;
+			flags.C = 1;
+		}
+		flags.N = 0;
+		_35(A);
+	}
 
 	// 0x40
 	inline void ldbb() {}
@@ -702,7 +743,7 @@ private:
 		uint8_t b = _rb(PC++);
 		uint16_t p = b + (A << 8);
 		MPH = A; MPL = b+1;
-		_ports.out(p, A);
+		_out(p, A);
 	}
 	inline void callnc() { _call(!flags.C); }
 	inline void pushde() { _mc(IR, 1); _push(DE); }
@@ -716,7 +757,7 @@ private:
 	inline void ina() {
 		uint8_t b = _rb(PC++);
 		uint16_t p = b + (A << 8);
-		A = _ports.in(p);
+		A = _in(p);
 		MPH = A; MPL = b+1;
 	}
 	inline void callc() { _call(flags.C); }
@@ -737,14 +778,14 @@ private:
 	// 0xe8
 	inline uint8_t _inr() {
 		_memptr = BC+1;
-		uint8_t b = _ports.in(BC);
+		uint8_t b = _in(BC);
 		_szp35(b);
 		flags.N = flags.H = 0;
 		return b;
 	}
 	inline void _outr(uint8_t b) {
 		_memptr = BC+1;
-		_ports.out(BC, b);
+		_out(BC, b);
 	}
 
 	inline void retpe() { _ret(flags.P); }
@@ -770,7 +811,7 @@ private:
 	inline void retm() { _ret(flags.S); }
 	inline void ldsphl() { _mc(IR, 1); _mc(IR, 1); SP = HL; }
 	inline void jpm() { _jmp(flags.S); }
-	inline void ei() { _iff1 = _iff2 = true; }
+	inline void ei() { _iff1 = _iff2 = _int_prot = true; }
 	inline void callm() { _call(flags.S); }
 	inline void fd() { _ddfd(IY, IYL, IYH, &z80::fdcb); }
 	inline void cp() { _cmp(_rb(PC++)); }
@@ -1271,6 +1312,7 @@ private:
 	}
 	inline void cpi() {
 		uint8_t b = _rb(HL);
+		flags.H = ((b & 0x0f) > (A & 0x0f));
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
 		uint8_t c = A;
@@ -1282,8 +1324,9 @@ private:
 		A = c;
 		if (flags.H) b--;
 		flags.C = f;
+		flags.N = 1;
 		flags.P = (BC != 0);
-		_35(b);
+		_sz35(b);
 		flags._5 = ((b & 0x02) != 0);
 		_memptr++;
 	}
@@ -1327,17 +1370,23 @@ private:
 	}
 	inline void cpd_() {
 		uint8_t b = _rb(HL);
-		uint8_t c = A - b - flags.H;
+		flags.H = ((b & 0x0f) > (A & 0x0f));
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
+		uint8_t c = A;
+		uint8_t f = (flags.C != 0);
+		_sub(b);
 		HL--;
 		BC--;
+		b = A;
+		A = c;
+		if (flags.H) b--;
+		flags.C = f;
 		flags.N = 1;
 		flags.P = (BC != 0);
-		_sz35(c);
-		flags._5 = ((c & 0x02) != 0);
+		_sz35(b);
+		flags._5 = ((b & 0x02) != 0);
 		_memptr--;
-		// FIXME: flag H
 	}
 	inline void ind() {
 		_mc(IR, 1);
@@ -1373,8 +1422,8 @@ private:
 		_mc(DE, 1);
 		b += A;
 		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
+		flags._3 = (b & 0x08) != 0;
+		flags._5 = (b & 0x02) != 0;
 		flags.N = flags.H = 0;
 		if (BC) {
 			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
@@ -1398,10 +1447,10 @@ private:
 		flags.C = f;
 		flags.P = (BC != 0);
 		if (flags.H) b--;
-		_35(b);
+		flags._3 = ((b & 0x08) != 0);
 		flags._5 = ((b & 0x02) != 0);
 		_memptr++;
-		if (!flags.Z) {
+		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
@@ -1414,7 +1463,7 @@ private:
 		uint8_t b = _inr();
 		_sb(HL, b);
 		B--;
-		uint8_t c = b + flags.C + 1;
+		uint8_t c = b + C + 1;
 		flags.N = (c & 0x80) != 0;
 		flags.C = flags.H = (c < b);
 		flags.P = parity((c & 0x07) ^ B);
@@ -1465,17 +1514,22 @@ private:
 	}
 	inline void cpdr() {
 		uint8_t b = _rb(HL);
-		uint8_t c = A - b;
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
+		uint8_t c = A;
+		uint8_t f = (flags.C != 0);
+		_sub(b);
 		BC--;
-		flags.N = 1;
+		b -= A;
+		A = c;
+		flags.C = f;
 		flags.P = (BC != 0);
-		_sz35(c);
-		flags._5 = ((c & 0x02) != 0);
-		// FIXME: flag H
+		flags.N = 1;
+		if (flags.H) b--;
+		flags._3 = (b & 0x08) != 0;
+		flags._5 = (b & 0x02) != 0;
 		_memptr--;
-		if (BC) {
+		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
@@ -1486,11 +1540,11 @@ private:
 	inline void indr() {
 		_mc(IR, 1);
 		uint8_t b = _inr();
-		_memptr = BC-1;
 		_sb(HL, b);
+		_memptr = BC-1;
 		B--;
-		uint8_t c = b + flags.C + 1;
-		flags.N = (c & 0x80) != 0;
+		uint8_t c = b + C - 1;
+		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
 		flags.P = parity((c & 0x07) ^ B);
 		_sz35(B);
@@ -1519,8 +1573,8 @@ private:
 			PC -= 2;
 		}
 	}
-	// 0xDDCB extended instructions
 
+	// 0xDDCB extended instructions
 	inline uint16_t _rbIX(uint8_t &b, uint8_t o) {
 		uint16_t a = _ads(IX, o);
 		_memptr = a;
@@ -2160,5 +2214,3 @@ private:
 	inline void set7IY(uint8_t o) { uint8_t b; _setIY(b, o, 0x80); }
 	inline void set7IYA(uint8_t o) { _setIY(A, o, 0x80); }
 };
-
-#endif

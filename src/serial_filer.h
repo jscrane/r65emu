@@ -1,5 +1,4 @@
-#ifndef __SERIAL_FILER_H__
-#define __SERIAL_FILER_H__
+#pragma once
 
 // see https://playground.arduino.cc/Interfacing/LinuxTTY
 // FIXME: do this in minicom config file
@@ -24,4 +23,3 @@ private:
 	HardwareSerial &_serial;
 	unsigned _currsp;
 };
-#endif

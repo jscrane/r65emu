@@ -1,5 +1,4 @@
-#ifndef __DISPLAY_H__
-#define __DISPLAY_H__
+#pragma once
 
 typedef enum {
 	portrait, landscape, reverse_portrait, reverse_landscape
@@ -79,5 +78,3 @@ private:
 	unsigned _oxs, _xoff, _yoff;
 	unsigned _w, _h;
 };
-
-#endif

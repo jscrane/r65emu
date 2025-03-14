@@ -1,20 +1,40 @@
+#if defined(ARDUINO)
 #include <Arduino.h>
+#else
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#define println(x)	puts(x)
+#endif
+#include <functional>
 
 #include "memory.h"
-#include "hardware.h"
-#include "ports.h"
+#include "debugging.h"
 #include "CPU.h"
 #include "z80.h"
 
 char *z80::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
-	uint8_t op = _mem[PC];
+	static bool first = true;
 	snprintf(buf, n,
-		"%s%04x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x  %d%d%d "
-		"%04x %d%d%d%d%d%d%d%d",
-		hdr?  "_pc_ op _af_ _bc_ _de_ _hl_ _af' _bc' _de' _hl' _ir_ imff _sp_ sz5h3pnc\r\n": "",
-		PC, op, AF, BC, DE, HL, AF_, BC_, DE_, HL_, IR, _im, _iff1, _iff2,
-		SP, flags.S, flags.Z, flags._5, flags.H, flags._3, flags.P, flags.N, flags.C);
+		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x ",
+		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP   OP\r\n": "",
+		PC, A, flags.S, flags.Z, flags.H, flags.P, flags.N, flags.C, I, R & 0x7f, _iff1, _iff2,
+		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP);
+	first = false;
+
+	uint8_t op = _mem[PC], op1 = _mem[PC+1];
+	char obuf[16];
+	if (op == 0xdd || op == 0xfd) {
+		if (op1 == 0xcb)
+			snprintf(obuf, sizeof(obuf), "%02x cb %02x %02x", op, (uint8_t)_mem[PC+2], (uint8_t)_mem[PC+3]);
+		else
+			snprintf(obuf, sizeof(obuf), "%02x %02x", op, op1);
+	} else if (op == 0xed)
+		snprintf(obuf, sizeof(obuf), "ed %02x", op1);
+	else
+		snprintf(obuf, sizeof(obuf), "%02x", op);
+	strncat(buf, obuf, n);
 #endif
 	return buf;
 }
@@ -39,7 +59,10 @@ void z80::checkpoint(Stream &s) {
 	s.write(_iff2);
 	s.write(_ts);
 	s.write(_halted);
-	s.write(_irq_pending);
+	s.write(_int_nmi);
+	s.write(_int_irq);
+	s.write(_int_prot);
+	s.write(_irq_data);
 #endif
 }
 
@@ -63,7 +86,10 @@ void z80::restore(Stream &s) {
 	_iff2 = s.read();
 	_ts = s.read();
 	_halted = s.read();
-	_irq_pending = s.read();
+	_int_nmi = s.read();
+	_int_irq = s.read();
+	_int_prot = s.read();
+	_irq_data = s.read();
 #endif
 }
 
@@ -76,49 +102,70 @@ uint8_t z80::_fetch_op() {
 	return op;
 }
 
-void z80::run(unsigned clocks) {
-	while (clocks--) {
-		if (_irq_pending)
+void z80::run(unsigned instructions) {
+	while (instructions--) {
+		if (_int_nmi) {
+			_handle_nmi();
+			_int_nmi = false;
+		} else if (!_int_prot && _int_irq && _iff1) {
 			_handle_interrupt();
-		op(_fetch_op());
+			_int_irq = false;
+		}
 		if (_halted)
 			break;
+		_int_prot = false;
+		op(_fetch_op());
 	}
 }
 
 void z80::reset() {
+
 	AF = BC = DE = HL = PC = SP = 0;
 	AF_ = BC_ = DE_ = HL_ = IX = IY = 0;
 	I = R = 0;
 	_im = 0;
-	_iff1 = _iff2 = false;
-	_irq_pending = 0;
+	_iff1 = _iff2 = _int_nmi = _int_irq = _int_prot = false;
+	_irq_data = 0;
 	_ts = 0;
 	_halted = false;
 }
 
+void z80::_handle_nmi() {
+
+	DBG_CPU(println("NMI"));
+	_iff2 = _iff1;
+	_iff1 = false;
+	R++;
+	PC = 0x0066;
+	ts(11);
+}
+
 void z80::_handle_interrupt() {
-	if (_irq_pending < 0 || _iff1) {
-		if (_halted) {
-			_halted = false;
-			PC++;
-		}
-		_push(PC);
-		if (_irq_pending < 0) {	// NMI
-			_iff2 = _iff1;
-			PC = 0x0066;
-			ts(11);
-		} else {
-			_iff1 = _iff2 = false;
-			R++;
-			if (_im == 0 || _im == 1)
-				PC = 0x0038;
-			else if (_im == 2)
-				PC = _rw(_irq_pending + (0x100 * I));
-			ts(7);
-		}
+
+	if (_halted) {
+		_halted = false;
+		PC++;
 	}
-	_irq_pending = 0;
+	_push(PC);
+	_iff1 = _iff2 = false;
+	R++;
+	if (_im == 0)
+		switch (_irq_data) {
+		case 0xc7: PC = 0x00; break;
+		case 0xcf: PC = 0x08; break;
+		case 0xd7: PC = 0x10; break;
+		case 0xdf: PC = 0x18; break;
+		case 0xe7: PC = 0x20; break;
+		case 0xef: PC = 0x28; break;
+		case 0xf7: PC = 0x30; break;
+		case 0xff: PC = 0x38; break;
+		}
+	else if (_im == 1)
+		PC = 0x0038;
+	else if (_im == 2)
+		PC = _rw(_irq_data + (0x100 * I));
+	ts(7);
+	DBG_CPU(printf("IM: %d PC: %04x\r\n", _im, PC));
 }
 
 void z80::daa() {
@@ -154,284 +201,141 @@ void z80::_step_idx(EXT_OP f) {
 }
 
 void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
-	switch (_fetch_op()) {
-	case 0x09:
-		_add16(ix, BC);
-		break;
-	case 0x19:
-		_add16(ix, DE);
-		break;
-	case 0x21:
-		ix = _rwpc();
-		break;
-	case 0x22:
-		_swPC(ix);
-		break;
-	case 0x23:
-		ix++;
-		_mc(IR, 1); _mc(IR, 1);
-		break;
-	case 0x24:
-		_inc(ixH);
-		break;
-	case 0x25:
-		_dec(ixH);
-		break;
-	case 0x26:
-		ixH = _rb(PC++);
-		break;
-	case 0x29:
-		_add16(ix, ix);
-		break;
-	case 0x2a:
-		ix = _rwPC();
-		break;
-	case 0x2b:
-		ix--;
-		_mc(IR, 1); _mc(IR, 1);
-		break;
-	case 0x2c:
-		_inc(ixL);
-		break;
-	case 0x2d:
-		_dec(ixL);
-		break;
-	case 0x2e:
-		ixL = _rb(PC++);
-		break;
-	case 0x34:
-		_incO(ix);
-		break;
-	case 0x35:
-		_decO(ix);
-		break;
-	case 0x36:
-		_sbO(ix);
-		break;
-	case 0x39:
-		_add16(ix, SP);
-		break;
-	case 0x44:
-		B = ixH;
-		break;
-	case 0x45:
-		B = ixL;
-		break;
-	case 0x46:
-		B = _rbO(ix);
-		break;
-	case 0x4c:
-		C = ixH;
-		break;
-	case 0x4d:
-		C = ixL;
-		break;
-	case 0x4e:
-		C = _rbO(ix);
-		break;
-	case 0x54:
-		D = ixH;
-		break;
-	case 0x55:
-		D = ixL;
-		break;
-	case 0x56:
-		D = _rbO(ix);
-		break;
-	case 0x5c:
-		E = ixH;
-		break;
-	case 0x5d:
-		E = ixL;
-		break;
-	case 0x5e:
-		E = _rbO(ix);
-		break;
-	case 0x60:
-		ixH = B;
-		break;
-	case 0x61:
-		ixH = C;
-		break;
-	case 0x62:
-		ixH = D;
-		break;
-	case 0x63:
-		ixH = E;
-		break;
-	case 0x64:
-		break;
-	case 0x65:
-		ixH = ixL;
-		break;
-	case 0x66:
-		H = _rbO(ix);
-		break;
-	case 0x67:
-		ixH = A;
-		break;
-	case 0x68:
-		ixL = B;
-		break;
-	case 0x69:
-		ixL = C;
-		break;
-	case 0x6a:
-		ixL = D;
-		break;
-	case 0x6b:
-		ixL = E;
-		break;
-	case 0x6c:
-		ixL = ixH;
-		break;
-	case 0x6d:
-		break;
-	case 0x6e:
-		L = _rbO(ix);
-		break;
-	case 0x6f:
-		ixL = A;
-		break;
-	case 0x70:
-		_sbO(ix, B);
-		break;
-	case 0x71:
-		_sbO(ix, C);
-		break;
-	case 0x72:
-		_sbO(ix, D);
-		break;
-	case 0x73:
-		_sbO(ix, E);
-		break;
-	case 0x74:
-		_sbO(ix, H);
-		break;
-	case 0x75:
-		_sbO(ix, L);
-		break;
-	case 0x77:
-		_sbO(ix, A);
-		break;
-	case 0x7c:
-		A = ixH;
-		break;
-	case 0x7d:
-		A = ixL;
-		break;
-	case 0x7e:
-		A = _rbO(ix);
-		break;
-	case 0x84:
-		_add(ixH);
-		break;
-	case 0x85:
-		_add(ixL);
-		break;
-	case 0x86:
-		_add(_rbO(ix));
-		break;
-	case 0x8c:
-		_adc(ixH);
-		break;
-	case 0x8d:
-		_adc(ixL);
-		break;
-	case 0x8e:
-		_adc(_rbO(ix));
-		break;
-	case 0x94:
-		_sub(ixH);
-		break;
-	case 0x95:
-		_sub(ixL);
-		break;
-	case 0x96:
-		_sub(_rbO(ix));
-		break;
-	case 0x9c:
-		_sbc(ixH);
-		break;
-	case 0x9d:
-		_sbc(ixL);
-		break;
-	case 0x9e:
-		_sbc(_rbO(ix));
-		break;
-	case 0xa4:
-		_and(ixH);
-		break;
-	case 0xa5:
-		_and(ixL);
-		break;
-	case 0xa6:
-		_and(_rbO(ix));
-		break;
-	case 0xac:
-		_xor(ixH);
-		break;
-	case 0xad:
-		_xor(ixL);
-		break;
-	case 0xae:
-		_xor(_rbO(ix));
-		break;
-	case 0xb4:
-		_or(ixH);
-		break;
-	case 0xb5:
-		_or(ixL);
-		break;
-	case 0xb6:
-		_or(_rbO(ix));
-		break;
-	case 0xbc:
-		_cmp(ixH);
-		break;
-	case 0xbd:
-		_cmp(ixL);
-		break;
-	case 0xbe:
-		_cmp(_rbO(ix));
-		break;
-	case 0xcb:
-		_step_idx(op);
-		break;
-	case 0xe1:
-		ix = _pop();
-		break;
-	case 0xe3:
-		_exSP(ix);
-		break;
-	case 0xe5:
-		_mc(IR, 1);
-		_push(ix);
-		break;
-	case 0xe9:
-		PC = ix;
-		break;
-	case 0xf9:
-		_mc(IR, 1); _mc(IR, 1);
-		SP = ix;
-		break;
+
+	uint8_t o = _fetch_op();
+	switch (o) {
+	E(0x09, _add16(ix, BC));
+	E(0x19, _add16(ix, DE));
+
+	E(0x21, ix = _rwpc());
+	E(0x22, _swPC(ix));
+	E(0x23, ix++; _mc(IR, 1); _mc(IR, 1));
+
+	U(0x24, _inc(ixH));
+	U(0x25, _dec(ixH));
+	U(0x26, ixH = _rb(PC++));
+
+	E(0x29, _add16(ix, ix));
+	E(0x2a, ix = _rwPC());
+	E(0x2b, ix--; _mc(IR, 1); _mc(IR, 1));
+
+	U(0x2c, _inc(ixL));
+	U(0x2d, _dec(ixL));
+	U(0x2e, ixL = _rb(PC++));
+
+	E(0x34, _incO(ix));
+	E(0x35, _decO(ix));
+	E(0x36, _sbO(ix));
+
+	E(0x39, _add16(ix, SP));
+
+	U(0x44, B = ixH);
+	U(0x45, B = ixL);
+	E(0x46, B = _rbO(ix));
+
+	U(0x4c, C = ixH);
+	U(0x4d, C = ixL);
+	E(0x4e, C = _rbO(ix));
+
+	U(0x54, D = ixH);
+	U(0x55, D = ixL);
+	E(0x56, D = _rbO(ix));
+
+	U(0x5c, E = ixH);
+	U(0x5d, E = ixL);
+	E(0x5e, E = _rbO(ix));
+
+	U(0x60, ixH = B);
+	U(0x61, ixH = C);
+	U(0x62, ixH = D);
+	U(0x63, ixH = E);
+	U(0x64, /* FIXME */);
+	U(0x65, ixH = ixL);
+	E(0x66, H = _rbO(ix));
+	U(0x67, ixH = A);
+	U(0x68, ixL = B);
+	U(0x69, ixL = C);
+	U(0x6a, ixL = D);
+	U(0x6b, ixL = E);
+	U(0x6c, ixL = ixH);
+	U(0x6d, /* FIXME */);
+	E(0x6e, L = _rbO(ix));
+	U(0x6f, ixL = A);
+	E(0x70, _sbO(ix, B));
+	E(0x71, _sbO(ix, C));
+	E(0x72, _sbO(ix, D));
+	E(0x73, _sbO(ix, E));
+	E(0x74, _sbO(ix, H));
+	E(0x75, _sbO(ix, L));
+
+	E(0x77, _sbO(ix, A));
+
+	U(0x7c, A = ixH);
+	U(0x7d, A = ixL);
+	E(0x7e, A = _rbO(ix));
+
+	U(0x84, _add(ixH));
+	U(0x85, _add(ixL));
+	E(0x86, _add(_rbO(ix)));
+
+	U(0x8c, _adc(ixH));
+	U(0x8d, _adc(ixL));
+	E(0x8e, _adc(_rbO(ix)));
+
+	U(0x94, _sub(ixH));
+	U(0x95, _sub(ixL));
+	E(0x96, _sub(_rbO(ix)));
+
+	U(0x9c, _sbc(ixH));
+	U(0x9d, _sbc(ixL));
+	E(0x9e, _sbc(_rbO(ix)));
+
+	U(0xa4, _and(ixH));
+	U(0xa5, _and(ixL));
+	E(0xa6, _and(_rbO(ix)));
+
+	U(0xac, _xor(ixH));
+	U(0xad, _xor(ixL));
+	E(0xae, _xor(_rbO(ix)));
+
+	U(0xb4, _or(ixH));
+	U(0xb5, _or(ixL));
+	E(0xb6, _or(_rbO(ix)));
+
+	U(0xbc, _cmp(ixH));
+	U(0xbd, _cmp(ixL));
+	E(0xbe, _cmp(_rbO(ix)));
+
+	E(0xcb, _step_idx(op));
+
+	E(0xe1, ix = _pop());
+	E(0xe3, _exSP(ix));
+	E(0xe5, _mc(IR, 1); _push(ix));
+	E(0xe9, PC = ix);
+
+	E(0xf9, _mc(IR, 1); _mc(IR, 1); SP = ix);
+
+	default:
+		ERR(printf("unimplemented dd/fd op: %02x\r\n", o));
 	}
 }
 
 void z80::ed() {
-	switch (_fetch_op()) {
+
+	uint8_t op = _fetch_op();
+	switch (op) {
 	O(0x40, inB);
 	O(0x41, outB);
 	O(0x42, sbcBC);
 	O(0x43, ldPCbc);
 
 	C(0x44);
-	C(0x54);
-	C(0x64);
-	C(0x74);
 	C(0x4c);
+	C(0x54);
 	C(0x5c);
+	C(0x64);
 	C(0x6c);
+	C(0x74);
 	O(0x7c, neg);
 
 	C(0x45);
@@ -507,6 +411,9 @@ void z80::ed() {
 	O(0xb9, cpdr);
 	O(0xba, indr);
 	O(0xbb, outdr);
+
+	default:
+		ERR(printf("unimplemented ed op: %02x\r\n", op));
 	}
 }
 

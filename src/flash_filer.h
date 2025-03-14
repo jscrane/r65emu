@@ -1,5 +1,4 @@
-#ifndef __FLASH_FILER_H__
-#define __FLASH_FILER_H__
+#pragma once
 
 #define MAX_FILES	5
 
@@ -41,4 +40,3 @@ private:
 	const char *_programs;
 	uint8_t _current;
 };
-#endif

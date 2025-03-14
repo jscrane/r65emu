@@ -1,5 +1,6 @@
-#ifndef __MEMORY_H__
-#define __MEMORY_H__
+#pragma once
+
+class Stream;
 
 class Checkpointable {
 public:
@@ -41,7 +42,7 @@ public:
 
 	virtual Device *get (address at) const { return _pages[at/page_size]; }
 
-	Device &operator[] (address a) {
+	Device &operator[] (address a) const {
 		Device *d = get (a);
 		d->access (a);
 		return *d;
@@ -51,4 +52,3 @@ public:
 private:
 	Device *_pages[256];
 };
-#endif

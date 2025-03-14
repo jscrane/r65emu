@@ -1,5 +1,4 @@
-#ifndef __SOUND_DAC_H__
-#define __SOUND_DAC_H__
+#pragma once
 
 class DAC {
 public:
@@ -11,5 +10,3 @@ private:
 	volatile const uint8_t *_bytes;
 	volatile unsigned _size, _off;
 };
-
-#endif

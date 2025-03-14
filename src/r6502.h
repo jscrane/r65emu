@@ -1,13 +1,14 @@
-#ifndef __R6502_H__
-#define __R6502_H__
+#pragma once
 
 #undef PC
 #undef cli
 #undef sei
 
+class Stream;
+
 class r6502: public CPU {
 public:
-	void raise(uint8_t);
+	void raise(int);
 	void reset();
 	void run(unsigned);
 	char *status(char *buf, size_t n, bool hdr=false);
@@ -317,4 +318,3 @@ private:
 	inline void sbc_ax() { _sbc(_mem[_ax()]); }
 	inline void inc_ax() { _inc(_ax()); }
 };
-#endif

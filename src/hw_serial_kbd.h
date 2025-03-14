@@ -1,5 +1,4 @@
-#ifndef __HW_SERIAL_KBD_H__
-#define __HW_SERIAL_KBD_H__
+#pragma once
 
 /*
  * A serial keyboard based around the hardware serial port ("Serial")
@@ -16,5 +15,3 @@ public:
 private:
 	HardwareSerial &_serial;
 };
-
-#endif

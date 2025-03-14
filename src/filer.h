@@ -1,5 +1,4 @@
-#ifndef __FILER_H__
-#define __FILER_H__
+#pragma once
 
 class filer: virtual public serialio {
 public:
@@ -12,5 +11,3 @@ public:
 	virtual bool start() =0;
 	virtual void stop() =0;
 };
-
-#endif

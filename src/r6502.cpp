@@ -1,9 +1,15 @@
+#if defined(ARDUINO)
 #include <Arduino.h>
+#else
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#endif
 
 #include "memory.h"
 #include "CPU.h"
 #include "r6502.h"
-#include "hardware.h"
+#include "debugging.h"
 
 void r6502::run(unsigned clocks) {
 	while (clocks--) {
@@ -76,7 +82,7 @@ void r6502::restore(Stream &s)
 #endif
 }
 
-void r6502::raise(uint8_t level) {
+void r6502::raise(int level) {
 	if (level < 0)
 		nmi();
 	else if (!P.bits.I)
