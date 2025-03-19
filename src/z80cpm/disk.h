@@ -1,6 +1,6 @@
 #pragma once
 
-void init_disks(int nd, char *filenames[]);
+void open_disks(int nd, char *filenames[]);
 void close_disks();
 void read_boot_sector(Memory &mem);
 

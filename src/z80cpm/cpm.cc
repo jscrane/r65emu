@@ -109,7 +109,8 @@ int main(int argc, char *argv[]) {
 	ram<65536> ram;
 	memory.put(ram, 0x0000);
 
-	init_disks(--argc, ++argv);
+	cons_init();
+	open_disks(--argc, ++argv);
 
 	z80 cpu(memory);
 	cpu.set_port_out_handler(port_out);
@@ -122,4 +123,5 @@ int main(int argc, char *argv[]) {
 		cpu.run(100);
 
 	close_disks();
+	cons_fini();
 }

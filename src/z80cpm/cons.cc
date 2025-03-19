@@ -3,11 +3,25 @@
 #include <cstdio>
 #include <unistd.h>
 #include <poll.h>
+#include <termios.h>
+
+static struct termios term;
+static int in = fileno(stdin), out = fileno(stdout);
+
+void cons_init() {
+	tcgetattr(in, &term);
+	struct termios t = term;
+	cfmakeraw(&t);
+	tcsetattr(in, 0, &t);
+}
+
+void cons_fini() {
+	tcsetattr(in, 0, &term);
+}
 
 uint8_t cons_available() {
-
 	struct pollfd p;
-	p.fd = 0;
+	p.fd = in;
 	p.events = POLLIN;
 	if (0 > poll(&p, 1, 0)) {
 		perror("poll");
@@ -18,7 +32,7 @@ uint8_t cons_available() {
 
 uint8_t cons_read() {
 	uint8_t b;
-	if (0 > read(0, &b, 1)) {
+	if (0 > read(in, &b, 1)) {
 		perror("read");
 		exit(-1);
 	}
@@ -26,7 +40,7 @@ uint8_t cons_read() {
 }
 
 void cons_write(uint8_t b) {
-	if (0 > write(1, &b, 1)) {
+	if (0 > write(out, &b, 1)) {
 		perror("write");
 		exit(-1);
 	}

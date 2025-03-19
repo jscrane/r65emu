@@ -9,7 +9,7 @@
 
 static int disks[26];
 
-void init_disks(int nd, char *filenames[]) {
+void open_disks(int nd, char *filenames[]) {
 
 	for (int i = 0; i < 26; i++)
 		disks[i] = -1;
