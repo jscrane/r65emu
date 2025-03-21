@@ -511,7 +511,7 @@ private:
 	inline void incHL() { uint8_t b = _rb(HL); _mc(HL, 1); _inc(b); _sb(HL, b); }
 	inline void decHL() { uint8_t b = _rb(HL); _mc(HL, 1); _dec(b); _sb(HL, b); }
 	inline void ldHL() { _sb(HL, _rb(PC++)); }
-	inline void scf() { flags.C = 1; flags.N = flags.H = 0; _35(A); }
+	inline void scf() { uint8_t Q = F; flags.C = 1; flags.N = flags.H = 0; _35(Q | A); }
 
 	// 0x38
 	inline void jrc() { _jr(flags.C); }
@@ -522,6 +522,7 @@ private:
 	inline void deca() { _dec(A); }
 	inline void lda() { A = _rb(PC++); }
 	inline void ccf() {
+		uint8_t Q = F;
 		if (flags.C) {
 			flags.C = 0;
 			flags.H = 1;
@@ -530,7 +531,7 @@ private:
 			flags.C = 1;
 		}
 		flags.N = 0;
-		_35(A);
+		_35(Q | A);
 	}
 
 	// 0x40
