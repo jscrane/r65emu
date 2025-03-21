@@ -15,11 +15,3 @@ md5sum tests.me
 75f83a24154998522cf1f6a60c0042ef  tests.me
 $ vi -d tests.expected tests.me
 ```
-
-Flag Errors
-===========
-
-|test	|exp	|act	|op		|error	|
-|-------|-------|-------|-------|-------|
-|edb1_2 |87     |8f     |cpir   | E:3   |
-|edb9_2 |a7     |8f     |cpdr   | E:5,3 |
