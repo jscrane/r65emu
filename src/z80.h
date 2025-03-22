@@ -1307,7 +1307,7 @@ private:
 		HL++;
 		b += A;
 		flags.P = (BC != 0);
-		_35(b);
+		flags._3 = (b & 0x08) != 0;
 		flags._5 = ((b & 0x02) != 0);
 		flags.N = flags.H = 0;
 	}
@@ -1416,24 +1416,31 @@ private:
 		_sz35(B);
 	}
 	inline void ldir() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
-		b += A;
-		flags.P = (BC != 0);
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE++;
-		HL++;
+		do {
+			uint8_t b = _rb(HL);
+			BC--;
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			b += A;
+			flags.P = (BC != 0);
+			flags._3 = (b & 0x08) != 0;
+			flags._5 = (b & 0x02) != 0;
+			flags.N = flags.H = 0;
+			if (BC) {
+				_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
+				_mc(DE, 1); _mc(DE, 1);
+				_memptr = PC-1;
+
+				_mc(PC-2, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-2, (uint8_t)_mem[PC-2]));
+				_mc(PC-1, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-1, (uint8_t)_mem[PC-1]));
+				R += 2;
+			}
+			DE++;
+			HL++;
+		} while (BC);
 	}
 	inline void cpir() {
 		uint8_t b = _rb(HL);
@@ -1494,24 +1501,31 @@ private:
 		}
 	}
 	inline void lddr() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
-		b += A;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE--;
-		HL--;
+		do {
+			uint8_t b = _rb(HL);
+			BC--;
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			b += A;
+			flags.P = (BC != 0);
+			flags._3 = (b & 0x08) != 0;
+			flags._5 = ((b & 0x02) != 0);
+			flags.N = flags.H = 0;
+			if (BC) {
+				_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
+				_mc(DE, 1); _mc(DE, 1);
+				_memptr = PC-1;
+
+				_mc(PC-2, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-2, (uint8_t)_mem[PC-2]));
+				_mc(PC-1, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-1, (uint8_t)_mem[PC-1]));
+				R += 2;
+			}
+			DE--;
+			HL--;
+		} while (BC);
 	}
 	inline void cpdr() {
 		uint8_t b = _rb(HL);
