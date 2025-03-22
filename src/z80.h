@@ -1457,19 +1457,21 @@ private:
 		if (flags.H) b--;
 		flags._3 = ((b & 0x08) != 0);
 		flags._5 = ((b & 0x02) != 0);
-		_memptr++;
 		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
 			_memptr = PC+1;
-		}
+			_int_prot = true;
+		} else
+			_memptr++;
 		HL++;
 	}
 	inline void inir() {
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
+		_memptr = BC+1;
 		B--;
 		uint8_t c = b + C + 1;
 		flags.N = (c & 0x80) != 0;
@@ -1480,6 +1482,7 @@ private:
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 		HL++;
 	}
@@ -1487,6 +1490,7 @@ private:
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
+		_memptr = BC+1;
 		_outr(b);
 		HL++;
 		uint8_t c = b + L;
@@ -1498,6 +1502,7 @@ private:
 			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
 			_mc(BC, 1); _mc(BC, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 	}
 	inline void lddr() {
@@ -1543,13 +1548,14 @@ private:
 		if (flags.H) b--;
 		flags._3 = (b & 0x08) != 0;
 		flags._5 = (b & 0x02) != 0;
-		_memptr--;
 		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
 			_memptr = PC+1;
-		}
+			_int_prot = true;
+		} else
+			_memptr--;
 		HL--;
 	}
 	inline void indr() {
@@ -1567,6 +1573,7 @@ private:
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 		HL--;
 	}
@@ -1574,8 +1581,8 @@ private:
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
-		_outr(b);
 		_memptr = BC-1;
+		_outr(b);
 		HL--;
 		uint8_t c = b + L;
 		flags.N = (b & 0x80) != 0;
@@ -1586,6 +1593,7 @@ private:
 			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
 			_mc(BC, 1); _mc(BC, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 	}
 
