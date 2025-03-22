@@ -1,0 +1,6 @@
+.*.swp
+
+*.o
+z80cpm/cpm
+z80test/z80test
+z80test/tests.me

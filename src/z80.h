@@ -1307,7 +1307,7 @@ private:
 		HL++;
 		b += A;
 		flags.P = (BC != 0);
-		_35(b);
+		flags._3 = (b & 0x08) != 0;
 		flags._5 = ((b & 0x02) != 0);
 		flags.N = flags.H = 0;
 	}
@@ -1416,24 +1416,30 @@ private:
 		_sz35(B);
 	}
 	inline void ldir() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
+		uint8_t b;
+		do {
+			b = _rb(HL);
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			if (--BC) {
+				_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
+				_mc(DE, 1); _mc(DE, 1);
+				_memptr = PC-1;
+
+				_mc(PC-2, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-2, (uint8_t)_mem[PC-2]));
+				_mc(PC-1, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-1, (uint8_t)_mem[PC-1]));
+				R += 2;
+			}
+			DE++;
+			HL++;
+		} while (BC);
 		b += A;
-		flags.P = (BC != 0);
 		flags._3 = (b & 0x08) != 0;
 		flags._5 = (b & 0x02) != 0;
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE++;
-		HL++;
+		flags.P = flags.N = flags.H = 0;
 	}
 	inline void cpir() {
 		uint8_t b = _rb(HL);
@@ -1450,19 +1456,21 @@ private:
 		if (flags.H) b--;
 		flags._3 = ((b & 0x08) != 0);
 		flags._5 = ((b & 0x02) != 0);
-		_memptr++;
 		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
 			_memptr = PC+1;
-		}
+			_int_prot = true;
+		} else
+			_memptr++;
 		HL++;
 	}
 	inline void inir() {
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
+		_memptr = BC+1;
 		B--;
 		uint8_t c = b + C + 1;
 		flags.N = (c & 0x80) != 0;
@@ -1473,6 +1481,7 @@ private:
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 		HL++;
 	}
@@ -1480,6 +1489,7 @@ private:
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
+		_memptr = BC+1;
 		_outr(b);
 		HL++;
 		uint8_t c = b + L;
@@ -1491,27 +1501,34 @@ private:
 			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
 			_mc(BC, 1); _mc(BC, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 	}
 	inline void lddr() {
-		uint8_t b = _rb(HL);
-		BC--;
-		_sb(DE, b);
-		_mc(DE, 1);
-		_mc(DE, 1);
+		uint8_t b;
+		do {
+			b = _rb(HL);
+			_sb(DE, b);
+			_mc(DE, 1);
+			_mc(DE, 1);
+			if (--BC) {
+				_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
+				_mc(DE, 1); _mc(DE, 1);
+				_memptr = PC-1;
+
+				_mc(PC-2, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-2, (uint8_t)_mem[PC-2]));
+				_mc(PC-1, 4);
+				DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC-1, (uint8_t)_mem[PC-1]));
+				R += 2;
+			}
+			DE--;
+			HL--;
+		} while (BC);
 		b += A;
-		flags.P = (BC != 0);
-		_35(b);
-		flags._5 = ((b & 0x02) != 0);
-		flags.N = flags.H = 0;
-		if (BC) {
-			_mc(DE, 1); _mc(DE, 1); _mc(DE, 1);
-			_mc(DE, 1); _mc(DE, 1);
-			PC -= 2;
-			_memptr = PC+1;
-		}
-		DE--;
-		HL--;
+		flags._3 = (b & 0x08) != 0;
+		flags._5 = (b & 0x02) != 0;
+		flags.P = flags.N = flags.H = 0;
 	}
 	inline void cpdr() {
 		uint8_t b = _rb(HL);
@@ -1529,13 +1546,14 @@ private:
 		if (flags.H) b--;
 		flags._3 = (b & 0x08) != 0;
 		flags._5 = (b & 0x02) != 0;
-		_memptr--;
 		if (!flags.Z && flags.P) {
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
 			_memptr = PC+1;
-		}
+			_int_prot = true;
+		} else
+			_memptr--;
 		HL--;
 	}
 	inline void indr() {
@@ -1553,6 +1571,7 @@ private:
 			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 			_mc(HL, 1); _mc(HL, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 		HL--;
 	}
@@ -1572,6 +1591,7 @@ private:
 			_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
 			_mc(BC, 1); _mc(BC, 1);
 			PC -= 2;
+			_int_prot = true;
 		}
 	}
 

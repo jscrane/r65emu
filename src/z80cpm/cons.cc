@@ -12,6 +12,7 @@ void cons_init() {
 	tcgetattr(in, &term);
 	struct termios t = term;
 	cfmakeraw(&t);
+	t.c_oflag |= OPOST | ONLCR;
 	tcsetattr(in, 0, &t);
 }
 

@@ -20,7 +20,8 @@ uint16_t disk_dma();
 
 uint8_t disk_select(uint8_t);
 uint8_t disk_track(uint8_t);
-uint8_t disk_sector(uint8_t);
+uint8_t disk_sector_lo(uint8_t);
+uint8_t disk_sector_hi(uint8_t);
 uint8_t disk_dma(uint16_t);
 uint8_t disk_write(const Memory &);
 uint8_t disk_read(Memory &);

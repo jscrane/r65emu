@@ -32,7 +32,8 @@ void close_disks() {
 }
 
 static int drive;
-static uint8_t trk, sec, settrk, setsec;
+static uint8_t trk, settrk;
+static uint16_t sec, setsec;
 static uint16_t setdma;
 
 static bool disk_seek() {
@@ -80,6 +81,7 @@ uint8_t disk_select(uint8_t a) {
 }
 
 uint8_t disk_track(uint8_t a) {
+
 	if (a >= TRACKS)
 		return ILLEGAL_TRACK;
 
@@ -87,11 +89,23 @@ uint8_t disk_track(uint8_t a) {
 	return OK;
 }
 
-uint8_t disk_sector(uint8_t a) {
-	if (a > SECTORS_PER_TRACK)
+uint8_t disk_sector_lo(uint8_t a) {
+
+	uint16_t s = (setsec & 0xff00) | a;
+	if (s > SECTORS_PER_TRACK)
 		return ILLEGAL_SECTOR;
 
-	setsec = a;
+	setsec = s;
+	return OK;
+}
+
+uint8_t disk_sector_hi(uint8_t a) {
+
+	uint16_t s = (setsec & 0xff) | (a << 8);
+	if (s > SECTORS_PER_TRACK)
+		return ILLEGAL_SECTOR;
+
+	setsec = s;
 	return OK;
 }
 
