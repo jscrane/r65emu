@@ -77,10 +77,10 @@ void port_out(uint16_t p, uint8_t a) {
 	        disk_status = disk_track(a);
 	        break;
 	case FDC_SETSEC_L:
-	        disk_status = disk_sector(a);
+	        disk_status = disk_sector_lo(a);
 	        break;
 	case FDC_SETSEC_H:
-	        // ignore?
+	        disk_status = disk_sector_hi(a);
 	        break;
 	case FDC_SETDMA_L:
 		disk_dma(a | (disk_dma() & 0xff00));
