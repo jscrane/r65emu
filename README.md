@@ -34,6 +34,10 @@ Some emulations require a filesystem image containing programs to be uploaded:
 Libraries
 ---------
 
+- [SimpleTimer](https://github.com/jscrane/SimpleTimer)
+- [PS2KeyAdvanced](https://github.com/techpaul/PS2KeyAdvanced), [PS2KeyRaw](https://github.com/techpaul/PS2KeyRaw) and [PS2KeyMap](https://github.com/techpaul/PS2KeyMap)
+
+
 Display
 --------
 Depending on target board, one of:
