@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <stdarg.h>
-#include "hardware.h"
+#include "debugging.h"
 #include "memory.h"
 #include "display.h"
 

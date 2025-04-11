@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #endif
 #include <stdint.h>
-#include "hardware.h"
+#include "debugging.h"
 
 #if defined(USE_SPIFFS)
 #include <SPIFFS.h>

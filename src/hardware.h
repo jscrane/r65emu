@@ -26,6 +26,6 @@ int hardware_interval_timer(uint32_t dt, std::function<void(void)> cb);
 int hardware_oneshot_timer(uint32_t dt, std::function<void(void)> cb);
 void hardware_cancel_timer(int timer);
 
-#if defined(__SPIRAM_H__) && defined(USE_SPIRAM)
+#if defined(USE_SPIRAM)
 extern class spiram sram;
 #endif

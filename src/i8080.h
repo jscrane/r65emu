@@ -13,6 +13,7 @@ public:
 	void run(unsigned);
 	void reset();
 	void raise(int);
+	void irq(uint8_t b) { raise(b); }
 	char *status(char *buf, size_t n, bool hdr=false);
 
 	void checkpoint(Stream &);
