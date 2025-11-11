@@ -219,10 +219,10 @@ char *uz80::status(char *buf, size_t n, bool hdr) {
 	return buf;
 }
 
-void uz80::irq(uint8_t b) { 
-	State = Interrupted; 
+void uz80::irq(uint8_t b) {
+	State = Interrupted;
 	int_int = true;
-	int_data = b; 
+	int_data = b;
 }
 
 BYTE uz80::_handle_interrupt() {
@@ -243,7 +243,7 @@ BYTE uz80::_handle_interrupt() {
 		case 0xff: PC = 0x38; break;
 		}
 		return 13;
-	} 
+	}
 	if (int_mode == 1) {
 		PC = 0x38;
 		return 13;

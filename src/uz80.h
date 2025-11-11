@@ -110,7 +110,7 @@ private:
 	inline BYTE memrdr(WORD addr) { return _mem[addr]; }
 	inline void memwrt(WORD addr, BYTE data) { _mem[addr] = data; }
 
-	inline BYTE io_in(BYTE addrl, BYTE addrh) { 
+	inline BYTE io_in(BYTE addrl, BYTE addrh) {
 		return port_in_handler? port_in_handler((addrh << 8) + addrl): 0;
 	}
 	inline void io_out(BYTE addrl, BYTE addrh, BYTE data) {
