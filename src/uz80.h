@@ -5,11 +5,6 @@
  * https://github.com/udo-munk/Arduino8080/
  */
 
-// data types for the Z80 CPU
-typedef uint8_t		BYTE;
-typedef int8_t		SBYTE;
-typedef uint16_t	WORD;
-
 // bit definitions for the 8080 CPU flags
 #define S_FLAG	128
 #define Z_FLAG	64
@@ -63,20 +58,20 @@ private:
 	struct cpu_reg {
 		union {
 			struct {
-				BYTE l;
-				BYTE h;
+				uint8_t l;
+				uint8_t h;
 			};
-			WORD w;
+			uint16_t w;
 		};
 	};
 #elif _BYTE_ORDER == _BIG_ENDIAN
 	struct cpu_reg {
 		union {
 			struct {
-				BYTE h;
-				BYTE l;
+				uint8_t h;
+				uint8_t l;
 			};
-			WORD w;
+			uint16_t w;
 		};
 	};
 #else
@@ -96,10 +91,10 @@ private:
 		struct cpu_reg hl_;
 		struct cpu_reg ix;	/* Z80 index registers */
 		struct cpu_reg iy;
-		BYTE i;			/* Z80 interrupt register */
-		BYTE r;			/* Z80 refresh register (7-bit counter) */
-		BYTE r_;		/* 8th bit of R (can be loaded with LD R,A) */
-		BYTE iff;		/* interupt flags */
+		uint8_t i;		/* Z80 interrupt register */
+		uint8_t r;		/* Z80 refresh register (7-bit counter) */
+		uint8_t r_;		/* 8th bit of R (can be loaded with LD R,A) */
+		uint8_t iff;		/* interupt flags */
 	} cpu_regs;
 
 	// other global variables
@@ -107,13 +102,13 @@ private:
 	unsigned long tstates = 0;	// executed T-states
 	
 	// z80sim compatibility
-	inline BYTE memrdr(WORD addr) { return _mem[addr]; }
-	inline void memwrt(WORD addr, BYTE data) { _mem[addr] = data; }
+	inline uint8_t memrdr(uint16_t addr) { return _mem[addr]; }
+	inline void memwrt(uint16_t addr, uint8_t data) { _mem[addr] = data; }
 
-	inline BYTE io_in(BYTE addrl, BYTE addrh) {
+	inline uint8_t io_in(uint8_t addrl, uint8_t addrh) {
 		return port_in_handler? port_in_handler((addrh << 8) + addrl): 0;
 	}
-	inline void io_out(BYTE addrl, BYTE addrh, BYTE data) {
+	inline void io_out(uint8_t addrl, uint8_t addrh, uint8_t data) {
 		if (port_out_handler)
 			port_out_handler((addrh << 8) + addrl, data);
 	}

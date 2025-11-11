@@ -18,7 +18,7 @@
 #define S S_FLAG
 #define Z Z_FLAG
 #define P P_FLAG
-static const BYTE szp_flags[256] = {
+static const uint8_t szp_flags[256] = {
   /*00*/ Z|P,   _,   _,   P,   _,   P,   P,   _,
   /*08*/   _,   P,   P,   _,   P,   _,   _,   P,
   /*10*/   _,   P,   P,   _,   P,   _,   _,   P,
@@ -225,7 +225,12 @@ void uz80::irq(uint8_t b) {
 	int_data = b;
 }
 
-BYTE uz80::_handle_interrupt() {
+uint8_t uz80::_handle_interrupt() {
+
+	if (State == Halted) {
+		State = Running;
+		PC++;
+	}
 
 	memwrt(--SP, PC >> 8);
 	memwrt(--SP, PC);
@@ -249,7 +254,7 @@ BYTE uz80::_handle_interrupt() {
 		return 13;
 	}
 	if (int_mode == 2) {
-		WORD p = (I << 8) + (int_data & 0xff);
+		uint16_t p = (I << 8) + (int_data & 0xff);
 		PC = memrdr(p++);
 		PC += memrdr(p) << 8;
 		return 19;
@@ -258,9 +263,9 @@ BYTE uz80::_handle_interrupt() {
 }
 
 void uz80::run(unsigned instructions) {
-	BYTE t, res, cout, P, op, n, curr_ir;
+	uint8_t t, res, cout, P, op, n, curr_ir;
 #ifdef FAST_BLOCK
-	WORD s, d;
+	uint16_t s, d;
 	int32_t tl;			/* loops can run for 65535 * 21 + 16 cycles */
 #endif
 
@@ -275,10 +280,13 @@ void uz80::run(unsigned instructions) {
 next_opcode:
 
 		if (int_int && !int_protection && IFF == 3) {
-	t += _handle_interrupt();
-	int_int = false;
-	int_data = -1;
+			t += _handle_interrupt();
+			int_int = false;
+			int_data = -1;
 		}
+
+		if (State == Halted)
+			break;
 
 		t += 4;
 		int_protection = 0;
@@ -404,7 +412,7 @@ finish_addir:
 				P = memrdr(PC++);
 				t++;
 				if (--B) {
-					PC += (SBYTE) P;
+					PC += (int8_t) P;
 					t += 8;
 				}
 				break;
@@ -450,7 +458,7 @@ finish_addir:
 
 			case 0x18:		/* JR n */
 				P = memrdr(PC++);
-				PC += (SBYTE) P;
+				PC += (int8_t) P;
 				t += 8;
 				break;
 
@@ -497,7 +505,7 @@ finish_jrc:
 				P = memrdr(PC++);
 				t += 3;
 				if (res) {
-					PC += (SBYTE) P;
+					PC += (int8_t) P;
 					t += 5;
 				}
 				break;
@@ -626,7 +634,7 @@ finish_jrc:
 			case 0x34:		/* INC (ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -638,7 +646,7 @@ finish_jrc:
 			case 0x35:		/* DEC (ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -650,7 +658,7 @@ finish_jrc:
 			case 0x36:		/* LD (ir),n */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 5;
 				}
 				memwrt(W, memrdr(PC++));
@@ -734,7 +742,7 @@ finish_jrc:
 			case 0x46:		/* LD B,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				B = memrdr(W);
@@ -768,7 +776,7 @@ finish_jrc:
 			case 0x4e:		/* LD C,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				C = memrdr(W);
@@ -802,7 +810,7 @@ finish_jrc:
 			case 0x56:		/* LD D,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				D = memrdr(W);
@@ -836,7 +844,7 @@ finish_jrc:
 			case 0x5e:		/* LD E,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				E = memrdr(W);
@@ -870,7 +878,7 @@ finish_jrc:
 			case 0x66:		/* LD H,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 					H = memrdr(W);
 				} else
@@ -905,7 +913,7 @@ finish_jrc:
 			case 0x6e:		/* LD L,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 					L = memrdr(W);
 				} else
@@ -920,7 +928,7 @@ finish_jrc:
 			case 0x70:		/* LD (ir),B */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				memwrt(W, B);
@@ -930,7 +938,7 @@ finish_jrc:
 			case 0x71:		/* LD (ir),C */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				memwrt(W, C);
@@ -940,7 +948,7 @@ finish_jrc:
 			case 0x72:		/* LD (ir),D */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				memwrt(W, D);
@@ -950,7 +958,7 @@ finish_jrc:
 			case 0x73:		/* LD (ir),E */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				memwrt(W, E);
@@ -960,7 +968,7 @@ finish_jrc:
 			case 0x74:		/* LD (ir),H */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 					memwrt(W, H);
 				} else
@@ -971,7 +979,7 @@ finish_jrc:
 			case 0x75:		/* LD (ir),L */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 					memwrt(W, L);
 				} else
@@ -980,14 +988,14 @@ finish_jrc:
 				break;
 
 			case 0x76:		/* HALT */
-				// cry and die, no interrupts yet
 				State = Halted;
+				PC--;
 				break;
 
 			case 0x77:		/* LD (ir),A */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				memwrt(W, A);
@@ -1021,7 +1029,7 @@ finish_jrc:
 			case 0x7e:		/* LD A,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				A = memrdr(W);
@@ -1071,7 +1079,7 @@ finish_add:
 			case 0x86:		/* ADD A,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1117,7 +1125,7 @@ finish_add:
 			case 0x8e:		/* ADC A,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1173,7 +1181,7 @@ finish_sub:
 			case 0x96:		/* SUB A,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1220,7 +1228,7 @@ finish_sub:
 			case 0x9e:		/* SBC A,(ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1265,7 +1273,7 @@ finish_and:
 			case 0xa6:		/* AND (ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1308,7 +1316,7 @@ finish_xor:
 			case 0xae:		/* XOR (ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1353,7 +1361,7 @@ finish_or:
 			case 0xb6:		/* OR (ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1401,7 +1409,7 @@ finish_cp:
 			case 0xbe:		/* CP (ir) */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				}
 				P = memrdr(W);
@@ -1489,7 +1497,7 @@ finish_ret:
 			case 0xcb:		/* 0xcb prefix */
 				W = IR;
 				if (curr_ir != IR_HL) {
-					W += (SBYTE) memrdr(PC++);
+					W += (int8_t) memrdr(PC++);
 					t += 8;
 				} else {
 					R++;			/* increment refresh register */
