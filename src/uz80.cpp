@@ -57,7 +57,9 @@ static const uint8_t szp_flags[256] = {
 #undef Z
 #undef P
 
+#if !defined(FAST_BLOCK)
 #define FAST_BLOCK
+#endif
 
 // This function builds the Z80 central processing unit.
 // The opcode where PC points to is fetched from the memory
@@ -143,6 +145,12 @@ void uz80::reset() {
 	IX = 0;
 	IY = 0;
 	I = 0;
+	R = R_ = 0;
+	IFF = 0;
+	int_nmi = int_int = int_protection = false;
+	int_data = -1;
+	tstates = 0;
+	state = Running;
 }
 
 void uz80::checkpoint(Stream &s) {
@@ -163,6 +171,7 @@ void uz80::checkpoint(Stream &s) {
 	s.write(R);
 	s.write(IFF);
 	s.write(tstates);
+	s.write(int_nmi);
 	s.write(int_int);
 	s.write(int_protection);
 	s.write(int_data);
@@ -187,6 +196,7 @@ void uz80::restore(Stream &s) {
 	R = s.read();
 	IFF = s.read();
 	tstates = s.read();
+	int_nmi = s.read();
 	int_int = s.read();
 	int_protection = s.read();
 	int_data = s.read();
@@ -219,16 +229,20 @@ char *uz80::status(char *buf, size_t n, bool hdr) {
 	return buf;
 }
 
-void uz80::irq(uint8_t b) {
-	State = Interrupted;
-	int_int = true;
-	int_data = b;
+uint8_t uz80::_handle_nmi() {
+
+	IFF = (IFF << 1) & 3;
+	R++;
+	memwrt(--SP, PC >> 8);
+	memwrt(--SP, PC);
+	PC = 0x66;
+	return 11;
 }
 
 uint8_t uz80::_handle_interrupt() {
 
-	if (State == Halted) {
-		State = Running;
+	if (state == Halted) {
+		state = Running;
 		PC++;
 	}
 
@@ -279,13 +293,17 @@ void uz80::run(unsigned instructions) {
 
 next_opcode:
 
+		if (int_nmi) {
+			t += _handle_nmi();
+			int_nmi = false;
+		}
 		if (int_int && !int_protection && IFF == 3) {
 			t += _handle_interrupt();
 			int_int = false;
 			int_data = -1;
 		}
 
-		if (State == Halted)
+		if (state == Halted)
 			break;
 
 		t += 4;
@@ -988,7 +1006,7 @@ finish_jrc:
 				break;
 
 			case 0x76:		/* HALT */
-				State = Halted;
+				state = Halted;
 				PC--;
 				break;
 
@@ -2503,7 +2521,7 @@ finish_ioidr:
 
 		tstates += t;	// account for the executed instruction
 
-	} while (State == Running && --instructions > 0);
+	} while (state == Running && --instructions > 0);
 }
 
 #undef W

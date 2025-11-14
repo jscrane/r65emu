@@ -32,7 +32,8 @@ public:
 
 	void run(unsigned);
 	void reset();
-	void irq(uint8_t b);
+	void nmi() { int_nmi = true; }
+	void irq(uint8_t b) { int_int = true; int_data = b; state = Interrupted; }
 	char *status(char *buf, size_t n, bool hdr = false);
 
 	void checkpoint(Stream &);
@@ -47,9 +48,9 @@ public:
 	}
 
 private:
-	bool int_int;
+	bool int_nmi, int_int;
 	uint8_t int_data, int_mode, int_protection;
-	byte _handle_interrupt();
+	uint8_t _handle_interrupt(), _handle_nmi();
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -97,9 +98,8 @@ private:
 		uint8_t iff;		/* interupt flags */
 	} cpu_regs;
 
-	// other global variables
-	CPUState State = Running;	// CPU state
-	unsigned long tstates = 0;	// executed T-states
+	CPUState state;			// CPU state
+	uint32_t tstates;		// executed T-states
 	
 	// z80sim compatibility
 	inline uint8_t memrdr(uint16_t addr) { return _mem[addr]; }
