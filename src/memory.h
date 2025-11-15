@@ -19,7 +19,7 @@ public:
 		virtual ~Device () {}
 
 		unsigned pages () const { return _pages; }
-		void access (address a) { _acc=a-_base; }
+		virtual void access (address a) { _acc=a-_base; }
 		void base (address a) { _base=a; }
 		address base () const { return _base; }
 
