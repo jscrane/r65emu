@@ -227,20 +227,24 @@ private:
 	inline void ror_ax() { _ror(_ax()); }
 	// 80
 	inline void sta_ix() { _mem[_ix()] = A; }
+	inline void sax_ix() { _mem[_ix()] = (A & X); }
 	inline void sty_z() { _mem[_z()] = Y; }
 	inline void sta_z() { _mem[_z()] = A; }
 	inline void stx_z() { _mem[_z()] = X; }
+	inline void sax() { _mem[_z()] = (A & X); }
 	inline void dey() { Z=N=--Y; }
 	inline void txa() { Z=N=A=X; }
 	inline void sty_a() { _mem[_a()] = Y; }
 	inline void sta_a() { _mem[_a()] = A; }
 	inline void stx_a() { _mem[_a()] = X; }
+	inline void sax_a() { _mem[_a()] = (A & X); }
 	// 90
 	inline void bcc() { if (!C) _bra(); PC++; }
 	inline void sta_iy() { _mem[_iy()] = A; }
 	inline void sty_zx() { _mem[_zx()] = Y; }
 	inline void sta_zx() { _mem[_zx()] = A; }
 	inline void stx_zy() { _mem[_zy()] = X; }
+	inline void sax_y() { _mem[_zy()] = (A & X); }
 	inline void tya() { Z=N=A=Y; }
 	inline void sta_ay() { _mem[_ay()] = A; }
 	inline void txs() { S=X; }
