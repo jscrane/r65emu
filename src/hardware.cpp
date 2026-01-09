@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include "memory.h"
 #include "hardware.h"
+#include "debugging.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>
@@ -30,6 +31,9 @@ static CPU *_cpu;
 static SimpleTimer timers;
 
 bool hardware_reset() {
+
+	DBG_INI(println(F("hardware_reset")));
+
 	bool success = false;
 
 #if defined(USE_SPIRAM)
@@ -68,14 +72,17 @@ bool hardware_reset() {
 }
 
 void hardware_init(CPU &cpu) {
-	_cpu = &cpu;
-	cpu.memory().begin();
 
 #if DEBUGGING != DEBUG_NONE
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
 	delay(800);
 #endif
+
+	DBG_INI(println(F("hardware_init")));
+
+	_cpu = &cpu;
+	cpu.memory().begin();
 
 #if defined(PWM_SOUND)
 	pinMode(PWM_SOUND, OUTPUT);
