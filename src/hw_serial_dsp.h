@@ -1,5 +1,4 @@
-#if !defined(__HW_SERIAL_DSP_H__)
-#define __HW_SERIAL_DSP_H__
+#pragma once
 
 class hw_serial_dsp: public serial_dsp {
 public:
@@ -10,5 +9,3 @@ public:
 private:
 	Print &_print;
 };
-
-#endif

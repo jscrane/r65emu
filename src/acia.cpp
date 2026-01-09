@@ -3,8 +3,10 @@
 #include "memory.h"
 #include "serialio.h"
 #include "acia.h"
+#include "debugging.h"
 
 void ACIA::write(Memory::address a, uint8_t b) {
+	DBG_ACIA(printf("acia_write: %04x %02x\r\n", a, b));
 	if (a & 1)
 		write_data(b);
 	else
@@ -12,6 +14,7 @@ void ACIA::write(Memory::address a, uint8_t b) {
 }
 
 void ACIA::write_control(uint8_t b) {
+	DBG_ACIA(printf("acia_write_control: %02x\r\n", b));
 	if ((b & cd_mask) == reset) {
 		device_reset();
 		return;
@@ -45,11 +48,10 @@ void ACIA::write_control(uint8_t b) {
 }
 
 uint8_t ACIA::read(Memory::address a) {
-	if (a == 0)
-		return read_status();
-	if (a == 1)
+	DBG_ACIA(printf("acia_read: %04x\r\n", a));
+	if (a & 1)
 		return read_data();
-	return 0;
+	return read_status();
 }
 
 uint8_t ACIA::read_status() {
@@ -59,5 +61,6 @@ uint8_t ACIA::read_status() {
 		s |= rdrf;
 	if (rw & 2)
 		s |= tdre;
+	DBG_ACIA(printf("acia_read_status: %d %02x\r\n", rw, s));
 	return s;
 }

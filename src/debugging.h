@@ -8,6 +8,7 @@
 #define DEBUG_DSP	0x00000010
 #define DEBUG_EMU	0x00000020
 #define DEBUG_MEM	0x00000040
+#define DEBUG_ACIA	0x00000080
 #define DEBUG_ANY	0xffffffff
 
 #if !defined(PRINTER)
@@ -32,6 +33,7 @@
 #define DBG_INI(x)	_DBG(DEBUG_INI, x)
 #define DBG_PIA(x)	_DBG(DEBUG_PIA, x)
 #define DBG_VIA(x)	_DBG(DEBUG_VIA, x)
+#define DBG_ACIA(x)	_DBG(DEBUG_ACIA, x)
 #define DBG_DSP(x)	_DBG(DEBUG_DSP, x)
 #define DBG_EMU(x)	_DBG(DEBUG_EMU, x)
 #define DBG_MEM(x)	_DBG(DEBUG_MEM, x)

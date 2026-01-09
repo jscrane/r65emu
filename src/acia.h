@@ -25,6 +25,10 @@ public:
 		framing_handler = fn;
 	}
 
+	// this handler should return a combination of:
+	// 1 if data available to read
+	// 2 if data can be written
+	// 0 otherwise
 	void register_can_rw_handler(std::function<uint8_t(void)> fn) {
 		can_rw_handler = fn;
 	}
@@ -93,5 +97,5 @@ private:
 	std::function<uint8_t(void)> read_data_handler;
 	std::function<void(void)> reset_handler;
 	std::function<void(uint32_t)> framing_handler;
-	std::function<bool(void)> can_rw_handler;
+	std::function<uint8_t(void)> can_rw_handler;
 };
