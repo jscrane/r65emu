@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include "debugging.h"
 #include "memory.h"
+#include "hardware.h"
 #include "display.h"
 
 #if !defined(USE_OWN_DISPLAY)
@@ -178,12 +179,15 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_fg = fg;
 	_xoff = _yoff = 0;
 
+	DBG_DSP(println(F("display: begin")));
+
 #if defined(USE_UTFT)
 	utft.InitLCD(orient);
 	utft.setBackColor(_bg);
 	_dx = utft.getDisplayXSize();
 	_dy = utft.getDisplayYSize();
 	setFont(TinyFont);
+	DBG_DSP(printf("UTFT: w %d h %d\r\n", _dx, _dy));
 
 #elif defined(USE_ESPI)
 	espi.init();
@@ -191,6 +195,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dx = espi.width();
 	_dy = espi.height();
 	setFont(ESPI_DEFAULT_FONT);
+	DBG_DSP(printf("ESPI: w %d h %d\r\n", _dx, _dy));
 
 #elif defined(USE_DVI)
 	static bool init;
@@ -246,12 +251,16 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	setFont(VGA_DEFAULT_FONT);
 
 	DBG_DSP(printf("Bitluni: w %d h %d\r\n", _dx, _dy));
+
+#else
+	DBG_DSP(println(F("display???")));
 #endif
 
 	setColor(fg);
 	_oxs = _dx;
 	_w = _dx;
 	_h = _dy;
+	DBG_INI(println(F("display: initialised")));
 }
 
 void Display::clear() {
@@ -266,6 +275,7 @@ void Display::clear() {
 #elif defined(USE_DVI)
 	dvi.fillScreen(_bg);
 #endif
+	DBG_DSP(println(F("display: clear")));
 }
 
 void Display::status(const char *s) {
@@ -445,4 +455,7 @@ void Display::drawString(const char *s, unsigned x, unsigned y, colour_t c) {
 	dvi.print(s);
 #endif
 }
+#else
+#pragma message "OWN display configured"
+
 #endif

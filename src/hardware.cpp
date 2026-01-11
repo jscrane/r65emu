@@ -46,6 +46,7 @@ bool hardware_reset() {
 	SPIRAM_DEV.setClockDivider(SPIRAM_CLKDIV);
 #endif
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
+	DBG_INI(println(F("hardware_reset: SPIRAM")));
 #endif
 
 #if defined(USE_SD)
@@ -55,12 +56,15 @@ bool hardware_reset() {
 #else
 	success = SD.begin(SD_CS);
 #endif
+	DBG_INI(printf("hardware_reset: SD: %d\r\n", success));
 
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
+	DBG_INI(printf("hardware_reset: SPIFFS: %d\r\n", success));
 
 #elif defined(USE_LITTLEFS)
 	success = LittleFS.begin();
+	DBG_INI(printf("hardware_reset: LittleFS: %d\r\n", success));
 #endif
 
 #if defined(TFT_BACKLIGHT)
