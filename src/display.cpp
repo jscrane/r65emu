@@ -136,6 +136,8 @@ static inline void setColor(colour_t c) {
 }
 
 void Display::setScreen(unsigned sx, unsigned sy) {
+
+	DBG_DSP(printf("setScreen: %u %u\r\n", sx, sy));
 	if (sx < _w) {
 		_xoff = (_w - sx) / 2;
 		_dx = _w - _xoff;
@@ -179,7 +181,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_fg = fg;
 	_xoff = _yoff = 0;
 
-	DBG_DSP(println(F("display: begin")));
+	DBG_DSP(println(F("begin")));
 
 #if defined(USE_UTFT)
 	utft.InitLCD(orient);
@@ -275,7 +277,7 @@ void Display::clear() {
 #elif defined(USE_DVI)
 	dvi.fillScreen(_bg);
 #endif
-	DBG_DSP(println(F("display: clear")));
+	DBG_DSP(println(F("clear")));
 }
 
 void Display::status(const char *s) {

@@ -19,21 +19,22 @@
 #define DEBUGGING	DEBUG_NONE
 #endif
 
-#define _DBG(lvl, x)	if (DEBUGGING & lvl) PRINTER(x)
 
 #if DEBUGGING == DEBUG_NONE
+#define _DBG(lvl, d, x)
 #define DBG(x)
 #define ERR(x)
 #else
-#define DBG(x)		_DBG(DEBUG_ANY, x)
+#define _DBG(lvl, d, x)	if (DEBUGGING & lvl) { PRINTER(print(d)); PRINTER(x); }
+#define DBG(x)		_DBG(DEBUG_ANY, F("* "), x)
 #define ERR(x)		PRINTER(x)
 #endif
 
-#define DBG_CPU(x)	_DBG(DEBUG_CPU, x)
-#define DBG_INI(x)	_DBG(DEBUG_INI, x)
-#define DBG_PIA(x)	_DBG(DEBUG_PIA, x)
-#define DBG_VIA(x)	_DBG(DEBUG_VIA, x)
-#define DBG_ACIA(x)	_DBG(DEBUG_ACIA, x)
-#define DBG_DSP(x)	_DBG(DEBUG_DSP, x)
-#define DBG_EMU(x)	_DBG(DEBUG_EMU, x)
-#define DBG_MEM(x)	_DBG(DEBUG_MEM, x)
+#define DBG_CPU(x)	_DBG(DEBUG_CPU, F("CPU\t"), x)
+#define DBG_INI(x)	_DBG(DEBUG_INI, F("INI\t"), x)
+#define DBG_PIA(x)	_DBG(DEBUG_PIA, F("PIA\t"), x)
+#define DBG_VIA(x)	_DBG(DEBUG_VIA, F("VIA\t"), x)
+#define DBG_ACIA(x)	_DBG(DEBUG_ACIA, F("ACIA\t"), x)
+#define DBG_DSP(x)	_DBG(DEBUG_DSP, F("DSP\t"), x)
+#define DBG_EMU(x)	_DBG(DEBUG_EMU, F("EMU\t"), x)
+#define DBG_MEM(x)	_DBG(DEBUG_MEM, F("MEM\t"), x)

@@ -231,7 +231,6 @@ char *uz80::status(char *buf, size_t n, bool hdr) {
 
 uint8_t uz80::_handle_nmi() {
 
-	DBG_CPU(println("NMI"));
 	IFF = (IFF << 1) & 3;
 	R++;
 	memwrt(--SP, PC >> 8);
