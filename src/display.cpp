@@ -135,17 +135,39 @@ static inline void setColor(colour_t c) {
 #endif
 }
 
-void Display::setScreen(unsigned sx, unsigned sy) {
+void Display::setScreen(unsigned sx, unsigned sy, unsigned centering) {
 
-	DBG_DSP(printf("setScreen: %u %u\r\n", sx, sy));
-	if (sx < _w) {
+	DBG_DSP(printf("setScreen: %u,%u (%u)\r\n", sx, sy, centering));
+	if (sx < _w && (centering & CENTER_SCREEN_X)) {
 		_xoff = (_w - sx) / 2;
 		_dx = _w - _xoff;
 	}
-	if (sy < _h) {
+
+	if (sx > _w && (centering & CENTER_DISPLAY_X))
+		_xoff = -(int)(sx - _w) / 2;
+
+	if (sy < _h && (centering & CENTER_SCREEN_Y)) {
 		_yoff = (_h - sy - _cy) / 2;
 		_dy = _h - _yoff;
 	}
+
+	if (sy > _h && (centering & CENTER_DISPLAY_Y))
+		_yoff = -(int)(sy - _h) / 2;
+
+	DBG_DSP(printf("setScreen: %d,%d %u,%u\r\n", _xoff, _yoff, _dx, _dy));
+}
+
+bool Display::onScreen(unsigned x, unsigned y) {
+
+	int xo = _xoff < 0? -_xoff: _xoff;
+	if (x < xo || x > _dx + xo)
+		return false;
+
+	int yo = _yoff < 0? -_yoff: _yoff;;
+	if (y < yo || y > _dy + yo)
+		return false;
+
+	return true;
 }
 
 void Display::setFont(const void *font) {

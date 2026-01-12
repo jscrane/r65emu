@@ -27,6 +27,16 @@ const colour_t ORANGE = 0xFDA0;
 const colour_t GREENYELLOW = 0xB7E0;
 const colour_t PINK = 0xFC9F;
 
+// centering flags
+const unsigned CENTER_NONE = 0x00;
+const unsigned CENTER_DISPLAY_X = 0x01;
+const unsigned CENTER_DISPLAY_Y = 0x02;
+const unsigned CENTER_DISPLAY = CENTER_DISPLAY_X | CENTER_DISPLAY_Y;
+const unsigned CENTER_SCREEN_X = 0x04;
+const unsigned CENTER_SCREEN_Y = 0x08;
+const unsigned CENTER_SCREEN = CENTER_SCREEN_X | CENTER_SCREEN_Y;
+const unsigned CENTER_ALL = CENTER_DISPLAY | CENTER_SCREEN;
+
 class Display {
 public:
 	void begin(colour_t bg, colour_t fg, orientation_t o, unsigned sx, unsigned sy) {
@@ -34,12 +44,16 @@ public:
 		setScreen(sx, sy);
 	}
 	void begin(colour_t bg, colour_t fg, orientation_t o);
-	void setScreen(unsigned sx, unsigned sy);
+
+	void setScreen(unsigned sx, unsigned sy, unsigned centering = CENTER_SCREEN);
+	bool onScreen(unsigned x, unsigned y);
+
 	void clear();
 	void setFont(const void *font);
 
 	void status(const char *s);
 	void statusf(const char *fmt, ...);
+
 
 	void drawPixel(unsigned x, unsigned y, colour_t col);
 	void drawPixel(unsigned x, unsigned y) { drawPixel(x, y, _fg); }
@@ -72,9 +86,10 @@ public:
 	unsigned charHeight() const { return _cy; }
 
 private:
-	unsigned _bg, _fg;
-	unsigned _cx, _cy;
+	unsigned _bg, _fg;	// background and foreground colours
+	unsigned _cx, _cy;	// character width and height
 	unsigned _dx, _dy;
-	unsigned _oxs, _xoff, _yoff;
-	unsigned _w, _h;
+	unsigned _w, _h;	// display width and height
+	unsigned _oxs;		// x-offset of status text
+	int _xoff, _yoff;
 };
