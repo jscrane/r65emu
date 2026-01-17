@@ -3,10 +3,10 @@ r65emu
 
 Arduino emulation library for 8-bit microcomputers based on 6502, i8080 and z80.
 
-Sample Applications
--------------------
+Sample Emulations
+-----------------
 - [Apple-1](https://github.com/jscrane/Apple1)
-- [CPM-80](https://github.com/jscrane/cpm80)
+- [CPM](https://github.com/jscrane/cpm80)
 - [Space Invaders](https://github.com/jscrane/invaders)
 - [Pacman](https://github.com/jscrane/pacman)
 - [Commodore PET](https://github.com/jscrane/PET)
@@ -17,8 +17,16 @@ Configuration for Arduino
 --------------
 If building using the Arduino IDE, `r65emu/src/hw/user.h` must be configured correctly.
 
-Currently the only mass-produced board which is supported is the 
-[LilyGO TTGO](https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-vga32-esp32).
+Supported commercially-available boards include:
+- [LilyGO TTGO](https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-vga32-esp32)
+- [Adafruit Feather](https://www.adafruit.com/product/4884)
+- [Olimex ESP32 SBC](https://www.olimex.com/Products/Retro-Computers/ESP32-SBC-FabGL/open-source-hardware)
+
+Supported architectures to build-your-own are:
+- ESP8266
+- ESP32
+- Raspberry Pi Pico
+- Tivac (probably out of date) 
 
 Examples are also given for a generic `node32s` board and a homebrew `esp8bit` board.
 
@@ -41,9 +49,9 @@ Libraries
 Display
 --------
 Depending on target board, one of:
-- [My port](https://github.com/jscrane/UTFT-Energia) of Henning Karlsen's [UTFT library](http://www.rinkydinkelectronics.com/library.php?id=51)
 - [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
-- [FabGL](https://github.com/fdivitto/FabGL)
+- [ESP32Lib](https://github.com/jscrane/ESP32Lib)
+- [My port](https://github.com/jscrane/UTFT-Energia) of Henning Karlsen's [UTFT library](http://www.rinkydinkelectronics.com/library.php?id=51)
 
 Storage
 --------
