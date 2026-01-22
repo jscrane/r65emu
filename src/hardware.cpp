@@ -75,6 +75,15 @@ bool hardware_reset() {
 	return success;
 }
 
+#if DEBUGGING & DEBUG_CPU
+#if !defined(CPU_DEBUG)
+#define CPU_DEBUG	false
+#endif
+static bool cpu_debug = CPU_DEBUG;
+
+static std::function<bool(void)> cpu_debug_handler = []() { return cpu_debug; };
+#endif
+
 void hardware_init(CPU &cpu) {
 
 #if DEBUGGING != DEBUG_NONE
@@ -84,6 +93,13 @@ void hardware_init(CPU &cpu) {
 #endif
 
 	DBG_INI(println(F("hardware_init")));
+	DBG_CPU(println(F("enabled")));
+	DBG_PIA(println(F("enabled")));
+	DBG_VIA(println(F("enabled")));
+	DBG_ACIA(println(F("enabled")));
+	DBG_DSP(println(F("enabled")));
+	DBG_EMU(println(F("enabled")));
+	DBG_MEM(println(F("enabled")));
 
 	_cpu = &cpu;
 	cpu.memory().begin();
@@ -107,13 +123,6 @@ void hardware_init(CPU &cpu) {
 #endif
 }
 
-#if DEBUGGING & DEBUG_CPU
-#if !defined(CPU_DEBUG)
-#define CPU_DEBUG	false
-#endif
-static bool cpu_debug = CPU_DEBUG;
-#endif
-
 bool hardware_debug_cpu() {
 #if DEBUGGING & DEBUG_CPU
 	cpu_debug = !cpu_debug;
@@ -123,12 +132,18 @@ bool hardware_debug_cpu() {
 #endif
 }
 
+void Machine::register_cpu_debug_handler(std::function<bool(void)> handler) {
+#if DEBUGGING & DEBUG_CPU
+	cpu_debug_handler = handler;
+#endif
+}
+
 bool hardware_run(unsigned instructions) {
 
 	timers.run();
 
 #if DEBUGGING & DEBUG_CPU
-	if (cpu_debug) {
+	if (cpu_debug_handler()) {
 		char buf[256];
 		DBG_CPU(println(_cpu->status(buf, sizeof(buf))));
 		_cpu->run(1);
