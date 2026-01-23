@@ -1,7 +1,5 @@
 #pragma once
 
-class Machine;
-
 class filer: virtual public serialio {
 public:
 	virtual const char *advance() =0;
