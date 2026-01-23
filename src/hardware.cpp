@@ -91,6 +91,10 @@ Machine::Machine(CPU &cpu): _cpu(cpu) {
 #if DEBUGGING & DEBUG_CPU
 	_debug_handler = []() { return cpu_debug; };
 #endif
+	_halted_handler = []() {
+		ERR(printf("CPU halted at %04x\r\n", cpu.pc()));
+		for(;;) yield();
+	};
 	_machine = this;
 }
 
@@ -156,7 +160,7 @@ void Machine::run(unsigned instructions) {
 	_cpu.run(instructions);
 #endif
 
-	if (_cpu.halted() && _halted_handler)
+	if (_cpu.halted())
 		_halted_handler();
 }
 
