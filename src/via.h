@@ -36,6 +36,12 @@ public:
 		_cb2_handler = fn;
 	}
 
+	void register_sr_timer_start_handler(std::function<int(uint32_t)> fn) {
+		_sr_timer_start_handler = fn;
+	}
+
+	void on_sr_timer_expiry();
+
 	void set_interrupt() { if (_irq_handler) _irq_handler(true); }
 
 	// acr
@@ -110,6 +116,7 @@ private:
 	void shift_out();
 	uint8_t _t2_ll;
 	int _sr_timer;
+	std::function<int(uint32_t)> _sr_timer_start_handler;
 
 	uint8_t _sr, _acr, _pcr, _ier, _ifr, _ddra, _ddrb;
 	uint8_t _porta, _portb;

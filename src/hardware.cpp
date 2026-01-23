@@ -30,9 +30,9 @@ spiram sram(SPIRAM_SIZE);
 static CPU *_cpu;
 static SimpleTimer timers;
 
-bool hardware_reset() {
+bool Machine::reset() {
 
-	DBG_INI(println(F("hardware_reset")));
+	DBG_INI(println(F("machine reset")));
 
 	bool success = false;
 
@@ -46,7 +46,7 @@ bool hardware_reset() {
 	SPIRAM_DEV.setClockDivider(SPIRAM_CLKDIV);
 #endif
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
-	DBG_INI(println(F("hardware_reset: SPIRAM")));
+	DBG_INI(println(F("machine reset: SPIRAM")));
 #endif
 
 #if defined(USE_SD)
@@ -56,22 +56,22 @@ bool hardware_reset() {
 #else
 	success = SD.begin(SD_CS);
 #endif
-	DBG_INI(printf("hardware_reset: SD: %d\r\n", success));
+	DBG_INI(printf("machine reset: SD: %d\r\n", success));
 
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
-	DBG_INI(printf("hardware_reset: SPIFFS: %d\r\n", success));
+	DBG_INI(printf("machine reset: SPIFFS: %d\r\n", success));
 
 #elif defined(USE_LITTLEFS)
 	success = LittleFS.begin();
-	DBG_INI(printf("hardware_reset: LittleFS: %d\r\n", success));
+	DBG_INI(printf("machine reset: LittleFS: %d\r\n", success));
 #endif
 
 #if defined(TFT_BACKLIGHT)
 	digitalWrite(TFT_BACKLIGHT, HIGH);
 #endif
 
-	_cpu->reset();
+	_cpu.reset();
 	return success;
 }
 
@@ -80,11 +80,15 @@ bool hardware_reset() {
 #define CPU_DEBUG	false
 #endif
 static bool cpu_debug = CPU_DEBUG;
-
-static std::function<bool(void)> cpu_debug_handler = []() { return cpu_debug; };
 #endif
 
-void hardware_init(CPU &cpu) {
+Machine::Machine(CPU &cpu): _cpu(cpu) {
+#if DEBUGGING & DEBUG_CPU
+	_debug_handler = []() { return cpu_debug; };
+#endif
+}
+
+void Machine::init() {
 
 #if DEBUGGING != DEBUG_NONE
 	Serial.begin(TERMINAL_SPEED);
@@ -92,7 +96,7 @@ void hardware_init(CPU &cpu) {
 	delay(800);
 #endif
 
-	DBG_INI(println(F("hardware_init")));
+	DBG_INI(println(F("machine init")));
 	DBG_CPU(println(F("enabled")));
 	DBG_PIA(println(F("enabled")));
 	DBG_VIA(println(F("enabled")));
@@ -101,8 +105,7 @@ void hardware_init(CPU &cpu) {
 	DBG_EMU(println(F("enabled")));
 	DBG_MEM(println(F("enabled")));
 
-	_cpu = &cpu;
-	cpu.memory().begin();
+	_cpu.memory().begin();
 
 #if defined(PWM_SOUND)
 	pinMode(PWM_SOUND, OUTPUT);
@@ -123,7 +126,7 @@ void hardware_init(CPU &cpu) {
 #endif
 }
 
-bool hardware_debug_cpu() {
+bool Machine::debug_cpu() {
 #if DEBUGGING & DEBUG_CPU
 	cpu_debug = !cpu_debug;
 	return cpu_debug;
@@ -132,60 +135,54 @@ bool hardware_debug_cpu() {
 #endif
 }
 
-void Machine::register_cpu_debug_handler(std::function<bool(void)> handler) {
-#if DEBUGGING & DEBUG_CPU
-	cpu_debug_handler = handler;
-#endif
-}
-
-bool hardware_run(unsigned instructions) {
+bool Machine::run(unsigned instructions) {
 
 	timers.run();
 
 #if DEBUGGING & DEBUG_CPU
-	if (cpu_debug_handler()) {
+	if (_debug_handler()) {
 		char buf[256];
-		DBG_CPU(println(_cpu->status(buf, sizeof(buf))));
-		_cpu->run(1);
+		DBG_CPU(println(_cpu.status(buf, sizeof(buf))));
+		_cpu.run(1);
 	} else
-		_cpu->run(instructions);
+		_cpu.run(instructions);
 #else
-	_cpu->run(instructions);
+	_cpu.run(instructions);
 #endif
 
-	return !_cpu->halted();
+	return !_cpu.halted();
 }
 
-int hardware_interval_timer(uint32_t interval, std::function<void(void)> cb) {
+int Machine::interval_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setInterval(interval, cb);
 }
 
-int hardware_oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
+int Machine::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setTimeout(interval, cb);
 }
 
-void hardware_cancel_timer(int timer) {
+void Machine::cancel_timer(int timer) {
 	timers.deleteTimer(timer);
 }
 
 #if !defined(NO_CHECKPOINT)
-void hardware_checkpoint(Stream &s) {
+void Machine::checkpoint(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
-		Memory::Device *dev = _cpu->memory().get(i);
+		Memory::Device *dev = _cpu.memory().get(i);
 		dev->checkpoint(s);
 		ds = dev->pages() * Memory::page_size;
 	}
-	_cpu->checkpoint(s);
+	_cpu.checkpoint(s);
 }
 
-void hardware_restore(Stream &s) {
+void Machine::restore(Stream &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
-		Memory::Device *dev = _cpu->memory().get(i);
+		Memory::Device *dev = _cpu.memory().get(i);
 		dev->restore(s);
 		ds = dev->pages() * Memory::page_size;
 	}
-	_cpu->restore(s);
+	_cpu.restore(s);
 }
 #endif

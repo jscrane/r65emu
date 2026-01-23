@@ -160,13 +160,13 @@ static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 #endif
 
-const char *flash_filer::checkpoint() {
+const char *flash_filer::checkpoint(Machine &machine) {
 #if defined(USE_SPIFFS)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 	File file = SPIFFS.open(buf, FILE_WRITE);
-	hardware_checkpoint(file);
+	machine.checkpoint(file);
 	file.close();
 	start();
 	return buf;
@@ -175,13 +175,13 @@ const char *flash_filer::checkpoint() {
 #endif
 }
 
-void flash_filer::restore(const char *filename) {
+void flash_filer::restore(Machine &machine, const char *filename) {
 #if defined(USE_SPIFFS)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = SPIFFS.open(buf, FILE_READ);
-	hardware_restore(file);
+	machine.restore(file);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;

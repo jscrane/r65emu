@@ -7,8 +7,8 @@ public:
 	const char *advance();
 	const char *rewind() { return advance(); }
 
-	const char *checkpoint();
-	void restore(const char *);
+	const char *checkpoint(Machine &);
+	void restore(Machine &, const char *);
 
 	bool start();
 	void stop() {}
