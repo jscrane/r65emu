@@ -25,11 +25,17 @@ public:
 
 	void init();
 	bool reset();
+	void register_reset_handler(std::function<void(bool)> handler) {
+		_reset_handler = handler;
+	}
 
 	void checkpoint(Stream &s);
 	void restore(Stream &s);
 
-	bool run(unsigned instructions = CPU_INSTRUCTIONS);
+	void run(unsigned instructions = CPU_INSTRUCTIONS);
+	void register_cpu_halted_handler(std::function<void(void)> handler) {
+		_halted_handler = handler;
+	}
 	bool debug_cpu();
 	void register_cpu_debug_handler(std::function<bool(void)> handler) {
 		_debug_handler = handler;
@@ -43,6 +49,8 @@ private:
 	CPU &_cpu;
 
 	std::function<bool(void)> _debug_handler;
+	std::function<void(bool)> _reset_handler;
+	std::function<void(void)> _halted_handler;
 };
 
 extern Machine *_machine;

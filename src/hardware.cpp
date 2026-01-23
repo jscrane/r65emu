@@ -72,6 +72,9 @@ bool Machine::reset() {
 #endif
 
 	_cpu.reset();
+
+	if (_reset_handler) _reset_handler(success);
+
 	return success;
 }
 
@@ -138,7 +141,7 @@ bool Machine::debug_cpu() {
 #endif
 }
 
-bool Machine::run(unsigned instructions) {
+void Machine::run(unsigned instructions) {
 
 	timers.run();
 
@@ -153,7 +156,8 @@ bool Machine::run(unsigned instructions) {
 	_cpu.run(instructions);
 #endif
 
-	return !_cpu.halted();
+	if (_cpu.halted() && _halted_handler)
+		_halted_handler();
 }
 
 int Machine::interval_timer(uint32_t interval, std::function<void(void)> cb) {
