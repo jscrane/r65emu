@@ -82,10 +82,13 @@ bool Machine::reset() {
 static bool cpu_debug = CPU_DEBUG;
 #endif
 
+Machine *_machine;
+
 Machine::Machine(CPU &cpu): _cpu(cpu) {
 #if DEBUGGING & DEBUG_CPU
 	_debug_handler = []() { return cpu_debug; };
 #endif
+	_machine = this;
 }
 
 void Machine::init() {

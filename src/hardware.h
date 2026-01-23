@@ -45,6 +45,8 @@ private:
 	std::function<bool(void)> _debug_handler;
 };
 
+extern Machine *_machine;
+
 #if defined(USE_SPIRAM)
 extern class spiram sram;
 #endif

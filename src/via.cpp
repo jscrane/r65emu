@@ -300,16 +300,14 @@ void VIA::start_timer2() {
 	_timer2 = true;
 }
 
-void VIA::on_sr_timer_expiry() {
-	shift_out();
-	_sr_timer = -1;
-	if (_acr & ACR_SO_T2_RATE)
-		start_sr_timer();
-}
-
 void VIA::start_sr_timer() {
-	if (_sr_timer < 0 && _sr_timer_start_handler)
-		_sr_timer = _sr_timer_start_handler(2*_t2_ll + 2);
+	if (_sr_timer < 0)
+	_sr_timer = _machine->oneshot_timer(2*_t2_ll + 2, [this]() {
+		shift_out();
+		_sr_timer = -1;
+		if (_acr & ACR_SO_T2_RATE)
+			start_sr_timer();
+	});
 }
 
 void VIA::shift_out() {
