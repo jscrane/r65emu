@@ -69,23 +69,23 @@ static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 
-const char *sd_filer::checkpoint(Machine &machine) {
+const char *sd_filer::checkpoint() {
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 	File file = SD.open(buf, FILE_WRITE);
-	machine.checkpoint(file);
+	_machine->checkpoint(file);
 	file.close();
 	start();
 	return buf;
 }
 
-void sd_filer::restore(Machine &machine, const char *filename) {
+void sd_filer::restore(const char *filename) {
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = SD.open(buf, FILE_READ);
-	machine.restore(file);
+	_machine->restore(file);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;

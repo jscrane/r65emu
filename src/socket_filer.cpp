@@ -58,9 +58,9 @@ bool socket_filer::more() {
 }
 
 #if !defined(NO_CHECKPOINT)
-const char *socket_filer::checkpoint(Machine &machine) {
+const char *socket_filer::checkpoint() {
 	if (connected()) {
-		machine.checkpoint(client);
+		_machine->checkpoint(client);
 		client.flush();
 		client.stop();
 		return "checkpointed";
@@ -68,9 +68,9 @@ const char *socket_filer::checkpoint(Machine &machine) {
 	return "not connected";
 }
 
-void socket_filer::restore(Machine &machine, const char *) {
+void socket_filer::restore(const char *) {
 	if (connected()) {
-		machine.restore(client);
+		_machine->restore(client);
 		client.stop();
 	}
 }
