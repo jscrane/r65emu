@@ -166,7 +166,7 @@ const char *flash_filer::checkpoint() {
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 	File file = SPIFFS.open(buf, FILE_WRITE);
-	hardware_checkpoint(file);
+	_machine->checkpoint(file);
 	file.close();
 	start();
 	return buf;
@@ -181,7 +181,7 @@ void flash_filer::restore(const char *filename) {
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = SPIFFS.open(buf, FILE_READ);
-	hardware_restore(file);
+	_machine->restore(file);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;

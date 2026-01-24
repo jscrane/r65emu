@@ -307,7 +307,7 @@ next_opcode:
 			break;
 
 		t += 4;
-		int_protection = 0;
+		int_protection = false;
 
 		switch(memrdr(PC++)) {	/* execute next opcode */
 
@@ -2488,7 +2488,7 @@ finish_ioidr:
 
 			case 0xfb:		/* EI */
 				IFF = 3;
-				int_protection = 1;	/* protect next instruction */
+				int_protection = true;	/* protect next instruction */
 				break;
 
 			case 0xfc:		/* CALL M,nn */

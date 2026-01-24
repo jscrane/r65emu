@@ -60,7 +60,7 @@ bool socket_filer::more() {
 #if !defined(NO_CHECKPOINT)
 const char *socket_filer::checkpoint() {
 	if (connected()) {
-		hardware_checkpoint(client);
+		_machine->checkpoint(client);
 		client.flush();
 		client.stop();
 		return "checkpointed";
@@ -70,7 +70,7 @@ const char *socket_filer::checkpoint() {
 
 void socket_filer::restore(const char *) {
 	if (connected()) {
-		hardware_restore(client);
+		_machine->restore(client);
 		client.stop();
 	}
 }

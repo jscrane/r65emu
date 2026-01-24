@@ -48,8 +48,8 @@ public:
 	}
 
 private:
-	bool int_nmi, int_int;
-	uint8_t int_data, int_mode, int_protection;
+	bool int_nmi, int_int, int_protection;
+	uint8_t int_data, int_mode;
 	uint8_t _handle_interrupt(), _handle_nmi();
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
