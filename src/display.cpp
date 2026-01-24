@@ -326,7 +326,6 @@ void Display::status(const char *s) {
 	vga.setCursor(_dx - _oxs, _dy - _cy);
 	vga.print(s);
 #elif defined(USE_DVI)
-	int16_t x, y;
 	unsigned w, h;
 	dvi.fillRect(_dx - _oxs, _dy - _cy, _oxs, _cy, _bg);
 	textSize(s, w, h);

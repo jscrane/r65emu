@@ -27,7 +27,6 @@
 spiram sram(SPIRAM_SIZE);
 #endif
 
-static CPU *_cpu;
 static SimpleTimer timers;
 
 bool Machine::reset() {
