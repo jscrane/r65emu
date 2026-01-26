@@ -36,6 +36,22 @@ public:
 		_cb2_handler = fn;
 	}
 
+	void register_porta_input_handler(std::function<uint8_t(void)> fn) {
+		_porta_input_handler = fn;
+	}
+
+	void register_porta_output_handler(std::function<void(uint8_t)> fn) {
+		_porta_output_handler = fn;
+	}
+
+	void register_portb_input_handler(std::function<uint8_t(void)> fn) {
+		_portb_input_handler = fn;
+	}
+
+	void register_portb_output_handler(std::function<void(uint8_t)> fn) {
+		_portb_output_handler = fn;
+	}
+
 	void set_interrupt() { if (_irq_handler) _irq_handler(true); }
 
 	// acr
@@ -95,6 +111,10 @@ private:
 	std::function<void(bool)> _irq_handler;
 	std::function<void(bool)> _ca2_handler;
 	std::function<void(bool)> _cb2_handler;
+	std::function<uint8_t(void)> _porta_input_handler;
+	std::function<void(uint8_t)> _porta_output_handler;
+	std::function<uint8_t(void)> _portb_input_handler;
+	std::function<void(uint8_t)> _portb_output_handler;
 
 	void set_int(uint8_t);
 	void clear_int(uint8_t);
