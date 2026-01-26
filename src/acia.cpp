@@ -45,6 +45,9 @@ void ACIA::write_control(uint8_t b) {
 		framing(SERIAL_8O1);
 		break;
 	};
+
+	rx_irq_enable = (b & eri);
+	tx_irq_enable = (b & lrts_eti);
 }
 
 uint8_t ACIA::read(Memory::address a) {
@@ -63,4 +66,12 @@ uint8_t ACIA::read_status() {
 		s |= tdre;
 	DBG_ACIA(printf("read_status: %d %02x\r\n", rw, s));
 	return s;
+}
+
+void ACIA::poll_for_interrupt() {
+
+	if (irq_handler) {
+		uint8_t s = read_status();
+		irq_handler(((s & rdrf) && rx_irq_enable) || ((s & tdre) && tx_irq_enable));
+	}
 }
