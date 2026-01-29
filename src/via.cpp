@@ -124,7 +124,7 @@ void VIA::write_t2hi(uint8_t b) {
 void VIA::write_sr(uint8_t b) {
 	_sr = b;
 	clear_int(INT_SR);
-	if (_acr & ACR_SO_T2_RATE) {
+	if ((_acr & ACR_SO_T2_RATE) || (_acr & ACR_T1_CONTINUOUS)) {
 		_sr_bits = 8;
 		start_sr_timer();
 	}
@@ -307,9 +307,13 @@ void VIA::start_sr_timer() {
 		_sr_timer = _machine->oneshot_timer(_t2_latch, [this]() {
 			shift_out();
 			_sr_bits--;
+			_sr_timer = -1;
 			if (_sr_bits == 0) {
 				set_int(INT_SR);
-				_sr_timer = -1;
+				if (_acr & ACR_T1_CONTINUOUS) {
+					_sr_bits = 8;
+					start_sr_timer();
+				}
 			} else if (_acr & ACR_SO_T2_RATE)
 				start_sr_timer();
 		});
