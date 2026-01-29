@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <stdint.h>
 
 #include "memory.h"
 #include "via.h"
@@ -35,11 +36,7 @@ void VIA::write(Memory::address a, uint8_t b) {
 
 	a &= 0x0f;
 
-	DBG_VIA(print(millis()));
-	DBG_VIA(print(F(" via > ")));
-	DBG_VIA(print(regs[a]));
-	DBG_VIA(print(' '));
-	DBG_VIA(println(b, 16));
+	DBG_VIA(printf("> %s %02x\r\n", regs[a], b));
 
 	switch (a) {
 	case PORTB:
@@ -107,39 +104,30 @@ void VIA::write_porta(uint8_t b) {
 	clear_int(INT_CA1_ACTIVE | INT_CA2_ACTIVE);
 }
 
-void VIA::write_t1llo(uint8_t b) {
-	_t1_latch = (_t1_latch & 0xff00) | b;
-}
-
 void VIA::write_t1lhi(uint8_t b) {
 	_t1_latch = (_t1_latch & 0x00ff) | (b << 8);
 	clear_int(INT_TIMER1);
 }
 
 void VIA::write_t1hi(uint8_t b) {
+	write_t1lhi(b);
 	_t1 = _t1_latch;
 	start_timer1();
-	clear_int(INT_TIMER1);
-}
-
-void VIA::write_t2lo(uint8_t b) {
-	_t2 = b;
-	_t2_ll = b;
-	_timer2 = false;
-	clear_int(INT_TIMER2);
 }
 
 void VIA::write_t2hi(uint8_t b) {
-	_t2 += (b << 8);
+	_t2_latch = (_t2_latch & 0x00ff) | (b << 8);
+	_t2 = _t2_latch;
 	start_timer2();
-	clear_int(INT_TIMER2);
 }
 
 void VIA::write_sr(uint8_t b) {
 	_sr = b;
 	clear_int(INT_SR);
-	if (_acr & ACR_SO_T2_RATE)
+	if (_acr & ACR_SO_T2_RATE) {
+		_sr_bits = 8;
 		start_sr_timer();
+	}
 }
 
 void VIA::write_pcr(uint8_t b) {
@@ -147,14 +135,8 @@ void VIA::write_pcr(uint8_t b) {
 	_ca2_handler(b & 0x02);
 }
 
-void VIA::write_acr(uint8_t b) {
-	_acr = b;
-	if (_acr & ACR_T1_CONTINUOUS)
-		start_timer1();
-}
-
 void VIA::write_ier(uint8_t b) {
-	if (b & INT_MASTER)
+	if (b & IER_MASTER)
 		_ier |= (b & 0x7f);
 	else
 		_ier &= ~(b & 0x7f);
@@ -219,11 +201,7 @@ uint8_t VIA::read(Memory::address a) {
 		break;
 	}
 
-	DBG_VIA(print(millis()));
-	DBG_VIA(print(F(" via < ")));
-	DBG_VIA(print(regs[a]));
-	DBG_VIA(print(' '));
-	DBG_VIA(println(b, 16));
+	DBG_VIA(printf("< %s %02x\r\n", regs[a], b));
 	return b;
 }
 
@@ -256,30 +234,31 @@ uint8_t VIA::read_porta_nh() {
 	return (_porta & _ddra) | ~_ddra;
 }
 
-void VIA::tick() {
+void VIA::irq() {
 
-	uint32_t now = micros();
-	if (_timer1 && _t1_expiry < now) {
-		_t1 = 0;
-		_timer1 = false;
-		set_int(INT_TIMER1);
-	}
-
-	if (_timer2 && _t2_expiry < now) {
-		_t2 = 0;
-		_timer2 = false;
-		set_int(INT_TIMER2);
+	if (_ier & _ifr & 0x7f) {
+		if (!(_ifr & INT_ANY)) {
+			_ifr != INT_ANY;
+			if (_irq_handler) _irq_handler(true);
+		}
+	} else if (_ifr & INT_ANY) {
+		_ifr &= ~INT_ANY;
+		if (_irq_handler) _irq_handler(false);
 	}
 }
 
 void VIA::set_int(uint8_t i) {
-	_ifr |= i;
-	if ((_ier & INT_MASTER) && (_ier & i))
-		set_interrupt();
+	if (!(_ifr & i)) {
+		_ifr |= i;
+		irq();
+	}
 }
 
 void VIA::clear_int(uint8_t i) {
-	_ifr &= ~i;
+	if (_ifr & i) {
+		_ifr &= ~i;
+		irq();
+	}
 }
 
 void VIA::write_porta_in_bit(uint8_t bit, bool state) {
@@ -297,21 +276,41 @@ void VIA::write_portb_in_bit(uint8_t bit, bool state) {
 }
 
 void VIA::start_timer1() {
-	_t1_expiry = micros() + _t1;
-	_timer1 = true;
+	if (_timer1 >= 0)
+		_machine->cancel_timer(_timer1);
+
+	_timer1 = _machine->oneshot_timer(_t1, [this]() {
+		_t1 = 0;
+		_timer1 = -1;
+		set_int(INT_TIMER1);
+
+		if (_acr & ACR_T1_CONTINUOUS) {
+			_t1 = _t1_latch;
+			start_timer1();
+		}
+	});
 }
 
 void VIA::start_timer2() {
-	_t2_expiry = micros() + _t2;
-	_timer2 = true;
+	if (_timer2 >= 0)
+		_machine->cancel_timer(_timer2);
+
+	_timer2 = _machine->oneshot_timer(_t2, [this]() {
+		_t2 = 0;
+		_timer2 = -1;
+		set_int(INT_TIMER2);
+	});
 }
 
 void VIA::start_sr_timer() {
 	if (_sr_timer < 0)
-		_sr_timer = _machine->oneshot_timer(2*_t2_ll + 2, [this]() {
+		_sr_timer = _machine->oneshot_timer(_t2_latch, [this]() {
 			shift_out();
-			_sr_timer = -1;
-			if (_acr & ACR_SO_T2_RATE)
+			_sr_bits--;
+			if (_sr_bits == 0) {
+				set_int(INT_SR);
+				_sr_timer = -1;
+			} else if (_acr & ACR_SO_T2_RATE)
 				start_sr_timer();
 		});
 }
