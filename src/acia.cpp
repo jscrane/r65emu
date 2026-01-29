@@ -1,7 +1,6 @@
 #include <Arduino.h>
 
 #include "memory.h"
-#include "serialio.h"
 #include "acia.h"
 #include "debugging.h"
 
