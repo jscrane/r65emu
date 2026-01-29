@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <stdint.h>
 
 #include "memory.h"
 #include "debugging.h"
@@ -23,11 +24,7 @@ inline bool output_selected(uint8_t cr) { return cr & 0x04; }
 
 void PIA::write(Memory::address a, uint8_t b) {
 
-	DBG_PIA(print(millis()));
-	DBG_PIA(print(F(" pia > ")));
-	DBG_PIA(print(a, 16));
-	DBG_PIA(print(' '));
-	DBG_PIA(println(b, 16));
+	DBG_PIA(printf("> %04x %02x \r\n", a, b));
 
 	switch(a & 3) {
 	case 0:
@@ -64,14 +61,11 @@ uint8_t PIA::read(Memory::address a) {
 		break;
 	}
 
-	DBG_PIA(print(millis()));
-	DBG_PIA(print(F(" pia < ")));
-	DBG_PIA(print(a, 16));
-	DBG_PIA(print(' '));
-	DBG_PIA(println(b, 16));
+	DBG_PIA(printf("< %04x %02x\r\n", a, b));
 	return b;
 }
 
+#if !defined(NO_CHECKPOINT)
 void PIA::checkpoint(Stream &s) {
 	s.write(crb);
 	s.write(outb);
@@ -109,6 +103,7 @@ void PIA::restore(Stream &s) {
 	ca1 = s.read();
 	ca2 = s.read();
 }
+#endif
 
 void PIA::write_porta(uint8_t b) {
 
