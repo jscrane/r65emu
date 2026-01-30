@@ -238,7 +238,7 @@ void VIA::irq() {
 
 	if (_ier & _ifr & 0x7f) {
 		if (!(_ifr & INT_ANY)) {
-			_ifr != INT_ANY;
+			_ifr |= INT_ANY;
 			if (_irq_handler) _irq_handler(true);
 		}
 	} else if (_ifr & INT_ANY) {

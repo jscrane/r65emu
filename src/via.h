@@ -7,7 +7,7 @@
 
 class VIA {
 public:
-	VIA(): _timer1(false), _timer2(false), _t1(0), _t2(0), _t1_latch(0),
+	VIA(): _timer1(false), _timer2(false), _t1(0), _t1_latch(0), _t2(0),
 		_sr(0), _acr(0), _pcr(0), _ier(0), _ifr(0), _ddra(0), _ddrb(0), _porta(0), _portb(0) {}
 
 	void reset() {

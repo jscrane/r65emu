@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <hardware.h>
 #include <memory.h>
+#include <debugging.h>
 #include "riot.h"
 
 // registers
@@ -123,6 +124,24 @@ void RIOT::update_irq() {
 
 	if (irq_handler)
 		irq_handler((ie_timer && irq_timer) || (ie_edge && irq_edge));
+}
+
+uint8_t RIOT::read_porta() {
+
+	uint8_t b = ina;
+	if (porta_read_handler)
+		b = porta_read_handler();
+
+	return (outa & ddra) | (b & ~ddra);
+}
+
+uint8_t RIOT::read_portb() {
+
+	uint8_t b = inb;
+	if (portb_read_handler)
+		b = portb_read_handler();
+
+	return (outb & ddrb) | (b & ~ddrb);
 }
 
 uint8_t RIOT::read(Memory::address a) {

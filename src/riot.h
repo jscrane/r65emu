@@ -43,10 +43,18 @@ public:
 		portb_write_handler = fn;
 	}
 
+	void register_porta_read_handler(std::function<uint8_t(void)> fn) {
+		porta_read_handler = fn;
+	}
+
+	void register_portb_read_handler(std::function<uint8_t(void)> fn) {
+		portb_read_handler = fn;
+	}
+
 private:
-	uint8_t read_porta() { return (outa & ddra) | (ina & ~ddra); }
+	uint8_t read_porta();
 	uint8_t read_ddra() { return ddra; }
-	uint8_t read_portb() { return (outb & ddrb) | (inb & ~ddrb); }
+	uint8_t read_portb();
 	uint8_t read_ddrb() { return ddrb; }
 	uint8_t read_irq();
 	uint8_t read_timer();
@@ -73,4 +81,6 @@ private:
 	std::function<void(bool)> irq_handler;
 	std::function<void(uint8_t)> porta_write_handler;
 	std::function<void(uint8_t)> portb_write_handler;
+	std::function<uint8_t(void)> porta_read_handler;
+	std::function<uint8_t(void)> portb_read_handler;
 };
