@@ -110,6 +110,7 @@ void Machine::init() {
 	DBG_PIA(println(F("enabled")));
 	DBG_VIA(println(F("enabled")));
 	DBG_ACIA(println(F("enabled")));
+	DBG_RIOT(println(F("enabled")));
 	DBG_DSP(println(F("enabled")));
 	DBG_EMU(println(F("enabled")));
 	DBG_MEM(println(F("enabled")));
@@ -174,6 +175,8 @@ int Machine::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
 void Machine::cancel_timer(int timer) {
 	timers.deleteTimer(timer);
 }
+
+uint32_t Machine::microseconds() { return micros(); }
 
 #if !defined(NO_CHECKPOINT)
 void Machine::checkpoint(Stream &s) {

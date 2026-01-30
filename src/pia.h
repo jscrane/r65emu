@@ -10,7 +10,7 @@ public:
 		ca1(false), ca2(false), irq_a1(false), irq_a2(false),
 		cb1(false), cb2(false), irq_b1(false), irq_b2(false) {}
 
-	virtual void reset() {
+	void reset() {
 		outb = inb = crb = ddrb = outa = ina = cra = ddra = 0;
 		irq_a1 = irq_a2 = irq_b1 = irq_b2 = ca1 = ca2 = cb1 = cb2 = false;
 	}
