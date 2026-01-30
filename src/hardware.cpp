@@ -176,6 +176,8 @@ void Machine::cancel_timer(int timer) {
 	timers.deleteTimer(timer);
 }
 
+uint32_t Machine::microseconds() { return micros(); }
+
 #if !defined(NO_CHECKPOINT)
 void Machine::checkpoint(Stream &s) {
 	unsigned ds = 0;

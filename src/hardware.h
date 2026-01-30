@@ -45,6 +45,7 @@ public:
 	int oneshot_timer(uint32_t dt, std::function<void(void)> cb);
 	void cancel_timer(int timer);
 
+	uint32_t microseconds();
 private:
 	CPU &_cpu;
 

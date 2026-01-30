@@ -7,19 +7,11 @@ class RIOT {
 public:
 	RIOT(const uint8_t *rom): outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
 		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0),
-		timer_running(false), prescaler(0), rom(rom)
+		timer(-1), rom(rom)
        	{
 	}
 
-	void reset() {
-		inb = ina = 0xff;
-		outb = outa = ddrb = ddra = 0;
-		ie_timer = irq_timer = ie_edge = irq_edge = false;
-		pa7_dir = 0;
-
-		update_irq();
-		edge_detect();
-	}
+	void reset();
 
 	const uint8_t IRQ_EDGE = 0x40;
 	const uint8_t IRQ_TIMER = 0x80;
@@ -60,9 +52,9 @@ private:
 	uint8_t read_timer();
 
 	void write_porta(uint8_t);
-	void write_ddra(uint8_t);
+	void write_ddra(uint8_t b) { ddra = b; edge_detect(); }
 	void write_portb(uint8_t);
-	void write_ddrb(uint8_t);
+	void write_ddrb(uint8_t b) { ddrb = b; }
 	void write_timer(Memory::address, uint8_t);
 
 	void update_irq();
@@ -71,9 +63,8 @@ private:
 	uint8_t outb, inb, outa, ina, ddrb, ddra;
 	bool ie_timer, irq_timer, ie_edge, irq_edge;
 	int pa7, pa7_dir;
-	bool timer_running;
-	uint32_t target_time;
-	uint8_t prescaler;
+	int timer;
+	void on_timeout();
 
 	uint8_t ram[128];
 	const uint8_t *rom;
