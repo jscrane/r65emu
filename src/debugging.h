@@ -36,7 +36,7 @@
 #define DBG_PIA(x)	_DBG(DEBUG_PIA, F("PIA\t"), x)
 #define DBG_VIA(x)	_DBG(DEBUG_VIA, F("VIA\t"), x)
 #define DBG_ACIA(x)	_DBG(DEBUG_ACIA, F("ACIA\t"), x)
-#define DBG_RIOT(x)	_DBG(DEBUG_ACIA, F("RIOT\t"), x)
+#define DBG_RIOT(x)	_DBG(DEBUG_RIOT, F("RIOT\t"), x)
 #define DBG_DSP(x)	_DBG(DEBUG_DSP, F("DSP\t"), x)
 #define DBG_EMU(x)	_DBG(DEBUG_EMU, F("EMU\t"), x)
 #define DBG_MEM(x)	_DBG(DEBUG_MEM, F("MEM\t"), x)
