@@ -36,6 +36,8 @@ void RIOT::write_edge(uint8_t off, uint8_t data) {
 
 void RIOT::write(Memory::address a, uint8_t b) {
 
+	DBG_RIOT(printf("> %04x %02x \r\n", a, b));
+
 	if (a >= rsram) {
 		ram[a - rsram] = b;
 		return;
@@ -45,19 +47,15 @@ void RIOT::write(Memory::address a, uint8_t b) {
 	case sad:
 		write_porta(b);
 		break;
-		
 	case padd:
 		write_ddra(b);
 		break;
-		
 	case sbd:
 		write_portb(b);
 		break;
-		
 	case pbdd:
 		write_ddrb(b);
 		break;
-	
 	default:
 		write_timer(a, b);
 		break;
@@ -135,22 +133,28 @@ uint8_t RIOT::read(Memory::address a) {
 	if (a >= rsram)
 		return ram[a - rsram];
 
+	uint8_t b = 0xff;
+
 	switch (a) {
 	case sad:
-		return read_porta();
-
+		b = read_porta();
+		break;
 	case padd:
-		return read_ddra();
-
+		b = read_ddra();
+		break;
 	case sbd:
-		return read_portb();
-
+		b = read_portb();
+		break;
 	case pbdd:
-		return read_ddrb();
-
+		b = read_ddrb();
+		break;
 	default:
-		return (a & 1)? read_irq(): read_timer();
+		b = (a & 1)? read_irq(): read_timer();
+		break;
 	}
+
+	DBG_RIOT(printf("< %04x %02x\r\n", a, b));
+	return b;
 }
 
 uint8_t RIOT::read_irq() {

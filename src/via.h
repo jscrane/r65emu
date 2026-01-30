@@ -1,5 +1,8 @@
 #pragma once
 
+// 6522 VIA
+// https://github.com/mamedev/mame/blob/master/src/devices/machine/6522via.cpp
+
 #include <functional>
 
 class VIA {

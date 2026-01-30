@@ -110,6 +110,7 @@ void Machine::init() {
 	DBG_PIA(println(F("enabled")));
 	DBG_VIA(println(F("enabled")));
 	DBG_ACIA(println(F("enabled")));
+	DBG_RIOT(println(F("enabled")));
 	DBG_DSP(println(F("enabled")));
 	DBG_EMU(println(F("enabled")));
 	DBG_MEM(println(F("enabled")));
