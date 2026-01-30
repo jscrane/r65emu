@@ -64,6 +64,7 @@ private:
 	bool ie_timer, irq_timer, ie_edge, irq_edge;
 	int pa7, pa7_dir;
 	int timer;
+	uint8_t timer_off;
 	void on_timeout();
 
 	uint8_t ram[128];

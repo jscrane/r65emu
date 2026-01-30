@@ -96,6 +96,7 @@ void RIOT::write_portb(uint8_t b) {
 void RIOT::on_timeout() {
 	irq_timer = true;
 	update_irq();
+	timer_off = (_machine->microseconds() & 0xff);
 	timer = _machine->oneshot_timer(256, [this]() { on_timeout(); });
 }
 
@@ -193,5 +194,6 @@ uint8_t RIOT::read_timer() {
 	if (timer < 0)
 		return 0xff;
 
-	return uint8_t(0xff - (_machine->microseconds() & 0xff));
+	uint8_t ticks = (_machine->microseconds() & 0xff) - timer_off;
+	return uint8_t(0xff - ticks);
 }
