@@ -24,7 +24,7 @@ inline bool output_selected(uint8_t cr) { return cr & 0x04; }
 
 void PIA::write(Memory::address a, uint8_t b) {
 
-	DBG_PIA(printf("> %04x %02x \r\n", a, b));
+	DBG_PIA("> %04x %02x \r\n", a, b);
 
 	switch(a & 3) {
 	case 0:
@@ -61,7 +61,7 @@ uint8_t PIA::read(Memory::address a) {
 		break;
 	}
 
-	DBG_PIA(printf("< %04x %02x\r\n", a, b));
+	DBG_PIA("< %04x %02x\r\n", a, b);
 	return b;
 }
 

@@ -12,31 +12,27 @@
 #define DEBUG_RIOT	0x00000100
 #define DEBUG_ANY	0xffffffff
 
-#if !defined(PRINTER)
-#define PRINTER(x)	Serial.x
-#endif
-
 #if !defined(DEBUGGING)
 #define DEBUGGING	DEBUG_NONE
 #endif
 
 
 #if DEBUGGING == DEBUG_NONE
-#define _DBG(lvl, d, x)
-#define DBG(x)
-#define ERR(x)
+#define _DBG(lvl, lvlstr, ...)
+#define DBG(...)
+#define ERR(...)
 #else
-#define _DBG(lvl, d, x)	if (DEBUGGING & lvl) { PRINTER(print(d)); PRINTER(x); }
-#define DBG(x)		_DBG(DEBUG_ANY, F("* "), x)
-#define ERR(x)		PRINTER(x)
+#define _DBG(lvl, lvlstr, ...)	do { if (DEBUGGING & (lvl)) _machine->debug((lvlstr) __VA_OPT__(,) __VA_ARGS__); } while(0);
+#define DBG(...)		_DBG(DEBUG_ANY, "DBG" __VA_OPT__(,) __VA_ARGS__)
+#define ERR(...)		_machine->debug("ERR" __VA_OPT__(,) __VA_ARGS__);
 #endif
 
-#define DBG_CPU(x)	_DBG(DEBUG_CPU, F("CPU\t"), x)
-#define DBG_INI(x)	_DBG(DEBUG_INI, F("INI\t"), x)
-#define DBG_PIA(x)	_DBG(DEBUG_PIA, F("PIA\t"), x)
-#define DBG_VIA(x)	_DBG(DEBUG_VIA, F("VIA\t"), x)
-#define DBG_ACIA(x)	_DBG(DEBUG_ACIA, F("ACIA\t"), x)
-#define DBG_RIOT(x)	_DBG(DEBUG_RIOT, F("RIOT\t"), x)
-#define DBG_DSP(x)	_DBG(DEBUG_DSP, F("DSP\t"), x)
-#define DBG_EMU(x)	_DBG(DEBUG_EMU, F("EMU\t"), x)
-#define DBG_MEM(x)	_DBG(DEBUG_MEM, F("MEM\t"), x)
+#define DBG_CPU(...)	_DBG(DEBUG_CPU, "CPU" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_INI(...)	_DBG(DEBUG_INI, "INI" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_PIA(...)	_DBG(DEBUG_PIA, "PIA" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_VIA(...)	_DBG(DEBUG_VIA, "VIA" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_ACIA(...)	_DBG(DEBUG_ACIA, "ACIA" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_RIOT(...)	_DBG(DEBUG_RIOT, "RIOT" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_DSP(...)	_DBG(DEBUG_DSP, "DSP" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_EMU(...)	_DBG(DEBUG_EMU, "EMU" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_MEM(...)	_DBG(DEBUG_MEM, "MEM" __VA_OPT__(,) __VA_ARGS__)

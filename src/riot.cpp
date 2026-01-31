@@ -52,7 +52,7 @@ void RIOT::write_edge(uint8_t off, uint8_t data) {
 
 void RIOT::write(Memory::address a, uint8_t b) {
 
-	DBG_RIOT(printf("> %04x %02x \r\n", a, b));
+	DBG_RIOT("> %04x %02x \r\n", a, b);
 
 	if (a >= rsram) {
 		ram[a - rsram] = b;
@@ -177,7 +177,7 @@ uint8_t RIOT::read(Memory::address a) {
 		break;
 	}
 
-	DBG_RIOT(printf("< %04x %02x\r\n", a, b));
+	DBG_RIOT("< %04x %02x\r\n", a, b);
 	return b;
 }
 

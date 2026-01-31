@@ -46,6 +46,8 @@ public:
 	void cancel_timer(int timer);
 
 	uint32_t microseconds();
+
+	void debug(const char *lvlstr, const char *fmt, ...);
 private:
 	CPU &_cpu;
 

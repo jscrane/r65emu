@@ -2,6 +2,8 @@
 #include <SimpleTimer.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <stdarg.h>
+
 #include "memory.h"
 #include "hardware.h"
 #include "debugging.h"
@@ -31,7 +33,7 @@ static SimpleTimer timers;
 
 bool Machine::reset() {
 
-	DBG_INI(println(F("machine reset")));
+	DBG_INI("machine reset");
 
 	bool success = false;
 
@@ -45,7 +47,7 @@ bool Machine::reset() {
 	SPIRAM_DEV.setClockDivider(SPIRAM_CLKDIV);
 #endif
 	SPIRAM_DEV.setDataMode(SPI_MODE0);
-	DBG_INI(println(F("machine reset: SPIRAM")));
+	DBG_INI("machine reset: SPIRAM");
 #endif
 
 #if defined(USE_SD)
@@ -55,15 +57,15 @@ bool Machine::reset() {
 #else
 	success = SD.begin(SD_CS);
 #endif
-	DBG_INI(printf("machine reset: SD: %d\r\n", success));
+	DBG_INI("machine reset: SD: %d\r\n", success);
 
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
-	DBG_INI(printf("machine reset: SPIFFS: %d\r\n", success));
+	DBG_INI("machine reset: SPIFFS: %d\r\n", success);
 
 #elif defined(USE_LITTLEFS)
 	success = LittleFS.begin();
-	DBG_INI(printf("machine reset: LittleFS: %d\r\n", success));
+	DBG_INI("machine reset: LittleFS: %d\r\n", success);
 #endif
 
 #if defined(TFT_BACKLIGHT)
@@ -105,15 +107,15 @@ void Machine::init() {
 	delay(800);
 #endif
 
-	DBG_INI(println(F("machine init")));
-	DBG_CPU(println(F("enabled")));
-	DBG_PIA(println(F("enabled")));
-	DBG_VIA(println(F("enabled")));
-	DBG_ACIA(println(F("enabled")));
-	DBG_RIOT(println(F("enabled")));
-	DBG_DSP(println(F("enabled")));
-	DBG_EMU(println(F("enabled")));
-	DBG_MEM(println(F("enabled")));
+	DBG_INI("machine init");
+	DBG_CPU("enabled");
+	DBG_PIA("enabled");
+	DBG_VIA("enabled");
+	DBG_ACIA("enabled");
+	DBG_RIOT("enabled");
+	DBG_DSP("enabled");
+	DBG_EMU("enabled");
+	DBG_MEM("enabled");
 
 	_cpu.memory().begin();
 
@@ -152,7 +154,7 @@ void Machine::run(unsigned instructions) {
 #if DEBUGGING & DEBUG_CPU
 	if (_debug_handler()) {
 		char buf[256];
-		DBG_CPU(println(_cpu.status(buf, sizeof(buf))));
+		DBG_CPU(_cpu.status(buf, sizeof(buf)));
 		_cpu.run(1);
 	} else
 		_cpu.run(instructions);
@@ -177,6 +179,22 @@ void Machine::cancel_timer(int timer) {
 }
 
 uint32_t Machine::microseconds() { return micros(); }
+
+void Machine::debug(const char *lvlstr, const char *fmt, ...) {
+#if DEBUGGING != DEBUG_NONE
+	char buf[128];
+	va_list args;
+	va_start(args, fmt);
+	int n = vsnprintf(buf, sizeof(buf), fmt, args);
+	va_end(args);
+	if (n >= 0) {
+		buf[sizeof(buf)-1] = 0;
+		Serial.print(lvlstr);
+		Serial.print('\t');
+		Serial.println(buf);
+	}
+#endif
+}
 
 #if !defined(NO_CHECKPOINT)
 void Machine::checkpoint(Stream &s) {
