@@ -93,7 +93,7 @@ Machine::Machine(CPU &cpu): _cpu(cpu) {
 	_debug_handler = []() { return cpu_debug; };
 #endif
 	_halted_handler = [this]() {
-		ERR(printf("CPU halted at %04x\r\n", _cpu.pc()));
+		ERR("CPU halted at %04x\r\n", _cpu.pc());
 		for(;;) yield();
 	};
 	_machine = this;

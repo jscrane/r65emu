@@ -2,6 +2,7 @@
 #include <stdint.h>
 
 #include "memory.h"
+#include "hardware.h"
 #include "debugging.h"
 #include "pia.h"
 

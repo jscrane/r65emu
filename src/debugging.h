@@ -16,7 +16,6 @@
 #define DEBUGGING	DEBUG_NONE
 #endif
 
-
 #if DEBUGGING == DEBUG_NONE
 #define _DBG(lvl, lvlstr, ...)
 #define DBG(...)

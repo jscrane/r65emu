@@ -9,6 +9,7 @@
 #include <functional>
 
 #include "memory.h"
+#include "hardware.h"
 #include "debugging.h"
 #include "CPU.h"
 #include "z80.h"
@@ -316,7 +317,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	E(0xf9, _mc(IR, 1); _mc(IR, 1); SP = ix);
 
 	default:
-		ERR(printf("unimplemented dd/fd op: %02x\r\n", o));
+		ERR("unimplemented dd/fd op: %02x\r\n", o);
 	}
 }
 
@@ -413,7 +414,7 @@ void z80::ed() {
 	O(0xbb, outdr);
 
 	default:
-		ERR(printf("unimplemented ed op: %02x\r\n", op));
+		ERR("unimplemented ed op: %02x\r\n", op);
 	}
 }
 
