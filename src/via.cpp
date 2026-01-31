@@ -36,7 +36,7 @@ void VIA::write(Memory::address a, uint8_t b) {
 
 	a &= 0x0f;
 
-	DBG_VIA(printf("> %s %02x\r\n", regs[a], b));
+	DBG_VIA("> %s %02x", regs[a], b);
 
 	switch (a) {
 	case PORTB:
@@ -201,7 +201,7 @@ uint8_t VIA::read(Memory::address a) {
 		break;
 	}
 
-	DBG_VIA(printf("< %s %02x\r\n", regs[a], b));
+	DBG_VIA("< %s %02x", regs[a], b);
 	return b;
 }
 

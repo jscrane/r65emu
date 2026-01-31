@@ -9,6 +9,7 @@
 #include <functional>
 
 #include "memory.h"
+#include "hardware.h"
 #include "debugging.h"
 #include "CPU.h"
 #include "z80.h"
@@ -96,7 +97,7 @@ void z80::restore(Stream &s) {
 uint8_t z80::_fetch_op() {
 	_mc(PC, 4);
 	uint8_t op = _mem[PC];
-	DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC, op));
+	DBG_MEM("%5ld MR %04x %02x\n", _ts, PC, op);
 	PC++;
 	R++;
 	return op;
@@ -132,7 +133,7 @@ void z80::reset() {
 
 void z80::_handle_nmi() {
 
-	DBG_CPU(println("NMI"));
+	DBG_CPU("NMI");
 	_iff2 = _iff1;
 	_iff1 = false;
 	R++;
@@ -165,7 +166,7 @@ void z80::_handle_interrupt() {
 	else if (_im == 2)
 		PC = _rw(_irq_data + (0x100 * I));
 	ts(7);
-	DBG_CPU(printf("IM: %d PC: %04x\r\n", _im, PC));
+	DBG_CPU("IM: %d PC: %04x", _im, PC);
 }
 
 void z80::daa() {
@@ -188,12 +189,12 @@ void z80::_step_idx(EXT_OP f) {
 
 	_mc(PC, 3);
 	uint8_t off = _mem[PC];
-	DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC, off));
+	DBG_MEM("%5ld MR %04x %02x\n", _ts, PC, off);
 	PC++;
 
 	_mc(PC, 3);
 	uint8_t op = _mem[PC];
-	DBG_MEM(printf("%5ld MR %04x %02x\n", _ts, PC, op));
+	DBG_MEM("%5ld MR %04x %02x\n", _ts, PC, op);
 	_mc(PC, 1);
 	_mc(PC, 1);
 	PC++;
@@ -316,7 +317,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	E(0xf9, _mc(IR, 1); _mc(IR, 1); SP = ix);
 
 	default:
-		ERR(printf("unimplemented dd/fd op: %02x\r\n", o));
+		ERR("unimplemented dd/fd op: %02x", o);
 	}
 }
 
@@ -413,7 +414,7 @@ void z80::ed() {
 	O(0xbb, outdr);
 
 	default:
-		ERR(printf("unimplemented ed op: %02x\r\n", op));
+		ERR("unimplemented ed op: %02x", op);
 	}
 }
 
