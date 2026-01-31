@@ -137,7 +137,7 @@ static inline void setColor(colour_t c) {
 
 void Display::setScreen(unsigned sx, unsigned sy, unsigned centering) {
 
-	DBG_DSP("setScreen: %u,%u (%u)\r\n", sx, sy, centering);
+	DBG_DSP("setScreen: %u,%u (%u)", sx, sy, centering);
 	if (sx < _w && (centering & CENTER_SCREEN_X)) {
 		_xoff = (_w - sx) / 2;
 		_dx = _w - _xoff;
@@ -154,7 +154,7 @@ void Display::setScreen(unsigned sx, unsigned sy, unsigned centering) {
 	if (sy > _h && (centering & CENTER_DISPLAY_Y))
 		_yoff = -(int)(sy - _h) / 2;
 
-	DBG_DSP("setScreen: %d,%d %u,%u\r\n", _xoff, _yoff, _dx, _dy);
+	DBG_DSP("setScreen: %d,%d %u,%u", _xoff, _yoff, _dx, _dy);
 }
 
 bool Display::onScreen(unsigned x, unsigned y) {
@@ -211,7 +211,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dx = utft.getDisplayXSize();
 	_dy = utft.getDisplayYSize();
 	setFont(TinyFont);
-	DBG_DSP("UTFT: w %d h %d\r\n", _dx, _dy);
+	DBG_DSP("UTFT: w %d h %d", _dx, _dy);
 
 #elif defined(USE_ESPI)
 	espi.init();
@@ -219,7 +219,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dx = espi.width();
 	_dy = espi.height();
 	setFont(ESPI_DEFAULT_FONT);
-	DBG_DSP("ESPI: w %d h %d\r\n", _dx, _dy);
+	DBG_DSP("ESPI: w %d h %d", _dx, _dy);
 
 #elif defined(USE_DVI)
 	static bool init;
@@ -237,7 +237,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	for (int i = 0; i < NCOLOURS; i++)
 		dvi.setColor(i, colours[i]);
 #endif
-	DBG_DSP("DVI: %d: w %d h %d\r\n", success, _dx, _dy);
+	DBG_DSP("DVI: %d: w %d h %d", success, _dx, _dy);
 
 #elif defined(USE_VGA_FABGL)
 	static bool init;
@@ -255,7 +255,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	canvas.setGlyphOptions(GlyphOptions().FillBackground(true));
 	setFont(VGA_DEFAULT_FONT);
 
-	DBG_DSP("FabGL: w %d h %d\r\n", _dx, _dy);
+	DBG_DSP("FabGL: w %d h %d", _dx, _dy);
 
 #elif defined(USE_VGA_BITLUNI)
 	static bool init;
@@ -274,7 +274,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	_dy = vga.yres;
 	setFont(VGA_DEFAULT_FONT);
 
-	DBG_DSP("Bitluni: w %d h %d\r\n", _dx, _dy);
+	DBG_DSP("Bitluni: w %d h %d", _dx, _dy);
 
 #else
 	DBG_DSP("display???");

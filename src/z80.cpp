@@ -166,7 +166,7 @@ void z80::_handle_interrupt() {
 	else if (_im == 2)
 		PC = _rw(_irq_data + (0x100 * I));
 	ts(7);
-	DBG_CPU("IM: %d PC: %04x\r\n", _im, PC);
+	DBG_CPU("IM: %d PC: %04x", _im, PC);
 }
 
 void z80::daa() {
@@ -317,7 +317,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	E(0xf9, _mc(IR, 1); _mc(IR, 1); SP = ix);
 
 	default:
-		ERR("unimplemented dd/fd op: %02x\r\n", o);
+		ERR("unimplemented dd/fd op: %02x", o);
 	}
 }
 
@@ -414,7 +414,7 @@ void z80::ed() {
 	O(0xbb, outdr);
 
 	default:
-		ERR("unimplemented ed op: %02x\r\n", op);
+		ERR("unimplemented ed op: %02x", op);
 	}
 }
 

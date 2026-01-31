@@ -6,7 +6,7 @@
 #include "debugging.h"
 
 void ACIA::write(Memory::address a, uint8_t b) {
-	DBG_ACIA("write: %04x %02x\r\n", a, b);
+	DBG_ACIA("write: %04x %02x", a, b);
 	if (a & 1)
 		write_data(b);
 	else
@@ -14,7 +14,7 @@ void ACIA::write(Memory::address a, uint8_t b) {
 }
 
 void ACIA::write_control(uint8_t b) {
-	DBG_ACIA("write_control: %02x\r\n", b);
+	DBG_ACIA("write_control: %02x", b);
 	if ((b & cd_mask) == reset) {
 		device_reset();
 		return;
@@ -51,7 +51,7 @@ void ACIA::write_control(uint8_t b) {
 }
 
 uint8_t ACIA::read(Memory::address a) {
-	DBG_ACIA("read: %04x\r\n", a);
+	DBG_ACIA("read: %04x", a);
 	if (a & 1)
 		return read_data();
 	return read_status();
@@ -64,7 +64,7 @@ uint8_t ACIA::read_status() {
 		s |= rdrf;
 	if (rw & 2)
 		s |= tdre;
-	DBG_ACIA("read_status: %d %02x\r\n", rw, s);
+	DBG_ACIA("read_status: %d %02x", rw, s);
 	return s;
 }
 

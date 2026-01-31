@@ -57,15 +57,15 @@ bool Machine::reset() {
 #else
 	success = SD.begin(SD_CS);
 #endif
-	DBG_INI("machine reset: SD: %d\r\n", success);
+	DBG_INI("machine reset: SD: %d", success);
 
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
-	DBG_INI("machine reset: SPIFFS: %d\r\n", success);
+	DBG_INI("machine reset: SPIFFS: %d", success);
 
 #elif defined(USE_LITTLEFS)
 	success = LittleFS.begin();
-	DBG_INI("machine reset: LittleFS: %d\r\n", success);
+	DBG_INI("machine reset: LittleFS: %d", success);
 #endif
 
 #if defined(TFT_BACKLIGHT)
@@ -93,7 +93,7 @@ Machine::Machine(CPU &cpu): _cpu(cpu) {
 	_debug_handler = []() { return cpu_debug; };
 #endif
 	_halted_handler = [this]() {
-		ERR("CPU halted at %04x\r\n", _cpu.pc());
+		ERR("CPU halted at %04x", _cpu.pc());
 		for(;;) yield();
 	};
 	_machine = this;
