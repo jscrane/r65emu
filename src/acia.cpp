@@ -19,32 +19,8 @@ void ACIA::write_control(uint8_t b) {
 		device_reset();
 		return;
 	}
-	switch (b & ws_mask) {
-	case ws7e2:
-		framing(SERIAL_7E2);
-		break;
-	case ws7o2:
-		framing(SERIAL_7O2);
-		break;
-	case ws7e1:
-		framing(SERIAL_7E1);
-		break;
-	case ws7o1:
-		framing(SERIAL_7O1);
-		break;
-	case ws8n2:
-		framing(SERIAL_8N2);
-		break;
-	case ws8n1:
-		framing(SERIAL_8N1);
-		break;
-	case ws8e1:
-		framing(SERIAL_8E1);
-		break;
-	case ws8o1:
-		framing(SERIAL_8O1);
-		break;
-	};
+	if (framing_handler)
+		framing_handler(b & ws_mask);
 
 	rx_irq_enable = (b & eri);
 	tx_irq_enable = (b & lrts_eti);

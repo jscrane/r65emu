@@ -97,15 +97,10 @@ private:
 			reset_handler();
 	}
 
-	void framing(uint32_t cfg) {
-		if (framing_handler)
-			framing_handler(cfg);
-	}
-
 	std::function<void(uint8_t)> write_data_handler;
 	std::function<uint8_t(void)> read_data_handler;
 	std::function<void(void)> reset_handler;
-	std::function<void(uint32_t)> framing_handler;
+	std::function<void(uint8_t)> framing_handler;
 	std::function<uint8_t(void)> can_rw_handler;
 	std::function<void(bool)> irq_handler;
 
