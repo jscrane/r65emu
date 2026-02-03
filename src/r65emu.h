@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include "hardware.h"
 #include "memory.h"
 #include "CPU.h"
 #include "ram.h"
@@ -12,7 +13,6 @@
 #include "flash_filer.h"
 #include "serial_filer.h"
 #include "socket_filer.h"
-#include "hardware.h"
 #include "sound_dac.h"
 #include "ps2_raw_kbd.h"
 #include "serial_kbd.h"

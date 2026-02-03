@@ -2,6 +2,8 @@
 #include <Arduino.h>
 #endif
 #include <stdint.h>
+
+#include "hardware.h"
 #include "memory.h"
 
 void Memory::put (Device &dev, address b) {

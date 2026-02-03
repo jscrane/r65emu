@@ -2,7 +2,8 @@
 // it only works on esp32 and is only used by invaders
 
 #include <Arduino.h>
-#include <hardware.h>
+
+#include "hardware.h"
 #include "sound_dac.h"
 
 #if defined(ESP_PLATFORM)

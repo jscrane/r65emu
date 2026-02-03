@@ -64,7 +64,6 @@ const char *sd_filer::rewind() {
 	return advance();
 }
 
-#if !defined(NO_CHECKPOINT)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
@@ -74,7 +73,8 @@ const char *sd_filer::checkpoint() {
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 	File file = SD.open(buf, FILE_WRITE);
-	_machine->checkpoint(file);
+	Checkpoint chk(file);
+	_machine->checkpoint(chk);
 	file.close();
 	start();
 	return buf;
@@ -85,12 +85,12 @@ void sd_filer::restore(const char *filename) {
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = SD.open(buf, FILE_READ);
-	_machine->restore(file);
+	Checkpoint chk(file);
+	_machine->restore(chk);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;
 	start();
 }
-#endif
 
 #endif

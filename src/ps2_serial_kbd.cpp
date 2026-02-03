@@ -1,4 +1,5 @@
 #include <Arduino.h>
+
 #include "hardware.h"
 
 #if defined(PS2_SERIAL_KBD)

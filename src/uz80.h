@@ -36,8 +36,8 @@ public:
 	void irq(uint8_t b) { int_int = true; int_data = b; state = Interrupted; }
 	char *status(char *buf, size_t n, bool hdr = false);
 
-	void checkpoint(Stream &);
-	void restore(Stream &);
+	void checkpoint(Checkpoint &);
+	void restore(Checkpoint &);
 
 	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
 		port_out_handler = fn;

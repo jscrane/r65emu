@@ -1,8 +1,8 @@
 #include <Arduino.h>
 
+#include "hardware.h"
 #include "memory.h"
 #include "acia.h"
-#include "hardware.h"
 #include "debugging.h"
 
 void ACIA::write(Memory::address a, uint8_t b) {

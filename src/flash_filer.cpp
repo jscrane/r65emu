@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #endif
 #include <stdint.h>
+
 #include "hardware.h"
 #include "debugging.h"
 
@@ -153,7 +154,6 @@ void flash_filer::next_device() {
 		_current = 0;
 }
 
-#if !defined(NO_CHECKPOINT)
 #if defined(USE_SPIFFS)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
@@ -166,7 +166,8 @@ const char *flash_filer::checkpoint() {
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 	File file = SPIFFS.open(buf, FILE_WRITE);
-	_machine->checkpoint(file);
+	Checkpoint chk(file);
+	_machine->checkpoint(chk);
 	file.close();
 	start();
 	return buf;
@@ -181,11 +182,11 @@ void flash_filer::restore(const char *filename) {
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = SPIFFS.open(buf, FILE_READ);
-	_machine->restore(file);
+	Checkpoint chk(file);
+	_machine->restore(chk);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;
 #endif
 	start();
 }
-#endif

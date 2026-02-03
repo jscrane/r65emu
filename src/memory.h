@@ -1,13 +1,5 @@
 #pragma once
 
-class Stream;
-
-class Checkpointable {
-public:
-	virtual void checkpoint(Stream &s) = 0;
-	virtual void restore(Stream &s) = 0;
-};
-
 class Memory {
 public:
 	typedef uint16_t address;
@@ -26,8 +18,8 @@ public:
 		virtual void operator= (uint8_t) =0;
 		virtual operator uint8_t () =0;
 
-		virtual void checkpoint(Stream &s) {};
-		virtual void restore(Stream &s) {};
+		virtual void checkpoint(Checkpoint &) {};
+		virtual void restore(Checkpoint &) {};
 
 	protected:
 		address _acc, _base;
