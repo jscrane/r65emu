@@ -16,8 +16,27 @@
 #define TERMINAL_SPEED		115200
 #endif
 
+class Checkpoint {
+public:
+	Checkpoint(Stream &s): _s(s) {}
+
+	size_t readBytes(uint8_t *buf, int len) { return _s.readBytes(buf, len); }
+	int read() { return _s.read(); }
+
+	size_t write(const uint8_t *buf, int len) { return _s.write(buf, len); }
+	size_t write(uint8_t b) { return _s.write(b); }
+
+private:
+	Stream &_s;
+};
+
+class Checkpointable {
+public:
+	virtual void checkpoint(Checkpoint &) = 0;
+	virtual void restore(Checkpoint &) = 0;
+};
+
 class CPU;
-class Stream;
 
 class Machine {
 public:
@@ -29,8 +48,8 @@ public:
 		_reset_handler = handler;
 	}
 
-	void checkpoint(Stream &s);
-	void restore(Stream &s);
+	void checkpoint(Checkpoint &);
+	void restore(Checkpoint &);
 
 	void run(unsigned instructions = CPU_INSTRUCTIONS);
 	void register_cpu_halted_handler(std::function<void(void)> handler) {

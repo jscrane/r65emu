@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <stdint.h>
+
 #include "hardware.h"
 #include "serialio.h"
 #include "filer.h"
@@ -31,7 +32,6 @@ bool serial_filer::more() {
 	return _serial.available() > 0;
 }
 
-#if !defined(NO_CHECKPOINT)
 const char *serial_filer::checkpoint() {
 	// FIXME
 	return 0;
@@ -40,4 +40,3 @@ const char *serial_filer::checkpoint() {
 void serial_filer::restore(const char *) {
 	// FIXME
 }
-#endif

@@ -4,16 +4,14 @@
 #undef cli
 #undef sei
 
-class Stream;
-
 class r6502: public CPU {
 public:
 	void raise(int);
 	void reset();
 	void run(unsigned);
 	char *status(char *buf, size_t n, bool hdr=false);
-	void checkpoint(Stream &);
-	void restore(Stream &);
+	void checkpoint(Checkpoint &);
+	void restore(Checkpoint &);
 
 	r6502(Memory &m): CPU(m) {}
 

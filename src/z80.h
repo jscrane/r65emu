@@ -4,8 +4,6 @@
 #undef inch
 #undef SP
 
-class Stream;
-
 class z80: public CPU {
 public:
 	z80(Memory &m): CPU(m) {}
@@ -16,8 +14,8 @@ public:
 	void irq(uint8_t b) { _int_irq = true; _irq_data = b; }
 	char *status(char *buf, size_t n, bool hdr = false);
 
-	void checkpoint(Stream &);
-	void restore(Stream &);
+	void checkpoint(Checkpoint &);
+	void restore(Checkpoint &);
 
 	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
 		port_out_handler = fn;

@@ -64,7 +64,6 @@ const char *sd_filer::rewind() {
 	return advance();
 }
 
-#if !defined(NO_CHECKPOINT)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
@@ -91,6 +90,5 @@ void sd_filer::restore(const char *filename) {
 	cpid = (n == 1)? 0: cpid+1;
 	start();
 }
-#endif
 
 #endif

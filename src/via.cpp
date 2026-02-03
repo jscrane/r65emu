@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include <stdint.h>
 
+#include "hardware.h"
 #include "memory.h"
 #include "via.h"
-#include "hardware.h"
 #include "debugging.h"
 
 #define PORTB		0x00

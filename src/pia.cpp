@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <stdint.h>
 
-#include "memory.h"
 #include "hardware.h"
+#include "memory.h"
 #include "debugging.h"
 #include "pia.h"
 
@@ -66,8 +66,7 @@ uint8_t PIA::read(Memory::address a) {
 	return b;
 }
 
-#if !defined(NO_CHECKPOINT)
-void PIA::checkpoint(Stream &s) {
+void PIA::checkpoint(Checkpoint &s) {
 	s.write(crb);
 	s.write(outb);
 	s.write(inb);
@@ -86,7 +85,7 @@ void PIA::checkpoint(Stream &s) {
 	s.write(ca2);
 }
 
-void PIA::restore(Stream &s) {
+void PIA::restore(Checkpoint &s) {
 	crb = s.read();
 	outb = s.read();
 	inb = s.read();
@@ -104,7 +103,6 @@ void PIA::restore(Stream &s) {
 	ca1 = s.read();
 	ca2 = s.read();
 }
-#endif
 
 void PIA::write_porta(uint8_t b) {
 

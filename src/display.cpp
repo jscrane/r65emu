@@ -1,8 +1,9 @@
 #include <Arduino.h>
 #include <stdarg.h>
+
 #include "debugging.h"
-#include "memory.h"
 #include "hardware.h"
+#include "memory.h"
 #include "display.h"
 
 #if !defined(USE_OWN_DISPLAY)

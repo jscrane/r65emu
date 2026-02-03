@@ -4,8 +4,8 @@
 #include <stddef.h>
 #include <stdarg.h>
 
-#include "memory.h"
 #include "hardware.h"
+#include "memory.h"
 #include "debugging.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
@@ -196,8 +196,7 @@ void Machine::debug(const char *lvlstr, const char *fmt, ...) {
 #endif
 }
 
-#if !defined(NO_CHECKPOINT)
-void Machine::checkpoint(Stream &s) {
+void Machine::checkpoint(Checkpoint &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
 		Memory::Device *dev = _cpu.memory().get(i);
@@ -207,7 +206,7 @@ void Machine::checkpoint(Stream &s) {
 	_cpu.checkpoint(s);
 }
 
-void Machine::restore(Stream &s) {
+void Machine::restore(Checkpoint &s) {
 	unsigned ds = 0;
 	for (unsigned i = 0; i < 0x10000; i += ds) {
 		Memory::Device *dev = _cpu.memory().get(i);
@@ -216,4 +215,3 @@ void Machine::restore(Stream &s) {
 	}
 	_cpu.restore(s);
 }
-#endif

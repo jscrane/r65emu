@@ -21,8 +21,8 @@ public:
 	virtual void reset() =0;
 	virtual char *status(char *buf, size_t n, bool hdr = false) =0;
 
-	virtual void checkpoint(Stream &s) = 0;
-	virtual void restore(Stream &s) = 0;
+	virtual void checkpoint(Checkpoint &) = 0;
+	virtual void restore(Checkpoint &) = 0;
 
 	inline bool halted() const { return _halted; }
 	inline Memory::address pc() const { return PC; }

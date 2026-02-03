@@ -8,8 +8,8 @@
 #endif
 #include <functional>
 
-#include "memory.h"
 #include "hardware.h"
+#include "memory.h"
 #include "debugging.h"
 #include "CPU.h"
 #include "z80.h"
@@ -40,8 +40,7 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 	return buf;
 }
 
-void z80::checkpoint(Stream &s) {
-#if !defined(NO_CHECKPOINT)
+void z80::checkpoint(Checkpoint &s) {
 	s.write(AF);
 	s.write(BC);
 	s.write(DE);
@@ -64,11 +63,9 @@ void z80::checkpoint(Stream &s) {
 	s.write(_int_irq);
 	s.write(_int_prot);
 	s.write(_irq_data);
-#endif
 }
 
-void z80::restore(Stream &s) {
-#if !defined(NO_CHECKPOINT)
+void z80::restore(Checkpoint &s) {
 	AF = s.read();
 	BC = s.read();
 	DE = s.read();
@@ -91,7 +88,6 @@ void z80::restore(Stream &s) {
 	_int_irq = s.read();
 	_int_prot = s.read();
 	_irq_data = s.read();
-#endif
 }
 
 uint8_t z80::_fetch_op() {

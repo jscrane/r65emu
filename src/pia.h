@@ -19,8 +19,8 @@ public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	void checkpoint(Stream &);
-	void restore(Stream &);
+	void checkpoint(Checkpoint &);
+	void restore(Checkpoint &);
 
 	// device input (external) interface
 	void write_porta_in(uint8_t b) { ina = b; }

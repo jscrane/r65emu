@@ -8,6 +8,7 @@
 #endif
 #include <functional>
 
+#include "hardware.h"
 #include "memory.h"
 #include "debugging.h"
 #include "CPU.h"
@@ -153,8 +154,7 @@ void uz80::reset() {
 	state = Running;
 }
 
-void uz80::checkpoint(Stream &s) {
-#if !defined(NO_CHECKPOINT)
+void uz80::checkpoint(Checkpoint &s) {
 	s.write(AF);
 	s.write(BC);
 	s.write(DE);
@@ -175,11 +175,9 @@ void uz80::checkpoint(Stream &s) {
 	s.write(int_int);
 	s.write(int_protection);
 	s.write(int_data);
-#endif
 }
 
-void uz80::restore(Stream &s) {
-#if !defined(NO_CHECKPOINT)
+void uz80::restore(Checkpoint &s) {
 	AF = s.read();
 	BC = s.read();
 	DE = s.read();
@@ -200,7 +198,6 @@ void uz80::restore(Stream &s) {
 	int_int = s.read();
 	int_protection = s.read();
 	int_data = s.read();
-#endif
 }
 
 char *uz80::status(char *buf, size_t n, bool hdr) {

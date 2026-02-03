@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <stdint.h>
+
 #include "hardware.h"
 #include "serialio.h"
 #include "filer.h"
@@ -57,7 +58,6 @@ bool socket_filer::more() {
 	return connected() && client.available() > 0;
 }
 
-#if !defined(NO_CHECKPOINT)
 const char *socket_filer::checkpoint() {
 	if (connected()) {
 		_machine->checkpoint(client);
@@ -74,6 +74,5 @@ void socket_filer::restore(const char *) {
 		client.stop();
 	}
 }
-#endif
 
 #endif
