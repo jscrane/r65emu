@@ -87,7 +87,7 @@ private:
 	void write_sr(uint8_t);
 	void write_acr(uint8_t b) { _acr = b; }
 	void write_pcr(uint8_t b);
-	void write_ifr(uint8_t b) { _ifr &= ~b; }
+	void write_ifr(uint8_t b) { clear_int(b & 0x7f); }
 	void write_ier(uint8_t);
 	void write_porta_nh(uint8_t);
 

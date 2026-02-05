@@ -139,6 +139,7 @@ void VIA::write_ier(uint8_t b) {
 		_ier |= (b & 0x7f);
 	else
 		_ier &= ~(b & 0x7f);
+	irq();
 }
 
 void VIA::write_porta_nh(uint8_t b) {
