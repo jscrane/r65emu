@@ -8,19 +8,23 @@
 // see: https://github.com/mamedev/mame/blob/master/src/devices/machine/6821pia.cpp
 // and: https://github.com/mamedev/mame/blob/master/src/devices/machine/6821pia.h
 
+inline bool irq1_enabled(uint8_t cr) { return cr & 0x01; }
+
 inline bool c1_low_to_high(uint8_t cr) { return cr & 0x02; }
 
 inline bool c1_high_to_low(uint8_t cr) { return !c1_low_to_high(cr); }
 
-inline bool c2_output(uint8_t cr) { return cr & 0x20; }
+inline bool output_selected(uint8_t cr) { return cr & 0x04; }
 
-inline bool c2_input(uint8_t cr) { return !c2_output(cr); }
+inline bool irq2_enabled(uint8_t cr) { return cr & 0x08; }
 
 inline bool c2_low_to_high(uint8_t cr) { return cr & 0x10; }
 
 inline bool c2_high_to_low(uint8_t cr) { return !c2_low_to_high(cr); }
 
-inline bool output_selected(uint8_t cr) { return cr & 0x04; }
+inline bool c2_output(uint8_t cr) { return cr & 0x20; }
+
+inline bool c2_input(uint8_t cr) { return !c2_output(cr); }
 
 void PIA::write(Memory::address a, uint8_t b) {
 
@@ -82,6 +86,8 @@ void PIA::checkpoint(Checkpoint &s) {
 	s.write(cb2);
 	s.write(ca1);
 	s.write(ca2);
+	s.write(irqb_state);
+	s.write(irqa_state);
 }
 
 void PIA::restore(Checkpoint &s) {
@@ -101,6 +107,25 @@ void PIA::restore(Checkpoint &s) {
 	cb2 = s.read();
 	ca1 = s.read();
 	ca2 = s.read();
+	irqb_state = s.read();
+	irqa_state = s.read();
+}
+
+void PIA::update_interrupts() {
+
+	bool new_state = (irq_a1 && irq1_enabled(cra)) || (irq_a2 && irq2_enabled(cra));
+
+	if (new_state != irqa_state) {
+		irqa_state = new_state;
+		if (irqa_handler) irqa_handler(new_state);
+	}
+
+	new_state = (irq_b1 && irq1_enabled(crb)) || (irq_b2 && irq2_enabled(crb));
+
+	if (new_state != irqb_state) {
+		irqb_state = new_state;
+		if (irqb_handler) irqb_handler(new_state);
+	}
 }
 
 void PIA::write_porta(uint8_t b) {
@@ -124,8 +149,10 @@ void PIA::write_ca1(bool state) {
 	if (ca1 == state)
 		return;
 
-	if ((state && c1_low_to_high(cra)) || (!state && c1_high_to_low(cra)))
+	if ((state && c1_low_to_high(cra)) || (!state && c1_high_to_low(cra))) {
 		irq_a1 = true;
+		update_interrupts();
+	}
 
 	ca1 = state;
 }
@@ -135,8 +162,10 @@ void PIA::write_ca2(bool state) {
 	if (ca2 == state || !c2_input(cra))
 		return;
 
-	if ((state && c2_low_to_high(cra)) || (!state && c2_high_to_low(cra)))
+	if ((state && c2_low_to_high(cra)) || (!state && c2_high_to_low(cra))) {
 		irq_a2 = true;
+		update_interrupts();
+	}
 
 	ca2 = state;
 }
@@ -146,8 +175,10 @@ void PIA::write_cb1(bool state) {
 	if (cb1 == state)
 		return;
 
-	if ((state && c1_low_to_high(crb)) || (!state && c1_high_to_low(crb)))
+	if ((state && c1_low_to_high(crb)) || (!state && c1_high_to_low(crb))) {
 		irq_b1 = true;
+		update_interrupts();
+	}
 
 	cb1 = state;
 }
@@ -157,8 +188,10 @@ void PIA::write_cb2(bool state) {
 	if (cb2 == state || !c2_input(crb))
 		return;
 
-	if ((state && c2_low_to_high(crb)) || (!state && c2_high_to_low(crb)))
+	if ((state && c2_low_to_high(crb)) || (!state && c2_high_to_low(crb))) {
 		irq_b2 = true;
+		update_interrupts();
+	}
 
 	cb2 = state;
 }
@@ -193,6 +226,8 @@ uint8_t PIA::read_porta() {
 		ina = porta_read_handler();
 
 	irq_a1 = irq_a2 = false;
+	update_interrupts();
+
 	return (ina & ~ddra) | (outa & ddra);
 }
 
@@ -202,6 +237,8 @@ uint8_t PIA::read_portb() {
 		inb = portb_read_handler();
 
 	irq_b1 = irq_b2 = false;
+	update_interrupts();
+
 	return (inb & ~ddrb) | (outb & ddrb);
 }
 
