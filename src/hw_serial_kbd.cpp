@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "serial_kbd.h"
 #include "hw_serial_kbd.h"
 

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "memory.h"
 #include "debugging.h"
 #include "riot.h"

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "serialio.h"
 #include "filer.h"
 #include "socket_filer.h"

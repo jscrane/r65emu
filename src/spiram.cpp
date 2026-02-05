@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "hardware.h"
+#include "machine.h"
 
 #if defined(USE_SPIRAM)
 #include <SPI.h>

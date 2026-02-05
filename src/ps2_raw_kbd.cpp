@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
-#include "hardware.h"
+#include "machine.h"
+#include "arduinomachine.h"
 
 #if defined(USE_PS2_KBD)
 #include <PS2KeyRaw.h>

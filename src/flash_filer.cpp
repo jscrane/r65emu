@@ -3,7 +3,7 @@
 #endif
 #include <stdint.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "debugging.h"
 
 #if defined(USE_SPIFFS)
