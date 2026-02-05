@@ -5,9 +5,10 @@
 #include <stdarg.h>
 
 #include "machine.h"
-#include "arduinomachine.h"
 #include "memory.h"
 #include "debugging.h"
+#include "hardware.h"
+#include "arduinomachine.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>
