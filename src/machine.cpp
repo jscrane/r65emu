@@ -20,9 +20,6 @@ Machine::Machine(CPU &cpu): _cpu(cpu) {
 #if DEBUGGING & DEBUG_CPU
 	_debug_handler = []() { return cpu_debug; };
 #endif
-	_halted_handler = [this]() {
-		ERR("CPU halted at %04x", _cpu.pc());
-	};
 	_machine = this;
 }
 

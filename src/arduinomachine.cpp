@@ -81,7 +81,12 @@ bool Arduino::reset() {
 	return success;
 }
 
-void Arduino::init() {
+void Arduino::begin() {
+
+	_halted_handler = [this]() {
+		ERR("CPU halted at %04x", _cpu.pc());
+		for (;;) yield();
+	};
 
 #if DEBUGGING != DEBUG_NONE
 	Serial.begin(TERMINAL_SPEED);

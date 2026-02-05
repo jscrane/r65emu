@@ -5,6 +5,7 @@
 #include "machine.h"
 #include "memory.h"
 #include "display.h"
+#include "hardware.h"
 
 #if !defined(USE_OWN_DISPLAY)
 

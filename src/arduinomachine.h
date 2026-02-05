@@ -30,8 +30,16 @@ class Arduino: public Machine {
 public:
 	Arduino(class CPU &cpu): Machine(cpu) {}
 
-	void init();
+	void begin();
 	bool reset();
+
+	void register_reset_handler(std::function<void(bool)> handler) {
+		_reset_handler = handler;
+	}
+
+	void register_cpu_halted_handler(std::function<void(void)> handler) {
+		_halted_handler = handler;
+	}
 
 	void run(unsigned instructions = CPU_INSTRUCTIONS);
 
@@ -41,4 +49,8 @@ public:
 	uint32_t microseconds();
 
 	void debug(const char *lvlstr, const char *fmt, ...);
+
+private:
+	std::function<void(bool)> _reset_handler;
+	std::function<void(void)> _halted_handler;
 };
