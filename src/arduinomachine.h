@@ -48,7 +48,3 @@ public:
 
 	void debug(const char *lvlstr, const char *fmt, ...);
 };
-
-#if defined(USE_SPIRAM)
-extern class spiram sram;
-#endif

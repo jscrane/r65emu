@@ -7,7 +7,7 @@
 #include "socket_filer.h"
 
 #if !defined(ESP32)
-#pragma message "no socket filer"
+#pragma message "socket_filer not available on this platform"
 #elif defined(WIFI_SSID)
 #include <WiFi.h>
 

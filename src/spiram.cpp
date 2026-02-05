@@ -1,11 +1,12 @@
 #include <Arduino.h>
 
-#include "machine.h"
+#include "hardware.h"
 
 #if defined(USE_SPIRAM)
 #include <SPI.h>
 #include <SpiRAM.h>
 
+#include "machine.h"
 #include "memory.h"
 #include "spiram.h"
 
@@ -36,7 +37,7 @@ void spiram::restore(Checkpoint &s)
 {
 	uint8_t buf[Memory::page_size];
 	for (unsigned i = 0; i < pages(); i++) {
-		s.readBytes((char *)buf, sizeof(buf));
+		s.read(buf, sizeof(buf));
 		spiRam.write_stream(i * 256, buf, sizeof(buf));
 	}
 }
