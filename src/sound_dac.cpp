@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "sound_dac.h"
 
 #if defined(ESP_PLATFORM)

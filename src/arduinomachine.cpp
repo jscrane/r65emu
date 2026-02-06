@@ -4,9 +4,11 @@
 #include <stddef.h>
 #include <stdarg.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "memory.h"
 #include "debugging.h"
+#include "hardware.h"
+#include "arduinomachine.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>
@@ -31,7 +33,7 @@ spiram sram(SPIRAM_SIZE);
 
 static SimpleTimer timers;
 
-bool Machine::reset() {
+bool Arduino::reset() {
 
 	DBG_INI("machine reset");
 
@@ -79,27 +81,12 @@ bool Machine::reset() {
 	return success;
 }
 
-#if DEBUGGING & DEBUG_CPU
-#if !defined(CPU_DEBUG)
-#define CPU_DEBUG	false
-#endif
-static bool cpu_debug = CPU_DEBUG;
-#endif
+void Arduino::begin() {
 
-Machine *_machine;
-
-Machine::Machine(CPU &cpu): _cpu(cpu) {
-#if DEBUGGING & DEBUG_CPU
-	_debug_handler = []() { return cpu_debug; };
-#endif
 	_halted_handler = [this]() {
 		ERR("CPU halted at %04x", _cpu.pc());
-		for(;;) yield();
+		for (;;) yield();
 	};
-	_machine = this;
-}
-
-void Machine::init() {
 
 #if DEBUGGING != DEBUG_NONE
 	Serial.begin(TERMINAL_SPEED);
@@ -138,16 +125,7 @@ void Machine::init() {
 #endif
 }
 
-bool Machine::debug_cpu() {
-#if DEBUGGING & DEBUG_CPU
-	cpu_debug = !cpu_debug;
-	return cpu_debug;
-#else
-	return false;
-#endif
-}
-
-void Machine::run(unsigned instructions) {
+void Arduino::run(unsigned instructions) {
 
 	timers.run();
 
@@ -166,21 +144,21 @@ void Machine::run(unsigned instructions) {
 		_halted_handler();
 }
 
-int Machine::interval_timer(uint32_t interval, std::function<void(void)> cb) {
+int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setInterval(interval, cb);
 }
 
-int Machine::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
+int Arduino::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setTimeout(interval, cb);
 }
 
-void Machine::cancel_timer(int timer) {
+void Arduino::cancel_timer(int timer) {
 	timers.deleteTimer(timer);
 }
 
-uint32_t Machine::microseconds() { return micros(); }
+uint32_t Arduino::microseconds() { return micros(); }
 
-void Machine::debug(const char *lvlstr, const char *fmt, ...) {
+void Arduino::debug(const char *lvlstr, const char *fmt, ...) {
 #if DEBUGGING != DEBUG_NONE
 	char buf[128];
 	va_list args;
@@ -194,24 +172,4 @@ void Machine::debug(const char *lvlstr, const char *fmt, ...) {
 		Serial.println(buf);
 	}
 #endif
-}
-
-void Machine::checkpoint(Checkpoint &s) {
-	unsigned ds = 0;
-	for (unsigned i = 0; i < 0x10000; i += ds) {
-		Memory::Device *dev = _cpu.memory().get(i);
-		dev->checkpoint(s);
-		ds = dev->pages() * Memory::page_size;
-	}
-	_cpu.checkpoint(s);
-}
-
-void Machine::restore(Checkpoint &s) {
-	unsigned ds = 0;
-	for (unsigned i = 0; i < 0x10000; i += ds) {
-		Memory::Device *dev = _cpu.memory().get(i);
-		dev->restore(s);
-		ds = dev->pages() * Memory::page_size;
-	}
-	_cpu.restore(s);
 }

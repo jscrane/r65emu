@@ -5,9 +5,9 @@
 
 class RIOT {
 public:
-	RIOT(const uint8_t *rom): outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
+	RIOT(): outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
 		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0),
-		timer(-1), rom(rom)
+		timer(-1)
        	{
 	}
 
@@ -43,6 +43,10 @@ public:
 		portb_read_handler = fn;
 	}
 
+	void register_rom_read_handler(std::function<uint8_t(Memory::address)> fn) {
+		rom_read_handler = fn;
+	}
+
 private:
 	uint8_t read_porta();
 	uint8_t read_ddra() { return ddra; }
@@ -68,11 +72,11 @@ private:
 	void on_timeout();
 
 	uint8_t ram[128];
-	const uint8_t *rom;
 
 	std::function<void(bool)> irq_handler;
 	std::function<void(uint8_t)> porta_write_handler;
 	std::function<void(uint8_t)> portb_write_handler;
 	std::function<uint8_t(void)> porta_read_handler;
 	std::function<uint8_t(void)> portb_read_handler;
+	std::function<uint8_t(Memory::address)> rom_read_handler;
 };

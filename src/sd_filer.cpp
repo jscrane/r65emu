@@ -3,7 +3,8 @@
 #include <stdint.h>
 #include <SD.h>
 
-#include "hardware.h"
+#include "machine.h"
+#include "arduinomachine.h"
 #include "serialio.h"
 #include "filer.h"
 #include "sd_filer.h"
@@ -73,7 +74,7 @@ const char *sd_filer::checkpoint() {
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
 	File file = SD.open(buf, FILE_WRITE);
-	Checkpoint chk(file);
+	StreamCheckpoint chk(file);
 	_machine->checkpoint(chk);
 	file.close();
 	start();
@@ -85,7 +86,7 @@ void sd_filer::restore(const char *filename) {
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = SD.open(buf, FILE_READ);
-	Checkpoint chk(file);
+	StreamCheckpoint chk(file);
 	_machine->restore(chk);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);

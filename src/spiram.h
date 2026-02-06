@@ -11,3 +11,5 @@ public:
 	spiram(int bytes): Memory::Device(bytes) {}
 	void begin(uint8_t cs, int module);
 };
+
+extern class spiram sram;

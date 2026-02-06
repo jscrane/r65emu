@@ -1,4 +1,5 @@
 // user-configured hardware description
+#pragma once
 
 #warning "hw/user.h not configured!"
 

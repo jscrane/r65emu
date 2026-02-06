@@ -9,7 +9,7 @@ public:
 	virtual operator uint8_t () { return _mem[_acc]; }
 
 	virtual void checkpoint(Checkpoint &s) { s.write(_mem, sizeof(_mem)); }
-	virtual void restore(Checkpoint &s) { s.readBytes(_mem, sizeof(_mem)); }
+	virtual void restore(Checkpoint &s) { s.read(_mem, sizeof(_mem)); }
 
 	ram (): Memory::Device(sizeof(_mem)) {}
 

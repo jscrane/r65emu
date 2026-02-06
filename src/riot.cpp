@@ -1,7 +1,6 @@
-#include <Arduino.h>
 #include <stdint.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "memory.h"
 #include "debugging.h"
 #include "riot.h"
@@ -153,7 +152,7 @@ uint8_t RIOT::read_portb() {
 uint8_t RIOT::read(Memory::address a) {
 
 	if (a >= rsrom)
-		return pgm_read_byte(rom + a - rsrom);
+		return rom_read_handler? rom_read_handler(a - rsrom): 0x00;
 
 	if (a >= rsram)
 		return ram[a - rsram];

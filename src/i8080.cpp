@@ -1,13 +1,9 @@
-#if defined(ARDUINO)
-#include <Arduino.h>
-#else
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
-#endif
 #include <functional>
 
-#include "hardware.h"
+#include "machine.h"
 #include "memory.h"
 #include "debugging.h"
 #include "CPU.h"

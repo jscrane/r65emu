@@ -1,7 +1,6 @@
-#include <Arduino.h>
 #include <stdint.h>
 
-#include "hardware.h"
+#include "machine.h"
 #include "memory.h"
 #include "via.h"
 #include "debugging.h"
@@ -140,6 +139,7 @@ void VIA::write_ier(uint8_t b) {
 		_ier |= (b & 0x7f);
 	else
 		_ier &= ~(b & 0x7f);
+	irq();
 }
 
 void VIA::write_porta_nh(uint8_t b) {

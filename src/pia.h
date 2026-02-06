@@ -7,12 +7,12 @@
 class PIA {
 public:
 	PIA(): cra(0), ina(0), outa(0), ddra(0), crb(0), inb(0), outb(0), ddrb(0),
-		ca1(false), ca2(false), irq_a1(false), irq_a2(false),
-		cb1(false), cb2(false), irq_b1(false), irq_b2(false) {}
+		ca1(false), ca2(false), irq_a1(false), irq_a2(false), irqa_state(false),
+		cb1(false), cb2(false), irq_b1(false), irq_b2(false), irqb_state(false) {}
 
 	void reset() {
 		outb = inb = crb = ddrb = outa = ina = cra = ddra = 0;
-		irq_a1 = irq_a2 = irq_b1 = irq_b2 = ca1 = ca2 = cb1 = cb2 = false;
+		irq_a1 = irq_a2 = irqa_state = irq_b1 = irq_b2 = irqb_state = ca1 = ca2 = cb1 = cb2 = false;
 	}
 
 	// device memory interface
@@ -54,6 +54,14 @@ public:
 		portb_read_handler = fn;
 	}
 
+	void register_irqa_handler(std::function<void(bool)> fn) {
+		irqa_handler = fn;
+	}
+
+	void register_irqb_handler(std::function<void(bool)> fn) {
+		irqb_handler = fn;
+	}
+
 private:
 	void write_ddra(uint8_t b) { ddra = b; }
 	void write_ddrb(uint8_t b) { ddrb = b; }
@@ -63,8 +71,8 @@ private:
 	void write_porta(uint8_t b);
 	void write_portb(uint8_t b);
 
-	void write_cra(uint8_t b) { cra = (b & 0x3f); }
-	void write_crb(uint8_t b) { crb = (b & 0x3f); }
+	void write_cra(uint8_t b) { cra = (b & 0x3f); update_interrupts(); }
+	void write_crb(uint8_t b) { crb = (b & 0x3f); update_interrupts(); }
 	uint8_t read_cra();
 	uint8_t read_crb();
 
@@ -75,6 +83,9 @@ private:
 
 	uint8_t cra, ina, outa, ddra;
 	uint8_t crb, inb, outb, ddrb;
-	bool ca1, ca2, irq_a1, irq_a2;
-	bool cb1, cb2, irq_b1, irq_b2;
+	bool ca1, ca2, irq_a1, irq_a2, irqa_state;
+	bool cb1, cb2, irq_b1, irq_b2, irqb_state;
+
+	void update_interrupts();
+	std::function<void(bool)> irqa_handler, irqb_handler;
 };
