@@ -4,10 +4,10 @@
 
 class Checkpoint {
 public:
-	virtual size_t read(uint8_t *, int);
+	virtual size_t read(uint8_t *, int) =0;
 	virtual int read() =0;
 
-	virtual size_t write(const uint8_t *, int);
+	virtual size_t write(const uint8_t *, int) =0;
 	virtual size_t write(uint8_t) =0;
 };
 
