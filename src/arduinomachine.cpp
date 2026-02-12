@@ -133,9 +133,8 @@ void Arduino::run(unsigned instructions) {
 	if (_debug_handler()) {
 		char buf[256];
 		DBG_CPU(_cpu.status(buf, sizeof(buf)));
-		_cpu.run(1);
-	} else
-		_cpu.run(instructions);
+	}
+	_cpu.run(1);
 #else
 	_cpu.run(instructions);
 #endif

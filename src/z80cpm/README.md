@@ -12,11 +12,11 @@ Its primary purpose is to speed up bugfixing of this library's z80 core and its 
 
 ```
 $ make
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x00 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x'  -c -o cpm.o cpm.cc
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x00 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x' -o z80.o -c ../z80.cpp
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x00 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x' -o memory.o -c ../memory.cpp
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x00 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x'  -c -o disk.o disk.cc
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x00 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x'  -c -o cons.o cons.cc
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS  -c -o cpm.o cpm.cc
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -o z80.o -c ../z80.cpp
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -o memory.o -c ../memory.cpp
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS  -c -o disk.o disk.cc
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS  -c -o cons.o cons.cc
 g++ -o cpm cpm.o z80.o memory.o disk.o cons.o 
 $ ./cpm ~/Arduino/cpm80/disks/cpm22/cpm22-1.dsk ~/Arduino/cpm80/disks/cpm22/z80tests.dsk 
 64K CP/M Vers. 2.2 (Z80 CBIOS V1.2 for Z80SIM, Copyright 1988-2007 by Udo Munk)

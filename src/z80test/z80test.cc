@@ -6,8 +6,7 @@
 #include <string.h>
 #include <functional>
 
-class Stream;
-
+#include "machine.h"
 #include "memory.h"
 #include "CPU.h"
 #include "debugging.h"
@@ -142,6 +141,7 @@ void dump_memory_state(uint8_t b[], Memory &m) {
 	printf("\n");
 }
 
+#if !defined(ARDUINO)
 int main(int argc, char *argv[]) {
 
 	Memory memory;
@@ -184,3 +184,4 @@ int main(int argc, char *argv[]) {
 
 	fclose(fp);
 }
+#endif

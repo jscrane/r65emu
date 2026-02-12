@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include "machine.h"
 #include "memory.h"
 #include "ram.h"
 #include "CPU.h"
@@ -27,6 +28,7 @@ int load(const char *file, Memory &mem) {
 	return 0;
 }
 
+#if !defined(ARDUINO)
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
@@ -63,3 +65,4 @@ int main(int argc, char *argv[])
 
 	puts(cpu.status(buf, sizeof(buf), true));
 }
+#endif

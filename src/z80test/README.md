@@ -15,10 +15,11 @@ This is because the tests can specify a bound on the number of timestates to run
 
 ```bash
 $ make
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x41 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x' -DZ80TEST  -c -o z80test.o z80test.cc
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x41 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x' -DZ80TEST -o z80.o -c ../z80.cpp
-g++ -g -fno-operator-names -Wall -I.. -DDEBUGGING=0x41 -DUNDOCUMENTED_OPS -DNO_CHECKPOINT -D'PRINTER(x)=x' -DZ80TEST -o memory.o -c ../memory.cpp
-g++ -o z80test z80test.o z80.o memory.o
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -DZ80TEST  -c -o z80test.o z80test.cc
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -DZ80TEST -o z80.o -c ../z80.cpp
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -DZ80TEST -o memory.o -c ../memory.cpp
+g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -DZ80TEST -o machine.o -c ../machine.cpp
+g++ -o z80test z80test.o z80.o memory.o machine.o
 ./z80test tests.in > tests.me
 md5sum tests.me
 75f83a24154998522cf1f6a60c0042ef  tests.me

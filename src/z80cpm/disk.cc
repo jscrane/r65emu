@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include "machine.h"
 #include "memory.h"
 #include "disk.h"
 

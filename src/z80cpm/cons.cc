@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <unistd.h>
+
+#if !defined(ARDUINO)
 #include <poll.h>
 #include <termios.h>
 
@@ -46,3 +48,4 @@ void cons_write(uint8_t b) {
 		exit(-1);
 	}
 }
+#endif

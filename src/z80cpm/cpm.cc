@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <setjmp.h>
 #include <stdarg.h>
 #include <errno.h>
 #include <string.h>
 #include <functional>
 
+#include "machine.h"
 #include "memory.h"
 #include "CPU.h"
 #include "debugging.h"
@@ -99,6 +101,7 @@ void port_out(uint16_t p, uint8_t a) {
 	}
 }
 
+#if !defined(ARDUINO)
 int main(int argc, char *argv[]) {
 
 	if (argc == 1) {
@@ -125,3 +128,4 @@ int main(int argc, char *argv[]) {
 	close_disks();
 	cons_fini();
 }
+#endif

@@ -22,5 +22,7 @@ bool hw_serial_kbd::available() {
 }
 
 void hw_serial_kbd::reset() {
+#if defined(TERMINAL_SPEED)
 	_serial.begin(TERMINAL_SPEED);
+#endif
 }
