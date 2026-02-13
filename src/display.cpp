@@ -161,12 +161,12 @@ void Display::setScreen(unsigned sx, unsigned sy, unsigned centering) {
 
 bool Display::onScreen(unsigned x, unsigned y) {
 
-	int xo = _xoff < 0? -_xoff: _xoff;
-	if (x < xo || x > _dx + xo)
+	int xo = _xoff + (int)x;
+	if (xo < 0 || xo > _dx)
 		return false;
 
-	int yo = _yoff < 0? -_yoff: _yoff;;
-	if (y < yo || y > _dy + yo)
+	int yo = _yoff + (int)y;
+	if (yo < 0 || yo > _dy)
 		return false;
 
 	return true;
