@@ -59,7 +59,7 @@ bool Arduino::reset() {
 		success = SD.begin(SD_CS, sdspi);
 		DBG_INI("SD: %d %d %d %d: %d", SD_CLK, SD_MISO, SD_MOSI, SD_CS, success);
 	} else
-		DBG_INI("SD_SPI: begin failed");
+		DBG_INI("SD_SPI: %d: begin failed", SD_SPI);
 #else
 	success = SD.begin(SD_CS);
 	DBG_INI("SD: %d: %d", SD_CS, success);
