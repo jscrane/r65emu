@@ -54,12 +54,16 @@ bool Arduino::reset() {
 
 #if defined(USE_SD)
 #if defined(SD_SPI)
-	success = SD.begin(SD_CS, 2, SD_SPI);
-	pinMode(SPI_CS, OUTPUT);	// without this, the SPI-RAM isn't seen
+	static SPIClass sdspi(SD_SPI);
+	if (sdspi.begin(SD_CLK, SD_MISO, SD_MOSI, SD_CS)) {
+		success = SD.begin(SD_CS, sdspi);
+		DBG_INI("SD: %d %d %d %d: %d", SD_CLK, SD_MISO, SD_MOSI, SD_CS, success);
+	} else
+		DBG_INI("SD_SPI: begin failed");
 #else
 	success = SD.begin(SD_CS);
+	DBG_INI("SD: %d: %d", SD_CS, success);
 #endif
-	DBG_INI("machine reset: SD: %d", success);
 
 #elif defined(USE_SPIFFS)
 	success = SPIFFS.begin(true);
