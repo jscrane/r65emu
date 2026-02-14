@@ -51,7 +51,7 @@ static const fabgl::RGB888 rgb(colour_t c) {
 #elif defined(USE_VGA_BITLUNI)
 #pragma message "Bitluni VGA configured"
 #include <ESP32Video.h>
-#include <Ressources/Font6x8.h>
+#include VGA_FONT_H
 
 #if VGA_BIT_DEPTH == 6
 static VGA6Bit vga;
@@ -255,7 +255,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 	canvas.setBrushColor(rgb(_bg));
 	canvas.clear();
 	canvas.setGlyphOptions(GlyphOptions().FillBackground(true));
-	setFont(VGA_DEFAULT_FONT);
+	setFont(&VGA_FONT);
 
 	DBG_DSP("FabGL: w %d h %d", _dx, _dy);
 
@@ -274,7 +274,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 
 	_dx = vga.xres;
 	_dy = vga.yres;
-	setFont(VGA_DEFAULT_FONT);
+	setFont(&VGA_FONT);
 
 	DBG_DSP("Bitluni: w %d h %d", _dx, _dy);
 

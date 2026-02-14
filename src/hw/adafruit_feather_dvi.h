@@ -59,7 +59,6 @@
 #define RAM_SIZE	0x10000u
 
 #if !defined(NO_STORAGE) && !defined(USE_SD)
-#undef USE_SD
 #undef USE_SPIFFS
 #define USE_LITTLEFS
 #endif

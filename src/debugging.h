@@ -21,7 +21,7 @@
 #define DBG(...)
 #define ERR(...)
 #else
-#define _DBG(lvl, lvlstr, ...)	do { if (DEBUGGING & (lvl)) _machine->debug((lvlstr) __VA_OPT__(,) __VA_ARGS__); } while(0);
+#define _DBG(lvl, lvlstr, ...)	do { if (DEBUGGING & (lvl)) _machine->debug((lvlstr) __VA_OPT__(,) __VA_ARGS__); } while(0)
 #define DBG(...)		_DBG(DEBUG_ANY, "DBG" __VA_OPT__(,) __VA_ARGS__)
 #define ERR(...)		_machine->debug("ERR" __VA_OPT__(,) __VA_ARGS__);
 #endif

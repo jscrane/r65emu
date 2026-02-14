@@ -15,6 +15,7 @@
 #include "flash_filer.h"
 #include "serial_filer.h"
 #include "socket_filer.h"
+#include "sd_filer.h"
 #include "sound_dac.h"
 #include "ps2_raw_kbd.h"
 #include "serial_kbd.h"
