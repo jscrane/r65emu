@@ -7,7 +7,11 @@
 
 #if defined(HARDWARE_H)
 #include HARDWARE_H
+
+#elif defined(BOARD)
+#include STR(hw/BOARD.h)
 #else
+
 #include "hw/user.h"
 #endif
 
