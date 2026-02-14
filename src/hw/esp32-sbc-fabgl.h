@@ -4,18 +4,6 @@
 // Display
 #if !defined(USE_OWN_DISPLAY)
 
-// use FabGL VGA for arduino-esp32 version 2.0.x
-#if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3,0,0)
-#define USE_VGA_FABGL
-#if !defined(VGA_RESOLUTION)
-#define VGA_RESOLUTION	VGA_480x300_75Hz
-//#define VGA_RESOLUTION	VGA_320x200_75HzRetro
-#endif
-#if !defined(VGA_DEFAULT_FONT)
-#define VGA_DEFAULT_FONT &fabgl::FONT_6x10
-#endif
-
-#else
 // ESP32Lib by Bitluni, these have been tested:
 // -DVGA_RESOLUTION=VGAMODE640x480 -DVGA_BIT_DEPTH=1
 // -DVGA_RESOLUTION=VGAMODE400x300 -DVGA_BIT_DEPTH=3
@@ -27,10 +15,10 @@
 #if !defined(VGA_RESOLUTION)
 #define VGA_RESOLUTION VGAMode::MODE320x240
 #endif
-#if !defined(VGA_DEFAULT_FONT)
-#define VGA_DEFAULT_FONT	&Font6x8
+#if !defined(VGA_FONT)
+#define VGA_FONT	Font6x8
 #endif
-#endif
+#define VGA_FONT_H	STR(Ressources/VGA_FONT.h)
 
 // 6-bit VGA pins
 #define R0	21
@@ -60,9 +48,7 @@
 #define PWM_SOUND	25
 
 // Storage
-#if !defined(NO_STORAGE)
-#undef USE_SD
-#undef USE_LITTLEFS
+#if !defined(NO_STORAGE) && !defined(USE_SD) && !defined(USE_LITTLEFS) && !defined(USE_SPIFFS)
 #define USE_SPIFFS
 #endif
 
