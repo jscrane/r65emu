@@ -2,6 +2,11 @@
 
 #include <functional>
 
+class Pollable {
+public:
+	virtual void poll() =0;
+};
+
 class Checkpoint {
 public:
 	virtual size_t read(uint8_t *, int) =0;
@@ -13,8 +18,8 @@ public:
 
 class Checkpointable {
 public:
-	virtual void checkpoint(Checkpoint &) = 0;
-	virtual void restore(Checkpoint &) = 0;
+	virtual void checkpoint(Checkpoint &) =0;
+	virtual void restore(Checkpoint &) =0;
 };
 
 class CPU;
@@ -30,6 +35,8 @@ public:
 	void register_cpu_debug_handler(std::function<bool(void)> handler) {
 		_debug_handler = handler;
 	}
+
+	void register_pollable(Pollable &);
 
 	virtual int interval_timer(uint32_t micros, std::function<void(void)> cb) =0;
 	virtual int oneshot_timer(uint32_t micros, std::function<void(void)> cb) =0;

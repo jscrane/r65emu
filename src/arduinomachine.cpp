@@ -129,19 +129,32 @@ void Arduino::begin() {
 #endif
 }
 
+#define MAX_POLLABLE 5
+static Pollable *devices[MAX_POLLABLE];
+static uint8_t num_pollable = 0;
+
+void Arduino::register_pollable(Pollable &p) {
+	devices[num_pollable++] = &p;
+}
+
 void Arduino::run(unsigned instructions) {
 
 	timers.run();
 
+	for (uint8_t i = 0; i < num_pollable; i++)
+		devices[i]->poll();
+
+	if (instructions > 0) {
 #if DEBUGGING & DEBUG_CPU
-	if (_debug_handler()) {
-		char buf[256];
-		DBG_CPU(_cpu.status(buf, sizeof(buf)));
-	}
-	_cpu.run(1);
+		if (_debug_handler()) {
+			char buf[256];
+			DBG_CPU(_cpu.status(buf, sizeof(buf)));
+		}
+		_cpu.run(1);
 #else
-	_cpu.run(instructions);
+		_cpu.run(instructions);
 #endif
+	}
 
 	if (_cpu.halted())
 		_halted_handler();

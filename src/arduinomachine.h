@@ -41,6 +41,8 @@ public:
 		_halted_handler = handler;
 	}
 
+	void register_pollable(Pollable &);
+
 	void run(unsigned instructions = CPU_INSTRUCTIONS);
 
 	int interval_timer(uint32_t micros, std::function<void(void)> cb);

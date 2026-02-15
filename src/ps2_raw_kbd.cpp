@@ -4,6 +4,7 @@
 
 #if defined(USE_PS2_KBD)
 #include <PS2KeyRaw.h>
+#include "machine.h"
 #include "ps2_raw_kbd.h"
 
 static PS2KeyRaw keyboard;
