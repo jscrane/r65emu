@@ -27,28 +27,7 @@ static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST, TFT_SER);
 
 static TFT_eSPI espi;
 
-#elif defined(USE_VGA_FABGL)
-#pragma message "FabGL VGA configured"
-#include <fabgl.h>
-
-static fabgl::VGAController vga;
-static fabgl::Canvas canvas(&vga);
-
-static const fabgl::RGB888 rgb(colour_t c) {
-	switch(c) {
-		case BLACK: return Color::Black;
-		case RED: return Color::Red;
-		case GREEN: return Color::Green;
-		case YELLOW: return Color::Yellow;
-		case BLUE: return Color::Blue;
-		case MAGENTA: return Color::Magenta;
-		case CYAN: return Color::Cyan;
-		case WHITE: return Color::White;
-	}
-	return Color::BrightWhite;
-}
-
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 #pragma message "Bitluni VGA configured"
 #include <ESP32Video.h>
 #include VGA_FONT_H
@@ -128,9 +107,7 @@ static inline void setColor(colour_t c) {
 	utft.setColor(c);
 #elif defined(USE_ESPI)
 	espi.setTextColor(c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setPenColor(rgb(c));
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.setTextColor(rgb(c));
 #elif defined(USE_DVI)
 	dvi.setTextColor(col(c));
@@ -187,12 +164,7 @@ void Display::setFont(const void *font) {
 #elif defined(USE_DVI)
 	dvi.setFont((const GFXfont *)font);
 	textSize("M", _cx, _cy);
-#elif defined(USE_VGA_FABGL)
-	fabgl::FontInfo const *f = (fabgl::FontInfo const *)font;
-	canvas.selectFont(f);
-	_cy = f->height;
-	_cx = f->width;
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	Font *f = (Font *)font;
 	vga.setFont(*f);
 	_cx = f->charWidth;
@@ -241,25 +213,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 #endif
 	DBG_DSP("DVI: %d: w %d h %d", success, _dx, _dy);
 
-#elif defined(USE_VGA_FABGL)
-	static bool init;
-
-	if (init)
-		vga.end();
-	init = true;
-	vga.begin();
-	vga.setResolution(VGA_RESOLUTION);
-	_dx = canvas.getWidth();
-	_dy = canvas.getHeight();
-
-	canvas.setBrushColor(rgb(_bg));
-	canvas.clear();
-	canvas.setGlyphOptions(GlyphOptions().FillBackground(true));
-	setFont(&VGA_FONT);
-
-	DBG_DSP("FabGL: w %d h %d", _dx, _dy);
-
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	static bool init;
 
 	if (!init) {
@@ -294,9 +248,7 @@ void Display::clear() {
 	utft.fillScr(_bg);
 #elif defined(USE_ESPI)
 	espi.fillScreen(_bg);
-#elif defined(USE_VGA_FABGL)
-	canvas.clear();
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.clear();
 #elif defined(USE_DVI)
 	dvi.fillScreen(_bg);
@@ -318,11 +270,7 @@ void Display::status(const char *s) {
 	_oxs = espi.textWidth(s);
 	espi.setTextDatum(BR_DATUM);
 	espi.drawString(s, _dx, _dy);
-#elif defined(USE_VGA_FABGL)
-	canvas.fillRectangle(_dx - _oxs, _dy - _cy, _dx, _dy);
-	_oxs = canvas.textExtent(s) + _cx;
-	canvas.drawText(_dx - _oxs, _dy - _cy, s);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.fillRect(_dx - _oxs, _dy - _cy, _oxs, _cy, _bg);
 	_oxs = strlen(s) * _cx;
 	vga.setCursor(_dx - _oxs, _dy - _cy);
@@ -354,9 +302,7 @@ void Display::drawPixel(unsigned x, unsigned y, colour_t c) {
 	utft.drawPixel(x, y);
 #elif defined(USE_ESPI)
 	espi.drawPixel(x, y, c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setPixel(x, y, rgb(c));
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.dot(x, y, rgb(c));
 #elif defined(USE_DVI)
 	dvi.drawPixel(x, y, col(c));
@@ -373,10 +319,7 @@ void Display::drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colou
 	utft.drawLine(x1, y1, x2, y2);
 #elif defined(USE_ESPI)
 	espi.drawLine(x1, y1, x2, y2, c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setPenColor(rgb(c));
-	canvas.drawLine(x1, y1, x2, y2);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.line(x1, y1, x2, y2, rgb(c));
 #elif defined(USE_DVI)
 	dvi.drawLine(x1, y1, x2, y2, col(c));
@@ -391,10 +334,7 @@ void Display::drawCircle(unsigned x, unsigned y, unsigned r, colour_t c) {
 	utft.drawCircle(x, y, r);
 #elif defined(USE_ESPI)
 	espi.drawCircle(x, y, r, c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setPenColor(rgb(c));
-	canvas.drawEllipse(x, y, r, r);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.circle(x, y, r, rgb(c));
 #elif defined(USE_DVI)
 	dvi.drawCircle(x, y, r, col(c));
@@ -409,10 +349,7 @@ void Display::fillCircle(unsigned x, unsigned y, unsigned r, colour_t c) {
 	utft.fillCircle(x, y, r);
 #elif defined(USE_ESPI)
 	espi.fillCircle(x, y, r, c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setBrushColor(rgb(c));
-	canvas.fillEllipse(x, y, r, r);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.fillCircle(x, y, r, rgb(c));
 #elif defined(USE_DVI)
 	dvi.fillCircle(x, y, r, col(c));
@@ -427,10 +364,7 @@ void Display::drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 	utft.drawRect(x, y, x+w, y+h);
 #elif defined(USE_ESPI)
 	espi.drawRect(x, y, w, h, c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setPenColor(rgb(c));
-	canvas.drawRectangle(x, y, x+w, y+h);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.rect(x, y, w, h, rgb(c));
 #elif defined(USE_DVI)
 	dvi.drawRect(x, y, w, h, col(c));
@@ -445,10 +379,7 @@ void Display::fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 	utft.fillRect(x, y, x+w, y+h);
 #elif defined(USE_ESPI)
 	espi.fillRect(x, y, w, h, c);
-#elif defined(USE_VGA_FABGL)
-	canvas.setBrushColor(rgb(c));
-	canvas.fillRectangle(x, y, x+w, y+h);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.fillRect(x, y, w, h, rgb(c));
 #elif defined(USE_DVI)
 	dvi.fillRect(x, y, w, h, col(c));
@@ -465,10 +396,7 @@ void Display::drawString(const char *s, unsigned x, unsigned y, colour_t c) {
 	espi.setTextDatum(TL_DATUM);
 	espi.setTextColor(c, _bg, true);
 	espi.drawString(s, x, y);
-#elif defined(USE_VGA_FABGL)
-	canvas.setPenColor(rgb(c));
-	canvas.drawText(x, y, s);
-#elif defined(USE_VGA_BITLUNI)
+#elif defined(USE_VGA)
 	vga.setTextColor(rgb(c));
 	vga.setCursor(x, y);
 	vga.fillRect(x, y, _cx*strlen(s), _cy, _bg);
