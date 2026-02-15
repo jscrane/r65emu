@@ -4,7 +4,7 @@
 
 #include <functional>
 
-class ACIA {
+class ACIA: public Pollable {
 public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
@@ -37,7 +37,7 @@ public:
 		irq_handler = fn;
 	}
 
-	void poll_for_interrupt();
+	void poll();
 
 	// status bits
 	//

@@ -44,7 +44,7 @@ uint8_t ACIA::read_status() {
 	return s;
 }
 
-void ACIA::poll_for_interrupt() {
+void ACIA::poll() {
 
 	if (irq_handler) {
 		uint8_t s = read_status();
