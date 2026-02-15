@@ -9,18 +9,7 @@
 
 #if !defined(USE_OWN_DISPLAY)
 
-#if defined(USE_UTFT)
-#pragma message "UTFT configured"
-#include <UTFT.h>
-#include "TinyFont.h"
-
-#if !defined(TFT_SER)
-#define TFT_SER	0
-#endif
-
-static UTFT utft(TFT_MODEL, TFT_RS, TFT_WR, TFT_CS, TFT_RST, TFT_SER);
-
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 #pragma message "Configure TFT_eSPI in Makefile or <TFT_eSPI/User_Setup.h>"
 #include <TFT_eSPI.h>
 #include <Fonts/GFXFF/gfxfont.h>
@@ -103,9 +92,7 @@ inline void textSize(const char *s, unsigned &w, unsigned &h) {
 #endif
 
 static inline void setColor(colour_t c) {
-#if defined(USE_UTFT)
-	utft.setColor(c);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.setTextColor(c);
 #elif defined(USE_VGA)
 	vga.setTextColor(rgb(c));
@@ -150,11 +137,7 @@ bool Display::onScreen(unsigned x, unsigned y) {
 }
 
 void Display::setFont(const void *font) {
-#if defined(USE_UTFT)
-	utft.setFont((uint8_t *)font);
-	_cx = utft.getFontXsize();
-	_cy = utft.getFontYsize();
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 #if defined(LOAD_GFXFF)
 	const GFXfont *f = (const GFXfont *)font;
 	espi.setFreeFont(f);
@@ -179,15 +162,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 
 	DBG_DSP("begin");
 
-#if defined(USE_UTFT)
-	utft.InitLCD(orient);
-	utft.setBackColor(_bg);
-	_dx = utft.getDisplayXSize();
-	_dy = utft.getDisplayYSize();
-	setFont(TinyFont);
-	DBG_DSP("UTFT: w %d h %d", _dx, _dy);
-
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.init();
 	espi.setRotation(orient);
 	_dx = espi.width();
@@ -244,9 +219,7 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 }
 
 void Display::clear() {
-#if defined(USE_UTFT)
-	utft.fillScr(_bg);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.fillScreen(_bg);
 #elif defined(USE_VGA)
 	vga.clear();
@@ -259,13 +232,7 @@ void Display::clear() {
 void Display::status(const char *s) {
 	setColor(_fg);
 
-#if defined(USE_UTFT)
-	unsigned y = _dy - _cy, n = strlen(s), xs = _dx - n*_cx;
-	for (unsigned x = _oxs; x < xs; x += _cx)
-		utft.print(" ", x, y);
-	utft.print(s, xs, y);
-	_oxs = xs;
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.fillRect(_dx - _oxs, _dy - _cy, _oxs, _cy, _bg);
 	_oxs = espi.textWidth(s);
 	espi.setTextDatum(BR_DATUM);
@@ -297,10 +264,7 @@ void Display::statusf(const char *fmt, ...) {
 void Display::drawPixel(unsigned x, unsigned y, colour_t c) {
 	x += _xoff;
 	y += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.drawPixel(x, y);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.drawPixel(x, y, c);
 #elif defined(USE_VGA)
 	vga.dot(x, y, rgb(c));
@@ -314,10 +278,7 @@ void Display::drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colou
 	y1 += _yoff;
 	x2 += _xoff;
 	y2 += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.drawLine(x1, y1, x2, y2);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.drawLine(x1, y1, x2, y2, c);
 #elif defined(USE_VGA)
 	vga.line(x1, y1, x2, y2, rgb(c));
@@ -329,10 +290,7 @@ void Display::drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colou
 void Display::drawCircle(unsigned x, unsigned y, unsigned r, colour_t c) {
 	x += _xoff;
 	y += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.drawCircle(x, y, r);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.drawCircle(x, y, r, c);
 #elif defined(USE_VGA)
 	vga.circle(x, y, r, rgb(c));
@@ -344,10 +302,7 @@ void Display::drawCircle(unsigned x, unsigned y, unsigned r, colour_t c) {
 void Display::fillCircle(unsigned x, unsigned y, unsigned r, colour_t c) {
 	x += _xoff;
 	y += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.fillCircle(x, y, r);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.fillCircle(x, y, r, c);
 #elif defined(USE_VGA)
 	vga.fillCircle(x, y, r, rgb(c));
@@ -359,10 +314,7 @@ void Display::fillCircle(unsigned x, unsigned y, unsigned r, colour_t c) {
 void Display::drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t c) {
 	x += _xoff;
 	y += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.drawRect(x, y, x+w, y+h);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.drawRect(x, y, w, h, c);
 #elif defined(USE_VGA)
 	vga.rect(x, y, w, h, rgb(c));
@@ -374,10 +326,7 @@ void Display::drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 void Display::fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t c) {
 	x += _xoff;
 	y += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.fillRect(x, y, x+w, y+h);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.fillRect(x, y, w, h, c);
 #elif defined(USE_VGA)
 	vga.fillRect(x, y, w, h, rgb(c));
@@ -389,10 +338,7 @@ void Display::fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colo
 void Display::drawString(const char *s, unsigned x, unsigned y, colour_t c) {
 	x += _xoff;
 	y += _yoff;
-#if defined(USE_UTFT)
-	utft.setColor(c);
-	utft.print(s, x, y);
-#elif defined(USE_ESPI)
+#if defined(USE_ESPI)
 	espi.setTextDatum(TL_DATUM);
 	espi.setTextColor(c, _bg, true);
 	espi.drawString(s, x, y);

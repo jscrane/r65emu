@@ -12,6 +12,7 @@ Sample Emulations
 - [Commodore PET](https://github.com/jscrane/PET)
 - [Compukit UK101](https://github.com/jscrane/UK101) and [MicroUK101](https://github.com/jscrane/UK101)
 - [Commodore Chessmate](https://github.com/jscrane/Chessmate)
+- Jeff Tranter's [6502 Single Board Computer](https://github.com/jscrane/TranterSBC)
 
 Configuration for Arduino
 --------------
@@ -26,11 +27,10 @@ Supported architectures to build-your-own are:
 - ESP8266
 - ESP32
 - Raspberry Pi Pico
-- Tivac (probably out of date) 
 
 Examples are also given for a generic `node32s` board and a homebrew `esp8bit` board.
 
-Copy your configuration file to `user.h`. If the board is also mass-produced, please open a 
+Copy your configuration file to `user.h`. If the board is also mass-produced, please open a
 [PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
 to add the new file to the library.
 
@@ -51,20 +51,16 @@ Display
 Depending on target board, one of:
 - [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
 - [ESP32Lib](https://github.com/jscrane/ESP32Lib)
-- [My port](https://github.com/jscrane/UTFT-Energia) of Henning Karlsen's [UTFT library](http://www.rinkydinkelectronics.com/library.php?id=51)
 
 Storage
 --------
 These are optional if the target board supports it (e.g., esp8266 or esp32 boards):
-- [Rei Vilo's port](https://github.com/rei-vilo/SD_TM4C) of Adafruit/Sparkfun's [SD library](https://github.com/adafruit/SD),
 - [My port](https://github.com/jscrane/SpiRAM) of Phil Stewart's [SpiRAM library](http://playground.arduino.cc/Main/SpiRAM)
 
 Hardware
 ---------
-- A [Stellaris Launchpad](http://www.energia.nu/Guide_StellarisLaunchPad.html) _or_ 
-ESP8266 board, e.g., [WeMOS](https://www.wemos.cc/en/latest/d1/d1_mini.html), _or_ 
+- An ESP8266 board, e.g., [WeMOS](https://www.wemos.cc/en/latest/d1/d1_mini.html), _or_
 ESP32-based board, e.g., [Node32s](https://www.esp32.com/viewtopic.php?t=459),
-- An SD drive to store programs (for Stellarpad),
-- A 23k256 SPI RAM chip (for Stellarpad, optional),
+- A 23k256 SPI RAM chip (optional),
 - A supported TFT screen (if not using a board with VGA),
-- A PS/2 keyboard.
+- A PS/2 keyboard (if not using a Serial interface).
