@@ -2,7 +2,7 @@
 
 #include "hardware.h"
 
-#if defined(PS2_SERIAL_KBD)
+#if defined(USE_PS2_KBD) && defined(PS2_SERIAL_KBD)
 #include <PS2KeyAdvanced.h>
 #include <PS2KeyMap.h>
 #include "serial_kbd.h"

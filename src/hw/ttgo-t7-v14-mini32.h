@@ -32,7 +32,7 @@
 #endif
 
 // PS/2 Keyboard
-#if !defined(USE_OWN_KBD)
+#if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD) && !defined(USE_PS2_KBD)
 #define USE_PS2_KBD
 #endif
 
