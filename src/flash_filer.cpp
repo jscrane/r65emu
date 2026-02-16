@@ -25,7 +25,7 @@
 #if !defined(FILE_WRITE)
 #define FILE_WRITE	"w+"
 #endif
-#pragma message "LITTLEFS configured"
+#pragma message "LittleFS configured"
 
 #elif defined(USE_SD)
 #include <SD.h>
