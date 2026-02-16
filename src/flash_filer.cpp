@@ -1,27 +1,43 @@
-#if defined(ARDUINO)
 #include <Arduino.h>
-#endif
 #include <stdint.h>
 
 #include "machine.h"
+#include "arduinomachine.h"
 #include "debugging.h"
+#include "hardware.h"
+
+#define USE_STORAGE (defined(USE_SPIFFS) | defined(USE_LITTLEFS) | defined(USE_SD))
 
 #if defined(USE_SPIFFS)
+#include <FS.h>
 #include <SPIFFS.h>
+#define DISK SPIFFS
+#pragma message "SPIFFS configured"
+
 #elif defined(USE_LITTLEFS)
 #include <FS.h>
 #include <LittleFS.h>
+#define DISK LittleFS
+#pragma message "LITTLEFS configured"
+
+#elif defined(USE_SD)
+#include <SD.h>
+#define DISK SD
+#pragma message "SD configured"
+
+#else
+#pragma message "No Storage configured"
 #endif
 
 #include "serialio.h"
 #include "filer.h"
 #include "flash_filer.h"
 
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 static File files[MAX_FILES];
 #endif
 
-#if defined(USE_SPIFFS)
+#if defined(USE_SPIFFS) || defined(USE_SD)
 static File dir;
 #elif defined(USE_LITTLEFS)
 static Dir dir;
@@ -33,7 +49,7 @@ static Dir dir;
 
 bool flash_file::seek(uint32_t pos)
 {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	return files[_fd].seek(pos);
 #else
 	return false;
@@ -42,7 +58,7 @@ bool flash_file::seek(uint32_t pos)
 
 bool flash_file::more()
 {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	return files[_fd].available() > 0;
 #else
 	return false;
@@ -50,7 +66,7 @@ bool flash_file::more()
 }
 
 uint8_t flash_file::read() {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	return files[_fd].read();
 #else
 	return 0xff;
@@ -58,7 +74,7 @@ uint8_t flash_file::read() {
 }
 
 flash_file::operator bool() const {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	return files[_fd];
 #else
 	return false;
@@ -66,7 +82,7 @@ flash_file::operator bool() const {
 }
 
 void flash_file::write(uint8_t b) {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	files[_fd].write(b);
 	files[_fd].flush();
 #endif
@@ -75,10 +91,13 @@ void flash_file::write(uint8_t b) {
 bool flash_filer::start()
 {
 #if defined(USE_LITTLEFS)
-	dir = LittleFS.openDir(_programs);
+	dir = DISK.openDir(_programs);
 	return true;
 #elif defined(USE_SPIFFS)
-	dir = SPIFFS.open(_programs);
+	dir = DISK.open(_programs);
+	return (bool)dir;
+#elif defined(USE_SD)
+	dir = DISK.open(_programs);
 	return (bool)dir;
 #endif
 	return false;
@@ -86,14 +105,14 @@ bool flash_filer::start()
 
 void flash_filer::stop()
 {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	for (int i = 0; i < MAX_FILES; i++)
 		files[i].close();
 #endif
 }
 
 const char *flash_filer::advance() {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	File &f = files[_current];
 	f.close();
 #if defined(USE_LITTLEFS)
@@ -108,7 +127,7 @@ const char *flash_filer::advance() {
 		dir.rewind();
 	}
 	return f.name();
-#else
+#elif defined(USE_SPIFFS) || defined(USE_SD)
 	bool rewound = false;
 	while (true) {
 		f = dir.openNextFile();
@@ -131,7 +150,7 @@ const char *flash_filer::advance() {
 }
 
 const char *flash_filer::rewind() {
-#if defined(USE_SPIFFS)
+#if defined(USE_SPIFFS) || defined(USE_SD)
 	dir.rewindDirectory();
 #elif defined(USE_LITTLEFS)
 	dir.rewind();
@@ -140,7 +159,7 @@ const char *flash_filer::rewind() {
 }
 
 const char *flash_filer::filename() const {
-#if defined(USE_SPIFFS) || defined(USE_LITTLEFS)
+#if defined(USE_STORAGE)
 	File &f = files[_current];
 	if (f)
 		return f.name();
@@ -154,19 +173,19 @@ void flash_filer::next_device() {
 		_current = 0;
 }
 
-#if defined(USE_SPIFFS)
+#if defined(USE_SPIFFS) || defined(USE_SD)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 #endif
 
 const char *flash_filer::checkpoint() {
-#if defined(USE_SPIFFS)
+#if defined(USE_SPIFFS) || defined(USE_SD)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
-	File file = SPIFFS.open(buf, FILE_WRITE);
-	Checkpoint chk(file);
+	File file = DISK.open(buf, FILE_WRITE);
+	StreamCheckpoint chk(file);
 	_machine->checkpoint(chk);
 	file.close();
 	start();
@@ -177,12 +196,12 @@ const char *flash_filer::checkpoint() {
 }
 
 void flash_filer::restore(const char *filename) {
-#if defined(USE_SPIFFS)
+#if defined(USE_SPIFFS) || defined(USE_SD)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
-	File file = SPIFFS.open(buf, FILE_READ);
-	Checkpoint chk(file);
+	File file = DISK.open(buf, FILE_READ);
+	StreamCheckpoint chk(file);
 	_machine->restore(chk);
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
