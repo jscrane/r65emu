@@ -4,7 +4,7 @@
 #define RAM_SIZE	0x8000u
 
 // TFT display...
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 #define USE_ESPI
 //must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED

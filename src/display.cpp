@@ -7,7 +7,7 @@
 #include "display.h"
 #include "hardware.h"
 
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 
 #if defined(USE_ESPI)
 #pragma message "Configure TFT_eSPI in Makefile or <TFT_eSPI/User_Setup.h>"

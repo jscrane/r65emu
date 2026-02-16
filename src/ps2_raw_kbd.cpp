@@ -3,6 +3,8 @@
 #include "hardware.h"
 
 #if defined(USE_PS2_KBD) && !defined(PS2_SERIAL_KBD)
+#pragma message "PS/2 RAW keyboard configured"
+
 #include <PS2KeyRaw.h>
 #include "machine.h"
 #include "ps2_raw_kbd.h"

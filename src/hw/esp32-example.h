@@ -1,7 +1,7 @@
 #define RAM_SIZE	0x10000u
 
 // TFT display...
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 #define USE_ESPI
 // must be configured in uC-Makefile, or platformio, or TFT_eSPI's User_Setup.h
 //#define USER_SETUP_LOADED
@@ -30,25 +30,17 @@
 #endif
 
 // PS/2 keyboard
-#if !defined(USE_OWN_KBD)
+#if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD)
 #define USE_PS2_KBD
 #endif
+
+#if defined(USE_PS2_KBD)
 #define PS2_KBD_DATA	34
 #define PS2_KBD_IRQ	35
+#endif
 
-// flash storage (default is SPIFFS)
-#if defined(USE_SD)
-#define SD_CS		SS
-#undef USE_LITTLEFS
-#undef USE_SPIFFS
-
-#elif defined(USE_SPIFFS)
-#undef USE_SD
-#undef USE_LITTLEFS
-
-#elif !defined(NO_STORAGE)
-#undef USE_SD
-#undef USE_LITTLEFS
+// Storage
+#if !defined(NO_STORAGE) && !defined(USE_SD) && !defined(USE_LITTLEFS) && !defined(USE_SPIFFS)
 #define USE_SPIFFS
 #endif
 
