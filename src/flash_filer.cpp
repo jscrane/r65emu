@@ -6,7 +6,7 @@
 #include "debugging.h"
 #include "hardware.h"
 
-#define USE_STORAGE (defined(USE_SPIFFS) | defined(USE_LITTLEFS) | defined(USE_SD))
+#define USE_STORAGE (defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SD))
 
 #if defined(USE_SPIFFS)
 #include <SPIFFS.h>
@@ -40,7 +40,7 @@
 #include "filer.h"
 #include "flash_filer.h"
 
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 static File files[MAX_FILES];
 #endif
 
@@ -52,7 +52,7 @@ static Dir dir;
 
 bool flash_file::seek(uint32_t pos)
 {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	return files[_fd].seek(pos);
 #else
 	return false;
@@ -61,7 +61,7 @@ bool flash_file::seek(uint32_t pos)
 
 bool flash_file::more()
 {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	return files[_fd].available() > 0;
 #else
 	return false;
@@ -69,7 +69,7 @@ bool flash_file::more()
 }
 
 uint8_t flash_file::read() {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	return files[_fd].read();
 #else
 	return 0xff;
@@ -77,7 +77,7 @@ uint8_t flash_file::read() {
 }
 
 flash_file::operator bool() const {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	return files[_fd];
 #else
 	return false;
@@ -85,7 +85,7 @@ flash_file::operator bool() const {
 }
 
 void flash_file::write(uint8_t b) {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	files[_fd].write(b);
 	files[_fd].flush();
 #endif
@@ -105,14 +105,14 @@ bool flash_filer::start()
 
 void flash_filer::stop()
 {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	for (int i = 0; i < MAX_FILES; i++)
 		files[i].close();
 #endif
 }
 
 const char *flash_filer::advance() {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	File &f = files[_current];
 	f.close();
 #if defined(USE_LITTLEFS)
@@ -159,7 +159,7 @@ const char *flash_filer::rewind() {
 }
 
 const char *flash_filer::filename() const {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	File &f = files[_current];
 	if (f)
 		return f.name();
@@ -173,14 +173,14 @@ void flash_filer::next_device() {
 		_current = 0;
 }
 
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 #endif
 
 const char *flash_filer::checkpoint() {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
@@ -196,7 +196,7 @@ const char *flash_filer::checkpoint() {
 }
 
 void flash_filer::restore(const char *filename) {
-#if defined(USE_STORAGE)
+#if USE_STORAGE
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
