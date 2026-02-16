@@ -9,7 +9,6 @@
 #define USE_STORAGE (defined(USE_SPIFFS) | defined(USE_LITTLEFS) | defined(USE_SD))
 
 #if defined(USE_SPIFFS)
-#include <FS.h>
 #include <SPIFFS.h>
 #define DISK SPIFFS
 #pragma message "SPIFFS configured"
@@ -18,6 +17,14 @@
 #include <FS.h>
 #include <LittleFS.h>
 #define DISK LittleFS
+#if defined(LITTLEFS_READ_MODE)
+#define FILE_READ	LITTLEFS_READ_MODE
+#else
+#define FILE_READ	"r+"
+#endif
+#if !defined(FILE_WRITE)
+#define FILE_WRITE	"w+"
+#endif
 #pragma message "LITTLEFS configured"
 
 #elif defined(USE_SD)
@@ -41,10 +48,6 @@ static File files[MAX_FILES];
 static File dir;
 #elif defined(USE_LITTLEFS)
 static Dir dir;
-#endif
-
-#if defined(USE_LITTLEFS) && !defined(LITTLEFS_READ_MODE)
-#define LITTLEFS_READ_MODE	"r+"
 #endif
 
 bool flash_file::seek(uint32_t pos)
@@ -93,10 +96,7 @@ bool flash_filer::start()
 #if defined(USE_LITTLEFS)
 	dir = DISK.openDir(_programs);
 	return true;
-#elif defined(USE_SPIFFS)
-	dir = DISK.open(_programs);
-	return (bool)dir;
-#elif defined(USE_SD)
+#elif defined(USE_SPIFFS) || defined(USE_SD)
 	dir = DISK.open(_programs);
 	return (bool)dir;
 #endif
@@ -118,10 +118,10 @@ const char *flash_filer::advance() {
 #if defined(USE_LITTLEFS)
 	while (true) {
 		if (dir.next()) {
-			DBG(println(dir.fileName()));
+			DBG_DISK("dir: %s", dir.fileName());
 			if (!dir.isFile())
 				continue;
-			f = dir.openFile(LITTLEFS_READ_MODE);
+			f = dir.openFile(FILE_READ);
 			break;
 		}
 		dir.rewind();
@@ -173,14 +173,14 @@ void flash_filer::next_device() {
 		_current = 0;
 }
 
-#if defined(USE_SPIFFS) || defined(USE_SD)
+#if defined(USE_STORAGE)
 static char buf[32];
 static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 #endif
 
 const char *flash_filer::checkpoint() {
-#if defined(USE_SPIFFS) || defined(USE_SD)
+#if defined(USE_STORAGE)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
 
@@ -196,7 +196,7 @@ const char *flash_filer::checkpoint() {
 }
 
 void flash_filer::restore(const char *filename) {
-#if defined(USE_SPIFFS) || defined(USE_SD)
+#if defined(USE_STORAGE)
 	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
