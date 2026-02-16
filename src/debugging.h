@@ -10,6 +10,7 @@
 #define DEBUG_MEM	0x00000040
 #define DEBUG_ACIA	0x00000080
 #define DEBUG_RIOT	0x00000100
+#define DEBUG_DISK	0x00000200
 #define DEBUG_ANY	0xffffffff
 
 #if !defined(DEBUGGING)
@@ -35,3 +36,4 @@
 #define DBG_DSP(...)	_DBG(DEBUG_DSP, "DSP" __VA_OPT__(,) __VA_ARGS__)
 #define DBG_EMU(...)	_DBG(DEBUG_EMU, "EMU" __VA_OPT__(,) __VA_ARGS__)
 #define DBG_MEM(...)	_DBG(DEBUG_MEM, "MEM" __VA_OPT__(,) __VA_ARGS__)
+#define DBG_DISK(...)	_DBG(DEBUG_DISK, "DISK" __VA_OPT__(,) __VA_ARGS__)
