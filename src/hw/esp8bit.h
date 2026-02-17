@@ -4,7 +4,7 @@
 #define RAM_SIZE	0x8000u
 
 // TFT display...
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 #define USE_ESPI
 //must define these in Makefile (or platformio)
 //#define USER_SETUP_LOADED
@@ -23,11 +23,14 @@
 #endif
 
 // PS/2 keyboard
-#if !defined(USE_OWN_KBD)
+#if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD) && !defined(USE_PS2_KBD)
 #define USE_PS2_KBD
 #endif
+
+#if defined(USE_PS2_KBD) && !defined(PS2_KBD_IRQ)
 #define PS2_KBD_IRQ	D3
 #define PS2_KBD_DATA	D4
+#endif
 
 // SPI-RAM
 #if !defined(NO_SPIRAM)
@@ -37,23 +40,8 @@
 #define SPIRAM_SIZE	0x8000u
 #endif
 
-// flash storage (default is LittleFS)
-#if defined(USE_SD)
-#define SD_CS		D0
-#undef USE_SPIFFS
-#undef USE_LITTLEFS
-
-#elif defined(USE_SPIFFS)
-#undef USE_SD
-#undef USE_LITTLEFS
-
-#elif defined(USE_LITTLEFS)
-#undef USE_SD
-#undef USE_SPIFFS
-
-#elif !defined(NO_STORAGE)
-#undef USE_SD
-#undef USE_SPIFFS
+// storage
+#if !defined(NO_STORAGE) && !defined(USE_SD) && !defined(USE_LITTLEFS) && !defined(USE_SPIFFS)
 #define USE_LITTLEFS
 #endif
 

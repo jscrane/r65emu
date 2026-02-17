@@ -2,7 +2,7 @@
 // https://www.olimex.com/Products/Retro-Computers/ESP32-SBC-FabGL/open-source-hardware
 
 // Display
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 
 // ESP32Lib by Bitluni, these have been tested:
 // -DVGA_RESOLUTION=VGAMODE640x480 -DVGA_BIT_DEPTH=1
@@ -32,11 +32,14 @@
 #endif
 
 // PS/2 Keyboard
-#if !defined(USE_OWN_KBD)
+#if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD)
 #define USE_PS2_KBD
 #endif
+
+#if defined(USE_PS2_KBD)
 #define PS2_KBD_DATA	32
 #define PS2_KBD_IRQ	33
+#endif
 
 // 64kB RAM
 #define RAM_SIZE	0x10000u

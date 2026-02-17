@@ -2,7 +2,7 @@
 // https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-vga32-esp32
 
 // Display
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 
 // ESP32Lib by Bitluni, these have been tested:
 // -DVGA_RESOLUTION=VGAMODE640x480 -DVGA_BIT_DEPTH=1
@@ -32,7 +32,7 @@
 #endif
 
 // PS/2 Keyboard
-#if !defined(USE_OWN_KBD)
+#if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD) && !defined(USE_PS2_KBD)
 #define USE_PS2_KBD
 #endif
 

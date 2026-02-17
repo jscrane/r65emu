@@ -8,7 +8,7 @@
 #if defined(HARDWARE_H)
 #include HARDWARE_H
 
-#elif defined(BOARD)
+#elif defined(BOARD) && __has_include(STR(hw/BOARD.h))
 #include STR(hw/BOARD.h)
 #else
 

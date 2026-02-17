@@ -14,7 +14,7 @@
 // https://github.com/lurk101/pico-ps2kbd
 // GPIO14 is labelled SCK and GPIO15 MO on the board
 // https://learn.adafruit.com/assets/119662
-#if !defined(USE_OWN_KBD)
+#if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD) && !defined(USE_PS2_KBD)
 #define USE_PS2_KBD
 #endif
 #if !defined(PS2_KBD_DATA)
@@ -26,7 +26,7 @@
 
 // Display
 // https://cdn-learn.adafruit.com/downloads/pdf/picodvi-arduino-library-video-out-for-rp2040-boards.pdf
-#if !defined(USE_OWN_DISPLAY)
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 #define USE_DVI
 #define DVI_CONFIG		adafruit_feather_dvi_cfg
 
