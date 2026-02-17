@@ -56,7 +56,7 @@
 #if defined(USE_SD)
 #define SD_SPI	HSPI
 #define SD_CS	13
-#define SD_MOSI	17
+#define SD_MOSI	12
 #define SD_CLK	14
 #define SD_MISO 35
 #endif
