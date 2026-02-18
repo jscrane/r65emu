@@ -17,9 +17,13 @@
 static TFT_eSPI espi;
 
 #elif defined(USE_VGA)
-#pragma message "Bitluni VGA configured"
+#pragma message "VGA configured"
 #include <ESP32Video.h>
-#include VGA_FONT_H
+
+#if !defined(VGA_DEFAULT_FONT)
+#define VGA_DEFAULT_FONT	Font6x8
+#endif
+#include STR(Ressources/VGA_DEFAULT_FONT.h)
 
 #if VGA_BIT_DEPTH == 6
 static VGA6Bit vga;
@@ -193,19 +197,19 @@ void Display::begin(colour_t bg, colour_t fg, orientation_t orient) {
 
 	if (!init) {
 #if VGA_BIT_DEPTH == 6
-		Mode mode = VGA_RESOLUTION;
+		Mode mode = VGAMode::VGA_RESOLUTION;
 		vga.init(mode, R0, R1, G0, G1, B0, B1, HSYNC, VSYNC);
 #elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
-		vga.init(VGA_RESOLUTION, R0, G0, B0, HSYNC, VSYNC);
+		vga.init(VGAMode::VGA_RESOLUTION, R0, G0, B0, HSYNC, VSYNC);
 #endif
 		init = true;
 	}
 
 	_dx = vga.xres;
 	_dy = vga.yres;
-	setFont(&VGA_FONT);
+	setFont(&VGA_DEFAULT_FONT);
 
-	DBG_DSP("Bitluni: w %d h %d", _dx, _dy);
+	DBG_DSP("VGA: w %d h %d", _dx, _dy);
 
 #else
 	DBG_DSP("display???");
