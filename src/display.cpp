@@ -233,11 +233,9 @@ bool Display::onScreen(int16_t x, int16_t y) {
 
 void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
+	DBG_DSP("begin");
 	_xoff = _yoff = 0;
 	_cx = _cy = 0;
-
-	DBG_DSP("begin");
-	const void *font;
 
 #if defined(USE_ESPI)
     #if defined(LOAD_GFXFF)

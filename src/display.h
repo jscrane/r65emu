@@ -1,5 +1,7 @@
 #pragma once
 
+#if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
+
 #include <Adafruit_I2CDevice.h>
 #include <Adafruit_GFX.h>
 
@@ -83,3 +85,4 @@ private:
 	// bodge for Bitluni
 	void rotate(int16_t &, int16_t &);
 };
+#endif
