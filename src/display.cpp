@@ -169,21 +169,31 @@ void Display::setScreen(uint16_t sx, uint16_t sy, uint8_t centering) {
 
 	DBG_DSP("setScreen: %u,%u (%u)", sx, sy, centering);
 
-	if (sx < _width && (centering & CENTER_SCREEN_X)) {
-		_xoff = (_width - sx) / 2;
-		_dx = _width - _xoff;
+	int16_t w = _width, h = _height;
+
+#if defined(USE_VGA)
+	if (rotation & 1) {
+		uint16_t t = w;
+		w = h;
+		h = t;
+	}
+#endif
+
+	if (sx < w && (centering & CENTER_SCREEN_X)) {
+		_xoff = (w - sx) / 2;
+		_dx = w - _xoff;
 	}
 
-	if (sx >= _width && (centering & CENTER_DISPLAY_X))
-		_xoff = -(int16_t)(sx - _width) / 2;
+	if (sx >= w && (centering & CENTER_DISPLAY_X))
+		_xoff = -(int16_t)(sx - w) / 2;
 
-	if (sy < _height && (centering & CENTER_SCREEN_Y)) {
-		_yoff = (_height - sy - 8) / 2;	// FIXME: hardwired char height=8
-		_dy = _height - _yoff;
+	if (sy < h && (centering & CENTER_SCREEN_Y)) {
+		_yoff = (h - sy - 8) / 2;	// FIXME: hardwired char height=8
+		_dy = h - _yoff;
 	}
 
 	if (sy >= _height && (centering & CENTER_DISPLAY_Y))
-		_yoff = -(int16_t)(sy - _height) / 2;
+		_yoff = -(int16_t)(sy - h) / 2;
 
 	DBG_DSP("setScreen: %d,%d %u,%u", _xoff, _yoff, _dx, _dy);
 }
