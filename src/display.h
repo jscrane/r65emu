@@ -61,7 +61,6 @@ public:
 	bool onScreen(int16_t x, int16_t y);
 
 	void clear() { fillScreen(textbgcolor); }
-	void setFont(const void *font);
 
 	void status(const char *s);
 	void statusf(const char *fmt, ...);

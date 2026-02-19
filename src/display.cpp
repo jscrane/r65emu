@@ -185,21 +185,6 @@ bool Display::onScreen(int16_t x, int16_t y) {
 	return true;
 }
 
-void Display::setFont(const void *font) {
-
-#if defined(USE_ESPI)
-    #if defined(LOAD_GFXFF)
-	tft.setFreeFont((const GFXfont *)font);
-    #else
-	tft.setTextFont(font? (uintptr_t)font: 1);
-    #endif
-#elif defined(USE_DVI)
-	dvi.setFont((const GFXfont *)font);
-#elif defined(USE_VGA)
-	vga.setFont(*(Font *)font);
-#endif
-}
-
 void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	_xoff = _yoff = 0;
@@ -208,7 +193,11 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 	const void *font;
 
 #if defined(USE_ESPI)
-	setFont(ESPI_DEFAULT_FONT);
+    #if defined(LOAD_GFXFF)
+	tft.setFreeFont(ESPI_DEFAULT_FONT);
+    #else
+	tft.setTextFont(ESPI_DEFAULT_FONT? (uintptr_t)font: 1);
+    #endif
 	DBG_DSP("ESPI");
 
 #elif defined(USE_DVI)
@@ -224,7 +213,7 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 	for (int i = 0; i < NCOLOURS; i++)
 		dvi.setColor(i, colours[i]);
 #endif
-	setFont(DVI_DEFAULT_FONT);
+	dvi.setFont((const GFXfont *)DVI_DEFAULT_FONT);
 	DBG_DSP("DVI: %s %d (%d)", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, success);
 
 #elif defined(USE_VGA)
@@ -238,7 +227,7 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 #endif
 		init = true;
 	}
-	setFont(&VGA_DEFAULT_FONT);
+	vga.setFont(VGA_DEFAULT_FONT);
 	DBG_DSP("VGA: %s %d", STR(VGA_RESOLUTION), VGA_BIT_DEPTH);
 
 #else
