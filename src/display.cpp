@@ -117,19 +117,19 @@ void Display::drawPixel(int16_t x, int16_t y, uint16_t col) {
 	if (x < 0 || y < 0 || x >= _width || y >= _height) return;
 
 #if defined(USE_ESPI)
-	tft.drawPixel(x + _xoff, y + _yoff, col);
+	tft.drawPixel(x + _sx, y + _sy, col);
 #elif defined(USE_VGA)
 	rotate(x, y);
-	vga.dot(x + _xoff, y + _yoff, toVGAColour(col));
+	vga.dot(x + _sx, y + _sy, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.drawPixel(x + _xoff, y + _yoff, toColourIndex(col));
+	dvi.drawPixel(x + _sx, y + _sy, toColourIndex(col));
 #endif
 }
 
 void Display::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) {
 
-	x += _xoff;
-	y += _yoff;
+	x += _sx;
+	y += _sy;
 
 #if defined(USE_ESPI)
 	tft.drawFastHLine(x, y, w, col);
@@ -142,8 +142,8 @@ void Display::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) {
 
 void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 
-	x += _xoff;
-	y += _yoff;
+	x += _sx;
+	y += _sy;
 
 #if defined(USE_ESPI)
 	tft.drawFastVLine(x, y, h, col);
@@ -157,11 +157,11 @@ void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 void Display::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col) {
 
 #if defined(USE_ESPI)
-	tft.fillRect(x + _xoff, y + _yoff, w, h, col);
+	tft.fillRect(x + _sx, y + _sy, w, h, col);
 #elif defined(USE_VGA)
-	vga.fillRect(x + _xoff, y + _yoff, w, h, toVGAColour(col));
+	vga.fillRect(x + _sx, y + _sy, w, h, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.fillRect(x + _xoff, y + _yoff, w, h, toColourIndex(col));
+	dvi.fillRect(x + _sx, y + _sy, w, h, toColourIndex(col));
 #endif
 }
 
@@ -180,22 +180,22 @@ void Display::setScreen(uint16_t sx, uint16_t sy, uint8_t centering) {
 #endif
 
 	if (sx < w && (centering & CENTER_SCREEN_X)) {
-		_xoff = (w - sx) / 2;
-		_dx = w - _xoff;
+		_sx = (w - sx) / 2;
+		_sw = w - _sx;
 	}
 
 	if (sx >= w && (centering & CENTER_DISPLAY_X))
-		_xoff = -(int16_t)(sx - w) / 2;
+		_sx = -(int16_t)(sx - w) / 2;
 
 	if (sy < h && (centering & CENTER_SCREEN_Y)) {
-		_yoff = (h - sy - charHeight()) / 2;
-		_dy = h - _yoff;
+		_sy = (h - sy - charHeight()) / 2;
+		_sh = h - _sy;
 	}
 
 	if (sy >= _height && (centering & CENTER_DISPLAY_Y))
-		_yoff = -(int16_t)(sy - h) / 2;
+		_sy = -(int16_t)(sy - h) / 2;
 
-	DBG_DSP("setScreen: %d,%d %u,%u", _xoff, _yoff, _dx, _dy);
+	DBG_DSP("setScreen: %d,%d %u,%u", _sx, _sy, _sw, _sh);
 }
 
 uint16_t Display::charHeight() {
@@ -220,12 +220,12 @@ uint16_t Display::charWidth() {
 
 bool Display::onScreen(int16_t x, int16_t y) {
 
-	int xo = _xoff + x;
-	if (xo < 0 || xo > _dx)
+	int xo = _sx + x;
+	if (xo < 0 || xo > _sw)
 		return false;
 
-	int yo = _yoff + y;
-	if (yo < 0 || yo > _dy)
+	int yo = _sy + y;
+	if (yo < 0 || yo > _sh)
 		return false;
 
 	return true;
@@ -234,7 +234,7 @@ bool Display::onScreen(int16_t x, int16_t y) {
 void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	DBG_DSP("begin");
-	_xoff = _yoff = 0;
+	_sx = _sy = 0;
 	_cx = _cy = 0;
 
 #if defined(USE_ESPI)
@@ -310,8 +310,8 @@ void Display::status(const char *s) {
 	uint16_t w, h;
 	getTextBounds(s, 0, 0, &x, &y, &w, &h);
 
-	x = _dx - w;
-	y = _dy - h;
+	x = _sw - w;
+	y = _sh - h;
 	fillRect(min(x, _oxs), y, w, h, textbgcolor);
 
 	setCursor(x, y);

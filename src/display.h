@@ -70,15 +70,15 @@ public:
 	void status(const char *s);
 	void statusf(const char *fmt, ...);
 
-	uint16_t screenWidth() const { return _dx; }
-	uint16_t screenHeight() const { return _dy; }
+	uint16_t screenWidth() const { return _sw; }
+	uint16_t screenHeight() const { return _sh; }
 
 	uint16_t charWidth();
 	uint16_t charHeight();
 
 private:
-	uint16_t _dx, _dy;	// width and height of screen (if smaller than display)
-	int16_t _xoff, _yoff;	// top-left of screen
+	uint16_t _sw, _sh;	// width and height of screen (if smaller than display)
+	int16_t _sx, _sy;	// coordinates of top-left of screen
 	int16_t _oxs;		// x-offset of status text
 	uint16_t _cx, _cy;	// char width and height in current font
 
