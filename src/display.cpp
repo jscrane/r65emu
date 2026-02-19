@@ -35,8 +35,7 @@ static VGA3Bit vga;
 #elif VGA_BIT_DEPTH == 1
 static VGA1BitI vga;
 #endif
-Display::Display(): Adafruit_GFX(VGAMode::VGA_RESOLUTION.hRes, VGAMode::VGA_RESOLUTION.vRes) {
-}
+Display::Display(): Adafruit_GFX(VGAMode::VGA_RESOLUTION.hRes, VGAMode::VGA_RESOLUTION.vRes / VGAMode::VGA_RESOLUTION.vDiv) {}
 
 static uint8_t toVGAColour(uint16_t c) {
     // 1. Extract 5-bit Red, 6-bit Green, 5-bit Blue
@@ -65,8 +64,7 @@ static DVIGFX1 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
 #elif DVI_BIT_DEPTH == 16
 static DVIGFX16 dvi(DVI_RESOLUTION, DVI_CONFIG);
 #endif
-Display::Display(): Adafruit_GFX(0, 0) {
-}
+Display::Display(): Adafruit_GFX(0, 0) {}
 
 static const uint16_t colours[] = {
 	BLACK, WHITE, NAVY, DARKGREEN, DARKCYAN, MAROON, PURPLE, OLIVE, LIGHTGREY, DARKGREY, BLUE, GREEN, CYAN, RED, MAGENTA, YELLOW, ORANGE, GREENYELLOW, PINK,
@@ -227,7 +225,7 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 		dvi.setColor(i, colours[i]);
 #endif
 	setFont(DVI_DEFAULT_FONT);
-	DBG_DSP("DVI: %d", success);
+	DBG_DSP("DVI: %s %d (%d)", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, success);
 
 #elif defined(USE_VGA)
 	static bool init;
@@ -241,7 +239,7 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 		init = true;
 	}
 	setFont(&VGA_DEFAULT_FONT);
-	DBG_DSP("VGA");
+	DBG_DSP("VGA: %s %d", STR(VGA_RESOLUTION), VGA_BIT_DEPTH);
 
 #else
 	DBG_DSP("display???");
@@ -257,7 +255,7 @@ void Display::fillScreen(uint16_t col) {
 #if defined(USE_ESPI)
 	tft.fillScreen(col);
 #elif defined(USE_VGA)
-	vga.clear(toVGAColor(col));
+	vga.clear(toVGAColour(col));
 #elif defined(USE_DVI)
 	dvi.fillScreen(toColourIndex(col));
 #endif
