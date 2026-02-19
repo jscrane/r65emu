@@ -222,17 +222,15 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 		_height = HEIGHT = dvi.height();
 		init = true;
 	}
-	setFont(DVI_DEFAULT_FONT);
-
 #if DVI_BIT_DEPTH == 8
 	for (int i = 0; i < NCOLOURS; i++)
 		dvi.setColor(i, colours[i]);
 #endif
+	setFont(DVI_DEFAULT_FONT);
 	DBG_DSP("DVI: %d", success);
 
 #elif defined(USE_VGA)
 	static bool init;
-
 	if (!init) {
 #if VGA_BIT_DEPTH == 6
 		Mode mode = VGAMode::VGA_RESOLUTION;
@@ -242,7 +240,6 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 #endif
 		init = true;
 	}
-
 	setFont(&VGA_DEFAULT_FONT);
 	DBG_DSP("VGA");
 
@@ -263,6 +260,15 @@ void Display::fillScreen(uint16_t col) {
 	vga.clear(toVGAColor(col));
 #elif defined(USE_DVI)
 	dvi.fillScreen(toColourIndex(col));
+#endif
+}
+
+void Display::setRotation(uint8_t r) {
+	Adafruit_GFX::setRotation(r);
+#if defined(USE_ESPI)
+	tft.setRotation(r);
+#elif defined(USE_DVI)
+	dvi.setRotation(r);
 #endif
 }
 
