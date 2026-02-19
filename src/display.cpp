@@ -15,7 +15,9 @@
 #include <Fonts/GFXFF/gfxfont.h>
 
 static TFT_eSPI tft;
-Display::Display(): Adafruit_GFX(tft.width(), tft.height()) {}
+Display::Display(): Adafruit_GFX(tft.width(), tft.height()) {
+	tft.init();
+}
 
 #elif defined(USE_VGA)
 #pragma message "Bitluni VGA configured"
@@ -33,10 +35,10 @@ static VGA3Bit vga;
 #elif VGA_BIT_DEPTH == 1
 static VGA1BitI vga;
 #endif
-static Mode mode = VGAMode::VGA_RESOLUTION;
-Display::Display(): Adafruit_GFX(mode.hRes, mode.vRes) {}
+Display::Display(): Adafruit_GFX(VGAMode::VGA_RESOLUTION.hRes, VGAMode::VGA_RESOLUTION.vRes) {
+}
 
-static uint8_t toVGAColor(uint16_t c) {
+static uint8_t toVGAColour(uint16_t c) {
     // 1. Extract 5-bit Red, 6-bit Green, 5-bit Blue
     uint8_t r = (c >> 11) & 0x1F;
     uint8_t g = (c >> 5) & 0x3F;
@@ -63,13 +65,29 @@ static DVIGFX1 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
 #elif DVI_BIT_DEPTH == 16
 static DVIGFX16 dvi(DVI_RESOLUTION, DVI_CONFIG);
 #endif
-Display::Display(): Adafruit_GFX(dvi.width(), dvi.height()) {}
+Display::Display(): Adafruit_GFX(0, 0) {
+}
 
 static const uint16_t colours[] = {
 	BLACK, WHITE, NAVY, DARKGREEN, DARKCYAN, MAROON, PURPLE, OLIVE, LIGHTGREY, DARKGREY, BLUE, GREEN, CYAN, RED, MAGENTA, YELLOW, ORANGE, GREENYELLOW, PINK,
 };
 
-#define NCOLOURS (sizeof(colours) / sizeof(uint16_t))
+#define NCOLOURS (sizeof(colours) / sizeof(colours[0]))
+
+inline int toColourIndex(uint16_t c) {
+#if DVI_BIT_DEPTH == 8
+	for (int i = 0; i < NCOLOURS; i++)
+		if (c == colours[i])
+			return i;
+	return 1;
+#elif DVI_BIT_DEPTH == 1 || DVI_BIT_DEPTH == 0
+	return c != 0;
+#elif DVI_BIT_DEPTH == 16
+	return c;
+#else
+#pragma error "Display not configured!"
+#endif
+}
 
 #else
 #pragma error "Display not configured!"
@@ -85,9 +103,9 @@ void Display::drawPixel(int16_t x, int16_t y, uint16_t col) {
 #if defined(USE_ESPI)
 	tft.drawPixel(x, y, col);
 #elif defined(USE_VGA)
-	vga.dot(x, y, toVGAColor(col)); // bitluni uses .dot() for pixels
+	vga.dot(x, y, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.drawPixel(x, y, col);
+	dvi.drawPixel(x, y, toColourIndex(col));
 #endif
 }
 
@@ -99,9 +117,9 @@ void Display::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) {
 #if defined(USE_ESPI)
 	tft.drawFastHLine(x, y, w, col);
 #elif defined(USE_VGA)
-	vga.line(x, y, x+w-1, y, toVGAColor(col));
+	vga.line(x, y, x+w-1, y, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.drawFastHLine(x, y, w, col);
+	dvi.drawFastHLine(x, y, w, toColourIndex(col));
 #endif
 }
 
@@ -113,9 +131,9 @@ void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 #if defined(USE_ESPI)
 	tft.drawFastVLine(x, y, h, col);
 #elif defined(USE_VGA)
-	vga.line(x, y+h-1, x, y, toVGAColor(col));
+	vga.line(x, y+h-1, x, y, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.drawFastVLine(x, y, h, col);
+	dvi.drawFastVLine(x, y, h, toColourIndex(col));
 #endif
 }
 
@@ -127,9 +145,9 @@ void Display::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col)
 #if defined(USE_ESPI)
 	tft.fillRect(x, y, w, h, col);
 #elif defined(USE_VGA)
-	vga.fillRect(x, y, w, h, toVGAColor(col));
+	vga.fillRect(x, y, w, h, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.fillRect(x, y, w, h, col);
+	dvi.fillRect(x, y, w, h, toColourIndex(col));
 #endif
 }
 
@@ -137,23 +155,21 @@ void Display::setScreen(uint16_t sx, uint16_t sy, uint8_t centering) {
 
 	DBG_DSP("setScreen: %u,%u (%u)", sx, sy, centering);
 
-	int16_t w = width();
-	if (sx < w && (centering & CENTER_SCREEN_X)) {
-		_xoff = (w - sx) / 2;
-		_dx = w - _xoff;
+	if (sx < _width && (centering & CENTER_SCREEN_X)) {
+		_xoff = (_width - sx) / 2;
+		_dx = _width - _xoff;
 	}
 
-	if (sx >= w && (centering & CENTER_DISPLAY_X))
-		_xoff = -(int16_t)(sx - w) / 2;
+	if (sx >= _width && (centering & CENTER_DISPLAY_X))
+		_xoff = -(int16_t)(sx - _width) / 2;
 
-	int16_t h = height();
-	if (sy < h && (centering & CENTER_SCREEN_Y)) {
-		_yoff = (h - sy - 8) / 2;	// FIXME: hardwired char height=8
-		_dy = h - _yoff;
+	if (sy < _height && (centering & CENTER_SCREEN_Y)) {
+		_yoff = (_height - sy - 8) / 2;	// FIXME: hardwired char height=8
+		_dy = _height - _yoff;
 	}
 
-	if (sy >= h && (centering & CENTER_DISPLAY_Y))
-		_yoff = -(int16_t)(sy - h) / 2;
+	if (sy >= _height && (centering & CENTER_DISPLAY_Y))
+		_yoff = -(int16_t)(sy - _height) / 2;
 
 	DBG_DSP("setScreen: %d,%d %u,%u", _xoff, _yoff, _dx, _dy);
 }
@@ -194,8 +210,7 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 	const void *font;
 
 #if defined(USE_ESPI)
-	tft.init();
-	font = ESPI_DEFAULT_FONT;
+	setFont(ESPI_DEFAULT_FONT);
 	DBG_DSP("ESPI");
 
 #elif defined(USE_DVI)
@@ -203,9 +218,11 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 	bool success = true;
 	if (!init) {
 		success = dvi.begin();
+		_width = WIDTH = dvi.width();
+		_height = HEIGHT = dvi.height();
 		init = true;
 	}
-	font = DVI_DEFAULT_FONT;
+	setFont(DVI_DEFAULT_FONT);
 
 #if DVI_BIT_DEPTH == 8
 	for (int i = 0; i < NCOLOURS; i++)
@@ -218,14 +235,15 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	if (!init) {
 #if VGA_BIT_DEPTH == 6
+		Mode mode = VGAMode::VGA_RESOLUTION;
 		vga.init(mode, R0, R1, G0, G1, B0, B1, HSYNC, VSYNC);
 #elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
-		vga.init(mode, R0, G0, B0, HSYNC, VSYNC);
+		vga.init(VGAMode::VGA_RESOLUTION, R0, G0, B0, HSYNC, VSYNC);
 #endif
 		init = true;
 	}
 
-	font = &VGA_DEFAULT_FONT;
+	setFont(&VGA_DEFAULT_FONT);
 	DBG_DSP("VGA");
 
 #else
@@ -234,18 +252,17 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	setRotation(orient);
 	setTextColor(fg, bg);
-	setFont(font);
-	_oxs = width();
-	DBG_INI("display: initialised: %d x %d", width(), height());
+	_oxs = _width;
+	DBG_INI("display: initialised: %d x %d", _width, _height);
 }
 
 void Display::fillScreen(uint16_t col) {
 #if defined(USE_ESPI)
 	tft.fillScreen(col);
 #elif defined(USE_VGA)
-	vga.fill(toVGAColor(col));
+	vga.clear(toVGAColor(col));
 #elif defined(USE_DVI)
-	dvi.fillScreen(col);
+	dvi.fillScreen(toColourIndex(col));
 #endif
 }
 
