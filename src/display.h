@@ -1,95 +1,74 @@
 #pragma once
 
+#include <Adafruit_I2CDevice.h>
+#include <Adafruit_GFX.h>
+
 typedef enum {
 	portrait, landscape, reverse_portrait, reverse_landscape
 } orientation_t;
 
-typedef unsigned colour_t;
-
 // 5-6-5 colours
-const colour_t BLACK = 0x0000;
-const colour_t NAVY = 0x000F;
-const colour_t DARKGREEN = 0x03E0;
-const colour_t DARKCYAN = 0x03EF;
-const colour_t MAROON = 0x7800;
-const colour_t PURPLE = 0x780F;
-const colour_t OLIVE = 0x7BE0;
-const colour_t LIGHTGREY = 0xC618;
-const colour_t DARKGREY = 0x7BEF;
-const colour_t BLUE = 0x001F;
-const colour_t GREEN = 0x07E0;
-const colour_t CYAN = 0x07FF;
-const colour_t RED = 0xF800;
-const colour_t MAGENTA = 0xF81F;
-const colour_t YELLOW = 0xFFE0;
-const colour_t WHITE = 0xFFFF;
-const colour_t ORANGE = 0xFDA0;
-const colour_t GREENYELLOW = 0xB7E0;
-const colour_t PINK = 0xFC9F;
+const uint16_t BLACK = 0x0000;
+const uint16_t NAVY = 0x000F;
+const uint16_t DARKGREEN = 0x03E0;
+const uint16_t DARKCYAN = 0x03EF;
+const uint16_t MAROON = 0x7800;
+const uint16_t PURPLE = 0x780F;
+const uint16_t OLIVE = 0x7BE0;
+const uint16_t LIGHTGREY = 0xC618;
+const uint16_t DARKGREY = 0x7BEF;
+const uint16_t BLUE = 0x001F;
+const uint16_t GREEN = 0x07E0;
+const uint16_t CYAN = 0x07FF;
+const uint16_t RED = 0xF800;
+const uint16_t MAGENTA = 0xF81F;
+const uint16_t YELLOW = 0xFFE0;
+const uint16_t WHITE = 0xFFFF;
+const uint16_t ORANGE = 0xFDA0;
+const uint16_t GREENYELLOW = 0xB7E0;
+const uint16_t PINK = 0xFC9F;
 
 // centering flags
-const unsigned CENTER_NONE = 0x00;
-const unsigned CENTER_DISPLAY_X = 0x01;
-const unsigned CENTER_DISPLAY_Y = 0x02;
-const unsigned CENTER_DISPLAY = CENTER_DISPLAY_X | CENTER_DISPLAY_Y;
-const unsigned CENTER_SCREEN_X = 0x04;
-const unsigned CENTER_SCREEN_Y = 0x08;
-const unsigned CENTER_SCREEN = CENTER_SCREEN_X | CENTER_SCREEN_Y;
-const unsigned CENTER_ALL = CENTER_DISPLAY | CENTER_SCREEN;
+const uint8_t CENTER_NONE = 0x00;
+const uint8_t CENTER_DISPLAY_X = 0x01;
+const uint8_t CENTER_DISPLAY_Y = 0x02;
+const uint8_t CENTER_DISPLAY = CENTER_DISPLAY_X | CENTER_DISPLAY_Y;
+const uint8_t CENTER_SCREEN_X = 0x04;
+const uint8_t CENTER_SCREEN_Y = 0x08;
+const uint8_t CENTER_SCREEN = CENTER_SCREEN_X | CENTER_SCREEN_Y;
+const uint8_t CENTER_ALL = CENTER_DISPLAY | CENTER_SCREEN;
 
-class Display {
+class Display: public Adafruit_GFX {
 public:
-	void begin(colour_t bg, colour_t fg, orientation_t o, unsigned sx, unsigned sy) {
+	Display();
+
+	// Adafruit overrides
+	virtual void drawPixel(int16_t x, int16_t y, uint16_t col);
+	virtual void fillScreen(uint16_t col) override;
+	virtual void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) override;
+	virtual void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) override;
+	virtual void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col) override;
+
+	void begin(uint16_t bg, uint16_t fg, orientation_t o, unsigned sx, unsigned sy) {
 		begin(bg, fg, o);
 		setScreen(sx, sy);
 	}
-	void begin(colour_t bg, colour_t fg, orientation_t o);
+	void begin(uint16_t bg, uint16_t fg, orientation_t o);
 
-	void setScreen(unsigned sx, unsigned sy, unsigned centering = CENTER_SCREEN);
-	bool onScreen(unsigned x, unsigned y);
+	void setScreen(uint16_t sx, uint16_t sy, uint8_t centering = CENTER_SCREEN);
+	bool onScreen(int16_t x, int16_t y);
 
-	void clear();
+	void clear() { fillScreen(textbgcolor); }
 	void setFont(const void *font);
 
 	void status(const char *s);
 	void statusf(const char *fmt, ...);
 
-
-	void drawPixel(unsigned x, unsigned y, colour_t col);
-	void drawPixel(unsigned x, unsigned y) { drawPixel(x, y, _fg); }
-
-	void drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2, colour_t col);
-	void drawLine(unsigned x1, unsigned y1, unsigned x2, unsigned y2) { drawLine(x1, y1, x2, y2, _fg); }
-
-	void drawCircle(unsigned x, unsigned y, unsigned r, colour_t col);
-	void drawCircle(unsigned x, unsigned y, unsigned r) { drawCircle(x, y, r, _fg); }
-
-	void fillCircle(unsigned x, unsigned y, unsigned r, colour_t col);
-	void fillCircle(unsigned x, unsigned y, unsigned r) { fillCircle(x, y, r, _fg); }
-
-	void drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t col);
-	void drawRectangle(unsigned x, unsigned y, unsigned w, unsigned h) { drawRectangle(x, y, w, h, _fg); }
-
-	void fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h, colour_t col);
-	void fillRectangle(unsigned x, unsigned y, unsigned w, unsigned h) { fillRectangle(x, y, w, h, _fg); }
-
-	void drawString(const char *s, unsigned x, unsigned y, colour_t col);
-	void drawString(const char *s, unsigned x, unsigned y) { drawString(s, x, y, _fg); }
-
 	unsigned screenWidth() const { return _dx; }
 	unsigned screenHeight() const { return _dy; }
 
-	unsigned width() const { return _w; }
-	unsigned height() const { return _h; }
-
-	unsigned charWidth() const { return _cx; }
-	unsigned charHeight() const { return _cy; }
-
 private:
-	unsigned _bg, _fg;	// background and foreground colours
-	unsigned _cx, _cy;	// character width and height
-	unsigned _dx, _dy;
-	unsigned _w, _h;	// display width and height
-	unsigned _oxs;		// x-offset of status text
-	int _xoff, _yoff;
+	uint16_t _dx, _dy;	// width and height of screen (if smaller than display)
+	int16_t _xoff, _yoff;	// top-left of screen
+	int16_t _oxs;		// x-offset of status text
 };
