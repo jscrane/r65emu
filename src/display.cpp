@@ -188,7 +188,7 @@ void Display::setScreen(uint16_t sx, uint16_t sy, uint8_t centering) {
 		_xoff = -(int16_t)(sx - w) / 2;
 
 	if (sy < h && (centering & CENTER_SCREEN_Y)) {
-		_yoff = (h - sy - 8) / 2;	// FIXME: hardwired char height=8
+		_yoff = (h - sy - charHeight()) / 2;
 		_dy = h - _yoff;
 	}
 
@@ -196,6 +196,26 @@ void Display::setScreen(uint16_t sx, uint16_t sy, uint8_t centering) {
 		_yoff = -(int16_t)(sy - h) / 2;
 
 	DBG_DSP("setScreen: %d,%d %u,%u", _xoff, _yoff, _dx, _dy);
+}
+
+uint16_t Display::charHeight() {
+
+	if (_cy == 0)
+		_cy = gfxFont? gfxFont->yAdvance: 8 * textsize_y;
+	return _cy;
+}
+
+uint16_t Display::charWidth() {
+
+	if (_cx == 0) {
+
+		int16_t x1, y1;
+		uint16_t h;
+
+		// We use "0" as a standard width reference for monospace-style grids
+		getTextBounds("0", 0, 0, &x1, &y1, &_cx, &h);
+	}
+	return _cx;
 }
 
 bool Display::onScreen(int16_t x, int16_t y) {
@@ -214,6 +234,7 @@ bool Display::onScreen(int16_t x, int16_t y) {
 void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	_xoff = _yoff = 0;
+	_cx = _cy = 0;
 
 	DBG_DSP("begin");
 	const void *font;

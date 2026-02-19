@@ -57,6 +57,9 @@ public:
 	}
 	void begin(uint16_t bg, uint16_t fg, orientation_t o);
 
+	void setScreenGrid(uint16_t cols, uint16_t rows, uint8_t centering = CENTER_SCREEN) {
+		setScreen(cols * charWidth(), rows * charHeight(), centering);
+	}
 	void setScreen(uint16_t sx, uint16_t sy, uint8_t centering = CENTER_SCREEN);
 	bool onScreen(int16_t x, int16_t y);
 
@@ -65,13 +68,17 @@ public:
 	void status(const char *s);
 	void statusf(const char *fmt, ...);
 
-	unsigned screenWidth() const { return _dx; }
-	unsigned screenHeight() const { return _dy; }
+	uint16_t screenWidth() const { return _dx; }
+	uint16_t screenHeight() const { return _dy; }
+
+	uint16_t charWidth();
+	uint16_t charHeight();
 
 private:
 	uint16_t _dx, _dy;	// width and height of screen (if smaller than display)
 	int16_t _xoff, _yoff;	// top-left of screen
 	int16_t _oxs;		// x-offset of status text
+	uint16_t _cx, _cy;	// char width and height in current font
 
 	// bodge for Bitluni
 	void rotate(int16_t &, int16_t &);
