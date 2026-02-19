@@ -91,19 +91,38 @@ inline int toColourIndex(uint16_t c) {
 #pragma error "Display not configured!"
 #endif
 
+inline void Display::rotate(int16_t &x, int16_t &y) {
+#if defined(USE_VGA)
+	if (rotation == 0) return;
+
+	int16_t tx = x, ty = y;
+
+	if (rotation == 1) { // 90°
+		tx = (_width - 1) - y;
+		ty = x;
+	} else if (rotation == 2) { // 180°
+		tx = (_width - 1) - x;
+		ty = (_height - 1) - y;
+	} else if (rotation == 3) { // 270°
+		tx = y;
+		ty = (_height - 1) - x;
+	}
+	x = tx;
+	y = ty;
+#endif
+}
+
 void Display::drawPixel(int16_t x, int16_t y, uint16_t col) {
 
 	if (x < 0 || y < 0 || x >= _width || y >= _height) return;
 
-	x += _xoff;
-	y += _yoff;
-
 #if defined(USE_ESPI)
-	tft.drawPixel(x, y, col);
+	tft.drawPixel(x + _xoff, y + _yoff, col);
 #elif defined(USE_VGA)
-	vga.dot(x, y, toVGAColour(col));
+	rotate(x, y);
+	vga.dot(x + _xoff, y + _yoff, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.drawPixel(x, y, toColourIndex(col));
+	dvi.drawPixel(x + _xoff, y + _yoff, toColourIndex(col));
 #endif
 }
 
@@ -137,15 +156,12 @@ void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 
 void Display::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col) {
 
-	x += _xoff;
-	y += _yoff;
-
 #if defined(USE_ESPI)
-	tft.fillRect(x, y, w, h, col);
+	tft.fillRect(x + _xoff, y + _yoff, w, h, col);
 #elif defined(USE_VGA)
-	vga.fillRect(x, y, w, h, toVGAColour(col));
+	vga.fillRect(x + _xoff, y + _yoff, w, h, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.fillRect(x, y, w, h, toColourIndex(col));
+	dvi.fillRect(x + _xoff, y + _yoff, w, h, toColourIndex(col));
 #endif
 }
 

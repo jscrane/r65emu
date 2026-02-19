@@ -72,4 +72,7 @@ private:
 	uint16_t _dx, _dy;	// width and height of screen (if smaller than display)
 	int16_t _xoff, _yoff;	// top-left of screen
 	int16_t _oxs;		// x-offset of status text
+
+	// bodge for Bitluni
+	void rotate(int16_t &, int16_t &);
 };
