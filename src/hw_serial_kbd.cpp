@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "machine.h"
+#include "hardware.h"
 #include "serial_kbd.h"
 #include "hw_serial_kbd.h"
 
@@ -23,6 +23,7 @@ bool hw_serial_kbd::available() {
 
 void hw_serial_kbd::reset() {
 #if defined(TERMINAL_SPEED)
-	_serial.begin(TERMINAL_SPEED);
+	if (!_serial)
+		_serial.begin(TERMINAL_SPEED);
 #endif
 }
