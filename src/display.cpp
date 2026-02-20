@@ -139,10 +139,13 @@ void Display::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) {
 
 #if defined(USE_ESPI)
 	tft.drawFastHLine(x, y, w, col);
-#elif defined(USE_VGA)
-	vga.line(x, y, x+w-1, y, toVGAColour(col));
 #elif defined(USE_DVI)
 	dvi.drawFastHLine(x, y, w, toColourIndex(col));
+#elif defined(USE_VGA)
+	if (rotation == 0)
+		vga.line(x, y, x+w-1, y, toVGAColour(col));
+	else
+		Adafruit_GFX::drawFastHLine(x, y, w, col);
 #endif
 }
 
@@ -153,10 +156,13 @@ void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 
 #if defined(USE_ESPI)
 	tft.drawFastVLine(x, y, h, col);
-#elif defined(USE_VGA)
-	vga.line(x, y+h-1, x, y, toVGAColour(col));
 #elif defined(USE_DVI)
 	dvi.drawFastVLine(x, y, h, toColourIndex(col));
+#elif defined(USE_VGA)
+	if (rotation == 0)
+		vga.line(x, y, x, y+h-1, toVGAColour(col));
+	else
+		Adafruit_GFX::drawFastVLine(x, y, h, col);
 #endif
 }
 
@@ -164,10 +170,13 @@ void Display::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col)
 
 #if defined(USE_ESPI)
 	tft.fillRect(x + _sox, y + _soy, w, h, col);
-#elif defined(USE_VGA)
-	vga.fillRect(x + _sox, y + _soy, w, h, toVGAColour(col));
 #elif defined(USE_DVI)
 	dvi.fillRect(x + _sox, y + _soy, w, h, toColourIndex(col));
+#elif defined(USE_VGA)
+	if (rotation == 0)
+		vga.fillRect(x + _sox, y + _soy, w, h, toVGAColour(col));
+	else
+		Adafruit_GFX::fillRect(x, y, w, h, col);
 #endif
 }
 
@@ -295,7 +304,7 @@ void Display::setRotation(uint8_t r) {
 #elif defined(USE_DVI)
 	dvi.setRotation(r);
 #elif defined(USE_VGA)
-	// Bitluni doesn't know about rotation: must handle that
+	// Bitluni doesn't know about rotation: handle that explicitly in drawPixel()
 #endif
 }
 
