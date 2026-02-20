@@ -98,14 +98,14 @@ inline void Display::rotate(int16_t &x, int16_t &y) {
 	int16_t tx = x, ty = y;
 
 	if (rotation == 1) { // 90°
-		tx = (_width - 1) - y;
+		tx = (WIDTH - 1) - y;
 		ty = x;
 	} else if (rotation == 2) { // 180°
-		tx = (_width - 1) - x;
-		ty = (_height - 1) - y;
+		tx = (WIDTH - 1) - x;
+		ty = (HEIGHT - 1) - y;
 	} else if (rotation == 3) { // 270°
 		tx = y;
-		ty = (_height - 1) - x;
+		ty = (HEIGHT - 1) - x;
 	}
 	x = tx;
 	y = ty;
@@ -114,22 +114,28 @@ inline void Display::rotate(int16_t &x, int16_t &y) {
 
 void Display::drawPixel(int16_t x, int16_t y, uint16_t col) {
 
+#if defined(USE_VGA)
+	rotate(x, y);
+#endif
+
+	x += _sox;
+	y += _soy;
+
 	if (x < 0 || y < 0 || x >= _width || y >= _height) return;
 
 #if defined(USE_ESPI)
-	tft.drawPixel(x + _sx, y + _sy, col);
+	tft.drawPixel(x, y, col);
 #elif defined(USE_VGA)
-	rotate(x, y);
-	vga.dot(x + _sx, y + _sy, toVGAColour(col));
+	vga.dot(x, y, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.drawPixel(x + _sx, y + _sy, toColourIndex(col));
+	dvi.drawPixel(x, y, toColourIndex(col));
 #endif
 }
 
 void Display::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) {
 
-	x += _sx;
-	y += _sy;
+	x += _sox;
+	y += _soy;
 
 #if defined(USE_ESPI)
 	tft.drawFastHLine(x, y, w, col);
@@ -142,8 +148,8 @@ void Display::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t col) {
 
 void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 
-	x += _sx;
-	y += _sy;
+	x += _sox;
+	y += _soy;
 
 #if defined(USE_ESPI)
 	tft.drawFastVLine(x, y, h, col);
@@ -157,85 +163,72 @@ void Display::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t col) {
 void Display::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col) {
 
 #if defined(USE_ESPI)
-	tft.fillRect(x + _sx, y + _sy, w, h, col);
+	tft.fillRect(x + _sox, y + _soy, w, h, col);
 #elif defined(USE_VGA)
-	vga.fillRect(x + _sx, y + _sy, w, h, toVGAColour(col));
+	vga.fillRect(x + _sox, y + _soy, w, h, toVGAColour(col));
 #elif defined(USE_DVI)
-	dvi.fillRect(x + _sx, y + _sy, w, h, toColourIndex(col));
+	dvi.fillRect(x + _sox, y + _soy, w, h, toColourIndex(col));
 #endif
 }
 
-void Display::setScreen(uint16_t sx, uint16_t sy, uint8_t centering) {
+void Display::setScreen(uint16_t swidth, uint16_t sheight, uint8_t centering) {
 
-	DBG_DSP("setScreen: %u,%u (%u)", sx, sy, centering);
+	DBG_DSP("setScreen: %u,%u (%u)", swidth, sheight, centering);
 
-	int16_t w = _width, h = _height;
+	int16_t dwidth = _width, dheight = _height;
 
 #if defined(USE_VGA)
 	if (rotation & 1) {
-		uint16_t t = w;
-		w = h;
-		h = t;
+		uint16_t t = dwidth;
+		dwidth = dheight;
+		dheight = t;
 	}
 #endif
 
-	if (sx < w && (centering & CENTER_SCREEN_X)) {
-		_sx = (w - sx) / 2;
-		_sw = w - _sx;
+	if (swidth < dwidth && (centering & CENTER_SCREEN_X)) {
+		_sox = (dwidth - swidth) / 2;
+		_sw = dwidth - _sox;
 	}
 
-	if (sx >= w && (centering & CENTER_DISPLAY_X))
-		_sx = -(int16_t)(sx - w) / 2;
+	if (swidth >= dwidth && (centering & CENTER_DISPLAY_X))
+		_sox = -(int16_t)(swidth - dwidth) / 2;
 
-	if (sy < h && (centering & CENTER_SCREEN_Y)) {
-		_sy = (h - sy - charHeight()) / 2;
-		_sh = h - _sy;
+	if (sheight < dheight && (centering & CENTER_SCREEN_Y)) {
+		_soy = (dheight - sheight - charHeight()) / 2;
+		_sh = dheight - _soy;
 	}
 
-	if (sy >= _height && (centering & CENTER_DISPLAY_Y))
-		_sy = -(int16_t)(sy - h) / 2;
+	if (sheight >= dheight && (centering & CENTER_DISPLAY_Y))
+		_soy = -(int16_t)(sheight - dheight) / 2;
 
-	DBG_DSP("setScreen: %d,%d %u,%u", _sx, _sy, _sw, _sh);
+	DBG_DSP("setScreen: %d,%d %u,%u", _sox, _soy, _sw, _sh);
 }
 
 uint16_t Display::charHeight() {
 
-	if (_cy == 0)
-		_cy = gfxFont? gfxFont->yAdvance: 8 * textsize_y;
-	return _cy;
+	if (_ch == 0)
+		_ch = gfxFont? gfxFont->yAdvance: 8 * textsize_y;
+	return _ch;
 }
 
 uint16_t Display::charWidth() {
 
-	if (_cx == 0) {
+	if (_cw == 0) {
 
 		int16_t x1, y1;
 		uint16_t h;
 
 		// We use "0" as a standard width reference for monospace-style grids
-		getTextBounds("0", 0, 0, &x1, &y1, &_cx, &h);
+		getTextBounds("0", 0, 0, &x1, &y1, &_cw, &h);
 	}
-	return _cx;
-}
-
-bool Display::onScreen(int16_t x, int16_t y) {
-
-	int xo = _sx + x;
-	if (xo < 0 || xo > _sw)
-		return false;
-
-	int yo = _sy + y;
-	if (yo < 0 || yo > _sh)
-		return false;
-
-	return true;
+	return _cw;
 }
 
 void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	DBG_DSP("begin");
-	_sx = _sy = 0;
-	_cx = _cy = 0;
+	_sox = _soy = 0;
+	_cw = _ch = 0;
 
 #if defined(USE_ESPI)
     #if defined(LOAD_GFXFF)
@@ -281,7 +274,7 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 	setRotation(orient);
 	setTextColor(fg, bg);
-	_oxs = _width;
+	_oxstat = _width;
 	DBG_INI("display: initialised: %d x %d", _width, _height);
 }
 
@@ -301,6 +294,8 @@ void Display::setRotation(uint8_t r) {
 	tft.setRotation(r);
 #elif defined(USE_DVI)
 	dvi.setRotation(r);
+#elif defined(USE_VGA)
+	// Bitluni doesn't know about rotation: must handle that
 #endif
 }
 
@@ -312,11 +307,11 @@ void Display::status(const char *s) {
 
 	x = _sw - w;
 	y = _sh - h;
-	fillRect(min(x, _oxs), y, w, h, textbgcolor);
+	fillRect(min(x, _oxstat), y, w, h, textbgcolor);
 
 	setCursor(x, y);
 	print(s);
-	_oxs = x;
+	_oxstat = x;
 }
 
 void Display::statusf(const char *fmt, ...) {
