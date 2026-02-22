@@ -20,7 +20,7 @@ Display::Display(): Adafruit_GFX(tft.width(), tft.height()) {
 }
 
 #elif defined(USE_VGA)
-#pragma message "Bitluni VGA configured"
+#pragma message ("Bitluni VGA configured" STR(VGA_RESOLUTION) )
 #include <ESP32Video.h>
 
 #if !defined(VGA_DEFAULT_FONT)
@@ -52,32 +52,41 @@ static uint8_t toVGAColour(uint16_t c) {
 }
 
 #elif defined(USE_DVI)
-#pragma message "PicoDVI configured"
+#pragma message ("PicoDVI configured: " STR(DVI_RESOLUTION) " config: " STR(DVI_CONFIG))
 #include <PicoDVI.h>
 
 #if DVI_BIT_DEPTH == 8
 static DVIGFX8 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
+
+#if !defined(DVI_MAX_PALETTE_SIZE)
+#define DVI_MAX_PALETTE_SIZE	16
+#endif
+
+static uint16_t colours[DVI_MAX_PALETTE_SIZE] = { BLACK, WHITE };
+static uint16_t nextcol = 2;
+
 #elif DVI_BIT_DEPTH == 0
 static DVItext1 dvi(DVI_RESOLUTION, DVI_CONFIG);
+
 #elif DVI_BIT_DEPTH == 1
 static DVIGFX1 dvi(DVI_RESOLUTION, DVI_DOUBLE_BUFFERED, DVI_CONFIG);
+
 #elif DVI_BIT_DEPTH == 16
 static DVIGFX16 dvi(DVI_RESOLUTION, DVI_CONFIG);
 #endif
 Display::Display(): Adafruit_GFX(0, 0) {}
 
-static const uint16_t colours[] = {
-	BLACK, WHITE, NAVY, DARKGREEN, DARKCYAN, MAROON, PURPLE, OLIVE, LIGHTGREY, DARKGREY, BLUE, GREEN, CYAN, RED, MAGENTA, YELLOW, ORANGE, GREENYELLOW, PINK,
-};
-
-#define NCOLOURS (sizeof(colours) / sizeof(colours[0]))
-
 inline int toColourIndex(uint16_t c) {
 #if DVI_BIT_DEPTH == 8
-	for (int i = 0; i < NCOLOURS; i++)
+	for (int i = 0; i < nextcol; i++)
 		if (c == colours[i])
 			return i;
-	return 1;
+	if (nextcol < DVI_MAX_PALETTE_SIZE) {
+		colours[nextcol] = c;
+		dvi.setColor(nextcol, c);
+		return nextcol++;
+	}
+	return 1;	// WHITE
 #elif DVI_BIT_DEPTH == 1 || DVI_BIT_DEPTH == 0
 	return c != 0;
 #elif DVI_BIT_DEPTH == 16
@@ -235,7 +244,6 @@ uint16_t Display::charWidth() {
 
 void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
-	DBG_DSP("begin");
 	_sox = _soy = 0;
 	_cw = _ch = 0;
 
@@ -257,11 +265,11 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 		init = true;
 	}
 #if DVI_BIT_DEPTH == 8
-	for (int i = 0; i < NCOLOURS; i++)
+	for (int i = 0; i < nextcol; i++)
 		dvi.setColor(i, colours[i]);
 #endif
 	dvi.setFont((const GFXfont *)DVI_DEFAULT_FONT);
-	DBG_DSP("DVI: %s %d (%d)", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, success);
+	DBG_DSP("DVI: %s %d %s (%d)", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, STR(DVI_CONFIG), success);
 
 #elif defined(USE_VGA)
 	static bool init;

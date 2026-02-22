@@ -53,9 +53,9 @@ public:
 
 	void setRotation(uint8_t);
 
-	void begin(uint16_t bg, uint16_t fg, orientation_t o, unsigned sx, unsigned sy) {
+	void begin(uint16_t bg, uint16_t fg, orientation_t o, uint16_t sx, uint16_t sy, uint8_t centering = CENTER_SCREEN) {
 		begin(bg, fg, o);
-		setScreen(sx, sy);
+		setScreen(sx, sy, centering);
 	}
 	void begin(uint16_t bg, uint16_t fg, orientation_t o);
 
