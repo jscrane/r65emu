@@ -3,15 +3,15 @@
 #include "hardware.h"
 
 #if defined(USE_PS2_KBD) && defined(PS2_SERIAL_KBD)
-#pragma message ("PS/2 keyboard '" PS2_SERIAL_KBD "' configured")
+#pragma message "PS/2 keyboard '" PS2_SERIAL_KBD "' configured"
 
 #include <PS2KeyAdvanced.h>
 #include <PS2KeyMap.h>
 #include "serial_kbd.h"
 #include "ps2_serial_kbd.h"
 
-PS2KeyAdvanced keyboard;
-PS2KeyMap keymap;
+static PS2KeyAdvanced keyboard;
+static PS2KeyMap keymap;
 
 void ps2_serial_kbd::reset() {
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
@@ -38,6 +38,10 @@ int ps2_serial_kbd::read() {
 	}
 
 	uint16_t code = keymap.remapKey(key);
-	return code == 0? -1: (code & 0xff);
+	if (code == 0)
+		return -1;
+	if (code & PS2_CTRL)
+		return code & 0x1f;
+	return code & 0xff;
 }
 #endif

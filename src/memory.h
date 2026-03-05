@@ -7,7 +7,7 @@ public:
 
 	class Device: public Checkpointable {
 	public:
-		Device (unsigned bytes): _pages(bytes / page_size) {}
+		Device (unsigned bytes = page_size): _pages(bytes / page_size) {}
 		virtual ~Device () {}
 
 		unsigned pages () const { return _pages; }

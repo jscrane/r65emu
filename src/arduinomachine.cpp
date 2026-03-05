@@ -110,7 +110,7 @@ void Arduino::begin() {
 
 	_cpu.memory().begin();
 
-#if defined(PWM_SOUND)
+#if defined(PWM_SOUND) && PWM_SOUND >= 0
 	pinMode(PWM_SOUND, OUTPUT);
 #endif
 

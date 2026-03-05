@@ -10,3 +10,5 @@
 #else
 #define RAM_SIZE        8192
 #endif
+
+#define PWM_SOUND	-1

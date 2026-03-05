@@ -75,6 +75,9 @@ public:
 	uint16_t charWidth();
 	uint16_t charHeight();
 
+	uint16_t fg() const { return textcolor; }
+	uint16_t bg() const { return textbgcolor; }
+
 private:
 	uint16_t _sw, _sh;	// width and height of screen (if smaller than display)
 	int16_t _sox, _soy;	// coordinates of top-left of screen
