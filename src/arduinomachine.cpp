@@ -108,8 +108,6 @@ void Arduino::begin() {
 	DBG_EMU("enabled");
 	DBG_MEM("enabled");
 
-	_cpu.memory().begin();
-
 #if defined(PWM_SOUND) && PWM_SOUND >= 0
 	pinMode(PWM_SOUND, OUTPUT);
 #endif
