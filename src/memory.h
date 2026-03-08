@@ -36,7 +36,7 @@ public:
 
 	unsigned pages(Device *dev) const {
 		unsigned e = dev->extent();
-		return e / page_size + (e % page_size)? 1: 0;
+		return e / page_size + (e % page_size? 1: 0);
 	}
 
 	Device &operator[](address a) const {
