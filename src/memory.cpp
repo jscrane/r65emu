@@ -3,14 +3,14 @@
 #include "machine.h"
 #include "memory.h"
 
-void Memory::put(Device &dev, address b) {
-	Device **d = _pages + b/page_size;
+void Memory::put(Device &dev, address base) {
+	Device **d = _pages + base/page_size;
 
-	int size = dev.pages();
+	unsigned size = pages(&dev);
 	while (size--)
 		*d++ = &dev;
 
-	dev.base(b);
+	dev.base(base);
 }
 
 Memory::Memory() {

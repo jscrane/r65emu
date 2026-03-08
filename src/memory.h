@@ -9,10 +9,10 @@ public:
 
 	class Device: public Checkpointable {
 	public:
-		Device(unsigned bytes = page_size): _pages(bytes / page_size) {}
+		Device(unsigned bytes): _extent(bytes) {}
 		virtual ~Device() {}
 
-		unsigned pages() const { return _pages; }
+		unsigned extent() const { return _extent; }
 		virtual void access(address a) { _acc = a-_base; }
 		void base(address a) { _base = a; }
 		address base() const { return _base; }
@@ -27,12 +27,17 @@ public:
 		address _acc, _base;
 
 	private:
-		unsigned _pages;
+		unsigned _extent;
 	};
 
 	void put(Device &d, address at);
 
 	virtual Device *get(address a) const { return _pages[a / page_size]; }
+
+	unsigned pages(Device *dev) const {
+		unsigned e = dev->extent();
+		return e / page_size + (e % page_size)? 1: 0;
+	}
 
 	Device &operator[](address a) const {
 		Device *d = get(a);
@@ -46,6 +51,7 @@ private:
 
 	class Null: public Device {
 	public:
+		Null(): Device(page_size) {}
 		void operator= (uint8_t) {}
 		operator uint8_t() { return 0; }
 	} _nd;
