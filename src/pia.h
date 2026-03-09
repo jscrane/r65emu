@@ -6,7 +6,7 @@
 // https://en.wikipedia.org/wiki/Peripheral_Interface_Adapter
 class PIA: public Memory::Device {
 public:
-	PIA(unsigned bytes = 4): Memory::Device(bytes),
+	PIA(unsigned extent = 4): Memory::Device(extent),
 		cra(0), ina(0), outa(0), ddra(0), crb(0), inb(0), outb(0), ddrb(0),
 		ca1(false), ca2(false), irq_a1(false), irq_a2(false), irqa_state(false),
 		cb1(false), cb2(false), irq_b1(false), irq_b2(false), irqb_state(false) {}

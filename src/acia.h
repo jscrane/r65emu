@@ -6,7 +6,7 @@
 
 class ACIA: public Pollable, public Memory::Device {
 public:
-	ACIA(unsigned bytes = 2): Memory::Device(bytes) {}
+	ACIA(unsigned extent = 2): Memory::Device(extent) {}
 
 	void operator=(uint8_t b) { write(_acc, b); }
 

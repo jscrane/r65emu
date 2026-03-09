@@ -9,7 +9,7 @@ public:
 
 	class Device: public Checkpointable {
 	public:
-		Device(unsigned bytes): _extent(bytes) {}
+		Device(unsigned extent): _extent(extent) {}
 		virtual ~Device() {}
 
 		unsigned extent() const { return _extent; }
@@ -32,7 +32,7 @@ public:
 
 	class Null: public Device {
 	public:
-		Null(unsigned size): Device(size) {}
+		Null(unsigned extent): Device(extent) {}
 
 		void operator=(uint8_t) {}
 		operator uint8_t() { return 0; }

@@ -5,7 +5,7 @@
 
 class RIOT: public Memory::Device {
 public:
-	RIOT(unsigned bytes = 256): Memory::Device(bytes), outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
+	RIOT(unsigned extent = 256): Memory::Device(extent), outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
 		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0), timer(-1)
        	{
 	}
