@@ -8,7 +8,7 @@ public:
 	virtual void checkpoint(Checkpoint &);
 	virtual void restore(Checkpoint &);
 
-	spiram(int bytes): Memory::Device(bytes) {}
+	spiram(unsigned bytes): Memory::Device(bytes) {}
 	void begin(uint8_t cs, int module);
 };
 

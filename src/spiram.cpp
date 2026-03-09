@@ -27,8 +27,9 @@ spiram::operator uint8_t()
 void spiram::checkpoint(Checkpoint &s)
 {
 	uint8_t buf[Memory::page_size];
-	for (unsigned i = 0; i < pages(); i++) {
-		spiRam.read_stream(i * 256, buf, sizeof(buf));
+	unsigned pages = extent() / Memory::page_size;
+	for (unsigned i = 0; i < pages; i++) {
+		spiRam.read_stream(i * Memory::page_size, buf, sizeof(buf));
 		s.write(buf, sizeof(buf));
 	}
 }
@@ -36,9 +37,10 @@ void spiram::checkpoint(Checkpoint &s)
 void spiram::restore(Checkpoint &s)
 {
 	uint8_t buf[Memory::page_size];
-	for (unsigned i = 0; i < pages(); i++) {
+	unsigned pages = extent() / Memory::page_size;
+	for (unsigned i = 0; i < pages; i++) {
 		s.read(buf, sizeof(buf));
-		spiRam.write_stream(i * 256, buf, sizeof(buf));
+		spiRam.write_stream(i * Memory::page_size, buf, sizeof(buf));
 	}
 }
 
