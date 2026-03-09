@@ -4,9 +4,10 @@
 
 // Motorola 6820 / 6821 PIA
 // https://en.wikipedia.org/wiki/Peripheral_Interface_Adapter
-class PIA {
+class PIA: public Memory::Device {
 public:
-	PIA(): cra(0), ina(0), outa(0), ddra(0), crb(0), inb(0), outb(0), ddrb(0),
+	PIA(unsigned bytes = 4): Memory::Device(bytes),
+		cra(0), ina(0), outa(0), ddra(0), crb(0), inb(0), outb(0), ddrb(0),
 		ca1(false), ca2(false), irq_a1(false), irq_a2(false), irqa_state(false),
 		cb1(false), cb2(false), irq_b1(false), irq_b2(false), irqb_state(false) {}
 
@@ -15,7 +16,9 @@ public:
 		irq_a1 = irq_a2 = irqa_state = irq_b1 = irq_b2 = irqb_state = ca1 = ca2 = cb1 = cb2 = false;
 	}
 
-	// device memory interface
+	void operator=(uint8_t b) { write(_acc, b); }
+	operator uint8_t() { return read(_acc); }
+
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 

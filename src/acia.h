@@ -4,9 +4,16 @@
 
 #include <functional>
 
-class ACIA: public Pollable {
+class ACIA: public Pollable, public Memory::Device {
 public:
+	ACIA(unsigned bytes = 2): Memory::Device(bytes) {}
+
+	void operator=(uint8_t b) { write(_acc, b); }
+
+	operator uint8_t() { return read(_acc); }
+
 	void write(Memory::address, uint8_t);
+
 	uint8_t read(Memory::address);
 
 	void register_write_data_handler(std::function<void(uint8_t)> fn) {
