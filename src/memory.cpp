@@ -18,8 +18,8 @@ void Memory::Devices::put(Device &dev, address base) {
 	unsigned slot = base / device_size;
 	Device **d = &_devices[slot];
 
-	unsigned size = slots(&dev);
-	while (size--)
+	unsigned ds = slots(&dev);
+	while (ds--)
 		*d++ = &dev;
 
 	dev.base(base);
@@ -42,11 +42,19 @@ Memory::Devices::operator uint8_t() {
 }
 
 void Memory::Devices::checkpoint(Checkpoint &c) {
-	for (unsigned i = 0; i < page_size / device_size; i++)
-		_devices[i]->checkpoint(c);
+	unsigned ds;
+	for (unsigned i = 0; i < page_size / device_size; i += ds) {
+		Device *d = _devices[i];
+		d->checkpoint(c);
+		ds = slots(d);
+	}
 }
 
 void Memory::Devices::restore(Checkpoint &c) {
-	for (unsigned i = 0; i < page_size / device_size; i++)
-		_devices[i]->restore(c);
+	unsigned ds;
+	for (unsigned i = 0; i < page_size / device_size; i += ds) {
+		Device *d = _devices[i];
+		d->restore(c);
+		ds = slots(d);
+	}
 }
