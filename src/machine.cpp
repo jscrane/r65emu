@@ -37,7 +37,7 @@ void Machine::checkpoint(Checkpoint &s) {
 	for (unsigned i = 0; i < Memory::address_size; i += ds) {
 		Memory::Device *dev = _cpu.memory().get(i);
 		dev->checkpoint(s);
-		ds = dev->pages() * Memory::page_size;
+		ds = _cpu.memory().pages(dev->extent());
 	}
 	_cpu.checkpoint(s);
 }
@@ -47,7 +47,7 @@ void Machine::restore(Checkpoint &s) {
 	for (unsigned i = 0; i < Memory::address_size; i += ds) {
 		Memory::Device *dev = _cpu.memory().get(i);
 		dev->restore(s);
-		ds = dev->pages() * Memory::page_size;
+		ds = _cpu.memory().pages(dev->extent());
 	}
 	_cpu.restore(s);
 }

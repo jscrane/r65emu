@@ -1,15 +1,17 @@
 #pragma once
 
-// 6530 RIOT
+// 6530 RRIOT
 // https://github.com/mamedev/mame/blob/master/src/devices/machine/mos6530.cpp
 
-class RIOT {
+class RIOT: public Memory::Device {
 public:
-	RIOT(): outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
-		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0),
-		timer(-1)
+	RIOT(unsigned extent = 256): Memory::Device(extent), outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
+		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0), timer(-1)
        	{
 	}
+
+	void operator=(uint8_t b) { write(_acc, b); }
+	operator uint8_t() { return read(_acc); }
 
 	void reset();
 

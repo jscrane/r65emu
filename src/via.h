@@ -5,9 +5,10 @@
 
 #include <functional>
 
-class VIA {
+class VIA: public Memory::Device {
 public:
-	VIA(): _timer1(false), _timer2(false), _t1(0), _t1_latch(0), _t2(0),
+	VIA(): Memory::Device(16),
+		_timer1(false), _timer2(false), _t1(0), _t1_latch(0), _t2(0),
 		_sr(0), _acr(0), _pcr(0), _ier(0), _ifr(0), _ddra(0), _ddrb(0), _porta(0), _portb(0) {}
 
 	void reset() {
@@ -18,6 +19,9 @@ public:
 		_t2_latch = 0xff;
 		_sr = _acr = _pcr = _ier = _ifr = _porta = _portb = _ddra = _ddrb = 0;
 	}
+
+	void operator=(uint8_t b) { write(_acc, b); }
+	operator uint8_t() { return read(_acc); }
 
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
