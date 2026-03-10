@@ -12,7 +12,7 @@
 
 extern SPIClass SPIRAM_DEV;
 
-SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
+static SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
 
 void spiram::operator=(uint8_t b)
 {
@@ -26,21 +26,21 @@ spiram::operator uint8_t()
 
 void spiram::checkpoint(Checkpoint &s)
 {
-	uint8_t buf[Memory::page_size];
-	unsigned pages = extent() / Memory::page_size;
+	uint8_t buf[256];
+	unsigned pages = extent() / 256;
 	for (unsigned i = 0; i < pages; i++) {
-		spiRam.read_stream(i * Memory::page_size, buf, sizeof(buf));
+		spiRam.read_stream(i * 256, buf, sizeof(buf));
 		s.write(buf, sizeof(buf));
 	}
 }
 
 void spiram::restore(Checkpoint &s)
 {
-	uint8_t buf[Memory::page_size];
-	unsigned pages = extent() / Memory::page_size;
+	uint8_t buf[256];
+	unsigned pages = extent() / 256;
 	for (unsigned i = 0; i < pages; i++) {
 		s.read(buf, sizeof(buf));
-		spiRam.write_stream(i * Memory::page_size, buf, sizeof(buf));
+		spiRam.write_stream(i * 256, buf, sizeof(buf));
 	}
 }
 
