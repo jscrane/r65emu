@@ -6,14 +6,12 @@
 
 class ACIA: public Pollable, public Memory::Device {
 public:
-	ACIA(unsigned extent = 2): Memory::Device(extent) {}
+	ACIA(): Memory::Device(2) {}
 
 	void operator=(uint8_t b) { write(_acc, b); }
-
 	operator uint8_t() { return read(_acc); }
 
 	void write(Memory::address, uint8_t);
-
 	uint8_t read(Memory::address);
 
 	void register_write_data_handler(std::function<void(uint8_t)> fn) {
