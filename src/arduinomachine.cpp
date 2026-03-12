@@ -88,7 +88,8 @@ bool Arduino::reset() {
 void Arduino::begin() {
 
 	_halted_handler = [this]() {
-		ERR("CPU halted at %04x", _cpu.pc());
+		Memory::address h = _cpu.pc();
+		ERR("CPU halted at %04x, instruction %02x", h, _cpu.memory()[h]);
 		for (;;) yield();
 		return false;
 	};
