@@ -599,7 +599,7 @@ private:
 	inline void ldHLe() { _sb(HL, E); }
 	inline void ldHLh() { _sb(HL, H); }
 	inline void ldHLl() { _sb(HL, L); }
-	inline void halt() { _halted = true; PC--; }
+	inline void halt() { CPU::halt(); }
 	inline void ldHLa() { _sb(HL, A); }
 
 	// 0x78

@@ -90,6 +90,7 @@ void Arduino::begin() {
 	_halted_handler = [this]() {
 		ERR("CPU halted at %04x", _cpu.pc());
 		for (;;) yield();
+		return false;
 	};
 
 #if DEBUGGING != DEBUG_NONE
@@ -154,8 +155,8 @@ void Arduino::run(unsigned instructions) {
 #endif
 	}
 
-	if (_cpu.halted())
-		_halted_handler();
+	if (_cpu.halted() && _halted_handler())
+		_cpu.resume();
 }
 
 int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
