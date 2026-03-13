@@ -87,18 +87,17 @@ bool Arduino::reset() {
 
 void Arduino::begin() {
 
-	_halted_handler = [this]() {
-		Memory::address h = _cpu.pc();
-		ERR("CPU halted at %04x, instruction %02x", h, _cpu.memory()[h]);
-		for (;;) yield();
-		return false;
-	};
-
 #if DEBUGGING != DEBUG_NONE
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
 	delay(800);
 #endif
+	_halted_handler = [this]() {
+		ERR("CPU halted at %04x", _cpu.pc());
+		Memory::address addr = _cpu.pc();
+		ERR("CPU halted at %04x, instruction %02x", addr, _cpu.memory()[addr]);
+		for (;;) yield();
+	};
 
 	DBG_INI("machine init");
 	DBG_CPU("enabled");
@@ -156,8 +155,8 @@ void Arduino::run(unsigned instructions) {
 #endif
 	}
 
-	if (_cpu.halted() && _halted_handler())
-		_cpu.resume();
+	if (_cpu.halted())
+		_halted_handler();
 }
 
 int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {

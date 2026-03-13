@@ -37,7 +37,7 @@ public:
 		_reset_handler = handler;
 	}
 
-	void register_cpu_halted_handler(std::function<bool(void)> handler) {
+	void register_cpu_halted_handler(std::function<void(void)> handler) {
 		_halted_handler = handler;
 	}
 
@@ -54,5 +54,5 @@ public:
 
 private:
 	std::function<void(bool)> _reset_handler;
-	std::function<bool(void)> _halted_handler;
+	std::function<void(void)> _halted_handler;
 };
