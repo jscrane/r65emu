@@ -24,8 +24,10 @@ public:
 	virtual void checkpoint(Checkpoint &) = 0;
 	virtual void restore(Checkpoint &) = 0;
 
-	inline bool halted() const { return _halted; }
 	inline Memory::address pc() const { return PC; }
+	inline bool halted() const { return _halted; }
+	inline void halt() { _halted = true; PC--; }
+	inline void resume() { ++PC; _halted = false; }
 
 	Memory &memory() const { return _mem; }
 

@@ -142,7 +142,7 @@ private:
 	/* operations */
 	inline void brk();
 	inline void ora_ix() { _ora(_mem[_ix()]); }
-	inline void ill() { --PC; _halted = true; }
+	inline void ill() { CPU::halt(); }
 	inline void nop2() { PC++; }
 	inline void ora_z() { _ora(_mem[_z()]); }
 	inline void asl_z() { _asl(_z()); }

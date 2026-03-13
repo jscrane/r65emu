@@ -134,10 +134,9 @@ void z80::_handle_nmi() {
 
 void z80::_handle_interrupt() {
 
-	if (_halted) {
-		_halted = false;
-		PC++;
-	}
+	if (_halted)
+		resume();
+
 	_push(PC);
 	_iff1 = _iff2 = false;
 	R++;

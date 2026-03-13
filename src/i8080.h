@@ -249,7 +249,7 @@ private:
 	inline void movme() { _mem[HL] = E; }
 	inline void movmh() { _mem[HL] = H; }
 	inline void movml() { _mem[HL] = L; }
-	inline void hlt() { _halted = true; PC--; }
+	inline void hlt() { CPU::halt(); }
 	inline void movma() { _mem[HL] = A; }
 
 	inline void movab() { A = B; }
