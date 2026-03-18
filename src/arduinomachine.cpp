@@ -94,8 +94,6 @@ void Arduino::begin() {
 #endif
 	_halted_handler = [this]() {
 		ERR("CPU halted at %04x", _cpu.pc());
-		Memory::address addr = _cpu.pc();
-		ERR("CPU halted at %04x, instruction %02x", addr, _cpu.memory()[addr]);
 		for (;;) yield();
 	};
 
