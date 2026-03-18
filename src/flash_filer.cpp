@@ -87,7 +87,6 @@ flash_file::operator bool() const {
 void flash_file::write(uint8_t b) {
 #if USE_STORAGE
 	files[_fd].write(b);
-	files[_fd].flush();
 #endif
 }
 
