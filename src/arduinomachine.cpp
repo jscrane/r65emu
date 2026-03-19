@@ -101,11 +101,12 @@ void Arduino::begin() {
 	DBG_CPU("enabled");
 	DBG_PIA("enabled");
 	DBG_VIA("enabled");
-	DBG_ACIA("enabled");
-	DBG_RIOT("enabled");
 	DBG_DSP("enabled");
 	DBG_EMU("enabled");
 	DBG_MEM("enabled");
+	DBG_ACIA("enabled");
+	DBG_RIOT("enabled");
+	DBG_DISK("enabled");
 
 #if defined(PWM_SOUND) && PWM_SOUND >= 0
 	pinMode(PWM_SOUND, OUTPUT);
