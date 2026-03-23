@@ -62,8 +62,3 @@
 #undef USE_SPIFFS
 #define USE_LITTLEFS
 #endif
-
-// see https://github.com/jscrane/r65emu/issues/34
-#if defined(USE_LITTLEFS)
-#define LITTLEFS_READ_MODE	"r"
-#endif

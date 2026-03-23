@@ -16,15 +16,13 @@
 #elif defined(USE_LITTLEFS)
 #include <FS.h>
 #include <LittleFS.h>
-#define DISK LittleFS
-#if defined(LITTLEFS_READ_MODE)
-#define FILE_READ	LITTLEFS_READ_MODE
-#else
-#define FILE_READ	"r+"
+#if !defined(FILE_READ)
+#define FILE_READ "r"
 #endif
 #if !defined(FILE_WRITE)
-#define FILE_WRITE	"w+"
+#define FILE_WRITE "w"
 #endif
+#define DISK LittleFS
 #pragma message "LittleFS configured"
 
 #elif defined(USE_SD)
@@ -44,11 +42,7 @@
 static File files[MAX_FILES];
 #endif
 
-#if defined(USE_SPIFFS) || defined(USE_SD)
 static File dir;
-#elif defined(USE_LITTLEFS)
-static Dir dir;
-#endif
 
 bool flash_file::seek(uint32_t pos)
 {
@@ -92,11 +86,8 @@ void flash_file::write(uint8_t b) {
 
 bool flash_filer::start()
 {
-#if defined(USE_LITTLEFS)
-	dir = DISK.openDir(_programs);
-	return true;
-#elif defined(USE_SPIFFS) || defined(USE_SD)
-	dir = DISK.open(_programs);
+#if USE_STORAGE
+	dir = DISK.open(_programs, FILE_READ);
 	return (bool)dir;
 #endif
 	return false;
@@ -114,19 +105,6 @@ const char *flash_filer::advance() {
 #if USE_STORAGE
 	File &f = files[_current];
 	f.close();
-#if defined(USE_LITTLEFS)
-	while (true) {
-		if (dir.next()) {
-			DBG_DISK("dir: %s", dir.fileName());
-			if (!dir.isFile())
-				continue;
-			f = dir.openFile(FILE_READ);
-			break;
-		}
-		dir.rewind();
-	}
-	return f.name();
-#elif defined(USE_SPIFFS) || defined(USE_SD)
 	bool rewound = false;
 	while (true) {
 		f = dir.openNextFile();
@@ -142,17 +120,14 @@ const char *flash_filer::advance() {
 			return 0;
 	}
 	return f.name();
-#endif
 #else
 	return 0;
 #endif
 }
 
 const char *flash_filer::rewind() {
-#if defined(USE_SPIFFS) || defined(USE_SD)
+#if USE_STORAGE
 	dir.rewindDirectory();
-#elif defined(USE_LITTLEFS)
-	dir.rewind();
 #endif
 	return advance();
 }
