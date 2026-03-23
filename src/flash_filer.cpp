@@ -17,14 +17,8 @@
 #include <FS.h>
 #include <LittleFS.h>
 #define DISK LittleFS
-#if defined(LITTLEFS_READ_MODE)
-#define FILE_READ	LITTLEFS_READ_MODE
-#else
 #define FILE_READ	"r+"
-#endif
-#if !defined(FILE_WRITE)
 #define FILE_WRITE	"w+"
-#endif
 #pragma message "LittleFS configured"
 
 #elif defined(USE_SD)
