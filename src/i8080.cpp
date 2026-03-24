@@ -31,6 +31,7 @@ void i8080::raise(int level) {
 	if (flags.I) {
 		flags.I = 0;
 		_irq_pending = 0;
+		_halted = false;
 		_push(PC);
 		PC = level * 8;
 	} else

@@ -8,11 +8,11 @@
 class VIA: public Memory::Device {
 public:
 	VIA(): Memory::Device(16),
-		_timer1(false), _timer2(false), _t1(0), _t1_latch(0), _t2(0),
+		_timer1(-1), _timer2(-1), _t1(0), _t1_latch(0), _t2(0),
 		_sr(0), _acr(0), _pcr(0), _ier(0), _ifr(0), _ddra(0), _ddrb(0), _porta(0), _portb(0) {}
 
 	void reset() {
-		_timer1 = _timer2 = false;
+		_timer1 = _timer2 = -1;
 		_t1 = _t1_latch = 0xdfff;
 		_t2 = 0xffff;
 		_sr_timer = -1;
@@ -135,4 +135,5 @@ private:
 
 	uint8_t _sr, _acr, _pcr, _ier, _ifr, _ddra, _ddrb;
 	uint8_t _porta, _portb;
+	uint32_t _start_timer1;
 };

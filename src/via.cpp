@@ -217,7 +217,9 @@ uint8_t VIA::read_porta() {
 
 uint8_t VIA::read_t1lo() {
 	clear_int(INT_TIMER1);
-	return _t1 & 0xff;
+
+	uint16_t elapsed = _machine->microseconds() - _start_timer1;
+	return (_t1_latch - elapsed) & 0xff;
 }
 
 uint8_t VIA::read_t2lo() {
@@ -289,6 +291,7 @@ void VIA::start_timer1() {
 			start_timer1();
 		}
 	});
+	_start_timer1 = _machine->microseconds();
 }
 
 void VIA::start_timer2() {
