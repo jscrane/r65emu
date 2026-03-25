@@ -9,12 +9,10 @@
 #include "debugging.h"
 
 void r6502::run(unsigned clocks) {
-	while (clocks--) {
+	while (!_halted && clocks--) {
 		uint8_t op = _mem[PC];
 		PC++;
 		_op(op);
-		if (_halted)
-			break;
 	}
 }
 
@@ -110,6 +108,12 @@ void r6502::nmi() {
 	php();
 	P.bits.I = 1;
 	PC = vector(nmivec);
+}
+
+void r6502::ill() {
+	CPU::halt();
+	if (_illegal_instruction_handler)
+		_illegal_instruction_handler();
 }
 
 // php and plp are complicated by the representation
