@@ -6,7 +6,7 @@
 
 class r6502: public CPU {
 public:
-	r6502(Memory &m): CPU(m) {}
+	r6502(Memory &m);
 
 	void raise(int);
 	void reset();

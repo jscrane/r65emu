@@ -8,6 +8,12 @@
 #include "r6502.h"
 #include "debugging.h"
 
+r6502::r6502(Memory &m): CPU(m) {
+	_illegal_instruction_handler = [this]() {
+		ERR("CPU halted at %04x", PC);
+	};
+}
+
 void r6502::run(unsigned clocks) {
 	while (!_halted && clocks--) {
 		uint8_t op = _mem[PC];
@@ -112,8 +118,7 @@ void r6502::nmi() {
 
 void r6502::ill() {
 	CPU::halt();
-	if (_illegal_instruction_handler)
-		_illegal_instruction_handler();
+	_illegal_instruction_handler();
 }
 
 // php and plp are complicated by the representation
@@ -166,8 +171,7 @@ void r6502::sbcd(uint8_t d) {
 	// V not tested for: http://www.6502.org/tutorials/decimal_mode.html
 }
 
-void r6502::reset()
-{
+void r6502::reset() {
 	_halted = false;
 	P.flags = 0;
 	P.bits._ = 1;
