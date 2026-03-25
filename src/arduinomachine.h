@@ -37,10 +37,6 @@ public:
 		_reset_handler = handler;
 	}
 
-	void register_cpu_halted_handler(std::function<void(void)> handler) {
-		_halted_handler = handler;
-	}
-
 	void register_pollable(Pollable &);
 
 	void run(unsigned instructions = CPU_INSTRUCTIONS);
@@ -54,5 +50,4 @@ public:
 
 private:
 	std::function<void(bool)> _reset_handler;
-	std::function<void(void)> _halted_handler;
 };

@@ -92,11 +92,6 @@ void Arduino::begin() {
 	while (!Serial);
 	delay(800);
 #endif
-	_halted_handler = [this]() {
-		ERR("CPU halted at %04x", _cpu.pc());
-		for (;;) yield();
-	};
-
 	DBG_INI("machine init");
 	DBG_CPU("enabled");
 	DBG_PIA("enabled");
@@ -153,9 +148,6 @@ void Arduino::run(unsigned instructions) {
 		_cpu.run(instructions);
 #endif
 	}
-
-	if (_cpu.halted())
-		_halted_handler();
 }
 
 int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {

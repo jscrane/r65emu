@@ -6,6 +6,8 @@
 
 class r6502: public CPU {
 public:
+	r6502(Memory &m);
+
 	void raise(int);
 	void reset();
 	void run(unsigned);
@@ -13,7 +15,9 @@ public:
 	void checkpoint(Checkpoint &);
 	void restore(Checkpoint &);
 
-	r6502(Memory &m): CPU(m) {}
+	void set_illegal_instruction_handler(std::function<void(void)> fn) {
+		_illegal_instruction_handler = fn;
+	}
 
 private:
 	/* registers */
@@ -37,6 +41,8 @@ private:
 	void irq();
 	void nmi();
 	uint8_t flags();
+
+	std::function<void(void)> _illegal_instruction_handler;
 
 	/* stack */
 	inline void pusha(Memory::address ret) {
@@ -142,7 +148,7 @@ private:
 	/* operations */
 	inline void brk();
 	inline void ora_ix() { _ora(_mem[_ix()]); }
-	inline void ill() { CPU::halt(); }
+	inline void ill();
 	inline void nop2() { PC++; }
 	inline void ora_z() { _ora(_mem[_z()]); }
 	inline void asl_z() { _asl(_z()); }
