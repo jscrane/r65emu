@@ -201,7 +201,7 @@ char *uz80::status(char *buf, size_t n, bool hdr) {
 	snprintf(buf, n,
 		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x ",
 		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP   OP\r\n": "",
-		PC, A, S_FLAG, Z_FLAG, H_FLAG, P_FLAG, N_FLAG, C_FLAG, I, R & 0x7f, IFF & 1, IFF & 2,
+		PC, A, S_FLAG != 0, Z_FLAG != 0, H_FLAG != 0, P_FLAG != 0, N_FLAG != 0, C_FLAG != 0, I, R & 0x7f, IFF & 1, IFF & 2,
 		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP);
 	first = false;
 
