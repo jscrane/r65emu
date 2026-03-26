@@ -151,11 +151,15 @@ void r6502::_adc(uint8_t d) {
 		if (C) r -= 100;
 		A = toBCD(r);
 	} else {
-		unsigned short u = (unsigned short)A + (unsigned short)d + (unsigned short)C;
-		short s = (char)A + (char)d + (char)C;
-		C = (u < 0 || u > 255);
-		V = (s > 127 || s < -128);
-		A = (u & 0xff);
+	        uint16_t sum = (uint16_t)A + (uint16_t)d + (uint16_t)C;
+
+		// The "Golden" 6502 Overflow Formula:
+		// V is set if the sign of both inputs is the same,
+		// but the sign of the result is different.
+		V = (~(A ^ d) & (A ^ (uint8_t)sum) & 0x80);
+		C = (sum > 0xFF);
+		A = (uint8_t)sum;
+
 	}
 	N = (A & 0x80);
 	Z = A;
