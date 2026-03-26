@@ -24,6 +24,10 @@ public:
 
 class CPU;
 
+// simple debugging predicates
+inline bool debug_never() { return false; }
+inline bool debug_always() { return true; }
+
 class Machine {
 public:
 	Machine(CPU &cpu);
@@ -31,8 +35,7 @@ public:
 	void checkpoint(Checkpoint &);
 	void restore(Checkpoint &);
 
-	bool debug_cpu();
-	void register_cpu_debug_handler(std::function<bool(void)> handler) {
+	void set_cpu_debugging(std::function<bool(void)> handler) {
 		_debug_handler = handler;
 	}
 
