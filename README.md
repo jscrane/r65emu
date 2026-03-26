@@ -5,7 +5,7 @@ Arduino emulation library for 8-bit microcomputers based on 6502, i8080 and z80.
 
 Sample Emulations
 -----------------
-- [Apple-1](https://github.com/jscrane/Apple1)
+- [Apple-1](https://github.com/jscrane/Apple1) and [Apple-II](https://github.com/jscrane/Apple-II)
 - [CPM](https://github.com/jscrane/cpm80)
 - [Space Invaders](https://github.com/jscrane/invaders)
 - [Pacman](https://github.com/jscrane/pacman)
