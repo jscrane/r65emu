@@ -151,7 +151,7 @@ void r6502::_adc(uint8_t d) {
 		if (C) r -= 100;
 		A = toBCD(r);
 	} else {
-	        uint16_t sum = (uint16_t)A + (uint16_t)d + (uint16_t)C;
+		uint16_t sum = (uint16_t)A + (uint16_t)d + (uint16_t)C;
 
 		// The "Golden" 6502 Overflow Formula:
 		// V is set if the sign of both inputs is the same,
