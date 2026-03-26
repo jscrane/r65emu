@@ -4,15 +4,12 @@
 
 #include "machine.h"
 #include "memory.h"
-#include "debugging.h"
 #include "CPU.h"
 
 Machine *_machine;
 
 Machine::Machine(CPU &cpu): _cpu(cpu) {
-#if DEBUGGING & DEBUG_CPU
-	_debug_handler = debug_never;
-#endif
+	_cpu_debug = debug_never;
 	_machine = this;
 }
 

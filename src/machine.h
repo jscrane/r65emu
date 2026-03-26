@@ -24,7 +24,6 @@ public:
 
 class CPU;
 
-// simple debugging predicates
 inline bool debug_never() { return false; }
 inline bool debug_always() { return true; }
 
@@ -35,8 +34,8 @@ public:
 	void checkpoint(Checkpoint &);
 	void restore(Checkpoint &);
 
-	void set_cpu_debugging(std::function<bool(void)> handler) {
-		_debug_handler = handler;
+	void set_cpu_debugging(std::function<bool(void)> fn) {
+		_cpu_debug = fn;
 	}
 
 	void register_pollable(Pollable &);
@@ -51,7 +50,7 @@ public:
 protected:
 	CPU &_cpu;
 
-	std::function<bool(void)> _debug_handler;
+	std::function<bool(void)> _cpu_debug;
 };
 
 extern Machine *_machine;
