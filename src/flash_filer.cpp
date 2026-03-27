@@ -40,9 +40,8 @@
 
 #if USE_STORAGE
 static File files[MAX_FILES];
-#endif
-
 static File dir;
+#endif
 
 bool flash_file::seek(uint32_t pos)
 {
