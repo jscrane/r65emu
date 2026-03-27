@@ -19,6 +19,12 @@ public:
 		_illegal_instruction_handler = fn;
 	}
 
+	uint8_t s() const { return S; }
+	uint8_t a() const { return A; }
+	uint8_t x() const { return X; }
+	uint8_t y() const { return Y; }
+	uint8_t p() const { return P.flags; }
+
 private:
 	/* registers */
 	uint8_t S, A, X, Y;
