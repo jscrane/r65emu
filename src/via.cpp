@@ -214,13 +214,15 @@ uint8_t VIA::read_portb() {
 }
 
 uint8_t VIA::read_porta() {
-	uint8_t pa = _porta_input_handler? _porta_input_handler(): _porta;
-	return (pa & _ddra) | ~_ddra;
+
+	clear_int(INT_CA1_ACTIVE);
+	uint8_t in = _porta_input_handler? _porta_input_handler(): 0xff;
+	return (in & ~_ddra) | (_porta & _ddra);
 }
 
 uint8_t VIA::read_t1lo() {
-	clear_int(INT_TIMER1);
 
+	clear_int(INT_TIMER1);
 	uint16_t elapsed = _machine->microseconds() - _start_timer1;
 	return (_t1_latch - elapsed) & 0xff;
 }
@@ -236,7 +238,9 @@ uint8_t VIA::read_sr() {
 }
 
 uint8_t VIA::read_porta_nh() {
-	return (_porta & _ddra) | ~_ddra;
+
+	uint8_t in = _porta_input_handler? _porta_input_handler(): 0xff;
+	return (in & ~_ddra) | (_porta & _ddra);
 }
 
 void VIA::irq() {
