@@ -26,9 +26,6 @@ public:
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	void write_porta_in_bit(uint8_t, bool);
-	void write_portb_in_bit(uint8_t, bool);
-
 	void register_irq_handler(std::function<void(bool)> fn) {
 		_irq_handler = fn;
 	}
