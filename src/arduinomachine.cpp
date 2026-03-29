@@ -164,6 +164,8 @@ void Arduino::cancel_timer(int timer) {
 
 uint32_t Arduino::microseconds() { return micros(); }
 
+void Arduino::yield() { ::yield(); }
+
 void Arduino::debug(const char *lvlstr, const char *fmt, ...) {
 #if DEBUGGING != DEBUG_NONE
 	char buf[128];

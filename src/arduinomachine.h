@@ -45,6 +45,7 @@ public:
 	int oneshot_timer(uint32_t micros, std::function<void(void)> cb);
 	void cancel_timer(int timer);
 	uint32_t microseconds();
+	void yield();
 
 	void debug(const char *lvlstr, const char *fmt, ...);
 
