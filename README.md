@@ -10,7 +10,7 @@ Sample Emulations
 - [Space Invaders](https://github.com/jscrane/invaders)
 - [Pacman](https://github.com/jscrane/pacman)
 - [Commodore PET](https://github.com/jscrane/PET)
-- [Compukit UK101](https://github.com/jscrane/UK101) and [MicroUK101](https://github.com/jscrane/UK101)
+- [Compukit UK101](https://github.com/jscrane/UK101) and Grant Searle's [MicroUK101](https://github.com/jscrane/MicroUK101)
 - [Commodore Chessmate](https://github.com/jscrane/Chessmate)
 - Jeff Tranter's [6502 Single Board Computer](https://github.com/jscrane/TranterSBC)
 
