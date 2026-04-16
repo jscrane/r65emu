@@ -9,10 +9,13 @@ g++ -g -I.. -DDEBUGGING=0x01  -c -o test.o test.cc
 g++ -g -I.. -DDEBUGGING=0x01 -o r6502.o -c ../r6502.cpp
 g++ -g -I.. -DDEBUGGING=0x01 -o memory.o -c ../memory.cpp
 g++ -o test test.o r6502.o memory.o machine.o 
-$ ./test 6502_functional_test.bin
-...
+$ time ./test 6502_functional_test.bin | tail -2
 aa xx yy sp nv_bdizc _pc_ op clk
 f0 0e ff ff 11110001 3469 4c 96241363
+
+real	0m25.596s
+user	0m25.857s
+sys	0m1.023s
 ```
 
 The PC at `$3469` indicates success. Otherwise consult the listing file for the test failure.
