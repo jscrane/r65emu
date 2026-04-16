@@ -30,10 +30,15 @@ public:
 	inline void resume() { ++PC; _halted = false; }
 
 	Memory &memory() const { return _mem; }
+	uint32_t cycles() const { return _cycles; }
+	void cycles(uint16_t c) { _cycles += c; }
 
 protected:
-	CPU(Memory &mem): _mem(mem), _halted(false) {}
+	CPU(Memory &mem): _mem(mem), _halted(false), _cycles(0) {}
 	Memory &_mem;
 	Memory::address PC;
 	bool _halted;
+
+private:
+	uint32_t _cycles;
 };

@@ -1,8 +1,8 @@
 CPPFLAGS=-I..
-#CPPFLAGS += -DDEBUGGING=0x01
+CPPFLAGS += -DDEBUGGING=0x01
 CXXFLAGS=-g
 
-test: test.o r6502.o memory.o
+test: test.o r6502.o memory.o machine.o
 	g++ -o $@ $+ $(LDLIBS)
 
 %.o: ../%.cpp ../%.h

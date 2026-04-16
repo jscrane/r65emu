@@ -77,6 +77,10 @@ private:
 		return (_mem[v+1] << 8) | _mem[v];
 	}
 
+	inline bool page_change(Memory::address a, Memory::address b) {
+		return (a & 0xff00) != (b & 0xff00);
+	}
+
 	/* operators */
 	inline void _cmp(uint8_t a) { Z=N=A-a; C=(A>=a); }
 	inline void _cpx(uint8_t a) { Z=N=X-a; C=(X>=a); }
@@ -95,6 +99,13 @@ private:
 	}
 	inline Memory::address _ax() { return _a()+X; }
 	inline Memory::address _ay() { return _a()+Y; }
+	inline Memory::address _ap(uint8_t o) {
+		Memory::address a = _a(), b = a+o;
+		if (page_change(a, b)) cycles(1);
+		return b;
+	}
+	inline Memory::address _axp() { return _ap(X); }
+	inline Memory::address _ayp() { return _ap(Y); }
 	inline Memory::address _z() { return _mem[PC++]; }
 	inline Memory::address _zx() { return (_z()+X) & 0xff; }
 	inline Memory::address _zy() { return (_z()+Y) & 0xff; }
@@ -102,7 +113,12 @@ private:
 		return (_mem[a+1]<<8)|_mem[a];
 	}
 	inline Memory::address _ix() { return _i(_zx()); }
-	inline Memory::address _iy() { return _i(_mem[PC++])+Y; }
+	inline Memory::address _iy() { return _i(_z())+Y; }
+	inline Memory::address _iyp() {
+		Memory::address a = _i(_z()), b = a+Y;
+		if (page_change(a, b)) cycles(1);
+		return b;
+	}
 
 	void _adc(uint8_t a);
 	void _sbc(uint8_t a) {
@@ -144,9 +160,12 @@ private:
 		V=((z & 0x40)!=0); N=(z & 0x80); Z=(A & z);
 	}
 	inline void _bra() {
-		uint8_t b = _mem[PC];
+		Memory::address pc = PC;
+		uint8_t b = _mem[PC], c = 1;
 		PC += b;
 		if (b > 127) PC -= 0x0100;
+		if (page_change(pc, PC)) c++;
+		cycles(c);
 	}
 
 	void _op(uint8_t);
@@ -166,13 +185,13 @@ private:
 	inline void asl_a() { _asl(_a()); }
 	// 10
 	inline void bpl() { if (!(N & 0x80)) _bra(); PC++; }
-	inline void ora_iy() { _ora(_mem[_iy()]); }
+	inline void ora_iy() { _ora(_mem[_iyp()]); }
 	inline void ora_zx() { _ora(_mem[_zx()]); }
 	inline void asl_zx() { _asl(_zx()); }
 	inline void clc() { C=0; }
-	inline void ora_ay() { _ora(_mem[_ay()]); }
+	inline void ora_ay() { _ora(_mem[_ayp()]); }
 	inline void nop() {}
-	inline void ora_ax() { _ora(_mem[_ax()]); }
+	inline void ora_ax() { _ora(_mem[_axp()]); }
 	inline void asl_ax() { _asl(_ax()); }
 	// 20
 	inline void jsr() { pusha(PC+1); PC = vector(PC); }
@@ -188,12 +207,12 @@ private:
 	inline void rol_a() { _rol(_a()); }
 	// 30
 	inline void bmi() { if (N & 0x80) _bra(); PC++; }
-	inline void and_iy() { _and(_mem[_iy()]); }
+	inline void and_iy() { _and(_mem[_iyp()]); }
 	inline void and_zx() { _and(_mem[_zx()]); }
 	inline void rol_zx() { _rol(_zx()); }
 	inline void sec() { C=1; }
-	inline void and_ay() { _and(_mem[_ay()]); }
-	inline void and_ax() { _and(_mem[_ax()]); }
+	inline void and_ay() { _and(_mem[_ayp()]); }
+	inline void and_ax() { _and(_mem[_axp()]); }
 	inline void rol_ax() { _rol(_ax()); }
 	// 40
 	inline void rti() { plp(); PC = popa(); }
@@ -208,12 +227,12 @@ private:
 	inline void lsr_a() { _lsr(_a()); }
 	// 50
 	inline void bvc() { if (!V) _bra(); PC++; }
-	inline void eor_iy() { _eor(_mem[_iy()]); }
+	inline void eor_iy() { _eor(_mem[_iyp()]); }
 	inline void eor_zx() { _eor(_mem[_zx()]); }
 	inline void lsr_zx() { _lsr(_zx()); }
 	inline void cli() { P.bits.I = 0; if (_irq) irq(); }
-	inline void eor_ay() { _eor(_mem[_ay()]); }
-	inline void eor_ax() { _eor(_mem[_ax()]); }
+	inline void eor_ay() { _eor(_mem[_ayp()]); }
+	inline void eor_ax() { _eor(_mem[_axp()]); }
 	inline void lsr_ax() { _lsr(_ax()); }
 	// 60
 	inline void rts() { PC = popa()+1; }
@@ -228,12 +247,12 @@ private:
 	inline void ror_a() { _ror(_a()); }
 	// 70
 	inline void bvs() { if (V) _bra(); PC++; }
-	inline void adc_iy() { _adc(_mem[_iy()]); }
+	inline void adc_iy() { _adc(_mem[_iyp()]); }
 	inline void adc_zx() { _adc(_mem[_zx()]); }
 	inline void ror_zx() { _ror(_zx()); }
 	inline void sei() { P.bits.I = 1; }
-	inline void adc_ay() { _adc(_mem[_ay()]); }
-	inline void adc_ax() { _adc(_mem[_ax()]); }
+	inline void adc_ay() { _adc(_mem[_ayp()]); }
+	inline void adc_ax() { _adc(_mem[_axp()]); }
 	inline void ror_ax() { _ror(_ax()); }
 	// 80
 	inline void sta_ix() { _mem[_ix()] = A; }
@@ -277,18 +296,18 @@ private:
 	inline void lax_a() { lda_a(); X=A; }
 	// b0
 	inline void bcs() { if (C) _bra(); PC++; }
-	inline void lda_iy() { _lda(_mem[_iy()]); }
+	inline void lda_iy() { _lda(_mem[_iyp()]); }
 	inline void lax_iy() { lda_iy(); X=A; }
 	inline void ldy_zx() { _ldy(_mem[_zx()]); }
 	inline void lda_zx() { _lda(_mem[_zx()]); }
 	inline void ldx_zy() { _ldx(_mem[_zy()]); }
 	inline void lax_zy() { ldx_zy(); A=X; }
 	inline void clv() { V=0; }
-	inline void lda_ay() { _lda(_mem[_ay()]); }
+	inline void lda_ay() { _lda(_mem[_ayp()]); }
 	inline void tsx() { Z=N=X=S; }
 	inline void ldy_ax() { _ldy(_mem[_ax()]); }
-	inline void lda_ax() { _lda(_mem[_ax()]); }
-	inline void ldx_ay() { _ldx(_mem[_ay()]); }
+	inline void lda_ax() { _lda(_mem[_axp()]); }
+	inline void ldx_ay() { _ldx(_mem[_ayp()]); }
 	inline void lax_ay() { ldx_ay(); A=X; }
 	// c0
 	inline void cpy_() { _cpy(_mem[PC++]); }
@@ -304,12 +323,12 @@ private:
 	inline void dec_a() { _dec(_a()); }
 	// d0
 	inline void bne() { if (Z) _bra(); PC++; }
-	inline void cmp_iy() { _cmp(_mem[_iy()]); }
+	inline void cmp_iy() { _cmp(_mem[_iyp()]); }
 	inline void cmp_zx() { _cmp(_mem[_zx()]); }
 	inline void dec_zx() { _dec(_zx()); }
 	inline void cld() { P.bits.D = 0; }
-	inline void cmp_ay() { _cmp(_mem[_ay()]); }
-	inline void cmp_ax() { _cmp(_mem[_ax()]); }
+	inline void cmp_ay() { _cmp(_mem[_ayp()]); }
+	inline void cmp_ax() { _cmp(_mem[_axp()]); }
 	inline void dec_ax() { _dec(_ax()); }
 	// e0
 	inline void cpx_() { _cpx(_mem[PC++]); }
@@ -324,11 +343,11 @@ private:
 	inline void inc_a() { _inc(_a()); }
 	// f0
 	inline void beq() { if (!Z) _bra(); PC++; }
-	inline void sbc_iy() { _sbc(_mem[_iy()]); }
+	inline void sbc_iy() { _sbc(_mem[_iyp()]); }
 	inline void sbc_zx() { _sbc(_mem[_zx()]); }
 	inline void inc_zx() { _inc(_zx()); }
 	inline void sed() { P.bits.D = 1; }
-	inline void sbc_ay() { _sbc(_mem[_ay()]); }
-	inline void sbc_ax() { _sbc(_mem[_ax()]); }
+	inline void sbc_ay() { _sbc(_mem[_ayp()]); }
+	inline void sbc_ax() { _sbc(_mem[_axp()]); }
 	inline void inc_ax() { _inc(_ax()); }
 };

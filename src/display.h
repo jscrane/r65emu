@@ -16,6 +16,7 @@ const uint16_t DARKGREEN = 0x03E0;
 const uint16_t DARKCYAN = 0x03EF;
 const uint16_t MAROON = 0x7800;
 const uint16_t PURPLE = 0x780F;
+const uint16_t VIOLET = 0x781F;
 const uint16_t OLIVE = 0x7BE0;
 const uint16_t LIGHTGREY = 0xC618;
 const uint16_t DARKGREY = 0x7BEF;
