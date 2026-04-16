@@ -396,8 +396,8 @@ private:
 	inline void _push(uint16_t w) { SP -= 2; _sw(SP, w); }
 
 	inline void _jmp(uint8_t c) { if (c) jmp(); else PC += 2; }
-	inline void _ret(uint8_t c) { if (c) ret(); }
-	inline void _call(uint8_t c) { if (c) call(); else PC += 2; }
+	inline void _ret(uint8_t c) { if (c) { ret(); cycles(6); } }
+	inline void _call(uint8_t c) { if (c) { call(); cycles(6); } else PC += 2; }
 
 	inline void rnz() { _ret(!flags.Z); }
 	inline void popb() { BC = _pop(); }

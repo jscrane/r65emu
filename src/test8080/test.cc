@@ -94,21 +94,19 @@ int main(int argc, char *argv[])
 		}
 	});
 	cpu.reset();
-
-	cpu.run(256);
+	cpu.run(0x100);
 	memory[0] = 0x76;	// hlt
 	memory[5] = 0x79;	// movac
 	memory[6] = 0xd3;	// out
 	memory[7] = 0x00;	// port 0
 	memory[8] = 0xd9;	// ret
-	Memory::address opc = cpu.pc();
 
-	while (true) {
+	long ops = 0, cycles = cpu.cycles();
+	do {
 		cpu.run(1);
-		Memory::address pc = cpu.pc();
-		if (pc == opc)
-			break;
-		opc = pc;
-	}
+		ops++;
+	} while (cpu.pc() != 0x0000);
+
+	printf("Ran %ld instructions in %d cycles\n", ops, cpu.cycles() - cycles);
 }
 #endif
