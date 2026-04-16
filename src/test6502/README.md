@@ -12,7 +12,9 @@ g++ -o test test.o r6502.o memory.o machine.o
 $ ./test 6502_functional_test.bin
 ...
 aa xx yy sp nv_bdizc _pc_ op clk
-f0 0e ff ff 11110001 3469 4c 95334915
+f0 0e ff ff 11110001 3469 4c 96241363
 ```
 
 The PC at `$3469` indicates success. Otherwise consult the listing file for the test failure.
+
+Note that the "correct number" of clocks for this test [seems to be](https://6502.org/forum/viewtopic.php?t=7012) 96241361.

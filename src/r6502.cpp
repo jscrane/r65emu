@@ -1,6 +1,11 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
+#if defined(ARDUINO)
+#include <pgmspace.h>
+#else
+#define PROGMEM
+#endif
 
 #include "machine.h"
 #include "memory.h"
@@ -14,19 +19,40 @@ r6502::r6502(Memory &m): CPU(m) {
 	};
 }
 
+static uint8_t optimes[] PROGMEM = {
+//	-0 -1 -2 -3 -4 -5 -6 -7 -8 -9 -A -B -C -D -E -F
+	7, 6, 0, 0, 0, 3, 5, 0, 3, 2, 2, 0, 4, 4, 6, 0,	// 0-
+	2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// 1-
+	6, 6, 0, 0, 3, 3, 5, 0, 4, 2, 2, 0, 4, 4, 6, 0,	// 2-
+	2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// 3-
+	6, 6, 0, 0, 0, 3, 5, 0, 3, 2, 2, 0, 3, 4, 6, 0,	// 4-
+	2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// 5-
+	6, 6, 0, 0, 0, 3, 5, 0, 4, 2, 2, 0, 5, 4, 6, 0,	// 6-
+	2, 5, 0, 2, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// 7-
+	2, 6, 0, 2, 3, 3, 3, 0, 2, 2, 2, 0, 4, 4, 4, 0,	// 8-
+	2, 6, 0, 0, 4, 4, 4, 0, 2, 5, 2, 0, 4, 5, 5, 0,	// 9-
+	2, 6, 2, 0, 3, 3, 3, 0, 2, 2, 2, 0, 4, 4, 4, 0,	// A-
+	2, 5, 0, 0, 4, 4, 4, 0, 2, 4, 2, 0, 4, 4, 4, 0,	// B-
+	2, 6, 0, 0, 3, 3, 5, 0, 2, 2, 2, 0, 4, 4, 6, 0,	// C-
+	2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// D-
+	2, 6, 0, 0, 3, 3, 5, 0, 2, 2, 2, 0, 4, 4, 6, 0,	// E-
+	2, 5, 0, 2, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// F-
+};
+
 void r6502::run(unsigned clocks) {
 	while (!_halted && clocks--) {
 		uint8_t op = _mem[PC];
 		PC++;
 		_op(op);
+		cycles(optimes[op]);
 	}
 }
 
 uint8_t r6502::flags() {
 	P.bits.N = ((N & 0x80) != 0);
-	P.bits.V = V;
-	P.bits.Z = !Z;
-	P.bits.C = C;
+	P.bits.V = (V != 0);
+	P.bits.Z = (Z == 0);
+	P.bits.C = (C != 0);
 	P.bits._ = 1;
 	return P.flags;
 }
@@ -35,16 +61,15 @@ char *r6502::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	flags();
 	snprintf(buf, n,
-		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x",
-		hdr? "aa xx yy sp nv_bdizc _pc_ op\r\n": "",
+		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
+		hdr? "aa xx yy sp nv_bdizc _pc_ op clk\r\n": "",
 		A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
-		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC]);
+		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC], cycles());
 #endif
 	return buf;
 }
 
-void r6502::checkpoint(Checkpoint &s)
-{
+void r6502::checkpoint(Checkpoint &s) {
 	s.write(PC / 0xff);
 	s.write(PC % 0xff);
 	s.write(S);
@@ -61,8 +86,7 @@ void r6502::checkpoint(Checkpoint &s)
 	s.write(P.flags);
 }
 
-void r6502::restore(Checkpoint &s)
-{
+void r6502::restore(Checkpoint &s) {
 	uint8_t hi = s.read(), lo = s.read();
 	PC = hi * 0xff + lo;
 	S = s.read();
@@ -99,14 +123,10 @@ void r6502::irq() {
 }
 
 void r6502::brk() {
-	if (!P.bits.I) {
-		pusha(PC+1);
-		php();
-		P.bits.I = 1;
-		PC = vector(ibvec);
-	}
-	P.bits.B = 1;
-	P.bits._ = 1;
+	pusha(PC+1);
+	pushb(flags() | 0x30);	// B=_=1
+	P.bits.I = 1;
+	PC = vector(ibvec);
 }
 
 void r6502::nmi() {
@@ -159,7 +179,6 @@ void r6502::_adc(uint8_t d) {
 		V = (~(A ^ d) & (A ^ (uint8_t)sum) & 0x80);
 		C = (sum > 0xFF);
 		A = (uint8_t)sum;
-
 	}
 	N = (A & 0x80);
 	Z = A;
