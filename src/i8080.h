@@ -54,19 +54,16 @@ private:
 		uint16_t HL;
 	};
 	Memory::address SP;
-	union {
-		struct {
-			unsigned C:1;
-			unsigned _1:1;	// always 1
-			unsigned P:1;
-			unsigned _3:1;	// always 0
-			unsigned H:1;
-			unsigned _5:1;	// always 0
-			unsigned Z:1;
-			unsigned S:1;
-		} flags;
-		uint8_t SR;
-	};
+	struct {
+		unsigned C:1;
+		unsigned _1:1;	// always 1
+		unsigned P:1;
+		unsigned _3:1;	// always 0
+		unsigned H:1;
+		unsigned _5:1;	// always 0
+		unsigned Z:1;
+		unsigned S:1;
+	} flags;
 	int _irq_pending;
 	bool _ints_enabled;
 
@@ -122,7 +119,17 @@ private:
 		b = r;
 	}
 
-	inline void _sr(uint8_t b) { SR = b; flags._3 = flags._5 = 0; flags._1 = 1; }
+	inline void _sr(uint8_t b) {
+		flags.S = (b & 0x80) != 0;
+		flags.Z = (b & 0x40) != 0;
+		flags._5 = 0;
+		flags.H = (b & 0x10) != 0;
+		flags._3 = 0;
+		flags.P = (b & 0x04) != 0;
+		flags._1 = 1;
+		flags.C = (b & 0x01) != 0;
+	}
+
 	inline uint8_t _sr() const {
 		return (flags.S << 7) | (flags.Z << 6) | (flags.H << 4) | (flags.P << 2) | (1 << 1) | (flags.C);
 	}

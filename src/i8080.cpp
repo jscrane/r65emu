@@ -91,7 +91,7 @@ void i8080::checkpoint(Checkpoint &s) {
 
 void i8080::restore(Checkpoint &s) {
 	A = s.read();
-	SR = s.read();
+	_sr(s.read());
 	BC = s.read();
 	DE = s.read();
 	HL = s.read();
