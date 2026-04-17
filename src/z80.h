@@ -188,6 +188,11 @@ private:
 	}
 
 	inline void _sw(Memory::address a, uint16_t w) {
+		_sb(a, w & 0xff);
+		_sb(a+1, w >> 8);
+	}
+
+	inline void _sw2(Memory::address a, uint16_t w) {
 		_sb(a+1, w >> 8);
 		_sb(a, w & 0xff);
 	}
@@ -402,7 +407,7 @@ private:
 	}
 
 	inline uint16_t _pop() { uint16_t w = _rw(SP); SP += 2; return w; }
-	inline void _push(uint16_t w) { SP -= 2; _sw(SP, w); }
+	inline void _push(uint16_t w) { SP -= 2; _sw2(SP, w); }
 
 	inline void _jmp(uint8_t c) { _memptr = _rw(PC); if (c) PC = _memptr; else PC += 2; }
 	inline void _ret(uint8_t c) { _mc(IR, 1); if (c) ret(); }

@@ -22,6 +22,6 @@ g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -DZ80TEST -o machine.o 
 g++ -o z80test z80test.o z80.o memory.o machine.o
 ./z80test tests.in > tests.me
 md5sum tests.me
-75f83a24154998522cf1f6a60c0042ef  tests.me
+6fa8226283a10540b51c6e5234af8af3  tests.me
 $ vi -d tests.expected tests.me
 ```
