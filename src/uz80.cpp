@@ -165,7 +165,7 @@ void uz80::checkpoint(Checkpoint &s) {
 	s.write(I);
 	s.write(R);
 	s.write(IFF);
-	s.write(_cycles);
+	s.write(cycles());
 	s.write(int_nmi);
 	s.write(int_int);
 	s.write(int_protection);
