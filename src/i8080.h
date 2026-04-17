@@ -37,7 +37,7 @@ public:
 	inline uint16_t bc() const { return BC; }
 	inline uint16_t de() const { return DE; }
 	inline uint16_t hl() const { return HL; }
-	inline uint8_t sr() const { return SR; }
+	inline uint8_t sr() const { return _sr(); }
 
 private:
 	uint8_t A;
@@ -54,20 +54,18 @@ private:
 		uint16_t HL;
 	};
 	Memory::address SP;
-	union {
-		struct {
-			unsigned C:1;
-			unsigned __:1;	// always 1
-			unsigned P:1;
-			unsigned _:1;	// always 0
-			unsigned H:1;
-			unsigned I:1;
-			unsigned Z:1;
-			unsigned S:1;
-		} flags;
-		uint8_t SR;
-	};
+	struct {
+		unsigned C:1;
+		unsigned _1:1;	// always 1
+		unsigned P:1;
+		unsigned _3:1;	// always 0
+		unsigned H:1;
+		unsigned _5:1;	// always 0
+		unsigned Z:1;
+		unsigned S:1;
+	} flags;
 	int _irq_pending;
+	bool _ints_enabled;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -97,26 +95,44 @@ private:
 		flags.P = parity(r);
 	}
 
-	inline void _szhp(uint8_t b, uint8_t r) {
-		_szp(r);
-		flags.H = ((b & 0x0f) > (r & 0x0f));
+	inline void hflagadd(uint8_t a, uint8_t b, uint8_t res) {
+		flags.H = ((a ^ b ^ res) & 0x10) != 0;
+	}
+
+	inline void hflagsub(uint8_t a, uint8_t b, uint8_t res) {
+		flags.H = !((a ^ b ^ res) & 0x10);
 	}
 
 	inline void _inc(uint8_t &b) {
 		uint16_t w = b + 1;
 		uint8_t r = w & 0xff;
-		_szhp(b, r);
+		_szp(r);
+		hflagadd(1, b, r);
 		b = r;
 	}
 
 	inline void _dec(uint8_t &b) {
 		uint16_t w = b - 1;
 		uint8_t r = w & 0xff;
-		_szhp(b, r);
+		_szp(r);
+		hflagsub(1, b, r);
 		b = r;
 	}
 
-	inline void _sr(uint8_t b) { SR = b; flags._ = 0; flags.__ = 1; }
+	inline void _sr(uint8_t b) {
+		flags.S = (b & 0x80) != 0;
+		flags.Z = (b & 0x40) != 0;
+		flags._5 = 0;
+		flags.H = (b & 0x10) != 0;
+		flags._3 = 0;
+		flags.P = (b & 0x04) != 0;
+		flags._1 = 1;
+		flags.C = (b & 0x01) != 0;
+	}
+
+	inline uint8_t _sr() const {
+		return (flags.S << 7) | (flags.Z << 6) | (flags.H << 4) | (flags.P << 2) | (1 << 1) | (flags.C);
+	}
 
 	inline void _dad(uint16_t w) {
 		unsigned long r = HL + w;
@@ -265,7 +281,8 @@ private:
 		uint16_t w = A + x;
 		uint8_t b = A;
 		A = w & 0xff;
-		_szhp(b, A);
+		_szp(A);
+		hflagadd(x, b, A);
 		flags.C = w > 0xff;
 	}
 
@@ -279,10 +296,12 @@ private:
 	inline void adda() { _add(A); }
 
 	inline void _adc(uint8_t x) {
-		uint16_t w = A + x + flags.C;
+		uint16_t a = x + flags.C;
+		uint16_t w = A + a;
 		uint8_t b = A;
 		A = w & 0xff;
-		_szhp(b, A);
+		_szp(A);
+		hflagadd(a, b, A);
 		flags.C = w > 0xff;
 	}
 
@@ -299,7 +318,8 @@ private:
 		uint16_t w = A - x;
 		uint8_t b = A;
 		A = w & 0xff;
-		_szhp(b, A);
+		_szp(A);
+		hflagsub(x, b, A);
 		flags.C = w > 0xff;
 	}
 
@@ -313,10 +333,12 @@ private:
 	inline void suba() { _sub(A); }
 
 	inline void _sbc(uint8_t x) {
-		uint16_t w = A - x - flags.C;
+		uint16_t s = x + flags.C;
+		uint16_t w = A - s;
 		uint8_t b = A;
 		A = w & 0xff;
-		_szhp(b, A);
+		_szp(A);
+		hflagsub(s, b, A);
 		flags.C = w > 0xff;
 	}
 
@@ -330,10 +352,11 @@ private:
 	inline void sbba() { _sbc(A); }
 
 	inline void _and(uint8_t b) {
+		uint8_t a = A;
 		A = A & b;
 		_szp(A);
 		flags.C = 0;
-		flags.H = 1;
+		flags.H = ((a | b) & 0x08) != 0;
 	}
 
 	inline void anab() { _and(B); }
@@ -377,8 +400,10 @@ private:
 
 	inline void _cmp(uint8_t b) {
 		uint16_t w = A - b;
-		_szhp(b, w & 0xff);
-		flags.C = w > 0xff;
+		uint8_t r = w & 0xff;
+		_szp(r);
+		hflagsub(b, A, r);
+		flags.C = A < b;
 	}
 
 	inline void cmpb() { _cmp(B); }
@@ -450,15 +475,15 @@ private:
 	inline void rp() { _ret(!flags.S); }
 	inline void pop() { _sr(_popb()); A = _popb(); }
 	inline void jp() { _jmp(!flags.S); }
-	inline void di() { flags.I = 0; }
+	inline void di() { _ints_enabled = false; }
 	inline void cp() { _call(!flags.S); }
-	inline void push() { _pushb(A); _pushb(SR); }
+	inline void push() { _pushb(A); _pushb(_sr()); }
 	inline void ori() { _or(_mem[PC++]); }
 	inline void rst6() { _push(PC); PC = 0x30; }
 	inline void rm() { _ret(flags.S); }
 	inline void sphl() { SP = HL; }
 	inline void jm() { _jmp(flags.S); }
-	inline void ei() { flags.I = 1; if (_irq_pending) raise(_irq_pending); }
+	inline void ei() { _ints_enabled = true; if (_irq_pending) raise(_irq_pending); }
 	inline void cm() { _call(flags.S); }
 
 	inline void cpi() { _cmp(_mem[PC++]); }
