@@ -300,12 +300,15 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 
 	E(0xcb, _step_idx(op));
 
+	E(0xdd, dd());
+
 	E(0xe1, ix = _pop());
 	E(0xe3, _exSP(ix));
 	E(0xe5, _mc(IR, 1); _push(ix));
 	E(0xe9, PC = ix);
 
 	E(0xf9, _mc(IR, 1); _mc(IR, 1); SP = ix);
+	E(0xfd, fd());
 
 	default:
 		ERR("unimplemented dd/fd op: %02x", o);
