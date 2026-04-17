@@ -72,10 +72,6 @@ public:
 	inline void im(uint8_t im) { _im = im; }
 	inline void memptr(uint16_t memptr) { _memptr = memptr; }
 
-	inline unsigned long ts() { return _ts; }
-	inline void ts(int t) { _ts += t; }
-	inline void reset_ts() { _ts = 0; }
-
 private:
 	void _handle_nmi();
 	void _handle_interrupt();
@@ -155,8 +151,6 @@ private:
 		uint16_t _memptr;
 	};
 
-	unsigned long _ts;
-
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
 
@@ -171,22 +165,22 @@ private:
 	uint8_t parity(uint8_t);
 
 	inline uint8_t _rb(Memory::address a) {
-		DBG_MEM("%5ld MC %04x", _ts, a);
-		ts(3);
-		DBG_MEM("%5ld MR %04x %02x", _ts, a, (uint8_t)_mem[a]);
+		DBG_MEM("%5d MC %04x", cycles(), a);
+		cycles(3);
+		DBG_MEM("%5d MR %04x %02x", cycles(), a, (uint8_t)_mem[a]);
 		return _mem[a];
 	}
 
 	inline void _sb(Memory::address a, uint8_t b) {
-		DBG_MEM("%5ld MC %04x", _ts, a);
-		ts(3);
-		DBG_MEM("%5ld MW %04x %02x", _ts, a, b);
+		DBG_MEM("%5d MC %04x", cycles(), a);
+		cycles(3);
+		DBG_MEM("%5d MW %04x %02x", cycles(), a, b);
 		_mem[a] = b;
 	}
 
 	inline void _mc(Memory::address a, int i) {
-		DBG_MEM("%5ld MC %04x", _ts, a);
-		ts(i);
+		DBG_MEM("%5d MC %04x", cycles(), a);
+		cycles(i);
 	}
 
 	inline uint16_t _rw(Memory::address a) {
@@ -1426,9 +1420,9 @@ private:
 				_memptr = PC-1;
 
 				_mc(PC-2, 4);
-				DBG_MEM("%5ld MR %04x %02x", _ts, PC-2, (uint8_t)_mem[PC-2]);
+				DBG_MEM("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
 				_mc(PC-1, 4);
-				DBG_MEM("%5ld MR %04x %02x", _ts, PC-1, (uint8_t)_mem[PC-1]);
+				DBG_MEM("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
 				R += 2;
 			}
 			DE++;
@@ -1483,9 +1477,9 @@ private:
 				_mc(HL, 1); _mc(HL, 1);
 
 				_mc(PC-2, 4);
-				DBG_MEM("%5ld MR %04x %02x", _ts, PC-2, (uint8_t)_mem[PC-2]);
+				DBG_MEM("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
 				_mc(PC-1, 4);
-				DBG_MEM("%5ld MR %04x %02x", _ts, PC-1, (uint8_t)_mem[PC-1]);
+				DBG_MEM("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
 				R += 2;
 			}
 			HL++;
@@ -1589,9 +1583,9 @@ private:
 				_memptr = PC-1;
 
 				_mc(PC-2, 4);
-				DBG_MEM("%5ld MR %04x %02x", _ts, PC-2, (uint8_t)_mem[PC-2]);
+				DBG_MEM("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
 				_mc(PC-1, 4);
-				DBG_MEM("%5ld MR %04x %02x", _ts, PC-1, (uint8_t)_mem[PC-1]);
+				DBG_MEM("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
 				R += 2;
 			}
 			DE--;

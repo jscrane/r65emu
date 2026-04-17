@@ -99,7 +99,6 @@ private:
 	} cpu_regs;
 
 	CPUState state;			// CPU state
-	uint32_t tstates;		// executed T-states
 	
 	// z80sim compatibility
 	inline uint8_t memrdr(uint16_t addr) { return _mem[addr]; }
