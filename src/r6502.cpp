@@ -61,7 +61,7 @@ char *r6502::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	flags();
 	snprintf(buf, n,
-		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
+		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %ld",
 		hdr? "aa xx yy sp nv_bdizc _pc_ op clk\r\n": "",
 		A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
 		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC], cycles());
