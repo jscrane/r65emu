@@ -37,7 +37,7 @@ public:
 	inline uint16_t bc() const { return BC; }
 	inline uint16_t de() const { return DE; }
 	inline uint16_t hl() const { return HL; }
-	inline uint8_t sr() const { return SR; }
+	inline uint8_t sr() const { return _sr(); }
 
 private:
 	uint8_t A;
@@ -57,17 +57,18 @@ private:
 	union {
 		struct {
 			unsigned C:1;
-			unsigned __:1;	// always 1
+			unsigned _1:1;	// always 1
 			unsigned P:1;
-			unsigned _:1;	// always 0
+			unsigned _3:1;	// always 0
 			unsigned H:1;
-			unsigned I:1;
+			unsigned _5:1;	// always 0
 			unsigned Z:1;
 			unsigned S:1;
 		} flags;
 		uint8_t SR;
 	};
 	int _irq_pending;
+	bool _ints_enabled;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -121,7 +122,10 @@ private:
 		b = r;
 	}
 
-	inline void _sr(uint8_t b) { SR = b; flags._ = 0; flags.__ = 1; }
+	inline void _sr(uint8_t b) { SR = b; flags._3 = flags._5 = 0; flags._1 = 1; }
+	inline uint8_t _sr() const {
+		return (flags.S << 7) | (flags.Z << 6) | (flags.H << 4) | (flags.P << 2) | (1 << 1) | (flags.C);
+	}
 
 	inline void _dad(uint16_t w) {
 		unsigned long r = HL + w;
@@ -464,15 +468,15 @@ private:
 	inline void rp() { _ret(!flags.S); }
 	inline void pop() { _sr(_popb()); A = _popb(); }
 	inline void jp() { _jmp(!flags.S); }
-	inline void di() { flags.I = 0; }
+	inline void di() { _ints_enabled = false; }
 	inline void cp() { _call(!flags.S); }
-	inline void push() { _pushb(A); _pushb(SR); }
+	inline void push() { _pushb(A); _pushb(_sr()); }
 	inline void ori() { _or(_mem[PC++]); }
 	inline void rst6() { _push(PC); PC = 0x30; }
 	inline void rm() { _ret(flags.S); }
 	inline void sphl() { SP = HL; }
 	inline void jm() { _jmp(flags.S); }
-	inline void ei() { flags.I = 1; if (_irq_pending) raise(_irq_pending); }
+	inline void ei() { _ints_enabled = true; if (_irq_pending) raise(_irq_pending); }
 	inline void cm() { _call(flags.S); }
 
 	inline void cpi() { _cmp(_mem[PC++]); }

@@ -50,12 +50,13 @@ void i8080::reset() {
 	_sr(0);
 	BC = DE = HL = PC = SP = 0;
 	_irq_pending = 0;
+	_ints_enabled = false;
 	_halted = false;
 }
 
 void i8080::raise(int level) {
-	if (flags.I) {
-		flags.I = 0;
+	if (_ints_enabled) {
+		_ints_enabled = false;
 		_irq_pending = 0;
 		_halted = false;
 		_push(PC);
@@ -78,13 +79,14 @@ char *i8080::status(char *buf, size_t n, bool hdr) {
 
 void i8080::checkpoint(Checkpoint &s) {
 	s.write(A);
-	s.write(SR);
+	s.write(_sr());
 	s.write(BC);
 	s.write(DE);
 	s.write(HL);
 	s.write(PC);
 	s.write(SP);
 	s.write(_irq_pending);
+	s.write(_ints_enabled);
 }
 
 void i8080::restore(Checkpoint &s) {
@@ -96,6 +98,7 @@ void i8080::restore(Checkpoint &s) {
 	PC = s.read();
 	SP = s.read();
 	_irq_pending = s.read();
+	_ints_enabled = s.read();
 }
 
 void i8080::daa() {
