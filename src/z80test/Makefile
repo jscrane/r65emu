@@ -1,4 +1,4 @@
-CPPFLAGS=-I.. -DUNDOCUMENTED_OPS -DZ80TEST
+CPPFLAGS=-I.. -DUNDOCUMENTED_OPS -DZ80TEST -DDEBUGGING=0x40
 CXXFLAGS=-g -fno-operator-names -Wall
 
 all: z80test tests.me sum

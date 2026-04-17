@@ -145,7 +145,7 @@ void uz80::reset() {
 	IFF = 0;
 	int_nmi = int_int = int_protection = false;
 	int_data = -1;
-	tstates = 0;
+	_cycles = 0;
 	state = Running;
 }
 
@@ -165,7 +165,7 @@ void uz80::checkpoint(Checkpoint &s) {
 	s.write(I);
 	s.write(R);
 	s.write(IFF);
-	s.write(tstates);
+	s.write(cycles());
 	s.write(int_nmi);
 	s.write(int_int);
 	s.write(int_protection);
@@ -188,7 +188,7 @@ void uz80::restore(Checkpoint &s) {
 	I = s.read();
 	R = s.read();
 	IFF = s.read();
-	tstates = s.read();
+	_cycles = s.read();
 	int_nmi = s.read();
 	int_int = s.read();
 	int_protection = s.read();
@@ -199,10 +199,10 @@ char *uz80::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	static bool first = true;
 	snprintf(buf, n,
-		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x ",
-		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP   OP\r\n": "",
+		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %d",
+		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP   OP    CLKS\r\n": "",
 		PC, A, S_FLAG != 0, Z_FLAG != 0, H_FLAG != 0, P_FLAG != 0, N_FLAG != 0, C_FLAG != 0, I, R & 0x7f, IFF & 1, IFF & 2,
-		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP);
+		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP, cycles());
 	first = false;
 
 	uint8_t op = _mem[PC], op1 = _mem[PC+1];
@@ -2221,7 +2221,7 @@ finish_ldidr:
 						HL = s;
 						F &= ~(H_FLAG | N_FLAG | P_FLAG);
 						/* S_FLAG, Z_FLAG, and C_FLAG unchanged */
-						tstates += tl;
+						cycles(tl);
 						break;
 
 					case 0xb1:		/* CPIR */
@@ -2245,7 +2245,7 @@ finish_cpidr:
 								 ((W != 0) << P_SHIFT) |
 								 (szp_flags[res] & ~P_FLAG));
 						/* C_FLAG unchanged */
-						tstates += tl;
+						cycles(tl);
 						break;
 
 					case 0xb2:		/* INIR */
@@ -2267,7 +2267,7 @@ finish_ioidr:
 								 (szp_flags[W & 7] & P_FLAG) |
 								 Z_FLAG);
 						/* S_FLAG cleared */
-						tstates += tl;
+						cycles(tl);
 						break;
 
 					case 0xb3:		/* OTIR */
@@ -2511,7 +2511,7 @@ finish_ioidr:
 		else
 			IY = IR;
 
-		tstates += t;	// account for the executed instruction
+		cycles(t);	// account for the executed instruction
 
 	} while (state == Running && --instructions > 0);
 }

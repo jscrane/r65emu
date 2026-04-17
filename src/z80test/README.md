@@ -2,7 +2,7 @@ z80test
 -------
 
 A test harness for a z80 processor emulator; based on, and using tests from,
-the excellent [FUSE 1.5.7](http://fuse-emulator.sourceforge.net/).
+the excellent [FUSE 1.7.0](http://fuse-emulator.sourceforge.net/).
 
 Some of these tests depend on a FUSE-compatible implementation of certain ed-prefixed instructions.
 These are indicated by the ```#ifdef Z80TEST``` in ```z80.h```.
@@ -22,6 +22,6 @@ g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -DZ80TEST -o machine.o 
 g++ -o z80test z80test.o z80.o memory.o machine.o
 ./z80test tests.in > tests.me
 md5sum tests.me
-75f83a24154998522cf1f6a60c0042ef  tests.me
+6fa8226283a10540b51c6e5234af8af3  tests.me
 $ vi -d tests.expected tests.me
 ```

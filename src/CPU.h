@@ -38,7 +38,5 @@ protected:
 	Memory &_mem;
 	Memory::address PC;
 	bool _halted;
-
-private:
 	uint32_t _cycles;
 };

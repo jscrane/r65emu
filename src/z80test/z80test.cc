@@ -13,6 +13,30 @@
 #include "z80.h"
 #include "ram.h"
 
+class TestMachine: public Machine {
+public:
+	TestMachine(CPU &c): Machine(c) {}
+
+	int interval_timer(uint32_t micros, std::function<void(void)> cb) override { return -1; }
+	int oneshot_timer(uint32_t micros, std::function<void(void)> cb) override { return -1; }
+	void cancel_timer(int timer) override {}
+
+	uint32_t microseconds() override { return 0; }
+	void yield() override {}
+
+	void debug(const char *lvlstr, const char *fmt, ...) {
+		char buf[128];
+		va_list args;
+		va_start(args, fmt);
+		int n = vsnprintf(buf, sizeof(buf), fmt, args);
+		va_end(args);
+		if (n >= 0) {
+			buf[sizeof(buf)-1] = 0;
+			puts(buf);
+		}
+	}
+};
+
 class Ports {
 public:
 	Ports(Memory &mem, z80 &cpu): _mem(mem), _cpu(cpu) {}
@@ -20,34 +44,34 @@ public:
 	// not sure what this is all about, spectrum-specific stuff?
 	void pre(uint16_t p) const {
 		if ((p & 0xc000) == 0x4000)
-			printf("%5ld PC %04x\n", _cpu.ts(), p);
-		_cpu.ts(1);
+			printf("%5d PC %04x\n", _cpu.cycles(), p);
+		_cpu.cycles(1);
 	}
 
 	void post(uint16_t p) const {
 		if (p & 0x0001) {
 			if ((p & 0xc000) == 0x4000) {
-				printf("%5ld PC %04x\n", _cpu.ts(), p); _cpu.ts(1);
-				printf("%5ld PC %04x\n", _cpu.ts(), p); _cpu.ts(1);
-				printf("%5ld PC %04x\n", _cpu.ts(), p); _cpu.ts(1);
+				printf("%5d PC %04x\n", _cpu.cycles(), p); _cpu.cycles(1);
+				printf("%5d PC %04x\n", _cpu.cycles(), p); _cpu.cycles(1);
+				printf("%5d PC %04x\n", _cpu.cycles(), p); _cpu.cycles(1);
 			} else
-				_cpu.ts(3);
+				_cpu.cycles(3);
 		} else {
-			printf("%5ld PC %04x\n", _cpu.ts(), p);
-			_cpu.ts(3);
+			printf("%5d PC %04x\n", _cpu.cycles(), p);
+			_cpu.cycles(3);
 		}
 	}
 	
 	void out(uint16_t port, uint8_t a) const {
 		pre(port);
-		printf("%5ld PW %04x %02x\n", _cpu.ts(), port, a);
+		printf("%5d PW %04x %02x\n", _cpu.cycles(), port, a);
 		post(port);
 	}
 
 	uint8_t in(uint16_t port) const {
 		uint8_t r = port >> 8;
 		pre(port);
-		printf("%5ld PR %04x %02x\n", _cpu.ts(), port, r);
+		printf("%5d PR %04x %02x\n", _cpu.cycles(), port, r);
 		post(port);
 		return r;
 	}
@@ -124,8 +148,8 @@ void dump_cpu_state(z80 &z) {
 	printf("%04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x\n",
 		z.af(), z.bc(), z.de(), z.hl(), z.af_(), z.bc_(), z.de_(), 
 		z.hl_(), z.ix(), z.iy(), z.sp(), z.pc(), z.memptr());
-	printf("%02x %02x %d %d %d %d %ld\n",
-		z.i(), z.r(), z.iff1(), z.iff2(), z.im(), z.halted(), z.ts());
+	printf("%02x %02x %d %d %d %d %d\n",
+		z.i(), z.r(), z.iff1(), z.iff2(), z.im(), z.halted(), z.cycles());
 }
 
 void dump_memory_state(uint8_t b[], Memory &m) {
@@ -154,6 +178,8 @@ int main(int argc, char *argv[]) {
 	cpu.set_port_in_handler([ports](uint16_t p) { return ports.in(p); });
 	cpu.reset();
 
+	TestMachine machine(cpu);
+
 	FILE *fp = fopen(argv[1], "r");
 	if (!fp) {
 		perror("fopen");
@@ -174,7 +200,7 @@ int main(int argc, char *argv[]) {
 		for (unsigned i = 0; i < 0x10000; i++)
 			backup[i] = memory[i];
 
-		while (cpu.ts() < (uint32_t)end_ts)
+		while (cpu.cycles() < (uint32_t)end_ts)
 			cpu.run(1);
 
 		dump_cpu_state(cpu);
