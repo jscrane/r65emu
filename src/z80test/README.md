@@ -2,7 +2,7 @@ z80test
 -------
 
 A test harness for a z80 processor emulator; based on, and using tests from,
-the excellent [FUSE 1.5.7](http://fuse-emulator.sourceforge.net/).
+the excellent [FUSE 1.7.0](http://fuse-emulator.sourceforge.net/).
 
 Some of these tests depend on a FUSE-compatible implementation of certain ed-prefixed instructions.
 These are indicated by the ```#ifdef Z80TEST``` in ```z80.h```.
