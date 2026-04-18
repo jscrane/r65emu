@@ -1439,7 +1439,6 @@ private:
 		flags.P = flags.N = flags.H = 0;
 	}
 	inline void cpir() {
-#ifdef Z80TEST
 		uint8_t b = _rb(HL);
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
@@ -1463,40 +1462,8 @@ private:
 		} else
 			_memptr++;
 		HL++;
-#else
-		uint8_t b;
-		do {
-			b = _rb(HL);
-			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-			_mc(HL, 1); _mc(HL, 1);
-			uint8_t a = A;
-			uint8_t carry = (flags.C != 0);
-			_sub(b);
-			BC--;
-			b = A;
-			A = a;
-			flags.C = carry;
-			flags.P = (BC != 0);
-			if (!flags.Z && flags.P) {
-				_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-				_mc(HL, 1); _mc(HL, 1);
-
-				_mc(PC-2, 4);
-				DBG_MEM("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
-				_mc(PC-1, 4);
-				DBG_MEM("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
-				R += 2;
-			}
-			HL++;
-		} while (!flags.Z && flags.P);
-		if (flags.H) b--;
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
-		_memptr = PC;
-#endif
 	}
 	inline void inir() {
-#ifdef Z80TEST
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
@@ -1514,29 +1481,8 @@ private:
 			_int_prot = true;
 		}
 		HL++;
-#else
-		uint8_t b;
-		do {
-			_mc(IR, 1);
-			b = _inr();
-			_sb(HL, b);
-			_memptr = BC+1;
-			B--;
-			if (B) {
-				_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-				_mc(HL, 1); _mc(HL, 1);
-			}
-			HL++;
-		} while (B);
-		uint8_t c = b + C + 1;
-		flags.N = (c & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-#endif
 	}
 	inline void outir() {
-#ifdef Z80TEST
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
@@ -1554,26 +1500,6 @@ private:
 			PC -= 2;
 			_int_prot = true;
 		}
-#else
-		uint8_t b;
-		do {
-			_mc(IR, 1);
-			b = _rb(HL);
-			B--;
-			_memptr = BC+1;
-			_outr(b);
-			HL++;
-			if (B) {
-				_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
-				_mc(BC, 1); _mc(BC, 1);
-			}
-		} while (B);
-		uint8_t c = b + L;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-#endif
 	}
 	inline void lddr() {
 		uint8_t b;
@@ -1602,7 +1528,6 @@ private:
 		flags.P = flags.N = flags.H = 0;
 	}
 	inline void cpdr() {
-#ifdef Z80TEST
 		uint8_t b = _rb(HL);
 		_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
 		_mc(HL, 1); _mc(HL, 1);
@@ -1627,35 +1552,8 @@ private:
 		} else
 			_memptr--;
 		HL--;
-#else
-		uint8_t b;
-		do {
-			b = _rb(HL);
-			_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-			_mc(HL, 1); _mc(HL, 1);
-			uint8_t a = A;
-			uint8_t carry = (flags.C != 0);
-			_sub(b);
-			BC--;
-			b = A;
-			A = a;
-			flags.C = carry;
-			flags.P = (BC != 0);
-			if (!flags.Z && flags.P) {
-				_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-				_mc(HL, 1); _mc(HL, 1);
-			}
-			HL--;
-		} while (!flags.Z && flags.P);
-		if (flags.H) b--;
-		flags._3 = (b & 0x08) != 0;
-		flags._5 = (b & 0x02) != 0;
-		flags.N = 1;
-		_memptr = PC-1;
-#endif
 	}
 	inline void indr() {
-#ifdef Z80TEST
 		_mc(IR, 1);
 		uint8_t b = _inr();
 		_sb(HL, b);
@@ -1673,29 +1571,8 @@ private:
 			_int_prot = true;
 		}
 		HL--;
-#else
-		uint8_t b;
-		do {
-			_mc(IR, 1);
-			b = _inr();
-			_sb(HL, b);
-			_memptr = BC-1;
-			B--;
-			if (B) {
-				_mc(HL, 1); _mc(HL, 1); _mc(HL, 1);
-				_mc(HL, 1); _mc(HL, 1);
-			}
-			HL--;
-		} while (B);
-		uint8_t c = b + C - 1;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-#endif
 	}
 	inline void outdr() {
-#ifdef Z80TEST
 		_mc(IR, 1);
 		uint8_t b = _rb(HL);
 		B--;
@@ -1713,26 +1590,6 @@ private:
 			PC -= 2;
 			_int_prot = true;
 		}
-#else
-		uint8_t b;
-		do {
-			_mc(IR, 1);
-			b = _rb(HL);
-			B--;
-			_outr(b);
-			_memptr = BC-1;
-			HL--;
-			if (B) {
-				_mc(BC, 1); _mc(BC, 1); _mc(BC, 1);
-				_mc(BC, 1); _mc(BC, 1);
-			}
-		} while (B);
-		uint8_t c = b + L;
-		flags.N = (b & 0x80) != 0;
-		flags.C = flags.H = (c < b);
-		flags.P = parity((c & 0x07) ^ B);
-		_sz35(B);
-#endif
 	}
 
 	// 0xDDCB extended instructions
