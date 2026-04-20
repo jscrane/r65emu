@@ -26,6 +26,8 @@ private:
 	Stream &_s;
 };
 
+#define MAX_SPEED	UINT32_MAX
+
 class Arduino: public Machine {
 public:
 	Arduino(class CPU &cpu): Machine(cpu) {}
@@ -39,12 +41,13 @@ public:
 
 	void register_pollable(Pollable &);
 
-	void run(unsigned instructions = CPU_INSTRUCTIONS);
+	void run(uint32_t cycles = MAX_SPEED);
 
 	int interval_timer(uint32_t micros, std::function<void(void)> cb);
 	int oneshot_timer(uint32_t micros, std::function<void(void)> cb);
 	void cancel_timer(int timer);
 	uint32_t microseconds();
+	void sleep(uint32_t dt);
 	void yield();
 
 	void debug(const char *lvlstr, const char *fmt, ...);

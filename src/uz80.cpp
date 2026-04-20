@@ -268,7 +268,7 @@ uint8_t uz80::_handle_interrupt() {
 	return 0;
 }
 
-void uz80::run(unsigned instructions) {
+void uz80::run(std::function<bool(void)> more) {
 	uint8_t t, res, cout, P, op, n, curr_ir;
 #ifdef FAST_BLOCK
 	uint16_t s, d;
@@ -2513,7 +2513,7 @@ finish_ioidr:
 
 		cycles(t);	// account for the executed instruction
 
-	} while (state == Running && --instructions > 0);
+	} while (state == Running && more());
 }
 
 #undef W

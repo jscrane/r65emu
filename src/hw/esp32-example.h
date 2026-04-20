@@ -41,7 +41,7 @@
 
 // Storage
 #if !defined(NO_STORAGE) && !defined(USE_SD) && !defined(USE_LITTLEFS) && !defined(USE_SPIFFS)
-#define USE_SPIFFS
+#define USE_LITTLEFS
 #endif
 
 // sound: dac and pwm

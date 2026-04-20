@@ -8,7 +8,7 @@ class z80: public CPU {
 public:
 	z80(Memory &m): CPU(m) {}
 
-	void run(unsigned);
+	void run(std::function<bool(void)>);
 	void reset();
 	void nmi() { _int_nmi = true; }
 	void irq(uint8_t b) { _int_irq = true; _irq_data = b; }

@@ -22,6 +22,7 @@ public:
 	void cancel_timer(int timer) override {}
 
 	uint32_t microseconds() override { return 0; }
+	void sleep(uint32_t) override {}
 	void yield() override {}
 
 	void debug(const char *lvlstr, const char *fmt, ...) {
@@ -201,7 +202,7 @@ int main(int argc, char *argv[]) {
 			backup[i] = memory[i];
 
 		while (cpu.cycles() < (uint32_t)end_ts)
-			cpu.run(1);
+			cpu.run(single_step());
 
 		dump_cpu_state(cpu);
 		dump_memory_state(backup, memory);

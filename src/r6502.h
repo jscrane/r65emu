@@ -10,7 +10,7 @@ public:
 
 	void raise(int);
 	void reset();
-	void run(unsigned);
+	void run(std::function<bool(void)>);
 	char *status(char *buf, size_t n, bool hdr=false);
 	void checkpoint(Checkpoint &);
 	void restore(Checkpoint &);

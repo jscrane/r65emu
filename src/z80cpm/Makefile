@@ -1,13 +1,14 @@
-CPPFLAGS=-I.. -DUNDOCUMENTED_OPS
-CXXFLAGS=-g -fno-operator-names -Wall
+CPPFLAGS:=-I.. -DUNDOCUMENTED_OPS
+CXXFLAGS:=-g -fno-operator-names -Wall
+OBJECTS := cpm.o z80.o memory.o disk.o cons.o
 
 all: cpm
 
-cpm: cpm.o z80.o memory.o disk.o cons.o
+cpm: $(OBJECTS)
 	g++ -o $@ $+ $(LDLIBS)
 
 %.o: ../%.cpp ../%.h
 	g++ $(CXXFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-	rm -f cpm *.o
+	rm -f cpm $(OBJECTS)

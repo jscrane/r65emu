@@ -30,7 +30,7 @@ class uz80: public CPU {
 public:
 	uz80(Memory &m): CPU(m) {}
 
-	void run(unsigned);
+	void run(std::function<bool(void)>);
 	void reset();
 	void nmi() { int_nmi = true; }
 	void irq(uint8_t b) { int_int = true; int_data = b; state = Interrupted; }

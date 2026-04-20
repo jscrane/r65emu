@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 
 	char buf[256];
 	while (true) {
-		cpu.run(1);
+		cpu.run(single_step());
 #if defined(DEBUGGING)
 		puts(cpu.status(buf, sizeof(buf)));
 #endif

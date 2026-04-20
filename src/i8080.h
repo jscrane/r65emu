@@ -10,7 +10,7 @@ class i8080: public CPU {
 public:
 	i8080(Memory &m): CPU(m) {}
 
-	void run(unsigned);
+	void run(std::function<bool(void)>);
 	void reset();
 	void raise(int);
 	void irq(uint8_t b) { raise(b); }
@@ -54,18 +54,18 @@ private:
 		uint16_t HL;
 	};
 	Memory::address SP;
-	struct {
-		unsigned C:1;
-		unsigned _1:1;	// always 1
-		unsigned P:1;
-		unsigned _3:1;	// always 0
-		unsigned H:1;
-		unsigned _5:1;	// always 0
-		unsigned Z:1;
-		unsigned S:1;
-	} flags;
+	union {
+		struct {
+			unsigned C:1;
+			unsigned P:1;
+			unsigned H:1;
+			unsigned Z:1;
+			unsigned S:1;
+			unsigned I:1;
+		} flags;
+		uint8_t status_bits;
+	};
 	int _irq_pending;
-	bool _ints_enabled;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -122,11 +122,8 @@ private:
 	inline void _sr(uint8_t b) {
 		flags.S = (b & 0x80) != 0;
 		flags.Z = (b & 0x40) != 0;
-		flags._5 = 0;
 		flags.H = (b & 0x10) != 0;
-		flags._3 = 0;
 		flags.P = (b & 0x04) != 0;
-		flags._1 = 1;
 		flags.C = (b & 0x01) != 0;
 	}
 
@@ -475,7 +472,7 @@ private:
 	inline void rp() { _ret(!flags.S); }
 	inline void pop() { _sr(_popb()); A = _popb(); }
 	inline void jp() { _jmp(!flags.S); }
-	inline void di() { _ints_enabled = false; }
+	inline void di() { flags.I = false; }
 	inline void cp() { _call(!flags.S); }
 	inline void push() { _pushb(A); _pushb(_sr()); }
 	inline void ori() { _or(_mem[PC++]); }
@@ -483,7 +480,7 @@ private:
 	inline void rm() { _ret(flags.S); }
 	inline void sphl() { SP = HL; }
 	inline void jm() { _jmp(flags.S); }
-	inline void ei() { _ints_enabled = true; if (_irq_pending) raise(_irq_pending); }
+	inline void ei() { flags.I = true; if (_irq_pending) raise(_irq_pending); }
 	inline void cm() { _call(flags.S); }
 
 	inline void cpi() { _cmp(_mem[PC++]); }

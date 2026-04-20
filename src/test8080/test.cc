@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 		}
 	});
 	cpu.reset();
-	cpu.run(0x100);
+	cpu.run([&cpu]() { return cpu.pc() != 0x100; });
 	memory[0] = 0x76;	// hlt
 	memory[5] = 0x79;	// movac
 	memory[6] = 0xd3;	// out
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 
 	long ops = 0, cycles = cpu.cycles();
 	do {
-		cpu.run(1);
+		cpu.run(single_step());
 		ops++;
 	} while (cpu.pc() != 0x0000);
 

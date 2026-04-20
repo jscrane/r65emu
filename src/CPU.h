@@ -17,7 +17,7 @@
 class CPU: public Checkpointable {
 public:
 	virtual ~CPU() {}
-	virtual void run(unsigned instructions) =0;
+	virtual void run(std::function<bool(void)> more) =0;
 	virtual void reset() =0;
 	virtual char *status(char *buf, size_t n, bool hdr = false) =0;
 
@@ -31,7 +31,7 @@ public:
 
 	Memory &memory() const { return _mem; }
 	uint32_t cycles() const { return _cycles; }
-	void cycles(uint16_t c) { _cycles += c; }
+	void cycles(uint8_t c) { _cycles += c; }
 
 protected:
 	CPU(Memory &mem): _mem(mem), _halted(false), _cycles(0) {}
@@ -40,3 +40,12 @@ protected:
 	bool _halted;
 	uint32_t _cycles;
 };
+
+#if !defined(TIME_SLICE)
+#define TIME_SLICE	1000	// 1ms
+#endif
+
+// predicates for CPU::run()
+std::function<bool(void)> single_step();
+std::function<bool(void)> time_slice(uint32_t start_time);
+std::function<bool(void)> for_cycles(CPU &cpu, uint32_t ncycles);

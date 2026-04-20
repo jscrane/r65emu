@@ -122,8 +122,7 @@ int main(int argc, char *argv[]) {
 
 	read_boot_sector(memory);
 
-	while (!cpu.halted())
-		cpu.run(100);
+	cpu.run([&cpu]() { return !cpu.halted(); });
 
 	close_disks();
 	cons_fini();

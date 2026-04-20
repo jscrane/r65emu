@@ -94,8 +94,8 @@ uint8_t z80::_fetch_op() {
 	return op;
 }
 
-void z80::run(unsigned instructions) {
-	while (instructions--) {
+void z80::run(std::function<bool(void)> more) {
+	while (more()) {
 		if (_int_nmi) {
 			_handle_nmi();
 			_int_nmi = false;

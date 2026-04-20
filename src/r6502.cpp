@@ -39,8 +39,8 @@ static uint8_t optimes[] PROGMEM = {
 	2, 5, 0, 2, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,	// F-
 };
 
-void r6502::run(unsigned clocks) {
-	while (!_halted && clocks--) {
+void r6502::run(std::function<bool(void)> more) {
+	while (!_halted && more()) {
 		uint8_t op = _mem[PC];
 		PC++;
 		_op(op);

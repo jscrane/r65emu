@@ -130,24 +130,27 @@ void Arduino::register_pollable(Pollable &p) {
 	devices[num_pollable++] = &p;
 }
 
-void Arduino::run(unsigned instructions) {
+void Arduino::run(uint32_t cycles) {
+
+	uint32_t start = microseconds();
 
 	timers.run();
 
 	for (uint8_t i = 0; i < num_pollable; i++)
 		devices[i]->poll();
 
-	if (instructions > 0) {
 #if DEBUGGING & DEBUG_CPU
-		if (_cpu_debug()) {
-			char buf[256];
-			DBG_CPU(_cpu.status(buf, sizeof(buf)));
-		}
-		_cpu.run(1);
-#else
-		_cpu.run(instructions);
-#endif
+	if (_cpu_debug()) {
+		char buf[256];
+		DBG_CPU(_cpu.status(buf, sizeof(buf)));
 	}
+	_cpu.run(single_step());
+#else
+	_cpu.run(time_slice(start));
+	uint32_t dt = microseconds() - start;
+	if (dt < TIME_SLICE)
+		sleep(dt);
+#endif
 }
 
 int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
@@ -163,6 +166,8 @@ void Arduino::cancel_timer(int timer) {
 }
 
 uint32_t Arduino::microseconds() { return micros(); }
+
+void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
 
