@@ -1,4 +1,4 @@
-CPPFLAGS:=-I.. -DUNDOCUMENTED_OPS
+CPPFLAGS:=-I.. -DUNDOCUMENTED_OPS -DDEBUGGING=0x01
 CXXFLAGS:=-g
 
 test: test.o i8080.o memory.o machine.o
