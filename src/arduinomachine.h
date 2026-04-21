@@ -2,10 +2,6 @@
 
 #include <functional>
 
-#if !defined(CPU_INSTRUCTIONS)
-#define CPU_INSTRUCTIONS 	1000
-#endif
-
 #if !defined(TERMINAL_SPEED)
 #define TERMINAL_SPEED		115200
 #endif
@@ -26,16 +22,6 @@ private:
 	Stream &_s;
 };
 
-#define CLK_MAX		UINT32_MAX
-#define CLK_1MHZ	1000000
-#define CLK_2MHZ	2000000
-#define CLK_4MHZ	4000000
-#define CLK_STOPPED	0
-
-#if !defined(TIME_SLICE)
-#define TIME_SLICE	1000
-#endif
-
 class Arduino: public Machine {
 public:
 	Arduino(class CPU &cpu): Machine(cpu) {}
@@ -47,23 +33,14 @@ public:
 		_reset_handler = handler;
 	}
 
-	void register_pollable(Pollable &);
-
-	void run(uint32_t clock_speed_hz = CLK_MAX);
-
-	int interval_timer(uint32_t micros, std::function<void(void)> cb);
-	int oneshot_timer(uint32_t micros, std::function<void(void)> cb);
-	void cancel_timer(int timer);
-	uint32_t microseconds();
-	void sleep(uint32_t dt);
-	void yield();
-
-	void debug(const char *lvlstr, const char *fmt, ...);
-	uint32_t current_speed() const { return _speed; }
+	int interval_timer(uint32_t micros, std::function<void(void)> cb) override;
+	int oneshot_timer(uint32_t micros, std::function<void(void)> cb) override;
+	void cancel_timer(int timer) override;
+	uint32_t microseconds() override;
+	void sleep(uint32_t dt) override;
+	void yield() override;
+	void debug(const char *lvlstr, const char *fmt, ...) override;
 
 private:
 	std::function<void(bool)> _reset_handler;
-
-	uint32_t _speed;
-	uint32_t _batch_size = CPU_INSTRUCTIONS;
 };
