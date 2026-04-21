@@ -22,6 +22,7 @@ public:
 	void cancel_timer(int timer) override {}
 
 	uint32_t microseconds() override { return 0; }
+	void sleep(uint32_t) override {}
 	void yield() override {}
 
 	void debug(const char *lvlstr, const char *fmt, ...) {
