@@ -130,24 +130,33 @@ void Arduino::register_pollable(Pollable &p) {
 	devices[num_pollable++] = &p;
 }
 
-void Arduino::run(unsigned instructions) {
+void Arduino::run(uint32_t clock_speed_hz) {
+
+	uint32_t start_time = microseconds();
 
 	timers.run();
 
 	for (uint8_t i = 0; i < num_pollable; i++)
 		devices[i]->poll();
 
-	if (instructions > 0) {
 #if DEBUGGING & DEBUG_CPU
-		if (_cpu_debug()) {
-			char buf[256];
-			DBG_CPU(_cpu.status(buf, sizeof(buf)));
-		}
-		_cpu.run(1);
-#else
-		_cpu.run(instructions);
-#endif
+	if (_cpu_debug()) {
+		char buf[256];
+		DBG_CPU(_cpu.status(buf, sizeof(buf)));
 	}
+	_cpu.run(1);
+#else
+	uint32_t start_cycles = _cpu.cycles();
+	if (clock_speed_hz == CLK_MAX)
+		_cpu.run(time_slice(start_time));
+	else {
+		_cpu.run(time_slice_or_cycles(_cpu, start_time, clock_speed_hz / (1000000 / TIME_SLICE)));
+		uint32_t elapsed = microseconds() - start_time;
+		if (elapsed < TIME_SLICE)
+			sleep(TIME_SLICE - elapsed);
+	}
+	_speed = (_cpu.cycles() - start_cycles) * (1000000 / (microseconds() - start_time));
+#endif
 }
 
 int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
@@ -163,6 +172,8 @@ void Arduino::cancel_timer(int timer) {
 }
 
 uint32_t Arduino::microseconds() { return micros(); }
+
+void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
 

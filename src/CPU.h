@@ -31,7 +31,7 @@ public:
 
 	Memory &memory() const { return _mem; }
 	uint32_t cycles() const { return _cycles; }
-	void cycles(uint16_t c) { _cycles += c; }
+	void cycles(uint8_t c) { _cycles += c; }
 
 protected:
 	CPU(Memory &mem): _mem(mem), _halted(false), _cycles(0) {}
