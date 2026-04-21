@@ -146,15 +146,16 @@ void Arduino::run(uint32_t clock_speed_hz) {
 	}
 	_cpu.run(single_step());
 #else
-	if (clock_speed == CLK_MAX) {
+	uint32_t start_cycles = _cpu.cycles();
+	if (clock_speed_hz == CLK_MAX)
 		_cpu.run(time_slice(start_time));
-		return;
+	else {
+		_cpu.run(time_slice_or_cycles(_cpu, start_time, clock_speed_hz / (1000000 / TIME_SLICE)));
+		uint32_t elapsed = microseconds() - start_time;
+		if (elapsed < TIME_SLICE)
+			sleep(TIME_SLICE - elapsed);
 	}
-	_cpu.run(time_slice_or_cycles(_cpu, start_time, clock_speed_hz / (1000000 / TIME_SLICE)));
-
-	uint32_t elapsed = microseconds() - start_time;
-	if (elapsed < TIME_SLICE)
-		sleep(TIME_SLICE - elapsed);
+	_speed = (_cpu.cycles() - start_cycles) * (1000000 / (microseconds() - start_time));
 #endif
 }
 

@@ -55,7 +55,10 @@ public:
 	void yield();
 
 	void debug(const char *lvlstr, const char *fmt, ...);
+	uint32_t current_speed() const { return _speed; }
 
 private:
 	std::function<void(bool)> _reset_handler;
+
+	uint32_t _speed;
 };
