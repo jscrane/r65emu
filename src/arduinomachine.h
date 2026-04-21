@@ -3,7 +3,7 @@
 #include <functional>
 
 #if !defined(CPU_INSTRUCTIONS)
-#define CPU_INSTRUCTIONS 	500
+#define CPU_INSTRUCTIONS 	1000
 #endif
 
 #if !defined(TERMINAL_SPEED)

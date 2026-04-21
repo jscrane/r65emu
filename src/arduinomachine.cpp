@@ -156,6 +156,7 @@ void Arduino::run(uint32_t clock_speed_hz) {
 			uint32_t target_cycles = clock_speed_hz / (1000000 / TIME_SLICE);
 			uint32_t next_batch = (target_cycles * _batch_size) / cycles_run;
 			_batch_size = (_batch_size + next_batch) / 2;
+
 			if (_batch_size > CPU_INSTRUCTIONS) _batch_size = CPU_INSTRUCTIONS;
 			else if (_batch_size == 0) _batch_size = 1;
 		}

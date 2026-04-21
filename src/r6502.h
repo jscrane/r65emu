@@ -168,8 +168,6 @@ private:
 		cycles(c);
 	}
 
-	void _op(uint8_t);
-
 	/* operations */
 	inline void brk();
 	inline void ora_ix() { _ora(_mem[_ix()]); }
