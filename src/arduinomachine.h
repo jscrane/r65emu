@@ -32,6 +32,10 @@ private:
 #define CLK_4MHZ	4000000
 #define CLK_STOPPED	0
 
+#if !defined(TIME_SLICE)
+#define TIME_SLICE	1000
+#endif
+
 class Arduino: public Machine {
 public:
 	Arduino(class CPU &cpu): Machine(cpu) {}
@@ -61,4 +65,5 @@ private:
 	std::function<void(bool)> _reset_handler;
 
 	uint32_t _speed;
+	uint32_t _batch_size = CPU_INSTRUCTIONS;
 };

@@ -148,9 +148,18 @@ void Arduino::run(uint32_t clock_speed_hz) {
 #else
 	uint32_t start_cycles = _cpu.cycles();
 	if (clock_speed_hz == CLK_MAX)
-		_cpu.run(time_slice(start_time));
+		_cpu.run(_batch_size);
 	else {
-		_cpu.run(time_slice_or_cycles(_cpu, start_time, clock_speed_hz / (1000000 / TIME_SLICE)));
+		_cpu.run(_batch_size);
+		uint32_t cycles_run = _cpu.cycles() - start_cycles;
+		if (cycles_run > 0) {
+			uint32_t target_cycles = clock_speed_hz / (1000000 / TIME_SLICE);
+			uint32_t next_batch = (target_cycles * _batch_size) / cycles_run;
+			_batch_size = (_batch_size + next_batch) / 2;
+			if (_batch_size > CPU_INSTRUCTIONS) _batch_size = CPU_INSTRUCTIONS;
+			else if (_batch_size == 0) _batch_size = 1;
+		}
+
 		uint32_t elapsed = microseconds() - start_time;
 		if (elapsed < TIME_SLICE)
 			sleep(TIME_SLICE - elapsed);
