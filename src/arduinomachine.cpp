@@ -146,7 +146,7 @@ void Arduino::run(uint32_t clock_speed_hz) {
 	}
 	_cpu.run(single_step());
 #else
-	if (clock_speed == MAX_SPEED) {
+	if (clock_speed == CLK_MAX) {
 		_cpu.run(time_slice(start_time));
 		return;
 	}
