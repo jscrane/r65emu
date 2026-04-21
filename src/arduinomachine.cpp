@@ -130,9 +130,9 @@ void Arduino::register_pollable(Pollable &p) {
 	devices[num_pollable++] = &p;
 }
 
-void Arduino::run(uint32_t cycles) {
+void Arduino::run(uint32_t clock_speed_hz) {
 
-	uint32_t start = microseconds();
+	uint32_t start_time = microseconds();
 
 	timers.run();
 
@@ -146,10 +146,15 @@ void Arduino::run(uint32_t cycles) {
 	}
 	_cpu.run(single_step());
 #else
-	_cpu.run(time_slice(start));
-	uint32_t dt = microseconds() - start;
-	if (dt < TIME_SLICE)
-		sleep(dt);
+	if (clock_speed == MAX_SPEED) {
+		_cpu.run(time_slice(start_time));
+		return;
+	}
+	_cpu.run(time_slice_or_cycles(_cpu, start_time, clock_speed_hz / (1000000 / TIME_SLICE)));
+
+	uint32_t elapsed = microseconds() - start_time;
+	if (elapsed < TIME_SLICE)
+		sleep(TIME_SLICE - elapsed);
 #endif
 }
 

@@ -5,18 +5,21 @@
 #include "memory.h"
 #include "CPU.h"
 
-static bool once;
-
 std::function<bool(void)> single_step() {
-	once = true;
-	return []() { bool b = once; once = false; return b; };
+	return [once = true]() mutable { bool b = once; once = false; return b; };
+}
+
+static inline bool tslice(uint32_t start_time) {
+	return _machine->microseconds() - start_time < TIME_SLICE;
 }
 
 std::function<bool(void)> time_slice(uint32_t start) {
-	return [start]() { return _machine->microseconds() - start < TIME_SLICE; };
+	return [start]() { return tslice(start); };
 }
 
-std::function<bool(void)> for_cycles(CPU &c, uint32_t ncycles) {
-	uint32_t start = c.cycles();
-	return [&c, start, ncycles]() { return c.cycles() - start < ncycles; };
+std::function<bool(void)> time_slice_or_cycles(CPU &c, uint32_t start_time, uint32_t max_cycles) {
+	uint32_t start_cycles = c.cycles();
+	return [&c, start_time, start_cycles, max_cycles]() {
+		return c.cycles() - start_cycles < max_cycles && tslice(start_time);
+	};
 }

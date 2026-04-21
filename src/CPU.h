@@ -48,4 +48,4 @@ protected:
 // predicates for CPU::run()
 std::function<bool(void)> single_step();
 std::function<bool(void)> time_slice(uint32_t start_time);
-std::function<bool(void)> for_cycles(CPU &cpu, uint32_t ncycles);
+std::function<bool(void)> time_slice_or_cycles(CPU &cpu, uint32_t start_time, uint32_t ncycles);

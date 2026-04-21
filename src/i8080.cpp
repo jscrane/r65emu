@@ -68,9 +68,11 @@ char *i8080::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	uint8_t op = _mem[PC];
 	snprintf(buf, n,
-		"%s%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d%d%d",
+		"%s%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d",
 		hdr? "_pc_ op aa _bc_ _de_ _hl_ _sp_ szhpci\r": "",
-		PC, op, A, BC, DE, HL, SP, flags.S, flags.Z, flags._5, flags.H, flags.P, flags.C, flags.I);
+		PC, op, A, BC, DE, HL, SP, flags.S, flags.Z, flags.H, flags.P, flags.C, flags.I);
+#else
+	*buf = 0;
 #endif
 	return buf;
 }

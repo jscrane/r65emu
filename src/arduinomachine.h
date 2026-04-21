@@ -26,7 +26,11 @@ private:
 	Stream &_s;
 };
 
-#define MAX_SPEED	UINT32_MAX
+#define CLK_MAX		UINT32_MAX
+#define CLK_1MHZ	1000000
+#define CLK_2MHZ	2000000
+#define CLK_4MHZ	4000000
+#define CLK_STOPPED	0
 
 class Arduino: public Machine {
 public:
@@ -41,7 +45,7 @@ public:
 
 	void register_pollable(Pollable &);
 
-	void run(uint32_t cycles = MAX_SPEED);
+	void run(uint32_t clock_speed_hz = CLK_MAX);
 
 	int interval_timer(uint32_t micros, std::function<void(void)> cb);
 	int oneshot_timer(uint32_t micros, std::function<void(void)> cb);
