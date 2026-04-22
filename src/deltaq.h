@@ -1,5 +1,6 @@
 #pragma once
 
+// this class was written by Gemini under direction
 class DeltaQueue {
 public:
 	typedef std::function<void()> Callback;
