@@ -1,5 +1,9 @@
 #pragma once
 
+#if !defined(MAX_TIMERS)
+#define MAX_TIMERS	8
+#endif
+
 // this class was written by Gemini under direction
 class DeltaQueue {
 public:
@@ -21,7 +25,7 @@ private:
 		uint32_t period;
 		Callback callback;
 		int8_t next;
-	} pool[32];
+	} pool[MAX_TIMERS];
 
 	int8_t head;
 	uint32_t freeSlots; // Bitmask: 1 = free, 0 = used
