@@ -32,3 +32,40 @@ void Machine::restore(Checkpoint &s) {
 	}
 	_cpu.restore(s);
 }
+
+void Machine::run(uint32_t clock_speed_hz) {
+
+	uint32_t start_time = microseconds();
+
+	for (uint8_t i = 0; i < num_pollable; i++)
+		devices[i]->poll();
+
+#if DEBUGGING & DEBUG_CPU
+	if (_cpu_debug()) {
+		char buf[256];
+		DBG_CPU(_cpu.status(buf, sizeof(buf)));
+	}
+	_cpu.run(1);
+#else
+	uint32_t start_cycles = _cpu.cycles();
+	if (clock_speed_hz == CLK_MAX)
+		_cpu.run(_batch_size);
+	else {
+		_cpu.run(_batch_size);
+		uint32_t cycles_run = _cpu.cycles() - start_cycles;
+		if (cycles_run > 0) {
+			uint32_t target_cycles = clock_speed_hz / (1000000 / TIME_SLICE);
+			uint32_t next_batch = (target_cycles * _batch_size) / cycles_run;
+			_batch_size = (_batch_size + next_batch) / 2;
+
+			if (_batch_size > CPU_INSTRUCTIONS) _batch_size = CPU_INSTRUCTIONS;
+			else if (_batch_size == 0) _batch_size = 1;
+		}
+
+		uint32_t elapsed = microseconds() - start_time;
+		if (elapsed < TIME_SLICE)
+			sleep(TIME_SLICE - elapsed);
+	}
+	_speed = (_cpu.cycles() - start_cycles) * (1000000 / (microseconds() - start_time));
+#endif
+}

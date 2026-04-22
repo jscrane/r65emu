@@ -1,12 +1,8 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
-#if defined(ARDUINO)
-#include <pgmspace.h>
-#else
-#define PROGMEM
-#endif
 
+#include "compat.h"
 #include "machine.h"
 #include "memory.h"
 #include "CPU.h"
@@ -116,7 +112,7 @@ void r6502::run(unsigned clocks) {
 		D(ill);
 		}
 
-		cycles(optimes[op]);
+		cycles(pgm_read_byte(&optimes[op]));
 	}
 }
 
