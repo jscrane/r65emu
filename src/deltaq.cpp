@@ -38,7 +38,8 @@ void DeltaQueue::update(uint32_t currentTime) {
 		else
 			releaseNode(id);
 	}
-	if (head != -1) pool[head].delta -= elapsed;
+	if (head != -1)
+		pool[head].delta -= elapsed;
 }
 
 void DeltaQueue::insertNode(int8_t id, uint32_t delay) {
