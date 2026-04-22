@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <SimpleTimer.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -30,8 +29,6 @@
 #include "spiram.h"
 spiram sram(SPIRAM_SIZE);
 #endif
-
-static SimpleTimer timers;
 
 bool Arduino::reset() {
 
@@ -85,11 +82,6 @@ bool Arduino::reset() {
 	return success;
 }
 
-static class simple_timer_pollable: public Pollable {
-public:
-	void poll() { timers.run(); }
-} stp;
-
 void Arduino::begin() {
 
 #if DEBUGGING != DEBUG_NONE
@@ -125,20 +117,6 @@ void Arduino::begin() {
 	pinMode(SPIRAM_CS, OUTPUT);
 	digitalWrite(SPIRAM_CS, HIGH);
 #endif
-
-	register_pollable(stp);
-}
-
-int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
-	return timers.setInterval(interval, cb);
-}
-
-int Arduino::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
-	return timers.setTimeout(interval, cb);
-}
-
-void Arduino::cancel_timer(int timer) {
-	timers.deleteTimer(timer);
 }
 
 uint32_t Arduino::microseconds() { return micros(); }
