@@ -2,12 +2,8 @@
 #include <cstdio>
 #include <cstring>
 #include <functional>
-#if defined(ARDUINO)
-#include <pgmspace.h>
-#else
-#define PROGMEM
-#endif
 
+#include "compat.h"
 #include "machine.h"
 #include "memory.h"
 #include "debugging.h"
@@ -39,7 +35,7 @@ void i8080::run(unsigned clocks) {
 		uint8_t op = _mem[PC];
 		PC++;
 		_op(op);
-		cycles(optimes[op]);
+		cycles(pgm_read_byte(&optimes[op]));
 		if (_halted)
 			break;
 	}
