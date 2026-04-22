@@ -9,6 +9,14 @@
 #include <stdio.h>
 #include <time.h>
 
+Linux::Linux(CPU &c): Machine(c) {
+	register_debug_print([](const char *lvlstr, const char *msg) {
+#if DEBUGGING != DEBUG_NONE
+		fprintf(stderr, "%s\t%s\n", lvlstr, msg);
+#endif
+	});
+}
+
 uint32_t Linux::microseconds() {
 	struct timespec ts;
 	// CLOCK_MONOTONIC is preferred for measuring intervals
@@ -21,11 +29,4 @@ uint32_t Linux::microseconds() {
 void Linux::sleep(uint32_t dt) {
 	usleep(dt);
 }
-
-void Linux::debug_print(const char *lvlstr, const char *msg) {
-#if DEBUGGING != DEBUG_NONE
-	fprintf(stderr, "%s\t%s\n", lvlstr, msg);
-#endif
-}
-
 #endif

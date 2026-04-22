@@ -87,6 +87,12 @@ void Arduino::begin() {
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
 	delay(800);
+
+	register_debug_print([](const char *lvlstr, const char *msg) {
+		Serial.print(lvlstr);
+		Serial.print('\t');
+		Serial.println(msg);
+	});
 #endif
 	DBG_INI("machine init");
 	DBG_CPU("enabled");
@@ -123,11 +129,3 @@ uint32_t Arduino::microseconds() { return micros(); }
 void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
-
-void Arduino::debug_print(const char *lvlstr, const char *msg) {
-#if DEBUGGING != DEBUG_NONE
-	Serial.print(lvlstr);
-	Serial.print('\t');
-	Serial.println(buf);
-#endif
-}

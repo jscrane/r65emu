@@ -14,14 +14,6 @@
 #include "z80.h"
 #include "ram.h"
 
-class TestMachine: public Linux {
-public:
-	TestMachine(CPU &c): Linux(c) {}
-
-protected:
-	void debug_print(const char *lvlstr, const char *msg) override { puts(msg); }
-};
-
 class Ports {
 public:
 	Ports(Memory &mem, z80 &cpu): _mem(mem), _cpu(cpu) {}
@@ -163,7 +155,8 @@ int main(int argc, char *argv[]) {
 	cpu.set_port_in_handler([ports](uint16_t p) { return ports.in(p); });
 	cpu.reset();
 
-	TestMachine machine(cpu);
+	Linux machine(cpu);
+	machine.register_debug_print([](const char *, const char *msg) { puts(msg); });
 
 	FILE *fp = fopen(argv[1], "r");
 	if (!fp) {

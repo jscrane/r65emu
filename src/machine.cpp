@@ -96,9 +96,9 @@ void Machine::debug(const char *lvlstr, const char *fmt, ...) {
 	va_start(args, fmt);
 	int n = vsnprintf(buf, sizeof(buf), fmt, args);
 	va_end(args);
-	if (n >= 0) {
+	if (n >= 0 && _debug_print) {
 		buf[sizeof(buf)-1] = 0;
-		debug_print(lvlstr, buf);
+		_debug_print(lvlstr, buf);
 	}
 #endif
 }

@@ -27,7 +27,7 @@ public:
 #endif
 
 #if !defined(CPU_INSTRUCTIONS)
-#define CPU_INSTRUCTIONS 	1000
+#define CPU_INSTRUCTIONS 1000
 #endif
 
 #if !defined(TIME_SLICE)
@@ -66,6 +66,7 @@ public:
 	virtual void yield() =0;
 
 	void debug(const char *lvlstr, const char *fmt, ...);
+	void register_debug_print(std::function<void(const char *, const char *)> fn) { _debug_print = fn; }
 
 protected:
 	CPU &_cpu;
@@ -77,7 +78,7 @@ protected:
 	uint32_t _speed;
 	uint32_t _batch_size = CPU_INSTRUCTIONS;
 
-	virtual void debug_print(const char *lvlstr, const char *msg) =0;
+	std::function<void(const char *, const char *)> _debug_print;
 };
 
 extern Machine *_machine;
