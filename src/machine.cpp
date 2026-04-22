@@ -5,8 +5,11 @@
 #include "machine.h"
 #include "memory.h"
 #include "CPU.h"
+#include "deltaq.h"
 
 Machine *_machine;
+
+static DeltaQueue timers;
 
 Machine::Machine(CPU &cpu): _cpu(cpu) {
 	_cpu_debug = debug_never;
@@ -36,6 +39,8 @@ void Machine::restore(Checkpoint &s) {
 void Machine::run(uint32_t clock_speed_hz) {
 
 	uint32_t start_time = microseconds();
+
+	timers.update(start_time);
 
 	for (uint8_t i = 0; i < num_pollable; i++)
 		devices[i]->poll();
@@ -68,4 +73,16 @@ void Machine::run(uint32_t clock_speed_hz) {
 	}
 	_speed = (_cpu.cycles() - start_cycles) * (1000000 / (microseconds() - start_time));
 #endif
+}
+
+int8_t Machine::interval_timer(uint32_t interval, std::function<void(void)> cb) {
+	return timers.setInterval(interval, cb);
+}
+
+int8_t Machine::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
+	return timers.setTimeout(interval, cb);
+}
+
+void Machine::cancel_timer(int8_t timer) {
+	timers.cancel(timer);
 }

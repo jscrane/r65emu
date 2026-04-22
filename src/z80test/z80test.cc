@@ -17,10 +17,6 @@ class TestMachine: public Machine {
 public:
 	TestMachine(CPU &c): Machine(c) {}
 
-	int interval_timer(uint32_t micros, std::function<void(void)> cb) override { return -1; }
-	int oneshot_timer(uint32_t micros, std::function<void(void)> cb) override { return -1; }
-	void cancel_timer(int timer) override {}
-
 	uint32_t microseconds() override { return 0; }
 	void sleep(uint32_t) override {}
 	void yield() override {}
