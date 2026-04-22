@@ -1,6 +1,6 @@
 CPPFLAGS:= -I.. -DUNDOCUMENTED_OPS -DDEBUGGING=0x40
 CXXFLAGS:= -g -fno-operator-names -Wall
-OBJECTS := z80test.o z80.o memory.o machine.o deltaq.o
+OBJECTS := z80test.o z80.o memory.o machine.o deltaq.o linuxmachine.o
 
 all: z80test tests.me sum
 

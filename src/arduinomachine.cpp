@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <stdarg.h>
 
 #include "machine.h"
 #include "memory.h"
@@ -125,18 +124,10 @@ void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
 
-void Arduino::debug(const char *lvlstr, const char *fmt, ...) {
+void Arduino::debug_print(const char *lvlstr, const char *msg) {
 #if DEBUGGING != DEBUG_NONE
-	char buf[128];
-	va_list args;
-	va_start(args, fmt);
-	int n = vsnprintf(buf, sizeof(buf), fmt, args);
-	va_end(args);
-	if (n >= 0) {
-		buf[sizeof(buf)-1] = 0;
-		Serial.print(lvlstr);
-		Serial.print('\t');
-		Serial.println(buf);
-	}
+	Serial.print(lvlstr);
+	Serial.print('\t');
+	Serial.println(buf);
 #endif
 }

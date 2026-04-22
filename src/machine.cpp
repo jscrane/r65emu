@@ -1,6 +1,8 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 #include "machine.h"
 #include "memory.h"
@@ -85,4 +87,18 @@ int8_t Machine::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
 
 void Machine::cancel_timer(int8_t timer) {
 	timers.cancel(timer);
+}
+
+void Machine::debug(const char *lvlstr, const char *fmt, ...) {
+#if DEBUGGING != DEBUG_NONE
+	char buf[128];
+	va_list args;
+	va_start(args, fmt);
+	int n = vsnprintf(buf, sizeof(buf), fmt, args);
+	va_end(args);
+	if (n >= 0) {
+		buf[sizeof(buf)-1] = 0;
+		debug_print(lvlstr, buf);
+	}
+#endif
 }

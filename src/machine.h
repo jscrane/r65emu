@@ -65,7 +65,7 @@ public:
 	virtual void sleep(uint32_t) =0;
 	virtual void yield() =0;
 
-	virtual void debug(const char *lvlstr, const char *fmt, ...) =0;
+	void debug(const char *lvlstr, const char *fmt, ...);
 
 protected:
 	CPU &_cpu;
@@ -76,6 +76,8 @@ protected:
 
 	uint32_t _speed;
 	uint32_t _batch_size = CPU_INSTRUCTIONS;
+
+	virtual void debug_print(const char *lvlstr, const char *msg) =0;
 };
 
 extern Machine *_machine;

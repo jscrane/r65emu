@@ -7,31 +7,19 @@
 #include <functional>
 
 #include "machine.h"
+#include "linuxmachine.h"
 #include "memory.h"
 #include "CPU.h"
 #include "debugging.h"
 #include "z80.h"
 #include "ram.h"
 
-class TestMachine: public Machine {
+class TestMachine: public Linux {
 public:
-	TestMachine(CPU &c): Machine(c) {}
+	TestMachine(CPU &c): Linux(c) {}
 
-	uint32_t microseconds() override { return 0; }
-	void sleep(uint32_t) override {}
-	void yield() override {}
-
-	void debug(const char *lvlstr, const char *fmt, ...) {
-		char buf[128];
-		va_list args;
-		va_start(args, fmt);
-		int n = vsnprintf(buf, sizeof(buf), fmt, args);
-		va_end(args);
-		if (n >= 0) {
-			buf[sizeof(buf)-1] = 0;
-			puts(buf);
-		}
-	}
+protected:
+	void debug_print(const char *lvlstr, const char *msg) override { puts(msg); }
 };
 
 class Ports {
