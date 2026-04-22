@@ -4,7 +4,7 @@
 #include "deltaq.h"
 
 void DeltaQueue::cancel(int8_t id) {
-	if (id < 0 || id >= 32 || (freeSlots & (1UL << id))) return;
+	if (id < 0 || id >= MAX_TIMERS || (freeSlots & (1UL << id))) return;
 
 	int8_t prev = -1, curr = head;
 	while (curr != -1 && curr != id) {
@@ -91,6 +91,7 @@ int8_t DeltaQueue::allocateNode() {
 	if (freeSlots == 0) return -1;
 	// __builtin_ctz finds the index of the first '1' bit (O(1) on most CPUs)
 	int8_t id = __builtin_ctz(freeSlots);
+	if (id >= MAX_TIMERS) return -1;
 	freeSlots &= ~(1UL << id);
 	return id;
 }

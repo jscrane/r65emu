@@ -36,7 +36,6 @@ public:
 	uint32_t microseconds() override;
 	void sleep(uint32_t dt) override;
 	void yield() override;
-	void debug(const char *lvlstr, const char *fmt, ...) override;
 
 private:
 	std::function<void(bool)> _reset_handler;

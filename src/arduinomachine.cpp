@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <stdarg.h>
 
 #include "machine.h"
 #include "memory.h"
@@ -88,6 +87,12 @@ void Arduino::begin() {
 	Serial.begin(TERMINAL_SPEED);
 	while (!Serial);
 	delay(800);
+
+	register_debug_print([](const char *lvlstr, const char *msg) {
+		Serial.print(lvlstr);
+		Serial.print('\t');
+		Serial.println(msg);
+	});
 #endif
 	DBG_INI("machine init");
 	DBG_CPU("enabled");
@@ -124,19 +129,3 @@ uint32_t Arduino::microseconds() { return micros(); }
 void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
-
-void Arduino::debug(const char *lvlstr, const char *fmt, ...) {
-#if DEBUGGING != DEBUG_NONE
-	char buf[128];
-	va_list args;
-	va_start(args, fmt);
-	int n = vsnprintf(buf, sizeof(buf), fmt, args);
-	va_end(args);
-	if (n >= 0) {
-		buf[sizeof(buf)-1] = 0;
-		Serial.print(lvlstr);
-		Serial.print('\t');
-		Serial.println(buf);
-	}
-#endif
-}
