@@ -33,9 +33,9 @@ public:
 		_reset_handler = handler;
 	}
 
-	int interval_timer(uint32_t micros, std::function<void(void)> cb) override;
-	int oneshot_timer(uint32_t micros, std::function<void(void)> cb) override;
-	void cancel_timer(int timer) override;
+	int8_t interval_timer(uint32_t micros, std::function<void(void)> cb) override;
+	int8_t oneshot_timer(uint32_t micros, std::function<void(void)> cb) override;
+	void cancel_timer(int8_t timer) override;
 	uint32_t microseconds() override;
 	void sleep(uint32_t dt) override;
 	void yield() override;

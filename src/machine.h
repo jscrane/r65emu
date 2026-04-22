@@ -57,9 +57,9 @@ public:
 	void run(uint32_t clock_speed_hz = CLK_MAX);
 	uint32_t current_speed() const { return _speed; }
 
-	virtual int interval_timer(uint32_t micros, std::function<void(void)> cb) =0;
-	virtual int oneshot_timer(uint32_t micros, std::function<void(void)> cb) =0;
-	virtual void cancel_timer(int timer) =0;
+	virtual int8_t interval_timer(uint32_t micros, std::function<void(void)> cb) =0;
+	virtual int8_t oneshot_timer(uint32_t micros, std::function<void(void)> cb) =0;
+	virtual void cancel_timer(int8_t timer) =0;
 	virtual uint32_t microseconds() =0;
 	virtual void sleep(uint32_t) =0;
 	virtual void yield() =0;

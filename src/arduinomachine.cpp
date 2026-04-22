@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <SimpleTimer.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -9,6 +8,7 @@
 #include "debugging.h"
 #include "hardware.h"
 #include "arduinomachine.h"
+#include "deltaq.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
 #include <SPI.h>
@@ -31,7 +31,7 @@
 spiram sram(SPIRAM_SIZE);
 #endif
 
-static SimpleTimer timers;
+static DeltaQueue timers;
 
 bool Arduino::reset() {
 
@@ -87,7 +87,7 @@ bool Arduino::reset() {
 
 static class simple_timer_pollable: public Pollable {
 public:
-	void poll() { timers.run(); }
+	void poll() { timers.update(_machine->microseconds()); }
 } stp;
 
 void Arduino::begin() {
@@ -129,16 +129,16 @@ void Arduino::begin() {
 	register_pollable(stp);
 }
 
-int Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
+int8_t Arduino::interval_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setInterval(interval, cb);
 }
 
-int Arduino::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
+int8_t Arduino::oneshot_timer(uint32_t interval, std::function<void(void)> cb) {
 	return timers.setTimeout(interval, cb);
 }
 
-void Arduino::cancel_timer(int timer) {
-	timers.deleteTimer(timer);
+void Arduino::cancel_timer(int8_t timer) {
+	timers.cancel(timer);
 }
 
 uint32_t Arduino::microseconds() { return micros(); }
