@@ -1,5 +1,5 @@
-#include <Arduino.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 #include "debugging.h"
 #include "machine.h"
@@ -20,7 +20,7 @@ Display::Display(): Adafruit_GFX(tft.width(), tft.height()) {
 }
 
 #elif defined(USE_VGA)
-#pragma message ("Bitluni VGA configured" STR(VGA_RESOLUTION) )
+#pragma message ("Bitluni VGA configured: " STR(VGA_RESOLUTION) )
 #include <ESP32Video.h>
 
 #if !defined(VGA_DEFAULT_FONT)

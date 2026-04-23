@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <HardwareSerial.h>
 
 #include "hardware.h"
 #include "serial_kbd.h"

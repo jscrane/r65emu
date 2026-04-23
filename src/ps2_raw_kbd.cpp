@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 #include "hardware.h"
 
 #if defined(USE_PS2_KBD) && !defined(PS2_SERIAL_KBD)

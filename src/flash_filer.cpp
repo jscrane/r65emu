@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include <Stream.h>
 #include <stdint.h>
 
 #include "machine.h"
