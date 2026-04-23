@@ -23,14 +23,14 @@
 #endif
 
 // 6-bit VGA pins
-#define R0	21
-#define R1	22
-#define G0	18
-#define G1	19
-#define B0	4
-#define B1	5
-#define HSYNC	23
-#define VSYNC	15
+#define R0_PIN	21
+#define R1_PIN	22
+#define G0_PIN	18
+#define G1_PIN	19
+#define B0_PIN	4
+#define B1_PIN	5
+#define HSYNC_PIN	23
+#define VSYNC_PIN	15
 #endif
 
 // PS/2 Keyboard
