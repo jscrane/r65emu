@@ -56,7 +56,7 @@ void Machine::run(uint32_t clock_speed_hz) {
 	uint32_t start_cycles = _cpu.cycles();
 	if (clock_speed_hz == CLK_MAX)
 		_cpu.run(_batch_size);
-	else {
+	else if (clock_speed_hz != CLK_STOPPED) {
 		_cpu.run(_batch_size);
 		uint32_t cycles_run = _cpu.cycles() - start_cycles;
 		if (cycles_run > 0) {
