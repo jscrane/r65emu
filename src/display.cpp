@@ -276,9 +276,9 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 	if (!init) {
 #if VGA_BIT_DEPTH == 6
 		Mode mode = VGAMode::VGA_RESOLUTION;
-		vga.init(mode, R0, R1, G0, G1, B0, B1, HSYNC, VSYNC);
+		vga.init(mode, R0_PIN, R1_PIN, G0_PIN, G1_PIN, B0_PIN, B1_PIN, HSYNC_PIN, VSYNC_PIN);
 #elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
-		vga.init(VGAMode::VGA_RESOLUTION, R0, G0, B0, HSYNC, VSYNC);
+		vga.init(VGAMode::VGA_RESOLUTION, R0_PIN, G0_PIN, B0_PIN, HSYNC_PIN, VSYNC_PIN);
 #endif
 		init = true;
 	}
