@@ -1,8 +1,10 @@
 #pragma once
 
+class SpiRAM;
+
 class spiram: public Memory::Device {
 public:
-	spiram(size_t bytes): Memory::Device(bytes) {}
+	spiram(SpiRAM &sram, size_t bytes): Memory::Device(bytes), spiRam(sram) {}
 
 	virtual void operator=(uint8_t c) override { put(_acc, c); }
 	virtual operator uint8_t() override { return get(_acc); }
@@ -40,6 +42,8 @@ public:
 		spiram &_sr;
 	};
 
+	size_t block_free() const { return extent() - _next_block; }
+
 private:
 	void put(Memory::address offset, uint8_t c);
 
@@ -56,6 +60,8 @@ private:
 		_next_block += size;
 		return offset;
 	}
+
+	SpiRAM &spiRam;
 };
 
 extern class spiram sram;

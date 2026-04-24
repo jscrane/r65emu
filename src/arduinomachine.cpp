@@ -26,7 +26,12 @@
 #if defined(USE_SPIRAM)
 #include <SpiRAM.h>
 #include "spiram.h"
-spiram sram(SPIRAM_SIZE);
+
+extern SPIClass SPIRAM_DEV;
+
+static SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
+
+spiram sram(spiRam, SPIRAM_SIZE);
 #endif
 
 bool Arduino::reset() {
@@ -36,7 +41,6 @@ bool Arduino::reset() {
 	bool success = false;
 
 #if defined(USE_SPIRAM)
-	extern SPIClass SPIRAM_DEV;
 	SPIRAM_DEV.begin();
 #if defined(SPIRAM_MODULE)
 	SPIRAM_DEV.setModule(SPIRAM_MODULE);

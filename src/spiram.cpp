@@ -8,10 +8,6 @@
 #include "memory.h"
 #include "spiram.h"
 
-extern SPIClass SPIRAM_DEV;
-
-static SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
-
 void spiram::put(Memory::address a, uint8_t b)
 {
 	spiRam.write_byte(a, b);
