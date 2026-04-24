@@ -1,20 +1,20 @@
 #pragma once
 
-template<unsigned n = 1024>
+template<size_t n = 1024>
 class ram: public Memory::Device {
 public:
-	static const unsigned page_size = n;
+	static const size_t page_size = n;
+
+	ram (): Memory::Device(n) {}
 
 	inline void set(Memory::address a, uint8_t b) { _mem[a] = b; }
 	inline uint8_t get(Memory::address a) { return _mem[a]; }
 
-	virtual void operator= (uint8_t c) { set(_acc, c); }
-	virtual operator uint8_t () { return get(_acc); }
+	void operator= (uint8_t c) override { set(_acc, c); }
+	operator uint8_t() override { return get(_acc); }
 
-	virtual void checkpoint(Checkpoint &s) { s.write(_mem, sizeof(_mem)); }
-	virtual void restore(Checkpoint &s) { s.read(_mem, sizeof(_mem)); }
-
-	ram (): Memory::Device(n) {}
+	void checkpoint(Checkpoint &s) override { s.write(_mem, sizeof(_mem)); }
+	void restore(Checkpoint &s) override { s.read(_mem, sizeof(_mem)); }
 
 private:
 	uint8_t _mem[n];

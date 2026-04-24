@@ -20,19 +20,19 @@ public:
 			_block_offset = _sr.allocate(size);
 		}
 
-		virtual void operator=(uint8_t c) override {
+		void operator=(uint8_t c) override {
 			_sr.put(_acc + _block_offset, c);
 		}
 
-		virtual operator uint8_t() override {
+		operator uint8_t() override {
 			return _sr.get(_acc + _block_offset);
 		}
 
-		virtual void checkpoint(Checkpoint &c) override {
+		void checkpoint(Checkpoint &c) override {
 			_sr.checkpoint(c, _block_offset, extent());
 		}
 
-		virtual void restore(Checkpoint &c) override {
+		void restore(Checkpoint &c) override {
 			_sr.restore(c, _block_offset, extent());
 		}
 
@@ -41,8 +41,6 @@ public:
 
 		spiram &_sr;
 	};
-
-	size_t block_free() const { return extent() - _next_block; }
 
 private:
 	void put(Memory::address offset, uint8_t c);

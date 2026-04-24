@@ -2,10 +2,10 @@
 
 class prom: public Memory::Device {
 public:
-	virtual void operator= (uint8_t) {}
-	virtual operator uint8_t () { return pgm_read_byte(_mem+_acc); }
+	prom(const uint8_t *mem, size_t size): Memory::Device(size), _mem(mem) {}
 
-	prom(const uint8_t *mem, int uint8_ts): Memory::Device(uint8_ts), _mem(mem) {}
+	void operator=(uint8_t) override {}
+	operator uint8_t() override { return pgm_read_byte(_mem+_acc); }
 
 private:
 	const uint8_t *_mem;
