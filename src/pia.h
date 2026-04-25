@@ -16,14 +16,14 @@ public:
 		irq_a1 = irq_a2 = irqa_state = irq_b1 = irq_b2 = irqb_state = ca1 = ca2 = cb1 = cb2 = false;
 	}
 
-	void operator=(uint8_t b) { write(_acc, b); }
-	operator uint8_t() { return read(_acc); }
+	void operator=(uint8_t b) override { write(_acc, b); }
+	operator uint8_t() override { return read(_acc); }
 
 	void write(Memory::address, uint8_t);
 	uint8_t read(Memory::address);
 
-	void checkpoint(Checkpoint &);
-	void restore(Checkpoint &);
+	void checkpoint(Checkpoint &) override;
+	void restore(Checkpoint &) override;
 
 	// device input (external) interface
 	void write_porta_in(uint8_t b) { ina = b; }

@@ -5,13 +5,13 @@
 
 class RIOT: public Memory::Device {
 public:
-	RIOT(unsigned extent = 256): Memory::Device(extent), outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
+	RIOT(size_t extent = 256): Memory::Device(extent), outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
 		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0), timer(-1)
        	{
 	}
 
-	void operator=(uint8_t b) { write(_acc, b); }
-	operator uint8_t() { return read(_acc); }
+	void operator=(uint8_t b) override { write(_acc, b); }
+	operator uint8_t() override { return read(_acc); }
 
 	void reset();
 

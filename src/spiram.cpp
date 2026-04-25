@@ -8,37 +8,35 @@
 #include "memory.h"
 #include "spiram.h"
 
-extern SPIClass SPIRAM_DEV;
-
-static SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
-
-void spiram::operator=(uint8_t b)
+void spiram::put(Memory::address a, uint8_t b)
 {
-	spiRam.write_byte(_acc, b);
+	spiRam.write_byte(a, b);
 }
 
-spiram::operator uint8_t()
+uint8_t spiram::get(Memory::address a)
 {
-	return spiRam.read_byte(_acc);
+	return spiRam.read_byte(a);
 }
 
-void spiram::checkpoint(Checkpoint &s)
+void spiram::checkpoint(Checkpoint &c, Memory::address addr, size_t len)
 {
 	uint8_t buf[256];
-	unsigned pages = extent() / 256;
+	unsigned pages = len / sizeof(buf);
 	for (unsigned i = 0; i < pages; i++) {
-		spiRam.read_stream(i * 256, buf, sizeof(buf));
-		s.write(buf, sizeof(buf));
+		spiRam.read_stream(addr, buf, sizeof(buf));
+		c.write(buf, sizeof(buf));
+		addr += sizeof(buf);
 	}
 }
 
-void spiram::restore(Checkpoint &s)
+void spiram::restore(Checkpoint &c, Memory::address addr, size_t len)
 {
 	uint8_t buf[256];
-	unsigned pages = extent() / 256;
+	unsigned pages = len / sizeof(buf);
 	for (unsigned i = 0; i < pages; i++) {
-		s.read(buf, sizeof(buf));
-		spiRam.write_stream(i * 256, buf, sizeof(buf));
+		c.read(buf, sizeof(buf));
+		spiRam.write_stream(addr, buf, sizeof(buf));
+		addr += sizeof(buf);
 	}
 }
 
