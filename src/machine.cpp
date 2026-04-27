@@ -7,6 +7,7 @@
 #include "memory.h"
 #include "CPU.h"
 #include "deltaq.h"
+#include "debugging.h"
 
 Machine *_machine;
 

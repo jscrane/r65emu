@@ -43,8 +43,7 @@ static File files[MAX_FILES];
 static File dir;
 #endif
 
-bool flash_file::seek(uint32_t pos)
-{
+bool flash_file::seek(uint32_t pos) {
 #if USE_STORAGE
 	return files[_fd].seek(pos);
 #else
@@ -52,8 +51,7 @@ bool flash_file::seek(uint32_t pos)
 #endif
 }
 
-bool flash_file::more()
-{
+bool flash_file::more() {
 #if USE_STORAGE
 	return files[_fd].available() > 0;
 #else
@@ -77,14 +75,21 @@ flash_file::operator bool() const {
 #endif
 }
 
+uint32_t flash_file::size() const {
+#if USE_STORAGE
+	return files[_fd].size();
+#else
+	return 0;
+#endif
+}
+
 void flash_file::write(uint8_t b) {
 #if USE_STORAGE
 	files[_fd].write(b);
 #endif
 }
 
-bool flash_filer::start()
-{
+bool flash_filer::start() {
 #if USE_STORAGE
 	dir = DISK.open(_programs, FILE_READ);
 	return (bool)dir;
@@ -92,8 +97,7 @@ bool flash_filer::start()
 	return false;
 }
 
-void flash_filer::stop()
-{
+void flash_filer::stop() {
 #if USE_STORAGE
 	for (int i = 0; i < MAX_FILES; i++)
 		files[i].close();

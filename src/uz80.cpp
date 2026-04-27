@@ -199,7 +199,7 @@ char *uz80::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	static bool first = true;
 	snprintf(buf, n,
-		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %ld",
+		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d  %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %d",
 		hdr || first?  "PC   A  SZHPNC I  R  IFF BC   DE   HL   A'F' B'C' D'E' H'L' IX   IY   SP   OP    CLKS\r\n": "",
 		PC, A, S_FLAG != 0, Z_FLAG != 0, H_FLAG != 0, P_FLAG != 0, N_FLAG != 0, C_FLAG != 0, I, R & 0x7f, IFF & 1, IFF & 2,
 		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP, cycles());

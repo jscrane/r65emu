@@ -12,6 +12,7 @@ public:
 
 	bool seek(uint32_t pos);
 	operator bool() const;
+	uint32_t size() const;
 
 private:
 	const uint8_t _fd;
