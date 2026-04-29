@@ -20,7 +20,8 @@ private:
 
 class flash_filer: public filer, public flash_file {
 public:
-	flash_filer(const char *programs): _programs(programs), _current(0) {}
+	flash_filer(const char *programs, uint8_t md = MAX_FILES):
+		_programs(programs), _current(0), _max_devices(md) {}
 
 	const char *advance();
 	const char *rewind();
@@ -40,4 +41,5 @@ public:
 private:
 	const char *_programs;
 	uint8_t _current;
+	const uint8_t _max_devices;
 };

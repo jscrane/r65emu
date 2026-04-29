@@ -146,7 +146,7 @@ const char *flash_filer::filename() const {
 
 void flash_filer::next_device() {
 	_current++;
-	if (_current == MAX_FILES)
+	if (_current == _max_devices)
 		_current = 0;
 }
 
