@@ -51,3 +51,15 @@ void ACIA::poll() {
 		irq_handler(((s & rdrf) && rx_irq_enable) || ((s & tdre) && tx_irq_enable));
 	}
 }
+
+void ACIA::checkpoint(Checkpoint &s) {
+
+	s.write(rx_irq_enable);
+	s.write(tx_irq_enable);
+}
+
+void ACIA::restore(Checkpoint &s) {
+
+	rx_irq_enable = s.read();
+	tx_irq_enable = s.read();
+}
