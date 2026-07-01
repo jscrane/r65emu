@@ -1,6 +1,7 @@
 #include <stdint.h>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "riot.h"
@@ -196,4 +197,16 @@ uint8_t RIOT::read_timer() {
 
 	uint8_t ticks = (_machine->microseconds() & 0xff) - timer_off;
 	return uint8_t(0xff - ticks);
+}
+
+void RIOT::checkpoint(Checkpoint &s) {
+
+	s.write(ram, sizeof(ram));
+	// FIXME
+}
+
+void RIOT::restore(Checkpoint &s) {
+
+	s.read(ram, sizeof(ram));
+	// FIXME
 }

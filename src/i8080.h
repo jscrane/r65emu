@@ -12,7 +12,7 @@ public:
 
 	void run(unsigned) override;
 	void reset() override;
-	void raise(int);
+	void raise(uint8_t level);
 	void irq(uint8_t b) { raise(b); }
 	char *status(char *buf, size_t n, bool hdr=false) override;
 
@@ -65,7 +65,7 @@ private:
 		} flags;
 		uint8_t status_bits;
 	};
-	int _irq_pending;
+	uint8_t _irq_pending;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;

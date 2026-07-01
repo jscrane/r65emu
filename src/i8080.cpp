@@ -5,6 +5,7 @@
 
 #include "compat.h"
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "CPU.h"
@@ -49,7 +50,7 @@ void i8080::reset() {
 	_halted = false;
 }
 
-void i8080::raise(int level) {
+void i8080::raise(uint8_t level) {
 	if (flags.I) {
 		flags.I = 0;
 		_irq_pending = 0;
@@ -88,13 +89,13 @@ void i8080::checkpoint(Checkpoint &s) {
 void i8080::restore(Checkpoint &s) {
 
 	CPU::restore(s);
-	A = s.read();
-	status_bits = s.read();
-	BC = s.read();
-	DE = s.read();
-	HL = s.read();
-	SP = s.read();
-	_irq_pending = s.read();
+	s.read(A);
+	s.read(status_bits);
+	s.read(BC);
+	s.read(DE);
+	s.read(HL);
+	s.read(SP);
+	s.read(_irq_pending);
 }
 
 void i8080::daa() {

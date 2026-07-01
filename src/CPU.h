@@ -28,9 +28,9 @@ public:
 	}
 
 	void restore(Checkpoint &s) override {
-		PC = s.read();
-		_halted = s.read();
-		_cycles = s.read();
+		s.read(PC);
+		s.read(_halted);
+		s.read(_cycles);
 	}
 
 	inline Memory::address pc() const { return PC; }

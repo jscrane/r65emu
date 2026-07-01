@@ -4,6 +4,7 @@
 #include <functional>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "CPU.h"
@@ -177,26 +178,26 @@ void uz80::checkpoint(Checkpoint &s) {
 void uz80::restore(Checkpoint &s) {
 
 	CPU::restore(s);
-	AF = s.read();
-	BC = s.read();
-	DE = s.read();
-	HL = s.read();
-	SP = s.read();
-	AF_= s.read();
-	BC_= s.read();
-	DE_= s.read();
-	HL_= s.read();
-	IX = s.read();
-	IY = s.read();
-	I = s.read();
-	R = s.read();
-	IFF = s.read();
-	int_nmi = s.read();
-	int_int = s.read();
-	int_protection = s.read();
-	int_data = s.read();
-	int_mode = s.read();
-	state = (CPUState)(uint8_t)s.read();
+	s.read(AF);
+	s.read(BC);
+	s.read(DE);
+	s.read(HL);
+	s.read(SP);
+	s.read(AF_);
+	s.read(BC_);
+	s.read(DE_);
+	s.read(HL_);
+	s.read(IX);
+	s.read(IY);
+	s.read(I);
+	s.read(R);
+	s.read(IFF);
+	s.read(int_nmi);
+	s.read(int_int);
+	s.read(int_protection);
+	s.read(int_data);
+	s.read(int_mode);
+	s.read((uint8_t &)state);
 }
 
 char *uz80::status(char *buf, size_t n, bool hdr) {

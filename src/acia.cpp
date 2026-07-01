@@ -1,6 +1,7 @@
 #include <stdint.h>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "acia.h"
 #include "debugging.h"
@@ -60,6 +61,6 @@ void ACIA::checkpoint(Checkpoint &s) {
 
 void ACIA::restore(Checkpoint &s) {
 
-	rx_irq_enable = s.read();
-	tx_irq_enable = s.read();
+	s.read(rx_irq_enable);
+	s.read(tx_irq_enable);
 }

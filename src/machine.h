@@ -7,21 +7,6 @@ public:
 	virtual void poll() =0;
 };
 
-class Checkpoint {
-public:
-	virtual size_t read(uint8_t *, int) =0;
-	virtual int read() =0;
-
-	virtual size_t write(const uint8_t *, int) =0;
-	virtual size_t write(uint8_t) =0;
-};
-
-class Checkpointable {
-public:
-	virtual void checkpoint(Checkpoint &) =0;
-	virtual void restore(Checkpoint &) =0;
-};
-
 #if !defined(MAX_POLLABLE)
 #define MAX_POLLABLE 5
 #endif
@@ -41,6 +26,7 @@ public:
 #define CLK_STOPPED	0
 
 class CPU;
+class Checkpoint;
 
 inline bool debug_never() { return false; }
 inline bool debug_always() { return true; }

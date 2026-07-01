@@ -4,6 +4,7 @@
 
 #include "compat.h"
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "CPU.h"
 #include "r6502.h"
@@ -158,19 +159,19 @@ void r6502::checkpoint(Checkpoint &s) {
 void r6502::restore(Checkpoint &s) {
 
 	CPU::restore(s);
-	S = s.read();
-	A = s.read();
-	X = s.read();
-	Y = s.read();
-	N = s.read();
-	V = s.read();
-	B = s.read();
-	D = s.read();
-	I = s.read();
-	Z = s.read();
-	C = s.read();
-	P.flags = s.read();
-	_irq = s.read();
+	s.read(S);
+	s.read(A);
+	s.read(X);
+	s.read(Y);
+	s.read(N);
+	s.read(V);
+	s.read(B);
+	s.read(D);
+	s.read(I);
+	s.read(Z);
+	s.read(C);
+	s.read(P.flags);
+	s.read(_irq);
 }
 
 void r6502::raise(int level) {

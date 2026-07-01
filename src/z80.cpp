@@ -4,6 +4,7 @@
 #include <functional>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "CPU.h"
@@ -63,26 +64,26 @@ void z80::checkpoint(Checkpoint &s) {
 void z80::restore(Checkpoint &s) {
 
 	CPU::restore(s);
-	AF = s.read();
-	BC = s.read();
-	DE = s.read();
-	HL = s.read();
-	SP = s.read();
-	AF_= s.read();
-	BC_= s.read();
-	DE_= s.read();
-	HL_= s.read();
-	IX = s.read();
-	IY = s.read();
-	IR = s.read();
-	_im = s.read();
-	_iff1 = s.read();
-	_iff2 = s.read();
-	_int_nmi = s.read();
-	_int_irq = s.read();
-	_int_prot = s.read();
-	_irq_data = s.read();
-	_memptr = s.read();
+	s.read(AF);
+	s.read(BC);
+	s.read(DE);
+	s.read(HL);
+	s.read(SP);
+	s.read(AF_);
+	s.read(BC_);
+	s.read(DE_);
+	s.read(HL_);
+	s.read(IX);
+	s.read(IY);
+	s.read(IR);
+	s.read(_im);
+	s.read(_iff1);
+	s.read(_iff2);
+	s.read(_int_nmi);
+	s.read(_int_irq);
+	s.read(_int_prot);
+	s.read(_irq_data);
+	s.read(_memptr);
 }
 
 uint8_t z80::_fetch_op() {

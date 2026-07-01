@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#include "checkpoint.h"
 #include "machine.h"
 #include "memory.h"
 #include "CPU.h"
@@ -19,22 +20,30 @@ Machine::Machine(CPU &cpu): _cpu(cpu) {
 }
 
 void Machine::checkpoint(Checkpoint &s) {
+
+	s.write(_batch_size);
+
 	unsigned ds = 0;
 	for (unsigned i = 0; i < Memory::address_size; i += ds) {
 		Memory::Device *dev = _cpu.memory().get(i);
 		dev->checkpoint(s);
 		ds = _cpu.memory().pages(dev->extent());
 	}
+
 	_cpu.checkpoint(s);
 }
 
 void Machine::restore(Checkpoint &s) {
+
+	s.read(_batch_size);
+
 	unsigned ds = 0;
 	for (unsigned i = 0; i < Memory::address_size; i += ds) {
 		Memory::Device *dev = _cpu.memory().get(i);
 		dev->restore(s);
 		ds = _cpu.memory().pages(dev->extent());
 	}
+
 	_cpu.restore(s);
 }
 

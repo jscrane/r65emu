@@ -1,6 +1,7 @@
 #include <stdint.h>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "pia.h"
@@ -91,24 +92,24 @@ void PIA::checkpoint(Checkpoint &s) {
 }
 
 void PIA::restore(Checkpoint &s) {
-	crb = s.read();
-	write_portb(s.read());
-	inb = s.read();
-	ddrb = s.read();
-	cra = s.read();
-	write_porta(s.read());
-	ina = s.read();
-	ddra = s.read();
-	irq_b1 = s.read();
-	irq_b2 = s.read();
-	irq_a1 = s.read();
-	irq_a2 = s.read();
-	cb1 = s.read();
-	cb2 = s.read();
-	ca1 = s.read();
-	ca2 = s.read();
-	irqb_state = s.read();
-	irqa_state = s.read();
+	s.read(crb);
+	s.read(outb);
+	s.read(inb);
+	s.read(ddrb);
+	s.read(cra);
+	s.read(outa);
+	s.read(ina);
+	s.read(ddra);
+	s.read(irq_b1);
+	s.read(irq_b2);
+	s.read(irq_a1);
+	s.read(irq_a2);
+	s.read(cb1);
+	s.read(cb2);
+	s.read(ca1);
+	s.read(ca2);
+	s.read(irqb_state);
+	s.read(irqa_state);
 }
 
 void PIA::update_interrupts() {

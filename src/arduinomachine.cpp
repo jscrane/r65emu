@@ -3,6 +3,7 @@
 #include <stddef.h>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "hardware.h"

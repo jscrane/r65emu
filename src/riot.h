@@ -13,8 +13,8 @@ public:
 	void operator=(uint8_t b) override { write(_acc, b); }
 	operator uint8_t() override { return read(_acc); }
 
-	void checkpoint(Checkpoint &) override { /* FIXME */ };
-	void restore(Checkpoint &) override { /* FIXME */ };
+	void checkpoint(Checkpoint &) override;
+	void restore(Checkpoint &) override;
 
 	void reset();
 

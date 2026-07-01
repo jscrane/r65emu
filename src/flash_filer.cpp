@@ -2,6 +2,7 @@
 #include <stdint.h>
 
 #include "machine.h"
+#include "checkpoint.h"
 #include "arduinomachine.h"
 #include "debugging.h"
 #include "hardware.h"
