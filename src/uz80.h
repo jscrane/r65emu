@@ -30,14 +30,15 @@ class uz80: public CPU {
 public:
 	uz80(Memory &m): CPU(m) {}
 
-	void run(unsigned);
-	void reset();
+	void run(unsigned) override;
+	void reset() override;
+	char *status(char *buf, size_t n, bool hdr = false) override;
+
+	void checkpoint(Checkpoint &) override;
+	void restore(Checkpoint &) override;
+
 	void nmi() { int_nmi = true; }
 	void irq(uint8_t b) { int_int = true; int_data = b; state = Interrupted; }
-	char *status(char *buf, size_t n, bool hdr = false);
-
-	void checkpoint(Checkpoint &);
-	void restore(Checkpoint &);
 
 	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
 		port_out_handler = fn;

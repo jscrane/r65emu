@@ -150,11 +150,12 @@ void uz80::reset() {
 }
 
 void uz80::checkpoint(Checkpoint &s) {
+
+	CPU::checkpoint(s);
 	s.write(AF);
 	s.write(BC);
 	s.write(DE);
 	s.write(HL);
-	s.write(PC);
 	s.write(SP);
 	s.write(AF_);
 	s.write(BC_);
@@ -165,19 +166,21 @@ void uz80::checkpoint(Checkpoint &s) {
 	s.write(I);
 	s.write(R);
 	s.write(IFF);
-	s.write(cycles());
 	s.write(int_nmi);
 	s.write(int_int);
 	s.write(int_protection);
 	s.write(int_data);
+	s.write(int_mode);
+	s.write((uint8_t)state);
 }
 
 void uz80::restore(Checkpoint &s) {
+
+	CPU::restore(s);
 	AF = s.read();
 	BC = s.read();
 	DE = s.read();
 	HL = s.read();
-	PC = s.read();
 	SP = s.read();
 	AF_= s.read();
 	BC_= s.read();
@@ -188,11 +191,12 @@ void uz80::restore(Checkpoint &s) {
 	I = s.read();
 	R = s.read();
 	IFF = s.read();
-	_cycles = s.read();
 	int_nmi = s.read();
 	int_int = s.read();
 	int_protection = s.read();
 	int_data = s.read();
+	int_mode = s.read();
+	state = (CPUState)(uint8_t)s.read();
 }
 
 char *uz80::status(char *buf, size_t n, bool hdr) {

@@ -92,11 +92,11 @@ void PIA::checkpoint(Checkpoint &s) {
 
 void PIA::restore(Checkpoint &s) {
 	crb = s.read();
-	outb = s.read();
+	write_portb(s.read());
 	inb = s.read();
 	ddrb = s.read();
 	cra = s.read();
-	outa = s.read();
+	write_porta(s.read());
 	ina = s.read();
 	ddra = s.read();
 	irq_b1 = s.read();

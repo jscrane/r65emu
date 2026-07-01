@@ -138,8 +138,8 @@ char *r6502::status(char *buf, size_t n, bool hdr) {
 }
 
 void r6502::checkpoint(Checkpoint &s) {
-	s.write(PC / 0xff);
-	s.write(PC % 0xff);
+
+	CPU::checkpoint(s);
 	s.write(S);
 	s.write(A);
 	s.write(X);
@@ -152,11 +152,12 @@ void r6502::checkpoint(Checkpoint &s) {
 	s.write(Z);
 	s.write(C);
 	s.write(P.flags);
+	s.write(_irq);
 }
 
 void r6502::restore(Checkpoint &s) {
-	uint8_t hi = s.read(), lo = s.read();
-	PC = hi * 0xff + lo;
+
+	CPU::restore(s);
 	S = s.read();
 	A = s.read();
 	X = s.read();
@@ -169,6 +170,7 @@ void r6502::restore(Checkpoint &s) {
 	Z = s.read();
 	C = s.read();
 	P.flags = s.read();
+	_irq = s.read();
 }
 
 void r6502::raise(int level) {

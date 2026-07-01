@@ -20,9 +20,6 @@ public:
 		virtual void operator=(uint8_t) =0;
 		virtual operator uint8_t() =0;
 
-		virtual void checkpoint(Checkpoint &) override {};
-		virtual void restore(Checkpoint &) override {};
-
 	protected:
 		address _acc, _base;
 
@@ -36,6 +33,9 @@ public:
 
 		void operator=(uint8_t) override {}
 		operator uint8_t() override { return 0; }
+
+		void checkpoint(Checkpoint &) override {};
+		void restore(Checkpoint &) override {};
 	};
 
 	class Devices: public Device {

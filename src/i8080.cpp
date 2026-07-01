@@ -74,23 +74,25 @@ char *i8080::status(char *buf, size_t n, bool hdr) {
 }
 
 void i8080::checkpoint(Checkpoint &s) {
+
+	CPU::checkpoint(s);
 	s.write(A);
 	s.write(status_bits);
 	s.write(BC);
 	s.write(DE);
 	s.write(HL);
-	s.write(PC);
 	s.write(SP);
 	s.write(_irq_pending);
 }
 
 void i8080::restore(Checkpoint &s) {
+
+	CPU::restore(s);
 	A = s.read();
 	status_bits = s.read();
 	BC = s.read();
 	DE = s.read();
 	HL = s.read();
-	PC = s.read();
 	SP = s.read();
 	_irq_pending = s.read();
 }

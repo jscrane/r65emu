@@ -13,6 +13,9 @@ public:
 	void operator=(uint8_t b) override { write(_acc, b); }
 	operator uint8_t() override { return read(_acc); }
 
+	void checkpoint(Checkpoint &) override { /* FIXME */ };
+	void restore(Checkpoint &) override { /* FIXME */ };
+
 	void reset();
 
 	const uint8_t IRQ_EDGE = 0x40;

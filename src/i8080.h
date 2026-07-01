@@ -10,14 +10,14 @@ class i8080: public CPU {
 public:
 	i8080(Memory &m): CPU(m) {}
 
-	void run(unsigned);
-	void reset();
+	void run(unsigned) override;
+	void reset() override;
 	void raise(int);
 	void irq(uint8_t b) { raise(b); }
-	char *status(char *buf, size_t n, bool hdr=false);
+	char *status(char *buf, size_t n, bool hdr=false) override;
 
-	void checkpoint(Checkpoint &);
-	void restore(Checkpoint &);
+	void checkpoint(Checkpoint &) override;
+	void restore(Checkpoint &) override;
 
 	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
 		port_out_handler = fn;
