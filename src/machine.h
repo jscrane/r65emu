@@ -16,7 +16,7 @@ public:
 	virtual size_t write(const uint8_t *, int) =0;
 
 	size_t read(uint16_t &val);
-        size_t read(uint32_t &val);
+	size_t read(uint32_t &val);
 	size_t read(bool &b);
 
 	size_t write(uint16_t val);
