@@ -90,16 +90,20 @@ void VIA::write(Memory::address a, uint8_t b) {
 }
 
 void VIA::write_portb(uint8_t b) {
-	_portb = (b & _ddrb);
+
+	_portb = b;
 	if (_portb_output_handler)
-		_portb_output_handler(_portb | ~_ddrb);
+		_portb_output_handler((_portb & _ddrb) | ~_ddrb);
+
 	clear_int(INT_CB1_ACTIVE);
 }
 
 void VIA::write_porta(uint8_t b) {
-	_porta = (b & _ddra);
+
+	_porta = b;
 	if (_porta_output_handler)
-		_porta_output_handler(_porta | ~_ddra);
+		_porta_output_handler((_porta & _ddra) | ~_ddra);
+
 	clear_int(INT_CA1_ACTIVE | INT_CA2_ACTIVE);
 }
 
@@ -143,9 +147,10 @@ void VIA::write_ier(uint8_t b) {
 }
 
 void VIA::write_porta_nh(uint8_t b) {
-	_porta = (b & _ddra);
+
+	_porta = b;
 	if (_porta_output_handler)
-		_porta_output_handler(_porta | ~_ddra);
+		_porta_output_handler((_porta & _ddra) | ~_ddra);
 }
 
 uint8_t VIA::read(Memory::address a) {
@@ -358,4 +363,9 @@ void VIA::restore(Checkpoint &s) {
 	s.read(_porta);
 	s.read(_portb);
 	s.read(_start_timer1);
+
+	if (_porta_output_handler)
+		_porta_output_handler((_porta & _ddra) | ~_ddra);
+	if (_portb_output_handler)
+		_portb_output_handler((_portb & _ddrb) | ~_ddrb);
 }
