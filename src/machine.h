@@ -46,7 +46,6 @@ public:
 #define CLK_STOPPED	0
 
 class CPU;
-class Checkpoint;
 
 inline bool debug_never() { return false; }
 inline bool debug_always() { return true; }
