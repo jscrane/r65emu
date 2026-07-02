@@ -9,7 +9,7 @@ public:
 	virtual void restore(Checkpoint &) =0;
 };
 
-class Memory {
+class Memory: public Checkpointable {
 public:
 	typedef uint16_t address;
 
@@ -92,6 +92,10 @@ public:
 	Memory(): _nd(address_size) {
 		put(_nd, 0x0000);
 	}
+
+	void checkpoint(Checkpoint &) override;
+
+	void restore(Checkpoint &) override;
 
 private:
 	Device *_pages[address_size / page_size];

@@ -58,3 +58,23 @@ void Memory::Devices::restore(Checkpoint &c) {
 		ds = slots(d);
 	}
 }
+
+void Memory::checkpoint(Checkpoint &c) {
+
+	unsigned ds = 0;
+	for (unsigned i = 0; i < address_size; i += ds) {
+		Device *dev = get(i);
+		dev->checkpoint(c);
+		ds = pages(dev->extent());
+	}
+}
+
+void Memory::restore(Checkpoint &c) {
+
+	unsigned ds = 0;
+	for (unsigned i = 0; i < address_size; i += ds) {
+		Device *dev = get(i);
+		dev->restore(c);
+		ds = pages(dev->extent());
+	}
+}
