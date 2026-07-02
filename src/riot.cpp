@@ -27,16 +27,11 @@ void RIOT::reset() {
 	ie_timer = irq_timer = ie_edge = irq_edge = false;
 	pa7_dir = 0;
 
-	cancel_timer();
+	_machine->cancel_timer(timer_id);
+	timer_id = -1;
+
 	update_irq();
 	edge_detect();
-}
-
-void RIOT::cancel_timer() {
-	if (timer_id >= 0) {
-		_machine->cancel_timer(timer_id);
-		timer_id = -1;
-	}
 }
 
 void RIOT::write_porta_in(uint8_t b, uint8_t mem_mask) {
@@ -241,9 +236,11 @@ void RIOT::restore(Checkpoint &s) {
 	uint32_t time_left;
 	s.read(time_left);
 
-	cancel_timer();
+	_machine->cancel_timer(timer_id);
 	if (time_left > 0)
 		timer_id = _machine->oneshot_timer(time_left, [this]() { on_timeout(); });
+	else
+		timer_id = -1;
 
 	if (porta_write_handler)
 		porta_write_handler((outa & ddra) | ~ddra);

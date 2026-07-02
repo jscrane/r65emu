@@ -17,7 +17,6 @@ public:
 	void restore(Checkpoint &) override;
 
 	void reset();
-	void cancel_timer();
 
 	const uint8_t IRQ_EDGE = 0x40;
 	const uint8_t IRQ_TIMER = 0x80;
