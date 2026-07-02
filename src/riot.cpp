@@ -83,14 +83,14 @@ void RIOT::write_porta(uint8_t b) {
 	outa = b;
 	edge_detect();
 	if (porta_write_handler)
-		porta_write_handler(b);
+		porta_write_handler((outa & ddra) | ~ddra);
 }
 
 void RIOT::write_portb(uint8_t b) {
 
 	outb = b;
 	if (portb_write_handler)
-		portb_write_handler(b);
+		portb_write_handler((outb & ddrb) | ~ddrb);
 }
 
 void RIOT::on_timeout() {
@@ -230,4 +230,9 @@ void RIOT::restore(Checkpoint &s) {
 	s.read(irq_edge);
 	s.read(pa7);
 	s.read(pa7_dir);
+
+	if (porta_write_handler)
+		porta_write_handler((outa & ddra) | ~ddra);
+	if (portb_write_handler)
+		portb_write_handler((outb & ddrb) | ~ddrb);
 }
