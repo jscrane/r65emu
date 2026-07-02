@@ -272,12 +272,12 @@ void VIA::clear_int(uint8_t i) {
 }
 
 void VIA::start_timer1() {
-	if (_timer1 >= 0)
-		_machine->cancel_timer(_timer1);
+	if (_timer1_id >= 0)
+		_machine->cancel_timer(_timer1_id);
 
-	_timer1 = _machine->oneshot_timer(_t1, [this]() {
+	_timer1_id = _machine->oneshot_timer(_t1, [this]() {
 		_t1 = 0;
-		_timer1 = -1;
+		_timer1_id = -1;
 		set_int(INT_TIMER1);
 
 		if (_acr & ACR_T1_CONTINUOUS) {
@@ -289,22 +289,22 @@ void VIA::start_timer1() {
 }
 
 void VIA::start_timer2() {
-	if (_timer2 >= 0)
-		_machine->cancel_timer(_timer2);
+	if (_timer2_id >= 0)
+		_machine->cancel_timer(_timer2_id);
 
-	_timer2 = _machine->oneshot_timer(_t2, [this]() {
+	_timer2_id = _machine->oneshot_timer(_t2, [this]() {
 		_t2 = 0;
-		_timer2 = -1;
+		_timer2_id = -1;
 		set_int(INT_TIMER2);
 	});
 }
 
 void VIA::start_sr_timer() {
-	if (_sr_timer < 0)
-		_sr_timer = _machine->oneshot_timer(_t2_latch, [this]() {
+	if (_sr_timer_id < 0)
+		_sr_timer_id = _machine->oneshot_timer(_t2_latch, [this]() {
 			shift_out();
 			_sr_bits--;
-			_sr_timer = -1;
+			_sr_timer_id = -1;
 			if (_sr_bits == 0) {
 				set_int(INT_SR);
 				if (_acr & ACR_T1_CONTINUOUS) {
@@ -321,4 +321,42 @@ void VIA::shift_out() {
 	_sr = (_sr << 1) | cb2;
 	if (_cb2_handler)
 		_cb2_handler(cb2);
+}
+
+void VIA::checkpoint(Checkpoint &s) {
+
+	s.write(_t1);
+	s.write(_t1_latch);
+	s.write(_t2);
+	s.write(_t2_latch);
+	s.write(_sr_bits);
+	s.write(_sr);
+	s.write(_acr);
+	s.write(_pcr);
+	s.write(_ier);
+	s.write(_ifr);
+	s.write(_ddra);
+	s.write(_ddrb);
+	s.write(_porta);
+	s.write(_portb);
+	s.write(_start_timer1);
+}
+
+void VIA::restore(Checkpoint &s) {
+
+	s.read(_t1);
+	s.read(_t1_latch);
+	s.read(_t2);
+	s.read(_t2_latch);
+	s.read(_sr_bits);
+	s.read(_sr);
+	s.read(_acr);
+	s.read(_pcr);
+	s.read(_ier);
+	s.read(_ifr);
+	s.read(_ddra);
+	s.read(_ddrb);
+	s.read(_porta);
+	s.read(_portb);
+	s.read(_start_timer1);
 }
