@@ -19,6 +19,7 @@ public:
 
 	void update(uint32_t currentTime);
 
+	uint32_t remaining(uint32_t currentTime, int8_t id);
 private:
 	struct {
 		uint32_t delta;

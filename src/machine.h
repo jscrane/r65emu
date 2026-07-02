@@ -65,6 +65,7 @@ public:
 	int8_t interval_timer(uint32_t micros, std::function<void(void)> cb);
 	int8_t oneshot_timer(uint32_t micros, std::function<void(void)> cb);
 	void cancel_timer(int8_t timer);
+	uint32_t time_remaining(int8_t timer);
 
 	virtual uint32_t microseconds() =0;
 	virtual void sleep(uint32_t) =0;

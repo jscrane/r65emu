@@ -21,6 +21,24 @@ void DeltaQueue::cancel(int8_t id) {
 	}
 }
 
+uint32_t DeltaQueue::remaining(uint32_t currentTime, int8_t id) {
+	if (id < 0 || id >= MAX_TIMERS || (freeSlots & (1UL << id))) return 0;
+
+	uint32_t dt = 0;
+	int8_t curr;
+	for (curr = head; curr != -1; curr = pool[curr].next) {
+		dt += pool[curr].delta;
+		if (curr == id)
+			break;
+	}
+
+	if (curr == -1)
+		return 0;
+
+	uint32_t elapsed = currentTime - lastTime;
+	return elapsed > dt? 0: dt - elapsed;
+}
+
 void DeltaQueue::update(uint32_t currentTime) {
 	uint32_t elapsed = currentTime - lastTime;
 	lastTime = currentTime;

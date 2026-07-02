@@ -83,6 +83,10 @@ void Machine::cancel_timer(int8_t timer) {
 	timers.cancel(timer);
 }
 
+uint32_t Machine::time_remaining(int8_t timer) {
+	return timers.remaining(microseconds(), timer);
+}
+
 void Machine::debug(const char *lvlstr, const char *fmt, ...) {
 #if DEBUGGING != DEBUG_NONE
 	char buf[128];

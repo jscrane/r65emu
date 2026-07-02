@@ -26,13 +26,17 @@ void RIOT::reset() {
 	outb = outa = ddrb = ddra = 0;
 	ie_timer = irq_timer = ie_edge = irq_edge = false;
 	pa7_dir = 0;
+
+	cancel_timer();
+	update_irq();
+	edge_detect();
+}
+
+void RIOT::cancel_timer() {
 	if (timer_id >= 0) {
 		_machine->cancel_timer(timer_id);
 		timer_id = -1;
 	}
-
-	update_irq();
-	edge_detect();
 }
 
 void RIOT::write_porta_in(uint8_t b, uint8_t mem_mask) {
@@ -207,12 +211,14 @@ void RIOT::checkpoint(Checkpoint &s) {
 	s.write(ddra);
 	s.write(outa);
 	s.write(ina);
+	s.write(pa7);
+	s.write(pa7_dir);
 	s.write(ie_timer);
 	s.write(ie_edge);
 	s.write(irq_timer);
 	s.write(irq_edge);
-	s.write(pa7);
-	s.write(pa7_dir);
+	s.write(timer_off);
+	s.write(_machine->time_remaining(timer_id));
 }
 
 void RIOT::restore(Checkpoint &s) {
@@ -224,12 +230,20 @@ void RIOT::restore(Checkpoint &s) {
 	s.read(ddra);
 	s.read(outa);
 	s.read(ina);
+	s.read(pa7);
+	s.read(pa7_dir);
 	s.read(ie_timer);
 	s.read(ie_edge);
 	s.read(irq_timer);
 	s.read(irq_edge);
-	s.read(pa7);
-	s.read(pa7_dir);
+	s.read(timer_off);
+
+	uint32_t time_left;
+	s.read(time_left);
+
+	cancel_timer();
+	if (time_left > 0)
+		timer_id = _machine->oneshot_timer(time_left, [this]() { on_timeout(); });
 
 	if (porta_write_handler)
 		porta_write_handler((outa & ddra) | ~ddra);
