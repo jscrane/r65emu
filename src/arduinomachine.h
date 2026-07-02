@@ -13,7 +13,12 @@ public:
 	StreamCheckpoint(Stream &s): _s(s) {}
 
 	size_t read(uint8_t *buf, int len) override { return _s.readBytes(buf, len); }
-	size_t read(uint8_t &b) override { b = _s.read(); return 1; }
+	size_t read(uint8_t &b) override { 
+		int t = _s.read();
+		if (t == -1) return 0;
+		b = (uint8_t)t;
+		return 1;
+	}
 
 	size_t write(const uint8_t *buf, int len) override { return _s.write(buf, len); }
 	size_t write(uint8_t b) override { return _s.write(b); }
