@@ -7,6 +7,26 @@ public:
 	virtual void poll() =0;
 };
 
+class Checkpoint {
+public:
+	virtual size_t read(uint8_t &) =0;
+	virtual size_t write(uint8_t) =0;
+
+	virtual size_t read(uint8_t *, int) =0;
+	virtual size_t write(const uint8_t *, int) =0;
+
+	size_t read(uint16_t &val);
+        size_t read(uint32_t &val);
+	size_t read(bool &b);
+
+	size_t write(uint16_t val);
+	size_t write(uint32_t val);
+	size_t write(bool b);
+
+	template <typename T> size_t write(T) = delete;
+	template <typename T> size_t read(T& value) = delete;
+};
+
 #if !defined(MAX_POLLABLE)
 #define MAX_POLLABLE 5
 #endif

@@ -3,7 +3,6 @@
 #include <functional>
 #include "hardware.h"
 #include "machine.h"
-#include "checkpoint.h"
 #include "arduinomachine.h"
 #include "memory.h"
 #include "CPU.h"

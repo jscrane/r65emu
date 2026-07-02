@@ -1,5 +1,14 @@
 #pragma once
 
+
+class Checkpoint;
+
+class Checkpointable {
+public:
+	virtual void checkpoint(Checkpoint &) =0;
+	virtual void restore(Checkpoint &) =0;
+};
+
 class Memory {
 public:
 	typedef uint16_t address;

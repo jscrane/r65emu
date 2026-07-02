@@ -5,7 +5,6 @@
 #include <SpiRAM.h>
 
 #include "machine.h"
-#include "checkpoint.h"
 #include "memory.h"
 #include "spiram.h"
 

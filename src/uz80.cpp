@@ -4,7 +4,6 @@
 #include <functional>
 
 #include "machine.h"
-#include "checkpoint.h"
 #include "memory.h"
 #include "debugging.h"
 #include "CPU.h"

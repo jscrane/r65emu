@@ -1,7 +1,6 @@
 #include <stdint.h>
 
 #include "machine.h"
-#include "checkpoint.h"
 #include "memory.h"
 #include "via.h"
 #include "debugging.h"

@@ -3,7 +3,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#include "checkpoint.h"
 #include "machine.h"
 #include "memory.h"
 #include "CPU.h"
@@ -110,4 +109,46 @@ void Machine::debug(const char *lvlstr, const char *fmt, ...) {
 		_debug_print(lvlstr, buf);
 	}
 #endif
+}
+
+size_t Checkpoint::read(uint16_t &val) {
+	uint8_t low, high;
+	if (!read(low) || !read(high))
+		return 0;
+	val = ((uint16_t)high << 8) | low;
+	return 2;
+}
+
+size_t Checkpoint::write(uint16_t val) {
+	uint8_t low = (val & 0xff), high = (val >> 8);
+	if (!write(low) || (!write(high)))
+		return 0;
+	return 2;
+}
+
+size_t Checkpoint::read(uint32_t &val) {
+	uint16_t low, high;
+	if (!read(low) || !read(high))
+		return 0;
+	val = ((uint32_t)high << 16) | low;
+	return 4;
+}
+
+size_t Checkpoint::write(uint32_t val) {
+	uint16_t low = (uint16_t)(val & 0xffff), high = (uint16_t)(val >> 16);
+	if (!write(low) || !write(high))
+		return 0;
+	return 4;
+}
+
+size_t Checkpoint::read(bool &b) {
+	uint8_t t;
+	if (!read(t)) return 0;
+	b = (t != 0);
+	return 1;
+}
+
+size_t Checkpoint::write(bool b) {
+	uint8_t t = b? 1: 0;
+	return write(t);
 }

@@ -4,7 +4,6 @@
 
 #include "compat.h"
 #include "machine.h"
-#include "checkpoint.h"
 #include "memory.h"
 #include "CPU.h"
 #include "r6502.h"
