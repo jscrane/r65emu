@@ -1,6 +1,15 @@
 #pragma once
 
-class Memory {
+
+class Checkpoint;
+
+class Checkpointable {
+public:
+	virtual void checkpoint(Checkpoint &) =0;
+	virtual void restore(Checkpoint &) =0;
+};
+
+class Memory: public Checkpointable {
 public:
 	typedef uint16_t address;
 
@@ -20,9 +29,6 @@ public:
 		virtual void operator=(uint8_t) =0;
 		virtual operator uint8_t() =0;
 
-		virtual void checkpoint(Checkpoint &) override {};
-		virtual void restore(Checkpoint &) override {};
-
 	protected:
 		address _acc, _base;
 
@@ -36,6 +42,9 @@ public:
 
 		void operator=(uint8_t) override {}
 		operator uint8_t() override { return 0; }
+
+		void checkpoint(Checkpoint &) override {};
+		void restore(Checkpoint &) override {};
 	};
 
 	class Devices: public Device {
@@ -83,6 +92,10 @@ public:
 	Memory(): _nd(address_size) {
 		put(_nd, 0x0000);
 	}
+
+	void checkpoint(Checkpoint &) override;
+
+	void restore(Checkpoint &) override;
 
 private:
 	Device *_pages[address_size / page_size];

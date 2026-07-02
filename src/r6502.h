@@ -9,11 +9,11 @@ public:
 	r6502(Memory &m);
 
 	void raise(int);
-	void reset();
-	void run(unsigned);
-	char *status(char *buf, size_t n, bool hdr=false);
-	void checkpoint(Checkpoint &);
-	void restore(Checkpoint &);
+	void run(unsigned) override;
+	void reset() override;
+	char *status(char *buf, size_t n, bool hdr=false) override;
+	void checkpoint(Checkpoint &) override;
+	void restore(Checkpoint &) override;
 
 	void set_illegal_instruction_handler(std::function<void(void)> fn) {
 		_illegal_instruction_handler = fn;

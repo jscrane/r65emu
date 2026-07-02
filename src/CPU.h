@@ -21,8 +21,17 @@ public:
 	virtual void reset() =0;
 	virtual char *status(char *buf, size_t n, bool hdr = false) =0;
 
-	virtual void checkpoint(Checkpoint &) = 0;
-	virtual void restore(Checkpoint &) = 0;
+	void checkpoint(Checkpoint &s) override {
+		s.write(PC);
+		s.write(_halted);
+		s.write(_cycles);
+	}
+
+	void restore(Checkpoint &s) override {
+		s.read(PC);
+		s.read(_halted);
+		s.read(_cycles);
+	}
 
 	inline Memory::address pc() const { return PC; }
 	inline bool halted() const { return _halted; }

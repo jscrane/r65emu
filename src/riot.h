@@ -5,13 +5,16 @@
 
 class RIOT: public Memory::Device {
 public:
-	RIOT(size_t extent = 256): Memory::Device(extent), outb(0), inb(0xff), outa(0), ina(0xff), ddrb(0), ddra(0),
-		ie_timer(false), irq_timer(false), ie_edge(false), irq_edge(false), pa7(1), pa7_dir(0), timer(-1)
+	RIOT(size_t extent = 256): Memory::Device(extent), ddrb(0), outb(0), inb(0xff), ddra(0), outa(0), ina(0xff),
+		ie_timer(false), ie_edge(false), irq_timer(false), irq_edge(false), pa7(1), pa7_dir(0), timer_id(-1)
        	{
 	}
 
 	void operator=(uint8_t b) override { write(_acc, b); }
 	operator uint8_t() override { return read(_acc); }
+
+	void checkpoint(Checkpoint &) override;
+	void restore(Checkpoint &) override;
 
 	void reset();
 
@@ -65,13 +68,13 @@ private:
 
 	void update_irq();
 	void edge_detect();
-
-	uint8_t outb, inb, outa, ina, ddrb, ddra;
-	bool ie_timer, irq_timer, ie_edge, irq_edge;
-	int pa7, pa7_dir;
-	int timer;
-	uint8_t timer_off;
 	void on_timeout();
+
+	uint8_t ddrb, outb, inb, ddra, outa, ina;
+	bool ie_timer, ie_edge, irq_timer, irq_edge;
+	uint8_t timer_off;
+	uint8_t pa7, pa7_dir;
+	int timer_id;
 
 	uint8_t ram[128];
 

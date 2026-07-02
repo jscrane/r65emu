@@ -36,11 +36,12 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 }
 
 void z80::checkpoint(Checkpoint &s) {
+
+	CPU::checkpoint(s);
 	s.write(AF);
 	s.write(BC);
 	s.write(DE);
 	s.write(HL);
-	s.write(PC);
 	s.write(SP);
 	s.write(AF_);
 	s.write(BC_);
@@ -52,37 +53,36 @@ void z80::checkpoint(Checkpoint &s) {
 	s.write(_im);
 	s.write(_iff1);
 	s.write(_iff2);
-	s.write(cycles());
-	s.write(halted());
 	s.write(_int_nmi);
 	s.write(_int_irq);
 	s.write(_int_prot);
 	s.write(_irq_data);
+	s.write(_memptr);
 }
 
 void z80::restore(Checkpoint &s) {
-	AF = s.read();
-	BC = s.read();
-	DE = s.read();
-	HL = s.read();
-	PC = s.read();
-	SP = s.read();
-	AF_= s.read();
-	BC_= s.read();
-	DE_= s.read();
-	HL_= s.read();
-	IX = s.read();
-	IY = s.read();
-	IR = s.read();
-	_im = s.read();
-	_iff1 = s.read();
-	_iff2 = s.read();
-	_cycles = s.read();
-	_halted = s.read();
-	_int_nmi = s.read();
-	_int_irq = s.read();
-	_int_prot = s.read();
-	_irq_data = s.read();
+
+	CPU::restore(s);
+	s.read(AF);
+	s.read(BC);
+	s.read(DE);
+	s.read(HL);
+	s.read(SP);
+	s.read(AF_);
+	s.read(BC_);
+	s.read(DE_);
+	s.read(HL_);
+	s.read(IX);
+	s.read(IY);
+	s.read(IR);
+	s.read(_im);
+	s.read(_iff1);
+	s.read(_iff2);
+	s.read(_int_nmi);
+	s.read(_int_irq);
+	s.read(_int_prot);
+	s.read(_irq_data);
+	s.read(_memptr);
 }
 
 uint8_t z80::_fetch_op() {

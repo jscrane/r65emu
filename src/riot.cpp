@@ -26,9 +26,9 @@ void RIOT::reset() {
 	outb = outa = ddrb = ddra = 0;
 	ie_timer = irq_timer = ie_edge = irq_edge = false;
 	pa7_dir = 0;
-	if (timer >= 0) {
-		_machine->cancel_timer(timer);
-		timer = -1;
+	if (timer_id >= 0) {
+		_machine->cancel_timer(timer_id);
+		timer_id = -1;
 	}
 
 	update_irq();
@@ -97,7 +97,7 @@ void RIOT::on_timeout() {
 	irq_timer = true;
 	update_irq();
 	timer_off = (_machine->microseconds() & 0xff);
-	timer = _machine->oneshot_timer(256, [this]() { on_timeout(); });
+	timer_id = _machine->oneshot_timer(256, [this]() { on_timeout(); });
 }
 
 void RIOT::write_timer(Memory::address a, uint8_t b) {
@@ -106,7 +106,7 @@ void RIOT::write_timer(Memory::address a, uint8_t b) {
 	uint8_t prescaler = timershift[a & 0x03];
 
 	uint32_t cycles = (uint32_t(b) + 1) << prescaler;
-	timer = _machine->oneshot_timer(cycles, [this]() { on_timeout(); });
+	timer_id = _machine->oneshot_timer(cycles, [this]() { on_timeout(); });
 
 	irq_timer = false;
 	ie_timer = (a & 0x08);
@@ -191,9 +191,43 @@ uint8_t RIOT::read_irq() {
 
 uint8_t RIOT::read_timer() {
 
-	if (timer < 0)
+	if (timer_id < 0)
 		return 0xff;
 
 	uint8_t ticks = (_machine->microseconds() & 0xff) - timer_off;
 	return uint8_t(0xff - ticks);
+}
+
+void RIOT::checkpoint(Checkpoint &s) {
+
+	s.write(ram, sizeof(ram));
+	s.write(ddrb);
+	s.write(outb);
+	s.write(inb);
+	s.write(ddra);
+	s.write(outa);
+	s.write(ina);
+	s.write(ie_timer);
+	s.write(ie_edge);
+	s.write(irq_timer);
+	s.write(irq_edge);
+	s.write(pa7);
+	s.write(pa7_dir);
+}
+
+void RIOT::restore(Checkpoint &s) {
+
+	s.read(ram, sizeof(ram));
+	s.read(ddrb);
+	s.read(outb);
+	s.read(inb);
+	s.read(ddra);
+	s.read(outa);
+	s.read(ina);
+	s.read(ie_timer);
+	s.read(ie_edge);
+	s.read(irq_timer);
+	s.read(irq_edge);
+	s.read(pa7);
+	s.read(pa7_dir);
 }

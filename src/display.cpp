@@ -1,8 +1,8 @@
 #include <stdarg.h>
 #include <stdint.h>
+#include <stddef.h>
 
 #include "debugging.h"
-#include "machine.h"
 #include "memory.h"
 #include "display.h"
 #include "hardware.h"
