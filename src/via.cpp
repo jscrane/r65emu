@@ -90,16 +90,20 @@ void VIA::write(Memory::address a, uint8_t b) {
 }
 
 void VIA::write_portb(uint8_t b) {
-	_portb = (b & _ddrb);
+
+	_portb = b;
 	if (_portb_output_handler)
-		_portb_output_handler(_portb | ~_ddrb);
+		_portb_output_handler((_portb & _ddrb) | ~_ddrb);
+
 	clear_int(INT_CB1_ACTIVE);
 }
 
 void VIA::write_porta(uint8_t b) {
-	_porta = (b & _ddra);
+
+	_porta = b;
 	if (_porta_output_handler)
-		_porta_output_handler(_porta | ~_ddra);
+		_porta_output_handler((_porta & _ddra) | ~_ddra);
+
 	clear_int(INT_CA1_ACTIVE | INT_CA2_ACTIVE);
 }
 
@@ -143,9 +147,10 @@ void VIA::write_ier(uint8_t b) {
 }
 
 void VIA::write_porta_nh(uint8_t b) {
-	_porta = (b & _ddra);
+
+	_porta = b;
 	if (_porta_output_handler)
-		_porta_output_handler(_porta | ~_ddra);
+		_porta_output_handler((_porta & _ddra) | ~_ddra);
 }
 
 uint8_t VIA::read(Memory::address a) {
@@ -270,49 +275,55 @@ void VIA::clear_int(uint8_t i) {
 	}
 }
 
+void VIA::on_timer1_expiry() {
+	_t1 = 0;
+	_timer1_id = -1;
+	set_int(INT_TIMER1);
+
+	if (_acr & ACR_T1_CONTINUOUS) {
+		_t1 = _t1_latch;
+		start_timer1();
+	}
+}
+
 void VIA::start_timer1() {
 	if (_timer1_id >= 0)
 		_machine->cancel_timer(_timer1_id);
 
-	_timer1_id = _machine->oneshot_timer(_t1, [this]() {
-		_t1 = 0;
-		_timer1_id = -1;
-		set_int(INT_TIMER1);
-
-		if (_acr & ACR_T1_CONTINUOUS) {
-			_t1 = _t1_latch;
-			start_timer1();
-		}
-	});
+	_timer1_id = _machine->oneshot_timer(_t1, [this]() { on_timer1_expiry(); });
 	_start_timer1 = _machine->microseconds();
+}
+
+void VIA::on_timer2_expiry() {
+	_t2 = 0;
+	_timer2_id = -1;
+	set_int(INT_TIMER2);
 }
 
 void VIA::start_timer2() {
 	if (_timer2_id >= 0)
 		_machine->cancel_timer(_timer2_id);
 
-	_timer2_id = _machine->oneshot_timer(_t2, [this]() {
-		_t2 = 0;
-		_timer2_id = -1;
-		set_int(INT_TIMER2);
-	});
+	_timer2_id = _machine->oneshot_timer(_t2, [this]() { on_timer2_expiry(); });
+}
+
+void VIA::on_sr_timer_expiry() {
+	shift_out();
+	_sr_bits--;
+	_sr_timer_id = -1;
+	if (_sr_bits == 0) {
+		set_int(INT_SR);
+		if (_acr & ACR_T1_CONTINUOUS) {
+			_sr_bits = 8;
+			start_sr_timer();
+		}
+	} else if (_acr & ACR_SO_T2_RATE)
+		start_sr_timer();
 }
 
 void VIA::start_sr_timer() {
 	if (_sr_timer_id < 0)
-		_sr_timer_id = _machine->oneshot_timer(_t2_latch, [this]() {
-			shift_out();
-			_sr_bits--;
-			_sr_timer_id = -1;
-			if (_sr_bits == 0) {
-				set_int(INT_SR);
-				if (_acr & ACR_T1_CONTINUOUS) {
-					_sr_bits = 8;
-					start_sr_timer();
-				}
-			} else if (_acr & ACR_SO_T2_RATE)
-				start_sr_timer();
-		});
+		_sr_timer_id = _machine->oneshot_timer(_t2_latch, [this]() { on_sr_timer_expiry(); });
 }
 
 void VIA::shift_out() {
@@ -338,7 +349,10 @@ void VIA::checkpoint(Checkpoint &s) {
 	s.write(_ddrb);
 	s.write(_porta);
 	s.write(_portb);
-	s.write(_start_timer1);
+	s.write(_machine->microseconds() - _start_timer1);
+	s.write(_machine->time_remaining(_timer1_id));
+	s.write(_machine->time_remaining(_timer2_id));
+	s.write(_machine->time_remaining(_sr_timer_id));
 }
 
 void VIA::restore(Checkpoint &s) {
@@ -357,5 +371,37 @@ void VIA::restore(Checkpoint &s) {
 	s.read(_ddrb);
 	s.read(_porta);
 	s.read(_portb);
-	s.read(_start_timer1);
+
+	uint32_t timer1_elapsed;
+	s.read(timer1_elapsed);
+	_start_timer1 = _machine->microseconds() - timer1_elapsed;
+
+	uint32_t timer1_left;
+	s.read(timer1_left);
+	_machine->cancel_timer(_timer1_id);
+	if (timer1_left == 0)
+		_timer1_id = -1;
+	else
+		_timer1_id = _machine->oneshot_timer(timer1_left, [this]() { on_timer1_expiry(); });
+
+	uint32_t timer2_left;
+	s.read(timer2_left);
+	_machine->cancel_timer(_timer2_id);
+	if (timer2_left == 0)
+		_timer2_id = -1;
+	else
+		_timer2_id = _machine->oneshot_timer(timer2_left, [this]() { on_timer2_expiry(); });
+
+	uint32_t sr_timer_left;
+	s.read(sr_timer_left);
+	_machine->cancel_timer(_sr_timer_id);
+	if (sr_timer_left == 0)
+		_sr_timer_id = -1;
+	else
+		_sr_timer_id = _machine->oneshot_timer(sr_timer_left, [this]() { on_sr_timer_expiry(); });
+
+	if (_porta_output_handler)
+		_porta_output_handler((_porta & _ddra) | ~_ddra);
+	if (_portb_output_handler)
+		_portb_output_handler((_portb & _ddrb) | ~_ddrb);
 }

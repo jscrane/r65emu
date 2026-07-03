@@ -8,7 +8,7 @@
 class VIA: public Memory::Device {
 public:
 	VIA(): Memory::Device(16),
-		_timer1_id(-1), _timer2_id(-1), _t1(0), _t1_latch(0), _t2(0), _sr_timer_id(-1),
+		_timer1_id(-1), _t1(0), _t1_latch(0), _timer2_id(-1), _t2(0), _sr_timer_id(-1),
 		_sr(0), _acr(0), _pcr(0), _ier(0), _ifr(0), _ddra(0), _ddrb(0), _porta(0), _portb(0) {}
 
 	void reset() {
@@ -123,11 +123,17 @@ private:
 	void clear_int(uint8_t);
 
 	void start_timer1();
+	void on_timer1_expiry();
+	int _timer1_id;
+	uint16_t _t1, _t1_latch;
+
 	void start_timer2();
-	int _timer1_id, _timer2_id;
-	uint16_t _t1, _t1_latch, _t2, _t2_latch;
+	void on_timer2_expiry();
+	int _timer2_id;
+	uint16_t _t2, _t2_latch;
 
 	void start_sr_timer();
+	void on_sr_timer_expiry();
 	void shift_out();
 	int _sr_timer_id;
 	uint8_t _sr_bits;

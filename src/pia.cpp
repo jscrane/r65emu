@@ -91,6 +91,7 @@ void PIA::checkpoint(Checkpoint &s) {
 }
 
 void PIA::restore(Checkpoint &s) {
+
 	s.read(crb);
 	s.read(outb);
 	s.read(inb);
@@ -109,6 +110,11 @@ void PIA::restore(Checkpoint &s) {
 	s.read(ca2);
 	s.read(irqb_state);
 	s.read(irqa_state);
+
+	if (porta_write_handler)
+		porta_write_handler((outa & ddra) | ~ddra);
+	if (portb_write_handler)
+		portb_write_handler((outb & ddrb) | ~ddrb);
 }
 
 void PIA::update_interrupts() {
@@ -131,7 +137,7 @@ void PIA::update_interrupts() {
 void PIA::write_porta(uint8_t b) {
 
 	if (porta_write_handler)
-		porta_write_handler(b);
+		porta_write_handler((b & ddra) | ~ddra);
 
 	outa = b;
 }
@@ -139,7 +145,7 @@ void PIA::write_porta(uint8_t b) {
 void PIA::write_portb(uint8_t b) {
 
 	if (portb_write_handler)
-		portb_write_handler(b);
+		portb_write_handler((b & ddrb) | ~ddrb);
 
 	outb = b;
 }
