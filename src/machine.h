@@ -10,21 +10,19 @@ public:
 class Checkpoint {
 public:
 	virtual size_t read(uint8_t &) =0;
+	virtual size_t read(uint8_t *, size_t);
+	virtual size_t read(uint16_t &);
+	virtual size_t read(uint32_t &);
+	virtual size_t read(bool &);
+
 	virtual size_t write(uint8_t) =0;
-
-	virtual size_t read(uint8_t *, int) =0;
-	virtual size_t write(const uint8_t *, int) =0;
-
-	size_t read(uint16_t &val);
-	size_t read(uint32_t &val);
-	size_t read(bool &b);
-
-	size_t write(uint16_t val);
-	size_t write(uint32_t val);
-	size_t write(bool b);
+	virtual size_t write(const uint8_t *, size_t);
+	virtual size_t write(uint16_t);
+	virtual size_t write(uint32_t);
+	virtual size_t write(bool);
 
 	template <typename T> size_t write(T) = delete;
-	template <typename T> size_t read(T& value) = delete;
+	template <typename T> size_t read(T&) = delete;
 };
 
 #if !defined(MAX_POLLABLE)

@@ -42,39 +42,39 @@ Memory::Devices::operator uint8_t() {
 }
 
 void Memory::Devices::checkpoint(Checkpoint &c) {
-	unsigned ds;
-	for (unsigned i = 0; i < page_size / device_size; i += ds) {
+
+	for (size_t i = 0; i < page_size / device_size; ) {
 		Device *d = _devices[i];
 		d->checkpoint(c);
-		ds = slots(d);
+		i += slots(d);
 	}
 }
 
 void Memory::Devices::restore(Checkpoint &c) {
-	unsigned ds;
-	for (unsigned i = 0; i < page_size / device_size; i += ds) {
+
+	for (size_t i = 0; i < page_size / device_size; ) {
 		Device *d = _devices[i];
 		d->restore(c);
-		ds = slots(d);
+		i += slots(d);
 	}
 }
 
 void Memory::checkpoint(Checkpoint &c) {
 
-	unsigned ds = 0;
-	for (unsigned i = 0; i < address_size; i += ds) {
-		Device *dev = get(i);
+	for (uint16_t page = 0; page < address_size / page_size; ) {
+		Device *dev = get(page * page_size);
 		dev->checkpoint(c);
-		ds = pages(dev->extent());
+		page += pages(dev->extent());
+		_machine->yield();
 	}
 }
 
 void Memory::restore(Checkpoint &c) {
 
-	unsigned ds = 0;
-	for (unsigned i = 0; i < address_size; i += ds) {
-		Device *dev = get(i);
+	for (uint16_t page = 0; page < address_size / page_size; ) {
+		Device *dev = get(page * page_size);
 		dev->restore(c);
-		ds = pages(dev->extent());
+		page += pages(dev->extent());
+		_machine->yield();
 	}
 }

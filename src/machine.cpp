@@ -142,3 +142,16 @@ size_t Checkpoint::write(bool b) {
 	uint8_t t = b? 1: 0;
 	return write(t);
 }
+
+size_t Checkpoint::read(uint8_t *buf, size_t len) {
+	for (int i = 0; i < len; i++)
+		if (read(buf[i]) == 0)
+			return i;
+	return len;
+}
+
+size_t Checkpoint::write(const uint8_t *buf, size_t len) {
+	for (int i = 0; i < len; i++)
+		write(buf[i]);
+	return len;
+}
