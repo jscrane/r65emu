@@ -39,7 +39,9 @@ private:
 	}
 
 	int _read() {
-		while (!_serial.available());
+		do {
+			yield();
+		} while (!_serial.available());
 		return _serial.read();
 	}
 
