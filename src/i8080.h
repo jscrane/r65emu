@@ -54,17 +54,14 @@ private:
 		uint16_t HL;
 	};
 	Memory::address SP;
-	union {
-		struct {
-			unsigned C:1;
-			unsigned P:1;
-			unsigned H:1;
-			unsigned Z:1;
-			unsigned S:1;
-			unsigned I:1;
-		} flags;
-		uint8_t status_bits;
-	};
+	struct {
+		unsigned C:1;
+		unsigned P:1;
+		unsigned H:1;
+		unsigned Z:1;
+		unsigned S:1;
+		unsigned I:1;
+	} flags;
 	uint8_t _irq_pending;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;

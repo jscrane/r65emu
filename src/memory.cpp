@@ -4,7 +4,7 @@
 #include "memory.h"
 #include "debugging.h"
 
-void Memory::put(Device &dev, address base, unsigned extent) {
+void Memory::put(Device &dev, address base, size_t extent) {
 	Device **d = _pages + base/page_size;
 
 	unsigned size = pages(extent);
