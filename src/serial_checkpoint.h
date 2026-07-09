@@ -48,3 +48,13 @@ private:
 	Stream &_serial;
 	size_t _w;
 };
+
+inline void serial_checkpoint(Stream &s) {
+	SerialHexCheckpoint c(s);
+	_machine->checkpoint(c);
+}
+
+inline void serial_restore(Stream &s) {
+	SerialHexCheckpoint c(s);
+	_machine->restore(c);
+}

@@ -6,8 +6,6 @@
 #define TERMINAL_SPEED		115200
 #endif
 
-class Stream;
-
 class StreamCheckpoint: public Checkpoint {
 public:
 	StreamCheckpoint(Stream &s): _s(s) {}

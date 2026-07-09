@@ -41,18 +41,9 @@ public:
 
 private:
 	uint8_t A;
-	union {
-		struct { uint8_t C, B; };
-		uint16_t BC;
-	};
-	union {
-		struct { uint8_t E, D; };
-		uint16_t DE;
-	};
-	union {
-		struct { uint8_t L, H; };
-		uint16_t HL;
-	};
+	REG_PAIR_16(B, C);
+	REG_PAIR_16(D, E);
+	REG_PAIR_16(H, L);
 	Memory::address SP;
 	struct {
 		unsigned C:1;

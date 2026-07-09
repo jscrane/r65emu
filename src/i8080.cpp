@@ -78,12 +78,12 @@ void i8080::checkpoint(Checkpoint &s) {
 	CPU::checkpoint(s);
 	s.write(A);
 	s.write(_sr());
-	s.write(B);
 	s.write(C);
-	s.write(D);
+	s.write(B);
 	s.write(E);
-	s.write(H);
+	s.write(D);
 	s.write(L);
+	s.write(H);
 	s.write(SP);
 	s.write(_irq_pending);
 }
@@ -95,12 +95,12 @@ void i8080::restore(Checkpoint &s) {
 	uint8_t status;
 	s.read(status);
 	_sr(status);
-	s.read(B);
 	s.read(C);
-	s.read(D);
+	s.read(B);
 	s.read(E);
-	s.read(H);
+	s.read(D);
 	s.read(L);
+	s.read(H);
 	s.read(SP);
 	s.read(_irq_pending);
 }
