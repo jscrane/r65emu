@@ -105,11 +105,23 @@ static const uint8_t szp_flags[256] = {
 #define PCH	cpu_regs.pc.h
 #define PCL	cpu_regs.pc.l
 #define AF_	cpu_regs.af_.w
+#define A_	cpu_regs.af_.h
+#define F_	cpu_regs.af_.l
 #define BC_	cpu_regs.bc_.w
+#define B_	cpu_regs.bc_.h
+#define C_	cpu_regs.bc_.l
 #define DE_	cpu_regs.de_.w
+#define D_	cpu_regs.de_.h
+#define E_	cpu_regs.de_.l
 #define HL_	cpu_regs.hl_.w
+#define H_	cpu_regs.hl_.h
+#define L_	cpu_regs.hl_.l
 #define IX	cpu_regs.ix.w
+#define IXH	cpu_regs.ix.h
+#define IXL	cpu_regs.ix.l
 #define IY	cpu_regs.iy.w
+#define IYH	cpu_regs.iy.h
+#define IYL	cpu_regs.iy.l
 #define I	cpu_regs.i
 #define R	cpu_regs.r
 #define R_	cpu_regs.r_
@@ -152,19 +164,30 @@ void uz80::reset() {
 void uz80::checkpoint(Checkpoint &s) {
 
 	CPU::checkpoint(s);
-	s.write(AF);
-	s.write(BC);
-	s.write(DE);
-	s.write(HL);
+	s.write(F);
+	s.write(A);
+	s.write(C);
+	s.write(B);
+	s.write(E);
+	s.write(D);
+	s.write(L);
+	s.write(H);
 	s.write(SP);
-	s.write(AF_);
-	s.write(BC_);
-	s.write(DE_);
-	s.write(HL_);
-	s.write(IX);
-	s.write(IY);
+	s.write(F_);
+	s.write(A_);
+	s.write(C_);
+	s.write(B_);
+	s.write(E_);
+	s.write(D_);
+	s.write(L_);
+	s.write(H_);
+	s.write(IXL);
+	s.write(IXH);
+	s.write(IYL);
+	s.write(IYH);
 	s.write(I);
 	s.write(R);
+	s.write(R_);
 	s.write(IFF);
 	s.write(int_nmi);
 	s.write(int_int);
@@ -177,19 +200,30 @@ void uz80::checkpoint(Checkpoint &s) {
 void uz80::restore(Checkpoint &s) {
 
 	CPU::restore(s);
-	s.read(AF);
-	s.read(BC);
-	s.read(DE);
-	s.read(HL);
+	s.read(F);
+	s.read(A);
+	s.read(C);
+	s.read(B);
+	s.read(E);
+	s.read(D);
+	s.read(L);
+	s.read(H);
 	s.read(SP);
-	s.read(AF_);
-	s.read(BC_);
-	s.read(DE_);
-	s.read(HL_);
-	s.read(IX);
-	s.read(IY);
+	s.read(F_);
+	s.read(A_);
+	s.read(C_);
+	s.read(B_);
+	s.read(E_);
+	s.read(D_);
+	s.read(L_);
+	s.read(H_);
+	s.read(IXL);
+	s.read(IXH);
+	s.read(IYL);
+	s.read(IYH);
 	s.read(I);
 	s.read(R);
+	s.read(R_);
 	s.read(IFF);
 	s.read(int_nmi);
 	s.read(int_int);
