@@ -1,5 +1,11 @@
 #pragma once
 
+/**
+ * save / restore machine state over the serial port
+ * NO FLOW CONTROL!
+ * - ensure emulation restore methods don't do "too much" work
+ * - or else increase RxBufferSize to ensure chars aren't lost.
+ */
 class SerialHexCheckpoint: public Checkpoint {
 public:
 	SerialHexCheckpoint(Stream &serial): _serial(serial), _w(0) {}
