@@ -158,7 +158,7 @@ void uz80::reset() {
 	int_nmi = int_int = int_protection = false;
 	int_data = -1;
 	_cycles = 0;
-	state = Running;
+	_halted = false;
 }
 
 void uz80::checkpoint(Checkpoint &s) {
@@ -194,7 +194,6 @@ void uz80::checkpoint(Checkpoint &s) {
 	s.write(int_protection);
 	s.write(int_data);
 	s.write(int_mode);
-	s.write((uint8_t)state);
 }
 
 void uz80::restore(Checkpoint &s) {
@@ -230,7 +229,6 @@ void uz80::restore(Checkpoint &s) {
 	s.read(int_protection);
 	s.read(int_data);
 	s.read(int_mode);
-	s.read((uint8_t &)state);
 }
 
 char *uz80::status(char *buf, size_t n, bool hdr) {
@@ -271,8 +269,8 @@ uint8_t uz80::_handle_nmi() {
 
 uint8_t uz80::_handle_interrupt() {
 
-	if (state == Halted) {
-		state = Running;
+	if (_halted) {
+		_halted = false;
 		PC++;
 	}
 
@@ -333,7 +331,7 @@ next_opcode:
 			int_data = -1;
 		}
 
-		if (state == Halted)
+		if (_halted)
 			break;
 
 		t += 4;
@@ -1036,7 +1034,7 @@ finish_jrc:
 				break;
 
 			case 0x76:		/* HALT */
-				state = Halted;
+				_halted = true;
 				PC--;
 				break;
 
@@ -2551,7 +2549,7 @@ finish_ioidr:
 
 		cycles(t);	// account for the executed instruction
 
-	} while (state == Running && --instructions > 0);
+	} while (!_halted && --instructions > 0);
 }
 
 #undef W

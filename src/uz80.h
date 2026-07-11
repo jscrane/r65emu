@@ -24,8 +24,6 @@
 #define N_SHIFT 1
 #define C_SHIFT 0
 
-enum CPUState { Running = 1, Halted = 2, Interrupted = 3 };
-
 class uz80: public CPU {
 public:
 	uz80(Memory &m): CPU(m) {}
@@ -38,7 +36,7 @@ public:
 	void restore(Checkpoint &) override;
 
 	void nmi() { int_nmi = true; }
-	void irq(uint8_t b) { int_int = true; int_data = b; state = Interrupted; }
+	void irq(uint8_t b) { int_int = true; int_data = b; }
 
 	void set_port_out_handler(std::function<void(uint16_t, uint8_t)> fn) {
 		port_out_handler = fn;
@@ -99,8 +97,6 @@ private:
 		uint8_t iff;		/* interupt flags */
 	} cpu_regs;
 
-	CPUState state;			// CPU state
-	
 	// z80sim compatibility
 	inline uint8_t memrdr(uint16_t addr) { return _mem[addr]; }
 	inline void memwrt(uint16_t addr, uint8_t data) { _mem[addr] = data; }
