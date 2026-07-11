@@ -136,10 +136,12 @@ private:
 	std::function<uint8_t(uint16_t)> port_in_handler;
 
 	inline void _out(uint16_t p, uint8_t v) {
+		_mc(p, 4);
 		if (port_out_handler) port_out_handler(p, v);
 	}
 
 	inline uint8_t _in(uint16_t p) {
+		_mc(p, 4);
 		return port_in_handler? port_in_handler(p): 0;
 	}
 

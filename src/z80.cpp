@@ -149,11 +149,12 @@ void z80::reset() {
 void z80::_handle_nmi() {
 
 	DBG_CPU("NMI");
+	_push(PC);
 	_iff2 = _iff1;
 	_iff1 = false;
 	R++;
 	PC = 0x0066;
-	cycles(11);
+	cycles(5);
 }
 
 void z80::_handle_interrupt() {
