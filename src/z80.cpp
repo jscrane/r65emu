@@ -266,7 +266,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	U(0x61, ixH = C);
 	U(0x62, ixH = D);
 	U(0x63, ixH = E);
-	U(0x64, ixH = ixH);
+	U(0x64, /* ixH = ixH */);
 	U(0x65, ixH = ixL);
 	E(0x66, H = _rbO(ix));
 	U(0x67, ixH = A);
@@ -275,7 +275,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	U(0x6a, ixL = D);
 	U(0x6b, ixL = E);
 	U(0x6c, ixL = ixH);
-	U(0x6d, ixL = ixL);
+	U(0x6d, /* ixL = ixL */);
 	E(0x6e, L = _rbO(ix));
 	U(0x6f, ixL = A);
 	E(0x70, _sbO(ix, B));
