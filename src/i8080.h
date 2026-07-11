@@ -54,6 +54,7 @@ private:
 		unsigned I:1;
 	} flags;
 	uint8_t _irq_pending;
+	const uint8_t NO_IRQ = 0xff;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -468,7 +469,7 @@ private:
 	inline void rm() { _ret(flags.S); }
 	inline void sphl() { SP = HL; }
 	inline void jm() { _jmp(flags.S); }
-	inline void ei() { flags.I = true; if (_irq_pending) raise(_irq_pending); }
+	inline void ei() { flags.I = true; if (_irq_pending != NO_IRQ) raise(_irq_pending); }
 	inline void cm() { _call(flags.S); }
 
 	inline void cpi() { _cmp(_mem[PC++]); }
