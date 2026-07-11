@@ -286,7 +286,7 @@ private:
 		uint8_t b = A;
 		A = w & 0xff;
 		_szp(A);
-		hflagadd(a, b, A);
+		hflagadd(x, b, A);
 		flags.C = w > 0xff;
 	}
 
@@ -323,7 +323,7 @@ private:
 		uint8_t b = A;
 		A = w & 0xff;
 		_szp(A);
-		hflagsub(s, b, A);
+		hflagsub(x, b, A);
 		flags.C = w > 0xff;
 	}
 
