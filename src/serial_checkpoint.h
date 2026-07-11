@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * save / restore machine state over the serial port
+ * save / restore machine state in ascii over the serial port
  * NO FLOW CONTROL!
  * - ensure emulation restore methods don't do "too much" work
  * - or else increase RxBufferSize to ensure chars aren't lost.
