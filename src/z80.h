@@ -1451,7 +1451,7 @@ private:
 		_memptr = BC+1;
 		B--;
 		uint8_t c = b + C + 1;
-		flags.N = (c & 0x80) != 0;
+		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
 		flags.P = parity((c & 0x07) ^ B);
 		_sz35(B);
