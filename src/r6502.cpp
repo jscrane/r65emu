@@ -125,6 +125,14 @@ uint8_t r6502::flags() {
 	return P.flags;
 }
 
+void r6502::flags(uint8_t f) {
+	P.flags = f;
+	N = P.bits.N? 0x80: 0;
+	V = P.bits.V;
+	Z = !P.bits.Z;
+	C = P.bits.C;
+}
+
 char *r6502::status(char *buf, size_t n, bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	flags();
@@ -221,11 +229,8 @@ void r6502::php() {
 }
 
 void r6502::plp() {
-	P.flags = popb();
-	N = P.bits.N? 0x80: 0;
-	V = P.bits.V;
-	Z = !P.bits.Z;
-	C = P.bits.C;
+	flags(popb());
+	if (!P.bits.I && _irq) irq();
 }
 
 static inline uint8_t fromBCD(uint8_t i) {
