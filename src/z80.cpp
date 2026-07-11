@@ -38,18 +38,29 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 void z80::checkpoint(Checkpoint &s) {
 
 	CPU::checkpoint(s);
-	s.write(AF);
-	s.write(BC);
-	s.write(DE);
-	s.write(HL);
+	s.write(F);
+	s.write(A);
+	s.write(C);
+	s.write(B);
+	s.write(E);
+	s.write(D);
+	s.write(L);
+	s.write(H);
 	s.write(SP);
-	s.write(AF_);
-	s.write(BC_);
-	s.write(DE_);
-	s.write(HL_);
-	s.write(IX);
-	s.write(IY);
-	s.write(IR);
+	s.write(F_);
+	s.write(A_);
+	s.write(C_);
+	s.write(B_);
+	s.write(E_);
+	s.write(D_);
+	s.write(L_);
+	s.write(H_);
+	s.write(IXL);
+	s.write(IXH);
+	s.write(IYL);
+	s.write(IYH);
+	s.write(R);
+	s.write(I);
 	s.write(_im);
 	s.write(_iff1);
 	s.write(_iff2);
@@ -57,24 +68,36 @@ void z80::checkpoint(Checkpoint &s) {
 	s.write(_int_irq);
 	s.write(_int_prot);
 	s.write(_irq_data);
-	s.write(_memptr);
+	s.write(MPL);
+	s.write(MPH);
 }
 
 void z80::restore(Checkpoint &s) {
 
 	CPU::restore(s);
-	s.read(AF);
-	s.read(BC);
-	s.read(DE);
-	s.read(HL);
+	s.read(F);
+	s.read(A);
+	s.read(C);
+	s.read(B);
+	s.read(E);
+	s.read(D);
+	s.read(L);
+	s.read(H);
 	s.read(SP);
-	s.read(AF_);
-	s.read(BC_);
-	s.read(DE_);
-	s.read(HL_);
-	s.read(IX);
-	s.read(IY);
-	s.read(IR);
+	s.read(F_);
+	s.read(A_);
+	s.read(C_);
+	s.read(B_);
+	s.read(E_);
+	s.read(D_);
+	s.read(L_);
+	s.read(H_);
+	s.read(IXL);
+	s.read(IXH);
+	s.read(IYL);
+	s.read(IYH);
+	s.read(R);
+	s.read(I);
 	s.read(_im);
 	s.read(_iff1);
 	s.read(_iff2);
@@ -82,7 +105,8 @@ void z80::restore(Checkpoint &s) {
 	s.read(_int_irq);
 	s.read(_int_prot);
 	s.read(_irq_data);
-	s.read(_memptr);
+	s.read(MPL);
+	s.read(MPH);
 }
 
 uint8_t z80::_fetch_op() {
@@ -125,11 +149,12 @@ void z80::reset() {
 void z80::_handle_nmi() {
 
 	DBG_CPU("NMI");
+	_push(PC);
 	_iff2 = _iff1;
 	_iff1 = false;
 	R++;
 	PC = 0x0066;
-	cycles(11);
+	cycles(5);
 }
 
 void z80::_handle_interrupt() {
@@ -241,7 +266,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	U(0x61, ixH = C);
 	U(0x62, ixH = D);
 	U(0x63, ixH = E);
-	U(0x64, /* FIXME: should be ixH = H */);
+	U(0x64, /* ixH = ixH */);
 	U(0x65, ixH = ixL);
 	E(0x66, H = _rbO(ix));
 	U(0x67, ixH = A);
@@ -250,7 +275,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	U(0x6a, ixL = D);
 	U(0x6b, ixL = E);
 	U(0x6c, ixL = ixH);
-	U(0x6d, /* FIXME: should be ixL = L */);
+	U(0x6d, /* ixL = ixL */);
 	E(0x6e, L = _rbO(ix));
 	U(0x6f, ixL = A);
 	E(0x70, _sbO(ix, B));
@@ -311,7 +336,7 @@ void z80::_ddfd(uint16_t &ix, uint8_t &ixL, uint8_t &ixH, EXT_OP op) {
 	E(0xfd, fd());
 
 	default:
-		ERR("unimplemented dd/fd op: %02x", o);
+		this->op(o);
 	}
 }
 

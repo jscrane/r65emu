@@ -41,30 +41,18 @@ public:
 
 private:
 	uint8_t A;
-	union {
-		struct { uint8_t C, B; };
-		uint16_t BC;
-	};
-	union {
-		struct { uint8_t E, D; };
-		uint16_t DE;
-	};
-	union {
-		struct { uint8_t L, H; };
-		uint16_t HL;
-	};
+	REG_PAIR_16(B, C);
+	REG_PAIR_16(D, E);
+	REG_PAIR_16(H, L);
 	Memory::address SP;
-	union {
-		struct {
-			unsigned C:1;
-			unsigned P:1;
-			unsigned H:1;
-			unsigned Z:1;
-			unsigned S:1;
-			unsigned I:1;
-		} flags;
-		uint8_t status_bits;
-	};
+	struct {
+		unsigned C:1;
+		unsigned P:1;
+		unsigned H:1;
+		unsigned Z:1;
+		unsigned S:1;
+		unsigned I:1;
+	} flags;
 	uint8_t _irq_pending;
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
@@ -298,7 +286,7 @@ private:
 		uint8_t b = A;
 		A = w & 0xff;
 		_szp(A);
-		hflagadd(a, b, A);
+		hflagadd(x, b, A);
 		flags.C = w > 0xff;
 	}
 
@@ -335,7 +323,7 @@ private:
 		uint8_t b = A;
 		A = w & 0xff;
 		_szp(A);
-		hflagsub(s, b, A);
+		hflagsub(x, b, A);
 		flags.C = w > 0xff;
 	}
 

@@ -62,8 +62,8 @@ uint16_t ps2_raw_kbd::read() {
 
 	uint8_t f = fn(k);
 	if (f >= 1 && brk) {
-		fnkey(f);
 		brk = false;
+		fnkey(f);
 		return 0;
 	}
 	uint16_t r = brk? (0x8000 | k): k;

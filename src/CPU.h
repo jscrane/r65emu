@@ -9,10 +9,26 @@
 #define D(fn) 		default: fn(); break
 
 #if defined(UNDOCUMENTED_OPS)
-#define U(op, expr)	case op: expr; break
+	#define U(op, expr)	case op: expr; break
 #else
-#define U(op, expr)
+	#define U(op, expr)
 #endif
+
+#if defined(__BYTE_ORDER__) && (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
+	#define REG_PAIR_16_EXT(high, low, combined) \
+		union { \
+			struct { uint8_t high, low; }; \
+			uint16_t combined; \
+		}
+#else
+	#define REG_PAIR_16_EXT(high, low, combined) \
+		union { \
+			struct { uint8_t low, high; }; \
+			uint16_t combined; \
+		}
+#endif
+
+#define REG_PAIR_16(high, low) REG_PAIR_16_EXT(high, low, high##low)
 
 class CPU: public Checkpointable {
 public:

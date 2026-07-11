@@ -1,7 +1,7 @@
 CPPFLAGS = -I..
 CPPFLAGS += -DDEBUGGING=0x01
 CXXFLAGS:= -g
-OBJECTS := test.o r6502.o memory.o machine.o
+OBJECTS := test.o r6502.o memory.o machine.o deltaq.o
 
 test: $(OBJECTS)
 	g++ -o $@ $+ $(LDLIBS)

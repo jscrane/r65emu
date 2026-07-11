@@ -47,6 +47,7 @@ private:
 	void irq();
 	void nmi();
 	uint8_t flags();
+	void flags(uint8_t);
 
 	std::function<void(void)> _illegal_instruction_handler;
 
@@ -213,7 +214,7 @@ private:
 	inline void and_ax() { _and(_mem[_axp()]); }
 	inline void rol_ax() { _rol(_ax()); }
 	// 40
-	inline void rti() { plp(); PC = popa(); }
+	inline void rti() { flags(popb()); PC = popa(); if (!P.bits.I && _irq) irq(); }
 	inline void eor_ix() { _eor(_mem[_ix()]); }
 	inline void eor_z() { _eor(_mem[_z()]); }
 	inline void lsr_z() { _lsr(_z()); }

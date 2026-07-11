@@ -53,7 +53,8 @@ void i8080::raise(uint8_t level) {
 	if (flags.I) {
 		flags.I = 0;
 		_irq_pending = 0;
-		_halted = false;
+		if (_halted)
+			CPU::resume();
 		_push(PC);
 		PC = level * 8;
 	} else
@@ -77,10 +78,13 @@ void i8080::checkpoint(Checkpoint &s) {
 
 	CPU::checkpoint(s);
 	s.write(A);
-	s.write(status_bits);
-	s.write(BC);
-	s.write(DE);
-	s.write(HL);
+	s.write(_sr());
+	s.write(C);
+	s.write(B);
+	s.write(E);
+	s.write(D);
+	s.write(L);
+	s.write(H);
 	s.write(SP);
 	s.write(_irq_pending);
 }
@@ -89,10 +93,15 @@ void i8080::restore(Checkpoint &s) {
 
 	CPU::restore(s);
 	s.read(A);
-	s.read(status_bits);
-	s.read(BC);
-	s.read(DE);
-	s.read(HL);
+	uint8_t status;
+	s.read(status);
+	_sr(status);
+	s.read(C);
+	s.read(B);
+	s.read(E);
+	s.read(D);
+	s.read(L);
+	s.read(H);
 	s.read(SP);
 	s.read(_irq_pending);
 }

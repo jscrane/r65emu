@@ -1,6 +1,6 @@
 CPPFLAGS:=-I.. -DUNDOCUMENTED_OPS
 CXXFLAGS:=-g
-OBJECTS := test.o i8080.o memory.o machine.o
+OBJECTS := test.o i8080.o memory.o machine.o deltaq.o
 
 test: $(OBJECTS)
 	g++ -o $@ $+

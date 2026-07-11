@@ -109,37 +109,20 @@ private:
 		uint16_t AF;
 	};
 
-	union {
-		struct { uint8_t C, B; };
-		uint16_t BC;
-	};
-	union {
-		struct { uint8_t E, D; };
-		uint16_t DE;
-	};
-	union {
-		struct { uint8_t L, H; };
-		uint16_t HL;
-	};
+	REG_PAIR_16(B, C);
+	REG_PAIR_16(D, E);
+	REG_PAIR_16(H, L);
 
 	Memory::address SP;
 
-	uint16_t AF_, BC_, DE_, HL_;
+	REG_PAIR_16_EXT(A_, F_, AF_);
+	REG_PAIR_16_EXT(B_, C_, BC_);
+	REG_PAIR_16_EXT(D_, E_, DE_);
+	REG_PAIR_16_EXT(H_, L_, HL_);
 
-	union {
-		struct { uint8_t IXL, IXH; };
-		uint16_t IX;
-	};
-
-	union {
-		struct { uint8_t IYL, IYH; };
-		uint16_t IY;
-	};
-
-	union {
-		struct { uint8_t R, I; };
-		uint16_t IR;
-	};
+	REG_PAIR_16_EXT(IXH, IXL, IX);
+	REG_PAIR_16_EXT(IYH, IYL, IY);
+	REG_PAIR_16(I, R);
 
 	uint8_t _im;
 	bool _iff1, _iff2;
@@ -147,10 +130,7 @@ private:
 	bool _int_nmi, _int_irq, _int_prot;
 	uint8_t _irq_data;
 
-	union {
-		struct { uint8_t MPL, MPH; };
-		uint16_t _memptr;
-	};
+	REG_PAIR_16_EXT(MPH, MPL, _memptr);
 
 	std::function<void(uint16_t, uint8_t)> port_out_handler;
 	std::function<uint8_t(uint16_t)> port_in_handler;
@@ -1471,7 +1451,7 @@ private:
 		_memptr = BC+1;
 		B--;
 		uint8_t c = b + C + 1;
-		flags.N = (c & 0x80) != 0;
+		flags.N = (b & 0x80) != 0;
 		flags.C = flags.H = (c < b);
 		flags.P = parity((c & 0x07) ^ B);
 		_sz35(B);
