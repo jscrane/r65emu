@@ -101,9 +101,8 @@ static const uint8_t szp_flags[256] = {
 #define SP	cpu_regs.sp.w
 #define SPH	cpu_regs.sp.h
 #define SPL	cpu_regs.sp.l
-#define PC	cpu_regs.pc.w
-#define PCH	cpu_regs.pc.h
-#define PCL	cpu_regs.pc.l
+#define PCH	((uint8_t)(PC >> 8))
+#define PCL	((uint8_t)(PC & 0xff))
 #define AF_	cpu_regs.af_.w
 #define A_	cpu_regs.af_.h
 #define F_	cpu_regs.af_.l
@@ -2579,7 +2578,6 @@ finish_ioidr:
 #undef SP
 #undef SPH
 #undef SPL
-#undef PC
 #undef PCH
 #undef PCL
 #undef AF_

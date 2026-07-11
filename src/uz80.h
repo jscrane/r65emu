@@ -84,7 +84,6 @@ private:
 		struct cpu_reg de;
 		struct cpu_reg hl;
 		struct cpu_reg sp;	/* stack pointer */
-		struct cpu_reg pc;	/* program counter */
 		struct cpu_reg af_;	/* Z80 alternate registers */
 		struct cpu_reg bc_;
 		struct cpu_reg de_;
