@@ -29,10 +29,10 @@ static uint8_t optimes[] PROGMEM = {
 	2, 6, 0, 0, 4, 4, 4, 4, 2, 5, 2, 0, 4, 5, 5, 0,	// 9-
 	2, 6, 2, 6, 3, 3, 3, 3, 2, 2, 2, 0, 4, 4, 4, 4,	// A-
 	2, 5, 0, 5, 4, 4, 4, 4, 2, 4, 2, 0, 4, 4, 4, 4,	// B-
-	2, 6, 2, 0, 3, 3, 5, 0, 2, 2, 2, 0, 4, 4, 6, 0,	// C-
-	2, 5, 0, 0, 4, 4, 6, 0, 2, 4, 2, 0, 4, 4, 7, 0,	// D-
-	2, 6, 2, 0, 3, 3, 5, 0, 2, 2, 2, 0, 4, 4, 6, 0,	// E-
-	2, 5, 0, 0, 4, 4, 6, 0, 2, 4, 2, 0, 4, 4, 7, 0,	// F-
+	2, 6, 2, 8, 3, 3, 5, 5, 2, 2, 2, 0, 4, 4, 6, 6,	// C-
+	2, 5, 0, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,	// D-
+	2, 6, 2, 8, 3, 3, 5, 5, 2, 2, 2, 0, 4, 4, 6, 6,	// E-
+	2, 5, 0, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,	// F-
 };
 
 void r6502::run(unsigned clocks) {
@@ -93,22 +93,22 @@ void r6502::run(unsigned clocks) {
 		O(0xb4, ldy_zx); O(0xb5, lda_zx); O(0xb6, ldx_zy); O(0xb7, lax_zy);
 		O(0xb8, clv); O(0xb9, lda_ay); O(0xba, tsx);
 		O(0xbc, ldy_ax); O(0xbd, lda_ax); O(0xbe, ldx_ay); O(0xbf, lax_ay);
-		O(0xc0, cpy_); O(0xc1, cmp_ix); O(0xc2, nop2);
-		O(0xc4, cpy_z); O(0xc5, cmp_z); O(0xc6, dec_z);
+		O(0xc0, cpy_); O(0xc1, cmp_ix); O(0xc2, nop2); O(0xc3, dcp_ix);
+		O(0xc4, cpy_z); O(0xc5, cmp_z); O(0xc6, dec_z); O(0xc7, dcp_z);
 		O(0xc8, iny); O(0xc9, cmp_); O(0xca, dex);
-		O(0xcc, cpy_a); O(0xcd, cmp_a); O(0xce, dec_a);
-		O(0xd0, bne); O(0xd1, cmp_iy);
-		O(0xd4, nop2); O(0xd5, cmp_zx); O(0xd6, dec_zx);
-		O(0xd8, cld); O(0xd9, cmp_ay); O(0xda, nop);
-		O(0xdc, nop3); O(0xdd, cmp_ax); O(0xde, dec_ax);
-		O(0xe0, cpx_); O(0xe1, sbc_ix); O(0xe2, nop2);
-		O(0xe4, cpx_z); O(0xe5, sbc_z); O(0xe6, inc_z);
+		O(0xcc, cpy_a); O(0xcd, cmp_a); O(0xce, dec_a); O(0xcf, dcp_a);
+		O(0xd0, bne); O(0xd1, cmp_iy); O(0xd3, dcp_iy);
+		O(0xd4, nop2); O(0xd5, cmp_zx); O(0xd6, dec_zx); O(0xd7, dcp_zx);
+		O(0xd8, cld); O(0xd9, cmp_ay); O(0xda, nop); O(0xdb, dcp_ay);
+		O(0xdc, nop3); O(0xdd, cmp_ax); O(0xde, dec_ax); O(0xdf, dcp_ax);
+		O(0xe0, cpx_); O(0xe1, sbc_ix); O(0xe2, nop2); O(0xe3, isc_ix);
+		O(0xe4, cpx_z); O(0xe5, sbc_z); O(0xe6, inc_z); O(0xe7, isc_z);
 		O(0xe8, inx); O(0xe9, sbc_); O(0xea, nop);
-		O(0xec, cpx_a); O(0xed, sbc_a); O(0xee, inc_a);
-		O(0xf0, beq); O(0xf1, sbc_iy);
-		O(0xf4, nop2); O(0xf5, sbc_zx); O(0xf6, inc_zx);
-		O(0xf8, sed); O(0xf9, sbc_ay); O(0xfa, nop);
-		O(0xfc, nop3); O(0xfd, sbc_ax); O(0xfe, inc_ax);
+		O(0xec, cpx_a); O(0xed, sbc_a); O(0xee, inc_a); O(0xef, isc_a);
+		O(0xf0, beq); O(0xf1, sbc_iy); O(0xf3, isc_iy);
+		O(0xf4, nop2); O(0xf5, sbc_zx); O(0xf6, inc_zx); O(0xf7, isc_zx);
+		O(0xf8, sed); O(0xf9, sbc_ay); O(0xfa, nop); O(0xfb, isc_ay);
+		O(0xfc, nop3); O(0xfd, sbc_ax); O(0xfe, inc_ax); O(0xff, isc_ax);
 		D(ill);
 		}
 

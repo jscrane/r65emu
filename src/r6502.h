@@ -157,6 +157,8 @@ private:
 	inline void _dec(Memory::address a) {
 		Z=N=_mem[a]-1; _mem[a]=Z;
 	}
+	inline void _dcp(Memory::address a) { _dec(a); _cmp(_mem[a]); }
+	inline void _isb(Memory::address a) { _inc(a); _sbc(_mem[a]); }
 	inline void _bit(uint8_t z) {
 		V=((z & 0x40)!=0); N=(z & 0x80); Z=(A & z);
 	}
@@ -320,6 +322,9 @@ private:
 	inline void cpy_a() { _cpy(_mem[_a()]); }
 	inline void cmp_a() { _cmp(_mem[_a()]); }
 	inline void dec_a() { _dec(_a()); }
+	inline void dcp_ix() { _dcp(_ix()); }
+	inline void dcp_z() { _dcp(_z()); }
+	inline void dcp_a() { _dcp(_a()); }
 	// d0
 	inline void bne() { if (Z) _bra(); PC++; }
 	inline void cmp_iy() { _cmp(_mem[_iyp()]); }
@@ -329,6 +334,10 @@ private:
 	inline void cmp_ay() { _cmp(_mem[_ayp()]); }
 	inline void cmp_ax() { _cmp(_mem[_axp()]); }
 	inline void dec_ax() { _dec(_ax()); }
+	inline void dcp_iy() { _dcp(_iy()); }
+	inline void dcp_zx() { _dcp(_zx()); }
+	inline void dcp_ay() { _dcp(_ay()); }
+	inline void dcp_ax() { _dcp(_ax()); }
 	// e0
 	inline void cpx_() { _cpx(_mem[PC++]); }
 	inline void sbc_ix() { _sbc(_mem[_ix()]); }
@@ -340,6 +349,9 @@ private:
 	inline void cpx_a() { _cpx(_mem[_a()]); }
 	inline void sbc_a() { _sbc(_mem[_a()]); }
 	inline void inc_a() { _inc(_a()); }
+	inline void isc_ix() { _isb(_ix()); }
+	inline void isc_z() { _isb(_z()); }
+	inline void isc_a() { _isb(_a()); }
 	// f0
 	inline void beq() { if (!Z) _bra(); PC++; }
 	inline void sbc_iy() { _sbc(_mem[_iyp()]); }
@@ -349,4 +361,8 @@ private:
 	inline void sbc_ay() { _sbc(_mem[_ayp()]); }
 	inline void sbc_ax() { _sbc(_mem[_axp()]); }
 	inline void inc_ax() { _inc(_ax()); }
+	inline void isc_iy() { _isb(_iy()); }
+	inline void isc_zx() { _isb(_zx()); }
+	inline void isc_ay() { _isb(_ay()); }
+	inline void isc_ax() { _isb(_ax()); }
 };
