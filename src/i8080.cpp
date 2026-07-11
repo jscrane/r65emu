@@ -53,7 +53,8 @@ void i8080::raise(uint8_t level) {
 	if (flags.I) {
 		flags.I = 0;
 		_irq_pending = 0;
-		_halted = false;
+		if (_halted)
+			CPU::resume();
 		_push(PC);
 		PC = level * 8;
 	} else
