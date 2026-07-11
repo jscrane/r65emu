@@ -45,14 +45,14 @@ void i8080::reset() {
 	A = 0;
 	_sr(0);
 	BC = DE = HL = PC = SP = 0;
-	_irq_pending = 0;
+	_irq_pending = NO_IRQ;
 	_halted = false;
 }
 
 void i8080::raise(uint8_t level) {
 	if (flags.I) {
 		flags.I = 0;
-		_irq_pending = 0;
+		_irq_pending = NO_IRQ;
 		if (_halted)
 			CPU::resume();
 		_push(PC);
