@@ -138,7 +138,7 @@ char *r6502::status(char *buf, size_t n, bool hdr) {
 	flags();
 	snprintf(buf, n,
 		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
-		hdr? "aa xx yy sp nv_bdizc _pc_ op clk\r\n": "",
+		hdr? "aa xx yy sp nv_bdizc _pc_ op clk\r\n\t": "",
 		A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
 		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC], cycles());
 #endif
