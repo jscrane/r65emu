@@ -37,3 +37,5 @@
 #define DBG_EMU(...)	_DBG(DEBUG_EMU, "EMU" __VA_OPT__(,) __VA_ARGS__)
 #define DBG_MEM(...)	_DBG(DEBUG_MEM, "MEM" __VA_OPT__(,) __VA_ARGS__)
 #define DBG_DISK(...)	_DBG(DEBUG_DISK, "DISK" __VA_OPT__(,) __VA_ARGS__)
+
+#define MAX_MESSAGE_LEN	256

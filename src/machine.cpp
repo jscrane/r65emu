@@ -43,7 +43,7 @@ void Machine::run(uint32_t clock_speed_hz) {
 
 #if DEBUGGING & DEBUG_CPU
 	if (_cpu_debug()) {
-		char buf[256];
+		char buf[MAX_MESSAGE_LEN];
 		DBG_CPU(_cpu.status(buf, sizeof(buf)));
 	}
 	_cpu.run(1);
@@ -89,7 +89,7 @@ uint32_t Machine::time_remaining(int8_t timer) {
 
 void Machine::debug(const char *lvlstr, const char *fmt, ...) {
 #if DEBUGGING != DEBUG_NONE
-	char buf[128];
+	char buf[MAX_MESSAGE_LEN];
 	va_list args;
 	va_start(args, fmt);
 	int n = vsnprintf(buf, sizeof(buf), fmt, args);
