@@ -31,6 +31,7 @@ public:
 	void run(unsigned) override;
 	void reset() override;
 	char *status(char *buf, size_t n, bool hdr = false) override;
+	const char *name() const override { return "uz80"; }
 
 	void checkpoint(Checkpoint &) override;
 	void restore(Checkpoint &) override;
