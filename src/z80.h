@@ -1239,6 +1239,7 @@ private:
 	inline void ldspPC() { SP = _rwPC(); }
 	inline void neg() { uint8_t b = A; A = 0; _sub(b); }
 	inline void retn() { _iff1 = _iff2; ret(); }
+	inline void reti() { ret(); }
 	inline void ldia() { _mc(IR, 1); I = A; }
 	inline void ldra() { _mc(IR, 1); R = A; }
 	inline void ldai() {
