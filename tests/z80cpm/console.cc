@@ -23,6 +23,8 @@ void console_fini() {
 	tcsetattr(in, 0, &term);
 }
 
+void Console::reset() {}
+
 uint8_t Console::available() {
 	struct pollfd p;
 	p.fd = in;

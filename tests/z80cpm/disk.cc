@@ -33,17 +33,24 @@ void close_disks() {
 }
 
 static int drive;
-static uint8_t trk, settrk;
-static uint16_t sec, setsec;
-static uint16_t setdma;
 
-static bool disk_seek() {
+// A:boot.dsk 77 128 26
+// I:hd-fuzix.dsk 255 128 128
 
-	if (trk != settrk || sec != setsec) {
-		trk = settrk;
-		sec = setsec;
+// FIXME
+#define TRACKS			77
+#define SECTOR_LENGTH		128
+#define SECTORS_PER_TRACK	26
 
-		if (0 > lseek(drive, SECTOR_LENGTH*(trk*SECTORS_PER_TRACK + sec - 1), SEEK_SET)) {
+void Disk::reset() {}
+
+bool Disk::seek() {
+
+	if (_trk != _settrk || _sec != _setsec) {
+		_trk = _settrk;
+		_sec = _setsec;
+
+		if (0 > lseek(drive, SECTOR_LENGTH*(_trk*SECTORS_PER_TRACK + _sec - 1), SEEK_SET)) {
 			perror("seek");
 			return false;
 		}
@@ -51,101 +58,68 @@ static bool disk_seek() {
 	return true;
 }
 
-void read_boot_sector(Memory &mem) {
-
-	settrk = 0;
-	setsec = 1;
-	setdma = 0;
-	disk_select(0);
-	disk_seek();
-	disk_read(mem);
-}
-
-uint16_t disk_sector() { return sec; }
-
-uint8_t disk_track() { return trk; }
-
-uint16_t disk_dma() { return setdma; }
-
-uint8_t disk_select(uint8_t a) {
+uint8_t Disk::select(uint8_t a) {
 
 	if (!disks[a])
-		return ILLEGAL_DRIVE;
+		return status(ILLEGAL_DRIVE);
 
 	if (drive == disks[a])
-		return OK;
+		return status(OK);
 
 	drive = disks[a];
-	trk = sec = 0xff;
+	_trk = _sec = 0xff;
 
-	return OK;
+	return status(OK);
 }
 
-uint8_t disk_track(uint8_t a) {
+uint8_t Disk::track(uint8_t a) {
 
 	if (a >= TRACKS)
-		return ILLEGAL_TRACK;
+		return status(ILLEGAL_TRACK);
 
-	settrk = a;
-	return OK;
+	_settrk = a;
+	return status(OK);
 }
 
-uint8_t disk_sector_lo(uint8_t a) {
+uint8_t Disk::sector(uint16_t a) {
 
-	uint16_t s = (setsec & 0xff00) | a;
-	if (s > SECTORS_PER_TRACK)
-		return ILLEGAL_SECTOR;
+	if (a > SECTORS_PER_TRACK)
+		return status(ILLEGAL_SECTOR);
 
-	setsec = s;
-	return OK;
+	_setsec = a;
+	return status(OK);
 }
 
-uint8_t disk_sector_hi(uint8_t a) {
+uint8_t Disk::write(Memory &mem) {
 
-	uint16_t s = (setsec & 0xff) | (a << 8);
-	if (s > SECTORS_PER_TRACK)
-		return ILLEGAL_SECTOR;
-
-	setsec = s;
-	return OK;
-}
-
-uint8_t disk_dma(uint16_t a) {
-
-	setdma = a;
-	return OK;
-}
-
-uint8_t disk_write(const Memory &mem) {
-
-	if (!disk_seek())
-		return SEEK_ERROR;
+	if (!seek())
+		return status(SEEK_ERROR);
 
 	uint8_t buf[SECTOR_LENGTH];
 	for (unsigned i = 0; i < sizeof(buf); i++)
-	        buf[i] = mem[setdma + i];
+	        buf[i] = mem[_setdma + i];
 
-	int n = write(drive, buf, sizeof(buf));
+	int n = ::write(drive, buf, sizeof(buf));
 	if (n < 0)
-	        return WRITE_ERROR;
+	        return status(WRITE_ERROR);
 
-	sec++;
-	return OK;
+	_sec++;
+	return status(OK);
 }
 
-uint8_t disk_read(Memory &mem) {
+uint8_t Disk::read(Memory &mem) {
 
-	if (!disk_seek())
-		return SEEK_ERROR;
+	if (!seek())
+		return status(SEEK_ERROR);
 
 	uint8_t buf[SECTOR_LENGTH];
-	int n = read(drive, buf, sizeof(buf));
+	int n = ::read(drive, buf, sizeof(buf));
 	if (n < 0)
-	        return READ_ERROR;
+	        return status(READ_ERROR);
 
 	for (int i = 0; i < n; i++)
-	        mem[setdma + i] = buf[i];
+	        mem[_setdma + i] = buf[i];
 
-	sec++;
-	return OK;
+	_sec++;
+	return status(OK);
 }
