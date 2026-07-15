@@ -18,7 +18,6 @@
 #include "disk.h"
 #include "banked_memory.h"
 #include "console.h"
-#include "linuxconsole.h"
 
 // input ports: A = IN(n)
 // (see https://github.com/udo-munk/z80pack/blob/master/cpmsim/srcsim/simio.c)
@@ -31,7 +30,7 @@
 
 static uint8_t disk_status;
 static BankedMemory memory;
-static LinuxConsole console;
+static Console console;
 
 uint8_t port_in(uint16_t p) {
 
@@ -105,8 +104,10 @@ void port_out(uint16_t p, uint8_t a) {
 	}
 }
 
-#if !defined(ARDUINO)
 int main(int argc, char *argv[]) {
+
+	extern void console_init();
+	extern void console_fini();
 
 	if (argc == 1) {
 		fprintf(stderr, "Usage: %s boot-image [other-images]\n", argv[0]);
@@ -116,6 +117,7 @@ int main(int argc, char *argv[]) {
 	ram<65536> ram;
 	memory.put(ram, 0x0000);
 
+	console_init();
 	open_disks(--argc, ++argv);
 
 	z80 cpu(memory);
@@ -131,5 +133,5 @@ int main(int argc, char *argv[]) {
 		machine.run();
 
 	close_disks();
+	console_fini();
 }
-#endif
