@@ -99,7 +99,7 @@ void Arduino::begin() {
 	});
 #endif
 	DBG_INI("machine init");
-	DBG_CPU("enabled");
+	DBG_CPU(_cpu.name());
 	DBG_PIA("enabled");
 	DBG_VIA("enabled");
 	DBG_DSP("enabled");

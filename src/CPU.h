@@ -35,7 +35,9 @@ public:
 	virtual ~CPU() {}
 	virtual void run(unsigned instructions) =0;
 	virtual void reset() =0;
-	virtual char *status(char *buf, size_t n, bool hdr = false) =0;
+
+	virtual void status(bool hdr = false) =0;
+	virtual const char *name() const =0;
 
 	void checkpoint(Checkpoint &s) override {
 		s.write(PC);
