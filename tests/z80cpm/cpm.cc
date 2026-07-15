@@ -42,8 +42,8 @@ int main(int argc, const char *argv[]) {
 	ram<65536> ram;
 	memory.put(ram, 0x0000);
 
-	console_init();
 	open_disks(--argc, ++argv);
+	console_init();
 	io.reset();
 
 	cpu.set_port_out_handler([](uint16_t port, uint8_t b) { io.out(port, b); });
@@ -53,6 +53,6 @@ int main(int argc, const char *argv[]) {
 	while (!cpu.halted())
 		machine.run();
 
-	close_disks();
 	console_fini();
+	close_disks();
 }

@@ -32,7 +32,7 @@ void open_disks(int argc, const char *args[]) {
 		disks[i].fd = -1;
 
 	if (argc % 2) {
-		ERR("incorrect number of args");
+		fprintf(stderr, "incorrect number of args\n");
 		exit(-1);
 	}
 
@@ -41,7 +41,7 @@ void open_disks(int argc, const char *args[]) {
 		const char *filename = args[i+1];
 		int d = (drive[0] - 'A');
 		if (d < 0 || d > 25) {
-			ERR("bad drive letter %s", drive);
+			fprintf(stderr, "bad drive letter %s\n", drive);
 			exit(-1);
 		}
 		struct disk_info_t *di = &disks[d];
@@ -61,7 +61,7 @@ void open_disks(int argc, const char *args[]) {
 				break;
 			}
 		if (g == num_geometries) {
-			ERR("unknown disk length %d", st.st_size);
+			fprintf(stderr, "unknown disk length %ld\n", st.st_size);
 			exit(-1);
 		}
 
