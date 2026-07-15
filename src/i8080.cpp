@@ -61,17 +61,14 @@ void i8080::raise(uint8_t level) {
 		_irq_pending = level;
 }
 
-char *i8080::status(char *buf, size_t n, bool hdr) {
+void i8080::status(bool hdr) {
 #if DEBUGGING & DEBUG_CPU
-	uint8_t op = _mem[PC];
-	snprintf(buf, n,
-		"%s%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d",
-		hdr? "_pc_ op aa _bc_ _de_ _hl_ _sp_ szhpci\r": "",
-		PC, op, A, BC, DE, HL, SP, flags.S, flags.Z, flags.H, flags.P, flags.C, flags.I);
-#else
-	*buf = 0;
+	if (hdr)
+		DBG_CPU("_pc_ op aa _bc_ _de_ _hl_ _sp_ szhpci");
+
+	DBG_CPU("%04x %02x %02x %04x %04x %04x %04x %d%d%d%d%d%d",
+		PC, (uint8_t)_mem[PC], A, BC, DE, HL, SP, flags.S, flags.Z, flags.H, flags.P, flags.C, flags.I);
 #endif
-	return buf;
 }
 
 void i8080::checkpoint(Checkpoint &s) {

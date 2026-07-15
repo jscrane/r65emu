@@ -133,16 +133,16 @@ void r6502::flags(uint8_t f) {
 	C = P.bits.C;
 }
 
-char *r6502::status(char *buf, size_t n, bool hdr) {
+void r6502::status(bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	flags();
-	snprintf(buf, n,
-		"%s%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
-		hdr? "aa xx yy sp nv_bdizc _pc_ op clk\r\n\t": "",
+	if (hdr)
+		DBG_CPU("aa xx yy sp nv_bdizc _pc_ op clk");
+
+	DBG_CPU("%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
 		A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
 		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC], cycles());
 #endif
-	return buf;
 }
 
 void r6502::checkpoint(Checkpoint &s) {

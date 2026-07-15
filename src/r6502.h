@@ -11,7 +11,8 @@ public:
 	void raise(int);
 	void run(unsigned) override;
 	void reset() override;
-	char *status(char *buf, size_t n, bool hdr=false) override;
+
+	void status(bool hdr=false) override;
 	const char *name() const override { return "r6502"; }
 
 	void checkpoint(Checkpoint &) override;

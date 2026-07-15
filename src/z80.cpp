@@ -9,15 +9,13 @@
 #include "CPU.h"
 #include "z80.h"
 
-char *z80::status(char *buf, size_t n, bool hdr) {
+void z80::status(bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	static bool first = true;
-	snprintf(buf, n,
-		"%s%04x %02x %d%d%d%d%d%d %02x %02x %d%d %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x ",
-		hdr || first?  " PC  A  SZHPNC I  R  IFF BC   DE   HL   AF'  BC'  DE'  HL'  IX   IY   SP  OP\r\n\t": "",
-		PC, A, flags.S, flags.Z, flags.H, flags.P, flags.N, flags.C, I, R & 0x7f, _iff1, _iff2,
-		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP);
-	first = false;
+	if (hdr || first) {
+		DBG_CPU(" PC  A  SZHPNC I  R  IFF BC   DE   HL   AF'  BC'  DE'  HL'  IX   IY   SP  OP");
+		first = false;
+	}
 
 	uint8_t op = _mem[PC], op1 = _mem[PC+1];
 	char obuf[16];
@@ -30,9 +28,11 @@ char *z80::status(char *buf, size_t n, bool hdr) {
 		snprintf(obuf, sizeof(obuf), "ed %02x", op1);
 	else
 		snprintf(obuf, sizeof(obuf), "%02x", op);
-	strncat(buf, obuf, n);
+
+	DBG_CPU("%04x %02x %d%d%d%d%d%d %02x %02x %d%d %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %s",
+		PC, A, flags.S, flags.Z, flags.H, flags.P, flags.N, flags.C, I, R & 0x7f, _iff1, _iff2,
+		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP, obuf);
 #endif
-	return buf;
 }
 
 void z80::checkpoint(Checkpoint &s) {

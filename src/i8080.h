@@ -14,7 +14,8 @@ public:
 	void reset() override;
 	void raise(uint8_t level);
 	void irq(uint8_t b) { raise(b); }
-	char *status(char *buf, size_t n, bool hdr=false) override;
+
+	void status(bool hdr=false) override;
 	const char *name() const override { return "i8080"; }
 
 	void checkpoint(Checkpoint &) override;
