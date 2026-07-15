@@ -112,7 +112,7 @@ void z80::restore(Checkpoint &s) {
 uint8_t z80::_fetch_op() {
 	_mc(PC, 4);
 	uint8_t op = _mem[PC];
-	DBG_MEM("%5d MR %04x %02x", cycles(), PC, op);
+	DBG_TEST("%5d MR %04x %02x", cycles(), PC, op);
 	PC++;
 	R++;
 	return op;
@@ -204,12 +204,12 @@ void z80::_step_idx(EXT_OP f) {
 
 	_mc(PC, 3);
 	uint8_t off = _mem[PC];
-	DBG_MEM("%5d MR %04x %02x", cycles(), PC, off);
+	DBG_TEST("%5d MR %04x %02x", cycles(), PC, off);
 	PC++;
 
 	_mc(PC, 3);
 	uint8_t op = _mem[PC];
-	DBG_MEM("%5d MR %04x %02x", cycles(), PC, op);
+	DBG_TEST("%5d MR %04x %02x", cycles(), PC, op);
 	_mc(PC, 1);
 	_mc(PC, 1);
 	PC++;

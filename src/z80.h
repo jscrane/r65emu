@@ -148,21 +148,21 @@ private:
 	uint8_t parity(uint8_t);
 
 	inline uint8_t _rb(Memory::address a) {
-		DBG_MEM("%5d MC %04x", cycles(), a);
+		DBG_TEST("%5d MC %04x", cycles(), a);
 		cycles(3);
-		DBG_MEM("%5d MR %04x %02x", cycles(), a, (uint8_t)_mem[a]);
+		DBG_TEST("%5d MR %04x %02x", cycles(), a, (uint8_t)_mem[a]);
 		return _mem[a];
 	}
 
 	inline void _sb(Memory::address a, uint8_t b) {
-		DBG_MEM("%5d MC %04x", cycles(), a);
+		DBG_TEST("%5d MC %04x", cycles(), a);
 		cycles(3);
-		DBG_MEM("%5d MW %04x %02x", cycles(), a, b);
+		DBG_TEST("%5d MW %04x %02x", cycles(), a, b);
 		_mem[a] = b;
 	}
 
 	inline void _mc(Memory::address a, int i) {
-		DBG_MEM("%5d MC %04x", cycles(), a);
+		DBG_TEST("%5d MC %04x", cycles(), a);
 		cycles(i);
 	}
 
@@ -1241,7 +1241,7 @@ private:
 	inline void ldspPC() { SP = _rwPC(); }
 	inline void neg() { uint8_t b = A; A = 0; _sub(b); }
 	inline void retn() { _iff1 = _iff2; ret(); }
-	inline void reti() { ret(); }
+	inline void reti() { _iff1 = _iff2; ret(); }
 	inline void ldia() { _mc(IR, 1); I = A; }
 	inline void ldra() { _mc(IR, 1); R = A; }
 	inline void ldai() {
@@ -1409,9 +1409,9 @@ private:
 				_memptr = PC-1;
 
 				_mc(PC-2, 4);
-				DBG_MEM("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
+				DBG_TEST("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
 				_mc(PC-1, 4);
-				DBG_MEM("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
+				DBG_TEST("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
 				R += 2;
 			}
 			DE++;
@@ -1498,9 +1498,9 @@ private:
 				_memptr = PC-1;
 
 				_mc(PC-2, 4);
-				DBG_MEM("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
+				DBG_TEST("%5d MR %04x %02x", cycles(), PC-2, (uint8_t)_mem[PC-2]);
 				_mc(PC-1, 4);
-				DBG_MEM("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
+				DBG_TEST("%5d MR %04x %02x", cycles(), PC-1, (uint8_t)_mem[PC-1]);
 				R += 2;
 			}
 			DE--;
