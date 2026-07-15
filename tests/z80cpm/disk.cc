@@ -36,7 +36,7 @@ void open_disks(int argc, const char *args[]) {
 		exit(-1);
 	}
 
-	for (int i = 0; i < argc / 2; i += 2) {
+	for (int i = 0; i < argc; i += 2) {
 		const char *drive = args[i];
 		const char *filename = args[i+1];
 		int d = (drive[0] - 'A');
@@ -100,6 +100,7 @@ bool Disk::seek() {
 
 uint8_t Disk::select(uint8_t a) {
 
+	DBG_DISK("select %d %d", a, disks[a].fd);
 	if (disks[a].fd == -1)
 		return status(ILLEGAL_DRIVE);
 
