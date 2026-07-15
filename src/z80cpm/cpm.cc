@@ -8,14 +8,17 @@
 #include <functional>
 
 #include "machine.h"
+#include "linuxmachine.h"
 #include "memory.h"
 #include "CPU.h"
 #include "debugging.h"
 #include "z80.h"
 #include "ram.h"
 
-#include "cons.h"
 #include "disk.h"
+#include "banked_memory.h"
+#include "console.h"
+#include "linuxconsole.h"
 
 // input ports: A = IN(n)
 // (see https://github.com/udo-munk/z80pack/blob/master/cpmsim/srcsim/simio.c)
@@ -27,7 +30,8 @@
 #define FDC_STATUS      14
 
 static uint8_t disk_status;
-static Memory memory;
+static BankedMemory memory;
+static LinuxConsole console;
 
 uint8_t port_in(uint16_t p) {
 
@@ -35,9 +39,9 @@ uint8_t port_in(uint16_t p) {
 
 	switch (p) {
 	case CON_ST:
-		return cons_available();
+		return console.available();
 	case CON_IN:
-		return cons_read();
+		return console.poll();
 	case FDC_STATUS:
 		return disk_status;
 	case FDC_IODONE:
@@ -94,7 +98,7 @@ void port_out(uint16_t p, uint8_t a) {
 	        disk_status = (a? disk_write(memory): disk_read(memory));
 	        break;
 	case CON_OUT:
-	        cons_write(a);
+	        console.write(a);
 	        break;
 	default:
 		fprintf(stderr, "Unhandled port_out(%x, %x)\n", p, a);
@@ -112,7 +116,6 @@ int main(int argc, char *argv[]) {
 	ram<65536> ram;
 	memory.put(ram, 0x0000);
 
-	cons_init();
 	open_disks(--argc, ++argv);
 
 	z80 cpu(memory);
@@ -120,12 +123,13 @@ int main(int argc, char *argv[]) {
 	cpu.set_port_in_handler(port_in);
 	cpu.reset();
 
+	Linux machine(cpu);
+
 	read_boot_sector(memory);
 
 	while (!cpu.halted())
-		cpu.run(100);
+		machine.run();
 
 	close_disks();
-	cons_fini();
 }
 #endif

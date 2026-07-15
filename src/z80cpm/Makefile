@@ -1,6 +1,6 @@
 CPPFLAGS:=-I.. -DUNDOCUMENTED_OPS
 CXXFLAGS:=-g -fno-operator-names -Wall
-OBJECTS := cpm.o z80.o memory.o disk.o cons.o machine.o deltaq.o
+OBJECTS := cpm.o z80.o memory.o disk.o linuxconsole.o machine.o deltaq.o linuxmachine.o banked_memory.o
 
 all: cpm
 
