@@ -1919,6 +1919,8 @@ finish_sachl:
 						PC = W;
 						if (IFF & 2)
 							IFF |= 1;
+						else
+							IFF &= ~1;
 						break;
 
 					case 0x46:		/* IM 0 */
@@ -1967,6 +1969,10 @@ finish_sachl:
 						WH = memrdr(SP++);
 						t += 6;
 						PC = W;
+						if (IFF & 2)
+							IFF |= 1;
+						else
+							IFF &= ~1;
 						break;
 
 					case 0x4f:		/* LD R,A */
