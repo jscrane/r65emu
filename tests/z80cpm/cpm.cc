@@ -22,7 +22,7 @@
 
 void console_init();
 void console_fini();
-void open_disks(int nd, char *filenames[]);
+void open_disks(int argc, const char *argv[]);
 void close_disks();
 
 static BankedMemory memory;
@@ -32,7 +32,7 @@ static IO io(memory, console, disk);
 static z80 cpu(memory);
 static Linux machine(cpu);
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char *argv[]) {
 
 	if (argc == 1) {
 		fprintf(stderr, "Usage: %s boot-image [other-images]\n", argv[0]);
