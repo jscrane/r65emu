@@ -14,23 +14,16 @@
 #include "debugging.h"
 #include "z80.h"
 #include "ram.h"
+#include "serial_kbd.h"
+#include "serial_dsp.h"
 
 #include "disk.h"
 #include "banked_memory.h"
 #include "console.h"
 #include "io.h"
 
-void console_init();
-void console_fini();
 void open_disks(int argc, const char *argv[]);
 void close_disks();
-
-static BankedMemory memory;
-static Console console;
-static Disk disk;
-static IO io(memory, console, disk);
-static z80 cpu(memory);
-static Linux machine(cpu);
 
 int main(int argc, const char *argv[]) {
 
@@ -39,20 +32,27 @@ int main(int argc, const char *argv[]) {
 		exit(-1);
 	}
 
+	open_disks(--argc, ++argv);
+
+	BankedMemory memory;
+	Keyboard kbd;
+	Screen scr;
+	Disk disk;
+	IO io(memory, kbd, scr, disk);
+	z80 cpu(memory);
+	Linux machine(cpu);
+
 	ram<65536> ram;
 	memory.put(ram, 0x0000);
 
-	open_disks(--argc, ++argv);
-	console_init();
 	io.reset();
 
-	cpu.set_port_out_handler([](uint16_t port, uint8_t b) { io.out(port, b); });
-	cpu.set_port_in_handler([](uint16_t port) { return io.in(port); });
+	cpu.set_port_out_handler([&io](uint16_t port, uint8_t b) { io.out(port, b); });
+	cpu.set_port_in_handler([&io](uint16_t port) { return io.in(port); });
 	cpu.reset();
 
 	while (!cpu.halted())
 		machine.run();
 
-	console_fini();
 	close_disks();
 }

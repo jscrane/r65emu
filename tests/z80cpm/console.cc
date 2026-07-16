@@ -6,12 +6,14 @@
 #include <poll.h>
 #include <termios.h>
 
+#include "serial_kbd.h"
+#include "serial_dsp.h"
 #include "console.h"
 
 static struct termios term;
 static int in = fileno(stdin), out = fileno(stdout);
 
-void console_init() {
+Keyboard::Keyboard() {
 	tcgetattr(in, &term);
 	struct termios t = term;
 	cfmakeraw(&t);
@@ -19,13 +21,11 @@ void console_init() {
 	tcsetattr(in, 0, &t);
 }
 
-void console_fini() {
+Keyboard::~Keyboard() {
 	tcsetattr(in, 0, &term);
 }
 
-void Console::reset() {}
-
-uint8_t Console::available() {
+bool Keyboard::available() {
 	struct pollfd p;
 	p.fd = in;
 	p.events = POLLIN;
@@ -33,10 +33,10 @@ uint8_t Console::available() {
 		perror("poll");
 		exit(-1);
 	}
-	return (p.revents & POLLIN)? 0xff: 0x00;
+	return p.revents & POLLIN;
 }
 
-uint8_t Console::poll() {
+int Keyboard::read() {
 	uint8_t b;
 	if (0 > ::read(in, &b, 1)) {
 		perror("read");
@@ -45,7 +45,7 @@ uint8_t Console::poll() {
 	return b;
 }
 
-void Console::write(uint8_t b) {
+void Screen::write(uint8_t b) {
 	if (0 > ::write(out, &b, 1)) {
 		perror("write");
 		exit(-1);
