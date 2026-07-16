@@ -9,7 +9,7 @@
 #include "memory.h"
 #include "debugging.h"
 
-#include "disk.h"
+#include "linux_disk.h"
 
 static const struct { off_t size; uint8_t tracks, seclen; uint16_t sectrk; } known_geometries[] = {
 	{ 256256,   77, 128,  26 },	// CP/M 2.2 8" SSSD
@@ -26,7 +26,7 @@ static struct disk_info_t {
 	uint16_t sectrk;
 } disks[26], *drive;
 
-void open_disks(int argc, const char *args[]) {
+LinuxDisk::LinuxDisk(int argc, const char *args[]) {
 
 	for (int i = 0; i < 26; i++)
 		disks[i].fd = -1;
@@ -37,11 +37,11 @@ void open_disks(int argc, const char *args[]) {
 	}
 
 	for (int i = 0; i < argc; i += 2) {
-		const char *drive = args[i];
+		const char *drive_letter = args[i];
 		const char *filename = args[i+1];
-		int d = (drive[0] - 'A');
+		int d = (drive_letter[0] - 'A');
 		if (d < 0 || d > 25) {
-			fprintf(stderr, "bad drive letter %s\n", drive);
+			fprintf(stderr, "bad drive letter %s\n", drive_letter);
 			exit(-1);
 		}
 		struct disk_info_t *di = &disks[d];
@@ -75,30 +75,14 @@ void open_disks(int argc, const char *args[]) {
 	}
 }
 
-void close_disks() {
+LinuxDisk::~LinuxDisk() {
 
 	for (int i = 0; i < 26; i++)
 		if (disks[i].fd >= 0)
 			close(disks[i].fd);
 }
 
-void Disk::reset() {}
-
-bool Disk::seek() {
-
-	if (_trk != _settrk || _sec != _setsec) {
-		_trk = _settrk;
-		_sec = _setsec;
-
-		if (0 > lseek(drive->fd, drive->seclen*(_trk*drive->sectrk + _sec - 1), SEEK_SET)) {
-			perror("seek");
-			return false;
-		}
-	}
-	return true;
-}
-
-uint8_t Disk::select(uint8_t a) {
+uint8_t LinuxDisk::select(uint8_t a) {
 
 	DBG_DISK("select %d %d", a, disks[a].fd);
 	if (disks[a].fd == -1)
@@ -108,59 +92,27 @@ uint8_t Disk::select(uint8_t a) {
 		return status(OK);
 
 	drive = &disks[a];
-	_trk = _sec = 0xff;
+	_drive_changed();
+
+	_tracks = drive->tracks;
+	_seclen = drive->seclen;
+	_sectrk = drive->sectrk;
 
 	return status(OK);
 }
 
-uint8_t Disk::track(uint8_t a) {
-
-	if (a >= drive->tracks)
-		return status(ILLEGAL_TRACK);
-
-	_settrk = a;
-	return status(OK);
+bool LinuxDisk::_seek(long pos) {
+	if (0 > lseek(drive->fd, pos, SEEK_SET)) {
+		perror("seek");
+		return false;
+	}
+	return true;
 }
 
-uint8_t Disk::sector(uint16_t a) {
-
-	if (a > drive->sectrk)
-		return status(ILLEGAL_SECTOR);
-
-	_setsec = a;
-	return status(OK);
+int LinuxDisk::_read(uint8_t *buf, size_t len) {
+	return ::read(drive->fd, buf, len);
 }
 
-uint8_t Disk::write(Memory &mem) {
-
-	if (!seek())
-		return status(SEEK_ERROR);
-
-	uint8_t buf[drive->seclen];
-	for (unsigned i = 0; i < sizeof(buf); i++)
-	        buf[i] = mem[_setdma + i];
-
-	int n = ::write(drive->fd, buf, sizeof(buf));
-	if (n < 0)
-	        return status(WRITE_ERROR);
-
-	_sec++;
-	return status(OK);
-}
-
-uint8_t Disk::read(Memory &mem) {
-
-	if (!seek())
-		return status(SEEK_ERROR);
-
-	uint8_t buf[drive->seclen];
-	int n = ::read(drive->fd, buf, sizeof(buf));
-	if (n < 0)
-	        return status(READ_ERROR);
-
-	for (int i = 0; i < n; i++)
-	        mem[_setdma + i] = buf[i];
-
-	_sec++;
-	return status(OK);
+int LinuxDisk::_write(const uint8_t *buf, size_t len) {
+	return ::write(drive->fd, buf, len);
 }

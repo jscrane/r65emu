@@ -18,26 +18,22 @@
 #include "serial_dsp.h"
 
 #include "disk.h"
+#include "linux_disk.h"
 #include "banked_memory.h"
 #include "console.h"
 #include "io.h"
 
-void open_disks(int argc, const char *argv[]);
-void close_disks();
-
 int main(int argc, const char *argv[]) {
 
 	if (argc == 1) {
-		fprintf(stderr, "Usage: %s boot-image [other-images]\n", argv[0]);
+		fprintf(stderr, "Usage: %s A: boot-image [X: other-image...]\n", argv[0]);
 		exit(-1);
 	}
-
-	open_disks(--argc, ++argv);
 
 	BankedMemory memory;
 	Keyboard kbd;
 	Screen scr;
-	Disk disk;
+	LinuxDisk disk(--argc, ++argv);
 	IO io(memory, kbd, scr, disk);
 	z80 cpu(memory);
 	Linux machine(cpu);
@@ -53,6 +49,4 @@ int main(int argc, const char *argv[]) {
 
 	while (!cpu.halted())
 		machine.run();
-
-	close_disks();
 }
