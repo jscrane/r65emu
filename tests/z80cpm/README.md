@@ -17,7 +17,7 @@ g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS -o memory.o -c ../memor
 g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS  -c -o disk.o disk.cc
 g++ -g -fno-operator-names -Wall -I.. -DUNDOCUMENTED_OPS  -c -o cons.o cons.cc
 g++ -o cpm cpm.o z80.o memory.o disk.o cons.o 
-$ ./cpm A: ~/Arduino/cpm80/disks/cpm22/cpm22-1.dsk B: ~/Arduino/cpm80/disks/cpm22/z80tests.dsk 
+$ ./z80cpm A: ~/Arduino/cpm80/disks/cpm22/cpm22-1.dsk B: ~/Arduino/cpm80/disks/cpm22/z80tests.dsk 
 64K CP/M Vers. 2.2 (Z80 CBIOS V1.2 for Z80SIM, Copyright 1988-2007 by Udo Munk)
 
 A>b:
