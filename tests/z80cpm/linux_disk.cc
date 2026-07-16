@@ -11,24 +11,13 @@
 
 #include "linux_disk.h"
 
-static const struct { off_t size; uint8_t tracks, seclen; uint16_t sectrk; } known_geometries[] = {
-	{ 256256,   77, 128,  26 },	// CP/M 2.2 8" SSSD
-	{ 4177920, 255, 128, 128 },	// FUZIX hd-fuzix.dsk
-	// more here...
-};
-
-static size_t num_geometries = sizeof(known_geometries) / sizeof(known_geometries[0]);
-
-static struct disk_info_t {
-	int fd;
-	uint8_t tracks, seclen;
-	uint16_t sectrk;
-} disks[26], *drive;
+int fds[DRIVES];
+int curr_fd;
 
 LinuxDisk::LinuxDisk(int argc, const char *args[]) {
 
-	for (int i = 0; i < 26; i++)
-		disks[i].fd = -1;
+	for (int i = 0; i < DRIVES; i++)
+		fds[i] = -1;
 
 	if (argc % 2) {
 		fprintf(stderr, "incorrect number of args\n");
@@ -43,7 +32,6 @@ LinuxDisk::LinuxDisk(int argc, const char *args[]) {
 			fprintf(stderr, "bad drive letter %s\n", drive_letter);
 			exit(-1);
 		}
-		struct disk_info_t *di = &disks[d];
 
 		struct stat st;
 		if (stat(filename, &st) < 0) {
@@ -51,16 +39,9 @@ LinuxDisk::LinuxDisk(int argc, const char *args[]) {
 			exit(-1);
 		}
 
-		size_t g;
-		for (g = 0; g < num_geometries; g++)
-			if (st.st_size == known_geometries[g].size) {
-				di->tracks = known_geometries[g].tracks;
-				di->seclen = known_geometries[g].seclen;
-				di->sectrk = known_geometries[g].sectrk;
-				break;
-			}
-		if (g == num_geometries) {
-			fprintf(stderr, "unknown disk length %ld\n", st.st_size);
+		int drive_id = _add_drive(d, st.st_size);
+		if (0 > drive_id) {
+			fprintf(stderr, "failed to add drive: %s\n", filename);
 			exit(-1);
 		}
 
@@ -69,37 +50,24 @@ LinuxDisk::LinuxDisk(int argc, const char *args[]) {
 			perror("open");
 			exit(-1);
 		}
-		di->fd = fd;
+		fds[drive_id] = fd;
 	}
 }
 
 LinuxDisk::~LinuxDisk() {
 
-	for (int i = 0; i < 26; i++)
-		if (disks[i].fd >= 0)
-			close(disks[i].fd);
+	for (int i = 0; i < DRIVES; i++)
+		if (fds[i] >= 0)
+			close(fds[i]);
 }
 
-uint8_t LinuxDisk::select(uint8_t a) {
-
-	if (disks[a].fd == -1)
-		return status(ILLEGAL_DRIVE);
-
-	if (drive && drive->fd == disks[a].fd)
-		return status(OK);
-
-	drive = &disks[a];
-	_drive_changed();
-
-	_tracks = drive->tracks;
-	_seclen = drive->seclen;
-	_sectrk = drive->sectrk;
-
-	return status(OK);
+bool LinuxDisk::_open(uint8_t drive_id) {
+	curr_fd = fds[drive_id];
+	return true;
 }
 
 bool LinuxDisk::_seek(long pos) {
-	if (0 > lseek(drive->fd, pos, SEEK_SET)) {
+	if (0 > lseek(curr_fd, pos, SEEK_SET)) {
 		perror("seek");
 		return false;
 	}
@@ -107,9 +75,9 @@ bool LinuxDisk::_seek(long pos) {
 }
 
 int LinuxDisk::_read(uint8_t *buf, size_t len) {
-	return ::read(drive->fd, buf, len);
+	return ::read(curr_fd, buf, len);
 }
 
 int LinuxDisk::_write(const uint8_t *buf, size_t len) {
-	return ::write(drive->fd, buf, len);
+	return ::write(curr_fd, buf, len);
 }
