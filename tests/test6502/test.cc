@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "machine.h"
+#include "linuxmachine.h"
 #include "memory.h"
 #include "ram.h"
 #include "CPU.h"
@@ -28,7 +29,6 @@ int load(const char *file, Memory &mem) {
 	return 0;
 }
 
-#if !defined(ARDUINO)
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
@@ -51,11 +51,13 @@ int main(int argc, char *argv[])
 	r6502 cpu(memory);
 	cpu.reset();
 
-	char buf[256];
+	Linux machine(cpu);
+	machine.register_debug_print([](const char *, const char *msg) { puts(msg); });
+
 	while (true) {
 		cpu.run(1);
 #if defined(DEBUGGING)
-		puts(cpu.status(buf, sizeof(buf)));
+		cpu.status();
 #endif
 		Memory::address pc = cpu.pc();
 		if (pc == opc)
@@ -63,6 +65,5 @@ int main(int argc, char *argv[])
 		opc = pc;
 	}
 
-	puts(cpu.status(buf, sizeof(buf), true));
+	cpu.status(true);
 }
-#endif

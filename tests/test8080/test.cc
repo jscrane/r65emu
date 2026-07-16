@@ -65,7 +65,6 @@ int load_com(Memory &memory, const char *file, unsigned short a) {
 	return 0;
 }
 
-#if !defined(ARDUINO)
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
@@ -109,4 +108,3 @@ int main(int argc, char *argv[])
 
 	printf("Ran %ld instructions in %d cycles\n", ops, cpu.cycles() - cycles);
 }
-#endif
