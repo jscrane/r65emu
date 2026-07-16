@@ -21,7 +21,6 @@ static size_t num_geometries = sizeof(known_geometries) / sizeof(known_geometrie
 
 static struct disk_info_t {
 	int fd;
-	const char *filename;
 	uint8_t tracks, seclen;
 	uint16_t sectrk;
 } disks[26], *drive;
@@ -71,7 +70,6 @@ LinuxDisk::LinuxDisk(int argc, const char *args[]) {
 			exit(-1);
 		}
 		di->fd = fd;
-		di->filename = filename;
 	}
 }
 
@@ -84,7 +82,6 @@ LinuxDisk::~LinuxDisk() {
 
 uint8_t LinuxDisk::select(uint8_t a) {
 
-	DBG_DISK("select %d %d", a, disks[a].fd);
 	if (disks[a].fd == -1)
 		return status(ILLEGAL_DRIVE);
 
