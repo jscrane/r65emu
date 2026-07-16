@@ -1,13 +1,14 @@
-z80cpm
-======
+# z80cpm
 
-A dirt-simple CPM implementation for Linux. This is based on my [cpm80](https://github.com/jscrane/cpm80) 
+A simple CPM implementation for Linux. This is based on my [cpm80](https://github.com/jscrane/cpm80) 
 sketch which uses this library.
 
 This implements [cpmsim's](https://github.com/udo-munk/z80pack) I/O port interface. 
 
 Its primary purpose is to speed up bugfixing of this library's z80 core and its applications, primarily 
 [Fuzix](https://github.com/EtchedPixels/FUZIX).
+
+## Build and run
 
 ```
 $ make
@@ -40,4 +41,36 @@ END TIMING TEST
 CPU TESTS OK
 
 B>
+```
+
+## Fuzix
+
+```
+ ./z80cpm A: ~/Arduino/cpm80/disks/fuzix/boot.dsk I: ~/Arduino/cpm80/disks/fuzix/hd-fuzix.dsk 
+-
+FUZIX version 0.4
+Copyright (c) 1988-2002 by H.F.Bower, D.Braun, S.Nitschke, H.Peraza
+Copyright (c) 1997-2001 by Arcady Schekochikhin, Adriano C. R. da Cunha
+Copyright (c) 2013-2015 Will Sowerbutts <will@sowerbutts.com>
+Copyright (c) 2014-2023 Alan Cox <alan@etchedpixels.co.uk>
+Devboot
+484kB total RAM, 420kB available to processes (15 processes max)
+Enabling interrupts ... ok.
+bootdev: 
+Mounting root fs (root_dev=0, ro): OK
+Starting /init
+init version 0.9.1
+Checking root file system.
+
+ ^ ^
+ n n   Fuzix 0.4
+ >@<
+       Welcome to Fuzix
+ m m
+
+login: root
+
+Welcome to FUZIX.
+# shutdown
+Halted.
 ```
