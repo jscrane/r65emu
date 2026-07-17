@@ -46,7 +46,7 @@ B>
 ## Fuzix
 
 ```
- ./z80cpm A: ~/Arduino/cpm80/disks/fuzix/boot.dsk I: ~/Arduino/cpm80/disks/fuzix/hd-fuzix.dsk 
+$ ./z80cpm A: ~/Arduino/cpm80/disks/fuzix/boot.dsk I: ~/Arduino/cpm80/disks/fuzix/hd-fuzix.dsk
 -
 FUZIX version 0.4
 Copyright (c) 1988-2002 by H.F.Bower, D.Braun, S.Nitschke, H.Peraza

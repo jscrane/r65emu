@@ -57,7 +57,7 @@ public:
 	inline void resume() { ++PC; _halted = false; }
 
 	Memory &memory() const { return _mem; }
-	uint32_t cycles() const { return _cycles; }
+	uint64_t cycles() const { return _cycles; }
 	void cycles(uint8_t c) { _cycles += c; }
 
 protected:
@@ -65,5 +65,5 @@ protected:
 	Memory &_mem;
 	Memory::address PC;
 	bool _halted;
-	uint32_t _cycles;
+	uint64_t _cycles;
 };

@@ -234,7 +234,7 @@ void uz80::status(bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	static bool first = true;
 	if (hdr || first) {
-		DBG_CPU(" PC  A  SZHPNC I  R  IFF BC   DE   HL   AF'  BC'  DE'  HL'  IX   IY   SP    CLKS   OP");
+		DBG_CPU(" PC  A  SZHPNC I  R  IFF BC   DE   HL   AF'  BC'  DE'  HL'  IX   IY   SP   CLKS  OP");
 		first = false;
 	}
 

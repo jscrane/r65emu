@@ -13,12 +13,14 @@ public:
 	virtual size_t read(uint8_t *, size_t);
 	virtual size_t read(uint16_t &);
 	virtual size_t read(uint32_t &);
+	virtual size_t read(uint64_t &);
 	virtual size_t read(bool &);
 
 	virtual size_t write(uint8_t) =0;
 	virtual size_t write(const uint8_t *, size_t);
 	virtual size_t write(uint16_t);
 	virtual size_t write(uint32_t);
+	virtual size_t write(uint64_t);
 	virtual size_t write(bool);
 
 	template <typename T> size_t write(T) = delete;
@@ -41,6 +43,7 @@ public:
 #define CLK_1MHZ	1000000
 #define CLK_2MHZ	2000000
 #define CLK_4MHZ	4000000
+#define CLK_8MHZ	8000000
 #define CLK_STOPPED	0
 
 class CPU;
