@@ -18,14 +18,14 @@ public:
 	ps2_raw_kbd(matrix_keyboard &m): _m(m) {}
 
 	void register_fnkey_handler(std::function<void(uint8_t)> f) { _f = f; }
-	void poll();
+	void poll() override;
 	void reset();
 
 protected:
 	void fnkey(uint8_t k) { if (_f) _f(k); }
 
 private:
-	uint16_t read();
+	bool read(uint16_t &scan);
 	bool available();
 
 	std::function<void(uint8_t)> _f;

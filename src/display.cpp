@@ -2,12 +2,14 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#include "debugging.h"
-#include "memory.h"
-#include "display.h"
 #include "hardware.h"
 
 #if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
+
+#include "machine.h"
+#include "debugging.h"
+#include "memory.h"
+#include "display.h"
 
 #if defined(USE_ESPI)
 #pragma message "Configure TFT_eSPI in Makefile or <TFT_eSPI/User_Setup.h>"

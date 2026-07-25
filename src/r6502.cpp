@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
+#include <inttypes.h>
 
 #include "compat.h"
 #include "machine.h"
@@ -139,7 +140,7 @@ void r6502::status(bool hdr) {
 	if (hdr)
 		DBG_CPU("aa xx yy sp nv_bdizc _pc_ op clk");
 
-	DBG_CPU("%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
+	DBG_CPU("%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %" PRIu64,
 		A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
 		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC], cycles());
 #endif

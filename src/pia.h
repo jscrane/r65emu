@@ -65,6 +65,8 @@ public:
 		irqb_handler = fn;
 	}
 
+	uint8_t read_cra();
+	uint8_t read_crb();
 private:
 	void write_ddra(uint8_t b) { ddra = b; }
 	void write_ddrb(uint8_t b) { ddrb = b; }
@@ -76,8 +78,6 @@ private:
 
 	void write_cra(uint8_t b) { cra = (b & 0x3f); update_interrupts(); }
 	void write_crb(uint8_t b) { crb = (b & 0x3f); update_interrupts(); }
-	uint8_t read_cra();
-	uint8_t read_crb();
 
 	std::function<void(uint8_t)> porta_write_handler;
 	std::function<void(uint8_t)> portb_write_handler;
