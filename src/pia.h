@@ -75,7 +75,6 @@ private:
 
 	void write_cra(uint8_t b) { cra = (b & 0x3f); update_interrupts(); }
 	void write_crb(uint8_t b) { crb = (b & 0x3f); update_interrupts(); }
-
 	uint8_t read_cra();
 	uint8_t read_crb();
 
