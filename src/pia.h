@@ -64,6 +64,7 @@ public:
 	void register_irqb_handler(std::function<void(bool)> fn) {
 		irqb_handler = fn;
 	}
+
 private:
 	void write_ddra(uint8_t b) { ddra = b; }
 	void write_ddrb(uint8_t b) { ddrb = b; }
