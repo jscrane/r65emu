@@ -8,7 +8,12 @@ class r6502: public CPU {
 public:
 	r6502(Memory &m);
 
-	void raise(int);
+	// irq handling: each interrupting device needs its own id
+	inline void raise(uint8_t device_id) { _irq |= (1 << device_id); }
+	inline void lower(uint8_t device_id) { _irq &= ~(1 << device_id); }
+	inline void interrupt(bool assert, uint8_t device_id) { if (assert) raise(device_id); else lower(device_id); }
+	void nmi();
+
 	void run(unsigned) override;
 	void reset() override;
 
@@ -45,10 +50,9 @@ private:
 		} bits;
 		uint8_t flags;
 	} P;
-	bool _irq;				// interrupt pending?
+	uint8_t _irq;				// sources which have /IRQ asserted
 
 	void irq();
-	void nmi();
 	uint8_t flags();
 	void flags(uint8_t);
 
@@ -181,7 +185,7 @@ private:
 	inline void nop2() { PC++; }
 	inline void ora_z() { _ora(_mem[_z()]); }
 	inline void asl_z() { _asl(_z()); }
-	inline void php();
+	inline void php() { P.bits.B = 1; pushb(flags()); }
 	inline void ora_() { _ora(_mem[PC++]); }
 	inline void asl() { C=(A&0x80)!=0; Z=N=A<<=1; }
 	inline void nop3() { PC+=2; }
@@ -203,7 +207,7 @@ private:
 	inline void bit_z() { _bit(_mem[_z()]); }
 	inline void and_z() { _and(_mem[_z()]); }
 	inline void rol_z() { _rol(_z()); }
-	void plp();
+	inline void plp() { flags(popb()); }
 	inline void and_() { _and(_mem[PC++]); }
 	inline void rol() { A=__rol(A); }
 	inline void bit_a() { _bit(_mem[_a()]); }
@@ -219,7 +223,7 @@ private:
 	inline void and_ax() { _and(_mem[_axp()]); }
 	inline void rol_ax() { _rol(_ax()); }
 	// 40
-	inline void rti() { flags(popb()); PC = popa(); if (!P.bits.I && _irq) irq(); }
+	inline void rti() { flags(popb()); PC = popa(); }
 	inline void eor_ix() { _eor(_mem[_ix()]); }
 	inline void eor_z() { _eor(_mem[_z()]); }
 	inline void lsr_z() { _lsr(_z()); }
@@ -234,7 +238,7 @@ private:
 	inline void eor_iy() { _eor(_mem[_iyp()]); }
 	inline void eor_zx() { _eor(_mem[_zx()]); }
 	inline void lsr_zx() { _lsr(_zx()); }
-	inline void cli() { P.bits.I = 0; if (_irq) irq(); }
+	inline void cli() { P.bits.I = 0; }
 	inline void eor_ay() { _eor(_mem[_ayp()]); }
 	inline void eor_ax() { _eor(_mem[_axp()]); }
 	inline void lsr_ax() { _lsr(_ax()); }
