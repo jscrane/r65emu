@@ -46,12 +46,12 @@ void Machine::run(uint32_t clock_speed_hz) {
 		_cpu.status();
 	_cpu.run(1);
 #else
-	uint32_t start_cycles = _cpu.cycles();
+	uint64_t start_cycles = _cpu.cycles();
 	if (clock_speed_hz == CLK_MAX)
 		_cpu.run(_batch_size);
 	else if (clock_speed_hz != CLK_STOPPED) {
 		_cpu.run(_batch_size);
-		uint32_t cycles_run = _cpu.cycles() - start_cycles;
+		uint64_t cycles_run = _cpu.cycles() - start_cycles;
 		if (cycles_run > 0) {
 			uint32_t target_cycles = clock_speed_hz / (1000000 / TIME_SLICE);
 			uint32_t next_batch = (target_cycles * _batch_size) / cycles_run;

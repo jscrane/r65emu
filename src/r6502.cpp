@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
+#include <inttypes.h>
 
 #include "compat.h"
 #include "machine.h"
@@ -37,6 +38,9 @@ static uint8_t optimes[] PROGMEM = {
 
 void r6502::run(unsigned clocks) {
 	while (!_halted && clocks--) {
+		if (_irq && !P.bits.I)
+			irq();
+
 		uint8_t op = _mem[PC];
 		PC++;
 
@@ -139,7 +143,7 @@ void r6502::status(bool hdr) {
 	if (hdr)
 		DBG_CPU("aa xx yy sp nv_bdizc _pc_ op clk");
 
-	DBG_CPU("%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %d",
+	DBG_CPU("%02x %02x %02x %02x %d%d%d%d%d%d%d%d %04x %02x %" PRIu64,
 		A, X, Y, S, P.bits.N, P.bits.V, P.bits._, P.bits.B,
 		P.bits.D, P.bits.I, P.bits.Z, P.bits.C, PC, (uint8_t)_mem[PC], cycles());
 #endif
@@ -181,15 +185,6 @@ void r6502::restore(Checkpoint &s) {
 	s.read(_irq);
 }
 
-void r6502::raise(int level) {
-	if (level < 0)
-		nmi();
-	else if (!P.bits.I)
-		irq();
-	else
-		_irq = true;
-}
-
 void r6502::irq() {
 	pusha(PC);
 	P.bits.B = 0;
@@ -197,7 +192,6 @@ void r6502::irq() {
 	P.bits.B = 1;
 	P.bits.I = 1;
 	PC = vector(ibvec);
-	_irq = false;
 }
 
 void r6502::brk() {
@@ -219,18 +213,6 @@ void r6502::nmi() {
 void r6502::ill() {
 	CPU::halt();
 	_illegal_instruction_handler();
-}
-
-// php and plp are complicated by the representation
-// of the processor state for efficient normal operation
-void r6502::php() {
-	P.bits.B = 1;
-	pushb(flags());
-}
-
-void r6502::plp() {
-	flags(popb());
-	if (!P.bits.I && _irq) irq();
 }
 
 static inline uint8_t fromBCD(uint8_t i) {

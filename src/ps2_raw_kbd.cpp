@@ -46,29 +46,30 @@ static uint8_t fn(uint8_t key) {
 
 static bool brk = false;
 
-uint16_t ps2_raw_kbd::read() {
+bool ps2_raw_kbd::read(uint16_t &scan) {
 	if (!available())
-		return 0;
+		return false;
 
 	int s = keyboard.read();
 	if (s < 0)
-		return 0;
+		return false;
 
 	uint8_t k = (s & 0xff);
 	if (k == 0xf0) {
 		brk = true;
-		return 0;
+		return false;
 	}
 
 	uint8_t f = fn(k);
-	if (f >= 1 && brk) {
+	if (f >= 1) {
+		if (brk)
+			fnkey(f);
 		brk = false;
-		fnkey(f);
-		return 0;
+		return false;
 	}
-	uint16_t r = brk? (0x8000 | k): k;
+	scan = brk? (0x8000 | k): k;
 	brk = false;
-	return r;
+	return true;
 }
 
 void ps2_raw_kbd::reset() {
@@ -77,8 +78,8 @@ void ps2_raw_kbd::reset() {
 }
 
 void ps2_raw_kbd::poll() {
-	if (available()) {
-		uint16_t scan = read();
+	uint16_t scan;
+	if (read(scan)) {
 		uint8_t k = (scan & 0xff);
 		if (scan & 0x8000)
 			_m.up(k);

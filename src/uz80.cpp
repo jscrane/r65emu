@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstring>
 #include <functional>
+#include <inttypes.h>
 
 #include "machine.h"
 #include "memory.h"
@@ -250,7 +251,7 @@ void uz80::status(bool hdr) {
 	else
 		snprintf(obuf, sizeof(obuf), "%02x", op);
 
-	DBG_CPU("%04x %02x %d%d%d%d%d%d %02x %02x %d%d %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %d %s",
+	DBG_CPU("%04x %02x %d%d%d%d%d%d %02x %02x %d%d %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x %" PRIu64 " %s",
 		PC, A, (F & S_FLAG) != 0, (F & Z_FLAG) != 0, (F & H_FLAG) != 0, (F & P_FLAG) != 0, (F & N_FLAG) != 0, (F & C_FLAG) != 0, I, R & 0x7f, IFF & 1, IFF & 2,
 		BC, DE, HL, AF_, BC_, DE_, HL_, IX, IY, SP, cycles(), obuf);
 #endif
