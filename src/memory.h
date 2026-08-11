@@ -9,6 +9,7 @@ public:
 	virtual void restore(Checkpoint &) =0;
 };
 
+// Address-space geometry is compile-time so page/device tables remain static.
 #ifndef MEMORY_ADDRESS_WIDTH
 #define MEMORY_ADDRESS_WIDTH 16
 #endif
