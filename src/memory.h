@@ -25,8 +25,6 @@ class Memory: public Checkpointable {
 public:
 	typedef uint32_t address;
 
-	static_assert(MEMORY_ADDRESS_WIDTH % 4 == 0, "address_bits must be divisible by 4");
-
 	static const unsigned address_bits = MEMORY_ADDRESS_WIDTH;
 	static const unsigned page_bits = MEMORY_PAGE_WIDTH;
 
