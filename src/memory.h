@@ -9,12 +9,28 @@ public:
 	virtual void restore(Checkpoint &) =0;
 };
 
+// Address-space geometry is compile-time so page/device tables remain static.
+#ifndef MEMORY_ADDRESS_WIDTH
+#define MEMORY_ADDRESS_WIDTH 16
+#endif
+
+#ifndef MEMORY_PAGE_WIDTH
+#define MEMORY_PAGE_WIDTH (MEMORY_ADDRESS_WIDTH / 2)
+#endif
+
+#ifndef MEMORY_DEVICE_WIDTH
+#define MEMORY_DEVICE_WIDTH (MEMORY_ADDRESS_WIDTH / 4)
+#endif
+
 class Memory: public Checkpointable {
 public:
-	typedef uint16_t address;
+	typedef uint32_t address;
 
-	static const size_t address_size = (1 << 16);
-	static const size_t page_size = (1 << 8);
+	static const unsigned address_bits = MEMORY_ADDRESS_WIDTH;
+	static const unsigned page_bits = MEMORY_PAGE_WIDTH;
+
+	static const size_t address_size = (1 << address_bits);
+	static const size_t page_size = (1 << page_bits);
 
 	class Device: public Checkpointable {
 	public:
@@ -49,7 +65,8 @@ public:
 
 	class Devices: public Device {
 	public:
-		static const size_t device_size = (1 << 4);
+		static const unsigned device_bits = MEMORY_DEVICE_WIDTH;
+		static const size_t device_size = (1 << device_bits);
 
 		Devices(): Device(page_size), _nd(page_size) {
 			put(_nd, 0);
