@@ -9,12 +9,21 @@ public:
 	virtual void restore(Checkpoint &) =0;
 };
 
+#ifndef MEMORY_ADDRESS_WIDTH
+#define MEMORY_ADDRESS_WIDTH 16
+#endif
+
 class Memory: public Checkpointable {
 public:
-	typedef uint16_t address;
+	typedef uint32_t address;
 
-	static const size_t address_size = (1 << 16);
-	static const size_t page_size = (1 << 8);
+	static_assert(MEMORY_ADDRESS_WIDTH % 4 == 0, "address_bits must be divisible by 4");
+
+	static const unsigned address_bits = MEMORY_ADDRESS_WIDTH;
+	static const unsigned page_bits = address_bits / 2;
+
+	static const size_t address_size = (1 << address_bits);
+	static const size_t page_size = (1 << page_bits);
 
 	class Device: public Checkpointable {
 	public:
@@ -49,7 +58,8 @@ public:
 
 	class Devices: public Device {
 	public:
-		static const size_t device_size = (1 << 4);
+		static const unsigned device_bits = address_bits / 4;
+		static const size_t device_size = (1 << device_bits);
 
 		Devices(): Device(page_size), _nd(page_size) {
 			put(_nd, 0);
