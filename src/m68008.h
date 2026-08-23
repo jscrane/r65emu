@@ -18,6 +18,7 @@ public:
 	inline uint32_t usp() const { return _usp; }
 	inline uint32_t ssp() const { return _ssp; }
 	inline uint16_t sr() const { return _sr; }
+	inline uint32_t pc() const { return PC; }
 
 	inline void d(uint8_t n, uint32_t v) { _d[n] = v; }
 	inline void a(uint8_t n, uint32_t v) { _a[n] = v; }

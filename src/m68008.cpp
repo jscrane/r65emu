@@ -22,6 +22,10 @@ void m68008::run(unsigned clocks) {
 	}
 }
 
+void m68008::status(bool hdr) {
+	// FIXME
+}
+
 void m68008::checkpoint(Checkpoint &c) {
 	c.write(_d[0]);
 	c.write(_d[1]);
