@@ -14,7 +14,11 @@ m68008::m68008(Memory &m): CPU(m) {
 }
 
 void m68008::reset() {
-	// FIXME
+
+	_halted = false;
+	// FIXME: real 68000 reset also loads SSP from vector 0 and PC from
+	// vector 1 -- not needed yet since the test harness sets these
+	// explicitly after reset()
 }
 
 void m68008::run(unsigned clocks) {
