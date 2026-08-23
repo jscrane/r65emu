@@ -8,6 +8,9 @@
 #include "debugging.h"
 
 m68008::m68008(Memory &m): CPU(m) {
+	_illegal_instruction_handler = [this]() {
+	        ERR("CPU halted at %06x: illegal instruction", pc());
+	};
 }
 
 void m68008::reset() {
@@ -16,10 +19,31 @@ void m68008::reset() {
 
 void m68008::run(unsigned clocks) {
 
-	while (!halted() && clocks--) {
+	while (!halted() && clocks--)
+		step();
+}
 
-		// FIXME: instruction fetch + decode, etc.
+void m68008::illegal(uint16_t op) {
+	PC -= 2;
+	CPU::halt();
+	_illegal_instruction_handler();
+}
+
+void m68008::decode_execute(uint16_t op) {
+	switch(op) {
+	case 0x4e71:
+		op_nop();
+		break;
+	default:
+		illegal(op);
+		break;
 	}
+}
+
+uint16_t m68008::fetch16() {
+	uint16_t hi = _mem[PC++];
+	uint16_t lo = _mem[PC++];
+	return (hi << 8) | lo;
 }
 
 void m68008::status(bool hdr) {
