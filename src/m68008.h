@@ -13,15 +13,19 @@ public:
 	void checkpoint(Checkpoint &) override;
 	void restore(Checkpoint &) override;
 
-	inline uint32_t d(uint8_t n) const { return _d[n]; }
-	inline uint32_t a(uint8_t n) const { return _a[n]; }
+	inline uint32_t d(uint8_t n) const { return D[n]; }
+	inline uint32_t a(uint8_t n) const { return n == 7? ((_sr & S_FLAG)? _ssp: _usp): A[n]; }
 	inline uint32_t usp() const { return _usp; }
 	inline uint32_t ssp() const { return _ssp; }
 	inline uint16_t sr() const { return _sr; }
 	inline uint32_t pc() const { return PC; }
 
-	inline void d(uint8_t n, uint32_t v) { _d[n] = v; }
-	inline void a(uint8_t n, uint32_t v) { _a[n] = v; }
+	inline void d(uint8_t n, uint32_t v) { D[n] = v; }
+	inline void a(uint8_t n, uint32_t v) {
+		if (n < 7) A[n] = v;
+		else if (_sr & S_FLAG) _ssp = v;
+		else _usp = v;
+	}
 	inline void usp(uint32_t v) { _usp = v; }
 	inline void ssp(uint32_t v) { _ssp = v; }
 	inline void sr(uint16_t v) { _sr = v; }
@@ -32,15 +36,47 @@ public:
 	}
 
 private:
-	void step() { decode_execute(fetch16()); }
+	inline void step() { decode_execute(fetch16()); }
 	void decode_execute(uint16_t op);
-	uint16_t fetch16();
-	void illegal(uint16_t op);
 
+	struct EA {	// Effective Address
+		enum Kind { RegD, RegA, Mem, Imm } kind;
+		int reg = 0;		// valid if kind==Reg
+		uint32_t addr = 0;	// valid if kind==Mem
+		uint32_t value = 0;	// used only when kind == Imm
+	};
+
+	static constexpr uint32_t ADDRESS_MASK = (1u << 24) - 1;
+	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr & ADDRESS_MASK }; }
+
+	EA decode_ea(int mode, int reg, int size /* bytes: 1,2,4 */);
+	uint8_t read_byte(const struct EA &);
+	void write_byte(const struct EA &, uint8_t);
+
+	uint16_t fetch16();
+	inline void set_nz(uint8_t v) {
+		_sr &= ~(N_FLAG | Z_FLAG);
+		if (v == 0)	_sr |= Z_FLAG;
+		if (v & 0x80)	_sr |= N_FLAG;
+	}
+	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
+
+	void moveb(uint16_t op);
+	void movew(uint16_t op);
+	void movel(uint16_t op);
+	void misc(uint16_t op);
+	void illegal(uint16_t op);
 	void op_nop() {}
 
 	std::function<void(uint16_t)> _illegal_instruction_handler;
-	uint32_t _d[8], _a[8];
+	uint32_t D[8], A[7];
 	uint32_t _usp, _ssp;
+
 	uint16_t _sr;
+	static constexpr uint16_t C_FLAG = (1u << 0);
+	static constexpr uint16_t V_FLAG = (1u << 1);
+	static constexpr uint16_t Z_FLAG = (1u << 2);
+	static constexpr uint16_t N_FLAG = (1u << 3);
+	static constexpr uint16_t X_FLAG = (1u << 4);
+	static constexpr uint16_t S_FLAG = (1u << 13);
 };
