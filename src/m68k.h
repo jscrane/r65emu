@@ -54,10 +54,14 @@ private:
 	void write_byte(const struct EA &, uint8_t);
 	uint16_t read_word(const struct EA &);
 	void write_word(const struct EA &, uint16_t);
+	uint32_t read_long(const struct EA &);
+	void write_long(const struct EA &, uint32_t);
 
 	uint16_t fetch16();
 	uint16_t read16(uint32_t);
+	uint32_t read32(uint32_t);
 	void write16(uint32_t, uint16_t);
+	void write32(uint32_t, uint32_t);
 
 	inline void set_nz(int v) {
 		_sr &= ~(N_FLAG | Z_FLAG);

@@ -143,9 +143,19 @@ uint16_t m68k::read_word(const EA &e) {
 	return 0;
 }
 
+uint32_t m68k::read_long(const EA &e) {
+	switch (e.kind) {
+	case EA::RegD: return (uint32_t)d(e.reg);
+	case EA::RegA: return (uint32_t)a(e.reg);   // shouldn't occur for .b
+	case EA::Mem:  return read32(e.addr);
+	case EA::Imm:  return (uint32_t)e.value;
+	}
+	return 0;
+}
+
 void m68k::write_byte(const EA &e, uint8_t v) {
 	switch (e.kind) {
-	case EA::RegD: d(e.reg, (d(e.reg) & 0xffffff00) | v); break;  // upper 24 bits untouched
+	case EA::RegD: d(e.reg, (d(e.reg) & 0xffffff00) | v); break;	// upper 24 bits untouched
 	case EA::RegA: break;   // illegal target for .b, never called
 	case EA::Mem:  _mem[e.addr] = v; break;
 	case EA::Imm:  break;   // illegal target
@@ -154,9 +164,18 @@ void m68k::write_byte(const EA &e, uint8_t v) {
 
 void m68k::write_word(const EA &e, uint16_t v) {
 	switch (e.kind) {
-	case EA::RegD: d(e.reg, (d(e.reg) & 0xffff0000) | v); break;  // upper 16 bits untouched
+	case EA::RegD: d(e.reg, (d(e.reg) & 0xffff0000) | v); break;	// upper 16 bits untouched
 	case EA::RegA: a(e.reg, (a(e.reg) & 0xffff0000) | v); break;
 	case EA::Mem:  write16(e.addr, v); break;
+	case EA::Imm:  break;   // illegal target
+	}
+}
+
+void m68k::write_long(const EA &e, uint32_t v) {
+	switch (e.kind) {
+	case EA::RegD: d(e.reg, (d(e.reg) & 0xff000000) | v); break;	// upper 8 bits untouched
+	case EA::RegA: a(e.reg, (a(e.reg) & 0xff000000) | v); break;
+	case EA::Mem:  write32(e.addr, v); break;
 	case EA::Imm:  break;   // illegal target
 	}
 }
@@ -190,6 +209,17 @@ void m68k::movew(uint16_t op) {
 }
 
 void m68k::movel(uint16_t op) {
+	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
+	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
+
+	EA src = decode_ea(smode, sreg, 4);   // consumes source extension word(s)
+	uint32_t v = read_long(src);
+
+	EA dst = decode_ea(dmode, dreg, 4);   // consumes dest extension word(s)
+	write_long(dst, v);
+
+	set_nz((int32_t)v);
+	clr_vc();
 }
 
 void m68k::misc(uint16_t op) {
@@ -215,9 +245,20 @@ uint16_t m68k::read16(uint32_t addr) {
 	return (hi << 8) | lo;
 }
 
+uint32_t m68k::read32(uint32_t addr) {
+	uint32_t hi = read16(addr);
+	uint32_t lo = read16(addr+2);
+	return (hi << 16) | lo;
+}
+
 void m68k::write16(uint32_t addr, uint16_t v) {
 	_mem[addr++] = (v >> 8);
 	_mem[addr++] = (v & 0xff);
+}
+
+void m68k::write32(uint32_t addr, uint32_t v) {
+	write16(addr, (uint16_t)(v >> 16));
+	write16(addr+2, (uint16_t)(v & 0xffff));
 }
 
 void m68k::status(bool hdr) {
