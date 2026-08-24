@@ -52,12 +52,17 @@ private:
 	EA decode_ea(int mode, int reg, int size /* bytes: 1,2,4 */);
 	uint8_t read_byte(const struct EA &);
 	void write_byte(const struct EA &, uint8_t);
+	uint16_t read_word(const struct EA &);
+	void write_word(const struct EA &, uint16_t);
 
 	uint16_t fetch16();
-	inline void set_nz(uint8_t v) {
+	uint16_t read16(uint32_t);
+	void write16(uint32_t, uint16_t);
+
+	inline void set_nz(int v) {
 		_sr &= ~(N_FLAG | Z_FLAG);
 		if (v == 0)	_sr |= Z_FLAG;
-		if (v & 0x80)	_sr |= N_FLAG;
+		if (v < 0)	_sr |= N_FLAG;
 	}
 	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
 

@@ -133,11 +133,30 @@ uint8_t m68008::read_byte(const EA &e) {
 	return 0;
 }
 
+uint16_t m68008::read_word(const EA &e) {
+	switch (e.kind) {
+	case EA::RegD: return (uint16_t)d(e.reg);
+	case EA::RegA: return (uint16_t)a(e.reg);   // shouldn't occur for .b
+	case EA::Mem:  return read16(e.addr);
+	case EA::Imm:  return (uint16_t)e.value;
+	}
+	return 0;
+}
+
 void m68008::write_byte(const EA &e, uint8_t v) {
 	switch (e.kind) {
-	case EA::RegD: D[e.reg] = (d(e.reg) & 0xffffff00) | v; break;  // upper 24 bits untouched
+	case EA::RegD: d(e.reg, (d(e.reg) & 0xffffff00) | v); break;  // upper 24 bits untouched
 	case EA::RegA: break;   // illegal target for .b, never called
 	case EA::Mem:  _mem[e.addr] = v; break;
+	case EA::Imm:  break;   // illegal target
+	}
+}
+
+void m68008::write_word(const EA &e, uint16_t v) {
+	switch (e.kind) {
+	case EA::RegD: d(e.reg, (d(e.reg) & 0xffff0000) | v); break;  // upper 16 bits untouched
+	case EA::RegA: a(e.reg, (a(e.reg) & 0xffff0000) | v); break;
+	case EA::Mem:  write16(e.addr, v); break;
 	case EA::Imm:  break;   // illegal target
 	}
 }
@@ -152,11 +171,22 @@ void m68008::moveb(uint16_t op) {
 	EA dst = decode_ea(dmode, dreg, 1);   // consumes dest extension word(s)
 	write_byte(dst, v);
 
-	set_nz(v);
+	set_nz((int8_t)v);
 	clr_vc();
 }
 
 void m68008::movew(uint16_t op) {
+	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
+	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
+
+	EA src = decode_ea(smode, sreg, 2);   // consumes source extension word(s)
+	uint16_t v = read_word(src);
+
+	EA dst = decode_ea(dmode, dreg, 2);   // consumes dest extension word(s)
+	write_word(dst, v);
+
+	set_nz((int16_t)v);
+	clr_vc();
 }
 
 void m68008::movel(uint16_t op) {
@@ -177,6 +207,17 @@ uint16_t m68008::fetch16() {
 	uint16_t hi = _mem[PC++];
 	uint16_t lo = _mem[PC++];
 	return (hi << 8) | lo;
+}
+
+uint16_t m68008::read16(uint32_t addr) {
+	uint16_t hi = _mem[addr++];
+	uint16_t lo = _mem[addr++];
+	return (hi << 8) | lo;
+}
+
+void m68008::write16(uint32_t addr, uint16_t v) {
+	_mem[addr++] = (v >> 8);
+	_mem[addr++] = (v & 0xff);
 }
 
 void m68008::status(bool hdr) {
