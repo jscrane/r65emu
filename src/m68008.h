@@ -27,7 +27,7 @@ public:
 	inline void sr(uint16_t v) { _sr = v; }
 	inline void pc(Memory::address v) { PC = v; }
 
-	void set_illegal_instruction_handler(std::function<void(void)> fn) {
+	void set_illegal_instruction_handler(std::function<void(uint16_t)> fn) {
 		_illegal_instruction_handler = fn;
 	}
 
@@ -39,7 +39,7 @@ private:
 
 	void op_nop() {}
 
-	std::function<void(void)> _illegal_instruction_handler;
+	std::function<void(uint16_t)> _illegal_instruction_handler;
 	uint32_t _d[8], _a[8];
 	uint32_t _usp, _ssp;
 	uint16_t _sr;

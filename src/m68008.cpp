@@ -8,8 +8,8 @@
 #include "debugging.h"
 
 m68008::m68008(Memory &m): CPU(m) {
-	_illegal_instruction_handler = [this]() {
-	        ERR("CPU halted at %06x: illegal instruction", pc());
+	_illegal_instruction_handler = [this](uint16_t op) {
+	        ERR("CPU halted at %06x: illegal instruction: %04x", pc(), op);
 	};
 }
 
@@ -30,7 +30,7 @@ void m68008::run(unsigned clocks) {
 void m68008::illegal(uint16_t op) {
 	PC -= 2;
 	CPU::halt();
-	_illegal_instruction_handler();
+	_illegal_instruction_handler(op);
 }
 
 void m68008::decode_execute(uint16_t op) {
