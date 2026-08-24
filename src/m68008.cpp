@@ -125,8 +125,8 @@ m68008::EA m68008::decode_ea(int mode, int reg, int size) {
 
 uint8_t m68008::read_byte(const EA &e) {
 	switch (e.kind) {
-	case EA::RegD: return (uint8_t)D[e.reg];
-	case EA::RegA: return (uint8_t)A[e.reg];   // shouldn't occur for .b
+	case EA::RegD: return (uint8_t)d(e.reg);
+	case EA::RegA: return (uint8_t)a(e.reg);   // shouldn't occur for .b
 	case EA::Mem:  return _mem[e.addr];
 	case EA::Imm:  return (uint8_t)e.value;
 	}
@@ -135,7 +135,7 @@ uint8_t m68008::read_byte(const EA &e) {
 
 void m68008::write_byte(const EA &e, uint8_t v) {
 	switch (e.kind) {
-	case EA::RegD: D[e.reg] = (D[e.reg] & 0xffffff00) | v; break;  // upper 24 bits untouched
+	case EA::RegD: D[e.reg] = (d(e.reg) & 0xffffff00) | v; break;  // upper 24 bits untouched
 	case EA::RegA: break;   // illegal target for .b, never called
 	case EA::Mem:  _mem[e.addr] = v; break;
 	case EA::Imm:  break;   // illegal target
