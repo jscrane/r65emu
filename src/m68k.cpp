@@ -4,16 +4,16 @@
 #include "machine.h"
 #include "memory.h"
 #include "CPU.h"
-#include "m68008.h"
+#include "m68k.h"
 #include "debugging.h"
 
-m68008::m68008(Memory &m): CPU(m) {
+m68k::m68k(Memory &m): CPU(m) {
 	_illegal_instruction_handler = [this](uint16_t op) {
 		ERR("CPU halted at %06x: illegal instruction: %04x", pc(), op);
 	};
 }
 
-void m68008::reset() {
+void m68k::reset() {
 
 	_halted = false;
 	// FIXME: real 68000 reset also loads SSP from vector 0 and PC from
@@ -21,19 +21,19 @@ void m68008::reset() {
 	// explicitly after reset()
 }
 
-void m68008::run(unsigned clocks) {
+void m68k::run(unsigned clocks) {
 
 	while (!halted() && clocks--)
 		step();
 }
 
-void m68008::illegal(uint16_t op) {
+void m68k::illegal(uint16_t op) {
 	PC -= 2;
 	CPU::halt();
 	_illegal_instruction_handler(op);
 }
 
-void m68008::decode_execute(uint16_t op) {
+void m68k::decode_execute(uint16_t op) {
 	switch((op >> 12) & 0x0f) {
 	case 0b0001:
 		moveb(op);
@@ -53,7 +53,7 @@ void m68008::decode_execute(uint16_t op) {
 	}
 }
 
-m68008::EA m68008::decode_ea(int mode, int reg, int size) {
+m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 	switch (mode) {
 	case 0: return EA{ EA::RegD, reg };
 	case 1: return EA{ EA::RegA, reg };
@@ -123,7 +123,7 @@ m68008::EA m68008::decode_ea(int mode, int reg, int size) {
 	return EA{};
 }
 
-uint8_t m68008::read_byte(const EA &e) {
+uint8_t m68k::read_byte(const EA &e) {
 	switch (e.kind) {
 	case EA::RegD: return (uint8_t)d(e.reg);
 	case EA::RegA: return (uint8_t)a(e.reg);   // shouldn't occur for .b
@@ -133,7 +133,7 @@ uint8_t m68008::read_byte(const EA &e) {
 	return 0;
 }
 
-uint16_t m68008::read_word(const EA &e) {
+uint16_t m68k::read_word(const EA &e) {
 	switch (e.kind) {
 	case EA::RegD: return (uint16_t)d(e.reg);
 	case EA::RegA: return (uint16_t)a(e.reg);   // shouldn't occur for .b
@@ -143,7 +143,7 @@ uint16_t m68008::read_word(const EA &e) {
 	return 0;
 }
 
-void m68008::write_byte(const EA &e, uint8_t v) {
+void m68k::write_byte(const EA &e, uint8_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, (d(e.reg) & 0xffffff00) | v); break;  // upper 24 bits untouched
 	case EA::RegA: break;   // illegal target for .b, never called
@@ -152,7 +152,7 @@ void m68008::write_byte(const EA &e, uint8_t v) {
 	}
 }
 
-void m68008::write_word(const EA &e, uint16_t v) {
+void m68k::write_word(const EA &e, uint16_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, (d(e.reg) & 0xffff0000) | v); break;  // upper 16 bits untouched
 	case EA::RegA: a(e.reg, (a(e.reg) & 0xffff0000) | v); break;
@@ -161,7 +161,7 @@ void m68008::write_word(const EA &e, uint16_t v) {
 	}
 }
 
-void m68008::moveb(uint16_t op) {
+void m68k::moveb(uint16_t op) {
 	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
 	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
 
@@ -175,7 +175,7 @@ void m68008::moveb(uint16_t op) {
 	clr_vc();
 }
 
-void m68008::movew(uint16_t op) {
+void m68k::movew(uint16_t op) {
 	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
 	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
 
@@ -189,10 +189,10 @@ void m68008::movew(uint16_t op) {
 	clr_vc();
 }
 
-void m68008::movel(uint16_t op) {
+void m68k::movel(uint16_t op) {
 }
 
-void m68008::misc(uint16_t op) {
+void m68k::misc(uint16_t op) {
 	switch (op) {
 	case 0x4e71:
 		op_nop();
@@ -203,28 +203,28 @@ void m68008::misc(uint16_t op) {
 	}
 }
 
-uint16_t m68008::fetch16() {
+uint16_t m68k::fetch16() {
 	uint16_t hi = _mem[PC++];
 	uint16_t lo = _mem[PC++];
 	return (hi << 8) | lo;
 }
 
-uint16_t m68008::read16(uint32_t addr) {
+uint16_t m68k::read16(uint32_t addr) {
 	uint16_t hi = _mem[addr++];
 	uint16_t lo = _mem[addr++];
 	return (hi << 8) | lo;
 }
 
-void m68008::write16(uint32_t addr, uint16_t v) {
+void m68k::write16(uint32_t addr, uint16_t v) {
 	_mem[addr++] = (v >> 8);
 	_mem[addr++] = (v & 0xff);
 }
 
-void m68008::status(bool hdr) {
+void m68k::status(bool hdr) {
 	// FIXME
 }
 
-void m68008::checkpoint(Checkpoint &c) {
+void m68k::checkpoint(Checkpoint &c) {
 	c.write(D[0]);
 	c.write(D[1]);
 	c.write(D[2]);
@@ -245,7 +245,7 @@ void m68008::checkpoint(Checkpoint &c) {
 	c.write(_sr);
 }
 
-void m68008::restore(Checkpoint &c) {
+void m68k::restore(Checkpoint &c) {
 	c.read(D[0]);
 	c.read(D[1]);
 	c.read(D[2]);

@@ -1,6 +1,6 @@
 // tests/test68008/test.cc
 //
-// TDD harness for the m68008 core, driven by SingleStepTests/680x0 vectors
+// TDD harness for the m68k core, driven by SingleStepTests/680x0 vectors
 // (https://github.com/SingleStepTests/680x0). Each test in a *.json.gz file
 // sets up one instruction's worth of CPU/memory state, executes exactly one
 // instruction, and gives the expected resulting state.
@@ -28,8 +28,8 @@
 // in "final.ram". That's enough to TDD instruction semantics; cycle-exact
 // bus behaviour can follow later.
 //
-// --- Assumed m68008 interface (see src/m68008.h) ---
-//   m68008(Memory &mem);
+// --- Assumed m68k interface (see src/m68k.h) ---
+//   m68k(Memory &mem);
 //   void reset() override;
 //   void run(unsigned n) override;     // executes exactly n instructions
 //   uint32_t d(int n) const;           void d(int n, uint32_t v);   // n=0..7
@@ -52,7 +52,7 @@
 #include "linuxmachine.h"
 #include "memory.h"
 #include "CPU.h"
-#include "m68008.h"
+#include "m68k.h"
 #include "ram.h"
 
 // ------------------------------------------------------------- gunzip -----
@@ -76,7 +76,7 @@ static bool load_gz(const char *path, std::string &out) {
 
 // --------------------------------------------------------- state apply ----
 
-static void apply_state(m68008 &cpu, Memory &mem, const Json::Value &s) {
+static void apply_state(m68k &cpu, Memory &mem, const Json::Value &s) {
 	for (int i = 0; i < 8; i++)
 		cpu.d(i, s[std::string("d") + std::to_string(i)].asUInt());
 	for (int i = 0; i < 7; i++)
@@ -109,7 +109,7 @@ struct Mismatch {
 	unsigned long expected, actual;
 };
 
-static bool check_state(m68008 &cpu, Memory &mem, const Json::Value &s,
+static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 			 std::vector<Mismatch> &diffs) {
 	diffs.clear();
 
@@ -171,7 +171,7 @@ int main(int argc, char *argv[]) {
 	Memory memory;
 	static ram<16 * 1024 * 1024> ram; // full 24-bit space
 	memory.put(ram, 0x000000);
-	m68008 cpu(memory);
+	m68k cpu(memory);
 	Linux machine(cpu);
 
 	unsigned passed = 0, failed = 0;

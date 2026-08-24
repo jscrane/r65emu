@@ -1,14 +1,14 @@
 #pragma once
 
-class m68008: public CPU {
+class m68k: public CPU {
 public:
-	m68008(Memory &);
+	m68k(Memory &);
 
 	void run(unsigned) override;
 	void reset() override;
 
 	void status(bool hdr=false) override;
-	const char *name() const { return "m68008"; }
+	const char *name() const { return "m68k"; }
 
 	void checkpoint(Checkpoint &) override;
 	void restore(Checkpoint &) override;
