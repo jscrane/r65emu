@@ -9,7 +9,7 @@
 
 m68008::m68008(Memory &m): CPU(m) {
 	_illegal_instruction_handler = [this](uint16_t op) {
-			ERR("CPU halted at %06x: illegal instruction: %04x", pc(), op);
+		ERR("CPU halted at %06x: illegal instruction: %04x", pc(), op);
 	};
 }
 
@@ -59,22 +59,23 @@ m68008::EA m68008::decode_ea(int mode, int reg, int size) {
 	case 1: return EA{ EA::RegA, reg };
 
 	case 2: // (An)
-		return mem_ea(A[reg]);
+		return mem_ea(a(reg));
 
 	case 3: { // (An)+  -- A7 always steps by 2 for byte size, word-alignment
-		uint32_t addr = A[reg];
+		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
-		A[reg] += step;
+		a(reg, addr + step);
 		return mem_ea(addr);
 	}
 	case 4: { // -(An)  -- same A7 rule, decrement happens before use
+		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
-		A[reg] -= step;
-		return mem_ea(A[reg]);
+		a(reg, addr - step);
+		return mem_ea(a(reg));
 	}
 	case 5: { // (d16,An)
 		int16_t disp = (int16_t)fetch16();
-		return mem_ea(A[reg] + disp);
+		return mem_ea(a(reg) + disp);
 	}
 	case 6: { // (d8,An,Xn)
 		uint16_t ext = fetch16();
@@ -82,9 +83,9 @@ m68008::EA m68008::decode_ea(int mode, int reg, int size) {
 		bool xIsA  = (ext >> 15) & 1;
 		bool xLong = (ext >> 11) & 1;
 		int8_t disp8 = (int8_t)(ext & 0xff);
-		int32_t xval = xIsA ? (int32_t)A[xreg] : (int32_t)D[xreg];
+		int32_t xval = xIsA ? (int32_t)a(xreg) : (int32_t)d(xreg);
 		if (!xLong) xval = (int16_t)xval;   // word-sized index sign-extends
-		return mem_ea(A[reg] + xval + disp8);
+		return mem_ea(a(reg) + xval + disp8);
 	}
 	case 7:
 		switch (reg) {
@@ -108,7 +109,7 @@ m68008::EA m68008::decode_ea(int mode, int reg, int size) {
 			bool xIsA  = (ext >> 15) & 1;
 			bool xLong = (ext >> 11) & 1;
 			int8_t disp8 = (int8_t)(ext & 0xff);
-			int32_t xval = xIsA ? (int32_t)A[xreg] : (int32_t)D[xreg];
+			int32_t xval = xIsA ? (int32_t)a(xreg) : (int32_t)d(xreg);
 			if (!xLong) xval = (int16_t)xval;
 			return mem_ea(ext_addr + xval + disp8);
 		}
