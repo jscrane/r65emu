@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstdio>
 
 #include "compat.h"
 #include "machine.h"
@@ -332,12 +333,45 @@ void m68k::moveq(uint16_t op) {
 
 void m68k::misc(uint16_t op) {
 	switch (op) {
-	case 0x4e71: // NOP
-		break;
-	default:
-		illegal(op);
-		break;
+	case 0x4e71:	// NOP
+		return;
 	}
+
+	switch (op & 0xfff8) {
+	case 0x4e60:	// MOVEtoUSP
+		_usp = a(op & 7);
+		return;
+	case 0x4e68:	// MOVEfromUSP
+		a(op & 7, _usp);
+		return;
+	}
+
+	switch (op & 0xffc0) {
+	case 0x40c0: {	// MOVEfromSR
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
+		write_word(dst, _sr);
+		commit_postinc(dst);   // unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
+		return;
+	}
+	case 0x44c0: {	// MOVEtoCCR
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped)
+			_sr = (_sr & 0xffe0) | (v & 0x1f);
+		return;
+	}
+	case 0x46c0: {	// MOVEtoSR
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped)
+			_sr = v & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+		return;
+	}
+	}
+
+	illegal(op);
 }
 
 uint16_t m68k::fetch16() {
