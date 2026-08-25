@@ -338,6 +338,32 @@ void m68k::misc(uint16_t op) {
 	}
 
 	switch (op & 0xfff8) {
+	case 0x4840: {	// SWAP
+		int reg = op & 7;
+		uint32_t v = d(reg);
+		v = (v << 16) | (v >> 16);
+		d(reg, v);
+		set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+	case 0x4880: {	// EXT.w
+		int reg = op & 7;
+		uint32_t old = d(reg);
+		int16_t v = (int8_t)(old & 0xff);	// sign-extend low byte to 16 bits
+		d(reg, (old & 0xffff0000) | (uint16_t)v);
+		set_nz(v);
+		clr_vc();
+		return;
+	}
+	case 0x48c0: {	// EXT.l
+		int reg = op & 7;
+		int32_t v = (int16_t)d(reg);		// sign-extend low word to 32 bits
+		d(reg, (uint32_t)v);
+		set_nz(v);
+		clr_vc();
+		return;
+	}
 	case 0x4e60:	// MOVEtoUSP
 		_usp = a(op & 7);
 		return;
