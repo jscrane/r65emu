@@ -1,5 +1,4 @@
 #include <cstdint>
-#include <cstdio>
 
 #include "compat.h"
 #include "machine.h"
@@ -75,7 +74,6 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
 		a(reg, addr - step);
-		printf(">>> %d %08x %d %08x\n", reg, addr, step, a(reg));
 		return mem_ea(a(reg));
 	}
 	case 5: { // (d16,An)
@@ -194,6 +192,59 @@ void m68k::write_long(const EA &e, uint32_t v) {
 	}
 }
 
+// LONG-sized -(An)/(An)+ do NOT decrement/increment by 4 in one step --
+// verified empirically: real 68000 does two separate word transactions,
+// each with its own 2-byte register step. For -(An), the LOW-order word
+// is written first (at addr-2), then the HIGH-order word (at addr-4) --
+// final memory layout is normal big-endian, only the transaction ORDER is
+// reversed. For (An)+, by symmetry, HIGH-order word first (at the
+// original address), then LOW-order word (at addr+2).
+//
+// Since addr and addr+/-2 always share the same parity, a LONG auto-inc/dec
+// access either succeeds completely or faults entirely on the FIRST
+// sub-transaction -- there's no partial-success case.
+uint32_t m68k::read_long_predec(int reg) {
+	uint32_t addr = a(reg) - 4;
+	a(reg, addr);                // full decrement commits unconditionally, upfront
+	uint32_t hi = read16(addr);
+	if (_trapped) return 0;
+	uint32_t lo = read16(addr + 2);
+	if (_trapped) return 0;
+	return (hi << 16) | lo;
+}
+
+uint32_t m68k::read_long_postinc(int reg) {
+	uint32_t addr = a(reg);
+	a(reg, addr + 4);            // full increment commits unconditionally, upfront
+	uint32_t hi = read16(addr);
+	if (_trapped) return 0;
+	uint32_t lo = read16(addr + 2);
+	if (_trapped) return 0;
+	return (hi << 16) | lo;
+}
+
+void m68k::write_long_predec(int reg, uint32_t v) {
+	uint32_t addr = a(reg) - 2;
+	a(reg, addr);                              // predec always commits, even on fault
+	write16(addr, (uint16_t)(v & 0xffff));     // low word first
+	if (_trapped) return;
+	addr -= 2;
+	a(reg, addr);
+	write16(addr, (uint16_t)(v >> 16));        // high word second
+	if (_trapped) return;
+}
+
+void m68k::write_long_postinc(int reg, uint32_t v) {
+	uint32_t addr = a(reg);
+	write16(addr, (uint16_t)(v >> 16));        // high word first, at original address
+	if (_trapped) return;                      // write-postinc: only commit on success
+	a(reg, addr + 2);
+	addr += 2;
+	write16(addr, (uint16_t)(v & 0xffff));     // low word second
+	if (_trapped) return;
+	a(reg, addr + 2);
+}
+
 void m68k::moveb(uint16_t op) {
 	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
 	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
@@ -232,20 +283,29 @@ void m68k::movew(uint16_t op) {
 
 void m68k::movel(uint16_t op) {
 	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
-	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
+	int smode = (op >> 3) & 7, sreg  =  op       & 7;
 
-	EA src = decode_ea(smode, sreg, 4);
-	uint32_t v = read_long(src);
-	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
+	uint32_t v;
+	if (smode == 3)      v = read_long_postinc(sreg);
+	else if (smode == 4) v = read_long_predec(sreg);
+	else {
+		EA src = decode_ea(smode, sreg, 4);
+		v = read_long(src);
+		commit_postinc(src);
+	}
 	if (_trapped) return;
 
 	set_nz((int32_t)v);
 	clr_vc();
 
-	EA dst = decode_ea(dmode, dreg, 4);
-	write_long(dst, v);
-	if (_trapped) return;
-	commit_postinc(dst);   // conditional -- a write's postinc only commits on success
+	if (dmode == 3)      write_long_postinc(dreg, v);
+	else if (dmode == 4) write_long_predec(dreg, v);
+	else {
+		EA dst = decode_ea(dmode, dreg, 4);
+		write_long(dst, v);
+		if (_trapped) return;
+		commit_postinc(dst);
+	}
 }
 
 void m68k::misc(uint16_t op) {
