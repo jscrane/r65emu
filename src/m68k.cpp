@@ -47,6 +47,9 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0100:
 		misc(op);
 		break;
+	case 0b0111:
+		moveq(op);
+		break;
 	default:
 		illegal(op);
 		break;
@@ -318,10 +321,18 @@ void m68k::movel(uint16_t op) {
 	}
 }
 
+void m68k::moveq(uint16_t op) {
+	int dreg = (op >> 9) & 7;
+	uint8_t v = (op & 0xff);
+
+	set_nz((int8_t)v);
+	clr_vc();
+	d(dreg, (uint32_t)(int32_t)(int8_t)v);
+}
+
 void m68k::misc(uint16_t op) {
 	switch (op) {
-	case 0x4e71:
-		op_nop();
+	case 0x4e71: // NOP
 		break;
 	default:
 		illegal(op);
