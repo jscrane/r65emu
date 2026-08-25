@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstdio>
 
 #include "compat.h"
 #include "machine.h"
@@ -74,6 +75,7 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
 		a(reg, addr - step);
+		printf(">>> %d %08x %d %08x\n", reg, addr, step, a(reg));
 		return mem_ea(a(reg));
 	}
 	case 5: { // (d16,An)
@@ -116,8 +118,12 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 			if (!xLong) xval = (int16_t)xval;
 			return mem_ea(ext_addr + xval + disp8);
 		}
-		case 4: { // #imm -- byte immediate is still a full word fetch
-			uint16_t w = fetch16();
+		case 4: { // #imm -- size-dependent: byte/word need one word, long needs two
+			if (size == 4) {
+				uint32_t hi = fetch16(), lo = fetch16();
+				return EA{ EA::Imm, 0, 0, (hi << 16) | lo };
+			}
+			uint16_t w = fetch16();   // byte immediate: low byte of this word; word immediate: the whole word
 			return EA{ EA::Imm, 0, 0, w };
 		}
 		}
@@ -181,10 +187,10 @@ void m68k::write_word(const EA &e, uint16_t v) {
 
 void m68k::write_long(const EA &e, uint32_t v) {
 	switch (e.kind) {
-	case EA::RegD: d(e.reg, (d(e.reg) & 0xff000000) | v); break;	// upper 8 bits untouched
-	case EA::RegA: a(e.reg, (a(e.reg) & 0xff000000) | v); break;
+	case EA::RegD: d(e.reg, v); break;   // full 32 bits -- no masking, unlike byte/word
+	case EA::RegA: a(e.reg, v); break;
 	case EA::Mem:  write32(e.addr, v); break;
-	case EA::Imm:  break;   // illegal target
+	case EA::Imm:  break;
 	}
 }
 
@@ -233,7 +239,7 @@ void m68k::movel(uint16_t op) {
 	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
 	if (_trapped) return;
 
-	set_nz((int16_t)v);
+	set_nz((int32_t)v);
 	clr_vc();
 
 	EA dst = decode_ea(dmode, dreg, 4);
