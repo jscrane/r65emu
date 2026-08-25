@@ -61,11 +61,14 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 	case 2: // (An)
 		return mem_ea(a(reg));
 
-	case 3: { // (An)+  -- A7 always steps by 2 for byte size, word-alignment
+	case 3: { // (An)+  -- increment deferred; only commits if the access succeeds
 		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
-		a(reg, addr + step);
-		return mem_ea(addr);
+		EA e = mem_ea(addr);
+		e.has_postinc  = true;
+		e.postinc_reg  = reg;
+		e.postinc_step = step;
+		return e;
 	}
 	case 4: { // -(An)  -- same A7 rule, decrement happens before use
 		uint32_t addr = a(reg);
@@ -123,11 +126,16 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 	return EA{};
 }
 
+void m68k::commit_postinc(const EA &e) {
+	if (e.has_postinc)
+		a(e.postinc_reg, a(e.postinc_reg) + e.postinc_step);
+}
+
 uint8_t m68k::read_byte(const EA &e) {
 	switch (e.kind) {
 	case EA::RegD: return (uint8_t)d(e.reg);
 	case EA::RegA: return (uint8_t)a(e.reg);   // shouldn't occur for .b
-	case EA::Mem:  return _mem[e.addr];
+	case EA::Mem:  return _mem[bus_addr(e.addr)];
 	case EA::Imm:  return (uint8_t)e.value;
 	}
 	return 0;
@@ -157,7 +165,7 @@ void m68k::write_byte(const EA &e, uint8_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, (d(e.reg) & 0xffffff00) | v); break;	// upper 24 bits untouched
 	case EA::RegA: break;   // illegal target for .b, never called
-	case EA::Mem:  _mem[e.addr] = v; break;
+	case EA::Mem:  _mem[bus_addr(e.addr)] = v; break;
 	case EA::Imm:  break;   // illegal target
 	}
 }
@@ -186,40 +194,52 @@ void m68k::moveb(uint16_t op) {
 
 	EA src = decode_ea(smode, sreg, 1);   // consumes source extension word(s)
 	uint8_t v = read_byte(src);
-
-	EA dst = decode_ea(dmode, dreg, 1);   // consumes dest extension word(s)
-	write_byte(dst, v);
+	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
+	if (_trapped) return;
 
 	set_nz((int8_t)v);
 	clr_vc();
+
+	EA dst = decode_ea(dmode, dreg, 1);   // consumes dest extension word(s)
+	write_byte(dst, v);
+	if (_trapped) return;
+	commit_postinc(dst);   // conditional -- a write's postinc only commits on success
 }
 
 void m68k::movew(uint16_t op) {
 	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
-	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
+	int smode = (op >> 3) & 7, sreg  =  op       & 7;
 
-	EA src = decode_ea(smode, sreg, 2);   // consumes source extension word(s)
+	EA src = decode_ea(smode, sreg, 2);
 	uint16_t v = read_word(src);
-
-	EA dst = decode_ea(dmode, dreg, 2);   // consumes dest extension word(s)
-	write_word(dst, v);
+	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
+	if (_trapped) return;
 
 	set_nz((int16_t)v);
 	clr_vc();
+
+	EA dst = decode_ea(dmode, dreg, 2);
+	write_word(dst, v);
+	if (_trapped) return;
+	commit_postinc(dst);   // conditional -- a write's postinc only commits on success
 }
 
 void m68k::movel(uint16_t op) {
 	int dreg  = (op >> 9) & 7, dmode = (op >> 6) & 7;
 	int smode = (op >> 3) & 7, sreg  =  op	   & 7;
 
-	EA src = decode_ea(smode, sreg, 4);   // consumes source extension word(s)
+	EA src = decode_ea(smode, sreg, 4);
 	uint32_t v = read_long(src);
+	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
+	if (_trapped) return;
 
-	EA dst = decode_ea(dmode, dreg, 4);   // consumes dest extension word(s)
-	write_long(dst, v);
-
-	set_nz((int32_t)v);
+	set_nz((int16_t)v);
 	clr_vc();
+
+	EA dst = decode_ea(dmode, dreg, 4);
+	write_long(dst, v);
+	if (_trapped) return;
+	commit_postinc(dst);   // conditional -- a write's postinc only commits on success
 }
 
 void m68k::misc(uint16_t op) {
@@ -239,24 +259,90 @@ uint16_t m68k::fetch16() {
 	return (hi << 8) | lo;
 }
 
+void m68k::trap_address_error(uint32_t fault_addr, bool is_read) {
+	uint16_t old_sr = _sr;
+	bool was_supervisor = _sr & S_FLAG;
+
+	// SSW: bit4 = R/W (best-effort -- see issue notes), bit3 = I/N (always
+	// 0 here, this path is only reached for data access, never instruction
+	// fetch), bits2-0 = function code (supervisor/user data space)
+	uint16_t fc  = was_supervisor ? 0b101 : 0b001;
+	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, empirically 100% consistent
+             | (is_read ? (1u << 4) : 0) | fc;
+	// bits 5-7 of the low byte are still unexplained -- varies between samples
+	// (bit5 set in one, bit6 in another) with no pattern found yet. Treating
+	// this as an accepted gap alongside the PC-push timing issue, same root
+	// cause suspected (undefined/bus-latch-dependent content), not chased
+	// further for now.
+
+	// best-effort only -- doesn't match real prefetch-queue bus timing in
+	// the general case, see issue notes
+	Memory::address return_pc = PC;
+
+	_sr |= S_FLAG;   // exceptions always enter supervisor mode
+	// TODO: clear Trace bit once the trace flag/T_FLAG exists
+
+	uint32_t sp = ssp() - 14;
+	ssp(sp);
+
+	uint32_t a = sp;
+	auto push16 = [&](uint16_t v) {
+		_mem[a]     = v >> 8;
+		_mem[a + 1] = v & 0xff;
+		a += 2;
+	};
+	push16(ssw);
+	push16((uint16_t)(fault_addr >> 16));
+	push16((uint16_t)(fault_addr & 0xffff));
+	push16(_current_op);
+	push16(old_sr);
+	push16((uint16_t)(return_pc >> 16));
+	push16((uint16_t)(return_pc & 0xffff));
+
+	uint32_t vaddr = ADDRESS_ERROR_VECTOR * 4;
+	uint32_t vec = ((uint32_t)_mem[vaddr]   << 24) | ((uint32_t)_mem[vaddr+1] << 16)
+	             | ((uint32_t)_mem[vaddr+2] <<  8) |  (uint32_t)_mem[vaddr+3];
+	PC = vec & ADDRESS_MASK;
+
+	_trapped = true;
+}
+
+bool m68k::check_aligned(uint32_t addr, bool is_read) {
+	if (addr & 1) {
+		trap_address_error(addr, is_read);
+		return false;
+	}
+	return true;
+}
+
 uint16_t m68k::read16(uint32_t addr) {
-	uint16_t hi = _mem[addr++];
-	uint16_t lo = _mem[addr++];
+	if (!check_aligned(addr, true))
+		return 0;
+	uint32_t a = bus_addr(addr);
+	uint16_t hi = _mem[a];
+	uint16_t lo = _mem[a+1];
 	return (hi << 8) | lo;
 }
 
 uint32_t m68k::read32(uint32_t addr) {
+	if (!check_aligned(addr, true))
+		return 0;
 	uint32_t hi = read16(addr);
 	uint32_t lo = read16(addr+2);
 	return (hi << 16) | lo;
 }
 
 void m68k::write16(uint32_t addr, uint16_t v) {
-	_mem[addr++] = (v >> 8);
-	_mem[addr++] = (v & 0xff);
+	if (!check_aligned(addr, false))
+		return;
+	uint32_t a = bus_addr(addr);
+	_mem[a] = (v >> 8);
+	_mem[a+1] = (v & 0xff);
 }
 
 void m68k::write32(uint32_t addr, uint32_t v) {
+	if (!check_aligned(addr, false))
+		return;
 	write16(addr, (uint16_t)(v >> 16));
 	write16(addr+2, (uint16_t)(v & 0xffff));
 }

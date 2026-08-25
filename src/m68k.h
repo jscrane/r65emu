@@ -36,7 +36,11 @@ public:
 	}
 
 private:
-	inline void step() { decode_execute(fetch16()); }
+	inline void step() {
+		_trapped = false;
+		_current_op = fetch16();
+		decode_execute(_current_op);
+	}
 	void decode_execute(uint16_t op);
 
 	struct EA {	// Effective Address
@@ -44,24 +48,39 @@ private:
 		int reg = 0;		// valid if kind==Reg
 		uint32_t addr = 0;	// valid if kind==Mem
 		uint32_t value = 0;	// used only when kind == Imm
+		// (An)+ only: increment is deferred until the caller confirms this
+		// operand's own access succeeded -- -(An) has no such field since it
+		// always commits unconditionally (has to happen before the address
+		// is even computed)
+		bool has_postinc = false;
+		int  postinc_reg = 0;
+		int  postinc_step = 0;
 	};
 
 	static constexpr uint32_t ADDRESS_MASK = (1u << 24) - 1;
-	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr & ADDRESS_MASK }; }
+	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr }; }
+	inline uint32_t bus_addr(uint32_t addr) const { return addr & ADDRESS_MASK; }
 
 	EA decode_ea(int mode, int reg, int size /* bytes: 1,2,4 */);
-	uint8_t read_byte(const struct EA &);
-	void write_byte(const struct EA &, uint8_t);
-	uint16_t read_word(const struct EA &);
-	void write_word(const struct EA &, uint16_t);
-	uint32_t read_long(const struct EA &);
-	void write_long(const struct EA &, uint32_t);
+	void commit_postinc(const EA &);
+	uint8_t read_byte(const EA &);
+	void write_byte(const EA &, uint8_t);
+	uint16_t read_word(const EA &);
+	void write_word(const EA &, uint16_t);
+	uint32_t read_long(const EA &);
+	void write_long(const EA &, uint32_t);
 
 	uint16_t fetch16();
 	uint16_t read16(uint32_t);
 	uint32_t read32(uint32_t);
 	void write16(uint32_t, uint16_t);
 	void write32(uint32_t, uint32_t);
+
+	static constexpr int ADDRESS_ERROR_VECTOR = 3;
+	bool check_aligned(uint32_t addr, bool is_read);
+	void trap_address_error(uint32_t fault_addr, bool is_read);
+	bool  _trapped = false;
+	uint16_t _current_op = 0;
 
 	inline void set_nz(int v) {
 		_sr &= ~(N_FLAG | Z_FLAG);
