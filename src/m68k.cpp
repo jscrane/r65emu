@@ -177,7 +177,7 @@ void m68k::write_byte(const EA &e, uint8_t v) {
 void m68k::write_word(const EA &e, uint16_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, (d(e.reg) & 0xffff0000) | v); break;	// upper 16 bits untouched
-	case EA::RegA: a(e.reg, (a(e.reg) & 0xffff0000) | v); break;
+	case EA::RegA: break;	// never called (movea)
 	case EA::Mem:  write16(e.addr, v); break;
 	case EA::Imm:  break;   // illegal target
 	}
@@ -186,7 +186,7 @@ void m68k::write_word(const EA &e, uint16_t v) {
 void m68k::write_long(const EA &e, uint32_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, v); break;   // full 32 bits -- no masking, unlike byte/word
-	case EA::RegA: a(e.reg, v); break;
+	case EA::RegA: break;	// never called (movea)
 	case EA::Mem:  write32(e.addr, v); break;
 	case EA::Imm:  break;
 	}
@@ -272,6 +272,11 @@ void m68k::movew(uint16_t op) {
 	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
 	if (_trapped) return;
 
+	if (dmode == 1) {	// movea
+		a(dreg, (uint32_t)(int16_t)v);
+		return;
+	}
+
 	set_nz((int16_t)v);
 	clr_vc();
 
@@ -294,6 +299,11 @@ void m68k::movel(uint16_t op) {
 		commit_postinc(src);
 	}
 	if (_trapped) return;
+
+	if (dmode == 1) {	// movea
+		a(dreg, v);
+		return;
+	}
 
 	set_nz((int32_t)v);
 	clr_vc();
@@ -447,7 +457,7 @@ void m68k::restore(Checkpoint &c) {
 	c.read(D[5]);
 	c.read(D[6]);
 	c.read(D[7]);
-	c.read(D[0]);
+	c.read(A[0]);
 	c.read(A[1]);
 	c.read(A[2]);
 	c.read(A[3]);
