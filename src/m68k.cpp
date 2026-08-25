@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstdio>
 
 #include "compat.h"
 #include "machine.h"
@@ -46,6 +47,9 @@ void m68k::decode_execute(uint16_t op) {
 		break;
 	case 0b0100:
 		misc(op);
+		break;
+	case 0b0111:
+		moveq(op);
 		break;
 	default:
 		illegal(op);
@@ -177,7 +181,7 @@ void m68k::write_byte(const EA &e, uint8_t v) {
 void m68k::write_word(const EA &e, uint16_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, (d(e.reg) & 0xffff0000) | v); break;	// upper 16 bits untouched
-	case EA::RegA: a(e.reg, (a(e.reg) & 0xffff0000) | v); break;
+	case EA::RegA: break;	// never called (movea)
 	case EA::Mem:  write16(e.addr, v); break;
 	case EA::Imm:  break;   // illegal target
 	}
@@ -186,7 +190,7 @@ void m68k::write_word(const EA &e, uint16_t v) {
 void m68k::write_long(const EA &e, uint32_t v) {
 	switch (e.kind) {
 	case EA::RegD: d(e.reg, v); break;   // full 32 bits -- no masking, unlike byte/word
-	case EA::RegA: a(e.reg, v); break;
+	case EA::RegA: break;	// never called (movea)
 	case EA::Mem:  write32(e.addr, v); break;
 	case EA::Imm:  break;
 	}
@@ -272,6 +276,11 @@ void m68k::movew(uint16_t op) {
 	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
 	if (_trapped) return;
 
+	if (dmode == 1) {	// movea
+		a(dreg, (uint32_t)(int16_t)v);
+		return;
+	}
+
 	set_nz((int16_t)v);
 	clr_vc();
 
@@ -295,6 +304,11 @@ void m68k::movel(uint16_t op) {
 	}
 	if (_trapped) return;
 
+	if (dmode == 1) {	// movea
+		a(dreg, v);
+		return;
+	}
+
 	set_nz((int32_t)v);
 	clr_vc();
 
@@ -308,15 +322,82 @@ void m68k::movel(uint16_t op) {
 	}
 }
 
+void m68k::moveq(uint16_t op) {
+	int dreg = (op >> 9) & 7;
+	uint8_t v = (op & 0xff);
+
+	set_nz((int8_t)v);
+	clr_vc();
+	d(dreg, (uint32_t)(int32_t)(int8_t)v);
+}
+
 void m68k::misc(uint16_t op) {
 	switch (op) {
-	case 0x4e71:
-		op_nop();
-		break;
-	default:
-		illegal(op);
-		break;
+	case 0x4e71:	// NOP
+		return;
 	}
+
+	switch (op & 0xfff8) {
+	case 0x4840: {	// SWAP
+		int reg = op & 7;
+		uint32_t v = d(reg);
+		v = (v << 16) | (v >> 16);
+		d(reg, v);
+		set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+	case 0x4880: {	// EXT.w
+		int reg = op & 7;
+		uint32_t old = d(reg);
+		int16_t v = (int8_t)(old & 0xff);	// sign-extend low byte to 16 bits
+		d(reg, (old & 0xffff0000) | (uint16_t)v);
+		set_nz(v);
+		clr_vc();
+		return;
+	}
+	case 0x48c0: {	// EXT.l
+		int reg = op & 7;
+		int32_t v = (int16_t)d(reg);		// sign-extend low word to 32 bits
+		d(reg, (uint32_t)v);
+		set_nz(v);
+		clr_vc();
+		return;
+	}
+	case 0x4e60:	// MOVEtoUSP
+		_usp = a(op & 7);
+		return;
+	case 0x4e68:	// MOVEfromUSP
+		a(op & 7, _usp);
+		return;
+	}
+
+	switch (op & 0xffc0) {
+	case 0x40c0: {	// MOVEfromSR
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
+		write_word(dst, _sr);
+		commit_postinc(dst);   // unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
+		return;
+	}
+	case 0x44c0: {	// MOVEtoCCR
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped)
+			_sr = (_sr & 0xffe0) | (v & 0x1f);
+		return;
+	}
+	case 0x46c0: {	// MOVEtoSR
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped)
+			_sr = v & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+		return;
+	}
+	}
+
+	illegal(op);
 }
 
 uint16_t m68k::fetch16() {
@@ -447,7 +528,7 @@ void m68k::restore(Checkpoint &c) {
 	c.read(D[5]);
 	c.read(D[6]);
 	c.read(D[7]);
-	c.read(D[0]);
+	c.read(A[0]);
 	c.read(A[1]);
 	c.read(A[2]);
 	c.read(A[3]);

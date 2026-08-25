@@ -97,9 +97,9 @@ private:
 	void moveb(uint16_t op);
 	void movew(uint16_t op);
 	void movel(uint16_t op);
+	void moveq(uint16_t op);
 	void misc(uint16_t op);
 	void illegal(uint16_t op);
-	void op_nop() {}
 
 	std::function<void(uint16_t)> _illegal_instruction_handler;
 	uint32_t D[8], A[7];
