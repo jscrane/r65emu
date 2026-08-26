@@ -81,21 +81,60 @@ private:
 	void write16(uint32_t, uint16_t);
 	void write32(uint32_t, uint32_t);
 
-	static constexpr int ADDRESS_ERROR_VECTOR = 3;
+	static constexpr int ADDRESS_ERROR = 3;
+	static constexpr int TRAPV = 7;
+	static constexpr int PRIVILEGE_VIOLATION = 8;
+	static constexpr int TRAP_VECTORS = 32;
+
 	bool check_aligned(uint32_t addr, bool is_read);
-	void trap_address_error(uint32_t fault_addr, bool is_read);
+	void trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch = false);
+	inline bool jump_to(uint32_t addr) {
+		if (addr & 1) {
+			trap_address_error(addr, true, true);
+			return false;
+		}
+		pc(addr);
+		return true;
+	}
+	inline void jump_to_vector(int num) {
+		uint32_t vaddr = num * 4;
+		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
+				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
+		pc(vec & ADDRESS_MASK);
+	}
+	inline void raise_exception(int num) {
+		uint32_t ret = pc();
+		uint16_t sr = _sr;
+		_sr |= S_FLAG;
+		_sr &= ~T_FLAG;
+		push32(ret);
+		push16(sr);
+		jump_to_vector(num);
+	}
+
 	bool  _trapped = false;
 	uint16_t _current_op = 0;
 
-	inline void set_nz(int v) {
-		_sr &= ~(N_FLAG | Z_FLAG);
-		if (v == 0)	_sr |= Z_FLAG;
-		if (v < 0)	_sr |= N_FLAG;
+	inline void push16(uint16_t v) {
+		uint32_t sp = a(7) - 2;
+		a(7, sp);
+		_mem[bus_addr(sp)]     = v >> 8;
+		_mem[bus_addr(sp + 1)] = v & 0xff;
 	}
-	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
-	inline void set_flag(uint16_t flag, bool cond) {
-		if (cond) _sr |= flag;
-		else _sr &= ~flag;
+	inline uint16_t pop16() {
+		uint32_t sp = a(7);
+		uint16_t v = (_mem[bus_addr(sp)] << 8) | _mem[bus_addr(sp + 1)];
+		a(7, sp + 2);
+		return v;
+	}
+	inline void push32(uint32_t v) {
+		push16((uint16_t)(v & 0xffff));
+		push16((uint16_t)(v >> 16));
+	}
+	inline uint32_t pop32() {
+		uint32_t hi = pop16();
+		uint32_t lo = pop16();
+		return (hi << 16) | lo;
 	}
 
 	void moveb(uint16_t op);
@@ -109,6 +148,23 @@ private:
 	uint32_t D[8], A[7];
 	uint32_t _usp, _ssp;
 
+	inline void set_nz(int v) {
+		_sr &= ~(N_FLAG | Z_FLAG);
+		if (v == 0)	_sr |= Z_FLAG;
+		if (v < 0)	_sr |= N_FLAG;
+	}
+	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
+	inline void set_flag(uint16_t flag, bool cond) {
+		if (cond) _sr |= flag;
+		else _sr &= ~flag;
+	}
+	inline void update_ccr(uint16_t flags) {
+		_sr = (_sr & 0xffe0) | (flags & 0x001f);
+	}
+	inline void update_sr(uint16_t flags) {
+		_sr = flags & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+	}
+
 	uint16_t _sr;
 	static constexpr uint16_t C_FLAG = (1u << 0);
 	static constexpr uint16_t V_FLAG = (1u << 1);
@@ -116,4 +172,5 @@ private:
 	static constexpr uint16_t N_FLAG = (1u << 3);
 	static constexpr uint16_t X_FLAG = (1u << 4);
 	static constexpr uint16_t S_FLAG = (1u << 13);
+	static constexpr uint16_t T_FLAG = (1u << 15);
 };
