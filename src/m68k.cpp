@@ -545,6 +545,32 @@ void m68k::misc(uint16_t op) {
 			_sr = v & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
 		return;
 	}
+	case 0x4800: {	// NBCD
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+
+		if (!_trapped) {
+			int x = ((_sr & X_FLAG) != 0);
+			int lo = (u & 0x0f), hi = (u & 0xf0) >> 4;
+			int dec = 10*hi + lo;
+			int res = 100 - dec - x;
+			bool borrow = (res < 100);
+			if (res >= 100) res -= 100;
+			uint8_t v = ((res / 10) << 4) | (res % 10);
+			write_byte(src, v);
+			// V is documented as undefined on real 68000 for BCD ops
+			// (NBCD/ABCD/SBCD) -- checked three candidate formulas against
+			// real vectors (binary-NEG overflow, mirrors C, preserved from
+			// before) and none matched cleanly; treating as an accepted
+			// gap, same category as the address-error SSW residual bits.
+			// Leaving V untouched here rather than guessing further.
+			set_flag(C_FLAG | X_FLAG, borrow);
+			set_flag(N_FLAG, v & 0x80);
+			if (v != 0) _sr &= ~Z_FLAG;	// sticky -- only ever cleared, never forced set
+		}
+		return;
+	}
 	case 0x4a00: {	// TST.b
 		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
 		uint8_t v = read_byte(src);
