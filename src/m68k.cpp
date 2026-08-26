@@ -345,8 +345,9 @@ void m68k::misc(uint16_t op) {
 			return;
 		}
 		uint16_t sr = pop16();
-		jump_to(pop32());
+		uint32_t target = pop32();
 		update_sr(sr);
+		jump_to(target);
 		return;
 	}
 	case 0x4e76: {	// TRAPV
@@ -698,8 +699,8 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	// the general case, see issue notes
 	Memory::address return_pc = PC;
 
-	_sr |= S_FLAG;   // exceptions always enter supervisor mode
-	// TODO: clear Trace bit once the trace flag/T_FLAG exists
+	_sr |= S_FLAG;		// exceptions always enter supervisor mode
+	_sr &= ~T_FLAG;		// exception entry always clears Trace
 
 	push32(return_pc);
 	push16(old_sr);

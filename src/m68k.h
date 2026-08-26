@@ -106,6 +106,7 @@ private:
 		uint32_t ret = pc();
 		uint16_t sr = _sr;
 		_sr |= S_FLAG;
+		_sr &= ~T_FLAG;
 		push32(ret);
 		push16(sr);
 		jump_to_vector(num);
@@ -171,4 +172,5 @@ private:
 	static constexpr uint16_t N_FLAG = (1u << 3);
 	static constexpr uint16_t X_FLAG = (1u << 4);
 	static constexpr uint16_t S_FLAG = (1u << 13);
+	static constexpr uint16_t T_FLAG = (1u << 15);
 };
