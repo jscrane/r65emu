@@ -601,6 +601,17 @@ void m68k::misc(uint16_t op) {
 		}
 		return;
 	}
+	case 0x4ac0: {	// TAS
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int8_t)u);
+			clr_vc();
+			write_byte(src, u | 0x80);
+		}
+		return;
+	}
 	}
 
 	illegal(op);
