@@ -425,6 +425,36 @@ void m68k::misc(uint16_t op) {
 			_sr = v & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
 		return;
 	}
+	case 0x4a00: {	// TST.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t v = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int32_t)(int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4a40: {	// TST.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int32_t)(int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4a80: {	// TST.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t v = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
 	}
 
 	illegal(op);
