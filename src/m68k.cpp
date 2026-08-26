@@ -390,9 +390,17 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e60:	// MOVEtoUSP
+		if (!(_sr & S_FLAG)) {
+			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
 		_usp = a(op & 7);
 		return;
 	case 0x4e68:	// MOVEfromUSP
+		if (!(_sr & S_FLAG)) {
+			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
 		a(op & 7, _usp);
 		return;
 	}
@@ -570,6 +578,10 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x46c0: {	// MOVEtoSR
+		if (!(_sr & S_FLAG)) {
+			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
 		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
