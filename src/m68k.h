@@ -83,7 +83,16 @@ private:
 
 	static constexpr int ADDRESS_ERROR_VECTOR = 3;
 	bool check_aligned(uint32_t addr, bool is_read);
-	void trap_address_error(uint32_t fault_addr, bool is_read);
+	void trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch = false);
+	inline bool jump_to(uint32_t addr) {
+		if (addr & 1) {
+			trap_address_error(addr, true, true);
+			return false;
+		}
+		pc(addr);
+		return true;
+	}
+
 	bool  _trapped = false;
 	uint16_t _current_op = 0;
 
@@ -96,6 +105,28 @@ private:
 	inline void set_flag(uint16_t flag, bool cond) {
 		if (cond) _sr |= flag;
 		else _sr &= ~flag;
+	}
+
+	inline void push16(uint16_t v) {
+		uint32_t sp = a(7) - 2;
+		a(7, sp);
+		_mem[bus_addr(sp)]     = v >> 8;
+		_mem[bus_addr(sp + 1)] = v & 0xff;
+	}
+	inline uint16_t pop16() {
+		uint32_t sp = a(7);
+		uint16_t v = (_mem[bus_addr(sp)] << 8) | _mem[bus_addr(sp + 1)];
+		a(7, sp + 2);
+		return v;
+	}
+	inline void push32(uint32_t v) {
+		push16((uint16_t)(v & 0xffff));
+		push16((uint16_t)(v >> 16));
+	}
+	inline uint32_t pop32() {
+		uint32_t hi = pop16();
+		uint32_t lo = pop16();
+		return (hi << 16) | lo;
 	}
 
 	void moveb(uint16_t op);

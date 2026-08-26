@@ -152,7 +152,7 @@ uint8_t m68k::read_byte(const EA &e) {
 uint16_t m68k::read_word(const EA &e) {
 	switch (e.kind) {
 	case EA::RegD: return (uint16_t)d(e.reg);
-	case EA::RegA: return (uint16_t)a(e.reg);   // shouldn't occur for .b
+	case EA::RegA: return (uint16_t)a(e.reg);   // shouldn't occur for .w
 	case EA::Mem:  return read16(e.addr);
 	case EA::Imm:  return (uint16_t)e.value;
 	}
@@ -162,7 +162,7 @@ uint16_t m68k::read_word(const EA &e) {
 uint32_t m68k::read_long(const EA &e) {
 	switch (e.kind) {
 	case EA::RegD: return (uint32_t)d(e.reg);
-	case EA::RegA: return (uint32_t)a(e.reg);   // shouldn't occur for .b
+	case EA::RegA: return (uint32_t)a(e.reg);   // shouldn't occur for .l
 	case EA::Mem:  return read32(e.addr);
 	case EA::Imm:  return (uint32_t)e.value;
 	}
@@ -335,6 +335,25 @@ void m68k::misc(uint16_t op) {
 	switch (op) {
 	case 0x4e71:	// NOP
 		return;
+	case 0x4e75: {	// RTS
+		jump_to(pop32());
+		return;
+	}
+	case 0x4e73: {	// RTE
+		if (!(_sr & S_FLAG)) {
+			// FIXME
+			return;
+		}
+		_sr = pop16();
+		jump_to(pop32());
+		return;
+	}
+	case 0x4e77: {	// RTR
+		uint16_t flags = pop16();
+		_sr = (_sr & 0xffe0) | (flags & 0x001f);
+		jump_to(pop32());
+		return;
+	}
 	}
 
 	switch (op & 0xfff8) {
@@ -612,6 +631,28 @@ void m68k::misc(uint16_t op) {
 		}
 		return;
 	}
+	case 0x4e80: {	// JSR
+		int mode = (op >> 3) & 7, reg = op & 7;
+		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+			illegal(op);
+			return;
+		}
+		EA src = decode_ea(mode, reg, 4);
+		uint32_t ret = pc();
+		if (jump_to(src.addr))
+			push32(ret);
+		return;
+	}
+	case 0x4ec0: {	// JMP
+		int mode = (op >> 3) & 7, reg = op & 7;
+		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+			illegal(op);
+			return;
+		}
+		EA src = decode_ea(mode, reg, 4);
+		jump_to(src.addr);
+		return;
+	}
 	}
 
 	illegal(op);
@@ -623,7 +664,7 @@ uint16_t m68k::fetch16() {
 	return (hi << 8) | lo;
 }
 
-void m68k::trap_address_error(uint32_t fault_addr, bool is_read) {
+void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch) {
 	uint16_t old_sr = _sr;
 	bool was_supervisor = _sr & S_FLAG;
 
@@ -632,7 +673,9 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read) {
 	// fetch), bits2-0 = function code (supervisor/user data space)
 	uint16_t fc  = was_supervisor ? 0b101 : 0b001;
 	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, empirically 100% consistent
-             | (is_read ? (1u << 4) : 0) | fc;
+		| (is_read ? (1u << 4) : 0)
+		| (is_instr_fetch ? (1u << 3) : 0)
+		| fc;
 	// bits 5-7 of the low byte are still unexplained -- varies between samples
 	// (bit5 set in one, bit6 in another) with no pattern found yet. Treating
 	// this as an accepted gap alongside the PC-push timing issue, same root
@@ -646,22 +689,11 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read) {
 	_sr |= S_FLAG;   // exceptions always enter supervisor mode
 	// TODO: clear Trace bit once the trace flag/T_FLAG exists
 
-	uint32_t sp = ssp() - 14;
-	ssp(sp);
-
-	uint32_t a = sp;
-	auto push16 = [&](uint16_t v) {
-		_mem[a]     = v >> 8;
-		_mem[a + 1] = v & 0xff;
-		a += 2;
-	};
-	push16(ssw);
-	push16((uint16_t)(fault_addr >> 16));
-	push16((uint16_t)(fault_addr & 0xffff));
-	push16(_current_op);
+	push32(return_pc);
 	push16(old_sr);
-	push16((uint16_t)(return_pc >> 16));
-	push16((uint16_t)(return_pc & 0xffff));
+	push16(_current_op);
+	push32(fault_addr);
+	push16(ssw);
 
 	uint32_t vaddr = ADDRESS_ERROR_VECTOR * 4;
 	uint32_t vec = ((uint32_t)_mem[vaddr]   << 24) | ((uint32_t)_mem[vaddr+1] << 16)
