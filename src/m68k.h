@@ -81,8 +81,9 @@ private:
 	void write16(uint32_t, uint16_t);
 	void write32(uint32_t, uint32_t);
 
-	static constexpr int ADDRESS_ERROR_VECTOR = 3;
-	static constexpr int PRIVILEGE_VIOLATION_VECTOR = 3;
+	static constexpr int ADDRESS_ERROR = 3;
+	static constexpr int TRAPV = 7;
+	static constexpr int PRIVILEGE_VIOLATION = 8;
 	static constexpr int TRAP_VECTORS = 32;
 
 	bool check_aligned(uint32_t addr, bool is_read);
@@ -100,6 +101,14 @@ private:
 		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
 				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
 		pc(vec & ADDRESS_MASK);
+	}
+	inline void raise_exception(int num) {
+		uint32_t ret = pc();
+		uint16_t sr = _sr;
+		_sr |= S_FLAG;
+		push32(ret);
+		push16(sr);
+		jump_to_vector(num);
 	}
 
 	bool  _trapped = false;
