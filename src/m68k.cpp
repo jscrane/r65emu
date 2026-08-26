@@ -417,6 +417,42 @@ void m68k::misc(uint16_t op) {
 			_sr = (_sr & 0xffe0) | (v & 0x1f);
 		return;
 	}
+	case 0x4600: {	// NOT.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t v = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			v ^= ~(uint8_t)0;
+			write_byte(src, v);
+			set_nz((int32_t)(int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4640: {	// NOT.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			v ^= ~(uint16_t)0;
+			write_word(src, v);
+			set_nz((int32_t)(int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4680: {	// NOT.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t v = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			v ^= ~(uint32_t)0;
+			write_long(src, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
 	case 0x46c0: {	// MOVEtoSR
 		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
 		uint16_t v = read_word(src);
