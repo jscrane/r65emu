@@ -409,6 +409,45 @@ void m68k::misc(uint16_t op) {
 		}
 		return;
 	}
+	case 0x4400: {	// NEG.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			uint8_t v = (uint8_t)(-u);
+			write_byte(src, v);
+			set_nz((int32_t)(int8_t)v);
+			set_flag(V_FLAG, u == 0x80);
+			set_flag(C_FLAG | X_FLAG, u != 0x00);
+		}
+		return;
+	}
+	case 0x4440: {	// NEG.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t u = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			uint16_t v = (uint16_t)(-u);
+			write_word(src, v);
+			set_nz((int32_t)(int16_t)v);
+			set_flag(V_FLAG, u == 0x8000);
+			set_flag(C_FLAG | X_FLAG, u != 0x00);
+		}
+		return;
+	}
+	case 0x4480: {	// NEG.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t u = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			uint32_t v = (uint32_t)(-u);
+			write_long(src, v);
+			set_nz((int32_t)v);
+			set_flag(V_FLAG, u == 0x80000000);
+			set_flag(C_FLAG | X_FLAG, u != 0x00);
+		}
+		return;
+	}
 	case 0x44c0: {	// MOVEtoCCR
 		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
 		uint16_t v = read_word(src);
@@ -417,7 +456,7 @@ void m68k::misc(uint16_t op) {
 			_sr = (_sr & 0xffe0) | (v & 0x1f);
 		return;
 	}
-	case 0x4600: {	// NOT.w
+	case 0x4600: {	// NOT.b
 		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
 		uint8_t v = read_byte(src);
 		commit_postinc(src);
