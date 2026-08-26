@@ -373,6 +373,51 @@ void m68k::misc(uint16_t op) {
 	}
 
 	switch (op & 0xffc0) {
+	case 0x4000: {	// NEGX.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);	// unconditional -- confirmed empirically, same as NEG/CLR
+		if (!_trapped) {
+			bool x = (_sr & X_FLAG) != 0;
+			uint8_t v = (uint8_t)(-(int)(int8_t)u - (x ? 1 : 0));
+			write_byte(src, v);
+			set_flag(N_FLAG, (int8_t)v < 0);
+			if (v != 0) _sr &= ~Z_FLAG;	// sticky -- only ever cleared, never forced set
+			set_flag(V_FLAG, u == 0x80 && !x);
+			set_flag(C_FLAG | X_FLAG, !(u == 0x00 && !x));
+		}
+		return;
+	}
+	case 0x4040: {	// NEGX.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t u = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			bool x = (_sr & X_FLAG) != 0;
+			uint16_t v = (uint16_t)(-(int)(int16_t)u - (x ? 1 : 0));
+			write_word(src, v);
+			set_flag(N_FLAG, (int16_t)v < 0);
+			if (v != 0) _sr &= ~Z_FLAG;
+			set_flag(V_FLAG, u == 0x8000 && !x);
+			set_flag(C_FLAG | X_FLAG, !(u == 0x0000 && !x));
+		}
+		return;
+	}
+	case 0x4080: {	// NEGX.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t u = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			bool x = (_sr & X_FLAG) != 0;
+			uint32_t v = (uint32_t)(-(int64_t)(int32_t)u - (x ? 1 : 0));
+			write_long(src, v);
+			set_flag(N_FLAG, (int32_t)v < 0);
+			if (v != 0) _sr &= ~Z_FLAG;
+			set_flag(V_FLAG, u == 0x80000000u && !x);
+			set_flag(C_FLAG | X_FLAG, !(u == 0x00000000u && !x));
+		}
+		return;
+	}
 	case 0x40c0: {	// MOVEfromSR
 		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
 		write_word(dst, _sr);
