@@ -379,6 +379,36 @@ void m68k::misc(uint16_t op) {
 		commit_postinc(dst);   // unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
 		return;
 	}
+	case 0x4200: {	// CLR.b
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 1);
+		write_byte(dst, 0);
+		commit_postinc(dst);
+		if (!_trapped) {
+			set_nz(0);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4240: {	// CLR.w
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
+		write_word(dst, 0);
+		commit_postinc(dst);
+		if (!_trapped) {
+			set_nz(0);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4280: {	// CLR.l
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 4);
+		write_long(dst, 0);
+		commit_postinc(dst);
+		if (!_trapped) {
+			set_nz(0);
+			clr_vc();
+		}
+		return;
+	}
 	case 0x44c0: {	// MOVEtoCCR
 		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
 		uint16_t v = read_word(src);
