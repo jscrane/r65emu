@@ -344,8 +344,9 @@ void m68k::misc(uint16_t op) {
 			jump_to_vector(PRIVILEGE_VIOLATION_VECTOR);
 			return;
 		}
-		_sr = pop16();
+		uint16_t sr = pop16();
 		jump_to(pop32());
+		update_sr(sr);
 		return;
 	}
 	case 0x4e77: {	// RTR
@@ -573,7 +574,7 @@ void m68k::misc(uint16_t op) {
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped)
-			_sr = v & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+			update_sr(v);
 		return;
 	}
 	case 0x4800: {	// NBCD

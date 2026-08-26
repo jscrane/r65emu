@@ -151,6 +151,9 @@ private:
 	inline void update_ccr(uint16_t flags) {
 		_sr = (_sr & 0xffe0) | (flags & 0x001f);
 	}
+	inline void update_sr(uint16_t flags) {
+		_sr = flags & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+	}
 
 	uint16_t _sr;
 	static constexpr uint16_t C_FLAG = (1u << 0);
