@@ -349,8 +349,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e77: {	// RTR
-		uint16_t flags = pop16();
-		_sr = (_sr & 0xffe0) | (flags & 0x001f);
+		update_ccr(pop16());
 		jump_to(pop32());
 		return;
 	}
@@ -517,7 +516,7 @@ void m68k::misc(uint16_t op) {
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped)
-			_sr = (_sr & 0xffe0) | (v & 0x1f);
+			update_ccr(v);
 		return;
 	}
 	case 0x4600: {	// NOT.b

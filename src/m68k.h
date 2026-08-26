@@ -96,17 +96,6 @@ private:
 	bool  _trapped = false;
 	uint16_t _current_op = 0;
 
-	inline void set_nz(int v) {
-		_sr &= ~(N_FLAG | Z_FLAG);
-		if (v == 0)	_sr |= Z_FLAG;
-		if (v < 0)	_sr |= N_FLAG;
-	}
-	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
-	inline void set_flag(uint16_t flag, bool cond) {
-		if (cond) _sr |= flag;
-		else _sr &= ~flag;
-	}
-
 	inline void push16(uint16_t v) {
 		uint32_t sp = a(7) - 2;
 		a(7, sp);
@@ -139,6 +128,20 @@ private:
 	std::function<void(uint16_t)> _illegal_instruction_handler;
 	uint32_t D[8], A[7];
 	uint32_t _usp, _ssp;
+
+	inline void set_nz(int v) {
+		_sr &= ~(N_FLAG | Z_FLAG);
+		if (v == 0)	_sr |= Z_FLAG;
+		if (v < 0)	_sr |= N_FLAG;
+	}
+	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
+	inline void set_flag(uint16_t flag, bool cond) {
+		if (cond) _sr |= flag;
+		else _sr &= ~flag;
+	}
+	inline void update_ccr(uint16_t flags) {
+		_sr = (_sr & 0xffe0) | (flags & 0x001f);
+	}
 
 	uint16_t _sr;
 	static constexpr uint16_t C_FLAG = (1u << 0);
