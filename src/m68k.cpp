@@ -373,10 +373,124 @@ void m68k::misc(uint16_t op) {
 	}
 
 	switch (op & 0xffc0) {
+	case 0x4000: {	// NEGX.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);	// unconditional -- confirmed empirically, same as NEG/CLR
+		if (!_trapped) {
+			bool x = (_sr & X_FLAG) != 0;
+			uint8_t v = (uint8_t)(-(int)(int8_t)u - (x ? 1 : 0));
+			write_byte(src, v);
+			set_flag(N_FLAG, (int8_t)v < 0);
+			if (v != 0) _sr &= ~Z_FLAG;	// sticky -- only ever cleared, never forced set
+			set_flag(V_FLAG, u == 0x80 && !x);
+			set_flag(C_FLAG | X_FLAG, !(u == 0x00 && !x));
+		}
+		return;
+	}
+	case 0x4040: {	// NEGX.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t u = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			bool x = (_sr & X_FLAG) != 0;
+			uint16_t v = (uint16_t)(-(int)(int16_t)u - (x ? 1 : 0));
+			write_word(src, v);
+			set_flag(N_FLAG, (int16_t)v < 0);
+			if (v != 0) _sr &= ~Z_FLAG;
+			set_flag(V_FLAG, u == 0x8000 && !x);
+			set_flag(C_FLAG | X_FLAG, !(u == 0x0000 && !x));
+		}
+		return;
+	}
+	case 0x4080: {	// NEGX.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t u = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			bool x = (_sr & X_FLAG) != 0;
+			uint32_t v = (uint32_t)(-(int64_t)(int32_t)u - (x ? 1 : 0));
+			write_long(src, v);
+			set_flag(N_FLAG, (int32_t)v < 0);
+			if (v != 0) _sr &= ~Z_FLAG;
+			set_flag(V_FLAG, u == 0x80000000u && !x);
+			set_flag(C_FLAG | X_FLAG, !(u == 0x00000000u && !x));
+		}
+		return;
+	}
 	case 0x40c0: {	// MOVEfromSR
 		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
 		write_word(dst, _sr);
 		commit_postinc(dst);   // unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
+		return;
+	}
+	case 0x4200: {	// CLR.b
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 1);
+		write_byte(dst, 0);
+		commit_postinc(dst);
+		if (!_trapped) {
+			set_nz(0);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4240: {	// CLR.w
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
+		write_word(dst, 0);
+		commit_postinc(dst);
+		if (!_trapped) {
+			set_nz(0);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4280: {	// CLR.l
+		EA dst = decode_ea((op >> 3) & 7, op & 7, 4);
+		write_long(dst, 0);
+		commit_postinc(dst);
+		if (!_trapped) {
+			set_nz(0);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4400: {	// NEG.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			uint8_t v = (uint8_t)(-u);
+			write_byte(src, v);
+			set_nz((int32_t)(int8_t)v);
+			set_flag(V_FLAG, u == 0x80);
+			set_flag(C_FLAG | X_FLAG, u != 0x00);
+		}
+		return;
+	}
+	case 0x4440: {	// NEG.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t u = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			uint16_t v = (uint16_t)(-u);
+			write_word(src, v);
+			set_nz((int32_t)(int16_t)v);
+			set_flag(V_FLAG, u == 0x8000);
+			set_flag(C_FLAG | X_FLAG, u != 0x00);
+		}
+		return;
+	}
+	case 0x4480: {	// NEG.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t u = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			uint32_t v = (uint32_t)(-u);
+			write_long(src, v);
+			set_nz((int32_t)v);
+			set_flag(V_FLAG, u == 0x80000000);
+			set_flag(C_FLAG | X_FLAG, u != 0x00);
+		}
 		return;
 	}
 	case 0x44c0: {	// MOVEtoCCR
@@ -387,12 +501,115 @@ void m68k::misc(uint16_t op) {
 			_sr = (_sr & 0xffe0) | (v & 0x1f);
 		return;
 	}
+	case 0x4600: {	// NOT.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t v = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			v ^= ~(uint8_t)0;
+			write_byte(src, v);
+			set_nz((int32_t)(int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4640: {	// NOT.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			v ^= ~(uint16_t)0;
+			write_word(src, v);
+			set_nz((int32_t)(int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4680: {	// NOT.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t v = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			v ^= ~(uint32_t)0;
+			write_long(src, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
 	case 0x46c0: {	// MOVEtoSR
 		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped)
 			_sr = v & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+		return;
+	}
+	case 0x4800: {	// NBCD
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+
+		if (!_trapped) {
+			int x = ((_sr & X_FLAG) != 0);
+			int lo = (u & 0x0f), hi = (u & 0xf0) >> 4;
+			int dec = 10*hi + lo;
+			int res = 100 - dec - x;
+			bool borrow = (res < 100);
+			if (res >= 100) res -= 100;
+			uint8_t v = ((res / 10) << 4) | (res % 10);
+			write_byte(src, v);
+			// V is documented as undefined on real 68000 for BCD ops
+			// (NBCD/ABCD/SBCD) -- checked three candidate formulas against
+			// real vectors (binary-NEG overflow, mirrors C, preserved from
+			// before) and none matched cleanly; treating as an accepted
+			// gap, same category as the address-error SSW residual bits.
+			// Leaving V untouched here rather than guessing further.
+			set_flag(C_FLAG | X_FLAG, borrow);
+			set_flag(N_FLAG, v & 0x80);
+			if (v != 0) _sr &= ~Z_FLAG;	// sticky -- only ever cleared, never forced set
+		}
+		return;
+	}
+	case 0x4a00: {	// TST.b
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t v = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int32_t)(int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4a40: {	// TST.w
+		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		uint16_t v = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int32_t)(int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4a80: {	// TST.l
+		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		uint32_t v = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x4ac0: {	// TAS
+		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+			set_nz((int8_t)u);
+			clr_vc();
+			write_byte(src, u | 0x80);
+		}
 		return;
 	}
 	}

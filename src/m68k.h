@@ -93,6 +93,10 @@ private:
 		if (v < 0)	_sr |= N_FLAG;
 	}
 	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
+	inline void set_flag(uint16_t flag, bool cond) {
+		if (cond) _sr |= flag;
+		else _sr &= ~flag;
+	}
 
 	void moveb(uint16_t op);
 	void movew(uint16_t op);
