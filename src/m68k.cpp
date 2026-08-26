@@ -681,10 +681,9 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	uint16_t old_sr = _sr;
 	bool was_supervisor = _sr & S_FLAG;
 
-	// SSW: bit4 = R/W (best-effort -- see issue notes), bit3 = I/N (always
-	// 0 here, this path is only reached for data access, never instruction
-	// fetch), bits2-0 = function code (supervisor/user data space)
-	uint16_t fc  = was_supervisor ? 0b101 : 0b001;
+	// SSW: bit4 = R/W (best-effort -- see issue notes), bit3 = I/N
+	// bits2-0 = function code (supervisor/user data space)
+	uint16_t fc = (was_supervisor ? 0b100 : 0b000) | (is_instr_fetch ? 0b010 : 0b001);
 	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, empirically 100% consistent
 		| (is_read ? (1u << 4) : 0)
 		| (is_instr_fetch ? (1u << 3) : 0)
