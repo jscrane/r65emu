@@ -341,7 +341,7 @@ void m68k::misc(uint16_t op) {
 	}
 	case 0x4e73: {	// RTE
 		if (!(_sr & S_FLAG)) {
-			// FIXME
+			jump_to_vector(PRIVILEGE_VIOLATION_VECTOR);
 			return;
 		}
 		_sr = pop16();
@@ -388,6 +388,19 @@ void m68k::misc(uint16_t op) {
 	case 0x4e68:	// MOVEfromUSP
 		a(op & 7, _usp);
 		return;
+	}
+
+	switch (op & 0xfff0) {
+	case 0x4e40: {	// TRAP
+		int vec = (op & 0x0f);
+		uint32_t ret = pc();
+		uint16_t sr = _sr;
+		_sr |= S_FLAG;
+		push32(ret);
+		push16(sr);
+		jump_to_vector(TRAP_VECTORS + vec);
+		return;
+	}
 	}
 
 	switch (op & 0xffc0) {
@@ -694,11 +707,7 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	push32(fault_addr);
 	push16(ssw);
 
-	uint32_t vaddr = ADDRESS_ERROR_VECTOR * 4;
-	uint32_t vec = ((uint32_t)_mem[vaddr]   << 24) | ((uint32_t)_mem[vaddr+1] << 16)
-	             | ((uint32_t)_mem[vaddr+2] <<  8) |  (uint32_t)_mem[vaddr+3];
-	PC = vec & ADDRESS_MASK;
-
+	jump_to_vector(ADDRESS_ERROR_VECTOR);
 	_trapped = true;
 }
 

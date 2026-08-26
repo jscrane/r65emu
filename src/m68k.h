@@ -82,6 +82,9 @@ private:
 	void write32(uint32_t, uint32_t);
 
 	static constexpr int ADDRESS_ERROR_VECTOR = 3;
+	static constexpr int PRIVILEGE_VIOLATION_VECTOR = 3;
+	static constexpr int TRAP_VECTORS = 32;
+
 	bool check_aligned(uint32_t addr, bool is_read);
 	void trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch = false);
 	inline bool jump_to(uint32_t addr) {
@@ -91,6 +94,12 @@ private:
 		}
 		pc(addr);
 		return true;
+	}
+	inline void jump_to_vector(int num) {
+		uint32_t vaddr = num * 4;
+		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
+				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
+		pc(vec & ADDRESS_MASK);
 	}
 
 	bool  _trapped = false;
