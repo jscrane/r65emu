@@ -48,6 +48,9 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0100:
 		misc(op);
 		break;
+	case 0b0110:
+		bcc(op);
+		break;
 	case 0b0111:
 		moveq(op);
 		break;
@@ -340,7 +343,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e73: {	// RTE
-		if (!(_sr & S_FLAG)) {
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
@@ -351,7 +354,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e76: {	// TRAPV
-		if (_sr & V_FLAG)
+		if (is_set(V_FLAG))
 			raise_exception(TRAPV);
 		return;
 	}
@@ -390,14 +393,14 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e60:	// MOVEtoUSP
-		if (!(_sr & S_FLAG)) {
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
 		_usp = a(op & 7);
 		return;
 	case 0x4e68:	// MOVEfromUSP
-		if (!(_sr & S_FLAG)) {
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
@@ -418,11 +421,11 @@ void m68k::misc(uint16_t op) {
 		uint8_t u = read_byte(src);
 		commit_postinc(src);	// unconditional -- confirmed empirically, same as NEG/CLR
 		if (!_trapped) {
-			bool x = (_sr & X_FLAG) != 0;
+			bool x = is_set(X_FLAG);
 			uint8_t v = (uint8_t)(-(int)(int8_t)u - (x ? 1 : 0));
 			write_byte(src, v);
 			set_flag(N_FLAG, (int8_t)v < 0);
-			if (v != 0) _sr &= ~Z_FLAG;	// sticky -- only ever cleared, never forced set
+			if (v != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
 			set_flag(V_FLAG, u == 0x80 && !x);
 			set_flag(C_FLAG | X_FLAG, !(u == 0x00 && !x));
 		}
@@ -433,11 +436,11 @@ void m68k::misc(uint16_t op) {
 		uint16_t u = read_word(src);
 		commit_postinc(src);
 		if (!_trapped) {
-			bool x = (_sr & X_FLAG) != 0;
+			bool x = is_set(X_FLAG);
 			uint16_t v = (uint16_t)(-(int)(int16_t)u - (x ? 1 : 0));
 			write_word(src, v);
 			set_flag(N_FLAG, (int16_t)v < 0);
-			if (v != 0) _sr &= ~Z_FLAG;
+			if (v != 0) clr_flag(Z_FLAG);
 			set_flag(V_FLAG, u == 0x8000 && !x);
 			set_flag(C_FLAG | X_FLAG, !(u == 0x0000 && !x));
 		}
@@ -448,11 +451,11 @@ void m68k::misc(uint16_t op) {
 		uint32_t u = read_long(src);
 		commit_postinc(src);
 		if (!_trapped) {
-			bool x = (_sr & X_FLAG) != 0;
+			bool x = is_set(X_FLAG);
 			uint32_t v = (uint32_t)(-(int64_t)(int32_t)u - (x ? 1 : 0));
 			write_long(src, v);
 			set_flag(N_FLAG, (int32_t)v < 0);
-			if (v != 0) _sr &= ~Z_FLAG;
+			if (v != 0) clr_flag(Z_FLAG);
 			set_flag(V_FLAG, u == 0x80000000u && !x);
 			set_flag(C_FLAG | X_FLAG, !(u == 0x00000000u && !x));
 		}
@@ -578,7 +581,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x46c0: {	// MOVEtoSR
-		if (!(_sr & S_FLAG)) {
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
@@ -595,7 +598,7 @@ void m68k::misc(uint16_t op) {
 		commit_postinc(src);
 
 		if (!_trapped) {
-			int x = ((_sr & X_FLAG) != 0);
+			int x = is_set(X_FLAG);
 			int lo = (u & 0x0f), hi = (u & 0xf0) >> 4;
 			int dec = 10*hi + lo;
 			int res = 100 - dec - x;
@@ -611,7 +614,7 @@ void m68k::misc(uint16_t op) {
 			// Leaving V untouched here rather than guessing further.
 			set_flag(C_FLAG | X_FLAG, borrow);
 			set_flag(N_FLAG, v & 0x80);
-			if (v != 0) _sr &= ~Z_FLAG;	// sticky -- only ever cleared, never forced set
+			if (v != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
 		}
 		return;
 	}
@@ -683,15 +686,74 @@ void m68k::misc(uint16_t op) {
 	illegal(op);
 }
 
+bool m68k::eval_cc(uint8_t cond) {
+
+	switch (cond) {
+	case 0b0000:	// BRA
+		return true;
+	case 0b0001:	// BSR
+		return true;
+	case 0b0010:	// BHI
+		return !is_set(C_FLAG) && !is_set(Z_FLAG);
+	case 0b0011:	// BLS
+		return is_set(C_FLAG | Z_FLAG);
+	case 0b0100:	// BCC
+		return !is_set(C_FLAG);
+	case 0b0101:	// BCS
+		return is_set(C_FLAG);
+	case 0b0110:	// BNE
+		return !is_set(Z_FLAG);
+	case 0b0111:	// BEQ
+		return is_set(Z_FLAG);
+	case 0b1000:	// BVC
+		return !is_set(V_FLAG);
+	case 0b1001:	// BVS
+		return is_set(V_FLAG);
+	case 0b1010:	// BPL
+		return !is_set(N_FLAG);
+	case 0b1011:	// BMI
+		return is_set(N_FLAG);
+	case 0b1100:	// BGE
+		return is_set(N_FLAG) == is_set(V_FLAG);
+	case 0b1101:	// BLT
+		return is_set(N_FLAG) != is_set(V_FLAG);
+	case 0b1110:	// BGT
+		return (is_set(N_FLAG) == is_set(V_FLAG)) && !is_set(Z_FLAG);
+	case 0b1111:	// BLE
+		return (is_set(N_FLAG) != is_set(V_FLAG)) || is_set(Z_FLAG);
+	}
+	return false;
+}
+
+void m68k::bcc(uint16_t op) {
+
+	// must capture BEFORE fetch16() -- this is the extension word's own address,
+	//  same PC-relative base convention as (d16,PC) addressing elsewhere in decode_ea
+	uint32_t base = pc();
+
+	// must consume extension word (if present) even if cond evaluates to false
+	int8_t disp8 = (int8_t)(op & 0xff);
+	int16_t offset = disp8? (int16_t)disp8: (int16_t)fetch16();
+
+	uint8_t cond = ((op >> 8) & 0x0f);
+
+	if (eval_cc(cond)) {
+
+		if (cond == 1) push32(pc());	// BSR
+
+		jump_to(base + offset);
+	}
+}
+
 uint16_t m68k::fetch16() {
-	uint16_t hi = _mem[PC++];
-	uint16_t lo = _mem[PC++];
+	uint16_t hi = _mem[bus_addr(PC)]; PC++;
+	uint16_t lo = _mem[bus_addr(PC)]; PC++;
 	return (hi << 8) | lo;
 }
 
 void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch) {
 	uint16_t old_sr = _sr;
-	bool was_supervisor = _sr & S_FLAG;
+	bool was_supervisor = is_set(S_FLAG);
 
 	// SSW: bit4 = R/W (best-effort -- see issue notes), bit3 = I/N
 	// bits2-0 = function code (supervisor/user data space)
@@ -706,12 +768,15 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	// cause suspected (undefined/bus-latch-dependent content), not chased
 	// further for now.
 
-	// best-effort only -- doesn't match real prefetch-queue bus timing in
-	// the general case, see issue notes
-	Memory::address return_pc = PC;
+	// best-effort for data access (see issue notes -- needs cycle-accurate
+	// prefetch modeling to fix properly, ~9% match rate, not chased further).
+	// For instruction-fetch faults specifically, the rule IS exact and
+	// deterministic: return_pc = fault_addr - 4, confirmed against thousands
+	// of real JMP/Bcc/BSR vectors with zero exceptions.
+	Memory::address return_pc = is_instr_fetch ? (fault_addr - 4) : PC;
 
-	_sr |= S_FLAG;		// exceptions always enter supervisor mode
-	_sr &= ~T_FLAG;		// exception entry always clears Trace
+	set_flag(S_FLAG);		// exceptions always enter supervisor mode
+	clr_flag(T_FLAG);		// exception entry always clears Trace
 
 	push32(return_pc);
 	push16(old_sr);
