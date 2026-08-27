@@ -365,7 +365,6 @@ void m68k::quick(uint16_t op) {
 		return;
 	}
 	case 0x5040: {	// ADDQ.w
-		printf ("ADDQ.w %d %d %d\n", quick_data, mode, reg);
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
 
