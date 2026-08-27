@@ -423,27 +423,55 @@ void m68k::quick(uint16_t op) {
 		return;
 	}
 	case 0x5100: {	// SUBQ.b
-		EA src = decode_ea(mode, reg, 1);
-		uint8_t u = read_byte(src);
-		commit_postinc(src);
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+
+		uint16_t v = (uint16_t)u - quick_data;
+		commit_postinc(ea);
 		if (!_trapped) {
+			write_byte(ea, (uint8_t)v);
+			set_nz((int8_t)v);
+			set_flag(V_FLAG, (u & 0x80) && !is_set(N_FLAG));
+			set_flag(C_FLAG | X_FLAG, v & 0x0100);
 		}
 		return;
 	}
 	case 0x5140: {	// SUBQ.w
-		EA src = decode_ea(mode, reg, 2);
-		uint16_t u = read_word(src);
-		commit_postinc(src);
-		if (!_trapped) {
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+
+		uint32_t v = (uint32_t)u - quick_data;
+		commit_postinc(ea);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
+			return;
 		}
+
+		write_word(ea, (uint16_t)v);
+		set_nz((int16_t)v);
+		set_flag(V_FLAG, (u & 0x8000) && !is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x00010000);
 		return;
 	}
 	case 0x5180: {	// SUBQ.l
-		EA src = decode_ea(mode, reg, 4);
-		uint32_t u = read_long(src);
-		commit_postinc(src);
-		if (!_trapped) {
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+
+		uint64_t v = (uint64_t)u - quick_data;
+		commit_postinc(ea);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (uint32_t)v);
+			return;
 		}
+
+		write_long(ea, (uint32_t)v);
+		set_nz((int32_t)v);
+		set_flag(V_FLAG, (u & 0x80000000) && !is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x100000000ULL);
 		return;
 	}
 	}
