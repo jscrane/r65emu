@@ -394,7 +394,7 @@ void m68k::quick(uint16_t op) {
 		if (!eval_cc(condition)) {
 			uint16_t count = d(reg);
 			count--;
-			d(reg, count);
+			d(reg, (d(reg) & 0xffff0000) | count);
 			if (count != 0xffff)
 				jump_to(base + offset);
 		}
@@ -785,8 +785,8 @@ bool m68k::eval_cc(uint8_t cond) {
 	switch (cond) {
 	case 0b0000:	// BRA
 		return true;
-	case 0b0001:	// BSR
-		return true;
+	case 0b0001:	// F
+		return false;
 	case 0b0010:	// BHI
 		return !is_set(C_FLAG) && !is_set(Z_FLAG);
 	case 0b0011:	// BLS
@@ -831,12 +831,12 @@ void m68k::bcc(uint16_t op) {
 
 	uint8_t cond = ((op >> 8) & 0x0f);
 
-	if (eval_cc(cond)) {
-
-		if (cond == 1) push32(pc());	// BSR
-
+	if (cond == 1) {
+		push32(pc());		// BSR
 		jump_to(base + offset);
-	}
+
+	} else if (eval_cc(cond))
+		jump_to(base + offset);
 }
 
 uint16_t m68k::fetch16() {
