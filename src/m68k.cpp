@@ -727,6 +727,10 @@ bool m68k::eval_cc(uint8_t cond) {
 
 void m68k::bcc(uint16_t op) {
 
+	// must capture BEFORE fetch16() -- this is the extension word's own address,
+	//  same PC-relative base convention as (d16,PC) addressing elsewhere in decode_ea
+	uint32_t base = pc();
+
 	// must consume extension word (if present) even if cond evaluates to false
 	int8_t disp8 = (int8_t)(op & 0xff);
 	int16_t offset = disp8? (int16_t)disp8: (int16_t)fetch16();
@@ -737,7 +741,7 @@ void m68k::bcc(uint16_t op) {
 
 		if (cond == 1) push32(pc());	// BSR
 
-		jump_to(pc() + offset);
+		jump_to(base + offset);
 	}
 }
 
