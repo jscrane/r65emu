@@ -93,14 +93,14 @@ private:
 			trap_address_error(addr, true, true);
 			return false;
 		}
-		pc(bus_addr(addr));
+		pc(addr);
 		return true;
 	}
 	inline void jump_to_vector(int num) {
 		uint32_t vaddr = num * 4;
 		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
 				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
-		pc(bus_addr(vec));
+		pc(vec);
 	}
 	inline void raise_exception(int num) {
 		uint32_t ret = pc();

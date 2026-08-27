@@ -746,8 +746,8 @@ void m68k::bcc(uint16_t op) {
 }
 
 uint16_t m68k::fetch16() {
-	uint16_t hi = _mem[PC++];
-	uint16_t lo = _mem[PC++];
+	uint16_t hi = _mem[bus_addr(PC)]; PC++;
+	uint16_t lo = _mem[bus_addr(PC)]; PC++;
 	return (hi << 8) | lo;
 }
 
