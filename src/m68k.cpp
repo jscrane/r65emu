@@ -48,6 +48,9 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0100:
 		misc(op);
 		break;
+	case 0b0101:
+		quick(op);
+		break;
 	case 0b0110:
 		bcc(op);
 		break;
@@ -332,6 +335,98 @@ void m68k::moveq(uint16_t op) {
 	set_nz((int8_t)v);
 	clr_vc();
 	d(dreg, (uint32_t)(int32_t)(int8_t)v);
+}
+
+void m68k::quick(uint16_t op) {
+
+	// ADDQ / SUBQ
+	int quick_data = (op >> 9) & 7;
+	if (quick_data == 0) quick_data = 8;
+
+	// Scc / DBcc
+	int condition = (op >> 8) & 0x0f;
+
+	int mode = (op >> 3) & 7;
+	int size = (op >> 6) & 3;
+	int reg = op & 7;
+
+	if ((op & 0x00C0) == 0x00C0) {	// Scc
+		EA dst = decode_ea(mode, reg, 1);
+		write_byte(dst, condition != 1 && eval_cc(condition)? 0xff: 0x00);
+		commit_postinc(dst);
+		return;
+	}
+
+	printf("%08x\n", op & 0xf1c0);
+	switch (op & 0xf1c0) {
+	case 0x5000: {	// ADDQ.b
+		EA ea = decode_ea(mode, reg, size);
+		uint8_t u = read_byte(ea);
+
+		uint16_t v = (uint16_t)u + (uint16_t)quick_data;
+		write_byte(ea, (uint8_t)v);
+		commit_postinc(ea);
+
+		set_nz((int8_t)v);
+		set_flag(V_FLAG, !(u & 0x80) && is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		return;
+	}
+	case 0x5040: {	// ADDQ.w
+		EA ea = decode_ea(mode, reg, size);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+		}
+		return;
+	}
+	case 0x5080: {	// ADDQ.l
+		EA ea = decode_ea(mode, reg, size);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+		}
+		return;
+	}
+	case 0x50c8:
+	case 0x51c8: {	// DBcc
+		uint32_t base = pc();
+		int16_t offset = (int16_t)fetch16();
+		if (!eval_cc(condition)) {
+			uint16_t count = d(reg);
+			count--;
+			d(reg, count);
+			if (count != 0xffff)
+				jump_to(base + offset);
+		}
+		return;
+	}
+	case 0x5100: {	// SUBQ.b
+		EA src = decode_ea(mode, reg, size);
+		uint8_t u = read_byte(src);
+		commit_postinc(src);
+		if (!_trapped) {
+		}
+		return;
+	}
+	case 0x5140: {	// SUBQ.w
+		EA src = decode_ea(mode, reg, size);
+		uint16_t u = read_word(src);
+		commit_postinc(src);
+		if (!_trapped) {
+		}
+		return;
+	}
+	case 0x5180: {	// SUBQ.l
+		EA src = decode_ea(mode, reg, size);
+		uint32_t u = read_long(src);
+		commit_postinc(src);
+		if (!_trapped) {
+		}
+		return;
+	}
+	}
+	illegal(op);
 }
 
 void m68k::misc(uint16_t op) {
