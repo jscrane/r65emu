@@ -350,14 +350,16 @@ void m68k::quick(uint16_t op) {
 	int size = (op >> 6) & 3;
 	int reg = op & 7;
 
-	if ((op & 0x00C0) == 0x00C0) {	// Scc
+	// Scc Match Condition:
+	// (op & 0x00C0) == 0x00C0  -> Enforces that bits 7-6 are '11'
+	// (op & 0x0038) != 0x0008  -> Enforces that bits 5-3 are NOT '001'
+	if (((op & 0x00C0) == 0x00C0) && ((op & 0x0038) != 0x0008)) {	// Scc
 		EA dst = decode_ea(mode, reg, 1);
 		write_byte(dst, condition != 1 && eval_cc(condition)? 0xff: 0x00);
 		commit_postinc(dst);
 		return;
 	}
 
-	printf("%08x\n", op & 0xf1c0);
 	switch (op & 0xf1c0) {
 	case 0x5000: {	// ADDQ.b
 		EA ea = decode_ea(mode, reg, size);
@@ -388,8 +390,8 @@ void m68k::quick(uint16_t op) {
 		}
 		return;
 	}
-	case 0x50c8:
-	case 0x51c8: {	// DBcc
+	case 0x50c0:
+	case 0x51c0: {	// DBcc
 		uint32_t base = pc();
 		int16_t offset = (int16_t)fetch16();
 		if (!eval_cc(condition)) {
