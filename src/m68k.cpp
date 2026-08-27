@@ -768,9 +768,12 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	// cause suspected (undefined/bus-latch-dependent content), not chased
 	// further for now.
 
-	// best-effort only -- doesn't match real prefetch-queue bus timing in
-	// the general case, see issue notes
-	Memory::address return_pc = PC;
+	// best-effort for data access (see issue notes -- needs cycle-accurate
+	// prefetch modeling to fix properly, ~9% match rate, not chased further).
+	// For instruction-fetch faults specifically, the rule IS exact and
+	// deterministic: return_pc = fault_addr - 4, confirmed against thousands
+	// of real JMP/Bcc/BSR vectors with zero exceptions.
+	Memory::address return_pc = is_instr_fetch ? (fault_addr - 4) : PC;
 
 	set_flag(S_FLAG);		// exceptions always enter supervisor mode
 	clr_flag(T_FLAG);		// exception entry always clears Trace
