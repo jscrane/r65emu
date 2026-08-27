@@ -371,12 +371,17 @@ void m68k::quick(uint16_t op) {
 
 		uint32_t v = (uint32_t)u + quick_data;
 		commit_postinc(ea);
-		if (!_trapped) {
-			write_word(ea, (uint16_t)v);
-			set_nz((int16_t)v);
-			set_flag(V_FLAG, !(u & 0x8000) && is_set(N_FLAG));
-			set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
+			return;
 		}
+
+		write_word(ea, (uint16_t)v);
+		set_nz((int16_t)v);
+		set_flag(V_FLAG, !(u & 0x8000) && is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x00010000);
 		return;
 	}
 	case 0x5080: {	// ADDQ.l
@@ -385,12 +390,17 @@ void m68k::quick(uint16_t op) {
 
 		uint64_t v = (uint64_t)u + quick_data;
 		commit_postinc(ea);
-		if (!_trapped) {
-			write_long(ea, (uint32_t)v);
-			set_nz((int32_t)v);
-			set_flag(V_FLAG, !(u & 0x80000000) && is_set(N_FLAG));
-			set_flag(C_FLAG | X_FLAG, v & 0x100000000ULL);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (uint32_t)v);
+			return;
 		}
+
+		write_long(ea, (uint32_t)v);
+		set_nz((int32_t)v);
+		set_flag(V_FLAG, !(u & 0x80000000) && is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x100000000ULL);
 		return;
 	}
 	case 0x50c0:
