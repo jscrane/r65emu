@@ -14,7 +14,7 @@ public:
 	void restore(Checkpoint &) override;
 
 	inline uint32_t d(uint8_t n) const { return D[n]; }
-	inline uint32_t a(uint8_t n) const { return n == 7? ((_sr & S_FLAG)? _ssp: _usp): A[n]; }
+	inline uint32_t a(uint8_t n) const { return n == 7? (is_set(S_FLAG)? _ssp: _usp): A[n]; }
 	inline uint32_t usp() const { return _usp; }
 	inline uint32_t ssp() const { return _ssp; }
 	inline uint16_t sr() const { return _sr; }
@@ -23,7 +23,7 @@ public:
 	inline void d(uint8_t n, uint32_t v) { D[n] = v; }
 	inline void a(uint8_t n, uint32_t v) {
 		if (n < 7) A[n] = v;
-		else if (_sr & S_FLAG) _ssp = v;
+		else if (is_set(S_FLAG)) _ssp = v;
 		else _usp = v;
 	}
 	inline void usp(uint32_t v) { _usp = v; }
@@ -93,20 +93,20 @@ private:
 			trap_address_error(addr, true, true);
 			return false;
 		}
-		pc(addr);
+		pc(bus_addr(addr));
 		return true;
 	}
 	inline void jump_to_vector(int num) {
 		uint32_t vaddr = num * 4;
 		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
 				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
-		pc(vec & ADDRESS_MASK);
+		pc(bus_addr(vec));
 	}
 	inline void raise_exception(int num) {
 		uint32_t ret = pc();
 		uint16_t sr = _sr;
-		_sr |= S_FLAG;
-		_sr &= ~T_FLAG;
+		set_flag(S_FLAG);
+		clr_flag(T_FLAG);
 		push32(ret);
 		push16(sr);
 		jump_to_vector(num);
@@ -142,27 +142,34 @@ private:
 	void movel(uint16_t op);
 	void moveq(uint16_t op);
 	void misc(uint16_t op);
+	void bcc(uint16_t op);
+	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
 
 	std::function<void(uint16_t)> _illegal_instruction_handler;
 	uint32_t D[8], A[7];
 	uint32_t _usp, _ssp;
 
+	inline void set_flag(uint16_t flag) { _sr |= flag; }
+	inline void clr_flag(uint16_t flag) { _sr &= ~flag; }
 	inline void set_nz(int v) {
-		_sr &= ~(N_FLAG | Z_FLAG);
-		if (v == 0)	_sr |= Z_FLAG;
-		if (v < 0)	_sr |= N_FLAG;
+		clr_flag(N_FLAG | Z_FLAG);
+		if (v == 0) set_flag(Z_FLAG);
+		if (v < 0) set_flag(N_FLAG);
 	}
-	inline void clr_vc() { _sr &= ~(C_FLAG | V_FLAG); }
+	inline void clr_vc() { clr_flag(V_FLAG | C_FLAG); }
 	inline void set_flag(uint16_t flag, bool cond) {
-		if (cond) _sr |= flag;
-		else _sr &= ~flag;
+		if (cond) set_flag(flag);
+		else clr_flag(flag);
 	}
 	inline void update_ccr(uint16_t flags) {
 		_sr = (_sr & 0xffe0) | (flags & 0x001f);
 	}
 	inline void update_sr(uint16_t flags) {
 		_sr = flags & 0xa71f;   // reserved bits (5-7,11,12,14) always force to 0 on write
+	}
+	inline bool is_set(uint16_t flags) const {
+		return (_sr & flags) != 0;
 	}
 
 	uint16_t _sr;
