@@ -895,8 +895,64 @@ void m68k::bcc(uint16_t op) {
 }
 
 void m68k::sub(uint16_t op) {
-	// FIXME
-	illegal(op);
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// SUB.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		uint8_t val = d(dreg);
+		int16_t v = (int16_t)val - (int16_t)u;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t res = (uint8_t)v;
+			d(dreg, (d(dreg) & 0xffffff00) | res);
+			set_nz((int8_t)res);
+			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b001: {	// SUB.w <ea>, Dn
+		return;
+	}
+	case 0b010: {	// SUB.l <ea>, Dn
+		return;
+	}
+	case 0b011: {	// SUBA.w
+		return;
+	}
+	case 0b100: {	// SUB.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = d(dreg);
+		uint8_t val = read_byte(ea);
+		int16_t v = (int16_t)val -(int16_t)u;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t res = (uint8_t)v;
+			write_byte(ea, res);
+			set_nz((int8_t)res);
+			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b101: {	// SUB.b Dn, <ea>
+		return;
+	}
+	case 0b110: {	// SUB.b Dn, <ea>
+		return;
+	}
+	case 0b111: {	// SUBA.l
+		return;
+	}
+	}
 }
 
 void m68k::add(uint16_t op) {
