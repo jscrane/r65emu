@@ -919,9 +919,35 @@ void m68k::sub(uint16_t op) {
 		return;
 	}
 	case 0b001: {	// SUB.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		uint16_t val = d(dreg);
+		int32_t v = (int32_t)val - (int32_t)u;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t res = (uint16_t)v;
+			d(dreg, (d(dreg) & 0xffff0000) | res);
+			set_nz((int16_t)res);
+			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
 		return;
 	}
 	case 0b010: {	// SUB.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		uint32_t val = d(dreg);
+		int64_t v = (int64_t)val - (int64_t)u;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = (uint32_t)v;
+			d(dreg, res);
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
 		return;
 	}
 	case 0b011: {	// SUBA.w
@@ -943,10 +969,36 @@ void m68k::sub(uint16_t op) {
 		}
 		return;
 	}
-	case 0b101: {	// SUB.b Dn, <ea>
+	case 0b101: {	// SUB.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = d(dreg);
+		uint16_t val = read_word(ea);
+		int32_t v = (int32_t)val - (int32_t)u;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t res = (uint16_t)v;
+			write_word(ea, res);
+			set_nz((int16_t)res);
+			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
 		return;
 	}
-	case 0b110: {	// SUB.b Dn, <ea>
+	case 0b110: {	// SUB.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = d(dreg);
+		uint32_t val = read_long(ea);
+		int64_t v = (int64_t)val - (int64_t)u;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = (uint32_t)v;
+			write_long(ea, res);
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
 		return;
 	}
 	case 0b111: {	// SUBA.l
