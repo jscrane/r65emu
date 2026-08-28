@@ -76,8 +76,10 @@ private:
 	void write_long_postinc(int reg, uint32_t v);
 
 	uint16_t fetch16();
+	uint8_t read8(uint32_t);
 	uint16_t read16(uint32_t);
 	uint32_t read32(uint32_t);
+	void write8(uint32_t, uint8_t);
 	void write16(uint32_t, uint16_t);
 	void write32(uint32_t, uint32_t);
 
@@ -145,7 +147,9 @@ private:
 	void misc(uint16_t op);
 	void bcc(uint16_t op);
 	void add(uint16_t op);
+	void addx(uint16_t op);
 	void sub(uint16_t op);
+	void subx(uint16_t op);
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
 
