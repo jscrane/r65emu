@@ -343,9 +343,6 @@ void m68k::quick(uint16_t op) {
 	int quick_data = (op >> 9) & 7;
 	if (quick_data == 0) quick_data = 8;
 
-	// Scc / DBcc
-	int condition = (op >> 8) & 0x0f;
-
 	int mode = (op >> 3) & 7;
 	int reg = op & 7;
 
@@ -404,6 +401,8 @@ void m68k::quick(uint16_t op) {
 	}
 	case 0x50c0:
 	case 0x51c0: {	// Scc / DBcc
+		int condition = (op >> 8) & 0x0f;
+
 		if ((op & 0x0038) != 0x0008) {	// Scc
 			EA dst = decode_ea(mode, reg, 1);
 			write_byte(dst, condition != 1 && eval_cc(condition)? 0xff: 0x00);
