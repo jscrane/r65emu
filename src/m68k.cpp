@@ -36,26 +36,32 @@ void m68k::illegal(uint16_t op) {
 
 void m68k::decode_execute(uint16_t op) {
 	switch((op >> 12) & 0x0f) {
-	case 0b0001:
+	case 0b0001:		// move byte
 		moveb(op);
 		break;
-	case 0b0011:
+	case 0b0011:		// move word
 		movew(op);
 		break;
-	case 0b0010:
+	case 0b0010:		// move long
 		movel(op);
 		break;
 	case 0b0100:
-		misc(op);
+		misc(op);	// miscellaneous
 		break;
-	case 0b0101:
+	case 0b0101:		// ADDQ / SUBQ / Scc / DBcc
 		quick(op);
 		break;
-	case 0b0110:
+	case 0b0110:		// Bcc / BSR / BRA
 		bcc(op);
 		break;
-	case 0b0111:
+	case 0b0111:		// MOVEQ
 		moveq(op);
+		break;
+	case 0b1001:		// SUB / SUBX
+		sub(op);
+		break;
+	case 0b1101:		// ADD / ADDX
+		add(op);
 		break;
 	default:
 		illegal(op);
@@ -886,6 +892,66 @@ void m68k::bcc(uint16_t op) {
 
 	} else if (eval_cc(cond))
 		jump_to(base + offset);
+}
+
+void m68k::sub(uint16_t op) {
+	// FIXME
+	illegal(op);
+}
+
+void m68k::add(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// ADD.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		uint8_t val = d(dreg);
+		uint16_t v = (uint16_t)u + (uint16_t)val;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t res = (uint8_t)v;
+			d(dreg, (d(dreg) & 0xffffff00) | res);
+			set_nz((int8_t)res);
+			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+			set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		}
+		return;
+	}
+	case 0b001: {	// ADD.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		return;
+	}
+	case 0b010: {	// ADD.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		return;
+	}
+	case 0b011: {	// ADDA.w
+		// FIXME
+		return;
+	}
+	case 0b100: {	// ADD.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		return;
+	}
+	case 0b101: {	// ADD.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		return;
+	}
+	case 0b110: {	// ADD.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		return;
+	}
+	case 0b111: {	// ADDA.l
+		// FIXME
+		return;
+	}
+	}
 }
 
 uint16_t m68k::fetch16() {

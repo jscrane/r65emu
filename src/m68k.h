@@ -144,6 +144,8 @@ private:
 	void quick(uint16_t op);
 	void misc(uint16_t op);
 	void bcc(uint16_t op);
+	void add(uint16_t op);
+	void sub(uint16_t op);
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
 
