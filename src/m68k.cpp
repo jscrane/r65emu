@@ -925,6 +925,18 @@ void m68k::add(uint16_t op) {
 	}
 	case 0b001: {	// ADD.w <ea>, Dn
 		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		uint16_t val = d(dreg);
+		uint32_t v = (uint32_t)u + (uint32_t)val;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t res = (uint16_t)v;
+			d(dreg, (d(dreg) & 0xffff0000) | res);
+			set_nz((int16_t)res);
+			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+			set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+		}
 		return;
 	}
 	case 0b010: {	// ADD.l <ea>, Dn
@@ -937,10 +949,34 @@ void m68k::add(uint16_t op) {
 	}
 	case 0b100: {	// ADD.b Dn, <ea>
 		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = d(dreg);
+		uint8_t val = read_byte(ea);
+		uint16_t v = (uint16_t)u + (uint16_t)val;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t res = (uint8_t)v;
+			write_byte(ea, res);
+			set_nz((int8_t)res);
+			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+			set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		}
 		return;
 	}
 	case 0b101: {	// ADD.w Dn, <ea>
 		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = d(dreg);
+		uint16_t val = read_word(ea);
+		uint32_t v = (uint32_t)u + (uint32_t)val;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t res = (uint16_t)v;
+			write_word(ea, res);
+			set_nz((int16_t)res);
+			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+			set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+		}
 		return;
 	}
 	case 0b110: {	// ADD.l Dn, <ea>
