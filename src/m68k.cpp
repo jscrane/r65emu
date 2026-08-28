@@ -919,7 +919,7 @@ void m68k::add(uint16_t op) {
 			set_nz((int8_t)res);
 			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x0100);
+			set_flag(C_FLAG | X_FLAG, v & 0x100);
 		}
 		return;
 	}
@@ -935,12 +935,24 @@ void m68k::add(uint16_t op) {
 			set_nz((int16_t)res);
 			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+			set_flag(C_FLAG | X_FLAG, v & 0x10000);
 		}
 		return;
 	}
 	case 0b010: {	// ADD.l <ea>, Dn
 		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		uint32_t val = d(dreg);
+		uint64_t v = (uint64_t)u + (uint64_t)val;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = (uint32_t)v;
+			d(dreg, res);
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+		}
 		return;
 	}
 	case 0b011: {	// ADDA.w
@@ -959,7 +971,7 @@ void m68k::add(uint16_t op) {
 			set_nz((int8_t)res);
 			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x0100);
+			set_flag(C_FLAG | X_FLAG, v & 0x100);
 		}
 		return;
 	}
@@ -975,12 +987,24 @@ void m68k::add(uint16_t op) {
 			set_nz((int16_t)res);
 			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+			set_flag(C_FLAG | X_FLAG, v & 0x10000);
 		}
 		return;
 	}
 	case 0b110: {	// ADD.l Dn, <ea>
 		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = d(dreg);
+		uint32_t val = read_long(ea);
+		uint64_t v = (uint64_t)u + (uint64_t)val;
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = (uint32_t)v;
+			write_long(ea, res);
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+		}
 		return;
 	}
 	case 0b111: {	// ADDA.l
