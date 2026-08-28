@@ -48,6 +48,9 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0100:
 		misc(op);
 		break;
+	case 0b0101:
+		quick(op);
+		break;
 	case 0b0110:
 		bcc(op);
 		break;
@@ -332,6 +335,146 @@ void m68k::moveq(uint16_t op) {
 	set_nz((int8_t)v);
 	clr_vc();
 	d(dreg, (uint32_t)(int32_t)(int8_t)v);
+}
+
+void m68k::quick(uint16_t op) {
+
+	// ADDQ / SUBQ
+	int quick_data = (op >> 9) & 7;
+	if (quick_data == 0) quick_data = 8;
+
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (op & 0xf1c0) {
+	case 0x5000: {	// ADDQ.b
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+
+		uint16_t v = (uint16_t)u + quick_data;
+		commit_postinc(ea);
+		if (!_trapped) {
+			write_byte(ea, (uint8_t)v);
+			set_nz((int8_t)v);
+			set_flag(V_FLAG, !(u & 0x80) && is_set(N_FLAG));
+			set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		}
+		return;
+	}
+	case 0x5040: {	// ADDQ.w
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+
+		uint32_t v = (uint32_t)u + quick_data;
+		commit_postinc(ea);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
+			return;
+		}
+
+		write_word(ea, (uint16_t)v);
+		set_nz((int16_t)v);
+		set_flag(V_FLAG, !(u & 0x8000) && is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+		return;
+	}
+	case 0x5080: {	// ADDQ.l
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+
+		uint64_t v = (uint64_t)u + quick_data;
+		commit_postinc(ea);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (uint32_t)v);
+			return;
+		}
+
+		write_long(ea, (uint32_t)v);
+		set_nz((int32_t)v);
+		set_flag(V_FLAG, !(u & 0x80000000) && is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x100000000ULL);
+		return;
+	}
+	case 0x50c0:
+	case 0x51c0: {	// Scc / DBcc
+		int condition = (op >> 8) & 0x0f;
+
+		if ((op & 0x0038) != 0x0008) {	// Scc
+			EA dst = decode_ea(mode, reg, 1);
+			write_byte(dst, condition != 1 && eval_cc(condition)? 0xff: 0x00);
+			commit_postinc(dst);
+			return;
+		}
+		// DBcc
+		uint32_t base = pc();
+		int16_t offset = (int16_t)fetch16();
+		if (!eval_cc(condition)) {
+			uint16_t count = d(reg);
+			count--;
+			d(reg, (d(reg) & 0xffff0000) | count);
+			if (count != 0xffff)
+				jump_to(base + offset);
+		}
+		return;
+	}
+	case 0x5100: {	// SUBQ.b
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+
+		uint16_t v = (uint16_t)u - quick_data;
+		commit_postinc(ea);
+		if (!_trapped) {
+			write_byte(ea, (uint8_t)v);
+			set_nz((int8_t)v);
+			set_flag(V_FLAG, (u & 0x80) && !is_set(N_FLAG));
+			set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		}
+		return;
+	}
+	case 0x5140: {	// SUBQ.w
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+
+		uint32_t v = (uint32_t)u - quick_data;
+		commit_postinc(ea);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
+			return;
+		}
+
+		write_word(ea, (uint16_t)v);
+		set_nz((int16_t)v);
+		set_flag(V_FLAG, (u & 0x8000) && !is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+		return;
+	}
+	case 0x5180: {	// SUBQ.l
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+
+		uint64_t v = (uint64_t)u - quick_data;
+		commit_postinc(ea);
+		if (_trapped) return;
+
+		if (mode == 1) {
+			a(reg, (uint32_t)v);
+			return;
+		}
+
+		write_long(ea, (uint32_t)v);
+		set_nz((int32_t)v);
+		set_flag(V_FLAG, (u & 0x80000000) && !is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x100000000ULL);
+		return;
+	}
+	}
+	illegal(op);
 }
 
 void m68k::misc(uint16_t op) {
@@ -691,8 +834,8 @@ bool m68k::eval_cc(uint8_t cond) {
 	switch (cond) {
 	case 0b0000:	// BRA
 		return true;
-	case 0b0001:	// BSR
-		return true;
+	case 0b0001:	// F
+		return false;
 	case 0b0010:	// BHI
 		return !is_set(C_FLAG) && !is_set(Z_FLAG);
 	case 0b0011:	// BLS
@@ -737,12 +880,12 @@ void m68k::bcc(uint16_t op) {
 
 	uint8_t cond = ((op >> 8) & 0x0f);
 
-	if (eval_cc(cond)) {
-
-		if (cond == 1) push32(pc());	// BSR
-
+	if (cond == 1) {
+		push32(pc());		// BSR
 		jump_to(base + offset);
-	}
+
+	} else if (eval_cc(cond))
+		jump_to(base + offset);
 }
 
 uint16_t m68k::fetch16() {

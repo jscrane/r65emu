@@ -141,6 +141,7 @@ private:
 	void movew(uint16_t op);
 	void movel(uint16_t op);
 	void moveq(uint16_t op);
+	void quick(uint16_t op);
 	void misc(uint16_t op);
 	void bcc(uint16_t op);
 	bool eval_cc(uint8_t cond);
