@@ -963,11 +963,9 @@ void m68k::sub(uint16_t op) {
 	case 0b011: {	// SUBA.w
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
-		uint32_t val = a(dreg);
-		uint32_t v = val - (int32_t)(int16_t)u;
 		commit_postinc(ea);
 		if (!_trapped)
-			a(dreg, v);
+			a(dreg, a(dreg) - (int32_t)(int16_t)u);
 		return;
 	}
 	case 0b100: {	// SUB.b Dn, <ea>
@@ -1021,11 +1019,9 @@ void m68k::sub(uint16_t op) {
 	case 0b111: {	// SUBA.l
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
-		uint32_t val = a(dreg);
-		uint32_t v = val - u;
 		commit_postinc(ea);
 		if (!_trapped)
-			a(dreg, v);
+			a(dreg, a(dreg) - u);
 		return;
 	}
 	}
@@ -1090,11 +1086,9 @@ void m68k::add(uint16_t op) {
 	case 0b011: {	// ADDA.w <ea>, An
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
-		uint32_t val = a(dreg);
-		uint32_t v = val + (int32_t)(int16_t)u;
 		commit_postinc(ea);
 		if (!_trapped)
-			a(dreg, v);
+			a(dreg, a(dreg) + (int32_t)(int16_t)u);
 		return;
 	}
 	case 0b100: {	// ADD.b Dn, <ea>
@@ -1148,11 +1142,9 @@ void m68k::add(uint16_t op) {
 	case 0b111: {	// ADDA.l
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
-		uint32_t val = a(dreg);
-		uint32_t v = val + u;
 		commit_postinc(ea);
 		if (!_trapped)
-			a(dreg, v);
+			a(dreg, a(dreg) + u);
 		return;
 	}
 	}
