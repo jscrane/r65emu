@@ -34,6 +34,10 @@ void m68k::illegal(uint16_t op) {
 	_illegal_instruction_handler(op);
 }
 
+inline bool is_x_shape(uint16_t op) {
+	return ((op >> 6) & 7) >= 0b100 && ((op >> 6) & 7) <= 0b110 && (op & 0x30) == 0;
+}
+
 void m68k::decode_execute(uint16_t op) {
 	switch((op >> 12) & 0x0f) {
 	case 0b0001:		// move byte
@@ -58,13 +62,13 @@ void m68k::decode_execute(uint16_t op) {
 		moveq(op);
 		break;
 	case 0b1001:		// SUB / SUBX
-		if ((op & 0x0130) == 0x0100)
+		if (is_x_shape(op))
 			subx(op);
 		else
 			sub(op);
 		break;
 	case 0b1101:		// ADD / ADDX
-		if ((op & 0x0130) == 0x0100)
+		if (is_x_shape(op))
 			addx(op);
 		else
 			add(op);
@@ -1180,10 +1184,10 @@ void m68k::subx(uint16_t op) {
 		if (rm_mode == 0) d(rx_reg, (d(rx_reg) & 0xffffff00) | res);
 		else write8(a(rx_reg), res);
 
-                bool src_neg = (src & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		bool src_neg = (src & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 		set_flag(N_FLAG, res_neg);
 		if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
-                set_flag(V_FLAG, (val_neg != src_neg) && (res_neg == src_neg));
+		set_flag(V_FLAG, (val_neg != src_neg) && (res_neg == src_neg));
 		set_flag(C_FLAG | X_FLAG, v < 0);
 		return;
 	}
@@ -1270,10 +1274,10 @@ void m68k::addx(uint16_t op) {
 		if (rm_mode == 0) d(rx_reg, (d(rx_reg) & 0xffffff00) | res);
 		else write8(a(rx_reg), res);
 
-                bool src_neg = (src & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		bool src_neg = (src & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 		set_flag(N_FLAG, res_neg);
 		if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
-                set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
+		set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
 		set_flag(C_FLAG | X_FLAG, v & 0x100);
 		return;
 	}
@@ -1332,7 +1336,6 @@ void m68k::addx(uint16_t op) {
 		return;
 	}
 	}
-	illegal(op);
 }
 
 uint16_t m68k::fetch16() {
