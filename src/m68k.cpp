@@ -74,6 +74,8 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b1011:		// EOR / CMP / CMPA
 		if ((op & 0x0100) == 0x0100)
 			bit_eor(op);
+		else
+			cmp(op);
 		break;
 	case 0b1100:		// AND / MULU / MULS
 		if ((op & 0x00c0) != 0x00c0)
@@ -916,6 +918,91 @@ void m68k::bcc(uint16_t op) {
 		jump_to(base + offset);
 }
 
+void m68k::cmp(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// CMP.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		uint8_t val = d(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int16_t v = (int16_t)val - (int16_t)u;
+			uint8_t res = (uint8_t)v;
+			set_nz((int8_t)res);
+			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b001: {	// CMP.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		uint16_t val = d(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int32_t v = (int32_t)val - (int32_t)u;
+			uint16_t res = (uint16_t)v;
+			set_nz((int16_t)res);
+			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b010: {	// CMP.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		uint32_t val = d(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int64_t v = (int64_t)val - (int64_t)u;
+			uint32_t res = (uint32_t)v;
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG | X_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b011: {	// CMPA.w
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		uint32_t val = a(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int32_t extended_u = (int32_t)(int16_t)u;
+			int64_t v = (int64_t)val - (int64_t)extended_u;
+			uint32_t res = (uint32_t)v;
+			set_nz((int32_t)res);
+			bool u_neg = (extended_u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG, val < (uint32_t)v);
+		}
+		return;
+	}
+	case 0b111: {   // CMPA.l <ea>, An
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		uint32_t val = a(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = val - u;
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (res_neg != val_neg));
+			set_flag(C_FLAG, val < u);
+		}
+		return;
+	}
+	}
+}
 void m68k::sub(uint16_t op) {
 
 	int dreg = (op >> 9) & 7;
