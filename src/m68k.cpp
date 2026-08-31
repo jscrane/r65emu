@@ -72,10 +72,10 @@ void m68k::decode_execute(uint16_t op) {
 			sub(op);
 		break;
 	case 0b1011:		// EOR / CMP / CMPA
-		if ((op & 0x0100) == 0x0100)
-			bit_eor(op);
-		else
+		if (!(op & 0x0100) || (op & 0x00c0) == 0x00c0)
 			cmp(op);
+		else
+			bit_eor(op);
 		break;
 	case 0b1100:		// AND / MULU / MULS
 		if ((op & 0x00c0) != 0x00c0)
