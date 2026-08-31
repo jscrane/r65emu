@@ -987,6 +987,52 @@ void m68k::cmp(uint16_t op) {
 		}
 		return;
 	}
+	case 0b100: {	// CMPM.b (Ay)+,(Ax)+
+		uint8_t u = read8(a(reg));
+		a(reg, a(reg) + 1);	// Post-increment Ay
+		uint8_t val = read8(a(dreg));
+		a(dreg, a(dreg) + 1);	// Post-increment Ax
+
+		int16_t v = (int16_t)val - (int16_t)u;
+		uint8_t res = (uint8_t)v;
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
+		return;
+	}
+	case 0b101: {	// CMPM.w (Ay)+,(Ax)+
+		uint16_t u = read16(a(reg));
+		if (_trapped) return;
+		a(reg, a(reg) + 2);
+		uint16_t val = read16(a(dreg));
+		if (_trapped) return;
+		a(dreg, a(dreg) + 2);
+
+		int32_t v = (int32_t)val - (int32_t)u;
+		uint16_t res = (uint16_t)v;
+		set_nz((int16_t)res);
+		bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
+		return;
+	}
+	case 0b110: {	// CMPM.l (Ay)+,(Ax)+
+		uint32_t u = read32(a(reg));
+		if (_trapped) return;
+		a(reg, a(reg) + 4);
+		uint32_t val = read32(a(dreg));
+		if (_trapped) return;
+		a(dreg, a(dreg) + 4);
+
+		uint64_t v = (uint64_t)val - (uint64_t)u;
+		uint32_t res = (uint32_t)v;
+		set_nz((int32_t)res);
+		bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG | X_FLAG, val < u);
+		return;
+	}
 	case 0b111: {   // CMPA.l <ea>, An
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);

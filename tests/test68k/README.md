@@ -1,8 +1,8 @@
 68k tests
 ---------
 
-A test harness to run [SinglsStepTests](https://github.com/SingleStepTests/680x0) against
-the `m68008` implementation.
+A test harness to run [SingleStepTests](https://github.com/SingleStepTests/680x0) against
+the `m68k` implementation.
 
 ```shell
 make
