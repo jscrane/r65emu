@@ -61,6 +61,10 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0111:		// MOVEQ
 		moveq(op);
 		break;
+	case 0b1000:
+		if ((op & 0x00c0) != 0x00c0)
+			bit_or(op);
+		break;
 	case 0b1001:		// SUB / SUBX
 		if (is_x_shape(op))
 			subx(op);
@@ -1328,6 +1332,89 @@ void m68k::addx(uint16_t op) {
 			if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
 			set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+		}
+		return;
+	}
+	}
+}
+
+void m68k::bit_or(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// OR.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u | d(dreg));
+			d(dreg, (d(dreg) & 0xffffff00) | v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b001: {	// OR.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u | d(dreg));
+			d(dreg, (d(dreg) & 0xffff0000) | v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b010: {	// OR.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u | d(dreg));
+			d(dreg, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b100: {	// OR.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u | d(dreg));
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b101: {	// OR.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u | d(dreg));
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b110: {	// OR.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u | d(dreg));
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
 		}
 		return;
 	}
