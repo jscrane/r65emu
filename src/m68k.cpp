@@ -71,6 +71,10 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			sub(op);
 		break;
+	case 0b1011:		// EOR / CMP / CMPA
+		if ((op & 0x0100) == 0x0100)
+			bit_eor(op);
+		break;
 	case 0b1100:		// AND / MULU / MULS
 		if ((op & 0x00c0) != 0x00c0)
 			bit_and(op);
@@ -1338,6 +1342,52 @@ void m68k::addx(uint16_t op) {
 	}
 }
 
+void m68k::bit_eor(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b100: {	// EOR.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u ^ d(dreg));
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b101: {	// EOR.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u ^ d(dreg));
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b110: {	// EOR.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u ^ d(dreg));
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	}
+}
 void m68k::bit_or(uint16_t op) {
 
 	int dreg = (op >> 9) & 7;
