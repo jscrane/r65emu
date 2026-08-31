@@ -67,8 +67,9 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			sub(op);
 		break;
-	case 0b1100:		// AND
-		bit_and(op);
+	case 0b1100:		// AND / MULU / MULS
+		if ((op & 0x00c0) != 0x00c0)
+			bit_and(op);
 		break;
 	case 0b1101:		// ADD / ADDX
 		if (is_x_shape(op))
@@ -1372,6 +1373,42 @@ void m68k::bit_and(uint16_t op) {
 		if (!_trapped) {
 			uint32_t v = (u & d(dreg));
 			d(dreg, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b100: {	// AND.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u & (uint8_t)d(dreg));
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b101: {	// AND.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u & (uint16_t)d(dreg));
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b110: {	// AND.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u & d(dreg));
+			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
 		}
