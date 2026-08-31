@@ -937,7 +937,7 @@ void m68k::cmp(uint16_t op) {
 			set_nz((int8_t)res);
 			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
+			set_flag(C_FLAG, v < 0);
 		}
 		return;
 	}
@@ -952,7 +952,7 @@ void m68k::cmp(uint16_t op) {
 			set_nz((int16_t)res);
 			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
+			set_flag(C_FLAG, v < 0);
 		}
 		return;
 	}
@@ -967,7 +967,7 @@ void m68k::cmp(uint16_t op) {
 			set_nz((int32_t)res);
 			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
+			set_flag(C_FLAG, v < 0);
 		}
 		return;
 	}
@@ -998,7 +998,7 @@ void m68k::cmp(uint16_t op) {
 		set_nz((int8_t)res);
 		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-		set_flag(C_FLAG | X_FLAG, v < 0);
+		set_flag(C_FLAG, v < 0);
 		return;
 	}
 	case 0b101: {	// CMPM.w (Ay)+,(Ax)+
@@ -1014,7 +1014,7 @@ void m68k::cmp(uint16_t op) {
 		set_nz((int16_t)res);
 		bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-		set_flag(C_FLAG | X_FLAG, v < 0);
+		set_flag(C_FLAG, v < 0);
 		return;
 	}
 	case 0b110: {	// CMPM.l (Ay)+,(Ax)+
@@ -1030,7 +1030,7 @@ void m68k::cmp(uint16_t op) {
 		set_nz((int32_t)res);
 		bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-		set_flag(C_FLAG | X_FLAG, val < u);
+		set_flag(C_FLAG, val < u);
 		return;
 	}
 	case 0b111: {   // CMPA.l <ea>, An
@@ -1049,6 +1049,7 @@ void m68k::cmp(uint16_t op) {
 	}
 	}
 }
+
 void m68k::sub(uint16_t op) {
 
 	int dreg = (op >> 9) & 7;
