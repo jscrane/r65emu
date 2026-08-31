@@ -150,6 +150,7 @@ private:
 	void addx(uint16_t op);
 	void sub(uint16_t op);
 	void subx(uint16_t op);
+	void bit_and(uint16_t op);
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
 
