@@ -162,6 +162,7 @@ private:
 	void addx(uint16_t op);
 	void sub(uint16_t op);
 	void subx(uint16_t op);
+	void exg(uint16_t op);
 	void bit_and(uint16_t op);
 	void bit_or(uint16_t op);
 	void bit_eor(uint16_t op);
