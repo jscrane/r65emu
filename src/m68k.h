@@ -75,8 +75,17 @@ private:
 	void write_long_predec(int reg, uint32_t v);
 	void write_long_postinc(int reg, uint32_t v);
 
-	uint16_t fetch16();
-	uint32_t fetch32();
+	inline uint16_t fetch16() {
+		uint16_t hi = read8(PC++);
+		uint16_t lo = read8(PC++);
+		return (hi << 8) | lo;
+	}
+
+	inline uint32_t fetch32() {
+		uint32_t hi = fetch16(), lo = fetch16();
+		return (hi << 16) | lo;
+	}
+
 	uint8_t read8(uint32_t);
 	uint16_t read16(uint32_t);
 	uint32_t read32(uint32_t);

@@ -1960,17 +1960,6 @@ void m68k::bit_and(uint16_t op) {
 	}
 }
 
-uint16_t m68k::fetch16() {
-	uint16_t hi = read8(PC); PC++;
-	uint16_t lo = read8(PC); PC++;
-	return (hi << 8) | lo;
-}
-
-uint32_t m68k::fetch32() {
-	uint32_t hi = fetch16(), lo = fetch16();
-	return (hi << 16) | lo;
-}
-
 void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch) {
 	uint16_t old_sr = _sr;
 	bool was_supervisor = is_set(S_FLAG);
