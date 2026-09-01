@@ -296,6 +296,46 @@ void m68k::immediate(uint16_t op) {
 	int reg = op & 7;
 
 	switch (op & 0xffc0) {
+	case 0x0000: {	// ORI.b
+		uint8_t imm = (uint8_t)fetch16();
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t dest = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (dest | imm);
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x0040: {	// ORI.w
+		uint16_t imm = fetch16();
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t dest = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (dest | imm);
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0x0080: {	// ORI.l
+		uint32_t hi = fetch16(), lo = fetch16();
+		uint32_t imm = (hi << 16) | lo;
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t dest = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (dest | imm);
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
 	case 0x0400: {	// SUBI.b
 		uint8_t imm = (uint8_t)fetch16();
 		EA ea = decode_ea(mode, reg, 1);
