@@ -61,11 +61,27 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0111:		// MOVEQ
 		moveq(op);
 		break;
+	case 0b1000:
+		if ((op & 0x00c0) != 0x00c0)
+			bit_or(op);
+		break;
 	case 0b1001:		// SUB / SUBX
 		if (is_x_shape(op))
 			subx(op);
 		else
 			sub(op);
+		break;
+	case 0b1011:		// EOR / CMP / CMPA
+		if (!(op & 0x0100) || (op & 0x00c0) == 0x00c0)
+			cmp(op);		// CMP.b/w/l, CMPA.w/l
+		else if ((op & 0x0038) == 0x0008)
+			cmp(op);		// CMPM.b/w/l -- mode==001 within opmode 100/101/110
+		else
+			bit_eor(op);
+		break;
+	case 0b1100:		// AND / MULU / MULS
+		if ((op & 0x00c0) != 0x00c0)
+			bit_and(op);
 		break;
 	case 0b1101:		// ADD / ADDX
 		if (is_x_shape(op))
@@ -904,6 +920,141 @@ void m68k::bcc(uint16_t op) {
 		jump_to(base + offset);
 }
 
+void m68k::cmp(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// CMP.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		uint8_t val = d(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int16_t v = (int16_t)val - (int16_t)u;
+			uint8_t res = (uint8_t)v;
+			set_nz((int8_t)res);
+			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b001: {	// CMP.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		uint16_t val = d(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int32_t v = (int32_t)val - (int32_t)u;
+			uint16_t res = (uint16_t)v;
+			set_nz((int16_t)res);
+			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b010: {	// CMP.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		uint32_t val = d(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int64_t v = (int64_t)val - (int64_t)u;
+			uint32_t res = (uint32_t)v;
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG, v < 0);
+		}
+		return;
+	}
+	case 0b011: {	// CMPA.w
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		uint32_t val = a(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int32_t extended_u = (int32_t)(int16_t)u;
+			int64_t v = (int64_t)val - (int64_t)extended_u;
+			uint32_t res = (uint32_t)v;
+			set_nz((int32_t)res);
+			bool u_neg = (extended_u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+			set_flag(C_FLAG, val < (uint32_t)v);
+		}
+		return;
+	}
+	case 0b100: {	// CMPM.b (Ay)+,(Ax)+
+		int reg_step = (reg == 7) ? 2 : 1;
+		int dreg_step = (dreg == 7) ? 2 : 1;
+
+		uint8_t u = read8(a(reg));
+		a(reg, a(reg) + reg_step);	// Post-increment Ay
+		uint8_t val = read8(a(dreg));
+		a(dreg, a(dreg) + dreg_step);	// Post-increment Ax
+
+		int16_t v = (int16_t)val - (int16_t)u;
+		uint8_t res = (uint8_t)v;
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG, v < 0);
+		return;
+	}
+	case 0b101: {	// CMPM.w (Ay)+,(Ax)+
+		uint16_t u = read16(a(reg));
+		a(reg, a(reg) + 2);
+		if (_trapped) return;
+		uint16_t val = read16(a(dreg));
+		a(dreg, a(dreg) + 2);
+		if (_trapped) return;
+
+		int32_t v = (int32_t)val - (int32_t)u;
+		uint16_t res = (uint16_t)v;
+		set_nz((int16_t)res);
+		bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG, v < 0);
+		return;
+	}
+	case 0b110: {	// CMPM.l (Ay)+,(Ax)+
+		uint32_t u = read32(a(reg));
+		a(reg, a(reg) + 4);
+		if (_trapped) return;
+		uint32_t val = read32(a(dreg));
+		a(dreg, a(dreg) + 4);
+		if (_trapped) return;
+
+		uint64_t v = (uint64_t)val - (uint64_t)u;
+		uint32_t res = (uint32_t)v;
+		set_nz((int32_t)res);
+		bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG, val < u);
+		return;
+	}
+	case 0b111: {   // CMPA.l <ea>, An
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		uint32_t val = a(dreg);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = val - u;
+			set_nz((int32_t)res);
+			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (u_neg != val_neg) && (res_neg != val_neg));
+			set_flag(C_FLAG, val < u);
+		}
+		return;
+	}
+	}
+}
+
 void m68k::sub(uint16_t op) {
 
 	int dreg = (op >> 9) & 7;
@@ -1324,6 +1475,218 @@ void m68k::addx(uint16_t op) {
 			if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
 			set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+		}
+		return;
+	}
+	}
+}
+
+void m68k::bit_eor(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b100: {	// EOR.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u ^ d(dreg));
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b101: {	// EOR.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u ^ d(dreg));
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b110: {	// EOR.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u ^ d(dreg));
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	}
+}
+void m68k::bit_or(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// OR.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u | d(dreg));
+			d(dreg, (d(dreg) & 0xffffff00) | v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b001: {	// OR.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u | d(dreg));
+			d(dreg, (d(dreg) & 0xffff0000) | v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b010: {	// OR.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u | d(dreg));
+			d(dreg, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b100: {	// OR.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u | d(dreg));
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b101: {	// OR.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u | d(dreg));
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b110: {	// OR.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u | d(dreg));
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	}
+}
+
+void m68k::bit_and(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b000: {	// AND.b <ea>, Dn
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u & d(dreg));
+			d(dreg, (d(dreg) & 0xffffff00) | v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b001: {	// AND.w <ea>, Dn
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u & d(dreg));
+			d(dreg, (d(dreg) & 0xffff0000) | v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b010: {	// AND.l <ea>, Dn
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u & d(dreg));
+			d(dreg, v);
+			set_nz((int32_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b100: {	// AND.b Dn, <ea>
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t u = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint8_t v = (u & (uint8_t)d(dreg));
+			write_byte(ea, v);
+			set_nz((int8_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b101: {	// AND.w Dn, <ea>
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t u = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint16_t v = (u & (uint16_t)d(dreg));
+			write_word(ea, v);
+			set_nz((int16_t)v);
+			clr_vc();
+		}
+		return;
+	}
+	case 0b110: {	// AND.l Dn, <ea>
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t u = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t v = (u & d(dreg));
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
 		}
 		return;
 	}
