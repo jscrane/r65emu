@@ -73,7 +73,9 @@ void m68k::decode_execute(uint16_t op) {
 		break;
 	case 0b1011:		// EOR / CMP / CMPA
 		if (!(op & 0x0100) || (op & 0x00c0) == 0x00c0)
-			cmp(op);
+			cmp(op);		// CMP.b/w/l, CMPA.w/l
+		else if ((op & 0x0038) == 0x0008)
+			cmp(op);		// CMPM.b/w/l -- mode==001 within opmode 100/101/110
 		else
 			bit_eor(op);
 		break;
@@ -988,10 +990,13 @@ void m68k::cmp(uint16_t op) {
 		return;
 	}
 	case 0b100: {	// CMPM.b (Ay)+,(Ax)+
+		int reg_step = (reg == 7) ? 2 : 1;
+		int dreg_step = (dreg == 7) ? 2 : 1;
+
 		uint8_t u = read8(a(reg));
-		a(reg, a(reg) + 1);	// Post-increment Ay
+		a(reg, a(reg) + reg_step);	// Post-increment Ay
 		uint8_t val = read8(a(dreg));
-		a(dreg, a(dreg) + 1);	// Post-increment Ax
+		a(dreg, a(dreg) + dreg_step);	// Post-increment Ax
 
 		int16_t v = (int16_t)val - (int16_t)u;
 		uint8_t res = (uint8_t)v;
@@ -1003,11 +1008,11 @@ void m68k::cmp(uint16_t op) {
 	}
 	case 0b101: {	// CMPM.w (Ay)+,(Ax)+
 		uint16_t u = read16(a(reg));
-		if (_trapped) return;
 		a(reg, a(reg) + 2);
-		uint16_t val = read16(a(dreg));
 		if (_trapped) return;
+		uint16_t val = read16(a(dreg));
 		a(dreg, a(dreg) + 2);
+		if (_trapped) return;
 
 		int32_t v = (int32_t)val - (int32_t)u;
 		uint16_t res = (uint16_t)v;
@@ -1019,11 +1024,11 @@ void m68k::cmp(uint16_t op) {
 	}
 	case 0b110: {	// CMPM.l (Ay)+,(Ax)+
 		uint32_t u = read32(a(reg));
-		if (_trapped) return;
 		a(reg, a(reg) + 4);
-		uint32_t val = read32(a(dreg));
 		if (_trapped) return;
+		uint32_t val = read32(a(dreg));
 		a(dreg, a(dreg) + 4);
+		if (_trapped) return;
 
 		uint64_t v = (uint64_t)val - (uint64_t)u;
 		uint32_t res = (uint32_t)v;
