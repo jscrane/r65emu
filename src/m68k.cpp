@@ -290,6 +290,36 @@ void m68k::write_long_postinc(int reg, uint32_t v) {
 
 void m68k::immediate(uint16_t op) {
 
+	switch (op) {
+	case 0x003c: {	// ORItoCCR
+		uint8_t imm = (uint8_t)fetch16();
+		update_ccr(imm | ccr());
+		return;
+	}
+	case 0x007c: {	// ORItoSR
+		update_sr(fetch16() | sr());
+		return;
+	}
+	case 0x023c: {	// ANDItoCCR
+		uint8_t imm = (uint8_t)fetch16();
+		update_ccr(imm & ccr());
+		return;
+	}
+	case 0x027c: {	// ANDItoSR
+		update_sr(fetch16() & sr());
+		return;
+	}
+	case 0x0a3c: {	// EORItoCCR
+		uint8_t imm = (uint8_t)fetch16();
+		update_ccr(imm ^ ccr());
+		return;
+	}
+	case 0x0a7c: {	// EORItoSR
+		update_sr(fetch16() ^ sr());
+		return;
+	}
+	}
+
 	int mode = (op >> 3) & 7;
 	int reg = op & 7;
 
