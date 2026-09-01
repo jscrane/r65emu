@@ -76,6 +76,7 @@ private:
 	void write_long_postinc(int reg, uint32_t v);
 
 	uint16_t fetch16();
+	uint32_t fetch32();
 	uint8_t read8(uint32_t);
 	uint16_t read16(uint32_t);
 	uint32_t read32(uint32_t);

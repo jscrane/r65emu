@@ -142,8 +142,7 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 			return mem_ea((uint32_t)(int32_t)w);
 		}
 		case 1: { // (xxx).l
-			uint32_t hi = fetch16(), lo = fetch16();
-			return mem_ea((hi << 16) | lo);
+			return mem_ea(fetch32());
 		}
 		case 2: { // (d16,PC) -- base is the extension word's OWN address
 			Memory::address ext_addr = pc();
@@ -163,8 +162,7 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size) {
 		}
 		case 4: { // #imm -- size-dependent: byte/word need one word, long needs two
 			if (size == 4) {
-				uint32_t hi = fetch16(), lo = fetch16();
-				return EA{ EA::Imm, 0, 0, (hi << 16) | lo };
+				return EA{ EA::Imm, 0, 0, fetch32() };
 			}
 			uint16_t w = fetch16();   // byte immediate: low byte of this word; word immediate: the whole word
 			return EA{ EA::Imm, 0, 0, w };
@@ -323,8 +321,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0080: {	// ORI.l
-		uint32_t hi = fetch16(), lo = fetch16();
-		uint32_t imm = (hi << 16) | lo;
+		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
@@ -363,8 +360,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0280: {	// ANDI.l
-		uint32_t hi = fetch16(), lo = fetch16();
-		uint32_t imm = (hi << 16) | lo;
+		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
@@ -409,8 +405,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0480: {	// SUBI.l
-		uint32_t hi = fetch16(), lo = fetch16();
-		uint32_t imm = (hi << 16) | lo;
+		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
@@ -458,8 +453,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0680: {	// ADDI.l
-		uint32_t hi = fetch16(), lo = fetch16();
-		uint32_t imm = (hi << 16) | lo;
+		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
@@ -501,8 +495,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0a80: {	// EORI.l
-		uint32_t hi = fetch16(), lo = fetch16();
-		uint32_t imm = (hi << 16) | lo;
+		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
@@ -545,8 +538,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0c80: {	// CMPI.l
-		uint32_t hi = fetch16(), lo = fetch16();
-		uint32_t imm = (hi << 16) | lo;
+		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
@@ -1972,6 +1964,11 @@ uint16_t m68k::fetch16() {
 	uint16_t hi = read8(PC); PC++;
 	uint16_t lo = read8(PC); PC++;
 	return (hi << 8) | lo;
+}
+
+uint32_t m68k::fetch32() {
+	uint32_t hi = fetch16(), lo = fetch16();
+	return (hi << 16) | lo;
 }
 
 void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch) {
