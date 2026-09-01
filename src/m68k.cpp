@@ -40,6 +40,9 @@ inline bool is_x_shape(uint16_t op) {
 
 void m68k::decode_execute(uint16_t op) {
 	switch((op >> 12) & 0x0f) {
+	case 0b0000:		// immediate
+		immediate(op);
+		break;
 	case 0b0001:		// move byte
 		moveb(op);
 		break;
@@ -285,6 +288,60 @@ void m68k::write_long_postinc(int reg, uint32_t v) {
 	write16(addr, (uint16_t)(v & 0xffff));     // low word second
 	if (_trapped) return;
 	a(reg, addr + 2);
+}
+
+void m68k::immediate(uint16_t op) {
+
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (op & 0xffc0) {
+	case 0x0c00: {	// CMPI.b
+		uint8_t imm = (uint8_t)fetch16();
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t dest = read_byte(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int16_t v = (int16_t)dest - (int16_t)imm;
+			uint8_t res = (uint8_t)v;
+			set_nz((int8_t)res);
+			bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
+			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
+			set_flag(C_FLAG, dest < imm);
+		}
+		return;
+	}
+	case 0x0c40: {	// CMPI.w
+		uint16_t imm = fetch16();
+		EA ea = decode_ea(mode, reg, 2);
+		uint16_t dest = read_word(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			int32_t v = (int32_t)dest - (int32_t)imm;
+			uint16_t res = (uint16_t)v;
+			set_nz((int16_t)res);
+			bool imm_neg = (imm & 0x8000), dest_neg = (dest & 0x8000), res_neg = (res & 0x8000);
+			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
+			set_flag(C_FLAG, dest < imm);
+		}
+		return;
+	}
+	case 0x0c80: {	// CMPI.l
+		uint32_t hi = fetch16(), lo = fetch16();
+		uint32_t imm = (hi << 16) | lo;
+		EA ea = decode_ea(mode, reg, 4);
+		uint32_t dest = read_long(ea);
+		commit_postinc(ea);
+		if (!_trapped) {
+			uint32_t res = dest - imm;
+			set_nz((int32_t)res);
+			bool imm_neg = (imm & 0x80000000), dest_neg = (dest & 0x80000000), res_neg = (res & 0x80000000);
+			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg != dest_neg));
+			set_flag(C_FLAG, dest < imm);
+		}
+		return;
+	}
+	}
 }
 
 void m68k::moveb(uint16_t op) {

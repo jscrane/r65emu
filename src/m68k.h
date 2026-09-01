@@ -139,6 +139,7 @@ private:
 		return (hi << 16) | lo;
 	}
 
+	void immediate(uint16_t op);
 	void moveb(uint16_t op);
 	void movew(uint16_t op);
 	void movel(uint16_t op);
