@@ -38,6 +38,11 @@ inline bool is_x_shape(uint16_t op) {
 	return ((op >> 6) & 7) >= 0b100 && ((op >> 6) & 7) <= 0b110 && (op & 0x30) == 0;
 }
 
+inline bool is_exg(uint16_t op) {
+        uint16_t fields = op & 0x01F8;
+        return (fields == 0x0140) || (fields == 0x0148) || (fields == 0x0188);
+}
+
 void m68k::decode_execute(uint16_t op) {
 	switch((op >> 12) & 0x0f) {
 	case 0b0000:		// immediate
@@ -82,8 +87,10 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			bit_eor(op);
 		break;
-	case 0b1100:		// AND / MULU / MULS
-		if ((op & 0x00c0) != 0x00c0)
+	case 0b1100:		// EXG / AND / MULU / MULS
+		if (is_exg(op))
+			exg(op);
+		else if ((op & 0x00c0) != 0x00c0)
 			bit_and(op);
 		break;
 	case 0b1101:		// ADD / ADDX
@@ -289,6 +296,36 @@ void m68k::write_long_postinc(int reg, uint32_t v) {
 }
 
 void m68k::immediate(uint16_t op) {
+
+	switch (op) {
+	case 0x003c: {	// ORItoCCR
+		uint8_t imm = (uint8_t)fetch16();
+		update_ccr(imm | ccr());
+		return;
+	}
+	case 0x007c: {	// ORItoSR
+		update_sr(fetch16() | sr());
+		return;
+	}
+	case 0x023c: {	// ANDItoCCR
+		uint8_t imm = (uint8_t)fetch16();
+		update_ccr(imm & ccr());
+		return;
+	}
+	case 0x027c: {	// ANDItoSR
+		update_sr(fetch16() & sr());
+		return;
+	}
+	case 0x0a3c: {	// EORItoCCR
+		uint8_t imm = (uint8_t)fetch16();
+		update_ccr(imm ^ ccr());
+		return;
+	}
+	case 0x0a7c: {	// EORItoSR
+		update_sr(fetch16() ^ sr());
+		return;
+	}
+	}
 
 	int mode = (op >> 3) & 7;
 	int reg = op & 7;
@@ -1871,6 +1908,37 @@ void m68k::bit_or(uint16_t op) {
 			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
+		}
+		return;
+	}
+	}
+}
+
+void m68k::exg(uint16_t op) {
+
+	int dreg = (op >> 9) & 7;
+	int opmode = (op >> 6) & 7;
+	int mode = (op >> 3) & 7;
+	int reg = op & 7;
+
+	switch (opmode) {
+	case 0b101: {	// Dn, Dm and An, Am
+		if (mode == 0) {
+			uint32_t tmp = d(dreg);
+			d(dreg, d(reg));
+			d(reg, tmp);
+		} else if (mode == 1) {
+			uint32_t tmp = a(dreg);
+			a(dreg, a(reg));
+			a(reg, tmp);
+		}
+		return;
+	}
+	case 0b110: {	// Dn, An
+		if (mode == 1) {
+			uint32_t tmp = d(dreg);
+			d(dreg, a(reg));
+			a(reg, tmp);
 		}
 		return;
 	}
