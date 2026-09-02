@@ -2250,6 +2250,16 @@ void m68k::asr_reg(uint16_t op, uint8_t size) {
 		return;
 	}
 	case 0b10: {	// ASR.l
+		uint32_t val = v;
+		bool is_neg = (val & 0x80000000);
+		uint32_t res = (shift_count < 32)? ((int32_t)val >> shift_count): (is_neg? 0xffffffff: 0x00000000);
+		d(dreg, res);
+		set_nz((int32_t)res);
+		clr_flag(V_FLAG);
+		if (shift_count > 32)
+			clr_flag(C_FLAG | X_FLAG);
+		else
+			set_flag(C_FLAG | X_FLAG, (val >> (shift_count - 1)) & 1);
 		return;
 	}
 	}

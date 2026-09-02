@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TESTDIR=~/src/680x0/68000/v1
-TESTS="ADD.b ADDX.b AND.b ANDItoCCR ANDItoSR ASR.b ASR.w Bcc RESET"
+TESTS="ADD.b ADDX.b AND.b ANDItoCCR ANDItoSR ASR.b ASR.w ASR.l Bcc RESET"
 
 for t in $TESTS; do
 	echo -n "$t: "
