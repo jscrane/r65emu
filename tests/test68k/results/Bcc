@@ -1,0 +1,3902 @@
+/home/steve/src/680x0/68000/v1/Bcc.json.gz: 8065 tests
+FAIL [18] 6d25 [Bcc Q] 19
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [22] 6fc5 [Bcc Q] 23
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [24] 60f3 [Bcc Q] 25
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [25] 6f75 [Bcc Q] 26
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [31] 66c9 [Bcc Q] 32
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [40] 643b [Bcc Q] 41
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [51] 6bf3 [Bcc Q] 52
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [53] 6321 [Bcc Q] 54
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [54] 6daf [Bcc Q] 55
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [59] 6a9d [Bcc Q] 60
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [61] 622f [Bcc Q] 62
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [69] 6029 [Bcc Q] 70
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [70] 684f [Bcc Q] 71
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [73] 6623 [Bcc Q] 74
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [75] 6b95 [Bcc Q] 76
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [87] 63bd [Bcc Q] 88
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [90] 6583 [Bcc Q] 91
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [91] 607b [Bcc Q] 92
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [96] 60d5 [Bcc Q] 97
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [100] 64a5 [Bcc Q] 101
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [101] 6421 [Bcc Q] 102
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [104] 69c9 [Bcc Q] 105
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [107] 6a25 [Bcc Q] 108
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [111] 6ccf [Bcc Q] 112
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [124] 6851 [Bcc Q] 125
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [126] 6fbf [Bcc Q] 127
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [127] 6257 [Bcc Q] 128
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [143] 6de9 [Bcc Q] 144
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [148] 66e5 [Bcc Q] 149
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [149] 6683 [Bcc Q] 150
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [151] 6d61 [Bcc Q] 152
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [152] 65a3 [Bcc Q] 153
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [155] 6a7f [Bcc Q] 156
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [158] 65a7 [Bcc Q] 159
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [167] 66c7 [Bcc Q] 168
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [169] 635b [Bcc Q] 170
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [170] 6923 [Bcc Q] 171
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [171] 6735 [Bcc Q] 172
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [172] 6565 [Bcc Q] 173
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [173] 657d [Bcc Q] 174
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [182] 65e7 [Bcc Q] 183
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [183] 6337 [Bcc Q] 184
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [187] 69cf [Bcc Q] 188
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [197] 64fd [Bcc Q] 198
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [200] 6ad7 [Bcc Q] 201
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [201] 6fd7 [Bcc Q] 202
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [204] 6d27 [Bcc Q] 205
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [211] 63d7 [Bcc Q] 212
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [213] 6a71 [Bcc Q] 214
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [215] 60e7 [Bcc Q] 216
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [220] 6ba7 [Bcc Q] 221
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [222] 6fd1 [Bcc Q] 223
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [224] 6723 [Bcc Q] 225
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [234] 64e5 [Bcc Q] 235
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [235] 60cb [Bcc Q] 236
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [239] 66e7 [Bcc Q] 240
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [244] 6ff5 [Bcc Q] 245
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [246] 64a9 [Bcc Q] 247
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [256] 6eeb [Bcc Q] 257
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [264] 6fb5 [Bcc Q] 265
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [266] 63cd [Bcc Q] 267
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [267] 6e5d [Bcc Q] 268
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [278] 6799 [Bcc Q] 279
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [279] 68a9 [Bcc Q] 280
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [287] 6f6b [Bcc Q] 288
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [290] 6ab3 [Bcc Q] 291
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [301] 697b [Bcc Q] 302
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [303] 6ae5 [Bcc Q] 304
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [312] 6735 [Bcc Q] 313
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [314] 65c7 [Bcc Q] 315
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [325] 60d7 [Bcc Q] 326
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [326] 69f9 [Bcc Q] 327
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [328] 6d59 [Bcc Q] 329
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [329] 676b [Bcc Q] 330
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [339] 69e7 [Bcc Q] 340
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [342] 6075 [Bcc Q] 343
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [346] 6d55 [Bcc Q] 347
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [348] 69b9 [Bcc Q] 349
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [356] 6423 [Bcc Q] 357
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [358] 655f [Bcc Q] 359
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [361] 6dbf [Bcc Q] 362
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [364] 65e7 [Bcc Q] 365
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [366] 6f75 [Bcc Q] 367
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [368] 6377 [Bcc Q] 369
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [369] 6c83 [Bcc Q] 370
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [371] 653b [Bcc Q] 372
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [372] 6421 [Bcc Q] 373
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [374] 6b81 [Bcc Q] 375
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [380] 6049 [Bcc Q] 381
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [386] 6c3b [Bcc Q] 387
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [387] 69d3 [Bcc Q] 388
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [389] 6959 [Bcc Q] 390
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [390] 6db5 [Bcc Q] 391
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [393] 6459 [Bcc Q] 394
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [399] 6077 [Bcc Q] 400
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [401] 65d5 [Bcc Q] 402
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [413] 6baf [Bcc Q] 414
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [417] 6361 [Bcc Q] 418
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [426] 6377 [Bcc Q] 427
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [432] 60b7 [Bcc Q] 433
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [434] 6995 [Bcc Q] 435
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [437] 662d [Bcc Q] 438
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [443] 6f53 [Bcc Q] 444
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [446] 64c9 [Bcc Q] 447
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [450] 643f [Bcc Q] 451
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [455] 6d99 [Bcc Q] 456
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [458] 66ab [Bcc Q] 459
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [459] 6051 [Bcc Q] 460
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [461] 63c9 [Bcc Q] 462
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [470] 6fd9 [Bcc Q] 471
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [474] 6335 [Bcc Q] 475
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [475] 66a3 [Bcc Q] 476
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [481] 659f [Bcc Q] 482
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [484] 69a5 [Bcc Q] 485
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [489] 6f3d [Bcc Q] 490
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [497] 665d [Bcc Q] 498
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [526] 6a89 [Bcc Q] 527
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [530] 6bc1 [Bcc Q] 531
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [531] 643f [Bcc Q] 532
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [535] 6df9 [Bcc Q] 536
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [542] 663d [Bcc Q] 543
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [546] 60f7 [Bcc Q] 547
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [547] 6c99 [Bcc Q] 548
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [549] 6d81 [Bcc Q] 550
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [550] 6335 [Bcc Q] 551
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [553] 604d [Bcc Q] 554
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [554] 6663 [Bcc Q] 555
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [558] 64d7 [Bcc Q] 559
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [561] 6df3 [Bcc Q] 562
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [562] 69e5 [Bcc Q] 563
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [572] 6db7 [Bcc Q] 573
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [576] 654d [Bcc Q] 577
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [582] 6559 [Bcc Q] 583
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [585] 6fb3 [Bcc Q] 586
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [596] 66bb [Bcc Q] 597
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [597] 60f3 [Bcc Q] 598
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [603] 66a3 [Bcc Q] 604
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [605] 65fb [Bcc Q] 606
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [607] 6963 [Bcc Q] 608
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [608] 66d7 [Bcc Q] 609
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [609] 62f5 [Bcc Q] 610
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [617] 6091 [Bcc Q] 618
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [618] 64dd [Bcc Q] 619
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [626] 6adb [Bcc Q] 627
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [627] 6023 [Bcc Q] 628
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [634] 6d47 [Bcc Q] 635
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [641] 6dcb [Bcc Q] 642
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [649] 6edb [Bcc Q] 650
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [651] 6f2d [Bcc Q] 652
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [657] 6f37 [Bcc Q] 658
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [659] 6f4b [Bcc Q] 660
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [666] 66c9 [Bcc Q] 667
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [670] 64f9 [Bcc Q] 671
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [671] 6c79 [Bcc Q] 672
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [681] 6f99 [Bcc Q] 682
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [683] 6f79 [Bcc Q] 684
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [685] 68c3 [Bcc Q] 686
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [687] 6f6f [Bcc Q] 688
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [688] 632f [Bcc Q] 689
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [689] 60a1 [Bcc Q] 690
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [690] 63e7 [Bcc Q] 691
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [691] 64fb [Bcc Q] 692
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [696] 6b91 [Bcc Q] 697
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [698] 65bf [Bcc Q] 699
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [702] 6c55 [Bcc Q] 703
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [703] 6daf [Bcc Q] 704
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [705] 6367 [Bcc Q] 706
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [709] 6c51 [Bcc Q] 710
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [710] 67ff [Bcc Q] 711
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [718] 63db [Bcc Q] 719
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [719] 6665 [Bcc Q] 720
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [722] 6bd7 [Bcc Q] 723
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [725] 6eb9 [Bcc Q] 726
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [726] 6697 [Bcc Q] 727
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [731] 6b5b [Bcc Q] 732
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [735] 6cc7 [Bcc Q] 736
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [743] 6c6b [Bcc Q] 744
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [751] 6a97 [Bcc Q] 752
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [753] 6f5d [Bcc Q] 754
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [759] 635f [Bcc Q] 760
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [761] 6471 [Bcc Q] 762
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [768] 66c1 [Bcc Q] 769
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [771] 6cab [Bcc Q] 772
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [774] 6a7b [Bcc Q] 775
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [775] 66bb [Bcc Q] 776
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [784] 69b7 [Bcc Q] 785
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [786] 6331 [Bcc Q] 787
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [787] 6a37 [Bcc Q] 788
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [793] 639d [Bcc Q] 794
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [800] 64c1 [Bcc Q] 801
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [801] 6def [Bcc Q] 802
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [809] 6c95 [Bcc Q] 810
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [810] 666f [Bcc Q] 811
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [811] 6b7f [Bcc Q] 812
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [814] 6ea7 [Bcc Q] 815
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [817] 63e5 [Bcc Q] 818
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [822] 67cd [Bcc Q] 823
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [833] 6dfd [Bcc Q] 834
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [836] 6bfb [Bcc Q] 837
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [841] 6af9 [Bcc Q] 842
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [842] 60f1 [Bcc Q] 843
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [844] 6c5d [Bcc Q] 845
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [850] 6033 [Bcc Q] 851
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [853] 66bd [Bcc Q] 854
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [854] 665f [Bcc Q] 855
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [863] 6b43 [Bcc Q] 864
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [864] 6429 [Bcc Q] 865
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [866] 6971 [Bcc Q] 867
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [868] 6cdd [Bcc Q] 869
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [877] 6f3f [Bcc Q] 878
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [880] 6aed [Bcc Q] 881
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [884] 6059 [Bcc Q] 885
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [886] 68ef [Bcc Q] 887
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [891] 6247 [Bcc Q] 892
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [894] 6843 [Bcc Q] 895
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [900] 6b75 [Bcc Q] 901
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [912] 6b8b [Bcc Q] 913
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [915] 679d [Bcc Q] 916
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [917] 6889 [Bcc Q] 918
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [918] 6d2f [Bcc Q] 919
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [927] 60b5 [Bcc Q] 928
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [930] 6aeb [Bcc Q] 931
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [942] 67f7 [Bcc Q] 943
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [944] 6fd3 [Bcc Q] 945
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [945] 643d [Bcc Q] 946
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [948] 6c21 [Bcc Q] 949
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [957] 6b79 [Bcc Q] 958
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [959] 6085 [Bcc Q] 960
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [960] 63e1 [Bcc Q] 961
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [961] 60f1 [Bcc Q] 962
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [964] 67e7 [Bcc Q] 965
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [967] 6847 [Bcc Q] 968
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [968] 6071 [Bcc Q] 969
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [975] 6ceb [Bcc Q] 976
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [981] 662d [Bcc Q] 982
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [985] 6a33 [Bcc Q] 986
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [989] 6eb1 [Bcc Q] 990
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [992] 65b5 [Bcc Q] 993
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1000] 69d5 [Bcc Q] 1001
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1002] 60a5 [Bcc Q] 1003
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1008] 626f [Bcc Q] 1009
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1011] 6d6b [Bcc Q] 1012
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1014] 64b3 [Bcc Q] 1015
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1019] 6c4b [Bcc Q] 1020
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1020] 63ed [Bcc Q] 1021
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1024] 67a1 [Bcc Q] 1025
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1030] 69f3 [Bcc Q] 1031
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1034] 68d7 [Bcc Q] 1035
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1035] 638d [Bcc Q] 1036
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1043] 6881 [Bcc Q] 1044
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1053] 607b [Bcc Q] 1054
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1061] 6a5d [Bcc Q] 1062
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1065] 642b [Bcc Q] 1066
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1067] 6f5f [Bcc Q] 1068
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1068] 60ff [Bcc Q] 1069
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1072] 6f51 [Bcc Q] 1073
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1086] 6a37 [Bcc Q] 1087
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1087] 6f47 [Bcc Q] 1088
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1095] 6bd1 [Bcc Q] 1096
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1102] 63f9 [Bcc Q] 1103
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1115] 6eb3 [Bcc Q] 1116
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1116] 6997 [Bcc Q] 1117
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1118] 6eb1 [Bcc Q] 1119
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1119] 6d83 [Bcc Q] 1120
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1120] 68ed [Bcc Q] 1121
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1122] 6097 [Bcc Q] 1123
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1127] 65b5 [Bcc Q] 1128
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1128] 6675 [Bcc Q] 1129
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1133] 6891 [Bcc Q] 1134
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1134] 6473 [Bcc Q] 1135
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1136] 68e3 [Bcc Q] 1137
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1138] 60dd [Bcc Q] 1139
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1142] 6e99 [Bcc Q] 1143
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1143] 64bb [Bcc Q] 1144
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1144] 68ed [Bcc Q] 1145
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1146] 6a63 [Bcc Q] 1147
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1150] 6bdb [Bcc Q] 1151
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1154] 6453 [Bcc Q] 1155
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1156] 6fa3 [Bcc Q] 1157
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1158] 634b [Bcc Q] 1159
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1160] 68c7 [Bcc Q] 1161
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1166] 6cc3 [Bcc Q] 1167
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1169] 68a7 [Bcc Q] 1170
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1171] 6aff [Bcc Q] 1172
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1181] 60ff [Bcc Q] 1182
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1182] 68e3 [Bcc Q] 1183
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1184] 66ad [Bcc Q] 1185
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1185] 63b7 [Bcc Q] 1186
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1188] 6b6b [Bcc Q] 1189
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1189] 6075 [Bcc Q] 1190
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1194] 6745 [Bcc Q] 1195
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1197] 64ff [Bcc Q] 1198
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1201] 6a79 [Bcc Q] 1202
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1206] 69c5 [Bcc Q] 1207
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1211] 6779 [Bcc Q] 1212
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1213] 6095 [Bcc Q] 1214
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1214] 6d83 [Bcc Q] 1215
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1216] 6a7f [Bcc Q] 1217
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1219] 6ddf [Bcc Q] 1220
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1221] 6b91 [Bcc Q] 1222
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1224] 6365 [Bcc Q] 1225
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1228] 6c2d [Bcc Q] 1229
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1230] 6bff [Bcc Q] 1231
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1231] 632f [Bcc Q] 1232
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1235] 6ae7 [Bcc Q] 1236
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1243] 6ab7 [Bcc Q] 1244
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1246] 6371 [Bcc Q] 1247
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1247] 6077 [Bcc Q] 1248
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1252] 68d5 [Bcc Q] 1253
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1253] 6945 [Bcc Q] 1254
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1254] 6695 [Bcc Q] 1255
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1260] 6e73 [Bcc Q] 1261
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1270] 6c33 [Bcc Q] 1271
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1271] 6623 [Bcc Q] 1272
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1272] 64af [Bcc Q] 1273
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1274] 6045 [Bcc Q] 1275
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1275] 662f [Bcc Q] 1276
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1276] 657b [Bcc Q] 1277
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1290] 69c1 [Bcc Q] 1291
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1293] 685d [Bcc Q] 1294
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1294] 68ed [Bcc Q] 1295
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1295] 6d3d [Bcc Q] 1296
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1297] 6689 [Bcc Q] 1298
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1298] 6d5f [Bcc Q] 1299
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1303] 6a39 [Bcc Q] 1304
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1318] 6573 [Bcc Q] 1319
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1319] 65b5 [Bcc Q] 1320
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1321] 6521 [Bcc Q] 1322
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1324] 6749 [Bcc Q] 1325
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1326] 6a23 [Bcc Q] 1327
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1327] 6547 [Bcc Q] 1328
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1330] 6c6d [Bcc Q] 1331
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1331] 67c3 [Bcc Q] 1332
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1339] 6475 [Bcc Q] 1340
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1347] 63bd [Bcc Q] 1348
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1355] 6325 [Bcc Q] 1356
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1358] 6399 [Bcc Q] 1359
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1362] 6881 [Bcc Q] 1363
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1365] 6977 [Bcc Q] 1366
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1369] 68c7 [Bcc Q] 1370
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1370] 6b7b [Bcc Q] 1371
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1371] 6bf9 [Bcc Q] 1372
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1372] 6cc9 [Bcc Q] 1373
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1379] 6ab3 [Bcc Q] 1380
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1381] 6f75 [Bcc Q] 1382
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1389] 66bd [Bcc Q] 1390
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1397] 67e7 [Bcc Q] 1398
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1399] 6a37 [Bcc Q] 1400
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1409] 64eb [Bcc Q] 1410
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1410] 667f [Bcc Q] 1411
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1411] 6471 [Bcc Q] 1412
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1412] 6c89 [Bcc Q] 1413
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1415] 699f [Bcc Q] 1416
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1428] 6ea9 [Bcc Q] 1429
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1429] 6d97 [Bcc Q] 1430
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1436] 6a77 [Bcc Q] 1437
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1437] 6aa5 [Bcc Q] 1438
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1438] 68c7 [Bcc Q] 1439
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1441] 6b47 [Bcc Q] 1442
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1443] 6f83 [Bcc Q] 1444
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1449] 6d97 [Bcc Q] 1450
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1457] 6955 [Bcc Q] 1458
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1470] 666b [Bcc Q] 1471
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1475] 6af1 [Bcc Q] 1476
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1480] 60d1 [Bcc Q] 1481
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1481] 6047 [Bcc Q] 1482
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1504] 694f [Bcc Q] 1505
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1508] 669d [Bcc Q] 1509
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1509] 64e5 [Bcc Q] 1510
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1510] 678b [Bcc Q] 1511
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1513] 6f43 [Bcc Q] 1514
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1516] 6737 [Bcc Q] 1517
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1519] 67c9 [Bcc Q] 1520
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1520] 6f49 [Bcc Q] 1521
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1523] 6057 [Bcc Q] 1524
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1524] 6cf3 [Bcc Q] 1525
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1528] 6f6f [Bcc Q] 1529
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1529] 64c9 [Bcc Q] 1530
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1534] 6da3 [Bcc Q] 1535
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1537] 6c5f [Bcc Q] 1538
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1538] 664b [Bcc Q] 1539
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1541] 6833 [Bcc Q] 1542
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1546] 6667 [Bcc Q] 1547
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1552] 67f5 [Bcc Q] 1553
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1557] 67f7 [Bcc Q] 1558
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1558] 6a91 [Bcc Q] 1559
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1562] 6079 [Bcc Q] 1563
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1563] 6f8b [Bcc Q] 1564
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1565] 632b [Bcc Q] 1566
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1567] 6bc5 [Bcc Q] 1568
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1577] 60ff [Bcc Q] 1578
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1578] 63b9 [Bcc Q] 1579
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1580] 60a3 [Bcc Q] 1581
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1583] 6499 [Bcc Q] 1584
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1586] 6a43 [Bcc Q] 1587
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1588] 65ad [Bcc Q] 1589
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1598] 6c31 [Bcc Q] 1599
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1599] 6ab1 [Bcc Q] 1600
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1604] 67a1 [Bcc Q] 1605
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1606] 6387 [Bcc Q] 1607
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1607] 6f7d [Bcc Q] 1608
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1610] 68e1 [Bcc Q] 1611
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1616] 693f [Bcc Q] 1617
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1627] 6363 [Bcc Q] 1628
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1629] 6565 [Bcc Q] 1630
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1630] 6359 [Bcc Q] 1631
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1632] 6d3b [Bcc Q] 1633
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1635] 6a45 [Bcc Q] 1636
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1639] 609d [Bcc Q] 1640
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1645] 66af [Bcc Q] 1646
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1648] 64f9 [Bcc Q] 1649
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1651] 6c23 [Bcc Q] 1652
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1653] 67af [Bcc Q] 1654
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1666] 65f7 [Bcc Q] 1667
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1677] 65ab [Bcc Q] 1678
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1679] 6fc7 [Bcc Q] 1680
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1684] 6d51 [Bcc Q] 1685
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1685] 6f7b [Bcc Q] 1686
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1686] 63f9 [Bcc Q] 1687
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1688] 6cf3 [Bcc Q] 1689
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1689] 6351 [Bcc Q] 1690
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1696] 6e5b [Bcc Q] 1697
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1704] 6bdb [Bcc Q] 1705
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1714] 60fd [Bcc Q] 1715
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1716] 6f67 [Bcc Q] 1717
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1718] 67c7 [Bcc Q] 1719
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1719] 6c87 [Bcc Q] 1720
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1721] 6721 [Bcc Q] 1722
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1725] 608f [Bcc Q] 1726
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1734] 6227 [Bcc Q] 1735
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1736] 6227 [Bcc Q] 1737
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1738] 65cd [Bcc Q] 1739
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1741] 695d [Bcc Q] 1742
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1742] 6b25 [Bcc Q] 1743
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1743] 6453 [Bcc Q] 1744
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1749] 6d5f [Bcc Q] 1750
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1754] 6d43 [Bcc Q] 1755
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1758] 693d [Bcc Q] 1759
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1767] 6dbb [Bcc Q] 1768
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1768] 6e8b [Bcc Q] 1769
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1771] 6889 [Bcc Q] 1772
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1773] 6c23 [Bcc Q] 1774
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1777] 6757 [Bcc Q] 1778
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1778] 60c5 [Bcc Q] 1779
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1785] 6e53 [Bcc Q] 1786
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1789] 60ff [Bcc Q] 1790
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1790] 6f8b [Bcc Q] 1791
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1807] 65f9 [Bcc Q] 1808
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1810] 6e5b [Bcc Q] 1811
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1813] 628f [Bcc Q] 1814
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1819] 60a1 [Bcc Q] 1820
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1820] 65ad [Bcc Q] 1821
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1823] 6753 [Bcc Q] 1824
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1841] 6a81 [Bcc Q] 1842
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1842] 60ef [Bcc Q] 1843
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1843] 6833 [Bcc Q] 1844
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1845] 6acd [Bcc Q] 1846
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1847] 695b [Bcc Q] 1848
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1853] 65f5 [Bcc Q] 1854
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1856] 60e9 [Bcc Q] 1857
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1862] 657d [Bcc Q] 1863
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1864] 6f7d [Bcc Q] 1865
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1867] 6637 [Bcc Q] 1868
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1868] 6c97 [Bcc Q] 1869
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1869] 67e1 [Bcc Q] 1870
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1870] 6f4b [Bcc Q] 1871
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1871] 6639 [Bcc Q] 1872
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1872] 6bb9 [Bcc Q] 1873
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1873] 662f [Bcc Q] 1874
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1875] 6089 [Bcc Q] 1876
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1878] 6437 [Bcc Q] 1879
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1886] 63f9 [Bcc Q] 1887
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1888] 6c73 [Bcc Q] 1889
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1894] 6647 [Bcc Q] 1895
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1898] 6b75 [Bcc Q] 1899
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [1899] 603f [Bcc Q] 1900
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1901] 609b [Bcc Q] 1902
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [1904] 68b7 [Bcc Q] 1905
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1905] 6c3b [Bcc Q] 1906
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1913] 6bc1 [Bcc Q] 1914
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1914] 65d5 [Bcc Q] 1915
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1916] 6bcb [Bcc Q] 1917
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1920] 6f4b [Bcc Q] 1921
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1922] 6ab3 [Bcc Q] 1923
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1923] 63e3 [Bcc Q] 1924
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1932] 6fef [Bcc Q] 1933
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1940] 6ffd [Bcc Q] 1941
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1949] 635d [Bcc Q] 1950
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1959] 6c5d [Bcc Q] 1960
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1963] 68af [Bcc Q] 1964
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [1964] 6c49 [Bcc Q] 1965
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1971] 6839 [Bcc Q] 1972
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [1978] 6a5f [Bcc Q] 1979
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [1989] 67fd [Bcc Q] 1990
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1991] 6cff [Bcc Q] 1992
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [1995] 6fdd [Bcc Q] 1996
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1996] 633f [Bcc Q] 1997
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2000] 6fdf [Bcc Q] 2001
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2004] 6697 [Bcc Q] 2005
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2005] 67e7 [Bcc Q] 2006
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2007] 6333 [Bcc Q] 2008
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2013] 6387 [Bcc Q] 2014
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2015] 67e3 [Bcc Q] 2016
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2016] 6f47 [Bcc Q] 2017
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2021] 6a71 [Bcc Q] 2022
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2024] 67e3 [Bcc Q] 2025
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2028] 6db1 [Bcc Q] 2029
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2029] 6d73 [Bcc Q] 2030
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2030] 6bdd [Bcc Q] 2031
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2034] 677d [Bcc Q] 2035
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2036] 6871 [Bcc Q] 2037
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2037] 609d [Bcc Q] 2038
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2041] 67d7 [Bcc Q] 2042
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2049] 60e9 [Bcc Q] 2050
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2050] 6cc9 [Bcc Q] 2051
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2053] 6aab [Bcc Q] 2054
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2055] 6fc5 [Bcc Q] 2056
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2061] 6ff7 [Bcc Q] 2062
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2065] 6473 [Bcc Q] 2066
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2069] 6893 [Bcc Q] 2070
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2073] 6043 [Bcc Q] 2074
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2079] 6aff [Bcc Q] 2080
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2081] 66b7 [Bcc Q] 2082
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2082] 64af [Bcc Q] 2083
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2083] 6c93 [Bcc Q] 2084
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2091] 6057 [Bcc Q] 2092
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2094] 6a37 [Bcc Q] 2095
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2098] 6dc3 [Bcc Q] 2099
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2109] 6be5 [Bcc Q] 2110
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2124] 6ded [Bcc Q] 2125
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2129] 6483 [Bcc Q] 2130
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2131] 68df [Bcc Q] 2132
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2135] 6f47 [Bcc Q] 2136
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2137] 6369 [Bcc Q] 2138
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2153] 66c7 [Bcc Q] 2154
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2154] 6fed [Bcc Q] 2155
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2160] 6c35 [Bcc Q] 2161
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2162] 6a91 [Bcc Q] 2163
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2176] 6a49 [Bcc Q] 2177
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2179] 68f1 [Bcc Q] 2180
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2191] 6b35 [Bcc Q] 2192
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2193] 6a8f [Bcc Q] 2194
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2197] 6ed3 [Bcc Q] 2198
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2202] 6721 [Bcc Q] 2203
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2211] 65bd [Bcc Q] 2212
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2212] 6653 [Bcc Q] 2213
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2213] 67c1 [Bcc Q] 2214
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2216] 63c1 [Bcc Q] 2217
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2217] 6325 [Bcc Q] 2218
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2227] 60db [Bcc Q] 2228
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2231] 6057 [Bcc Q] 2232
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2233] 699d [Bcc Q] 2234
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2239] 64f1 [Bcc Q] 2240
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2241] 6dbd [Bcc Q] 2242
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2248] 6e6f [Bcc Q] 2249
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2258] 60f5 [Bcc Q] 2259
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2269] 60d3 [Bcc Q] 2270
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2271] 69f1 [Bcc Q] 2272
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2272] 62b3 [Bcc Q] 2273
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2287] 6b31 [Bcc Q] 2288
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2294] 6c79 [Bcc Q] 2295
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2298] 6f67 [Bcc Q] 2299
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2300] 63cb [Bcc Q] 2301
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2314] 6695 [Bcc Q] 2315
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2315] 6373 [Bcc Q] 2316
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2318] 6ba9 [Bcc Q] 2319
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2326] 6bd9 [Bcc Q] 2327
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2329] 6f83 [Bcc Q] 2330
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2330] 6fa5 [Bcc Q] 2331
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2331] 67ff [Bcc Q] 2332
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2332] 63b5 [Bcc Q] 2333
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2339] 6af9 [Bcc Q] 2340
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2342] 6fdb [Bcc Q] 2343
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2351] 6c3d [Bcc Q] 2352
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2362] 6f31 [Bcc Q] 2363
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2368] 6a79 [Bcc Q] 2369
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2369] 657b [Bcc Q] 2370
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2372] 65a3 [Bcc Q] 2373
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2382] 6c4b [Bcc Q] 2383
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2384] 6fc5 [Bcc Q] 2385
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2385] 62c5 [Bcc Q] 2386
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2388] 64e5 [Bcc Q] 2389
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2395] 6671 [Bcc Q] 2396
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2399] 6859 [Bcc Q] 2400
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2402] 6367 [Bcc Q] 2403
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2403] 6e25 [Bcc Q] 2404
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2405] 6f5d [Bcc Q] 2406
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2408] 69dd [Bcc Q] 2409
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2410] 6741 [Bcc Q] 2411
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2412] 6c57 [Bcc Q] 2413
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2415] 6d6f [Bcc Q] 2416
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2421] 6c87 [Bcc Q] 2422
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2425] 6c4b [Bcc Q] 2426
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2428] 6d7d [Bcc Q] 2429
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2430] 6ef5 [Bcc Q] 2431
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2442] 6297 [Bcc Q] 2443
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2444] 682b [Bcc Q] 2445
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2450] 6533 [Bcc Q] 2451
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2451] 60fb [Bcc Q] 2452
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2457] 6b51 [Bcc Q] 2458
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2461] 65eb [Bcc Q] 2462
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2463] 6fc9 [Bcc Q] 2464
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2465] 6e73 [Bcc Q] 2466
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2468] 6985 [Bcc Q] 2469
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2473] 62ef [Bcc Q] 2474
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2474] 6f59 [Bcc Q] 2475
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2476] 6e43 [Bcc Q] 2477
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2477] 60d3 [Bcc Q] 2478
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2478] 6add [Bcc Q] 2479
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2481] 69ef [Bcc Q] 2482
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2484] 6561 [Bcc Q] 2485
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2489] 6081 [Bcc Q] 2490
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2501] 638b [Bcc Q] 2502
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2503] 6db5 [Bcc Q] 2504
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2505] 6af7 [Bcc Q] 2506
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2509] 67db [Bcc Q] 2510
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2520] 6d83 [Bcc Q] 2521
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2522] 60ff [Bcc Q] 2523
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2523] 6e71 [Bcc Q] 2524
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2524] 606f [Bcc Q] 2525
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2525] 6b39 [Bcc Q] 2526
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2526] 6895 [Bcc Q] 2527
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2528] 6fb5 [Bcc Q] 2529
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2535] 6a4b [Bcc Q] 2536
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2537] 69c9 [Bcc Q] 2538
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2541] 69c9 [Bcc Q] 2542
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2542] 6d6f [Bcc Q] 2543
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2544] 6ca9 [Bcc Q] 2545
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2549] 6677 [Bcc Q] 2550
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2555] 638b [Bcc Q] 2556
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2556] 6d4b [Bcc Q] 2557
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2561] 6b27 [Bcc Q] 2562
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2562] 6049 [Bcc Q] 2563
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2564] 6b7f [Bcc Q] 2565
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2565] 69c5 [Bcc Q] 2566
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2567] 604d [Bcc Q] 2568
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2568] 67b7 [Bcc Q] 2569
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2573] 6f2d [Bcc Q] 2574
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2576] 6fe7 [Bcc Q] 2577
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2577] 6ae5 [Bcc Q] 2578
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2579] 64bf [Bcc Q] 2580
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2583] 6a8d [Bcc Q] 2584
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2600] 6521 [Bcc Q] 2601
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2608] 6f7f [Bcc Q] 2609
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2609] 6035 [Bcc Q] 2610
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2610] 6f31 [Bcc Q] 2611
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2613] 656b [Bcc Q] 2614
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2616] 652f [Bcc Q] 2617
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2619] 6451 [Bcc Q] 2620
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2625] 65c1 [Bcc Q] 2626
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2629] 68bb [Bcc Q] 2630
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2640] 6de7 [Bcc Q] 2641
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2642] 62ab [Bcc Q] 2643
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2657] 6ae9 [Bcc Q] 2658
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2659] 6975 [Bcc Q] 2660
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2660] 6845 [Bcc Q] 2661
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2661] 697d [Bcc Q] 2662
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2662] 659d [Bcc Q] 2663
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2665] 6c47 [Bcc Q] 2666
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2669] 64bb [Bcc Q] 2670
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2673] 6d7f [Bcc Q] 2674
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2678] 67eb [Bcc Q] 2679
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2688] 6d9d [Bcc Q] 2689
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2692] 6d85 [Bcc Q] 2693
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2693] 6f33 [Bcc Q] 2694
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2694] 602f [Bcc Q] 2695
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2695] 6a31 [Bcc Q] 2696
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2701] 60fb [Bcc Q] 2702
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2717] 6f8b [Bcc Q] 2718
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2724] 66cf [Bcc Q] 2725
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2727] 60d1 [Bcc Q] 2728
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2743] 6073 [Bcc Q] 2744
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2747] 6ed9 [Bcc Q] 2748
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2752] 696b [Bcc Q] 2753
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2760] 60cb [Bcc Q] 2761
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2767] 68f5 [Bcc Q] 2768
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2770] 6f3b [Bcc Q] 2771
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2779] 689f [Bcc Q] 2780
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2780] 6759 [Bcc Q] 2781
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2788] 6077 [Bcc Q] 2789
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2790] 60f9 [Bcc Q] 2791
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2796] 6599 [Bcc Q] 2797
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2805] 6fdf [Bcc Q] 2806
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2806] 608b [Bcc Q] 2807
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2807] 602f [Bcc Q] 2808
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2812] 6b21 [Bcc Q] 2813
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2825] 6c4f [Bcc Q] 2826
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2826] 6c83 [Bcc Q] 2827
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2832] 6f4b [Bcc Q] 2833
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2833] 667b [Bcc Q] 2834
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2843] 6aa5 [Bcc Q] 2844
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2845] 6f3b [Bcc Q] 2846
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2847] 68c9 [Bcc Q] 2848
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2848] 69cf [Bcc Q] 2849
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2854] 6feb [Bcc Q] 2855
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2864] 604f [Bcc Q] 2865
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2865] 6fc3 [Bcc Q] 2866
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2871] 60cb [Bcc Q] 2872
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2881] 658b [Bcc Q] 2882
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2882] 63b3 [Bcc Q] 2883
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2883] 668b [Bcc Q] 2884
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2884] 6bad [Bcc Q] 2885
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2887] 687b [Bcc Q] 2888
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2890] 63ab [Bcc Q] 2891
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2900] 6aad [Bcc Q] 2901
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2904] 6df3 [Bcc Q] 2905
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2912] 65d7 [Bcc Q] 2913
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2915] 653f [Bcc Q] 2916
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2917] 6b81 [Bcc Q] 2918
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2920] 6e25 [Bcc Q] 2921
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2925] 6e69 [Bcc Q] 2926
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2929] 6fa9 [Bcc Q] 2930
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2930] 6473 [Bcc Q] 2931
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2931] 622d [Bcc Q] 2932
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2932] 60c1 [Bcc Q] 2933
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2937] 6f93 [Bcc Q] 2938
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [2945] 60c3 [Bcc Q] 2946
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2947] 6f77 [Bcc Q] 2948
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [2951] 6acb [Bcc Q] 2952
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2957] 6dd9 [Bcc Q] 2958
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2959] 6cf5 [Bcc Q] 2960
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2961] 6ac7 [Bcc Q] 2962
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2962] 6421 [Bcc Q] 2963
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2964] 67f1 [Bcc Q] 2965
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [2970] 6f41 [Bcc Q] 2971
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [2975] 64b3 [Bcc Q] 2976
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [2979] 633f [Bcc Q] 2980
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [2988] 64eb [Bcc Q] 2989
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3002] 6fe7 [Bcc Q] 3003
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3005] 6ad7 [Bcc Q] 3006
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3010] 6e31 [Bcc Q] 3011
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3023] 6939 [Bcc Q] 3024
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3028] 66cf [Bcc Q] 3029
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3031] 6ea3 [Bcc Q] 3032
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3036] 603b [Bcc Q] 3037
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3037] 6bf7 [Bcc Q] 3038
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3038] 6d5b [Bcc Q] 3039
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3039] 6c77 [Bcc Q] 3040
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3042] 6821 [Bcc Q] 3043
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3046] 62d9 [Bcc Q] 3047
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3049] 6d33 [Bcc Q] 3050
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3050] 69c7 [Bcc Q] 3051
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3051] 6d73 [Bcc Q] 3052
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3054] 603f [Bcc Q] 3055
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3056] 6a7f [Bcc Q] 3057
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3072] 6fd9 [Bcc Q] 3073
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3073] 698d [Bcc Q] 3074
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3075] 6f79 [Bcc Q] 3076
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3077] 68b1 [Bcc Q] 3078
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3085] 6d91 [Bcc Q] 3086
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3087] 623b [Bcc Q] 3088
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3090] 6ebd [Bcc Q] 3091
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3095] 6b27 [Bcc Q] 3096
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3099] 6245 [Bcc Q] 3100
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3102] 6a89 [Bcc Q] 3103
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3103] 6995 [Bcc Q] 3104
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3119] 605b [Bcc Q] 3120
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3121] 6391 [Bcc Q] 3122
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3127] 6f69 [Bcc Q] 3128
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3128] 6c31 [Bcc Q] 3129
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3135] 65a7 [Bcc Q] 3136
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3137] 662b [Bcc Q] 3138
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3138] 6fdd [Bcc Q] 3139
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3143] 6bb1 [Bcc Q] 3144
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3145] 6099 [Bcc Q] 3146
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3154] 6551 [Bcc Q] 3155
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3174] 6f59 [Bcc Q] 3175
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3178] 60e3 [Bcc Q] 3179
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3179] 6031 [Bcc Q] 3180
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3187] 64bb [Bcc Q] 3188
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3196] 6d9b [Bcc Q] 3197
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3197] 6337 [Bcc Q] 3198
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3198] 6f25 [Bcc Q] 3199
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3202] 6fd5 [Bcc Q] 3203
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3205] 6897 [Bcc Q] 3206
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3208] 6665 [Bcc Q] 3209
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3209] 69e7 [Bcc Q] 3210
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3221] 604b [Bcc Q] 3222
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3224] 63cb [Bcc Q] 3225
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3232] 67bd [Bcc Q] 3233
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3235] 64d9 [Bcc Q] 3236
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3238] 684d [Bcc Q] 3239
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3239] 6fed [Bcc Q] 3240
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3246] 60c1 [Bcc Q] 3247
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3251] 6787 [Bcc Q] 3252
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3256] 65d7 [Bcc Q] 3257
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3257] 6565 [Bcc Q] 3258
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3259] 66c1 [Bcc Q] 3260
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3263] 6fb1 [Bcc Q] 3264
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3268] 64f3 [Bcc Q] 3269
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3269] 6ae5 [Bcc Q] 3270
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3288] 65f5 [Bcc Q] 3289
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3296] 642f [Bcc Q] 3297
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3312] 6bd9 [Bcc Q] 3313
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3315] 6f2f [Bcc Q] 3316
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3318] 6b37 [Bcc Q] 3319
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3319] 6fbf [Bcc Q] 3320
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3320] 6da3 [Bcc Q] 3321
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3325] 65ad [Bcc Q] 3326
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3327] 6dab [Bcc Q] 3328
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3329] 6561 [Bcc Q] 3330
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3330] 6d59 [Bcc Q] 3331
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3332] 6e53 [Bcc Q] 3333
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3333] 6399 [Bcc Q] 3334
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3353] 6fd5 [Bcc Q] 3354
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3354] 6d41 [Bcc Q] 3355
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3357] 6763 [Bcc Q] 3358
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3359] 6c63 [Bcc Q] 3360
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3360] 632f [Bcc Q] 3361
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3362] 6c91 [Bcc Q] 3363
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3364] 65a7 [Bcc Q] 3365
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3375] 64bb [Bcc Q] 3376
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3376] 68c9 [Bcc Q] 3377
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3377] 68c9 [Bcc Q] 3378
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3384] 668d [Bcc Q] 3385
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3387] 67dd [Bcc Q] 3388
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3393] 64e9 [Bcc Q] 3394
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3398] 6a6f [Bcc Q] 3399
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3402] 60cb [Bcc Q] 3403
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3406] 635d [Bcc Q] 3407
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3411] 60df [Bcc Q] 3412
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3421] 66cf [Bcc Q] 3422
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3425] 649b [Bcc Q] 3426
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3428] 66cb [Bcc Q] 3429
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3432] 6a65 [Bcc Q] 3433
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3436] 6d95 [Bcc Q] 3437
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3437] 64bd [Bcc Q] 3438
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3455] 683d [Bcc Q] 3456
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3459] 6d99 [Bcc Q] 3460
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3460] 6d79 [Bcc Q] 3461
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3464] 6381 [Bcc Q] 3465
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3465] 6af7 [Bcc Q] 3466
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3467] 698d [Bcc Q] 3468
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3478] 6ead [Bcc Q] 3479
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3480] 6581 [Bcc Q] 3481
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3481] 60ed [Bcc Q] 3482
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3484] 6365 [Bcc Q] 3485
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3487] 60bf [Bcc Q] 3488
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3489] 6dd1 [Bcc Q] 3490
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3492] 664f [Bcc Q] 3493
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3493] 6271 [Bcc Q] 3494
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3500] 68a1 [Bcc Q] 3501
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3503] 6c63 [Bcc Q] 3504
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3507] 6a6b [Bcc Q] 3508
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3509] 66ff [Bcc Q] 3510
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3517] 6089 [Bcc Q] 3518
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3519] 6e27 [Bcc Q] 3520
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3520] 6f9f [Bcc Q] 3521
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3526] 66e7 [Bcc Q] 3527
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3527] 6cef [Bcc Q] 3528
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3533] 6c5d [Bcc Q] 3534
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3535] 6f8f [Bcc Q] 3536
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3549] 6079 [Bcc Q] 3550
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3555] 6a23 [Bcc Q] 3556
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3558] 6f8d [Bcc Q] 3559
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3564] 6f63 [Bcc Q] 3565
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3568] 6b49 [Bcc Q] 3569
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3572] 698f [Bcc Q] 3573
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3573] 6097 [Bcc Q] 3574
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3576] 6bf7 [Bcc Q] 3577
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3579] 6029 [Bcc Q] 3580
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3587] 633f [Bcc Q] 3588
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3592] 6077 [Bcc Q] 3593
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3595] 609d [Bcc Q] 3596
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3606] 6d79 [Bcc Q] 3607
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3610] 67ad [Bcc Q] 3611
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3614] 63d9 [Bcc Q] 3615
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3615] 6ce9 [Bcc Q] 3616
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3616] 6a97 [Bcc Q] 3617
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3619] 6b7d [Bcc Q] 3620
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3623] 6cdf [Bcc Q] 3624
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3628] 606f [Bcc Q] 3629
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3631] 6775 [Bcc Q] 3632
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3634] 6459 [Bcc Q] 3635
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3639] 638d [Bcc Q] 3640
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3640] 63dd [Bcc Q] 3641
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3641] 6433 [Bcc Q] 3642
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3644] 6095 [Bcc Q] 3645
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3663] 6a31 [Bcc Q] 3664
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3667] 6275 [Bcc Q] 3668
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3672] 6cf7 [Bcc Q] 3673
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3675] 606b [Bcc Q] 3676
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3677] 6f75 [Bcc Q] 3678
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3689] 634f [Bcc Q] 3690
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3691] 6887 [Bcc Q] 3692
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3697] 6c23 [Bcc Q] 3698
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3708] 69ab [Bcc Q] 3709
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3709] 63d3 [Bcc Q] 3710
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3710] 65e1 [Bcc Q] 3711
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3711] 6853 [Bcc Q] 3712
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3712] 6f61 [Bcc Q] 3713
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3717] 638b [Bcc Q] 3718
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3722] 6621 [Bcc Q] 3723
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3728] 6021 [Bcc Q] 3729
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3730] 6aaf [Bcc Q] 3731
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3731] 673f [Bcc Q] 3732
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3732] 6083 [Bcc Q] 3733
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3734] 672d [Bcc Q] 3735
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3740] 65bb [Bcc Q] 3741
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3744] 674f [Bcc Q] 3745
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3752] 63d7 [Bcc Q] 3753
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3756] 6793 [Bcc Q] 3757
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3758] 6841 [Bcc Q] 3759
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3759] 6c4b [Bcc Q] 3760
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3761] 6fbf [Bcc Q] 3762
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3772] 6691 [Bcc Q] 3773
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3778] 6fcd [Bcc Q] 3779
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3781] 6cd7 [Bcc Q] 3782
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3784] 60cb [Bcc Q] 3785
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3792] 67d7 [Bcc Q] 3793
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3800] 603b [Bcc Q] 3801
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3803] 6b7f [Bcc Q] 3804
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3805] 6ded [Bcc Q] 3806
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3807] 6243 [Bcc Q] 3808
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3808] 6f33 [Bcc Q] 3809
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3809] 68f9 [Bcc Q] 3810
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3811] 647b [Bcc Q] 3812
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3812] 67cf [Bcc Q] 3813
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3813] 607d [Bcc Q] 3814
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3833] 697d [Bcc Q] 3834
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3838] 67df [Bcc Q] 3839
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3840] 6b43 [Bcc Q] 3841
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3846] 603d [Bcc Q] 3847
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3848] 6787 [Bcc Q] 3849
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3864] 6269 [Bcc Q] 3865
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3868] 6e61 [Bcc Q] 3869
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3870] 6581 [Bcc Q] 3871
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3872] 6f99 [Bcc Q] 3873
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3873] 6969 [Bcc Q] 3874
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3876] 604b [Bcc Q] 3877
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3877] 6ecd [Bcc Q] 3878
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3885] 6b25 [Bcc Q] 3886
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3887] 6fcf [Bcc Q] 3888
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3888] 683b [Bcc Q] 3889
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3889] 6c29 [Bcc Q] 3890
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3891] 64e9 [Bcc Q] 3892
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3893] 6395 [Bcc Q] 3894
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3898] 6fe5 [Bcc Q] 3899
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3904] 648f [Bcc Q] 3905
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3905] 6037 [Bcc Q] 3906
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3909] 6e5f [Bcc Q] 3910
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3912] 6dbf [Bcc Q] 3913
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3913] 68b1 [Bcc Q] 3914
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3932] 6483 [Bcc Q] 3933
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [3933] 6ef5 [Bcc Q] 3934
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3934] 667b [Bcc Q] 3935
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3937] 6f47 [Bcc Q] 3938
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3938] 674b [Bcc Q] 3939
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3944] 63f7 [Bcc Q] 3945
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3950] 6ae5 [Bcc Q] 3951
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3955] 6729 [Bcc Q] 3956
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3956] 6bb7 [Bcc Q] 3957
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3959] 6ce5 [Bcc Q] 3960
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3962] 606b [Bcc Q] 3963
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3965] 686d [Bcc Q] 3966
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3966] 606b [Bcc Q] 3967
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [3969] 69e3 [Bcc Q] 3970
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [3976] 6251 [Bcc Q] 3977
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3977] 6d45 [Bcc Q] 3978
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [3989] 6337 [Bcc Q] 3990
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [3991] 6fbb [Bcc Q] 3992
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [3995] 6b43 [Bcc Q] 3996
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4001] 6059 [Bcc Q] 4002
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4006] 6f8b [Bcc Q] 4007
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4012] 646b [Bcc Q] 4013
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4018] 69e9 [Bcc Q] 4019
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4022] 6dd9 [Bcc Q] 4023
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4026] 6887 [Bcc Q] 4027
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4029] 63bd [Bcc Q] 4030
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4032] 6873 [Bcc Q] 4033
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4033] 6357 [Bcc Q] 4034
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4034] 6043 [Bcc Q] 4035
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4045] 6d41 [Bcc Q] 4046
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4049] 67f9 [Bcc Q] 4050
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4062] 68f3 [Bcc Q] 4063
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4063] 64e3 [Bcc Q] 4064
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4064] 6afd [Bcc Q] 4065
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4068] 6d87 [Bcc Q] 4069
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4071] 639f [Bcc Q] 4072
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4072] 69d1 [Bcc Q] 4073
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4073] 6b21 [Bcc Q] 4074
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4076] 6e33 [Bcc Q] 4077
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4077] 68bf [Bcc Q] 4078
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4079] 69d9 [Bcc Q] 4080
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4080] 6bcd [Bcc Q] 4081
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4085] 6d79 [Bcc Q] 4086
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4097] 67f5 [Bcc Q] 4098
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4100] 6373 [Bcc Q] 4101
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4102] 63d9 [Bcc Q] 4103
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4110] 6843 [Bcc Q] 4111
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4111] 6ac7 [Bcc Q] 4112
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4113] 65b9 [Bcc Q] 4114
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4114] 63d3 [Bcc Q] 4115
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4121] 6965 [Bcc Q] 4122
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4123] 69c7 [Bcc Q] 4124
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4126] 60b1 [Bcc Q] 4127
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4127] 6a6d [Bcc Q] 4128
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4128] 6085 [Bcc Q] 4129
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4147] 6997 [Bcc Q] 4148
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4148] 63b1 [Bcc Q] 4149
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4149] 6a67 [Bcc Q] 4150
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4155] 6f6d [Bcc Q] 4156
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4158] 6d67 [Bcc Q] 4159
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4159] 6a91 [Bcc Q] 4160
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4163] 66dd [Bcc Q] 4164
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4165] 6da7 [Bcc Q] 4166
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4166] 66bf [Bcc Q] 4167
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4167] 6dcd [Bcc Q] 4168
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4168] 6579 [Bcc Q] 4169
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4169] 6a27 [Bcc Q] 4170
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4176] 6c4b [Bcc Q] 4177
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4189] 63ed [Bcc Q] 4190
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4192] 6ae1 [Bcc Q] 4193
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4200] 6e21 [Bcc Q] 4201
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4201] 6ab1 [Bcc Q] 4202
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4205] 607f [Bcc Q] 4206
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4211] 65f5 [Bcc Q] 4212
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4212] 68d5 [Bcc Q] 4213
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4214] 6cf7 [Bcc Q] 4215
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4216] 6a45 [Bcc Q] 4217
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4218] 672d [Bcc Q] 4219
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4223] 60d9 [Bcc Q] 4224
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4228] 62d7 [Bcc Q] 4229
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4229] 6ba1 [Bcc Q] 4230
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4232] 67d9 [Bcc Q] 4233
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4240] 65a1 [Bcc Q] 4241
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4242] 652b [Bcc Q] 4243
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4246] 6033 [Bcc Q] 4247
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4250] 6659 [Bcc Q] 4251
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4251] 65d5 [Bcc Q] 4252
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4255] 66ff [Bcc Q] 4256
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4256] 6573 [Bcc Q] 4257
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4258] 68b1 [Bcc Q] 4259
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4260] 6075 [Bcc Q] 4261
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4261] 64e3 [Bcc Q] 4262
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4263] 652b [Bcc Q] 4264
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4264] 6845 [Bcc Q] 4265
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4269] 6349 [Bcc Q] 4270
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4273] 6765 [Bcc Q] 4274
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4285] 64e3 [Bcc Q] 4286
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4288] 6f5f [Bcc Q] 4289
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4289] 6625 [Bcc Q] 4290
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4294] 69e3 [Bcc Q] 4295
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4297] 6055 [Bcc Q] 4298
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4299] 633f [Bcc Q] 4300
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4300] 6aeb [Bcc Q] 4301
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4305] 67cd [Bcc Q] 4306
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4312] 6fff [Bcc Q] 4313
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4314] 68c9 [Bcc Q] 4315
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4318] 62ff [Bcc Q] 4319
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4320] 69ef [Bcc Q] 4321
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4321] 658f [Bcc Q] 4322
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4322] 6fe3 [Bcc Q] 4323
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4325] 688f [Bcc Q] 4326
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4329] 637d [Bcc Q] 4330
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4335] 686d [Bcc Q] 4336
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4337] 60ab [Bcc Q] 4338
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4343] 636f [Bcc Q] 4344
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4344] 60f9 [Bcc Q] 4345
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4345] 68a3 [Bcc Q] 4346
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4350] 685d [Bcc Q] 4351
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4353] 63ab [Bcc Q] 4354
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4356] 685b [Bcc Q] 4357
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4358] 6345 [Bcc Q] 4359
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4361] 6fb1 [Bcc Q] 4362
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4365] 608b [Bcc Q] 4366
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4367] 6ff7 [Bcc Q] 4368
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4370] 63db [Bcc Q] 4371
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4372] 6b55 [Bcc Q] 4373
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4383] 6f7b [Bcc Q] 4384
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4389] 6bcb [Bcc Q] 4390
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4393] 6abb [Bcc Q] 4394
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4397] 692d [Bcc Q] 4398
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4398] 66d9 [Bcc Q] 4399
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4400] 6037 [Bcc Q] 4401
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4401] 6b53 [Bcc Q] 4402
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4403] 6269 [Bcc Q] 4404
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4404] 6a91 [Bcc Q] 4405
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4408] 6b99 [Bcc Q] 4409
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4412] 6883 [Bcc Q] 4413
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4416] 6065 [Bcc Q] 4417
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4417] 6e77 [Bcc Q] 4418
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4423] 627b [Bcc Q] 4424
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4426] 6439 [Bcc Q] 4427
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4430] 63db [Bcc Q] 4431
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4434] 6389 [Bcc Q] 4435
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4440] 6a33 [Bcc Q] 4441
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4442] 6ff5 [Bcc Q] 4443
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4450] 6cd1 [Bcc Q] 4451
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4451] 63f9 [Bcc Q] 4452
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4457] 6251 [Bcc Q] 4458
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4461] 65a9 [Bcc Q] 4462
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4464] 62f7 [Bcc Q] 4465
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4467] 62f1 [Bcc Q] 4468
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4468] 63a3 [Bcc Q] 4469
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4471] 6c57 [Bcc Q] 4472
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4474] 666f [Bcc Q] 4475
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4481] 63b9 [Bcc Q] 4482
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4487] 6bed [Bcc Q] 4488
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4488] 6ea5 [Bcc Q] 4489
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4490] 60b5 [Bcc Q] 4491
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4491] 60f7 [Bcc Q] 4492
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4494] 6cd1 [Bcc Q] 4495
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4500] 6583 [Bcc Q] 4501
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4501] 67a3 [Bcc Q] 4502
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4503] 6dad [Bcc Q] 4504
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4507] 645b [Bcc Q] 4508
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4508] 6a9b [Bcc Q] 4509
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4518] 6363 [Bcc Q] 4519
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4519] 6d8b [Bcc Q] 4520
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4520] 6021 [Bcc Q] 4521
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4537] 64c9 [Bcc Q] 4538
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4538] 6a95 [Bcc Q] 4539
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4540] 6255 [Bcc Q] 4541
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4541] 6c4d [Bcc Q] 4542
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4543] 6d83 [Bcc Q] 4544
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4549] 6a77 [Bcc Q] 4550
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4558] 65c3 [Bcc Q] 4559
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4559] 6259 [Bcc Q] 4560
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4564] 64a5 [Bcc Q] 4565
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4572] 6c85 [Bcc Q] 4573
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4585] 6da1 [Bcc Q] 4586
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4599] 6da9 [Bcc Q] 4600
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4601] 6e33 [Bcc Q] 4602
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4604] 60dd [Bcc Q] 4605
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4606] 6853 [Bcc Q] 4607
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4607] 6381 [Bcc Q] 4608
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4608] 68cd [Bcc Q] 4609
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4611] 67af [Bcc Q] 4612
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4627] 665f [Bcc Q] 4628
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4635] 66c5 [Bcc Q] 4636
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4640] 637f [Bcc Q] 4641
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4643] 6fa1 [Bcc Q] 4644
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4648] 6f33 [Bcc Q] 4649
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4652] 6381 [Bcc Q] 4653
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4655] 6631 [Bcc Q] 4656
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4656] 6085 [Bcc Q] 4657
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4660] 60bd [Bcc Q] 4661
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4661] 6d5b [Bcc Q] 4662
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4669] 6e4f [Bcc Q] 4670
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4681] 68cf [Bcc Q] 4682
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4684] 6f25 [Bcc Q] 4685
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4685] 63f5 [Bcc Q] 4686
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4688] 6c2d [Bcc Q] 4689
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4690] 6369 [Bcc Q] 4691
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4692] 6535 [Bcc Q] 4693
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4695] 6b53 [Bcc Q] 4696
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4696] 6579 [Bcc Q] 4697
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4699] 68f9 [Bcc Q] 4700
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4702] 6f29 [Bcc Q] 4703
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4705] 63ed [Bcc Q] 4706
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4707] 6f4b [Bcc Q] 4708
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4708] 6f63 [Bcc Q] 4709
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4710] 637d [Bcc Q] 4711
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4712] 6a39 [Bcc Q] 4713
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4716] 6bfd [Bcc Q] 4717
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4721] 69bd [Bcc Q] 4722
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4731] 6d31 [Bcc Q] 4732
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4734] 6c87 [Bcc Q] 4735
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4739] 6f4b [Bcc Q] 4740
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4741] 69b1 [Bcc Q] 4742
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4744] 6f43 [Bcc Q] 4745
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4746] 6767 [Bcc Q] 4747
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4748] 6edf [Bcc Q] 4749
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4749] 64f3 [Bcc Q] 4750
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4762] 6bcf [Bcc Q] 4763
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4766] 692b [Bcc Q] 4767
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4767] 6dc1 [Bcc Q] 4768
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4769] 6cdb [Bcc Q] 4770
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4773] 6c8d [Bcc Q] 4774
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4783] 642b [Bcc Q] 4784
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4787] 6071 [Bcc Q] 4788
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4792] 608b [Bcc Q] 4793
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4797] 6721 [Bcc Q] 4798
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4803] 6959 [Bcc Q] 4804
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4813] 6b73 [Bcc Q] 4814
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4820] 6d5b [Bcc Q] 4821
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4827] 6a69 [Bcc Q] 4828
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4829] 6731 [Bcc Q] 4830
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4834] 6fd3 [Bcc Q] 4835
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4836] 6045 [Bcc Q] 4837
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4837] 666f [Bcc Q] 4838
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4839] 6f61 [Bcc Q] 4840
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4851] 68ff [Bcc Q] 4852
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4856] 6867 [Bcc Q] 4857
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4858] 646f [Bcc Q] 4859
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4859] 65e1 [Bcc Q] 4860
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4861] 699b [Bcc Q] 4862
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4864] 6571 [Bcc Q] 4865
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4865] 6fe9 [Bcc Q] 4866
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4878] 63e9 [Bcc Q] 4879
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4884] 60d9 [Bcc Q] 4885
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4892] 6ea1 [Bcc Q] 4893
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [4896] 67cb [Bcc Q] 4897
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4907] 6bfd [Bcc Q] 4908
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4910] 6369 [Bcc Q] 4911
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4914] 6b65 [Bcc Q] 4915
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4922] 6fdd [Bcc Q] 4923
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4924] 66ff [Bcc Q] 4925
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4925] 6965 [Bcc Q] 4926
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4926] 6b25 [Bcc Q] 4927
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4929] 602d [Bcc Q] 4930
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4930] 6be3 [Bcc Q] 4931
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4931] 6dd7 [Bcc Q] 4932
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4942] 6cd7 [Bcc Q] 4943
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4943] 6475 [Bcc Q] 4944
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4953] 6acb [Bcc Q] 4954
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4955] 6527 [Bcc Q] 4956
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4965] 66eb [Bcc Q] 4966
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [4969] 6e63 [Bcc Q] 4970
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [4972] 6a21 [Bcc Q] 4973
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4973] 6c3b [Bcc Q] 4974
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [4974] 60c7 [Bcc Q] 4975
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4976] 6e9d [Bcc Q] 4977
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [4979] 684f [Bcc Q] 4980
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [4990] 6d7d [Bcc Q] 4991
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5001] 69df [Bcc Q] 5002
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5002] 6f95 [Bcc Q] 5003
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5004] 6acf [Bcc Q] 5005
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5006] 67d5 [Bcc Q] 5007
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5008] 63a1 [Bcc Q] 5009
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5010] 6adf [Bcc Q] 5011
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5015] 68d3 [Bcc Q] 5016
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5016] 6df1 [Bcc Q] 5017
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5017] 66ad [Bcc Q] 5018
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5023] 69a7 [Bcc Q] 5024
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5030] 6343 [Bcc Q] 5031
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5041] 67ad [Bcc Q] 5042
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5046] 6421 [Bcc Q] 5047
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5047] 60af [Bcc Q] 5048
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5049] 6593 [Bcc Q] 5050
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5050] 696d [Bcc Q] 5051
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5052] 609f [Bcc Q] 5053
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5056] 6c65 [Bcc Q] 5057
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5058] 6ba1 [Bcc Q] 5059
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5065] 6a87 [Bcc Q] 5066
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5072] 65e9 [Bcc Q] 5073
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5074] 6047 [Bcc Q] 5075
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5082] 6db9 [Bcc Q] 5083
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5083] 636f [Bcc Q] 5084
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5084] 6ce1 [Bcc Q] 5085
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5086] 609d [Bcc Q] 5087
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5088] 6acf [Bcc Q] 5089
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5093] 60fd [Bcc Q] 5094
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5094] 646f [Bcc Q] 5095
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5109] 68ef [Bcc Q] 5110
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5110] 642f [Bcc Q] 5111
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5113] 628b [Bcc Q] 5114
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5114] 6fa9 [Bcc Q] 5115
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5118] 6341 [Bcc Q] 5119
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5121] 6057 [Bcc Q] 5122
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5126] 6ccd [Bcc Q] 5127
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5130] 6dc9 [Bcc Q] 5131
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5136] 65c1 [Bcc Q] 5137
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5138] 6fff [Bcc Q] 5139
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5139] 6521 [Bcc Q] 5140
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5144] 6789 [Bcc Q] 5145
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5156] 6347 [Bcc Q] 5157
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5158] 629b [Bcc Q] 5159
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5159] 6dc5 [Bcc Q] 5160
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5160] 699b [Bcc Q] 5161
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5163] 6089 [Bcc Q] 5164
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5168] 6321 [Bcc Q] 5169
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5171] 60cd [Bcc Q] 5172
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5179] 6895 [Bcc Q] 5180
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5181] 68ed [Bcc Q] 5182
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5182] 60b7 [Bcc Q] 5183
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5183] 6ba7 [Bcc Q] 5184
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5185] 63e9 [Bcc Q] 5186
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5189] 677d [Bcc Q] 5190
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5190] 6cb1 [Bcc Q] 5191
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5191] 64bf [Bcc Q] 5192
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5192] 6b73 [Bcc Q] 5193
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5205] 6f9f [Bcc Q] 5206
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5210] 6d4b [Bcc Q] 5211
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5218] 69e7 [Bcc Q] 5219
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5219] 607d [Bcc Q] 5220
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5220] 6a65 [Bcc Q] 5221
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5224] 6033 [Bcc Q] 5225
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5228] 6b65 [Bcc Q] 5229
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5229] 6dc9 [Bcc Q] 5230
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5234] 6925 [Bcc Q] 5235
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5240] 692d [Bcc Q] 5241
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5248] 6add [Bcc Q] 5249
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5249] 63a3 [Bcc Q] 5250
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5251] 6bcd [Bcc Q] 5252
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5252] 65d3 [Bcc Q] 5253
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5255] 67a5 [Bcc Q] 5256
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5257] 6f3b [Bcc Q] 5258
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5258] 6925 [Bcc Q] 5259
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5259] 66ed [Bcc Q] 5260
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5261] 6679 [Bcc Q] 5262
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5265] 60c9 [Bcc Q] 5266
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5267] 63d9 [Bcc Q] 5268
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5275] 6f7f [Bcc Q] 5276
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5276] 64ef [Bcc Q] 5277
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5280] 6447 [Bcc Q] 5281
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5283] 6481 [Bcc Q] 5284
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5288] 64b3 [Bcc Q] 5289
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5289] 6dc9 [Bcc Q] 5290
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5292] 67ff [Bcc Q] 5293
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5299] 68f5 [Bcc Q] 5300
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5302] 69b5 [Bcc Q] 5303
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5306] 6fe1 [Bcc Q] 5307
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5307] 6875 [Bcc Q] 5308
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5308] 64bb [Bcc Q] 5309
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5310] 6389 [Bcc Q] 5311
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5315] 6d2f [Bcc Q] 5316
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5319] 679f [Bcc Q] 5320
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5322] 6cf7 [Bcc Q] 5323
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5324] 6077 [Bcc Q] 5325
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5325] 6c3f [Bcc Q] 5326
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5327] 6ab7 [Bcc Q] 5328
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5329] 6feb [Bcc Q] 5330
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5346] 6edd [Bcc Q] 5347
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5351] 6959 [Bcc Q] 5352
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5357] 6b75 [Bcc Q] 5358
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5364] 6849 [Bcc Q] 5365
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5367] 6363 [Bcc Q] 5368
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5386] 6475 [Bcc Q] 5387
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5395] 62f9 [Bcc Q] 5396
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5400] 6275 [Bcc Q] 5401
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5404] 693d [Bcc Q] 5405
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5409] 634b [Bcc Q] 5410
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5417] 67b5 [Bcc Q] 5418
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5422] 6b85 [Bcc Q] 5423
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5429] 60bf [Bcc Q] 5430
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5436] 649f [Bcc Q] 5437
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5447] 66fd [Bcc Q] 5448
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5449] 69ed [Bcc Q] 5450
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5456] 6737 [Bcc Q] 5457
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5458] 6e51 [Bcc Q] 5459
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5463] 6bc9 [Bcc Q] 5464
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5465] 6ab5 [Bcc Q] 5466
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5466] 6723 [Bcc Q] 5467
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5474] 6cb7 [Bcc Q] 5475
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5479] 6d2b [Bcc Q] 5480
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5481] 6341 [Bcc Q] 5482
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5482] 6c31 [Bcc Q] 5483
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5486] 6735 [Bcc Q] 5487
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5492] 66c5 [Bcc Q] 5493
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5494] 6fcf [Bcc Q] 5495
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5502] 6c37 [Bcc Q] 5503
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5503] 6985 [Bcc Q] 5504
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5509] 63bf [Bcc Q] 5510
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5510] 6dcb [Bcc Q] 5511
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5512] 662d [Bcc Q] 5513
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5520] 6cf5 [Bcc Q] 5521
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5525] 6927 [Bcc Q] 5526
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5530] 65b5 [Bcc Q] 5531
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5538] 68a7 [Bcc Q] 5539
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5539] 652f [Bcc Q] 5540
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5540] 6d5f [Bcc Q] 5541
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5542] 6997 [Bcc Q] 5543
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5545] 68b1 [Bcc Q] 5546
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5563] 6a9f [Bcc Q] 5564
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5574] 668b [Bcc Q] 5575
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5586] 6037 [Bcc Q] 5587
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5590] 6445 [Bcc Q] 5591
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5592] 6269 [Bcc Q] 5593
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5593] 6cdd [Bcc Q] 5594
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5597] 643d [Bcc Q] 5598
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5598] 64d5 [Bcc Q] 5599
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5604] 6abb [Bcc Q] 5605
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5610] 69e5 [Bcc Q] 5611
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5611] 6daf [Bcc Q] 5612
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5614] 65d7 [Bcc Q] 5615
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5616] 64e3 [Bcc Q] 5617
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5621] 69f3 [Bcc Q] 5622
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5622] 6741 [Bcc Q] 5623
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5624] 64e7 [Bcc Q] 5625
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5629] 6c99 [Bcc Q] 5630
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5638] 6741 [Bcc Q] 5639
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5639] 66c3 [Bcc Q] 5640
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5642] 6a2f [Bcc Q] 5643
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5646] 6d21 [Bcc Q] 5647
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5652] 6a39 [Bcc Q] 5653
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5660] 6971 [Bcc Q] 5661
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5671] 69c9 [Bcc Q] 5672
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5675] 659b [Bcc Q] 5676
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5682] 6497 [Bcc Q] 5683
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5688] 6ab9 [Bcc Q] 5689
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5692] 6fff [Bcc Q] 5693
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5693] 6091 [Bcc Q] 5694
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5698] 685b [Bcc Q] 5699
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5699] 6eed [Bcc Q] 5700
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5700] 69a7 [Bcc Q] 5701
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5707] 6583 [Bcc Q] 5708
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5711] 6653 [Bcc Q] 5712
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5716] 6fe9 [Bcc Q] 5717
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5723] 638b [Bcc Q] 5724
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5726] 6a91 [Bcc Q] 5727
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5729] 6c59 [Bcc Q] 5730
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5735] 68b7 [Bcc Q] 5736
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5736] 6323 [Bcc Q] 5737
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5738] 6bc3 [Bcc Q] 5739
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5746] 6abb [Bcc Q] 5747
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5754] 6061 [Bcc Q] 5755
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5755] 6037 [Bcc Q] 5756
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5766] 6bcd [Bcc Q] 5767
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5769] 60eb [Bcc Q] 5770
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5774] 60ef [Bcc Q] 5775
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5776] 683f [Bcc Q] 5777
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5778] 6337 [Bcc Q] 5779
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5784] 6b73 [Bcc Q] 5785
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5786] 6fa9 [Bcc Q] 5787
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5790] 6abf [Bcc Q] 5791
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5791] 6369 [Bcc Q] 5792
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5796] 657b [Bcc Q] 5797
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5797] 602d [Bcc Q] 5798
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5801] 6599 [Bcc Q] 5802
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5806] 6bc7 [Bcc Q] 5807
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5808] 60d5 [Bcc Q] 5809
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5810] 63b7 [Bcc Q] 5811
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5815] 608f [Bcc Q] 5816
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5819] 6a37 [Bcc Q] 5820
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5824] 69d1 [Bcc Q] 5825
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5830] 665d [Bcc Q] 5831
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5834] 6355 [Bcc Q] 5835
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5836] 6d43 [Bcc Q] 5837
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5837] 60bd [Bcc Q] 5838
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5850] 6dbf [Bcc Q] 5851
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5853] 6da3 [Bcc Q] 5854
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5855] 67af [Bcc Q] 5856
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5858] 6543 [Bcc Q] 5859
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5860] 6a35 [Bcc Q] 5861
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5865] 632f [Bcc Q] 5866
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5868] 6ced [Bcc Q] 5869
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5871] 6fc3 [Bcc Q] 5872
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5878] 6df1 [Bcc Q] 5879
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5881] 6cc7 [Bcc Q] 5882
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5883] 659b [Bcc Q] 5884
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5886] 6677 [Bcc Q] 5887
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5893] 6ae9 [Bcc Q] 5894
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5894] 65e3 [Bcc Q] 5895
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5907] 66c1 [Bcc Q] 5908
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5908] 6495 [Bcc Q] 5909
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5910] 6437 [Bcc Q] 5911
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5914] 6ca1 [Bcc Q] 5915
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5916] 692d [Bcc Q] 5917
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5918] 606f [Bcc Q] 5919
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5921] 69ad [Bcc Q] 5922
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [5923] 6e59 [Bcc Q] 5924
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5930] 6383 [Bcc Q] 5931
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5935] 699d [Bcc Q] 5936
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5947] 6787 [Bcc Q] 5948
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5951] 6599 [Bcc Q] 5952
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5954] 6de9 [Bcc Q] 5955
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [5968] 6027 [Bcc Q] 5969
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5972] 6a29 [Bcc Q] 5973
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [5983] 6447 [Bcc Q] 5984
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [5987] 607d [Bcc Q] 5988
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5995] 6a65 [Bcc Q] 5996
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [5996] 6495 [Bcc Q] 5997
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [5998] 6063 [Bcc Q] 5999
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6005] 69c7 [Bcc Q] 6006
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6007] 6f81 [Bcc Q] 6008
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6012] 6cdd [Bcc Q] 6013
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6016] 67a1 [Bcc Q] 6017
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6017] 6779 [Bcc Q] 6018
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6018] 6b5d [Bcc Q] 6019
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6021] 63db [Bcc Q] 6022
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6023] 6c97 [Bcc Q] 6024
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6028] 657d [Bcc Q] 6029
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6030] 67d5 [Bcc Q] 6031
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6035] 67c3 [Bcc Q] 6036
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6042] 6d71 [Bcc Q] 6043
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6046] 656b [Bcc Q] 6047
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6057] 6045 [Bcc Q] 6058
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6069] 6d89 [Bcc Q] 6070
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6070] 6463 [Bcc Q] 6071
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6074] 6ad9 [Bcc Q] 6075
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6075] 6531 [Bcc Q] 6076
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6078] 697f [Bcc Q] 6079
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6079] 6995 [Bcc Q] 6080
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6088] 60dd [Bcc Q] 6089
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6090] 64b7 [Bcc Q] 6091
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6096] 6bcf [Bcc Q] 6097
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6097] 6c79 [Bcc Q] 6098
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6098] 6cef [Bcc Q] 6099
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6099] 6957 [Bcc Q] 6100
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6100] 6b91 [Bcc Q] 6101
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6101] 67cb [Bcc Q] 6102
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6103] 6489 [Bcc Q] 6104
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6104] 604d [Bcc Q] 6105
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6107] 6f23 [Bcc Q] 6108
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6110] 6b95 [Bcc Q] 6111
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6114] 604b [Bcc Q] 6115
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6117] 6ac9 [Bcc Q] 6118
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6119] 654d [Bcc Q] 6120
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6121] 672f [Bcc Q] 6122
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6128] 663f [Bcc Q] 6129
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6132] 6385 [Bcc Q] 6133
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6133] 656f [Bcc Q] 6134
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6135] 6c7b [Bcc Q] 6136
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6138] 67b1 [Bcc Q] 6139
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6141] 6b45 [Bcc Q] 6142
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6151] 6dbb [Bcc Q] 6152
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6152] 6f53 [Bcc Q] 6153
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6153] 60a3 [Bcc Q] 6154
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6157] 66e3 [Bcc Q] 6158
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6159] 6857 [Bcc Q] 6160
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6160] 6fa3 [Bcc Q] 6161
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6161] 6e45 [Bcc Q] 6162
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6163] 6a97 [Bcc Q] 6164
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6166] 64d7 [Bcc Q] 6167
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6174] 6aa3 [Bcc Q] 6175
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6176] 6a43 [Bcc Q] 6177
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6183] 693d [Bcc Q] 6184
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6187] 66a1 [Bcc Q] 6188
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6188] 6b33 [Bcc Q] 6189
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6191] 63d1 [Bcc Q] 6192
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6192] 609b [Bcc Q] 6193
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6194] 6955 [Bcc Q] 6195
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6197] 606d [Bcc Q] 6198
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6199] 66b5 [Bcc Q] 6200
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6205] 6851 [Bcc Q] 6206
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6207] 6e97 [Bcc Q] 6208
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6209] 6aef [Bcc Q] 6210
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6219] 6fcf [Bcc Q] 6220
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6221] 67f3 [Bcc Q] 6222
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6229] 6aab [Bcc Q] 6230
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6230] 6747 [Bcc Q] 6231
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6234] 63af [Bcc Q] 6235
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6236] 679b [Bcc Q] 6237
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6242] 6693 [Bcc Q] 6243
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6243] 6dbb [Bcc Q] 6244
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6246] 6695 [Bcc Q] 6247
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6247] 6ccd [Bcc Q] 6248
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6255] 6c65 [Bcc Q] 6256
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6259] 6fcf [Bcc Q] 6260
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6261] 6bd3 [Bcc Q] 6262
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6263] 67a9 [Bcc Q] 6264
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6264] 6b9b [Bcc Q] 6265
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6265] 6f97 [Bcc Q] 6266
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6269] 6499 [Bcc Q] 6270
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6271] 6637 [Bcc Q] 6272
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6275] 64fd [Bcc Q] 6276
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6276] 6eed [Bcc Q] 6277
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6278] 6b85 [Bcc Q] 6279
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6284] 6081 [Bcc Q] 6285
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6285] 6039 [Bcc Q] 6286
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6287] 6faf [Bcc Q] 6288
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6288] 6ba5 [Bcc Q] 6289
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6293] 65f1 [Bcc Q] 6294
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6294] 604b [Bcc Q] 6295
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6295] 64d3 [Bcc Q] 6296
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6296] 6fbb [Bcc Q] 6297
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6298] 6565 [Bcc Q] 6299
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6303] 6c6b [Bcc Q] 6304
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6305] 67a3 [Bcc Q] 6306
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6306] 6f97 [Bcc Q] 6307
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6313] 659b [Bcc Q] 6314
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6314] 6d25 [Bcc Q] 6315
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6316] 65b9 [Bcc Q] 6317
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6317] 6849 [Bcc Q] 6318
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6318] 652b [Bcc Q] 6319
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6319] 6791 [Bcc Q] 6320
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6322] 6281 [Bcc Q] 6323
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6328] 6a6b [Bcc Q] 6329
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6332] 6f7d [Bcc Q] 6333
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6343] 6fd1 [Bcc Q] 6344
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6348] 6329 [Bcc Q] 6349
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6351] 6089 [Bcc Q] 6352
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6355] 6fa3 [Bcc Q] 6356
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6359] 6055 [Bcc Q] 6360
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6363] 65f7 [Bcc Q] 6364
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6364] 6627 [Bcc Q] 6365
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6366] 6cdf [Bcc Q] 6367
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6373] 6a5d [Bcc Q] 6374
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6376] 6433 [Bcc Q] 6377
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6382] 60cb [Bcc Q] 6383
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6386] 6093 [Bcc Q] 6387
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6387] 60af [Bcc Q] 6388
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6389] 67f7 [Bcc Q] 6390
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6408] 68ed [Bcc Q] 6409
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6410] 636b [Bcc Q] 6411
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6420] 695d [Bcc Q] 6421
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6423] 63cd [Bcc Q] 6424
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6433] 6be9 [Bcc Q] 6434
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6446] 60d9 [Bcc Q] 6447
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6449] 646b [Bcc Q] 6450
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6464] 6f91 [Bcc Q] 6465
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6466] 6765 [Bcc Q] 6467
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6469] 60df [Bcc Q] 6470
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6481] 6363 [Bcc Q] 6482
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6484] 6341 [Bcc Q] 6485
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6485] 699b [Bcc Q] 6486
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6486] 6363 [Bcc Q] 6487
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6487] 66ad [Bcc Q] 6488
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6491] 609b [Bcc Q] 6492
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6498] 6441 [Bcc Q] 6499
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6499] 605d [Bcc Q] 6500
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6503] 6b3d [Bcc Q] 6504
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6505] 6cff [Bcc Q] 6506
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6507] 686b [Bcc Q] 6508
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6511] 69cd [Bcc Q] 6512
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6519] 6661 [Bcc Q] 6520
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6520] 63f9 [Bcc Q] 6521
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6522] 68e9 [Bcc Q] 6523
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6524] 694d [Bcc Q] 6525
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6527] 6255 [Bcc Q] 6528
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6537] 64b9 [Bcc Q] 6538
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6544] 6b33 [Bcc Q] 6545
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6547] 6c9b [Bcc Q] 6548
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6560] 6b33 [Bcc Q] 6561
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6564] 6945 [Bcc Q] 6565
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6572] 6cb9 [Bcc Q] 6573
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6578] 6edf [Bcc Q] 6579
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6582] 644b [Bcc Q] 6583
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6585] 6383 [Bcc Q] 6586
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6587] 69bf [Bcc Q] 6588
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6593] 632f [Bcc Q] 6594
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6595] 67cf [Bcc Q] 6596
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6596] 6c29 [Bcc Q] 6597
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6600] 6b51 [Bcc Q] 6601
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6610] 602d [Bcc Q] 6611
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6612] 60b7 [Bcc Q] 6613
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6614] 6d31 [Bcc Q] 6615
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6621] 6641 [Bcc Q] 6622
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6623] 60c9 [Bcc Q] 6624
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6625] 6dd5 [Bcc Q] 6626
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6626] 66c3 [Bcc Q] 6627
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6631] 6c53 [Bcc Q] 6632
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6643] 6089 [Bcc Q] 6644
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6645] 6a51 [Bcc Q] 6646
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6646] 657f [Bcc Q] 6647
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6650] 6b6b [Bcc Q] 6651
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6654] 60ab [Bcc Q] 6655
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6655] 6a23 [Bcc Q] 6656
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6661] 6aed [Bcc Q] 6662
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6662] 6d79 [Bcc Q] 6663
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6665] 6cfb [Bcc Q] 6666
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6666] 658f [Bcc Q] 6667
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6667] 6525 [Bcc Q] 6668
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6668] 6a89 [Bcc Q] 6669
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6671] 67dd [Bcc Q] 6672
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6675] 6c99 [Bcc Q] 6676
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6690] 6973 [Bcc Q] 6691
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6702] 607d [Bcc Q] 6703
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6708] 6cbb [Bcc Q] 6709
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6719] 6f2d [Bcc Q] 6720
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6720] 6ea3 [Bcc Q] 6721
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6721] 628b [Bcc Q] 6722
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6725] 65cb [Bcc Q] 6726
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6726] 642f [Bcc Q] 6727
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6735] 626b [Bcc Q] 6736
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6740] 68f1 [Bcc Q] 6741
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6741] 6f43 [Bcc Q] 6742
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6743] 6295 [Bcc Q] 6744
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6744] 6cff [Bcc Q] 6745
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6745] 60b5 [Bcc Q] 6746
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6748] 6ceb [Bcc Q] 6749
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6749] 676f [Bcc Q] 6750
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6754] 65bd [Bcc Q] 6755
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6756] 6ddb [Bcc Q] 6757
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6764] 64bf [Bcc Q] 6765
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6766] 6c67 [Bcc Q] 6767
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6767] 6a89 [Bcc Q] 6768
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6775] 665d [Bcc Q] 6776
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6777] 6541 [Bcc Q] 6778
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6778] 6ffd [Bcc Q] 6779
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6782] 605d [Bcc Q] 6783
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6783] 6035 [Bcc Q] 6784
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6786] 65c7 [Bcc Q] 6787
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6787] 6241 [Bcc Q] 6788
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6795] 64f5 [Bcc Q] 6796
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6802] 6b69 [Bcc Q] 6803
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6812] 6aaf [Bcc Q] 6813
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6828] 60d5 [Bcc Q] 6829
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6838] 63e9 [Bcc Q] 6839
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6844] 609d [Bcc Q] 6845
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6845] 64f1 [Bcc Q] 6846
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6849] 6329 [Bcc Q] 6850
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6855] 663b [Bcc Q] 6856
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6861] 6681 [Bcc Q] 6862
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6868] 6893 [Bcc Q] 6869
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6871] 69cf [Bcc Q] 6872
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6879] 6bc7 [Bcc Q] 6880
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6880] 637f [Bcc Q] 6881
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [6884] 60a1 [Bcc Q] 6885
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6895] 6ba5 [Bcc Q] 6896
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6898] 63c7 [Bcc Q] 6899
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6900] 6759 [Bcc Q] 6901
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6919] 6fb5 [Bcc Q] 6920
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6929] 65f9 [Bcc Q] 6930
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6941] 6d9d [Bcc Q] 6942
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6950] 675f [Bcc Q] 6951
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6952] 65fd [Bcc Q] 6953
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6953] 6b99 [Bcc Q] 6954
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6956] 69a3 [Bcc Q] 6957
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6958] 6c93 [Bcc Q] 6959
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6959] 6c2f [Bcc Q] 6960
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6962] 6fb5 [Bcc Q] 6963
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6974] 6d39 [Bcc Q] 6975
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [6975] 6659 [Bcc Q] 6976
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6978] 6fdd [Bcc Q] 6979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6982] 6daf [Bcc Q] 6983
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6988] 6dbf [Bcc Q] 6989
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [6989] 69d3 [Bcc Q] 6990
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6991] 60f9 [Bcc Q] 6992
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [6992] 6851 [Bcc Q] 6993
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [6993] 6895 [Bcc Q] 6994
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [6994] 6043 [Bcc Q] 6995
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7015] 6289 [Bcc Q] 7016
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7016] 6577 [Bcc Q] 7017
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7017] 6ca7 [Bcc Q] 7018
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7018] 64b7 [Bcc Q] 7019
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7019] 60c1 [Bcc Q] 7020
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7026] 6fbb [Bcc Q] 7027
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7027] 6d69 [Bcc Q] 7028
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7030] 6feb [Bcc Q] 7031
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7039] 673b [Bcc Q] 7040
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7042] 60c3 [Bcc Q] 7043
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7044] 68e1 [Bcc Q] 7045
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7046] 6c8f [Bcc Q] 7047
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7048] 66dd [Bcc Q] 7049
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7049] 66ef [Bcc Q] 7050
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7051] 69c1 [Bcc Q] 7052
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7057] 66cb [Bcc Q] 7058
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7059] 6093 [Bcc Q] 7060
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7065] 6af7 [Bcc Q] 7066
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7068] 647f [Bcc Q] 7069
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7073] 66f1 [Bcc Q] 7074
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7078] 60a9 [Bcc Q] 7079
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7082] 6497 [Bcc Q] 7083
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7086] 69f3 [Bcc Q] 7087
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7087] 65a7 [Bcc Q] 7088
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7096] 6423 [Bcc Q] 7097
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7103] 6097 [Bcc Q] 7104
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7109] 606f [Bcc Q] 7110
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7110] 6c6f [Bcc Q] 7111
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7119] 6d23 [Bcc Q] 7120
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7125] 69d9 [Bcc Q] 7126
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7130] 65a1 [Bcc Q] 7131
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7131] 608b [Bcc Q] 7132
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7140] 663d [Bcc Q] 7141
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7142] 6053 [Bcc Q] 7143
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7143] 6699 [Bcc Q] 7144
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7144] 6359 [Bcc Q] 7145
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7151] 652b [Bcc Q] 7152
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7158] 6841 [Bcc Q] 7159
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7162] 693d [Bcc Q] 7163
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7169] 6f53 [Bcc Q] 7170
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7171] 6fb5 [Bcc Q] 7172
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7184] 6bc9 [Bcc Q] 7185
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7189] 69fd [Bcc Q] 7190
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7190] 6f75 [Bcc Q] 7191
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7194] 67c9 [Bcc Q] 7195
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7196] 6c85 [Bcc Q] 7197
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7200] 60b5 [Bcc Q] 7201
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7209] 6ffd [Bcc Q] 7210
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7214] 67dd [Bcc Q] 7215
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7224] 654b [Bcc Q] 7225
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7231] 653d [Bcc Q] 7232
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7235] 6f5f [Bcc Q] 7236
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7236] 6e4d [Bcc Q] 7237
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7261] 6b7f [Bcc Q] 7262
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7263] 6985 [Bcc Q] 7264
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7266] 6dd9 [Bcc Q] 7267
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7271] 6891 [Bcc Q] 7272
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7274] 6923 [Bcc Q] 7275
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7279] 6597 [Bcc Q] 7280
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7280] 65a5 [Bcc Q] 7281
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7281] 6085 [Bcc Q] 7282
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7292] 6f9f [Bcc Q] 7293
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7296] 66fb [Bcc Q] 7297
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7304] 676b [Bcc Q] 7305
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7308] 6059 [Bcc Q] 7309
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7311] 65a9 [Bcc Q] 7312
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7314] 68fb [Bcc Q] 7315
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7329] 6c3f [Bcc Q] 7330
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7335] 6b21 [Bcc Q] 7336
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7340] 6fe9 [Bcc Q] 7341
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7342] 6345 [Bcc Q] 7343
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7351] 6a7d [Bcc Q] 7352
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7354] 6869 [Bcc Q] 7355
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7356] 66a5 [Bcc Q] 7357
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7357] 688b [Bcc Q] 7358
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7363] 6de3 [Bcc Q] 7364
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7372] 6e79 [Bcc Q] 7373
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7373] 6597 [Bcc Q] 7374
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7377] 6f45 [Bcc Q] 7378
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7380] 6471 [Bcc Q] 7381
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7383] 6fe9 [Bcc Q] 7384
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7385] 6031 [Bcc Q] 7386
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7393] 6a7f [Bcc Q] 7394
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7405] 67db [Bcc Q] 7406
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7409] 64e5 [Bcc Q] 7410
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7415] 6d99 [Bcc Q] 7416
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7417] 649d [Bcc Q] 7418
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7420] 65db [Bcc Q] 7421
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7439] 69e9 [Bcc Q] 7440
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7446] 6aad [Bcc Q] 7447
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7448] 6cc3 [Bcc Q] 7449
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7452] 644b [Bcc Q] 7453
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7458] 6fc9 [Bcc Q] 7459
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7469] 6825 [Bcc Q] 7470
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7474] 6c5b [Bcc Q] 7475
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7476] 66eb [Bcc Q] 7477
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7477] 6e85 [Bcc Q] 7478
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7479] 692d [Bcc Q] 7480
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7481] 62e9 [Bcc Q] 7482
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7485] 69df [Bcc Q] 7486
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7487] 6221 [Bcc Q] 7488
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7488] 6a8f [Bcc Q] 7489
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7493] 6743 [Bcc Q] 7494
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7494] 64c5 [Bcc Q] 7495
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7495] 63c9 [Bcc Q] 7496
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7496] 6423 [Bcc Q] 7497
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7500] 6993 [Bcc Q] 7501
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7503] 6553 [Bcc Q] 7504
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7505] 68e9 [Bcc Q] 7506
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7508] 6eb3 [Bcc Q] 7509
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7510] 6bf3 [Bcc Q] 7511
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7515] 6c4f [Bcc Q] 7516
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7521] 6f79 [Bcc Q] 7522
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7530] 6da1 [Bcc Q] 7531
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7531] 6a3b [Bcc Q] 7532
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7532] 63ad [Bcc Q] 7533
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7539] 6775 [Bcc Q] 7540
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7543] 6049 [Bcc Q] 7544
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7556] 60f1 [Bcc Q] 7557
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7557] 668d [Bcc Q] 7558
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7561] 692d [Bcc Q] 7562
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7567] 6767 [Bcc Q] 7568
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7569] 6395 [Bcc Q] 7570
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7572] 648d [Bcc Q] 7573
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7580] 6081 [Bcc Q] 7581
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7584] 6355 [Bcc Q] 7585
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7592] 686b [Bcc Q] 7593
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7599] 6fad [Bcc Q] 7600
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7601] 64ef [Bcc Q] 7602
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7623] 6365 [Bcc Q] 7624
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7625] 68e7 [Bcc Q] 7626
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7626] 6a7f [Bcc Q] 7627
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7628] 6333 [Bcc Q] 7629
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7629] 6e83 [Bcc Q] 7630
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7630] 6cb9 [Bcc Q] 7631
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7635] 65ab [Bcc Q] 7636
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7646] 6bf3 [Bcc Q] 7647
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7660] 6f65 [Bcc Q] 7661
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7662] 6d3d [Bcc Q] 7663
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7663] 667d [Bcc Q] 7664
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7664] 6c37 [Bcc Q] 7665
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7665] 6691 [Bcc Q] 7666
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7666] 6029 [Bcc Q] 7667
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7671] 67db [Bcc Q] 7672
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7672] 608d [Bcc Q] 7673
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7676] 6691 [Bcc Q] 7677
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7679] 6c89 [Bcc Q] 7680
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7680] 6e37 [Bcc Q] 7681
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7681] 67af [Bcc Q] 7682
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7683] 6477 [Bcc Q] 7684
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7692] 60f3 [Bcc Q] 7693
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7697] 60e3 [Bcc Q] 7698
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7709] 683d [Bcc Q] 7710
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7713] 65fd [Bcc Q] 7714
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7719] 6371 [Bcc Q] 7720
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7723] 6cf9 [Bcc Q] 7724
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7724] 68cd [Bcc Q] 7725
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7734] 6f67 [Bcc Q] 7735
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7741] 647d [Bcc Q] 7742
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7742] 6cfd [Bcc Q] 7743
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7744] 6dcd [Bcc Q] 7745
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7747] 6081 [Bcc Q] 7748
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7751] 699b [Bcc Q] 7752
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7759] 6729 [Bcc Q] 7760
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7771] 6f2f [Bcc Q] 7772
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7772] 6ae5 [Bcc Q] 7773
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7779] 6fb9 [Bcc Q] 7780
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7780] 64b5 [Bcc Q] 7781
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7782] 6081 [Bcc Q] 7783
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7785] 60d7 [Bcc Q] 7786
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7787] 6a97 [Bcc Q] 7788
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7789] 68ed [Bcc Q] 7790
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7794] 6793 [Bcc Q] 7795
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7797] 6ae1 [Bcc Q] 7798
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7800] 6725 [Bcc Q] 7801
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7802] 66ef [Bcc Q] 7803
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7804] 6fa7 [Bcc Q] 7805
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7809] 656d [Bcc Q] 7810
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7811] 6475 [Bcc Q] 7812
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7813] 633b [Bcc Q] 7814
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7815] 63b1 [Bcc Q] 7816
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7816] 60ff [Bcc Q] 7817
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7823] 6665 [Bcc Q] 7824
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7825] 6ef3 [Bcc Q] 7826
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7828] 6f57 [Bcc Q] 7829
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7832] 69e5 [Bcc Q] 7833
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7837] 60eb [Bcc Q] 7838
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7841] 6a73 [Bcc Q] 7842
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7849] 6493 [Bcc Q] 7850
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7852] 67bf [Bcc Q] 7853
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7854] 6779 [Bcc Q] 7855
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7855] 6f87 [Bcc Q] 7856
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7860] 60a1 [Bcc Q] 7861
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7866] 604f [Bcc Q] 7867
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7867] 6f43 [Bcc Q] 7868
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7869] 6a81 [Bcc Q] 7870
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7870] 6277 [Bcc Q] 7871
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7874] 60f5 [Bcc Q] 7875
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7875] 69fd [Bcc Q] 7876
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7877] 66bd [Bcc Q] 7878
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7880] 668d [Bcc Q] 7881
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7884] 6c83 [Bcc Q] 7885
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7885] 6c2b [Bcc Q] 7886
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7887] 60a7 [Bcc Q] 7888
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7892] 6da1 [Bcc Q] 7893
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7896] 6be1 [Bcc Q] 7897
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7898] 6b59 [Bcc Q] 7899
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7902] 60dd [Bcc Q] 7903
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7906] 6cd5 [Bcc Q] 7907
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7924] 6f9d [Bcc Q] 7925
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7926] 6fbb [Bcc Q] 7927
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7931] 652b [Bcc Q] 7932
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7933] 635b [Bcc Q] 7934
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7939] 6cf9 [Bcc Q] 7940
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7941] 6045 [Bcc Q] 7942
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7942] 6cc9 [Bcc Q] 7943
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7943] 6b65 [Bcc Q] 7944
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7953] 64af [Bcc Q] 7954
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7956] 6857 [Bcc Q] 7957
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7957] 687b [Bcc Q] 7958
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7959] 6ac1 [Bcc Q] 7960
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7961] 643d [Bcc Q] 7962
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7962] 6793 [Bcc Q] 7963
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [7965] 6e51 [Bcc Q] 7966
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7970] 60a9 [Bcc Q] 7971
+  ram[0007f3]	expected        190 (0xbe) 	got         30 (0x1e)
+FAIL [7971] 60f9 [Bcc Q] 7972
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [7973] 6b55 [Bcc Q] 7974
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7981] 6f49 [Bcc Q] 7982
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [7983] 6335 [Bcc Q] 7984
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [7990] 667b [Bcc Q] 7991
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [7995] 6b3b [Bcc Q] 7996
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [8000] 6ae9 [Bcc Q] 8001
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [8003] 6379 [Bcc Q] 8004
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+FAIL [8009] 6cc5 [Bcc Q] 8010
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8015] 6a57 [Bcc Q] 8016
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [8021] 6c21 [Bcc Q] 8022
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [8022] 6487 [Bcc Q] 8023
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [8024] 6041 [Bcc Q] 8025
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [8025] 6c85 [Bcc Q] 8026
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [8030] 63f9 [Bcc Q] 8031
+  ram[0007f3]	expected        254 (0xfe) 	got         30 (0x1e)
+FAIL [8047] 6c4f [Bcc Q] 8048
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [8049] 6c2b [Bcc Q] 8050
+  ram[0007f3]	expected         62 (0x3e) 	got         30 (0x1e)
+FAIL [8052] 6095 [Bcc Q] 8053
+  ram[0007f3]	expected        158 (0x9e) 	got         30 (0x1e)
+FAIL [8054] 6443 [Bcc Q] 8055
+  ram[0007f3]	expected         94 (0x5e) 	got         30 (0x1e)
+FAIL [8058] 6fc7 [Bcc Q] 8059
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8059] 677b [Bcc Q] 8060
+  ram[0007f3]	expected        126 (0x7e) 	got         30 (0x1e)
+6115 passed, 1950 failed
