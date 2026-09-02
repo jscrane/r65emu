@@ -304,7 +304,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x007c: {	// ORItoSR
-		update_sr(fetch16() | sr());
+		if (is_set(S_FLAG))
+			update_sr(fetch16() | sr());
+		else
+			raise_exception(PRIVILEGE_VIOLATION);
 		return;
 	}
 	case 0x023c: {	// ANDItoCCR
@@ -313,7 +316,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x027c: {	// ANDItoSR
-		update_sr(fetch16() & sr());
+		if (is_set(S_FLAG))
+			update_sr(fetch16() & sr());
+		else
+			raise_exception(PRIVILEGE_VIOLATION);
 		return;
 	}
 	case 0x0a3c: {	// EORItoCCR
@@ -322,7 +328,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0a7c: {	// EORItoSR
-		update_sr(fetch16() ^ sr());
+		if (is_set(S_FLAG))
+			update_sr(fetch16() ^ sr());
+		else
+			raise_exception(PRIVILEGE_VIOLATION);
 		return;
 	}
 	}
