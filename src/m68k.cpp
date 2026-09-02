@@ -824,12 +824,30 @@ void m68k::quick(uint16_t op) {
 
 void m68k::misc(uint16_t op) {
 	switch (op) {
+	case 0x4e70:	// RESET
+		if (!(_sr & S_FLAG)) {
+			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
+		// pulses external RESET* line to peripherals -- no CPU-visible state
+		// change beyond normal instruction completion; confirmed against real
+		// vectors (register/memory state identical before/after)
+		return;
 	case 0x4e71:	// NOP
 		return;
-	case 0x4e75: {	// RTS
-		jump_to(pop32());
+	case 0x4e72: {	// STOP
+		if (!(_sr & S_FLAG)) {
+			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
+		uint16_t sr = fetch16();
+		update_sr(sr);
+		halt();
 		return;
 	}
+	case 0x4e75:	// RTS
+		jump_to(pop32());
+		return;
 	case 0x4e73: {	// RTE
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
@@ -841,16 +859,14 @@ void m68k::misc(uint16_t op) {
 		jump_to(target);
 		return;
 	}
-	case 0x4e76: {	// TRAPV
+	case 0x4e76:	// TRAPV
 		if (is_set(V_FLAG))
 			raise_exception(TRAPV);
 		return;
-	}
-	case 0x4e77: {	// RTR
+	case 0x4e77:	// RTR
 		update_ccr(pop16());
 		jump_to(pop32());
 		return;
-	}
 	}
 
 	int reg = op & 7;
