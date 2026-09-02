@@ -887,6 +887,11 @@ void m68k::misc(uint16_t op) {
 		a(7, sp + disp);
 		return;
 	}
+	case 0x4e58: {	// UNLK An
+		a(7, a(reg));
+		a(reg, pop32());
+		return;
+	}
 	case 0x4e60:	// MOVEtoUSP
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
