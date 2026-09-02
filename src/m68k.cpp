@@ -905,7 +905,30 @@ void m68k::misc(uint16_t op) {
 
 	int mode = (op >> 3) & 7, reg = (op & 7);
 
-	if ((op & 0xf1c0) == 0x41c0) {	// LEA
+	switch (op & 0xf1c0) {
+	case 0x4180: {	// CHK <ea>, Dn
+		if (mode == 1) {
+			illegal(op);
+			return;
+		}
+		EA src = decode_ea(mode, reg, 2);
+		uint16_t b = read_word(src);
+		commit_postinc(src);	// unconditional
+		if (!_trapped) {
+			int dreg = (op >> 9) & 7;
+			int16_t val = (int16_t)d(dreg), bound = (int16_t)b;
+			clr_flag(Z_FLAG | V_FLAG | C_FLAG);
+			if (val < 0) {
+				set_flag(N_FLAG);
+				raise_exception(CHECK);
+			} else if (val > bound) {
+				clr_flag(N_FLAG);
+				raise_exception(CHECK);
+			}
+		}
+		return;
+	}
+	case 0x41c0: {	// LEA
 		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
 			illegal(op);
 			return;
@@ -913,6 +936,7 @@ void m68k::misc(uint16_t op) {
 		EA src = decode_ea(mode, reg, 4);
 		a((op >> 9) & 7, src.addr);
 		return;
+	}
 	}
 
 	switch (op & 0xffc0) {

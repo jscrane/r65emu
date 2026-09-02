@@ -95,6 +95,7 @@ private:
 	void write32(uint32_t, uint32_t);
 
 	static constexpr int ADDRESS_ERROR = 3;
+	static constexpr int CHECK = 6;
 	static constexpr int TRAPV = 7;
 	static constexpr int PRIVILEGE_VIOLATION = 8;
 	static constexpr int TRAP_VECTORS = 32;
