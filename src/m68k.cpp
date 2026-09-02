@@ -906,6 +906,10 @@ void m68k::misc(uint16_t op) {
 	int mode = (op >> 3) & 7, reg = (op & 7);
 
 	if ((op & 0xf1c0) == 0x41c0) {	// LEA
+		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+			illegal(op);
+			return;
+		}
 		EA src = decode_ea(mode, reg, 4);
 		a((op >> 9) & 7, src.addr);
 		return;
@@ -1115,6 +1119,10 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4840: {	// PEA
+		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+			illegal(op);
+			return;
+		}
 		EA src = decode_ea(mode, reg, 4);
 		if (!_trapped)
 			push32(src.addr);
