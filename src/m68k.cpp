@@ -903,9 +903,11 @@ void m68k::misc(uint16_t op) {
 	}
 	}
 
+	int mode = (op >> 3) & 7, reg = (op & 7);
+
 	switch (op & 0xffc0) {
 	case 0x4000: {	// NEGX.b
-		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA src = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(src);
 		commit_postinc(src);	// unconditional -- confirmed empirically, same as NEG/CLR
 		if (!_trapped) {
@@ -920,7 +922,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4040: {	// NEGX.w
-		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA src = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -935,7 +937,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4080: {	// NEGX.l
-		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		EA src = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -950,13 +952,13 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x40c0: {	// MOVEfromSR
-		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA dst = decode_ea(mode, reg, 2);
 		write_word(dst, _sr);
 		commit_postinc(dst);   // unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
 		return;
 	}
 	case 0x4200: {	// CLR.b
-		EA dst = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA dst = decode_ea(mode, reg, 1);
 		write_byte(dst, 0);
 		commit_postinc(dst);
 		if (!_trapped) {
@@ -966,7 +968,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4240: {	// CLR.w
-		EA dst = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA dst = decode_ea(mode, reg, 2);
 		write_word(dst, 0);
 		commit_postinc(dst);
 		if (!_trapped) {
@@ -976,7 +978,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4280: {	// CLR.l
-		EA dst = decode_ea((op >> 3) & 7, op & 7, 4);
+		EA dst = decode_ea(mode, reg, 4);
 		write_long(dst, 0);
 		commit_postinc(dst);
 		if (!_trapped) {
@@ -986,7 +988,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4400: {	// NEG.b
-		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA src = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -999,7 +1001,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4440: {	// NEG.w
-		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA src = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1012,7 +1014,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4480: {	// NEG.l
-		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		EA src = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1025,7 +1027,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x44c0: {	// MOVEtoCCR
-		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA src = decode_ea(mode, reg, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped)
@@ -1033,7 +1035,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4600: {	// NOT.b
-		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA src = decode_ea(mode, reg, 1);
 		uint8_t v = read_byte(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1045,7 +1047,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4640: {	// NOT.w
-		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA src = decode_ea(mode, reg, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1057,7 +1059,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4680: {	// NOT.l
-		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		EA src = decode_ea(mode, reg, 4);
 		uint32_t v = read_long(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1073,7 +1075,7 @@ void m68k::misc(uint16_t op) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
-		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA src = decode_ea(mode, reg, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped)
@@ -1081,7 +1083,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4800: {	// NBCD
-		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA src = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(src);
 		commit_postinc(src);
 
@@ -1106,8 +1108,14 @@ void m68k::misc(uint16_t op) {
 		}
 		return;
 	}
+	case 0x4840: {	// PEA
+		EA src = decode_ea(mode, reg, 4);
+		if (!_trapped)
+			push32(src.addr);
+		return;
+	}
 	case 0x4a00: {	// TST.b
-		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA src = decode_ea(mode, reg, 1);
 		uint8_t v = read_byte(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1117,7 +1125,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4a40: {	// TST.w
-		EA src = decode_ea((op >> 3) & 7, op & 7, 2);
+		EA src = decode_ea(mode, reg, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1127,7 +1135,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4a80: {	// TST.l
-		EA src = decode_ea((op >> 3) & 7, op & 7, 4);
+		EA src = decode_ea(mode, reg, 4);
 		uint32_t v = read_long(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1137,7 +1145,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4ac0: {	// TAS
-		EA src = decode_ea((op >> 3) & 7, op & 7, 1);
+		EA src = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(src);
 		commit_postinc(src);
 		if (!_trapped) {
@@ -1148,7 +1156,6 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e80: {	// JSR
-		int mode = (op >> 3) & 7, reg = op & 7;
 		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
 			illegal(op);
 			return;
@@ -1160,7 +1167,6 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4ec0: {	// JMP
-		int mode = (op >> 3) & 7, reg = op & 7;
 		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
 			illegal(op);
 			return;
