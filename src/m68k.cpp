@@ -905,6 +905,12 @@ void m68k::misc(uint16_t op) {
 
 	int mode = (op >> 3) & 7, reg = (op & 7);
 
+	if ((op & 0xf1c0) == 0x41c0) {	// LEA
+		EA src = decode_ea(mode, reg, 4);
+		a((op >> 9) & 7, src.addr);
+		return;
+	}
+
 	switch (op & 0xffc0) {
 	case 0x4000: {	// NEGX.b
 		EA src = decode_ea(mode, reg, 1);
