@@ -853,9 +853,10 @@ void m68k::misc(uint16_t op) {
 	}
 	}
 
+	int reg = op & 7;
+
 	switch (op & 0xfff8) {
 	case 0x4840: {	// SWAP
-		int reg = op & 7;
 		uint32_t v = d(reg);
 		v = (v << 16) | (v >> 16);
 		d(reg, v);
@@ -864,7 +865,6 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4880: {	// EXT.w
-		int reg = op & 7;
 		uint32_t old = d(reg);
 		int16_t v = (int8_t)(old & 0xff);	// sign-extend low byte to 16 bits
 		d(reg, (old & 0xffff0000) | (uint16_t)v);
@@ -873,11 +873,18 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x48c0: {	// EXT.l
-		int reg = op & 7;
 		int32_t v = (int16_t)d(reg);		// sign-extend low word to 32 bits
 		d(reg, (uint32_t)v);
 		set_nz(v);
 		clr_vc();
+		return;
+	}
+	case 0x4e50: {	// LINK An, #disp
+		int16_t disp = (int16_t)fetch16();
+		push32(a(reg));
+		uint32_t sp = a(7);
+		a(reg, sp);
+		a(7, sp + disp);
 		return;
 	}
 	case 0x4e60:	// MOVEtoUSP
@@ -885,14 +892,14 @@ void m68k::misc(uint16_t op) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
-		_usp = a(op & 7);
+		_usp = a(reg);
 		return;
 	case 0x4e68:	// MOVEfromUSP
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			return;
 		}
-		a(op & 7, _usp);
+		a(reg, _usp);
 		return;
 	}
 
@@ -903,7 +910,7 @@ void m68k::misc(uint16_t op) {
 	}
 	}
 
-	int mode = (op >> 3) & 7, reg = (op & 7);
+	int mode = (op >> 3) & 7;
 
 	switch (op & 0xf1c0) {
 	case 0x4180: {	// CHK <ea>, Dn
