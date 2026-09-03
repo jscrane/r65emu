@@ -2169,22 +2169,27 @@ void m68k::shift_rotate_memory(uint16_t op) {
 		return;
 	}
 	case 0b011: {	// LSL
-		/*
 		uint16_t res = (val << 1);
 		write_word(ea, res);
 		set_nz((int16_t)res);
 		clr_flag(V_FLAG);
 		set_flag(C_FLAG | X_FLAG, (val >> 15) & 1);
-		 */
+		return;
 	}
+	/*
 	case 0b100: {	// ROXR
+		return;
 	}
 	case 0b101: {	// ROXL
+		return;
 	}
 	case 0b110: {	// ROR
+		return;
 	}
 	case 0b111: {	// ROL
+		return;
 	}
+	*/
 	}
 
 	illegal(op);
@@ -2224,10 +2229,10 @@ void m68k::shift_rotate_register(uint16_t op) {
 	case 0b100:
 		asl_reg(op, size, shift_count);
 		return;
-	/*
 	case 0b101:
 		lsl_reg(op, size, shift_count);
 		return;
+	/*
 	case 0b110:
 		roxl_reg(op, size, shift_count);
 		return;
@@ -2238,6 +2243,74 @@ void m68k::shift_rotate_register(uint16_t op) {
 	}
 
 	illegal(op);
+}
+
+void m68k::lsl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+
+	int dreg = op & 7;
+	uint32_t v = d(dreg);
+
+	if (shift_count == 0) {
+		if (size == 0) set_nz((int8_t)v);
+		else if (size == 1) set_nz((int16_t)v);
+		else set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+
+	switch (size) {
+	case 0b00: {	// LSL.b
+		uint8_t val = (uint8_t)v, res;
+		bool cxflag;
+
+		if (shift_count < 8) {
+			res = val << shift_count;
+			cxflag = (val >> (8 - shift_count)) & 1;
+		} else {
+			res = 0;
+			cxflag = (shift_count == 8) && (val & 1);
+		}
+		d(dreg, (v & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, cxflag);
+		return;
+	}
+	case 0b01: {	// LSL.w
+		uint16_t val = (uint16_t)v, res;
+		bool cxflag;
+
+		if (shift_count < 16) {
+			res = val << shift_count;
+			cxflag = (val >> (16 - shift_count)) & 1;
+		} else {
+			res = 0;
+			cxflag = (shift_count == 16) && (val & 1);
+		}
+		d(dreg, (v & 0xffff0000) | res);
+		set_nz((int16_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, cxflag);
+		return;
+	}
+	case 0b10: {	// LSL.l
+		uint32_t val = v, res;
+		bool cxflag;
+
+		if (shift_count < 32) {
+			res = val << shift_count;
+			cxflag = (val >> (32 - shift_count)) & 1;
+		} else {
+			res = 0;
+			cxflag = (shift_count == 32) && (val & 1);
+		}
+		d(dreg, res);
+		set_nz((int32_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, cxflag);
+		return;
+	}
+	}
 }
 
 void m68k::lsr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
