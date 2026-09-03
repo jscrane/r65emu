@@ -72,6 +72,7 @@ private:
 	void write_long(const EA &, uint32_t);
 
 	uint32_t read_long_predec(int reg);
+	uint32_t read_long_predec_x(int reg);
 	uint32_t read_long_postinc(int reg);
 	void write_long_predec(int reg, uint32_t v);
 	void write_long_postinc(int reg, uint32_t v);
@@ -168,6 +169,18 @@ private:
 	void bit_or(uint16_t op);
 	void bit_eor(uint16_t op);
 	void cmp(uint16_t op);
+
+	void shift_rotate_memory(uint16_t op);
+	void shift_rotate_register(uint16_t op);
+	void asr_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void lsr_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void roxr_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void ror_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void asl_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void lsl_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void rol_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
 

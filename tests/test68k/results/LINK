@@ -1,0 +1,3017 @@
+/home/steve/src/680x0/68000/v1/LINK.json.gz: 8065 tests
+FAIL [1] 4e57 [LINK A7, #] 2
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6] 4e57 [LINK A7, #] 7
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [27] 4e57 [LINK A7, #] 28
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [39] 4e57 [LINK A7, #] 40
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [49] 4e57 [LINK A7, #] 50
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [53] 4e57 [LINK A7, #] 54
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [60] 4e57 [LINK A7, #] 61
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [65] 4e57 [LINK A7, #] 66
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [67] 4e57 [LINK A7, #] 68
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [71] 4e57 [LINK A7, #] 72
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [119] 4e57 [LINK A7, #] 120
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [134] 4e57 [LINK A7, #] 135
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [140] 4e57 [LINK A7, #] 141
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [155] 4e57 [LINK A7, #] 156
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [157] 4e57 [LINK A7, #] 158
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [167] 4e57 [LINK A7, #] 168
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [174] 4e57 [LINK A7, #] 175
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [176] 4e57 [LINK A7, #] 177
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [184] 4e57 [LINK A7, #] 185
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [188] 4e57 [LINK A7, #] 189
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [206] 4e57 [LINK A7, #] 207
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [207] 4e57 [LINK A7, #] 208
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [215] 4e57 [LINK A7, #] 216
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [217] 4e57 [LINK A7, #] 218
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [218] 4e57 [LINK A7, #] 219
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [229] 4e57 [LINK A7, #] 230
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [236] 4e57 [LINK A7, #] 237
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [250] 4e57 [LINK A7, #] 251
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [252] 4e57 [LINK A7, #] 253
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [256] 4e57 [LINK A7, #] 257
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [260] 4e57 [LINK A7, #] 261
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [261] 4e57 [LINK A7, #] 262
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [283] 4e57 [LINK A7, #] 284
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [285] 4e57 [LINK A7, #] 286
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [287] 4e57 [LINK A7, #] 288
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [293] 4e57 [LINK A7, #] 294
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [300] 4e57 [LINK A7, #] 301
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [301] 4e57 [LINK A7, #] 302
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [304] 4e57 [LINK A7, #] 305
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [314] 4e57 [LINK A7, #] 315
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [331] 4e57 [LINK A7, #] 332
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [339] 4e57 [LINK A7, #] 340
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [345] 4e57 [LINK A7, #] 346
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [350] 4e57 [LINK A7, #] 351
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [353] 4e57 [LINK A7, #] 354
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [359] 4e57 [LINK A7, #] 360
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [360] 4e57 [LINK A7, #] 361
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [363] 4e57 [LINK A7, #] 364
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [366] 4e57 [LINK A7, #] 367
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [375] 4e57 [LINK A7, #] 376
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [379] 4e57 [LINK A7, #] 380
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [381] 4e57 [LINK A7, #] 382
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [382] 4e57 [LINK A7, #] 383
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [387] 4e57 [LINK A7, #] 388
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [388] 4e57 [LINK A7, #] 389
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [390] 4e57 [LINK A7, #] 391
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [398] 4e57 [LINK A7, #] 399
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [399] 4e57 [LINK A7, #] 400
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [404] 4e57 [LINK A7, #] 405
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [409] 4e57 [LINK A7, #] 410
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [414] 4e57 [LINK A7, #] 415
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [415] 4e57 [LINK A7, #] 416
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [439] 4e57 [LINK A7, #] 440
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [453] 4e57 [LINK A7, #] 454
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [455] 4e57 [LINK A7, #] 456
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [458] 4e57 [LINK A7, #] 459
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [460] 4e57 [LINK A7, #] 461
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [505] 4e57 [LINK A7, #] 506
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [507] 4e57 [LINK A7, #] 508
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [512] 4e57 [LINK A7, #] 513
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [513] 4e57 [LINK A7, #] 514
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [521] 4e57 [LINK A7, #] 522
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [527] 4e57 [LINK A7, #] 528
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [529] 4e57 [LINK A7, #] 530
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [541] 4e57 [LINK A7, #] 542
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [551] 4e57 [LINK A7, #] 552
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [552] 4e57 [LINK A7, #] 553
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [559] 4e57 [LINK A7, #] 560
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [574] 4e57 [LINK A7, #] 575
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [577] 4e57 [LINK A7, #] 578
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [589] 4e57 [LINK A7, #] 590
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [594] 4e57 [LINK A7, #] 595
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [596] 4e57 [LINK A7, #] 597
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [601] 4e57 [LINK A7, #] 602
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [606] 4e57 [LINK A7, #] 607
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [608] 4e57 [LINK A7, #] 609
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [610] 4e57 [LINK A7, #] 611
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [627] 4e57 [LINK A7, #] 628
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [628] 4e57 [LINK A7, #] 629
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [634] 4e57 [LINK A7, #] 635
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [642] 4e57 [LINK A7, #] 643
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [643] 4e57 [LINK A7, #] 644
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [651] 4e57 [LINK A7, #] 652
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [661] 4e57 [LINK A7, #] 662
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [662] 4e57 [LINK A7, #] 663
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [682] 4e57 [LINK A7, #] 683
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [683] 4e57 [LINK A7, #] 684
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [686] 4e57 [LINK A7, #] 687
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [692] 4e57 [LINK A7, #] 693
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [713] 4e57 [LINK A7, #] 714
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [715] 4e57 [LINK A7, #] 716
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [716] 4e57 [LINK A7, #] 717
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [731] 4e57 [LINK A7, #] 732
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [734] 4e57 [LINK A7, #] 735
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [742] 4e57 [LINK A7, #] 743
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [764] 4e57 [LINK A7, #] 765
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [768] 4e57 [LINK A7, #] 769
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [787] 4e57 [LINK A7, #] 788
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [796] 4e57 [LINK A7, #] 797
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [804] 4e57 [LINK A7, #] 805
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [805] 4e57 [LINK A7, #] 806
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [808] 4e57 [LINK A7, #] 809
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [812] 4e57 [LINK A7, #] 813
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [832] 4e57 [LINK A7, #] 833
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [843] 4e57 [LINK A7, #] 844
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [866] 4e57 [LINK A7, #] 867
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [884] 4e57 [LINK A7, #] 885
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [886] 4e57 [LINK A7, #] 887
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [910] 4e57 [LINK A7, #] 911
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [914] 4e57 [LINK A7, #] 915
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [917] 4e57 [LINK A7, #] 918
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [918] 4e57 [LINK A7, #] 919
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [919] 4e57 [LINK A7, #] 920
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [952] 4e57 [LINK A7, #] 953
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [962] 4e57 [LINK A7, #] 963
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [971] 4e57 [LINK A7, #] 972
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [974] 4e57 [LINK A7, #] 975
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [991] 4e57 [LINK A7, #] 992
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [999] 4e57 [LINK A7, #] 1000
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1020] 4e57 [LINK A7, #] 1021
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1030] 4e57 [LINK A7, #] 1031
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1048] 4e57 [LINK A7, #] 1049
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1053] 4e57 [LINK A7, #] 1054
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1061] 4e57 [LINK A7, #] 1062
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1065] 4e57 [LINK A7, #] 1066
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1072] 4e57 [LINK A7, #] 1073
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1073] 4e57 [LINK A7, #] 1074
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1088] 4e57 [LINK A7, #] 1089
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1108] 4e57 [LINK A7, #] 1109
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1111] 4e57 [LINK A7, #] 1112
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1114] 4e57 [LINK A7, #] 1115
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1115] 4e57 [LINK A7, #] 1116
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1122] 4e57 [LINK A7, #] 1123
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1130] 4e57 [LINK A7, #] 1131
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1136] 4e57 [LINK A7, #] 1137
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1146] 4e57 [LINK A7, #] 1147
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1150] 4e57 [LINK A7, #] 1151
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1153] 4e57 [LINK A7, #] 1154
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1170] 4e57 [LINK A7, #] 1171
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1199] 4e57 [LINK A7, #] 1200
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1202] 4e57 [LINK A7, #] 1203
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1212] 4e57 [LINK A7, #] 1213
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1226] 4e57 [LINK A7, #] 1227
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1235] 4e57 [LINK A7, #] 1236
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1242] 4e57 [LINK A7, #] 1243
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1253] 4e57 [LINK A7, #] 1254
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1264] 4e57 [LINK A7, #] 1265
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1265] 4e57 [LINK A7, #] 1266
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1267] 4e57 [LINK A7, #] 1268
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1272] 4e57 [LINK A7, #] 1273
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1286] 4e57 [LINK A7, #] 1287
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1312] 4e57 [LINK A7, #] 1313
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1327] 4e57 [LINK A7, #] 1328
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1333] 4e57 [LINK A7, #] 1334
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1334] 4e57 [LINK A7, #] 1335
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1349] 4e57 [LINK A7, #] 1350
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1358] 4e57 [LINK A7, #] 1359
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1389] 4e57 [LINK A7, #] 1390
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1394] 4e57 [LINK A7, #] 1395
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1408] 4e57 [LINK A7, #] 1409
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1428] 4e57 [LINK A7, #] 1429
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1432] 4e57 [LINK A7, #] 1433
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1439] 4e57 [LINK A7, #] 1440
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1457] 4e57 [LINK A7, #] 1458
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1469] 4e57 [LINK A7, #] 1470
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1470] 4e57 [LINK A7, #] 1471
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1493] 4e57 [LINK A7, #] 1494
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1494] 4e57 [LINK A7, #] 1495
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1510] 4e57 [LINK A7, #] 1511
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1514] 4e57 [LINK A7, #] 1515
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1523] 4e57 [LINK A7, #] 1524
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1526] 4e57 [LINK A7, #] 1527
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1539] 4e57 [LINK A7, #] 1540
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1549] 4e57 [LINK A7, #] 1550
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1553] 4e57 [LINK A7, #] 1554
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1554] 4e57 [LINK A7, #] 1555
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1560] 4e57 [LINK A7, #] 1561
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1569] 4e57 [LINK A7, #] 1570
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1585] 4e57 [LINK A7, #] 1586
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1607] 4e57 [LINK A7, #] 1608
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1616] 4e57 [LINK A7, #] 1617
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1622] 4e57 [LINK A7, #] 1623
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1624] 4e57 [LINK A7, #] 1625
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1627] 4e57 [LINK A7, #] 1628
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1629] 4e57 [LINK A7, #] 1630
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1633] 4e57 [LINK A7, #] 1634
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1641] 4e57 [LINK A7, #] 1642
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1643] 4e57 [LINK A7, #] 1644
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1652] 4e57 [LINK A7, #] 1653
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1655] 4e57 [LINK A7, #] 1656
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1676] 4e57 [LINK A7, #] 1677
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1678] 4e57 [LINK A7, #] 1679
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1680] 4e57 [LINK A7, #] 1681
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1683] 4e57 [LINK A7, #] 1684
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1695] 4e57 [LINK A7, #] 1696
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1703] 4e57 [LINK A7, #] 1704
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1711] 4e57 [LINK A7, #] 1712
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1720] 4e57 [LINK A7, #] 1721
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1729] 4e57 [LINK A7, #] 1730
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1733] 4e57 [LINK A7, #] 1734
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1737] 4e57 [LINK A7, #] 1738
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1757] 4e57 [LINK A7, #] 1758
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1763] 4e57 [LINK A7, #] 1764
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1773] 4e57 [LINK A7, #] 1774
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1776] 4e57 [LINK A7, #] 1777
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1784] 4e57 [LINK A7, #] 1785
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1787] 4e57 [LINK A7, #] 1788
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1794] 4e57 [LINK A7, #] 1795
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1803] 4e57 [LINK A7, #] 1804
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1805] 4e57 [LINK A7, #] 1806
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1808] 4e57 [LINK A7, #] 1809
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1809] 4e57 [LINK A7, #] 1810
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1811] 4e57 [LINK A7, #] 1812
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1812] 4e57 [LINK A7, #] 1813
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1823] 4e57 [LINK A7, #] 1824
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1824] 4e57 [LINK A7, #] 1825
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1829] 4e57 [LINK A7, #] 1830
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1830] 4e57 [LINK A7, #] 1831
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1839] 4e57 [LINK A7, #] 1840
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1849] 4e57 [LINK A7, #] 1850
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1854] 4e57 [LINK A7, #] 1855
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1863] 4e57 [LINK A7, #] 1864
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1877] 4e57 [LINK A7, #] 1878
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1879] 4e57 [LINK A7, #] 1880
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1881] 4e57 [LINK A7, #] 1882
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1882] 4e57 [LINK A7, #] 1883
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1888] 4e57 [LINK A7, #] 1889
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1910] 4e57 [LINK A7, #] 1911
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1915] 4e57 [LINK A7, #] 1916
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1917] 4e57 [LINK A7, #] 1918
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1929] 4e57 [LINK A7, #] 1930
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1933] 4e57 [LINK A7, #] 1934
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1943] 4e57 [LINK A7, #] 1944
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1945] 4e57 [LINK A7, #] 1946
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1950] 4e57 [LINK A7, #] 1951
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1969] 4e57 [LINK A7, #] 1970
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1973] 4e57 [LINK A7, #] 1974
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1978] 4e57 [LINK A7, #] 1979
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1979] 4e57 [LINK A7, #] 1980
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1980] 4e57 [LINK A7, #] 1981
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1991] 4e57 [LINK A7, #] 1992
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1992] 4e57 [LINK A7, #] 1993
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [1999] 4e57 [LINK A7, #] 2000
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2019] 4e57 [LINK A7, #] 2020
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2032] 4e57 [LINK A7, #] 2033
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2033] 4e57 [LINK A7, #] 2034
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2046] 4e57 [LINK A7, #] 2047
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2071] 4e57 [LINK A7, #] 2072
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2079] 4e57 [LINK A7, #] 2080
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2087] 4e57 [LINK A7, #] 2088
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2104] 4e57 [LINK A7, #] 2105
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2115] 4e57 [LINK A7, #] 2116
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2127] 4e57 [LINK A7, #] 2128
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2128] 4e57 [LINK A7, #] 2129
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2130] 4e57 [LINK A7, #] 2131
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2132] 4e57 [LINK A7, #] 2133
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2155] 4e57 [LINK A7, #] 2156
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2162] 4e57 [LINK A7, #] 2163
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2211] 4e57 [LINK A7, #] 2212
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2212] 4e57 [LINK A7, #] 2213
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2221] 4e57 [LINK A7, #] 2222
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2235] 4e57 [LINK A7, #] 2236
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2250] 4e57 [LINK A7, #] 2251
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2263] 4e57 [LINK A7, #] 2264
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2284] 4e57 [LINK A7, #] 2285
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2285] 4e57 [LINK A7, #] 2286
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2294] 4e57 [LINK A7, #] 2295
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2297] 4e57 [LINK A7, #] 2298
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2300] 4e57 [LINK A7, #] 2301
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2312] 4e57 [LINK A7, #] 2313
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2314] 4e57 [LINK A7, #] 2315
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2321] 4e57 [LINK A7, #] 2322
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2332] 4e57 [LINK A7, #] 2333
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2335] 4e57 [LINK A7, #] 2336
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2337] 4e57 [LINK A7, #] 2338
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2340] 4e57 [LINK A7, #] 2341
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2341] 4e57 [LINK A7, #] 2342
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2343] 4e57 [LINK A7, #] 2344
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2367] 4e57 [LINK A7, #] 2368
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2376] 4e57 [LINK A7, #] 2377
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2377] 4e57 [LINK A7, #] 2378
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2388] 4e57 [LINK A7, #] 2389
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2417] 4e57 [LINK A7, #] 2418
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2424] 4e57 [LINK A7, #] 2425
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2425] 4e57 [LINK A7, #] 2426
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2442] 4e57 [LINK A7, #] 2443
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2454] 4e57 [LINK A7, #] 2455
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2462] 4e57 [LINK A7, #] 2463
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2466] 4e57 [LINK A7, #] 2467
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2474] 4e57 [LINK A7, #] 2475
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2476] 4e57 [LINK A7, #] 2477
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2480] 4e57 [LINK A7, #] 2481
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2486] 4e57 [LINK A7, #] 2487
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2499] 4e57 [LINK A7, #] 2500
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2503] 4e57 [LINK A7, #] 2504
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2522] 4e57 [LINK A7, #] 2523
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2527] 4e57 [LINK A7, #] 2528
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2539] 4e57 [LINK A7, #] 2540
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2542] 4e57 [LINK A7, #] 2543
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2546] 4e57 [LINK A7, #] 2547
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2557] 4e57 [LINK A7, #] 2558
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2562] 4e57 [LINK A7, #] 2563
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2583] 4e57 [LINK A7, #] 2584
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2586] 4e57 [LINK A7, #] 2587
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2587] 4e57 [LINK A7, #] 2588
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2597] 4e57 [LINK A7, #] 2598
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2605] 4e57 [LINK A7, #] 2606
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2618] 4e57 [LINK A7, #] 2619
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2624] 4e57 [LINK A7, #] 2625
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2626] 4e57 [LINK A7, #] 2627
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2631] 4e57 [LINK A7, #] 2632
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2642] 4e57 [LINK A7, #] 2643
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2645] 4e57 [LINK A7, #] 2646
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2647] 4e57 [LINK A7, #] 2648
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2660] 4e57 [LINK A7, #] 2661
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2675] 4e57 [LINK A7, #] 2676
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2690] 4e57 [LINK A7, #] 2691
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2693] 4e57 [LINK A7, #] 2694
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2694] 4e57 [LINK A7, #] 2695
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2697] 4e57 [LINK A7, #] 2698
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2717] 4e57 [LINK A7, #] 2718
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2721] 4e57 [LINK A7, #] 2722
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2728] 4e57 [LINK A7, #] 2729
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2745] 4e57 [LINK A7, #] 2746
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2790] 4e57 [LINK A7, #] 2791
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2814] 4e57 [LINK A7, #] 2815
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2817] 4e57 [LINK A7, #] 2818
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2818] 4e57 [LINK A7, #] 2819
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2837] 4e57 [LINK A7, #] 2838
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2838] 4e57 [LINK A7, #] 2839
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2849] 4e57 [LINK A7, #] 2850
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2860] 4e57 [LINK A7, #] 2861
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2864] 4e57 [LINK A7, #] 2865
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2879] 4e57 [LINK A7, #] 2880
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2889] 4e57 [LINK A7, #] 2890
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2896] 4e57 [LINK A7, #] 2897
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2906] 4e57 [LINK A7, #] 2907
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2908] 4e57 [LINK A7, #] 2909
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2909] 4e57 [LINK A7, #] 2910
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2920] 4e57 [LINK A7, #] 2921
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2940] 4e57 [LINK A7, #] 2941
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2950] 4e57 [LINK A7, #] 2951
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2958] 4e57 [LINK A7, #] 2959
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2961] 4e57 [LINK A7, #] 2962
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [2995] 4e57 [LINK A7, #] 2996
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3000] 4e57 [LINK A7, #] 3001
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3007] 4e57 [LINK A7, #] 3008
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3012] 4e57 [LINK A7, #] 3013
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3032] 4e57 [LINK A7, #] 3033
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3039] 4e57 [LINK A7, #] 3040
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3044] 4e57 [LINK A7, #] 3045
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3046] 4e57 [LINK A7, #] 3047
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3072] 4e57 [LINK A7, #] 3073
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3077] 4e57 [LINK A7, #] 3078
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3084] 4e57 [LINK A7, #] 3085
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3108] 4e57 [LINK A7, #] 3109
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3118] 4e57 [LINK A7, #] 3119
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3119] 4e57 [LINK A7, #] 3120
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3123] 4e57 [LINK A7, #] 3124
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3131] 4e57 [LINK A7, #] 3132
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3133] 4e57 [LINK A7, #] 3134
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3135] 4e57 [LINK A7, #] 3136
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3142] 4e57 [LINK A7, #] 3143
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3144] 4e57 [LINK A7, #] 3145
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3153] 4e57 [LINK A7, #] 3154
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3159] 4e57 [LINK A7, #] 3160
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3160] 4e57 [LINK A7, #] 3161
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3177] 4e57 [LINK A7, #] 3178
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3194] 4e57 [LINK A7, #] 3195
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3203] 4e57 [LINK A7, #] 3204
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3205] 4e57 [LINK A7, #] 3206
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3206] 4e57 [LINK A7, #] 3207
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3209] 4e57 [LINK A7, #] 3210
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3221] 4e57 [LINK A7, #] 3222
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3235] 4e57 [LINK A7, #] 3236
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3240] 4e57 [LINK A7, #] 3241
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3255] 4e57 [LINK A7, #] 3256
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3257] 4e57 [LINK A7, #] 3258
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3262] 4e57 [LINK A7, #] 3263
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3276] 4e57 [LINK A7, #] 3277
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3280] 4e57 [LINK A7, #] 3281
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3283] 4e57 [LINK A7, #] 3284
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3284] 4e57 [LINK A7, #] 3285
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3290] 4e57 [LINK A7, #] 3291
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3292] 4e57 [LINK A7, #] 3293
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3293] 4e57 [LINK A7, #] 3294
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3303] 4e57 [LINK A7, #] 3304
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3305] 4e57 [LINK A7, #] 3306
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3309] 4e57 [LINK A7, #] 3310
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3319] 4e57 [LINK A7, #] 3320
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3328] 4e57 [LINK A7, #] 3329
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3339] 4e57 [LINK A7, #] 3340
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3344] 4e57 [LINK A7, #] 3345
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3348] 4e57 [LINK A7, #] 3349
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3361] 4e57 [LINK A7, #] 3362
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3364] 4e57 [LINK A7, #] 3365
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3380] 4e57 [LINK A7, #] 3381
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3381] 4e57 [LINK A7, #] 3382
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3385] 4e57 [LINK A7, #] 3386
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3391] 4e57 [LINK A7, #] 3392
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3392] 4e57 [LINK A7, #] 3393
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3411] 4e57 [LINK A7, #] 3412
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3416] 4e57 [LINK A7, #] 3417
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3433] 4e57 [LINK A7, #] 3434
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3442] 4e57 [LINK A7, #] 3443
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3448] 4e57 [LINK A7, #] 3449
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3450] 4e57 [LINK A7, #] 3451
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3484] 4e57 [LINK A7, #] 3485
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3485] 4e57 [LINK A7, #] 3486
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3506] 4e57 [LINK A7, #] 3507
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3515] 4e57 [LINK A7, #] 3516
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3525] 4e57 [LINK A7, #] 3526
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3531] 4e57 [LINK A7, #] 3532
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3545] 4e57 [LINK A7, #] 3546
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3564] 4e57 [LINK A7, #] 3565
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3581] 4e57 [LINK A7, #] 3582
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3582] 4e57 [LINK A7, #] 3583
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3583] 4e57 [LINK A7, #] 3584
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3588] 4e57 [LINK A7, #] 3589
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3591] 4e57 [LINK A7, #] 3592
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3596] 4e57 [LINK A7, #] 3597
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3602] 4e57 [LINK A7, #] 3603
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3610] 4e57 [LINK A7, #] 3611
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3614] 4e57 [LINK A7, #] 3615
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3623] 4e57 [LINK A7, #] 3624
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3624] 4e57 [LINK A7, #] 3625
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3626] 4e57 [LINK A7, #] 3627
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3628] 4e57 [LINK A7, #] 3629
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3652] 4e57 [LINK A7, #] 3653
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3655] 4e57 [LINK A7, #] 3656
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3679] 4e57 [LINK A7, #] 3680
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3704] 4e57 [LINK A7, #] 3705
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3729] 4e57 [LINK A7, #] 3730
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3736] 4e57 [LINK A7, #] 3737
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3749] 4e57 [LINK A7, #] 3750
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3753] 4e57 [LINK A7, #] 3754
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3760] 4e57 [LINK A7, #] 3761
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3771] 4e57 [LINK A7, #] 3772
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3773] 4e57 [LINK A7, #] 3774
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3778] 4e57 [LINK A7, #] 3779
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3779] 4e57 [LINK A7, #] 3780
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3791] 4e57 [LINK A7, #] 3792
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3795] 4e57 [LINK A7, #] 3796
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3799] 4e57 [LINK A7, #] 3800
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3801] 4e57 [LINK A7, #] 3802
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3807] 4e57 [LINK A7, #] 3808
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3815] 4e57 [LINK A7, #] 3816
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3823] 4e57 [LINK A7, #] 3824
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3825] 4e57 [LINK A7, #] 3826
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3830] 4e57 [LINK A7, #] 3831
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3833] 4e57 [LINK A7, #] 3834
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3841] 4e57 [LINK A7, #] 3842
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3846] 4e57 [LINK A7, #] 3847
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3851] 4e57 [LINK A7, #] 3852
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3860] 4e57 [LINK A7, #] 3861
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3861] 4e57 [LINK A7, #] 3862
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3864] 4e57 [LINK A7, #] 3865
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3869] 4e57 [LINK A7, #] 3870
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3870] 4e57 [LINK A7, #] 3871
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3872] 4e57 [LINK A7, #] 3873
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3876] 4e57 [LINK A7, #] 3877
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3886] 4e57 [LINK A7, #] 3887
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3897] 4e57 [LINK A7, #] 3898
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3918] 4e57 [LINK A7, #] 3919
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3931] 4e57 [LINK A7, #] 3932
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3940] 4e57 [LINK A7, #] 3941
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3945] 4e57 [LINK A7, #] 3946
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3946] 4e57 [LINK A7, #] 3947
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3967] 4e57 [LINK A7, #] 3968
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3968] 4e57 [LINK A7, #] 3969
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3969] 4e57 [LINK A7, #] 3970
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3970] 4e57 [LINK A7, #] 3971
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3980] 4e57 [LINK A7, #] 3981
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [3983] 4e57 [LINK A7, #] 3984
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4013] 4e57 [LINK A7, #] 4014
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4017] 4e57 [LINK A7, #] 4018
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4024] 4e57 [LINK A7, #] 4025
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4026] 4e57 [LINK A7, #] 4027
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4032] 4e57 [LINK A7, #] 4033
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4033] 4e57 [LINK A7, #] 4034
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4036] 4e57 [LINK A7, #] 4037
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4040] 4e57 [LINK A7, #] 4041
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4043] 4e57 [LINK A7, #] 4044
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4051] 4e57 [LINK A7, #] 4052
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4052] 4e57 [LINK A7, #] 4053
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4064] 4e57 [LINK A7, #] 4065
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4069] 4e57 [LINK A7, #] 4070
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4074] 4e57 [LINK A7, #] 4075
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4081] 4e57 [LINK A7, #] 4082
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4091] 4e57 [LINK A7, #] 4092
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4097] 4e57 [LINK A7, #] 4098
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4109] 4e57 [LINK A7, #] 4110
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4110] 4e57 [LINK A7, #] 4111
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4111] 4e57 [LINK A7, #] 4112
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4130] 4e57 [LINK A7, #] 4131
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4136] 4e57 [LINK A7, #] 4137
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4138] 4e57 [LINK A7, #] 4139
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4152] 4e57 [LINK A7, #] 4153
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4170] 4e57 [LINK A7, #] 4171
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4196] 4e57 [LINK A7, #] 4197
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4198] 4e57 [LINK A7, #] 4199
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4216] 4e57 [LINK A7, #] 4217
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4220] 4e57 [LINK A7, #] 4221
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4221] 4e57 [LINK A7, #] 4222
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4231] 4e57 [LINK A7, #] 4232
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4237] 4e57 [LINK A7, #] 4238
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4246] 4e57 [LINK A7, #] 4247
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4253] 4e57 [LINK A7, #] 4254
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4255] 4e57 [LINK A7, #] 4256
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4278] 4e57 [LINK A7, #] 4279
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4279] 4e57 [LINK A7, #] 4280
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4289] 4e57 [LINK A7, #] 4290
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4302] 4e57 [LINK A7, #] 4303
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4305] 4e57 [LINK A7, #] 4306
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4308] 4e57 [LINK A7, #] 4309
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4318] 4e57 [LINK A7, #] 4319
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4320] 4e57 [LINK A7, #] 4321
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4328] 4e57 [LINK A7, #] 4329
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4348] 4e57 [LINK A7, #] 4349
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4353] 4e57 [LINK A7, #] 4354
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4363] 4e57 [LINK A7, #] 4364
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4364] 4e57 [LINK A7, #] 4365
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4366] 4e57 [LINK A7, #] 4367
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4368] 4e57 [LINK A7, #] 4369
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4386] 4e57 [LINK A7, #] 4387
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4402] 4e57 [LINK A7, #] 4403
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4415] 4e57 [LINK A7, #] 4416
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4441] 4e57 [LINK A7, #] 4442
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4442] 4e57 [LINK A7, #] 4443
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4448] 4e57 [LINK A7, #] 4449
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4465] 4e57 [LINK A7, #] 4466
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4473] 4e57 [LINK A7, #] 4474
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4476] 4e57 [LINK A7, #] 4477
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4518] 4e57 [LINK A7, #] 4519
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4520] 4e57 [LINK A7, #] 4521
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4531] 4e57 [LINK A7, #] 4532
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4534] 4e57 [LINK A7, #] 4535
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4550] 4e57 [LINK A7, #] 4551
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4553] 4e57 [LINK A7, #] 4554
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4561] 4e57 [LINK A7, #] 4562
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4566] 4e57 [LINK A7, #] 4567
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4589] 4e57 [LINK A7, #] 4590
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4592] 4e57 [LINK A7, #] 4593
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4597] 4e57 [LINK A7, #] 4598
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4620] 4e57 [LINK A7, #] 4621
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4643] 4e57 [LINK A7, #] 4644
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4655] 4e57 [LINK A7, #] 4656
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4657] 4e57 [LINK A7, #] 4658
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4661] 4e57 [LINK A7, #] 4662
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4664] 4e57 [LINK A7, #] 4665
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4678] 4e57 [LINK A7, #] 4679
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4679] 4e57 [LINK A7, #] 4680
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4682] 4e57 [LINK A7, #] 4683
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4710] 4e57 [LINK A7, #] 4711
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4720] 4e57 [LINK A7, #] 4721
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4733] 4e57 [LINK A7, #] 4734
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4734] 4e57 [LINK A7, #] 4735
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4749] 4e57 [LINK A7, #] 4750
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4751] 4e57 [LINK A7, #] 4752
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4758] 4e57 [LINK A7, #] 4759
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4760] 4e57 [LINK A7, #] 4761
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4763] 4e57 [LINK A7, #] 4764
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4767] 4e57 [LINK A7, #] 4768
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4771] 4e57 [LINK A7, #] 4772
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4784] 4e57 [LINK A7, #] 4785
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4789] 4e57 [LINK A7, #] 4790
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4803] 4e57 [LINK A7, #] 4804
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4821] 4e57 [LINK A7, #] 4822
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4826] 4e57 [LINK A7, #] 4827
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4829] 4e57 [LINK A7, #] 4830
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4841] 4e57 [LINK A7, #] 4842
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4848] 4e57 [LINK A7, #] 4849
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4850] 4e57 [LINK A7, #] 4851
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4852] 4e57 [LINK A7, #] 4853
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4854] 4e57 [LINK A7, #] 4855
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4856] 4e57 [LINK A7, #] 4857
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4859] 4e57 [LINK A7, #] 4860
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4870] 4e57 [LINK A7, #] 4871
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4883] 4e57 [LINK A7, #] 4884
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4887] 4e57 [LINK A7, #] 4888
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4899] 4e57 [LINK A7, #] 4900
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4900] 4e57 [LINK A7, #] 4901
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4922] 4e57 [LINK A7, #] 4923
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4925] 4e57 [LINK A7, #] 4926
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4926] 4e57 [LINK A7, #] 4927
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4929] 4e57 [LINK A7, #] 4930
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4931] 4e57 [LINK A7, #] 4932
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4939] 4e57 [LINK A7, #] 4940
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4940] 4e57 [LINK A7, #] 4941
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4952] 4e57 [LINK A7, #] 4953
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4953] 4e57 [LINK A7, #] 4954
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4958] 4e57 [LINK A7, #] 4959
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4967] 4e57 [LINK A7, #] 4968
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4993] 4e57 [LINK A7, #] 4994
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [4997] 4e57 [LINK A7, #] 4998
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5004] 4e57 [LINK A7, #] 5005
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5010] 4e57 [LINK A7, #] 5011
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5014] 4e57 [LINK A7, #] 5015
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5018] 4e57 [LINK A7, #] 5019
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5035] 4e57 [LINK A7, #] 5036
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5044] 4e57 [LINK A7, #] 5045
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5054] 4e57 [LINK A7, #] 5055
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5060] 4e57 [LINK A7, #] 5061
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5061] 4e57 [LINK A7, #] 5062
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5079] 4e57 [LINK A7, #] 5080
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5080] 4e57 [LINK A7, #] 5081
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5086] 4e57 [LINK A7, #] 5087
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5091] 4e57 [LINK A7, #] 5092
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5105] 4e57 [LINK A7, #] 5106
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5111] 4e57 [LINK A7, #] 5112
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5119] 4e57 [LINK A7, #] 5120
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5132] 4e57 [LINK A7, #] 5133
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5140] 4e57 [LINK A7, #] 5141
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5151] 4e57 [LINK A7, #] 5152
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5155] 4e57 [LINK A7, #] 5156
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5165] 4e57 [LINK A7, #] 5166
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5168] 4e57 [LINK A7, #] 5169
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5169] 4e57 [LINK A7, #] 5170
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5179] 4e57 [LINK A7, #] 5180
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5199] 4e57 [LINK A7, #] 5200
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5200] 4e57 [LINK A7, #] 5201
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5231] 4e57 [LINK A7, #] 5232
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5237] 4e57 [LINK A7, #] 5238
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5239] 4e57 [LINK A7, #] 5240
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5241] 4e57 [LINK A7, #] 5242
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5247] 4e57 [LINK A7, #] 5248
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5265] 4e57 [LINK A7, #] 5266
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5269] 4e57 [LINK A7, #] 5270
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5272] 4e57 [LINK A7, #] 5273
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5281] 4e57 [LINK A7, #] 5282
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5282] 4e57 [LINK A7, #] 5283
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5288] 4e57 [LINK A7, #] 5289
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5310] 4e57 [LINK A7, #] 5311
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5317] 4e57 [LINK A7, #] 5318
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5323] 4e57 [LINK A7, #] 5324
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5326] 4e57 [LINK A7, #] 5327
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5327] 4e57 [LINK A7, #] 5328
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5348] 4e57 [LINK A7, #] 5349
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5358] 4e57 [LINK A7, #] 5359
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5366] 4e57 [LINK A7, #] 5367
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5367] 4e57 [LINK A7, #] 5368
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5380] 4e57 [LINK A7, #] 5381
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5381] 4e57 [LINK A7, #] 5382
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5390] 4e57 [LINK A7, #] 5391
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5414] 4e57 [LINK A7, #] 5415
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5417] 4e57 [LINK A7, #] 5418
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5422] 4e57 [LINK A7, #] 5423
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5432] 4e57 [LINK A7, #] 5433
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5433] 4e57 [LINK A7, #] 5434
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5438] 4e57 [LINK A7, #] 5439
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5446] 4e57 [LINK A7, #] 5447
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5449] 4e57 [LINK A7, #] 5450
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5455] 4e57 [LINK A7, #] 5456
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5482] 4e57 [LINK A7, #] 5483
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5505] 4e57 [LINK A7, #] 5506
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5509] 4e57 [LINK A7, #] 5510
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5520] 4e57 [LINK A7, #] 5521
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5544] 4e57 [LINK A7, #] 5545
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5546] 4e57 [LINK A7, #] 5547
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5552] 4e57 [LINK A7, #] 5553
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5559] 4e57 [LINK A7, #] 5560
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5564] 4e57 [LINK A7, #] 5565
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5591] 4e57 [LINK A7, #] 5592
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5602] 4e57 [LINK A7, #] 5603
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5622] 4e57 [LINK A7, #] 5623
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5644] 4e57 [LINK A7, #] 5645
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5646] 4e57 [LINK A7, #] 5647
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5664] 4e57 [LINK A7, #] 5665
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5673] 4e57 [LINK A7, #] 5674
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5681] 4e57 [LINK A7, #] 5682
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5701] 4e57 [LINK A7, #] 5702
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5703] 4e57 [LINK A7, #] 5704
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5734] 4e57 [LINK A7, #] 5735
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5737] 4e57 [LINK A7, #] 5738
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5760] 4e57 [LINK A7, #] 5761
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5763] 4e57 [LINK A7, #] 5764
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5769] 4e57 [LINK A7, #] 5770
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5772] 4e57 [LINK A7, #] 5773
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5780] 4e57 [LINK A7, #] 5781
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5781] 4e57 [LINK A7, #] 5782
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5790] 4e57 [LINK A7, #] 5791
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5793] 4e57 [LINK A7, #] 5794
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5799] 4e57 [LINK A7, #] 5800
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5828] 4e57 [LINK A7, #] 5829
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5838] 4e57 [LINK A7, #] 5839
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5844] 4e57 [LINK A7, #] 5845
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5866] 4e57 [LINK A7, #] 5867
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5870] 4e57 [LINK A7, #] 5871
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5873] 4e57 [LINK A7, #] 5874
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5887] 4e57 [LINK A7, #] 5888
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5889] 4e57 [LINK A7, #] 5890
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5895] 4e57 [LINK A7, #] 5896
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5903] 4e57 [LINK A7, #] 5904
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5913] 4e57 [LINK A7, #] 5914
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5922] 4e57 [LINK A7, #] 5923
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5942] 4e57 [LINK A7, #] 5943
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5946] 4e57 [LINK A7, #] 5947
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5947] 4e57 [LINK A7, #] 5948
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5948] 4e57 [LINK A7, #] 5949
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5949] 4e57 [LINK A7, #] 5950
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5963] 4e57 [LINK A7, #] 5964
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [5993] 4e57 [LINK A7, #] 5994
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6002] 4e57 [LINK A7, #] 6003
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6005] 4e57 [LINK A7, #] 6006
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6013] 4e57 [LINK A7, #] 6014
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6014] 4e57 [LINK A7, #] 6015
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6025] 4e57 [LINK A7, #] 6026
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6027] 4e57 [LINK A7, #] 6028
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6030] 4e57 [LINK A7, #] 6031
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6035] 4e57 [LINK A7, #] 6036
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6038] 4e57 [LINK A7, #] 6039
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6042] 4e57 [LINK A7, #] 6043
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6048] 4e57 [LINK A7, #] 6049
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6052] 4e57 [LINK A7, #] 6053
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6061] 4e57 [LINK A7, #] 6062
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6072] 4e57 [LINK A7, #] 6073
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6073] 4e57 [LINK A7, #] 6074
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6083] 4e57 [LINK A7, #] 6084
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6093] 4e57 [LINK A7, #] 6094
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6101] 4e57 [LINK A7, #] 6102
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6105] 4e57 [LINK A7, #] 6106
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6124] 4e57 [LINK A7, #] 6125
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6127] 4e57 [LINK A7, #] 6128
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6134] 4e57 [LINK A7, #] 6135
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6166] 4e57 [LINK A7, #] 6167
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6168] 4e57 [LINK A7, #] 6169
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6170] 4e57 [LINK A7, #] 6171
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6171] 4e57 [LINK A7, #] 6172
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6185] 4e57 [LINK A7, #] 6186
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6194] 4e57 [LINK A7, #] 6195
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6198] 4e57 [LINK A7, #] 6199
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6202] 4e57 [LINK A7, #] 6203
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6206] 4e57 [LINK A7, #] 6207
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6208] 4e57 [LINK A7, #] 6209
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6211] 4e57 [LINK A7, #] 6212
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6213] 4e57 [LINK A7, #] 6214
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6216] 4e57 [LINK A7, #] 6217
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6217] 4e57 [LINK A7, #] 6218
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6220] 4e57 [LINK A7, #] 6221
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6222] 4e57 [LINK A7, #] 6223
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6223] 4e57 [LINK A7, #] 6224
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6227] 4e57 [LINK A7, #] 6228
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6242] 4e57 [LINK A7, #] 6243
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6271] 4e57 [LINK A7, #] 6272
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6277] 4e57 [LINK A7, #] 6278
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6281] 4e57 [LINK A7, #] 6282
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6295] 4e57 [LINK A7, #] 6296
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6302] 4e57 [LINK A7, #] 6303
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6314] 4e57 [LINK A7, #] 6315
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6324] 4e57 [LINK A7, #] 6325
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6336] 4e57 [LINK A7, #] 6337
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6341] 4e57 [LINK A7, #] 6342
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6363] 4e57 [LINK A7, #] 6364
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6364] 4e57 [LINK A7, #] 6365
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6365] 4e57 [LINK A7, #] 6366
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6372] 4e57 [LINK A7, #] 6373
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6374] 4e57 [LINK A7, #] 6375
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6385] 4e57 [LINK A7, #] 6386
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6427] 4e57 [LINK A7, #] 6428
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6432] 4e57 [LINK A7, #] 6433
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6435] 4e57 [LINK A7, #] 6436
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6439] 4e57 [LINK A7, #] 6440
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6453] 4e57 [LINK A7, #] 6454
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6455] 4e57 [LINK A7, #] 6456
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6462] 4e57 [LINK A7, #] 6463
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6486] 4e57 [LINK A7, #] 6487
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6487] 4e57 [LINK A7, #] 6488
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6491] 4e57 [LINK A7, #] 6492
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6497] 4e57 [LINK A7, #] 6498
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6530] 4e57 [LINK A7, #] 6531
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6534] 4e57 [LINK A7, #] 6535
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6537] 4e57 [LINK A7, #] 6538
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6539] 4e57 [LINK A7, #] 6540
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6546] 4e57 [LINK A7, #] 6547
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6548] 4e57 [LINK A7, #] 6549
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6549] 4e57 [LINK A7, #] 6550
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6550] 4e57 [LINK A7, #] 6551
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6551] 4e57 [LINK A7, #] 6552
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6554] 4e57 [LINK A7, #] 6555
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6583] 4e57 [LINK A7, #] 6584
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6586] 4e57 [LINK A7, #] 6587
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6591] 4e57 [LINK A7, #] 6592
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6597] 4e57 [LINK A7, #] 6598
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6599] 4e57 [LINK A7, #] 6600
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6601] 4e57 [LINK A7, #] 6602
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6612] 4e57 [LINK A7, #] 6613
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6615] 4e57 [LINK A7, #] 6616
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6616] 4e57 [LINK A7, #] 6617
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6619] 4e57 [LINK A7, #] 6620
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6623] 4e57 [LINK A7, #] 6624
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6628] 4e57 [LINK A7, #] 6629
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6629] 4e57 [LINK A7, #] 6630
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6634] 4e57 [LINK A7, #] 6635
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6640] 4e57 [LINK A7, #] 6641
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6645] 4e57 [LINK A7, #] 6646
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6647] 4e57 [LINK A7, #] 6648
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6654] 4e57 [LINK A7, #] 6655
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6656] 4e57 [LINK A7, #] 6657
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6660] 4e57 [LINK A7, #] 6661
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6662] 4e57 [LINK A7, #] 6663
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6666] 4e57 [LINK A7, #] 6667
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6672] 4e57 [LINK A7, #] 6673
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6676] 4e57 [LINK A7, #] 6677
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6678] 4e57 [LINK A7, #] 6679
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6692] 4e57 [LINK A7, #] 6693
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6693] 4e57 [LINK A7, #] 6694
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6726] 4e57 [LINK A7, #] 6727
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6733] 4e57 [LINK A7, #] 6734
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6743] 4e57 [LINK A7, #] 6744
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6748] 4e57 [LINK A7, #] 6749
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6758] 4e57 [LINK A7, #] 6759
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6766] 4e57 [LINK A7, #] 6767
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6781] 4e57 [LINK A7, #] 6782
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6785] 4e57 [LINK A7, #] 6786
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6788] 4e57 [LINK A7, #] 6789
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6801] 4e57 [LINK A7, #] 6802
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6825] 4e57 [LINK A7, #] 6826
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6831] 4e57 [LINK A7, #] 6832
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6836] 4e57 [LINK A7, #] 6837
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6852] 4e57 [LINK A7, #] 6853
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6856] 4e57 [LINK A7, #] 6857
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6860] 4e57 [LINK A7, #] 6861
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6877] 4e57 [LINK A7, #] 6878
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6888] 4e57 [LINK A7, #] 6889
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6892] 4e57 [LINK A7, #] 6893
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6909] 4e57 [LINK A7, #] 6910
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6914] 4e57 [LINK A7, #] 6915
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6919] 4e57 [LINK A7, #] 6920
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6946] 4e57 [LINK A7, #] 6947
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6955] 4e57 [LINK A7, #] 6956
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6956] 4e57 [LINK A7, #] 6957
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6961] 4e57 [LINK A7, #] 6962
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6974] 4e57 [LINK A7, #] 6975
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6978] 4e57 [LINK A7, #] 6979
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6990] 4e57 [LINK A7, #] 6991
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6994] 4e57 [LINK A7, #] 6995
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6997] 4e57 [LINK A7, #] 6998
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [6998] 4e57 [LINK A7, #] 6999
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7008] 4e57 [LINK A7, #] 7009
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7014] 4e57 [LINK A7, #] 7015
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7018] 4e57 [LINK A7, #] 7019
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7024] 4e57 [LINK A7, #] 7025
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7026] 4e57 [LINK A7, #] 7027
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7043] 4e57 [LINK A7, #] 7044
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7044] 4e57 [LINK A7, #] 7045
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7048] 4e57 [LINK A7, #] 7049
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7051] 4e57 [LINK A7, #] 7052
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7058] 4e57 [LINK A7, #] 7059
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7067] 4e57 [LINK A7, #] 7068
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7069] 4e57 [LINK A7, #] 7070
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7070] 4e57 [LINK A7, #] 7071
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7086] 4e57 [LINK A7, #] 7087
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7105] 4e57 [LINK A7, #] 7106
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7109] 4e57 [LINK A7, #] 7110
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7110] 4e57 [LINK A7, #] 7111
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7112] 4e57 [LINK A7, #] 7113
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7115] 4e57 [LINK A7, #] 7116
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7118] 4e57 [LINK A7, #] 7119
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7122] 4e57 [LINK A7, #] 7123
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7132] 4e57 [LINK A7, #] 7133
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7133] 4e57 [LINK A7, #] 7134
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7134] 4e57 [LINK A7, #] 7135
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7135] 4e57 [LINK A7, #] 7136
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7148] 4e57 [LINK A7, #] 7149
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7150] 4e57 [LINK A7, #] 7151
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7152] 4e57 [LINK A7, #] 7153
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7157] 4e57 [LINK A7, #] 7158
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7168] 4e57 [LINK A7, #] 7169
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7175] 4e57 [LINK A7, #] 7176
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7181] 4e57 [LINK A7, #] 7182
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7183] 4e57 [LINK A7, #] 7184
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7190] 4e57 [LINK A7, #] 7191
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7205] 4e57 [LINK A7, #] 7206
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7215] 4e57 [LINK A7, #] 7216
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7221] 4e57 [LINK A7, #] 7222
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7222] 4e57 [LINK A7, #] 7223
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7223] 4e57 [LINK A7, #] 7224
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7227] 4e57 [LINK A7, #] 7228
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7237] 4e57 [LINK A7, #] 7238
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7241] 4e57 [LINK A7, #] 7242
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7242] 4e57 [LINK A7, #] 7243
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7245] 4e57 [LINK A7, #] 7246
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7264] 4e57 [LINK A7, #] 7265
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7270] 4e57 [LINK A7, #] 7271
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7296] 4e57 [LINK A7, #] 7297
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7297] 4e57 [LINK A7, #] 7298
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7301] 4e57 [LINK A7, #] 7302
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7306] 4e57 [LINK A7, #] 7307
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7310] 4e57 [LINK A7, #] 7311
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7315] 4e57 [LINK A7, #] 7316
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7322] 4e57 [LINK A7, #] 7323
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7323] 4e57 [LINK A7, #] 7324
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7329] 4e57 [LINK A7, #] 7330
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7358] 4e57 [LINK A7, #] 7359
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7359] 4e57 [LINK A7, #] 7360
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7363] 4e57 [LINK A7, #] 7364
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7369] 4e57 [LINK A7, #] 7370
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7373] 4e57 [LINK A7, #] 7374
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7378] 4e57 [LINK A7, #] 7379
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7387] 4e57 [LINK A7, #] 7388
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7393] 4e57 [LINK A7, #] 7394
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7401] 4e57 [LINK A7, #] 7402
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7419] 4e57 [LINK A7, #] 7420
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7420] 4e57 [LINK A7, #] 7421
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7429] 4e57 [LINK A7, #] 7430
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7434] 4e57 [LINK A7, #] 7435
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7435] 4e57 [LINK A7, #] 7436
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7436] 4e57 [LINK A7, #] 7437
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7437] 4e57 [LINK A7, #] 7438
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7438] 4e57 [LINK A7, #] 7439
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7440] 4e57 [LINK A7, #] 7441
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7445] 4e57 [LINK A7, #] 7446
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7453] 4e57 [LINK A7, #] 7454
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7456] 4e57 [LINK A7, #] 7457
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7463] 4e57 [LINK A7, #] 7464
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7464] 4e57 [LINK A7, #] 7465
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7468] 4e57 [LINK A7, #] 7469
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7469] 4e57 [LINK A7, #] 7470
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7473] 4e57 [LINK A7, #] 7474
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7476] 4e57 [LINK A7, #] 7477
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7477] 4e57 [LINK A7, #] 7478
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7480] 4e57 [LINK A7, #] 7481
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7481] 4e57 [LINK A7, #] 7482
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7488] 4e57 [LINK A7, #] 7489
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7493] 4e57 [LINK A7, #] 7494
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7496] 4e57 [LINK A7, #] 7497
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7500] 4e57 [LINK A7, #] 7501
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7509] 4e57 [LINK A7, #] 7510
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7514] 4e57 [LINK A7, #] 7515
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7521] 4e57 [LINK A7, #] 7522
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7535] 4e57 [LINK A7, #] 7536
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7542] 4e57 [LINK A7, #] 7543
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7544] 4e57 [LINK A7, #] 7545
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7555] 4e57 [LINK A7, #] 7556
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7566] 4e57 [LINK A7, #] 7567
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7588] 4e57 [LINK A7, #] 7589
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7597] 4e57 [LINK A7, #] 7598
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7604] 4e57 [LINK A7, #] 7605
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7643] 4e57 [LINK A7, #] 7644
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7648] 4e57 [LINK A7, #] 7649
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7653] 4e57 [LINK A7, #] 7654
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7655] 4e57 [LINK A7, #] 7656
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7656] 4e57 [LINK A7, #] 7657
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7658] 4e57 [LINK A7, #] 7659
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7682] 4e57 [LINK A7, #] 7683
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7688] 4e57 [LINK A7, #] 7689
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7697] 4e57 [LINK A7, #] 7698
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7704] 4e57 [LINK A7, #] 7705
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7716] 4e57 [LINK A7, #] 7717
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7718] 4e57 [LINK A7, #] 7719
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7740] 4e57 [LINK A7, #] 7741
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7745] 4e57 [LINK A7, #] 7746
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7746] 4e57 [LINK A7, #] 7747
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7759] 4e57 [LINK A7, #] 7760
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7764] 4e57 [LINK A7, #] 7765
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7770] 4e57 [LINK A7, #] 7771
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7798] 4e57 [LINK A7, #] 7799
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7803] 4e57 [LINK A7, #] 7804
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7808] 4e57 [LINK A7, #] 7809
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7811] 4e57 [LINK A7, #] 7812
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7823] 4e57 [LINK A7, #] 7824
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7827] 4e57 [LINK A7, #] 7828
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7828] 4e57 [LINK A7, #] 7829
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7831] 4e57 [LINK A7, #] 7832
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7839] 4e57 [LINK A7, #] 7840
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7872] 4e57 [LINK A7, #] 7873
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7879] 4e57 [LINK A7, #] 7880
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7885] 4e57 [LINK A7, #] 7886
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7892] 4e57 [LINK A7, #] 7893
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7914] 4e57 [LINK A7, #] 7915
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7915] 4e57 [LINK A7, #] 7916
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7917] 4e57 [LINK A7, #] 7918
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7920] 4e57 [LINK A7, #] 7921
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7936] 4e57 [LINK A7, #] 7937
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7944] 4e57 [LINK A7, #] 7945
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7951] 4e57 [LINK A7, #] 7952
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7956] 4e57 [LINK A7, #] 7957
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7960] 4e57 [LINK A7, #] 7961
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7964] 4e57 [LINK A7, #] 7965
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7974] 4e57 [LINK A7, #] 7975
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7976] 4e57 [LINK A7, #] 7977
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7982] 4e57 [LINK A7, #] 7983
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7985] 4e57 [LINK A7, #] 7986
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7993] 4e57 [LINK A7, #] 7994
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7995] 4e57 [LINK A7, #] 7996
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [7999] 4e57 [LINK A7, #] 8000
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8005] 4e57 [LINK A7, #] 8006
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8007] 4e57 [LINK A7, #] 8008
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8019] 4e57 [LINK A7, #] 8020
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8028] 4e57 [LINK A7, #] 8029
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8029] 4e57 [LINK A7, #] 8030
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8051] 4e57 [LINK A7, #] 8052
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8057] 4e57 [LINK A7, #] 8058
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8058] 4e57 [LINK A7, #] 8059
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+FAIL [8062] 4e57 [LINK A7, #] 8063
+  ram[0007ff]	expected        252 (0xfc) 	got          0 (0x0)
+  ram[0007fe]	expected          7 (0x7) 	got          8 (0x8)
+7060 passed, 1005 failed

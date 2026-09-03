@@ -99,6 +99,12 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			add(op);
 		break;
+	case 0b1110:		// ASL / ASR / LSL / LSR / ROL / ROR / ROXL / ROXR
+		if ((op & 0x00c0) == 0x00c0)
+			shift_rotate_memory(op);
+		else
+			shift_rotate_register(op);
+		break;
 	default:
 		illegal(op);
 		break;
@@ -255,7 +261,7 @@ void m68k::write_long(const EA &e, uint32_t v) {
 // sub-transaction -- there's no partial-success case.
 uint32_t m68k::read_long_predec(int reg) {
 	uint32_t addr = a(reg) - 4;
-	a(reg, addr);                // full decrement commits unconditionally, upfront
+	a(reg, addr);		// full decrement commits unconditionally, upfront
 	uint32_t hi = read16(addr);
 	if (_trapped) return 0;
 	uint32_t lo = read16(addr + 2);
@@ -263,9 +269,21 @@ uint32_t m68k::read_long_predec(int reg) {
 	return (hi << 16) | lo;
 }
 
+uint32_t m68k::read_long_predec_x(int reg) {
+	uint32_t addr = a(reg) - 2;
+	a(reg, addr);		// first sub-decrement commits unconditionally
+	uint32_t hi = read16(addr);
+	if (_trapped) return 0;
+	addr -= 2;
+	a(reg, addr);
+	uint32_t lo = read16(addr + 2);
+	if (_trapped) return 0;
+	return (hi << 16) | lo;
+}
+
 uint32_t m68k::read_long_postinc(int reg) {
 	uint32_t addr = a(reg);
-	a(reg, addr + 4);            // full increment commits unconditionally, upfront
+	a(reg, addr + 4);	// full increment commits unconditionally, upfront
 	uint32_t hi = read16(addr);
 	if (_trapped) return 0;
 	uint32_t lo = read16(addr + 2);
@@ -1752,11 +1770,9 @@ void m68k::subx(uint16_t op) {
 			src = (uint32_t)d(ry_reg);
 			val = (uint32_t)d(rx_reg);
 		} else {
-			a(ry_reg, a(ry_reg) - 4);
-			src = read32(a(ry_reg));
+			src = read_long_predec_x(ry_reg);
 			if (_trapped) return;
-			a(rx_reg, a(rx_reg) - 4);
-			val = read32(a(rx_reg));
+			val = read_long_predec_x(rx_reg);
 			if (_trapped) return;
 		}
 		int64_t v = (int64_t)val - (int64_t)src - (x? 1: 0);
@@ -1839,14 +1855,12 @@ void m68k::addx(uint16_t op) {
 	case 0b10: {	// ADDX.l
 		uint32_t src, val;
 		if (rm_mode == 0) {
-			src = (uint32_t)d(ry_reg);
-			val = (uint32_t)d(rx_reg);
+			src = d(ry_reg);
+			val = d(rx_reg);
 		} else {
-			a(ry_reg, a(ry_reg) - 4);
-			src = read32(a(ry_reg));
+			src = read_long_predec_x(ry_reg);
 			if (_trapped) return;
-			a(rx_reg, a(rx_reg) - 4);
-			val = read32(a(rx_reg));
+			val = read_long_predec_x(rx_reg);
 			if (_trapped) return;
 		}
 		uint64_t v = (uint64_t)src + (uint64_t)val + (x? 1: 0);
@@ -2104,6 +2118,255 @@ void m68k::bit_and(uint16_t op) {
 			set_nz((int32_t)v);
 			clr_vc();
 		}
+		return;
+	}
+	}
+}
+
+void m68k::shift_rotate_memory(uint16_t op) {
+
+	uint8_t mode = (op >> 3) & 7, reg = op & 7;
+
+	if (mode == 0 || mode == 1 || (mode == 7 && reg == 4)) {
+		illegal(op);
+		return;
+	}
+
+	int dir = (op >> 8) & 1;	// 0: right, 1: left
+	int family = (op >> 4) & 3;	// 0: arith, 1: logical, 2: rotate-x, 3: rotate
+	uint8_t type = (op >> 8) & 7;
+
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t val = read_word(ea);
+	commit_postinc(ea);
+	if (_trapped) return;
+
+	switch (type) {
+	case 0b000: {	// ASR
+		uint16_t res = ((int16_t)val >> 1);
+		write_word(ea, res);
+		set_nz((int16_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, val & 1);
+		return;
+	}
+	case 0b001: {	// ASL
+		uint16_t res = ((int16_t)val << 1);
+		write_word(ea, res);
+		set_nz((int16_t)res);
+		// 1-bit overflow rule: set V if bit 15 and bit 14 of the original value differed
+		set_flag(V_FLAG, (val ^ res) & 0x8000);
+		// carry/extend rule: left shifts push the highest bit (bit 15) out
+		set_flag(C_FLAG | X_FLAG, (val >> 15) & 1);
+		return;
+	}
+	case 0b010: {	// LSR
+	}
+	case 0b011: {	// LSL
+	}
+	case 0b100: {	// ROXR
+	}
+	case 0b101: {	// ROXL
+	}
+	case 0b110: {	// ROR
+	}
+	case 0b111: {	// ROL
+	}
+	}
+
+	illegal(op);
+}
+
+void m68k::shift_rotate_register(uint16_t op) {
+
+	int size = (op >> 6) & 3;
+
+	if (size == 3) {
+		illegal(op);
+		return;
+	}
+
+	int dir = (op >> 8) & 1;	// 0: right, 1: left
+	int family = (op >> 3) & 3;	// 0: arith, 1: logical, 2: rotate-x, 3: rotate
+
+	int count = (op >> 9) & 7, sreg = count;
+	int is_reg = (op >> 5) & 1; 	// 0: imm, 1: reg
+	int shift_count = is_reg? d(sreg) & 0x3f: count == 0? 8: count;
+
+	switch ((dir << 2) | family) {
+	case 0b000:
+		asr_reg(op, size, shift_count);
+		return;
+	/*
+	case 0b001:
+		lsr_reg(op, size, shift_count);
+		return;
+	case 0b010:
+		roxr_reg(op, size, shift_count);
+		return;
+	case 0b011:
+		ror_reg(op, size, shift_count);
+		return;
+	*/
+	case 0b100:
+		asl_reg(op, size, shift_count);
+		return;
+	/*
+	case 0b101:
+		lsl_reg(op, size, shift_count);
+		return;
+	case 0b110:
+		roxl_reg(op, size, shift_count);
+		return;
+	case 0b111:
+		rol_reg(op, size, shift_count);
+		return;
+	*/
+	}
+
+	illegal(op);
+}
+
+void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+
+	int dreg = op & 7;
+	uint32_t v = d(dreg);
+
+	if (shift_count == 0) {
+		if (size == 0) set_nz((int8_t)v);
+		else if (size == 1) set_nz((int16_t)v);
+		else set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+
+	switch (size) {
+	case 0b00: {	// ASL.b
+		uint8_t val = (uint8_t)v, res;
+		bool overflow, cxflag;
+
+		if (shift_count < 8) {
+			res = val << shift_count;
+			// 68k overflow (V) rule: set if the sign bit changes at any
+			// intermediate step. we can catch this by seeing if the upper
+			// (shift_count + 1) bits of the original value were all identical.
+			// a simple mask check validates if any bits flipped past the sign.
+			uint8_t mask = (0xff << (7 - shift_count)) & 0xff;
+			uint8_t sign_bits = val & mask;
+			overflow = (sign_bits != 0 && sign_bits != mask);
+			cxflag = (val >> (8 - shift_count)) & 1;
+		} else {
+			// shifting a byte left by 8 or more always results in 0
+			res = 0;
+			overflow = (val != 0);
+			cxflag = (shift_count == 8) && (val & 1);
+		}
+		d(dreg, (v & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		set_flag(V_FLAG, overflow);
+		set_flag(C_FLAG | X_FLAG, cxflag);
+		return;
+	}
+	case 0b01: {	// ASL.w
+		uint16_t val = (uint16_t)v, res;
+		bool overflow, cxflag;
+
+		if (shift_count < 16) {
+			res = val << shift_count;
+			uint32_t mask = (0xffff0000 >> shift_count) & 0xffff;
+			uint32_t sign_bits = val & mask;
+			overflow = (sign_bits != 0 && sign_bits != mask);
+			cxflag = (val >> (16 - shift_count)) & 1;
+		} else {
+			res = 0;
+			overflow = (val != 0);
+			cxflag = (shift_count == 16) && (val & 1);
+		}
+		d(dreg, (v & 0xffff0000) | res);
+		set_nz((int16_t)res);
+		set_flag(V_FLAG, overflow);
+		set_flag(C_FLAG | X_FLAG, cxflag);
+		return;
+	}
+	case 0b10: {	// ASL.l
+		uint32_t val = v, res;
+		bool overflow, cxflag;
+
+		if (shift_count < 32) {
+			res = val << shift_count;
+			// 68k overflow (V) rule for longwords:
+			// set if the sign bit (bit 31) changes at any intermediate shift step.
+			// we create a mask for all bits shifting through or past bit 31.
+			// guard against shifting by 32 on the mask generation by subtracting 1.
+			uint32_t mask = (0xffffffff >> (31 - shift_count)) << (31 - shift_count);
+			uint32_t sign_bits = val & mask;
+			overflow = (sign_bits != 0 && sign_bits != mask);
+			cxflag = (val >> (32 - shift_count)) & 1;
+		} else {
+			res = 0;
+			overflow = (val != 0);
+			cxflag = (shift_count == 32) && (val & 1);
+		}
+		d(dreg, res);
+		set_nz((int32_t)res);
+		set_flag(V_FLAG, overflow);
+		set_flag(C_FLAG | X_FLAG, cxflag);
+		return;
+	}
+	}
+}
+
+void m68k::asr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+
+	int dreg = op & 7;
+	uint32_t v = d(dreg);
+
+	if (shift_count == 0) {
+		if (size == 0) set_nz((int8_t)v);
+		else if (size == 1) set_nz((int16_t)v);
+		else set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+
+	switch (size) {
+	case 0b00: {	// ASR.b
+		uint8_t val = (uint8_t)v;
+		bool is_neg = (val & 0x80);
+		uint8_t res = (shift_count < 8)? ((int8_t)val >> shift_count): (is_neg? 0xff: 0x00);
+		d(dreg, (v & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		clr_flag(V_FLAG);
+		if (shift_count > 8)
+			clr_flag(C_FLAG | X_FLAG);
+		else
+			set_flag(C_FLAG | X_FLAG, (val >> (shift_count - 1)) & 1);
+		return;
+	}
+	case 0b01: {	// ASR.w
+		uint16_t val = (uint16_t)v;
+		bool is_neg = (val & 0x8000);
+		uint16_t res = (shift_count < 16)? ((int16_t)val >> shift_count): (is_neg? 0xffff: 0x0000);
+		d(dreg, (v & 0xffff0000) | res);
+		set_nz((int16_t)res);
+		clr_flag(V_FLAG);
+		if (shift_count > 16)
+			clr_flag(C_FLAG | X_FLAG);
+		else
+			set_flag(C_FLAG | X_FLAG, (val >> (shift_count - 1)) & 1);
+		return;
+	}
+	case 0b10: {	// ASR.l
+		uint32_t val = v;
+		bool is_neg = (val & 0x80000000);
+		uint32_t res = (shift_count < 32)? ((int32_t)val >> shift_count): (is_neg? 0xffffffff: 0x00000000);
+		d(dreg, res);
+		set_nz((int32_t)res);
+		clr_flag(V_FLAG);
+		if (shift_count > 32)
+			clr_flag(C_FLAG | X_FLAG);
+		else
+			set_flag(C_FLAG | X_FLAG, (val >> (shift_count - 1)) & 1);
 		return;
 	}
 	}
