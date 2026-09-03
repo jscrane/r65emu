@@ -261,7 +261,7 @@ void m68k::write_long(const EA &e, uint32_t v) {
 // sub-transaction -- there's no partial-success case.
 uint32_t m68k::read_long_predec(int reg) {
 	uint32_t addr = a(reg) - 4;
-	a(reg, addr);                // full decrement commits unconditionally, upfront
+	a(reg, addr);		// full decrement commits unconditionally, upfront
 	uint32_t hi = read16(addr);
 	if (_trapped) return 0;
 	uint32_t lo = read16(addr + 2);
@@ -269,9 +269,21 @@ uint32_t m68k::read_long_predec(int reg) {
 	return (hi << 16) | lo;
 }
 
+uint32_t m68k::read_long_predec_x(int reg) {
+	uint32_t addr = a(reg) - 2;
+	a(reg, addr);		// first sub-decrement commits unconditionally
+	uint32_t hi = read16(addr);
+	if (_trapped) return 0;
+	addr -= 2;
+	a(reg, addr);
+	uint32_t lo = read16(addr + 2);
+	if (_trapped) return 0;
+	return (hi << 16) | lo;
+}
+
 uint32_t m68k::read_long_postinc(int reg) {
 	uint32_t addr = a(reg);
-	a(reg, addr + 4);            // full increment commits unconditionally, upfront
+	a(reg, addr + 4);	// full increment commits unconditionally, upfront
 	uint32_t hi = read16(addr);
 	if (_trapped) return 0;
 	uint32_t lo = read16(addr + 2);
@@ -1758,11 +1770,9 @@ void m68k::subx(uint16_t op) {
 			src = (uint32_t)d(ry_reg);
 			val = (uint32_t)d(rx_reg);
 		} else {
-			a(ry_reg, a(ry_reg) - 4);
-			src = read32(a(ry_reg));
+			src = read_long_predec_x(ry_reg);
 			if (_trapped) return;
-			a(rx_reg, a(rx_reg) - 4);
-			val = read32(a(rx_reg));
+			val = read_long_predec_x(rx_reg);
 			if (_trapped) return;
 		}
 		int64_t v = (int64_t)val - (int64_t)src - (x? 1: 0);
@@ -1845,14 +1855,12 @@ void m68k::addx(uint16_t op) {
 	case 0b10: {	// ADDX.l
 		uint32_t src, val;
 		if (rm_mode == 0) {
-			src = (uint32_t)d(ry_reg);
-			val = (uint32_t)d(rx_reg);
+			src = d(ry_reg);
+			val = d(rx_reg);
 		} else {
-			a(ry_reg, a(ry_reg) - 4);
-			src = read32(a(ry_reg));
+			src = read_long_predec_x(ry_reg);
 			if (_trapped) return;
-			a(rx_reg, a(rx_reg) - 4);
-			val = read32(a(rx_reg));
+			val = read_long_predec_x(rx_reg);
 			if (_trapped) return;
 		}
 		uint64_t v = (uint64_t)src + (uint64_t)val + (x? 1: 0);

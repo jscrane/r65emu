@@ -72,6 +72,7 @@ private:
 	void write_long(const EA &, uint32_t);
 
 	uint32_t read_long_predec(int reg);
+	uint32_t read_long_predec_x(int reg);
 	uint32_t read_long_postinc(int reg);
 	void write_long_predec(int reg, uint32_t v);
 	void write_long_postinc(int reg, uint32_t v);
