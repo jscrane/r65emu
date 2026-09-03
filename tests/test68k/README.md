@@ -8,3 +8,7 @@ the `m68k` implementation.
 make
 ./test ~/src/680x0/68000/v1/NOP.json.gz
 ```
+
+Failures
+========
+- ADDX.l
