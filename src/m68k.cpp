@@ -2151,6 +2151,14 @@ void m68k::shift_rotate_memory(uint16_t op) {
 		return;
 	}
 	case 0b001: {	// ASL
+		uint16_t res = ((int16_t)val << 1);
+		write_word(ea, res);
+		set_nz((int16_t)res);
+		// 1-bit overflow rule: set V if bit 15 and bit 14 of the original value differed
+		set_flag(V_FLAG, (val ^ res) & 0x8000);
+		// carry/extend rule: left shifts push the highest bit (bit 15) out
+		set_flag(C_FLAG | X_FLAG, (val >> 15) & 1);
+		return;
 	}
 	case 0b010: {	// LSR
 	}
@@ -2245,7 +2253,7 @@ void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 			// a simple mask check validates if any bits flipped past the sign.
 			uint8_t mask = (0xff << (7 - shift_count)) & 0xff;
 			uint8_t sign_bits = val & mask;
-			overflow = (sign_bits != 0x00 && sign_bits != mask);
+			overflow = (sign_bits != 0 && sign_bits != mask);
 			cxflag = (val >> (8 - shift_count)) & 1;
 		} else {
 			// shifting a byte left by 8 or more always results in 0
@@ -2259,14 +2267,52 @@ void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		set_flag(C_FLAG | X_FLAG, cxflag);
 		return;
 	}
-	/*
 	case 0b01: {	// ASL.w
+		uint16_t val = (uint16_t)v, res;
+		bool overflow, cxflag;
+
+		if (shift_count < 16) {
+			res = val << shift_count;
+			uint32_t mask = (0xffff0000 >> shift_count) & 0xffff;
+			uint32_t sign_bits = val & mask;
+			overflow = (sign_bits != 0 && sign_bits != mask);
+			cxflag = (val >> (16 - shift_count)) & 1;
+		} else {
+			res = 0;
+			overflow = (val != 0);
+			cxflag = (shift_count == 16) && (val & 1);
+		}
+		d(dreg, (v & 0xffff0000) | res);
+		set_nz((int16_t)res);
+		set_flag(V_FLAG, overflow);
+		set_flag(C_FLAG | X_FLAG, cxflag);
 		return;
 	}
 	case 0b10: {	// ASL.l
+		uint32_t val = v, res;
+		bool overflow, cxflag;
+
+		if (shift_count < 32) {
+			res = val << shift_count;
+			// 68k overflow (V) rule for longwords:
+			// set if the sign bit (bit 31) changes at any intermediate shift step.
+			// we create a mask for all bits shifting through or past bit 31.
+			// guard against shifting by 32 on the mask generation by subtracting 1.
+			uint32_t mask = (0xffffffff >> (31 - shift_count)) << (31 - shift_count);
+			uint32_t sign_bits = val & mask;
+			overflow = (sign_bits != 0 && sign_bits != mask);
+			cxflag = (val >> (32 - shift_count)) & 1;
+		} else {
+			res = 0;
+			overflow = (val != 0);
+			cxflag = (shift_count == 32) && (val & 1);
+		}
+		d(dreg, res);
+		set_nz((int32_t)res);
+		set_flag(V_FLAG, overflow);
+		set_flag(C_FLAG | X_FLAG, cxflag);
 		return;
 	}
-	*/
 	}
 }
 
