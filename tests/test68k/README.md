@@ -10,10 +10,12 @@ make
 
 (The `-k` flag may be added: "keep going after failure".)
 
+Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/comment/kptqinm/) discussing that testsuite.
+
 ## Regression Testing
 
 ```shell
-./all-tests
+./regression-tests.sh
 ```
 
 This runs all known-good tests and compares their output against previously-passing output.

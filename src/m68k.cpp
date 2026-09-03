@@ -2234,14 +2234,39 @@ void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 	switch (size) {
 	case 0b00: {	// ASL.b
+		uint8_t val = (uint8_t)v, res;
+		bool overflow, cxflag;
+
+		if (shift_count < 8) {
+			res = val << shift_count;
+			// 68k overflow (V) rule: set if the sign bit changes at any
+			// intermediate step. we can catch this by seeing if the upper
+			// (shift_count + 1) bits of the original value were all identical.
+			// a simple mask check validates if any bits flipped past the sign.
+			uint8_t mask = (0xff << (7 - shift_count)) & 0xff;
+			uint8_t sign_bits = val & mask;
+			overflow = (sign_bits != 0x00 && sign_bits != mask);
+			cxflag = (val >> (8 - shift_count)) & 1;
+		} else {
+			// shifting a byte left by 8 or more always results in 0
+			res = 0;
+			overflow = (val != 0);
+			cxflag = (shift_count == 8) && (val & 1);
+		}
+		d(dreg, (v & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		set_flag(V_FLAG, overflow);
+		set_flag(C_FLAG | X_FLAG, cxflag);
 		return;
 	}
+	/*
 	case 0b01: {	// ASL.w
 		return;
 	}
 	case 0b10: {	// ASL.l
 		return;
 	}
+	*/
 	}
 }
 
