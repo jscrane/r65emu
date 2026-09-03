@@ -2173,31 +2173,37 @@ void m68k::shift_rotate_register(uint16_t op) {
 	int dir = (op >> 8) & 1;	// 0: right, 1: left
 	int family = (op >> 3) & 3;	// 0: arith, 1: logical, 2: rotate-x, 3: rotate
 
+	int count = (op >> 9) & 7, sreg = count;
+	int is_reg = (op >> 5) & 1; 	// 0: imm, 1: reg
+	int shift_count = is_reg? d(sreg) & 0x3f: count == 0? 8: count;
+
 	switch ((dir << 2) | family) {
 	case 0b000:
-		asr_reg(op, size);
+		asr_reg(op, size, shift_count);
 		return;
 	/*
 	case 0b001:
-		lsr_reg(op, size);
+		lsr_reg(op, size, shift_count);
 		return;
 	case 0b010:
-		roxr_reg(op, size);
+		roxr_reg(op, size, shift_count);
 		return;
 	case 0b011:
-		ror_reg(op, size);
+		ror_reg(op, size, shift_count);
 		return;
+	*/
 	case 0b100:
-		asl_reg(op, size);
+		asl_reg(op, size, shift_count);
 		return;
+	/*
 	case 0b101:
-		lsl_reg(op, size);
+		lsl_reg(op, size, shift_count);
 		return;
 	case 0b110:
-		roxl_reg(op, size);
+		roxl_reg(op, size, shift_count);
 		return;
 	case 0b111:
-		rol_reg(op, size);
+		rol_reg(op, size, shift_count);
 		return;
 	*/
 	}
@@ -2205,13 +2211,35 @@ void m68k::shift_rotate_register(uint16_t op) {
 	illegal(op);
 }
 
-void m68k::asr_reg(uint16_t op, uint8_t size) {
+void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
-	int count = (op >> 9) & 7, sreg = count;
-	int is_reg = (op >> 5) & 1; 	// 0: imm, 1: reg
 	int dreg = op & 7;
-	int shift_count = is_reg? d(sreg) & 0x3f: count == 0? 8: count;
+	uint32_t v = d(dreg);
 
+	if (shift_count == 0) {
+		if (size == 0) set_nz((int8_t)v);
+		else if (size == 1) set_nz((int16_t)v);
+		else set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+
+	switch (size) {
+	case 0b00: {	// ASL.b
+		return;
+	}
+	case 0b01: {	// ASL.w
+		return;
+	}
+	case 0b10: {	// ASL.l
+		return;
+	}
+	}
+}
+
+void m68k::asr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+
+	int dreg = op & 7;
 	uint32_t v = d(dreg);
 
 	if (shift_count == 0) {
