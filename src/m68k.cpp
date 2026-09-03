@@ -272,11 +272,11 @@ uint32_t m68k::read_long_predec(int reg) {
 uint32_t m68k::read_long_predec_x(int reg) {
 	uint32_t addr = a(reg) - 2;
 	a(reg, addr);		// first sub-decrement commits unconditionally
-	uint32_t hi = read16(addr);
+	uint32_t lo = read16(addr);
 	if (_trapped) return 0;
 	addr -= 2;
 	a(reg, addr);
-	uint32_t lo = read16(addr + 2);
+	uint32_t hi = read16(addr);
 	if (_trapped) return 0;
 	return (hi << 16) | lo;
 }
@@ -2257,7 +2257,7 @@ void m68k::shift_rotate_register(uint16_t op) {
 	illegal(op);
 }
 
-void m68k::roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+void m68k::roxr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 	int dreg = op & 7;
 	uint32_t v = d(dreg);
@@ -2271,13 +2271,13 @@ void m68k::roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// ROXL.b
+	case 0b00: {	// ROXR.b
 		return;
 	}
-	case 0b01: {	// ROXL.w
+	case 0b01: {	// ROXR.w
 		return;
 	}
-	case 0b10: {	// ROXL.l
+	case 0b10: {	// ROXR.l
 		return;
 	}
 	}

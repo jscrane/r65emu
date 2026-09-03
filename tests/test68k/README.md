@@ -22,10 +22,8 @@ This runs all known-good tests and compares their output against previously-pass
 It fails fast.
 
 ## Current Failures
-- ADDX.l
 - NBCD
 - SBCD
-- SUBX.l
 
 ## Testsuite Bugs
 - ASL.b: `1582` and `1760`.
