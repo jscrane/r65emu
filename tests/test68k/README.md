@@ -13,3 +13,4 @@ Failures
 ========
 - ADDX.l
 - NBCD
+- SUBX.l
