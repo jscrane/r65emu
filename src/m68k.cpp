@@ -2257,6 +2257,32 @@ void m68k::shift_rotate_register(uint16_t op) {
 	illegal(op);
 }
 
+void m68k::roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+
+	int dreg = op & 7;
+	uint32_t v = d(dreg);
+
+	if (shift_count == 0) {
+		if (size == 0) set_nz((int8_t)v);
+		else if (size == 1) set_nz((int16_t)v);
+		else set_nz((int32_t)v);
+		clr_vc();
+		return;
+	}
+
+	switch (size) {
+	case 0b00: {	// ROXL.b
+		return;
+	}
+	case 0b01: {	// ROXL.w
+		return;
+	}
+	case 0b10: {	// ROXL.l
+		return;
+	}
+	}
+}
+
 void m68k::ror_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 	int dreg = op & 7;
