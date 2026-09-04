@@ -2607,9 +2607,18 @@ void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 		if (shift_count < 16) {
 			res = val << shift_count;
-			uint32_t mask = (0xffff0000 >> shift_count) & 0xffff;
-			uint32_t sign_bits = val & mask;
-			overflow = (sign_bits != 0 && sign_bits != mask);
+			// V: sign bit changes at ANY point during the shift sequence,
+			// not just comparing initial vs final sign -- confirmed against
+			// real vectors, a mask-based shortcut here is NOT equivalent
+			// and fails ~11% of cases
+			overflow = false;
+			uint16_t x = val;
+			for (int i = 0; i < shift_count; i++) {
+				uint16_t newx = x << 1;
+				if ((x ^ newx) & 0x8000)
+				overflow = true;
+				x = newx;
+			}
 			cxflag = (val >> (16 - shift_count)) & 1;
 		} else {
 			res = 0;

@@ -27,4 +27,3 @@ It fails fast.
 
 ## Testsuite Bugs
 - ASL.b: `1582` and `1760`.
-- ASL.w
