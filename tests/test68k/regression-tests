@@ -1,17 +1,18 @@
 #!/bin/bash
 
 KEEP_GOING=false
+TESTDIR=~/src/680x0/68000/v1
 
-while getopts "k" opt; do
+while getopts "kt:" opt; do
 	case "$opt" in
 		k) KEEP_GOING=true;;
-		*) echo "Usage: $0 [-k] [tests...]"; exit 1;;
+		t) TESTDIR="$OPTARG";;
+		*) echo "Usage: $0 [-k] [-t test-dir] [test-names...]"; exit 1;;
 	esac
 done
 
 shift $((OPTIND - 1))
 
-TESTDIR=~/src/680x0/68000/v1
 if [ $# -gt 0 ]; then
 	TESTS="$*"
 else
