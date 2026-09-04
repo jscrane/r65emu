@@ -2244,11 +2244,9 @@ void m68k::shift_rotate_register(uint16_t op) {
 	case 0b101:
 		lsl_reg(op, size, shift_count);
 		return;
-	/*
 	case 0b110:
 		roxl_reg(op, size, shift_count);
 		return;
-	*/
 	case 0b111:
 		rol_reg(op, size, shift_count);
 		return;
@@ -2257,7 +2255,7 @@ void m68k::shift_rotate_register(uint16_t op) {
 	illegal(op);
 }
 
-void m68k::roxr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
+void m68k::roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 	int dreg = op & 7;
 	uint32_t v = d(dreg);
@@ -2266,18 +2264,55 @@ void m68k::roxr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		if (size == 0) set_nz((int8_t)v);
 		else if (size == 1) set_nz((int16_t)v);
 		else set_nz((int32_t)v);
-		clr_vc();
+		//clr_vc();
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG, is_set(X_FLAG));
 		return;
 	}
 
 	switch (size) {
-	case 0b00: {	// ROXR.b
+	case 0b00: {	// ROXL.b
+		uint8_t val = (uint8_t)v;
+		bool x = is_set(X_FLAG);
+
+		// model as a 9-bit value: X in bit8, the byte in bits7-0.
+		// rotate the WHOLE 9-bit thing left by (shift_count % 9) -- confirmed
+		// exact against real vectors, this is genuinely a 9-bit rotation,
+		// not an 8-bit rotation with X handled separately.
+		uint32_t state = ((uint32_t)(x ? 1 : 0) << 8) | val;
+		shift_count = shift_count % 9;
+		uint32_t rotated = shift_count
+			? (((state << shift_count) | (state >> (9 - shift_count))) & 0x1ff)
+			: state;
+
+		uint8_t res = (uint8_t)(rotated & 0xff);
+		x = rotated & 0x100;
+
+		d(dreg, (v & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, x);
 		return;
 	}
-	case 0b01: {	// ROXR.w
+	case 0b01: {	// ROXL.w
 		return;
 	}
-	case 0b10: {	// ROXR.l
+	case 0b10: {	// ROXL.l
+		uint32_t val = v;
+		bool x = is_set(X_FLAG);
+		uint64_t state = ((uint64_t)(x ? 1 : 0) << 32) | val;
+		shift_count = shift_count % 33;
+		uint64_t rotated = shift_count
+			? (((state << shift_count) | (state >> (33 - shift_count))) & 0x1ffffffff)
+			: state;
+
+		uint32_t res = (uint32_t)(rotated & 0xffffffff);
+		x = rotated & 0x100000000;
+
+		d(dreg, res);
+		set_nz((int32_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, x);
 		return;
 	}
 	}
