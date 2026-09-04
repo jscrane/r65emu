@@ -2271,15 +2271,6 @@ void m68k::roxr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	uint32_t v = d(dreg);
 	bool x = is_set(X_FLAG);
 
-	if (shift_count == 0) {
-		if (size == 0) set_nz((int8_t)v);
-		else if (size == 1) set_nz((int16_t)v);
-		else set_nz((int32_t)v);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, x);
-		return;
-	}
-
 	switch (size) {
 	case 0b00: {	// ROXR.b
 		uint8_t val = (uint8_t)v;
@@ -2335,15 +2326,6 @@ void m68k::roxl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 
 	uint32_t v = d(dreg);
 	bool x = is_set(X_FLAG);
-
-	if (shift_count == 0) {
-		if (size == 0) set_nz((int8_t)v);
-		else if (size == 1) set_nz((int16_t)v);
-		else set_nz((int32_t)v);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, x);
-		return;
-	}
 
 	switch (size) {
 	case 0b00: {	// ROXL.b
