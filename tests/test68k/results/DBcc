@@ -1,0 +1,3930 @@
+/home/steve/src/680x0/68000/v1/DBcc.json.gz: 8065 tests
+FAIL [2] 58cc [DBcc D4, #] 3
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4] 52cf [DBcc D7, #] 5
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8] 55c9 [DBcc D1, #] 9
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [9] 5cc9 [DBcc D1, #] 10
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [10] 51cc [DBcc D4, #] 11
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [16] 5acd [DBcc D5, #] 17
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [19] 5dcb [DBcc D3, #] 20
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [22] 5dca [DBcc D2, #] 23
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [23] 5ccd [DBcc D5, #] 24
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [27] 53c8 [DBcc D0, #] 28
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [28] 5dc9 [DBcc D1, #] 29
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [29] 54c9 [DBcc D1, #] 30
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [32] 5bce [DBcc D6, #] 33
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [39] 51cf [DBcc D7, #] 40
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [41] 56cf [DBcc D7, #] 42
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [42] 56c9 [DBcc D1, #] 43
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [44] 5dc8 [DBcc D0, #] 45
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [45] 53cd [DBcc D5, #] 46
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [51] 56c8 [DBcc D0, #] 52
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [53] 5dc8 [DBcc D0, #] 54
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [55] 52cd [DBcc D5, #] 56
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [62] 5bcf [DBcc D7, #] 63
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [64] 55cc [DBcc D4, #] 65
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [66] 56cd [DBcc D5, #] 67
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [68] 58cf [DBcc D7, #] 69
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [70] 5bce [DBcc D6, #] 71
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [81] 51cc [DBcc D4, #] 82
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [83] 52ce [DBcc D6, #] 84
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [101] 5bce [DBcc D6, #] 102
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [114] 5ccf [DBcc D7, #] 115
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [116] 5ccc [DBcc D4, #] 117
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [124] 5ecf [DBcc D7, #] 125
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [125] 5acd [DBcc D5, #] 126
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [128] 51cf [DBcc D7, #] 129
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [134] 52ce [DBcc D6, #] 135
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [137] 51c8 [DBcc D0, #] 138
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [139] 55cc [DBcc D4, #] 140
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [145] 58ca [DBcc D2, #] 146
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [151] 51c9 [DBcc D1, #] 152
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [152] 5dce [DBcc D6, #] 153
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [156] 51cf [DBcc D7, #] 157
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [161] 59cb [DBcc D3, #] 162
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [171] 53cf [DBcc D7, #] 172
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [179] 52c8 [DBcc D0, #] 180
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [183] 56c9 [DBcc D1, #] 184
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [185] 5dcb [DBcc D3, #] 186
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [188] 5fcf [DBcc D7, #] 189
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [192] 52ca [DBcc D2, #] 193
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [194] 5acb [DBcc D3, #] 195
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [195] 51c9 [DBcc D1, #] 196
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [196] 57cc [DBcc D4, #] 197
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [197] 54c9 [DBcc D1, #] 198
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [206] 59cf [DBcc D7, #] 207
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [217] 52cf [DBcc D7, #] 218
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [218] 51cd [DBcc D5, #] 219
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [219] 56cf [DBcc D7, #] 220
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [220] 52ce [DBcc D6, #] 221
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [221] 51cc [DBcc D4, #] 222
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [223] 5ccc [DBcc D4, #] 224
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [227] 5ec9 [DBcc D1, #] 228
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [229] 5cce [DBcc D6, #] 230
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [233] 59cd [DBcc D5, #] 234
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [238] 5acc [DBcc D4, #] 239
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [240] 54c8 [DBcc D0, #] 241
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [241] 51cc [DBcc D4, #] 242
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [244] 51c8 [DBcc D0, #] 245
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [257] 52cc [DBcc D4, #] 258
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [260] 52cb [DBcc D3, #] 261
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [263] 57cc [DBcc D4, #] 264
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [265] 52ce [DBcc D6, #] 266
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [266] 5fcc [DBcc D4, #] 267
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [276] 55cc [DBcc D4, #] 277
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [278] 54c8 [DBcc D0, #] 279
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [283] 5ec8 [DBcc D0, #] 284
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [287] 58c9 [DBcc D1, #] 288
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [289] 51ce [DBcc D6, #] 290
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [290] 5acd [DBcc D5, #] 291
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [296] 5ec8 [DBcc D0, #] 297
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [301] 52cd [DBcc D5, #] 302
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [308] 54cd [DBcc D5, #] 309
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [309] 51ce [DBcc D6, #] 310
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [317] 5acd [DBcc D5, #] 318
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [321] 56cb [DBcc D3, #] 322
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [322] 5bce [DBcc D6, #] 323
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [332] 59ce [DBcc D6, #] 333
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [341] 51cd [DBcc D5, #] 342
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [343] 59ca [DBcc D2, #] 344
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [344] 59cb [DBcc D3, #] 345
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [346] 5ecb [DBcc D3, #] 347
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [348] 51ce [DBcc D6, #] 349
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [349] 5ecb [DBcc D3, #] 350
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [355] 54ce [DBcc D6, #] 356
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [357] 56c8 [DBcc D0, #] 358
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [361] 52c8 [DBcc D0, #] 362
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [364] 5ecf [DBcc D7, #] 365
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [366] 54c9 [DBcc D1, #] 367
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [377] 51cb [DBcc D3, #] 378
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [382] 55c9 [DBcc D1, #] 383
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [389] 5bce [DBcc D6, #] 390
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [397] 58c9 [DBcc D1, #] 398
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [404] 5dc8 [DBcc D0, #] 405
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [405] 54cd [DBcc D5, #] 406
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [406] 56c8 [DBcc D0, #] 407
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [412] 5bcb [DBcc D3, #] 413
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [413] 54cd [DBcc D5, #] 414
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [415] 5ecb [DBcc D3, #] 416
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [416] 54cb [DBcc D3, #] 417
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [423] 52cb [DBcc D3, #] 424
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [424] 57c8 [DBcc D0, #] 425
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [425] 57ce [DBcc D6, #] 426
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [426] 51ca [DBcc D2, #] 427
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [427] 5ece [DBcc D6, #] 428
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [436] 59cd [DBcc D5, #] 437
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [437] 54cd [DBcc D5, #] 438
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [439] 55ce [DBcc D6, #] 440
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [446] 5ecf [DBcc D7, #] 447
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [448] 52cf [DBcc D7, #] 449
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [449] 52cd [DBcc D5, #] 450
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [453] 5aca [DBcc D2, #] 454
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [454] 58cb [DBcc D3, #] 455
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [470] 51cc [DBcc D4, #] 471
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [471] 52c9 [DBcc D1, #] 472
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [472] 54cf [DBcc D7, #] 473
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [477] 5bce [DBcc D6, #] 478
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [479] 55cc [DBcc D4, #] 480
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [481] 58c8 [DBcc D0, #] 482
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [489] 51cb [DBcc D3, #] 490
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [490] 5fcc [DBcc D4, #] 491
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [494] 5dc8 [DBcc D0, #] 495
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [501] 5ecb [DBcc D3, #] 502
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [506] 54cf [DBcc D7, #] 507
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [508] 51cd [DBcc D5, #] 509
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [509] 58cd [DBcc D5, #] 510
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [511] 5eca [DBcc D2, #] 512
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [512] 55c8 [DBcc D0, #] 513
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [515] 55ca [DBcc D2, #] 516
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [523] 5fce [DBcc D6, #] 524
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [529] 5ac8 [DBcc D0, #] 530
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [535] 51cf [DBcc D7, #] 536
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [537] 51cc [DBcc D4, #] 538
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [541] 54ca [DBcc D2, #] 542
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [550] 51c8 [DBcc D0, #] 551
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [551] 52cf [DBcc D7, #] 552
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [552] 58cd [DBcc D5, #] 553
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [553] 59cc [DBcc D4, #] 554
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [566] 52ce [DBcc D6, #] 567
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [570] 52c9 [DBcc D1, #] 571
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [571] 5ccc [DBcc D4, #] 572
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [572] 51cc [DBcc D4, #] 573
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [573] 5dca [DBcc D2, #] 574
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [578] 51cf [DBcc D7, #] 579
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [581] 5ccf [DBcc D7, #] 582
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [582] 56c9 [DBcc D1, #] 583
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [592] 55cc [DBcc D4, #] 593
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [596] 55cd [DBcc D5, #] 597
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [598] 5dce [DBcc D6, #] 599
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [607] 55cc [DBcc D4, #] 608
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [610] 51cd [DBcc D5, #] 611
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [611] 5cc8 [DBcc D0, #] 612
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [617] 5dce [DBcc D6, #] 618
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [621] 57cf [DBcc D7, #] 622
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [634] 52cd [DBcc D5, #] 635
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [639] 58cf [DBcc D7, #] 640
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [646] 52cf [DBcc D7, #] 647
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [651] 54c9 [DBcc D1, #] 652
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [653] 5ecf [DBcc D7, #] 654
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [656] 59c8 [DBcc D0, #] 657
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [669] 5fc8 [DBcc D0, #] 670
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [674] 52cb [DBcc D3, #] 675
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [675] 5bcb [DBcc D3, #] 676
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [682] 52c9 [DBcc D1, #] 683
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [687] 51ce [DBcc D6, #] 688
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [688] 5ec9 [DBcc D1, #] 689
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [689] 58ca [DBcc D2, #] 690
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [698] 52c8 [DBcc D0, #] 699
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [700] 5ccf [DBcc D7, #] 701
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [702] 5ecd [DBcc D5, #] 703
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [704] 52cb [DBcc D3, #] 705
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [705] 5ccc [DBcc D4, #] 706
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [708] 5cc8 [DBcc D0, #] 709
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [711] 5ec8 [DBcc D0, #] 712
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [717] 54cc [DBcc D4, #] 718
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [719] 51ca [DBcc D2, #] 720
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [720] 5bc8 [DBcc D0, #] 721
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [727] 5dcd [DBcc D5, #] 728
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [730] 54cf [DBcc D7, #] 731
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [734] 51cc [DBcc D4, #] 735
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [742] 52c8 [DBcc D0, #] 743
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [747] 51cc [DBcc D4, #] 748
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [752] 52ca [DBcc D2, #] 753
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [755] 51c8 [DBcc D0, #] 756
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [758] 5ecb [DBcc D3, #] 759
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [759] 51c8 [DBcc D0, #] 760
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [767] 57cd [DBcc D5, #] 768
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [768] 59ce [DBcc D6, #] 769
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [769] 51c9 [DBcc D1, #] 770
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [770] 58cc [DBcc D4, #] 771
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [777] 5fcf [DBcc D7, #] 778
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [781] 5dca [DBcc D2, #] 782
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [785] 56cc [DBcc D4, #] 786
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [787] 51ca [DBcc D2, #] 788
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [788] 5bcf [DBcc D7, #] 789
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [791] 5fce [DBcc D6, #] 792
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [793] 59cd [DBcc D5, #] 794
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [803] 5ece [DBcc D6, #] 804
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [805] 5ac8 [DBcc D0, #] 806
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [812] 5acc [DBcc D4, #] 813
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [815] 52ce [DBcc D6, #] 816
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [817] 52cf [DBcc D7, #] 818
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [819] 5dce [DBcc D6, #] 820
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [833] 58c9 [DBcc D1, #] 834
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [838] 5cc8 [DBcc D0, #] 839
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [839] 54cd [DBcc D5, #] 840
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [842] 5bcd [DBcc D5, #] 843
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [843] 52c8 [DBcc D0, #] 844
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [850] 5dcf [DBcc D7, #] 851
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [855] 5ecf [DBcc D7, #] 856
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [856] 56cb [DBcc D3, #] 857
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [857] 57ca [DBcc D2, #] 858
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [872] 5ec8 [DBcc D0, #] 873
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [873] 53ca [DBcc D2, #] 874
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [874] 52ca [DBcc D2, #] 875
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [876] 52cd [DBcc D5, #] 877
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [881] 55ce [DBcc D6, #] 882
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [888] 51c9 [DBcc D1, #] 889
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [892] 59cd [DBcc D5, #] 893
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [897] 52cd [DBcc D5, #] 898
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [898] 56c9 [DBcc D1, #] 899
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [899] 56c9 [DBcc D1, #] 900
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [904] 51c9 [DBcc D1, #] 905
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [908] 53c9 [DBcc D1, #] 909
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [910] 59cb [DBcc D3, #] 911
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [923] 5ac9 [DBcc D1, #] 924
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [926] 59c8 [DBcc D0, #] 927
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [932] 5dcb [DBcc D3, #] 933
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [938] 51c8 [DBcc D0, #] 939
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [940] 55ca [DBcc D2, #] 941
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [950] 52cf [DBcc D7, #] 951
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [951] 56cc [DBcc D4, #] 952
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [954] 5bcb [DBcc D3, #] 955
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [963] 54c9 [DBcc D1, #] 964
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [964] 59cd [DBcc D5, #] 965
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [967] 58cf [DBcc D7, #] 968
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [968] 5ecf [DBcc D7, #] 969
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [969] 51cb [DBcc D3, #] 970
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [974] 5ecf [DBcc D7, #] 975
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [977] 56cf [DBcc D7, #] 978
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [979] 58c8 [DBcc D0, #] 980
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [980] 59c8 [DBcc D0, #] 981
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [981] 5ccc [DBcc D4, #] 982
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [984] 5ccb [DBcc D3, #] 985
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [987] 51ca [DBcc D2, #] 988
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [994] 51ca [DBcc D2, #] 995
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [996] 55cd [DBcc D5, #] 997
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [999] 51ce [DBcc D6, #] 1000
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1000] 58cf [DBcc D7, #] 1001
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1010] 55cd [DBcc D5, #] 1011
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1021] 5cca [DBcc D2, #] 1022
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1027] 52cc [DBcc D4, #] 1028
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1029] 57ce [DBcc D6, #] 1030
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1030] 5ace [DBcc D6, #] 1031
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1031] 5dce [DBcc D6, #] 1032
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1032] 52c9 [DBcc D1, #] 1033
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1035] 5fcc [DBcc D4, #] 1036
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1042] 5bcb [DBcc D3, #] 1043
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1046] 51cd [DBcc D5, #] 1047
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1052] 56cb [DBcc D3, #] 1053
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1056] 52cd [DBcc D5, #] 1057
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1058] 5cc9 [DBcc D1, #] 1059
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1061] 5ac8 [DBcc D0, #] 1062
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1066] 59cd [DBcc D5, #] 1067
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1067] 57cf [DBcc D7, #] 1068
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1070] 54ca [DBcc D2, #] 1071
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1071] 52cb [DBcc D3, #] 1072
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1073] 5dcc [DBcc D4, #] 1074
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1083] 51c9 [DBcc D1, #] 1084
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1085] 58cf [DBcc D7, #] 1086
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1094] 59ca [DBcc D2, #] 1095
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1110] 5ecb [DBcc D3, #] 1111
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1120] 51cc [DBcc D4, #] 1121
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1131] 52cd [DBcc D5, #] 1132
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1133] 5bc9 [DBcc D1, #] 1134
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1134] 57cb [DBcc D3, #] 1135
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1135] 57ce [DBcc D6, #] 1136
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1139] 57c8 [DBcc D0, #] 1140
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1143] 52ce [DBcc D6, #] 1144
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1145] 5cc8 [DBcc D0, #] 1146
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1151] 57cf [DBcc D7, #] 1152
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1153] 59cf [DBcc D7, #] 1154
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1157] 56ce [DBcc D6, #] 1158
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1165] 5fcc [DBcc D4, #] 1166
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1166] 53c9 [DBcc D1, #] 1167
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1167] 52cc [DBcc D4, #] 1168
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1170] 51c9 [DBcc D1, #] 1171
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1174] 51c9 [DBcc D1, #] 1175
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1175] 52cc [DBcc D4, #] 1176
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1194] 52cc [DBcc D4, #] 1195
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1202] 55ca [DBcc D2, #] 1203
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1203] 53cc [DBcc D4, #] 1204
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1204] 59ca [DBcc D2, #] 1205
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1206] 54cd [DBcc D5, #] 1207
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1214] 5aca [DBcc D2, #] 1215
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1215] 5ec9 [DBcc D1, #] 1216
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1218] 56ca [DBcc D2, #] 1219
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1222] 5bca [DBcc D2, #] 1223
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1227] 53c8 [DBcc D0, #] 1228
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1243] 56ca [DBcc D2, #] 1244
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1244] 59ca [DBcc D2, #] 1245
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1255] 57cf [DBcc D7, #] 1256
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1277] 57cd [DBcc D5, #] 1278
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1280] 59ca [DBcc D2, #] 1281
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1287] 58cd [DBcc D5, #] 1288
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1288] 5ec8 [DBcc D0, #] 1289
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1294] 51cb [DBcc D3, #] 1295
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1297] 54c8 [DBcc D0, #] 1298
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1308] 59cf [DBcc D7, #] 1309
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1309] 51cc [DBcc D4, #] 1310
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1314] 5dc9 [DBcc D1, #] 1315
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1316] 59cd [DBcc D5, #] 1317
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1317] 5acd [DBcc D5, #] 1318
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1323] 57cd [DBcc D5, #] 1324
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1327] 5acd [DBcc D5, #] 1328
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1328] 52cb [DBcc D3, #] 1329
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1336] 52cb [DBcc D3, #] 1337
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1347] 5dc9 [DBcc D1, #] 1348
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1348] 51cb [DBcc D3, #] 1349
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1352] 57cf [DBcc D7, #] 1353
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1361] 56c9 [DBcc D1, #] 1362
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1366] 5ccc [DBcc D4, #] 1367
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1375] 58c8 [DBcc D0, #] 1376
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1378] 56ce [DBcc D6, #] 1379
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1395] 5dcc [DBcc D4, #] 1396
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1399] 56cd [DBcc D5, #] 1400
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1403] 5dcf [DBcc D7, #] 1404
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1407] 57ca [DBcc D2, #] 1408
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1417] 56cc [DBcc D4, #] 1418
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1423] 5ecb [DBcc D3, #] 1424
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1428] 5ece [DBcc D6, #] 1429
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1430] 51cb [DBcc D3, #] 1431
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1432] 53cd [DBcc D5, #] 1433
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1434] 57ca [DBcc D2, #] 1435
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1436] 5dc8 [DBcc D0, #] 1437
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1438] 51ca [DBcc D2, #] 1439
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1439] 56cc [DBcc D4, #] 1440
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1442] 54cc [DBcc D4, #] 1443
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1443] 5bcb [DBcc D3, #] 1444
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1452] 51ca [DBcc D2, #] 1453
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1456] 5ac9 [DBcc D1, #] 1457
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1463] 59cf [DBcc D7, #] 1464
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1472] 52ca [DBcc D2, #] 1473
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1474] 52ca [DBcc D2, #] 1475
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1481] 59c9 [DBcc D1, #] 1482
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1482] 54cb [DBcc D3, #] 1483
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1484] 5dcb [DBcc D3, #] 1485
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1486] 5fc9 [DBcc D1, #] 1487
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1489] 51cf [DBcc D7, #] 1490
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1497] 51ce [DBcc D6, #] 1498
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1504] 56cf [DBcc D7, #] 1505
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1507] 53c8 [DBcc D0, #] 1508
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1509] 51cb [DBcc D3, #] 1510
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1511] 58cd [DBcc D5, #] 1512
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1516] 56cb [DBcc D3, #] 1517
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1526] 58c9 [DBcc D1, #] 1527
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1527] 5cca [DBcc D2, #] 1528
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1529] 5fca [DBcc D2, #] 1530
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1534] 59c9 [DBcc D1, #] 1535
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1535] 55c8 [DBcc D0, #] 1536
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1537] 57cc [DBcc D4, #] 1538
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1544] 53cf [DBcc D7, #] 1545
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1546] 5bcf [DBcc D7, #] 1547
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1550] 57cf [DBcc D7, #] 1551
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1551] 51cc [DBcc D4, #] 1552
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1554] 5ccd [DBcc D5, #] 1555
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1559] 57cc [DBcc D4, #] 1560
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1565] 59c9 [DBcc D1, #] 1566
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1570] 5acc [DBcc D4, #] 1571
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1573] 5ac8 [DBcc D0, #] 1574
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1579] 56c9 [DBcc D1, #] 1580
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1581] 51ce [DBcc D6, #] 1582
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1591] 57cd [DBcc D5, #] 1592
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1595] 53cd [DBcc D5, #] 1596
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1598] 58c9 [DBcc D1, #] 1599
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1599] 59cb [DBcc D3, #] 1600
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1618] 58cd [DBcc D5, #] 1619
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1626] 55cf [DBcc D7, #] 1627
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1637] 5bc8 [DBcc D0, #] 1638
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1638] 51c8 [DBcc D0, #] 1639
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1640] 5ecf [DBcc D7, #] 1641
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1644] 5ace [DBcc D6, #] 1645
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1645] 51cb [DBcc D3, #] 1646
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1649] 54cc [DBcc D4, #] 1650
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1653] 52ca [DBcc D2, #] 1654
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1657] 57ce [DBcc D6, #] 1658
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1664] 5dc8 [DBcc D0, #] 1665
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1665] 53c8 [DBcc D0, #] 1666
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1666] 59c8 [DBcc D0, #] 1667
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1667] 55cd [DBcc D5, #] 1668
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1671] 55cd [DBcc D5, #] 1672
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1672] 51c8 [DBcc D0, #] 1673
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1674] 5ccf [DBcc D7, #] 1675
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1676] 51cd [DBcc D5, #] 1677
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1678] 5ccc [DBcc D4, #] 1679
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1679] 54c9 [DBcc D1, #] 1680
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1680] 5ace [DBcc D6, #] 1681
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1681] 52cc [DBcc D4, #] 1682
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1683] 51cc [DBcc D4, #] 1684
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1688] 51c9 [DBcc D1, #] 1689
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1692] 5ec8 [DBcc D0, #] 1693
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1693] 51cf [DBcc D7, #] 1694
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1700] 51cf [DBcc D7, #] 1701
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1703] 57cd [DBcc D5, #] 1704
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1718] 59cd [DBcc D5, #] 1719
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1723] 52cb [DBcc D3, #] 1724
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1727] 53c8 [DBcc D0, #] 1728
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1730] 5fce [DBcc D6, #] 1731
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1733] 5fcd [DBcc D5, #] 1734
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1734] 5dcf [DBcc D7, #] 1735
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1736] 52c9 [DBcc D1, #] 1737
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1741] 51ce [DBcc D6, #] 1742
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1743] 56cf [DBcc D7, #] 1744
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1744] 5fca [DBcc D2, #] 1745
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1751] 5fc8 [DBcc D0, #] 1752
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1765] 5ece [DBcc D6, #] 1766
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1769] 5ccc [DBcc D4, #] 1770
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1774] 59ca [DBcc D2, #] 1775
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1782] 55cc [DBcc D4, #] 1783
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1786] 5bcb [DBcc D3, #] 1787
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1787] 59c9 [DBcc D1, #] 1788
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1801] 55ce [DBcc D6, #] 1802
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1807] 5bcf [DBcc D7, #] 1808
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1816] 52c9 [DBcc D1, #] 1817
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1822] 51cd [DBcc D5, #] 1823
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1825] 5dcc [DBcc D4, #] 1826
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1829] 55ce [DBcc D6, #] 1830
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1835] 5fc8 [DBcc D0, #] 1836
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1841] 57cc [DBcc D4, #] 1842
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1856] 58ca [DBcc D2, #] 1857
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1858] 5cca [DBcc D2, #] 1859
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1864] 5acb [DBcc D3, #] 1865
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1867] 56ca [DBcc D2, #] 1868
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1868] 58c8 [DBcc D0, #] 1869
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1870] 5fcb [DBcc D3, #] 1871
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1871] 5bcb [DBcc D3, #] 1872
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1873] 56ca [DBcc D2, #] 1874
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1885] 59cd [DBcc D5, #] 1886
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1886] 52c8 [DBcc D0, #] 1887
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1889] 5fcd [DBcc D5, #] 1890
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1904] 54ca [DBcc D2, #] 1905
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1910] 56ce [DBcc D6, #] 1911
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1914] 5bc9 [DBcc D1, #] 1915
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1916] 52ca [DBcc D2, #] 1917
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1922] 58c9 [DBcc D1, #] 1923
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1924] 51cf [DBcc D7, #] 1925
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1926] 54ca [DBcc D2, #] 1927
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1929] 5ecf [DBcc D7, #] 1930
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1930] 54c9 [DBcc D1, #] 1931
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1936] 5cce [DBcc D6, #] 1937
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1937] 51c9 [DBcc D1, #] 1938
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1940] 51cd [DBcc D5, #] 1941
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1942] 57ca [DBcc D2, #] 1943
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1946] 54cd [DBcc D5, #] 1947
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1956] 52ca [DBcc D2, #] 1957
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1962] 54ce [DBcc D6, #] 1963
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1967] 51ce [DBcc D6, #] 1968
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1968] 53c8 [DBcc D0, #] 1969
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1970] 5cc8 [DBcc D0, #] 1971
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1979] 57cc [DBcc D4, #] 1980
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1988] 54cc [DBcc D4, #] 1989
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1997] 5aca [DBcc D2, #] 1998
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [1999] 5bcf [DBcc D7, #] 2000
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2005] 54ce [DBcc D6, #] 2006
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2012] 51ce [DBcc D6, #] 2013
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2013] 51cb [DBcc D3, #] 2014
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2021] 59cf [DBcc D7, #] 2022
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2029] 52cb [DBcc D3, #] 2030
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2032] 5acc [DBcc D4, #] 2033
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2043] 5acf [DBcc D7, #] 2044
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2046] 5ec8 [DBcc D0, #] 2047
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2047] 56cb [DBcc D3, #] 2048
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2052] 51cb [DBcc D3, #] 2053
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2059] 53cf [DBcc D7, #] 2060
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2063] 51c9 [DBcc D1, #] 2064
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2065] 5ecf [DBcc D7, #] 2066
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2073] 5aca [DBcc D2, #] 2074
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2077] 57cf [DBcc D7, #] 2078
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2079] 52cf [DBcc D7, #] 2080
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2080] 56ca [DBcc D2, #] 2081
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2084] 5ccd [DBcc D5, #] 2085
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2091] 5ac9 [DBcc D1, #] 2092
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2095] 5ccf [DBcc D7, #] 2096
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2097] 54cc [DBcc D4, #] 2098
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2101] 55cb [DBcc D3, #] 2102
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2104] 52cf [DBcc D7, #] 2105
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2107] 5bcb [DBcc D3, #] 2108
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2108] 51ca [DBcc D2, #] 2109
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2112] 57cd [DBcc D5, #] 2113
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2117] 57cd [DBcc D5, #] 2118
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2120] 54cf [DBcc D7, #] 2121
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2134] 54c9 [DBcc D1, #] 2135
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2137] 5bc9 [DBcc D1, #] 2138
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2139] 59cd [DBcc D5, #] 2140
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2140] 51cd [DBcc D5, #] 2141
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2147] 5ece [DBcc D6, #] 2148
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2148] 57c8 [DBcc D0, #] 2149
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2149] 51cc [DBcc D4, #] 2150
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2157] 5ecb [DBcc D3, #] 2158
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2160] 5ec9 [DBcc D1, #] 2161
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2167] 55ce [DBcc D6, #] 2168
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2169] 59cf [DBcc D7, #] 2170
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2173] 5ac9 [DBcc D1, #] 2174
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2182] 5ec8 [DBcc D0, #] 2183
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2188] 5bc9 [DBcc D1, #] 2189
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2201] 51cd [DBcc D5, #] 2202
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2203] 56cc [DBcc D4, #] 2204
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2212] 5ccd [DBcc D5, #] 2213
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2214] 5cc8 [DBcc D0, #] 2215
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2229] 5eca [DBcc D2, #] 2230
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2230] 56c9 [DBcc D1, #] 2231
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2233] 5fcc [DBcc D4, #] 2234
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2235] 5ec9 [DBcc D1, #] 2236
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2236] 5ec8 [DBcc D0, #] 2237
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2239] 5ecf [DBcc D7, #] 2240
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2243] 5fcd [DBcc D5, #] 2244
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2244] 5ccc [DBcc D4, #] 2245
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2246] 59cb [DBcc D3, #] 2247
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2252] 5acf [DBcc D7, #] 2253
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2261] 52c9 [DBcc D1, #] 2262
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2263] 54c8 [DBcc D0, #] 2264
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2275] 5ec8 [DBcc D0, #] 2276
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2279] 5ac9 [DBcc D1, #] 2280
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2284] 5ace [DBcc D6, #] 2285
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2291] 52cd [DBcc D5, #] 2292
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2298] 5dcf [DBcc D7, #] 2299
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2301] 59c9 [DBcc D1, #] 2302
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2304] 5ecc [DBcc D4, #] 2305
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2308] 57cb [DBcc D3, #] 2309
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2309] 58c9 [DBcc D1, #] 2310
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2322] 56cf [DBcc D7, #] 2323
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2323] 5fcf [DBcc D7, #] 2324
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2324] 58ca [DBcc D2, #] 2325
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2326] 59ce [DBcc D6, #] 2327
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2345] 5dcd [DBcc D5, #] 2346
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2346] 5bcf [DBcc D7, #] 2347
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2349] 51c9 [DBcc D1, #] 2350
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2350] 55cd [DBcc D5, #] 2351
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2355] 5acd [DBcc D5, #] 2356
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2357] 5fcc [DBcc D4, #] 2358
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2359] 52ca [DBcc D2, #] 2360
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2362] 53ce [DBcc D6, #] 2363
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2367] 51cd [DBcc D5, #] 2368
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2373] 5dca [DBcc D2, #] 2374
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2374] 58ca [DBcc D2, #] 2375
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2377] 58cd [DBcc D5, #] 2378
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2383] 56cd [DBcc D5, #] 2384
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2389] 54cf [DBcc D7, #] 2390
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2390] 54ce [DBcc D6, #] 2391
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2392] 51cc [DBcc D4, #] 2393
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2394] 59cb [DBcc D3, #] 2395
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2399] 5ecb [DBcc D3, #] 2400
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2407] 5ac9 [DBcc D1, #] 2408
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2409] 5ccf [DBcc D7, #] 2410
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2410] 5ec9 [DBcc D1, #] 2411
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2412] 52cd [DBcc D5, #] 2413
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2417] 58ca [DBcc D2, #] 2418
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2434] 56ce [DBcc D6, #] 2435
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2440] 58c9 [DBcc D1, #] 2441
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2442] 5eca [DBcc D2, #] 2443
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2444] 57c9 [DBcc D1, #] 2445
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2449] 58cf [DBcc D7, #] 2450
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2450] 57cd [DBcc D5, #] 2451
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2453] 5fcd [DBcc D5, #] 2454
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2456] 59c8 [DBcc D0, #] 2457
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2461] 53cb [DBcc D3, #] 2462
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2465] 54cf [DBcc D7, #] 2466
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2470] 56ce [DBcc D6, #] 2471
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2474] 57ce [DBcc D6, #] 2475
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2475] 5cce [DBcc D6, #] 2476
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2478] 5ac9 [DBcc D1, #] 2479
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2482] 54cd [DBcc D5, #] 2483
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2487] 59ca [DBcc D2, #] 2488
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2488] 5ece [DBcc D6, #] 2489
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2491] 58cd [DBcc D5, #] 2492
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2492] 54cc [DBcc D4, #] 2493
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2494] 52ce [DBcc D6, #] 2495
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2499] 5ccb [DBcc D3, #] 2500
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2500] 5acb [DBcc D3, #] 2501
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2505] 53cc [DBcc D4, #] 2506
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2509] 59cc [DBcc D4, #] 2510
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2513] 5dcf [DBcc D7, #] 2514
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2517] 51c8 [DBcc D0, #] 2518
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2538] 58cf [DBcc D7, #] 2539
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2543] 51ce [DBcc D6, #] 2544
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2544] 58cd [DBcc D5, #] 2545
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2547] 5cca [DBcc D2, #] 2548
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2549] 55ca [DBcc D2, #] 2550
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2550] 56cf [DBcc D7, #] 2551
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2554] 5cc9 [DBcc D1, #] 2555
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2562] 54cf [DBcc D7, #] 2563
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2569] 51cb [DBcc D3, #] 2570
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2570] 5ecf [DBcc D7, #] 2571
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2592] 54cf [DBcc D7, #] 2593
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2594] 5dcc [DBcc D4, #] 2595
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2605] 54ce [DBcc D6, #] 2606
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2608] 59c8 [DBcc D0, #] 2609
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2614] 52cd [DBcc D5, #] 2615
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2618] 55cf [DBcc D7, #] 2619
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2619] 54cf [DBcc D7, #] 2620
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2626] 55cd [DBcc D5, #] 2627
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2627] 5cc9 [DBcc D1, #] 2628
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2632] 59cf [DBcc D7, #] 2633
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2638] 56c9 [DBcc D1, #] 2639
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2643] 57c8 [DBcc D0, #] 2644
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2647] 5ec9 [DBcc D1, #] 2648
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2649] 5ac8 [DBcc D0, #] 2650
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2650] 51cb [DBcc D3, #] 2651
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2653] 54cc [DBcc D4, #] 2654
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2655] 5ccf [DBcc D7, #] 2656
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2660] 52c8 [DBcc D0, #] 2661
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2661] 51cb [DBcc D3, #] 2662
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2664] 52c9 [DBcc D1, #] 2665
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2668] 57cb [DBcc D3, #] 2669
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2684] 59ce [DBcc D6, #] 2685
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2685] 51ca [DBcc D2, #] 2686
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2686] 51cb [DBcc D3, #] 2687
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2689] 59c9 [DBcc D1, #] 2690
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2696] 5aca [DBcc D2, #] 2697
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2698] 58cc [DBcc D4, #] 2699
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2702] 5bca [DBcc D2, #] 2703
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2706] 5acc [DBcc D4, #] 2707
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2707] 5fca [DBcc D2, #] 2708
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2711] 56c9 [DBcc D1, #] 2712
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2714] 51cd [DBcc D5, #] 2715
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2726] 59ce [DBcc D6, #] 2727
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2727] 55ce [DBcc D6, #] 2728
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2729] 5ec8 [DBcc D0, #] 2730
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2733] 53ce [DBcc D6, #] 2734
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2738] 5bc8 [DBcc D0, #] 2739
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2739] 5ecf [DBcc D7, #] 2740
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2744] 54ce [DBcc D6, #] 2745
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2747] 5ace [DBcc D6, #] 2748
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2751] 59cf [DBcc D7, #] 2752
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2753] 56cc [DBcc D4, #] 2754
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2754] 51cd [DBcc D5, #] 2755
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2758] 5fcf [DBcc D7, #] 2759
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2759] 59cd [DBcc D5, #] 2760
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2762] 57c8 [DBcc D0, #] 2763
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2764] 54cf [DBcc D7, #] 2765
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2769] 5bca [DBcc D2, #] 2770
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2775] 59c9 [DBcc D1, #] 2776
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2776] 5dce [DBcc D6, #] 2777
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2780] 5dc8 [DBcc D0, #] 2781
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2782] 5ecb [DBcc D3, #] 2783
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2785] 54ce [DBcc D6, #] 2786
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2788] 51c9 [DBcc D1, #] 2789
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2795] 53c9 [DBcc D1, #] 2796
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2809] 57c9 [DBcc D1, #] 2810
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2817] 56c8 [DBcc D0, #] 2818
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2825] 5ec9 [DBcc D1, #] 2826
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2829] 5ecc [DBcc D4, #] 2830
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2833] 5ccd [DBcc D5, #] 2834
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2842] 52ce [DBcc D6, #] 2843
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2845] 5bcf [DBcc D7, #] 2846
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2847] 51c8 [DBcc D0, #] 2848
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2851] 5bc8 [DBcc D0, #] 2852
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2856] 51c8 [DBcc D0, #] 2857
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2857] 5acc [DBcc D4, #] 2858
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2862] 5ecd [DBcc D5, #] 2863
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2864] 5bcf [DBcc D7, #] 2865
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2868] 53ca [DBcc D2, #] 2869
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2870] 55cd [DBcc D5, #] 2871
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2874] 5fca [DBcc D2, #] 2875
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2876] 51c8 [DBcc D0, #] 2877
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2878] 58cb [DBcc D3, #] 2879
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2880] 56cc [DBcc D4, #] 2881
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2881] 51cb [DBcc D3, #] 2882
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2901] 5cce [DBcc D6, #] 2902
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2903] 5ec8 [DBcc D0, #] 2904
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2906] 52c9 [DBcc D1, #] 2907
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2909] 51c9 [DBcc D1, #] 2910
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2921] 57c8 [DBcc D0, #] 2922
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2922] 5ccd [DBcc D5, #] 2923
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2927] 51ca [DBcc D2, #] 2928
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2928] 52cd [DBcc D5, #] 2929
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2931] 59c9 [DBcc D1, #] 2932
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2933] 59cb [DBcc D3, #] 2934
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2942] 5ac9 [DBcc D1, #] 2943
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2943] 5ccf [DBcc D7, #] 2944
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2945] 5aca [DBcc D2, #] 2946
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2946] 5fca [DBcc D2, #] 2947
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2947] 57cd [DBcc D5, #] 2948
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2948] 5acf [DBcc D7, #] 2949
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2949] 59ca [DBcc D2, #] 2950
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2951] 55cd [DBcc D5, #] 2952
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2957] 52cf [DBcc D7, #] 2958
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2958] 51cf [DBcc D7, #] 2959
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2962] 5ccd [DBcc D5, #] 2963
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2967] 51ca [DBcc D2, #] 2968
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2973] 55cc [DBcc D4, #] 2974
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2975] 5acf [DBcc D7, #] 2976
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2978] 51c9 [DBcc D1, #] 2979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2980] 5dc8 [DBcc D0, #] 2981
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2986] 51cf [DBcc D7, #] 2987
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2987] 51cd [DBcc D5, #] 2988
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2989] 55cc [DBcc D4, #] 2990
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2993] 5ac9 [DBcc D1, #] 2994
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2996] 58ca [DBcc D2, #] 2997
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [2997] 5fcf [DBcc D7, #] 2998
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3011] 57cc [DBcc D4, #] 3012
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3012] 5bcf [DBcc D7, #] 3013
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3021] 5acf [DBcc D7, #] 3022
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3023] 56c9 [DBcc D1, #] 3024
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3025] 56cb [DBcc D3, #] 3026
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3029] 57cc [DBcc D4, #] 3030
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3030] 59ce [DBcc D6, #] 3031
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3032] 52cd [DBcc D5, #] 3033
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3034] 59ce [DBcc D6, #] 3035
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3038] 5bce [DBcc D6, #] 3039
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3044] 59cb [DBcc D3, #] 3045
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3051] 56cf [DBcc D7, #] 3052
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3052] 56c8 [DBcc D0, #] 3053
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3056] 57ce [DBcc D6, #] 3057
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3057] 52ce [DBcc D6, #] 3058
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3060] 57ca [DBcc D2, #] 3061
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3064] 55ce [DBcc D6, #] 3065
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3065] 57cb [DBcc D3, #] 3066
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3067] 54c8 [DBcc D0, #] 3068
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3068] 57cc [DBcc D4, #] 3069
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3070] 57cc [DBcc D4, #] 3071
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3071] 54cd [DBcc D5, #] 3072
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3073] 57cc [DBcc D4, #] 3074
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3075] 59c9 [DBcc D1, #] 3076
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3076] 51c9 [DBcc D1, #] 3077
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3077] 59cc [DBcc D4, #] 3078
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3080] 56cd [DBcc D5, #] 3081
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3083] 51cf [DBcc D7, #] 3084
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3084] 56cb [DBcc D3, #] 3085
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3086] 5bc9 [DBcc D1, #] 3087
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3088] 5ccf [DBcc D7, #] 3089
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3099] 54cc [DBcc D4, #] 3100
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3100] 52ca [DBcc D2, #] 3101
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3104] 5cce [DBcc D6, #] 3105
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3106] 5bcb [DBcc D3, #] 3107
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3110] 51cf [DBcc D7, #] 3111
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3112] 5bcf [DBcc D7, #] 3113
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3113] 5ccd [DBcc D5, #] 3114
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3117] 51cf [DBcc D7, #] 3118
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3120] 55cb [DBcc D3, #] 3121
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3132] 5ccd [DBcc D5, #] 3133
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3133] 5acb [DBcc D3, #] 3134
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3138] 5fcb [DBcc D3, #] 3139
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3139] 56ca [DBcc D2, #] 3140
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3140] 59cf [DBcc D7, #] 3141
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3142] 5bcf [DBcc D7, #] 3143
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3143] 54cc [DBcc D4, #] 3144
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3146] 5ccb [DBcc D3, #] 3147
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3151] 55c9 [DBcc D1, #] 3152
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3153] 52cb [DBcc D3, #] 3154
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3155] 5cc9 [DBcc D1, #] 3156
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3163] 5ccd [DBcc D5, #] 3164
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3167] 57cf [DBcc D7, #] 3168
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3172] 53c8 [DBcc D0, #] 3173
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3173] 52cc [DBcc D4, #] 3174
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3176] 5ecd [DBcc D5, #] 3177
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3177] 5ccf [DBcc D7, #] 3178
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3178] 59c9 [DBcc D1, #] 3179
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3179] 55cc [DBcc D4, #] 3180
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3181] 53ca [DBcc D2, #] 3182
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3187] 54c9 [DBcc D1, #] 3188
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3188] 52ca [DBcc D2, #] 3189
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3193] 56cd [DBcc D5, #] 3194
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3199] 57c8 [DBcc D0, #] 3200
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3201] 51c8 [DBcc D0, #] 3202
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3205] 56cf [DBcc D7, #] 3206
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3206] 51c9 [DBcc D1, #] 3207
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3209] 5fc8 [DBcc D0, #] 3210
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3212] 5ac9 [DBcc D1, #] 3213
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3213] 57cd [DBcc D5, #] 3214
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3220] 53cb [DBcc D3, #] 3221
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3226] 52cc [DBcc D4, #] 3227
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3231] 51ce [DBcc D6, #] 3232
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3246] 5ccf [DBcc D7, #] 3247
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3250] 5ec9 [DBcc D1, #] 3251
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3256] 5cce [DBcc D6, #] 3257
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3260] 5ec8 [DBcc D0, #] 3261
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3274] 5dc8 [DBcc D0, #] 3275
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3275] 52c9 [DBcc D1, #] 3276
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3276] 5ece [DBcc D6, #] 3277
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3279] 53ca [DBcc D2, #] 3280
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3280] 5cca [DBcc D2, #] 3281
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3284] 5acd [DBcc D5, #] 3285
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3285] 5bcd [DBcc D5, #] 3286
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3286] 57c8 [DBcc D0, #] 3287
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3287] 5fcc [DBcc D4, #] 3288
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3299] 5bcb [DBcc D3, #] 3300
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3301] 51cd [DBcc D5, #] 3302
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3304] 54ce [DBcc D6, #] 3305
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3309] 51ce [DBcc D6, #] 3310
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3311] 52cb [DBcc D3, #] 3312
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3314] 55ca [DBcc D2, #] 3315
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3323] 57cc [DBcc D4, #] 3324
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3330] 5cca [DBcc D2, #] 3331
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3334] 5dcd [DBcc D5, #] 3335
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3335] 54cc [DBcc D4, #] 3336
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3336] 5fcd [DBcc D5, #] 3337
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3344] 51cc [DBcc D4, #] 3345
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3350] 51c8 [DBcc D0, #] 3351
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3354] 56ca [DBcc D2, #] 3355
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3360] 5ccd [DBcc D5, #] 3361
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3361] 5ac8 [DBcc D0, #] 3362
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3369] 5acc [DBcc D4, #] 3370
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3372] 5dcc [DBcc D4, #] 3373
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3376] 56c9 [DBcc D1, #] 3377
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3386] 55c9 [DBcc D1, #] 3387
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3389] 54cd [DBcc D5, #] 3390
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3393] 58cc [DBcc D4, #] 3394
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3396] 55cd [DBcc D5, #] 3397
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3400] 58cb [DBcc D3, #] 3401
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3401] 51cb [DBcc D3, #] 3402
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3405] 58cb [DBcc D3, #] 3406
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3406] 57ce [DBcc D6, #] 3407
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3407] 53cc [DBcc D4, #] 3408
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3409] 5fcd [DBcc D5, #] 3410
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3411] 56c8 [DBcc D0, #] 3412
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3412] 53c9 [DBcc D1, #] 3413
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3413] 52ce [DBcc D6, #] 3414
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3418] 5dca [DBcc D2, #] 3419
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3419] 5ecb [DBcc D3, #] 3420
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3423] 52cd [DBcc D5, #] 3424
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3438] 52cf [DBcc D7, #] 3439
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3442] 57c9 [DBcc D1, #] 3443
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3443] 56c9 [DBcc D1, #] 3444
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3446] 5acd [DBcc D5, #] 3447
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3456] 52cb [DBcc D3, #] 3457
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3458] 5ac9 [DBcc D1, #] 3459
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3463] 58cd [DBcc D5, #] 3464
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3470] 5bcb [DBcc D3, #] 3471
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3475] 52ce [DBcc D6, #] 3476
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3476] 58ce [DBcc D6, #] 3477
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3477] 54c8 [DBcc D0, #] 3478
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3484] 57ca [DBcc D2, #] 3485
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3492] 58c8 [DBcc D0, #] 3493
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3499] 54cd [DBcc D5, #] 3500
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3502] 51cc [DBcc D4, #] 3503
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3511] 56cd [DBcc D5, #] 3512
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3512] 5dcc [DBcc D4, #] 3513
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3513] 57cc [DBcc D4, #] 3514
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3514] 5ecd [DBcc D5, #] 3515
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3516] 5ecf [DBcc D7, #] 3517
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3519] 5ac8 [DBcc D0, #] 3520
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3525] 5dcb [DBcc D3, #] 3526
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3528] 56cb [DBcc D3, #] 3529
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3530] 5ece [DBcc D6, #] 3531
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3533] 5ac8 [DBcc D0, #] 3534
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3535] 52ce [DBcc D6, #] 3536
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3540] 5dce [DBcc D6, #] 3541
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3541] 5fcb [DBcc D3, #] 3542
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3543] 5bc8 [DBcc D0, #] 3544
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3546] 51cb [DBcc D3, #] 3547
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3554] 5acf [DBcc D7, #] 3555
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3558] 54cd [DBcc D5, #] 3559
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3567] 56cf [DBcc D7, #] 3568
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3569] 56cc [DBcc D4, #] 3570
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3571] 52c9 [DBcc D1, #] 3572
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3577] 5dc9 [DBcc D1, #] 3578
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3579] 5ecf [DBcc D7, #] 3580
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3584] 52c8 [DBcc D0, #] 3585
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3591] 51cc [DBcc D4, #] 3592
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3592] 5dcf [DBcc D7, #] 3593
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3593] 59ce [DBcc D6, #] 3594
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3594] 51c9 [DBcc D1, #] 3595
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3598] 52cf [DBcc D7, #] 3599
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3603] 58ca [DBcc D2, #] 3604
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3604] 51cb [DBcc D3, #] 3605
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3608] 56c9 [DBcc D1, #] 3609
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3617] 5dce [DBcc D6, #] 3618
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3619] 5ec8 [DBcc D0, #] 3620
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3624] 51cc [DBcc D4, #] 3625
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3631] 5fcc [DBcc D4, #] 3632
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3636] 5dce [DBcc D6, #] 3637
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3637] 52cc [DBcc D4, #] 3638
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3638] 56cc [DBcc D4, #] 3639
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3639] 59cf [DBcc D7, #] 3640
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3643] 54c8 [DBcc D0, #] 3644
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3646] 51c9 [DBcc D1, #] 3647
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3650] 5ac8 [DBcc D0, #] 3651
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3651] 57ca [DBcc D2, #] 3652
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3654] 52cf [DBcc D7, #] 3655
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3663] 57ca [DBcc D2, #] 3664
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3666] 5ccd [DBcc D5, #] 3667
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3669] 55cd [DBcc D5, #] 3670
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3676] 5aca [DBcc D2, #] 3677
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3677] 5ec8 [DBcc D0, #] 3678
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3679] 54c8 [DBcc D0, #] 3680
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3682] 54cb [DBcc D3, #] 3683
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3686] 5ecc [DBcc D4, #] 3687
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3690] 59c9 [DBcc D1, #] 3691
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3694] 5fca [DBcc D2, #] 3695
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3697] 51cc [DBcc D4, #] 3698
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3702] 57cb [DBcc D3, #] 3703
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3710] 54ca [DBcc D2, #] 3711
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3711] 58cf [DBcc D7, #] 3712
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3712] 51cf [DBcc D7, #] 3713
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3721] 5dcc [DBcc D4, #] 3722
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3723] 51cb [DBcc D3, #] 3724
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3724] 55cf [DBcc D7, #] 3725
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3728] 59cc [DBcc D4, #] 3729
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3735] 51cd [DBcc D5, #] 3736
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3742] 58c8 [DBcc D0, #] 3743
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3745] 5cc8 [DBcc D0, #] 3746
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3746] 5dcc [DBcc D4, #] 3747
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3750] 51c8 [DBcc D0, #] 3751
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3751] 51cf [DBcc D7, #] 3752
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3752] 51cc [DBcc D4, #] 3753
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3753] 52c8 [DBcc D0, #] 3754
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3755] 5dca [DBcc D2, #] 3756
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3759] 5acb [DBcc D3, #] 3760
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3764] 56c8 [DBcc D0, #] 3765
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3765] 52c8 [DBcc D0, #] 3766
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3772] 53c9 [DBcc D1, #] 3773
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3775] 5ece [DBcc D6, #] 3776
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3778] 51ca [DBcc D2, #] 3779
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3779] 52cc [DBcc D4, #] 3780
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3781] 52cc [DBcc D4, #] 3782
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3786] 5ec9 [DBcc D1, #] 3787
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3787] 57cc [DBcc D4, #] 3788
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3789] 52c8 [DBcc D0, #] 3790
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3794] 5ac9 [DBcc D1, #] 3795
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3797] 5fcd [DBcc D5, #] 3798
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3811] 5ac9 [DBcc D1, #] 3812
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3816] 5bc8 [DBcc D0, #] 3817
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3822] 51cb [DBcc D3, #] 3823
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3835] 51c9 [DBcc D1, #] 3836
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3836] 51ce [DBcc D6, #] 3837
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3837] 54cd [DBcc D5, #] 3838
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3841] 56ce [DBcc D6, #] 3842
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3848] 5ecf [DBcc D7, #] 3849
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3862] 5eca [DBcc D2, #] 3863
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3867] 5acc [DBcc D4, #] 3868
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3874] 52c8 [DBcc D0, #] 3875
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3875] 5bcf [DBcc D7, #] 3876
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3878] 5ecb [DBcc D3, #] 3879
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3880] 52c9 [DBcc D1, #] 3881
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3881] 5bc9 [DBcc D1, #] 3882
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3886] 59cd [DBcc D5, #] 3887
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3888] 54c9 [DBcc D1, #] 3889
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3893] 52cb [DBcc D3, #] 3894
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3896] 56ce [DBcc D6, #] 3897
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3901] 5bcd [DBcc D5, #] 3902
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3903] 55cf [DBcc D7, #] 3904
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3915] 5ece [DBcc D6, #] 3916
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3921] 5dce [DBcc D6, #] 3922
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3925] 57cc [DBcc D4, #] 3926
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3926] 56cc [DBcc D4, #] 3927
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3927] 5ec8 [DBcc D0, #] 3928
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3930] 5dc9 [DBcc D1, #] 3931
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3931] 59c9 [DBcc D1, #] 3932
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3935] 5ccc [DBcc D4, #] 3936
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3938] 5ecc [DBcc D4, #] 3939
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3949] 53c9 [DBcc D1, #] 3950
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3951] 54cd [DBcc D5, #] 3952
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3955] 56cb [DBcc D3, #] 3956
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3956] 5ccf [DBcc D7, #] 3957
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3960] 54cb [DBcc D3, #] 3961
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3961] 5bca [DBcc D2, #] 3962
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3962] 5bcb [DBcc D3, #] 3963
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3964] 5ecb [DBcc D3, #] 3965
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3966] 59c8 [DBcc D0, #] 3967
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3969] 5dca [DBcc D2, #] 3970
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3972] 59cb [DBcc D3, #] 3973
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3977] 54cb [DBcc D3, #] 3978
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3978] 5cc9 [DBcc D1, #] 3979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3979] 52cc [DBcc D4, #] 3980
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3980] 5fc9 [DBcc D1, #] 3981
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3984] 5cca [DBcc D2, #] 3985
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [3998] 5bcb [DBcc D3, #] 3999
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4002] 51c9 [DBcc D1, #] 4003
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4005] 58cf [DBcc D7, #] 4006
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4008] 5fce [DBcc D6, #] 4009
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4011] 55cb [DBcc D3, #] 4012
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4014] 5aca [DBcc D2, #] 4015
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4023] 55ca [DBcc D2, #] 4024
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4029] 51c8 [DBcc D0, #] 4030
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4031] 52cd [DBcc D5, #] 4032
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4032] 54cd [DBcc D5, #] 4033
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4033] 5ec8 [DBcc D0, #] 4034
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4035] 51cd [DBcc D5, #] 4036
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4036] 5dcc [DBcc D4, #] 4037
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4039] 52cd [DBcc D5, #] 4040
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4041] 5cc9 [DBcc D1, #] 4042
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4043] 53c9 [DBcc D1, #] 4044
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4054] 5cca [DBcc D2, #] 4055
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4057] 59c8 [DBcc D0, #] 4058
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4060] 54cd [DBcc D5, #] 4061
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4067] 5ecc [DBcc D4, #] 4068
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4069] 5ac9 [DBcc D1, #] 4070
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4073] 5ec9 [DBcc D1, #] 4074
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4076] 55cb [DBcc D3, #] 4077
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4077] 53cb [DBcc D3, #] 4078
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4084] 58ce [DBcc D6, #] 4085
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4089] 5bcd [DBcc D5, #] 4090
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4090] 56cd [DBcc D5, #] 4091
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4095] 57cc [DBcc D4, #] 4096
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4100] 56ca [DBcc D2, #] 4101
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4102] 5bcc [DBcc D4, #] 4103
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4103] 5ecf [DBcc D7, #] 4104
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4104] 56c8 [DBcc D0, #] 4105
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4111] 51cb [DBcc D3, #] 4112
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4112] 5ecd [DBcc D5, #] 4113
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4117] 59c9 [DBcc D1, #] 4118
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4118] 51ca [DBcc D2, #] 4119
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4122] 58ca [DBcc D2, #] 4123
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4126] 5ac8 [DBcc D0, #] 4127
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4127] 57cd [DBcc D5, #] 4128
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4129] 5dca [DBcc D2, #] 4130
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4131] 52cc [DBcc D4, #] 4132
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4136] 53cb [DBcc D3, #] 4137
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4139] 5dcd [DBcc D5, #] 4140
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4143] 56ca [DBcc D2, #] 4144
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4147] 52cb [DBcc D3, #] 4148
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4151] 5ace [DBcc D6, #] 4152
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4155] 52c9 [DBcc D1, #] 4156
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4160] 51cb [DBcc D3, #] 4161
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4165] 58c8 [DBcc D0, #] 4166
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4168] 5bcd [DBcc D5, #] 4169
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4169] 58ce [DBcc D6, #] 4170
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4177] 5bcf [DBcc D7, #] 4178
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4179] 54c9 [DBcc D1, #] 4180
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4181] 57c9 [DBcc D1, #] 4182
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4184] 55c8 [DBcc D0, #] 4185
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4190] 57cb [DBcc D3, #] 4191
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4194] 5ecd [DBcc D5, #] 4195
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4196] 5dcd [DBcc D5, #] 4197
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4200] 52c9 [DBcc D1, #] 4201
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4201] 5dcf [DBcc D7, #] 4202
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4221] 5ecb [DBcc D3, #] 4222
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4223] 5eca [DBcc D2, #] 4224
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4226] 5aca [DBcc D2, #] 4227
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4228] 59c8 [DBcc D0, #] 4229
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4230] 51cb [DBcc D3, #] 4231
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4235] 5dca [DBcc D2, #] 4236
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4249] 54cb [DBcc D3, #] 4250
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4252] 59c9 [DBcc D1, #] 4253
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4255] 5ece [DBcc D6, #] 4256
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4262] 52ce [DBcc D6, #] 4263
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4264] 55cc [DBcc D4, #] 4265
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4269] 56c8 [DBcc D0, #] 4270
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4271] 5ecc [DBcc D4, #] 4272
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4274] 52ca [DBcc D2, #] 4275
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4287] 5dcc [DBcc D4, #] 4288
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4289] 5ecc [DBcc D4, #] 4290
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4293] 56cc [DBcc D4, #] 4294
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4294] 5ccd [DBcc D5, #] 4295
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4301] 5ccf [DBcc D7, #] 4302
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4314] 52cf [DBcc D7, #] 4315
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4316] 53cf [DBcc D7, #] 4317
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4321] 57c8 [DBcc D0, #] 4322
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4324] 5fcb [DBcc D3, #] 4325
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4337] 5ccb [DBcc D3, #] 4338
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4340] 5dcf [DBcc D7, #] 4341
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4348] 53cf [DBcc D7, #] 4349
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4351] 51ce [DBcc D6, #] 4352
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4352] 54cc [DBcc D4, #] 4353
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4358] 5bcc [DBcc D4, #] 4359
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4363] 54ce [DBcc D6, #] 4364
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4366] 58cd [DBcc D5, #] 4367
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4367] 51ca [DBcc D2, #] 4368
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4368] 53cc [DBcc D4, #] 4369
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4372] 5cc9 [DBcc D1, #] 4373
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4381] 5acb [DBcc D3, #] 4382
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4388] 5bcb [DBcc D3, #] 4389
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4391] 5bcd [DBcc D5, #] 4392
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4392] 5acf [DBcc D7, #] 4393
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4397] 59ca [DBcc D2, #] 4398
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4402] 55cf [DBcc D7, #] 4403
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4404] 5ecc [DBcc D4, #] 4405
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4408] 5ec9 [DBcc D1, #] 4409
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4409] 5ccc [DBcc D4, #] 4410
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4411] 5fc9 [DBcc D1, #] 4412
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4414] 5ecd [DBcc D5, #] 4415
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4415] 52c8 [DBcc D0, #] 4416
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4417] 54c9 [DBcc D1, #] 4418
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4419] 51ca [DBcc D2, #] 4420
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4425] 56cc [DBcc D4, #] 4426
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4429] 53cf [DBcc D7, #] 4430
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4432] 58ca [DBcc D2, #] 4433
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4434] 51c9 [DBcc D1, #] 4435
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4438] 5ec8 [DBcc D0, #] 4439
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4439] 5fcd [DBcc D5, #] 4440
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4442] 5ccb [DBcc D3, #] 4443
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4445] 58cd [DBcc D5, #] 4446
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4449] 5fc8 [DBcc D0, #] 4450
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4452] 5ac8 [DBcc D0, #] 4453
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4454] 5bca [DBcc D2, #] 4455
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4459] 52c9 [DBcc D1, #] 4460
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4462] 5ec9 [DBcc D1, #] 4463
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4463] 5ccf [DBcc D7, #] 4464
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4475] 5ccd [DBcc D5, #] 4476
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4482] 5dcd [DBcc D5, #] 4483
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4485] 5cce [DBcc D6, #] 4486
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4486] 5cce [DBcc D6, #] 4487
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4492] 51cb [DBcc D3, #] 4493
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4493] 5dce [DBcc D6, #] 4494
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4495] 54cb [DBcc D3, #] 4496
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4497] 51cf [DBcc D7, #] 4498
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4505] 56cc [DBcc D4, #] 4506
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4513] 59cd [DBcc D5, #] 4514
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4514] 52cc [DBcc D4, #] 4515
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4534] 52cc [DBcc D4, #] 4535
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4540] 54c9 [DBcc D1, #] 4541
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4541] 56c8 [DBcc D0, #] 4542
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4543] 51c8 [DBcc D0, #] 4544
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4548] 5ecf [DBcc D7, #] 4549
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4551] 51ca [DBcc D2, #] 4552
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4553] 5dc8 [DBcc D0, #] 4554
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4561] 5dce [DBcc D6, #] 4562
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4585] 58ce [DBcc D6, #] 4586
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4593] 51ca [DBcc D2, #] 4594
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4605] 54cd [DBcc D5, #] 4606
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4608] 54c9 [DBcc D1, #] 4609
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4611] 5bcb [DBcc D3, #] 4612
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4615] 5dc9 [DBcc D1, #] 4616
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4620] 56c8 [DBcc D0, #] 4621
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4623] 51cc [DBcc D4, #] 4624
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4626] 5aca [DBcc D2, #] 4627
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4627] 5ac9 [DBcc D1, #] 4628
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4629] 5fc9 [DBcc D1, #] 4630
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4631] 5ccc [DBcc D4, #] 4632
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4641] 59ca [DBcc D2, #] 4642
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4652] 51ce [DBcc D6, #] 4653
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4653] 5dc9 [DBcc D1, #] 4654
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4670] 51cd [DBcc D5, #] 4671
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4675] 5ccb [DBcc D3, #] 4676
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4680] 5ac8 [DBcc D0, #] 4681
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4682] 51cd [DBcc D5, #] 4683
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4686] 5ace [DBcc D6, #] 4687
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4693] 54c9 [DBcc D1, #] 4694
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4698] 56cd [DBcc D5, #] 4699
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4701] 59cb [DBcc D3, #] 4702
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4703] 5ecb [DBcc D3, #] 4704
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4708] 55cb [DBcc D3, #] 4709
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4718] 54cc [DBcc D4, #] 4719
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4725] 52c8 [DBcc D0, #] 4726
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4740] 5bcc [DBcc D4, #] 4741
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4743] 52ce [DBcc D6, #] 4744
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4750] 54cd [DBcc D5, #] 4751
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4753] 51c8 [DBcc D0, #] 4754
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4755] 56c8 [DBcc D0, #] 4756
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4756] 54ca [DBcc D2, #] 4757
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4759] 52ce [DBcc D6, #] 4760
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4760] 5bcc [DBcc D4, #] 4761
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4766] 51cd [DBcc D5, #] 4767
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4767] 5bc8 [DBcc D0, #] 4768
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4774] 5bcd [DBcc D5, #] 4775
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4775] 5ecd [DBcc D5, #] 4776
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4781] 55c9 [DBcc D1, #] 4782
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4787] 54c9 [DBcc D1, #] 4788
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4790] 55cc [DBcc D4, #] 4791
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4793] 5fcb [DBcc D3, #] 4794
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4795] 5cc8 [DBcc D0, #] 4796
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4798] 5dcf [DBcc D7, #] 4799
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4800] 55cc [DBcc D4, #] 4801
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4814] 56cc [DBcc D4, #] 4815
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4815] 5bcb [DBcc D3, #] 4816
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4828] 58cb [DBcc D3, #] 4829
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4829] 5acb [DBcc D3, #] 4830
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4833] 5ace [DBcc D6, #] 4834
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4836] 52cf [DBcc D7, #] 4837
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4838] 5bcd [DBcc D5, #] 4839
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4859] 58cb [DBcc D3, #] 4860
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4864] 52cc [DBcc D4, #] 4865
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4866] 5acb [DBcc D3, #] 4867
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4876] 59cc [DBcc D4, #] 4877
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4877] 51ca [DBcc D2, #] 4878
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4879] 52cc [DBcc D4, #] 4880
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4880] 56cf [DBcc D7, #] 4881
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4882] 56cd [DBcc D5, #] 4883
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4885] 5ac8 [DBcc D0, #] 4886
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4888] 55ca [DBcc D2, #] 4889
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4899] 51c8 [DBcc D0, #] 4900
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4906] 51ce [DBcc D6, #] 4907
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4907] 53cd [DBcc D5, #] 4908
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4908] 58c8 [DBcc D0, #] 4909
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4909] 5cc9 [DBcc D1, #] 4910
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4911] 52cf [DBcc D7, #] 4912
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4912] 52c9 [DBcc D1, #] 4913
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4913] 5dcc [DBcc D4, #] 4914
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4915] 51c9 [DBcc D1, #] 4916
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4917] 51cf [DBcc D7, #] 4918
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4919] 5acc [DBcc D4, #] 4920
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4929] 53ce [DBcc D6, #] 4930
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4940] 53c8 [DBcc D0, #] 4941
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4942] 5ac8 [DBcc D0, #] 4943
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4945] 5bc8 [DBcc D0, #] 4946
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4948] 57c8 [DBcc D0, #] 4949
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4949] 53ce [DBcc D6, #] 4950
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4952] 5bcd [DBcc D5, #] 4953
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4961] 56c8 [DBcc D0, #] 4962
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4969] 5ccd [DBcc D5, #] 4970
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4973] 5ac9 [DBcc D1, #] 4974
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4978] 51cf [DBcc D7, #] 4979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [4996] 5fcc [DBcc D4, #] 4997
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5004] 5dcd [DBcc D5, #] 5005
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5008] 5cce [DBcc D6, #] 5009
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5014] 52ce [DBcc D6, #] 5015
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5017] 5ccb [DBcc D3, #] 5018
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5029] 51cd [DBcc D5, #] 5030
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5030] 54cb [DBcc D3, #] 5031
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5031] 5ec8 [DBcc D0, #] 5032
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5032] 52cb [DBcc D3, #] 5033
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5034] 54c9 [DBcc D1, #] 5035
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5039] 5ac8 [DBcc D0, #] 5040
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5042] 5dcc [DBcc D4, #] 5043
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5048] 5acd [DBcc D5, #] 5049
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5050] 55cf [DBcc D7, #] 5051
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5052] 51c9 [DBcc D1, #] 5053
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5053] 55ce [DBcc D6, #] 5054
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5056] 5acb [DBcc D3, #] 5057
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5060] 55cb [DBcc D3, #] 5061
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5061] 5bcd [DBcc D5, #] 5062
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5064] 5ec8 [DBcc D0, #] 5065
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5065] 5bcb [DBcc D3, #] 5066
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5072] 52ce [DBcc D6, #] 5073
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5075] 5bcb [DBcc D3, #] 5076
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5079] 54cd [DBcc D5, #] 5080
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5080] 54cc [DBcc D4, #] 5081
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5084] 59cf [DBcc D7, #] 5085
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5085] 51ce [DBcc D6, #] 5086
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5087] 5acb [DBcc D3, #] 5088
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5091] 54ca [DBcc D2, #] 5092
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5093] 54ce [DBcc D6, #] 5094
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5103] 54ce [DBcc D6, #] 5104
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5112] 52c9 [DBcc D1, #] 5113
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5121] 52cd [DBcc D5, #] 5122
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5129] 5bcf [DBcc D7, #] 5130
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5130] 5ecf [DBcc D7, #] 5131
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5133] 51c8 [DBcc D0, #] 5134
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5134] 57cb [DBcc D3, #] 5135
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5142] 59c9 [DBcc D1, #] 5143
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5148] 59c9 [DBcc D1, #] 5149
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5150] 5cce [DBcc D6, #] 5151
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5161] 5acb [DBcc D3, #] 5162
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5171] 5dcc [DBcc D4, #] 5172
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5174] 52cc [DBcc D4, #] 5175
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5176] 5ccd [DBcc D5, #] 5177
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5193] 53cf [DBcc D7, #] 5194
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5200] 52c9 [DBcc D1, #] 5201
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5208] 58cd [DBcc D5, #] 5209
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5211] 51cd [DBcc D5, #] 5212
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5215] 52cc [DBcc D4, #] 5216
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5216] 52ce [DBcc D6, #] 5217
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5217] 5eca [DBcc D2, #] 5218
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5228] 5cc8 [DBcc D0, #] 5229
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5240] 59c8 [DBcc D0, #] 5241
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5243] 5bc8 [DBcc D0, #] 5244
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5247] 5bcb [DBcc D3, #] 5248
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5251] 54cf [DBcc D7, #] 5252
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5256] 56c8 [DBcc D0, #] 5257
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5257] 51c9 [DBcc D1, #] 5258
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5263] 5ac8 [DBcc D0, #] 5264
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5269] 5dc9 [DBcc D1, #] 5270
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5273] 5ac8 [DBcc D0, #] 5274
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5275] 56cf [DBcc D7, #] 5276
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5282] 56c8 [DBcc D0, #] 5283
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5287] 57ce [DBcc D6, #] 5288
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5288] 5fc8 [DBcc D0, #] 5289
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5294] 53cc [DBcc D4, #] 5295
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5295] 5fcf [DBcc D7, #] 5296
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5297] 54c8 [DBcc D0, #] 5298
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5299] 55c9 [DBcc D1, #] 5300
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5302] 54c9 [DBcc D1, #] 5303
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5305] 58c8 [DBcc D0, #] 5306
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5308] 55c9 [DBcc D1, #] 5309
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5311] 57cf [DBcc D7, #] 5312
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5312] 52cf [DBcc D7, #] 5313
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5313] 5ace [DBcc D6, #] 5314
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5315] 51c9 [DBcc D1, #] 5316
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5323] 58cf [DBcc D7, #] 5324
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5324] 5fcb [DBcc D3, #] 5325
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5326] 51cf [DBcc D7, #] 5327
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5333] 5dcc [DBcc D4, #] 5334
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5334] 58c8 [DBcc D0, #] 5335
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5336] 53cb [DBcc D3, #] 5337
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5339] 52ca [DBcc D2, #] 5340
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5347] 5dc9 [DBcc D1, #] 5348
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5357] 5fcd [DBcc D5, #] 5358
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5362] 57cf [DBcc D7, #] 5363
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5367] 5bcd [DBcc D5, #] 5368
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5370] 55cc [DBcc D4, #] 5371
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5378] 51ce [DBcc D6, #] 5379
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5379] 52c8 [DBcc D0, #] 5380
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5384] 59cc [DBcc D4, #] 5385
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5386] 57ce [DBcc D6, #] 5387
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5392] 5ecc [DBcc D4, #] 5393
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5396] 5dcc [DBcc D4, #] 5397
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5397] 58ca [DBcc D2, #] 5398
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5403] 5fca [DBcc D2, #] 5404
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5405] 5bca [DBcc D2, #] 5406
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5412] 5ecb [DBcc D3, #] 5413
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5416] 51ce [DBcc D6, #] 5417
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5418] 5ecf [DBcc D7, #] 5419
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5420] 5acf [DBcc D7, #] 5421
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5424] 5acb [DBcc D3, #] 5425
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5433] 5bc8 [DBcc D0, #] 5434
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5439] 5cce [DBcc D6, #] 5440
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5441] 5acc [DBcc D4, #] 5442
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5444] 52cc [DBcc D4, #] 5445
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5445] 5ecc [DBcc D4, #] 5446
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5446] 5fc8 [DBcc D0, #] 5447
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5453] 5dca [DBcc D2, #] 5454
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5454] 59c9 [DBcc D1, #] 5455
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5460] 51c9 [DBcc D1, #] 5461
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5464] 59cc [DBcc D4, #] 5465
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5466] 55cc [DBcc D4, #] 5467
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5467] 5bcf [DBcc D7, #] 5468
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5474] 54c9 [DBcc D1, #] 5475
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5484] 59c8 [DBcc D0, #] 5485
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5491] 56c9 [DBcc D1, #] 5492
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5494] 55cc [DBcc D4, #] 5495
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5501] 59cd [DBcc D5, #] 5502
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5504] 54c9 [DBcc D1, #] 5505
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5508] 57c9 [DBcc D1, #] 5509
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5509] 5dca [DBcc D2, #] 5510
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5514] 54cb [DBcc D3, #] 5515
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5515] 52ce [DBcc D6, #] 5516
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5521] 5bcb [DBcc D3, #] 5522
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5524] 52cf [DBcc D7, #] 5525
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5525] 59c9 [DBcc D1, #] 5526
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5530] 57ce [DBcc D6, #] 5531
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5533] 5fc8 [DBcc D0, #] 5534
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5540] 51cb [DBcc D3, #] 5541
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5548] 57cb [DBcc D3, #] 5549
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5552] 52cc [DBcc D4, #] 5553
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5553] 51c8 [DBcc D0, #] 5554
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5557] 52cc [DBcc D4, #] 5558
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5560] 52c9 [DBcc D1, #] 5561
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5561] 5bcf [DBcc D7, #] 5562
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5568] 53cf [DBcc D7, #] 5569
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5570] 5cc9 [DBcc D1, #] 5571
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5571] 5ec9 [DBcc D1, #] 5572
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5574] 51cf [DBcc D7, #] 5575
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5581] 5cc8 [DBcc D0, #] 5582
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5583] 53cc [DBcc D4, #] 5584
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5585] 5bcf [DBcc D7, #] 5586
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5591] 53cc [DBcc D4, #] 5592
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5594] 53cf [DBcc D7, #] 5595
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5597] 59ca [DBcc D2, #] 5598
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5598] 58cd [DBcc D5, #] 5599
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5602] 5cce [DBcc D6, #] 5603
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5604] 58cb [DBcc D3, #] 5605
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5609] 52cc [DBcc D4, #] 5610
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5616] 59c8 [DBcc D0, #] 5617
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5619] 5dcc [DBcc D4, #] 5620
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5623] 52ce [DBcc D6, #] 5624
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5635] 5bcd [DBcc D5, #] 5636
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5636] 51ca [DBcc D2, #] 5637
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5647] 58cb [DBcc D3, #] 5648
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5648] 52cd [DBcc D5, #] 5649
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5652] 52ce [DBcc D6, #] 5653
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5653] 57ca [DBcc D2, #] 5654
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5664] 5acf [DBcc D7, #] 5665
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5668] 5ace [DBcc D6, #] 5669
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5669] 5acb [DBcc D3, #] 5670
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5677] 59c8 [DBcc D0, #] 5678
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5678] 54cd [DBcc D5, #] 5679
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5681] 5bc9 [DBcc D1, #] 5682
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5686] 56cd [DBcc D5, #] 5687
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5693] 5ec8 [DBcc D0, #] 5694
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5709] 5acb [DBcc D3, #] 5710
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5714] 51ce [DBcc D6, #] 5715
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5715] 5dcf [DBcc D7, #] 5716
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5721] 52cc [DBcc D4, #] 5722
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5730] 5fc9 [DBcc D1, #] 5731
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5733] 5dcb [DBcc D3, #] 5734
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5741] 52cd [DBcc D5, #] 5742
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5748] 58c8 [DBcc D0, #] 5749
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5750] 5cca [DBcc D2, #] 5751
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5751] 52cc [DBcc D4, #] 5752
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5754] 5ccd [DBcc D5, #] 5755
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5757] 54c8 [DBcc D0, #] 5758
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5758] 56c8 [DBcc D0, #] 5759
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5759] 5bcb [DBcc D3, #] 5760
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5764] 5ac8 [DBcc D0, #] 5765
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5767] 5ccb [DBcc D3, #] 5768
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5771] 58cd [DBcc D5, #] 5772
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5772] 56cb [DBcc D3, #] 5773
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5774] 5ece [DBcc D6, #] 5775
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5775] 51c8 [DBcc D0, #] 5776
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5777] 5bca [DBcc D2, #] 5778
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5782] 51cb [DBcc D3, #] 5783
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5786] 52c8 [DBcc D0, #] 5787
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5788] 57c9 [DBcc D1, #] 5789
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5792] 5ec8 [DBcc D0, #] 5793
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5795] 5dcd [DBcc D5, #] 5796
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5797] 5dce [DBcc D6, #] 5798
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5818] 55cf [DBcc D7, #] 5819
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5819] 52cf [DBcc D7, #] 5820
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5823] 5bcf [DBcc D7, #] 5824
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5827] 59cc [DBcc D4, #] 5828
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5830] 58c8 [DBcc D0, #] 5831
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5833] 52cf [DBcc D7, #] 5834
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5834] 58ca [DBcc D2, #] 5835
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5835] 56cc [DBcc D4, #] 5836
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5837] 59cf [DBcc D7, #] 5838
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5850] 5acc [DBcc D4, #] 5851
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5854] 51ca [DBcc D2, #] 5855
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5858] 5bc8 [DBcc D0, #] 5859
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5864] 5ecb [DBcc D3, #] 5865
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5865] 51cf [DBcc D7, #] 5866
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5869] 59c9 [DBcc D1, #] 5870
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5876] 54cb [DBcc D3, #] 5877
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5878] 56c9 [DBcc D1, #] 5879
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5880] 54cc [DBcc D4, #] 5881
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5895] 5ccd [DBcc D5, #] 5896
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5898] 5eca [DBcc D2, #] 5899
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5905] 54c9 [DBcc D1, #] 5906
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5907] 56ca [DBcc D2, #] 5908
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5910] 56cf [DBcc D7, #] 5911
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5928] 5ccc [DBcc D4, #] 5929
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5933] 57c8 [DBcc D0, #] 5934
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5940] 55ce [DBcc D6, #] 5941
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5946] 5bc8 [DBcc D0, #] 5947
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5959] 57cb [DBcc D3, #] 5960
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5960] 5ece [DBcc D6, #] 5961
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5966] 58cf [DBcc D7, #] 5967
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5970] 5ece [DBcc D6, #] 5971
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5971] 52c8 [DBcc D0, #] 5972
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5978] 54c8 [DBcc D0, #] 5979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5980] 5fce [DBcc D6, #] 5981
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5984] 5fca [DBcc D2, #] 5985
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5985] 54cf [DBcc D7, #] 5986
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5986] 5ace [DBcc D6, #] 5987
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5988] 54cd [DBcc D5, #] 5989
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5991] 57c9 [DBcc D1, #] 5992
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5995] 54cf [DBcc D7, #] 5996
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5996] 54ca [DBcc D2, #] 5997
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [5999] 5dcd [DBcc D5, #] 6000
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6000] 5ec8 [DBcc D0, #] 6001
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6001] 5cc8 [DBcc D0, #] 6002
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6004] 51cb [DBcc D3, #] 6005
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6009] 51cf [DBcc D7, #] 6010
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6012] 5ecf [DBcc D7, #] 6013
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6013] 58cf [DBcc D7, #] 6014
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6017] 5eca [DBcc D2, #] 6018
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6018] 5ccf [DBcc D7, #] 6019
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6021] 5bcf [DBcc D7, #] 6022
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6022] 55cf [DBcc D7, #] 6023
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6035] 56cc [DBcc D4, #] 6036
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6040] 5eca [DBcc D2, #] 6041
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6041] 58ca [DBcc D2, #] 6042
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6047] 5ac8 [DBcc D0, #] 6048
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6058] 5dcd [DBcc D5, #] 6059
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6062] 5bce [DBcc D6, #] 6063
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6068] 5cca [DBcc D2, #] 6069
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6069] 5fca [DBcc D2, #] 6070
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6074] 59c8 [DBcc D0, #] 6075
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6075] 59ca [DBcc D2, #] 6076
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6085] 51cf [DBcc D7, #] 6086
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6087] 56ce [DBcc D6, #] 6088
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6089] 5dca [DBcc D2, #] 6090
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6093] 5bcf [DBcc D7, #] 6094
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6096] 5dce [DBcc D6, #] 6097
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6097] 51cb [DBcc D3, #] 6098
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6098] 52c9 [DBcc D1, #] 6099
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6103] 5bcd [DBcc D5, #] 6104
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6106] 57c8 [DBcc D0, #] 6107
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6113] 5ecb [DBcc D3, #] 6114
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6117] 59cc [DBcc D4, #] 6118
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6121] 58cd [DBcc D5, #] 6122
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6126] 5ecc [DBcc D4, #] 6127
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6127] 52cf [DBcc D7, #] 6128
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6132] 5ecb [DBcc D3, #] 6133
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6137] 5ecb [DBcc D3, #] 6138
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6140] 5fc8 [DBcc D0, #] 6141
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6141] 52ce [DBcc D6, #] 6142
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6144] 58cc [DBcc D4, #] 6145
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6150] 54cb [DBcc D3, #] 6151
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6154] 5ccc [DBcc D4, #] 6155
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6157] 58ce [DBcc D6, #] 6158
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6160] 55ce [DBcc D6, #] 6161
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6161] 54ca [DBcc D2, #] 6162
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6175] 5fc9 [DBcc D1, #] 6176
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6177] 51ca [DBcc D2, #] 6178
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6178] 56ca [DBcc D2, #] 6179
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6184] 54c8 [DBcc D0, #] 6185
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6190] 51ce [DBcc D6, #] 6191
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6197] 58cc [DBcc D4, #] 6198
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6201] 5fc8 [DBcc D0, #] 6202
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6202] 59c8 [DBcc D0, #] 6203
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6205] 5bcb [DBcc D3, #] 6206
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6207] 51cf [DBcc D7, #] 6208
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6216] 55ca [DBcc D2, #] 6217
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6218] 57c8 [DBcc D0, #] 6219
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6220] 51c9 [DBcc D1, #] 6221
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6223] 55cc [DBcc D4, #] 6224
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6226] 52cc [DBcc D4, #] 6227
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6228] 5bcb [DBcc D3, #] 6229
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6231] 5ec8 [DBcc D0, #] 6232
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6233] 5ccf [DBcc D7, #] 6234
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6239] 5ccc [DBcc D4, #] 6240
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6240] 53cf [DBcc D7, #] 6241
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6241] 5dcc [DBcc D4, #] 6242
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6243] 52cc [DBcc D4, #] 6244
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6245] 59cd [DBcc D5, #] 6246
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6251] 5cce [DBcc D6, #] 6252
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6253] 52c9 [DBcc D1, #] 6254
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6254] 5dca [DBcc D2, #] 6255
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6256] 5fc9 [DBcc D1, #] 6257
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6265] 57cd [DBcc D5, #] 6266
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6268] 5ccd [DBcc D5, #] 6269
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6271] 59c8 [DBcc D0, #] 6272
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6278] 54c9 [DBcc D1, #] 6279
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6281] 5ac9 [DBcc D1, #] 6282
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6293] 5bcf [DBcc D7, #] 6294
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6294] 59c8 [DBcc D0, #] 6295
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6301] 51c8 [DBcc D0, #] 6302
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6302] 59cf [DBcc D7, #] 6303
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6304] 5acf [DBcc D7, #] 6305
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6306] 5ecb [DBcc D3, #] 6307
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6309] 54c9 [DBcc D1, #] 6310
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6318] 55cf [DBcc D7, #] 6319
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6322] 5bcc [DBcc D4, #] 6323
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6323] 52cf [DBcc D7, #] 6324
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6326] 51cc [DBcc D4, #] 6327
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6327] 59cb [DBcc D3, #] 6328
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6330] 56c8 [DBcc D0, #] 6331
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6337] 5eca [DBcc D2, #] 6338
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6342] 57ce [DBcc D6, #] 6343
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6345] 51cc [DBcc D4, #] 6346
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6349] 5ac9 [DBcc D1, #] 6350
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6351] 5ec8 [DBcc D0, #] 6352
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6357] 5fc9 [DBcc D1, #] 6358
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6361] 5bcd [DBcc D5, #] 6362
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6362] 5cce [DBcc D6, #] 6363
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6369] 52c9 [DBcc D1, #] 6370
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6372] 55cc [DBcc D4, #] 6373
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6374] 5dca [DBcc D2, #] 6375
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6375] 5ac9 [DBcc D1, #] 6376
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6383] 55c8 [DBcc D0, #] 6384
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6384] 5dcd [DBcc D5, #] 6385
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6392] 56c9 [DBcc D1, #] 6393
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6397] 56ce [DBcc D6, #] 6398
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6404] 5dcc [DBcc D4, #] 6405
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6406] 54cb [DBcc D3, #] 6407
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6411] 5dcd [DBcc D5, #] 6412
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6416] 53c8 [DBcc D0, #] 6417
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6428] 5cca [DBcc D2, #] 6429
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6429] 5dc8 [DBcc D0, #] 6430
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6430] 5dc9 [DBcc D1, #] 6431
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6432] 51ce [DBcc D6, #] 6433
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6434] 55c9 [DBcc D1, #] 6435
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6444] 58ce [DBcc D6, #] 6445
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6445] 59cc [DBcc D4, #] 6446
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6449] 55cb [DBcc D3, #] 6450
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6452] 59cb [DBcc D3, #] 6453
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6465] 5dc9 [DBcc D1, #] 6466
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6469] 59cd [DBcc D5, #] 6470
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6470] 5bcc [DBcc D4, #] 6471
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6471] 56cb [DBcc D3, #] 6472
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6472] 5dc9 [DBcc D1, #] 6473
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6475] 5cc9 [DBcc D1, #] 6476
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6481] 5ec8 [DBcc D0, #] 6482
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6487] 52c8 [DBcc D0, #] 6488
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6488] 5ccc [DBcc D4, #] 6489
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6489] 59c8 [DBcc D0, #] 6490
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6490] 57ce [DBcc D6, #] 6491
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6497] 58cc [DBcc D4, #] 6498
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6500] 52c9 [DBcc D1, #] 6501
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6502] 5ace [DBcc D6, #] 6503
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6504] 5bcd [DBcc D5, #] 6505
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6520] 5dca [DBcc D2, #] 6521
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6525] 51cc [DBcc D4, #] 6526
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6527] 52ce [DBcc D6, #] 6528
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6532] 5bc9 [DBcc D1, #] 6533
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6541] 5cce [DBcc D6, #] 6542
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6547] 5dce [DBcc D6, #] 6548
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6548] 51c9 [DBcc D1, #] 6549
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6566] 51cb [DBcc D3, #] 6567
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6567] 51cc [DBcc D4, #] 6568
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6574] 5ecc [DBcc D4, #] 6575
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6579] 51ca [DBcc D2, #] 6580
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6589] 57cb [DBcc D3, #] 6590
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6594] 56ca [DBcc D2, #] 6595
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6603] 54ce [DBcc D6, #] 6604
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6606] 5dce [DBcc D6, #] 6607
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6608] 58cd [DBcc D5, #] 6609
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6614] 57ca [DBcc D2, #] 6615
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6615] 51cb [DBcc D3, #] 6616
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6618] 54cc [DBcc D4, #] 6619
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6619] 56ca [DBcc D2, #] 6620
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6629] 56cc [DBcc D4, #] 6630
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6631] 56cf [DBcc D7, #] 6632
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6634] 56cf [DBcc D7, #] 6635
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6637] 51c9 [DBcc D1, #] 6638
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6640] 5ac9 [DBcc D1, #] 6641
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6645] 5bc8 [DBcc D0, #] 6646
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6646] 51cc [DBcc D4, #] 6647
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6648] 57cb [DBcc D3, #] 6649
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6654] 51ca [DBcc D2, #] 6655
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6658] 51c8 [DBcc D0, #] 6659
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6659] 51c8 [DBcc D0, #] 6660
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6661] 57ce [DBcc D6, #] 6662
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6670] 51cd [DBcc D5, #] 6671
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6672] 5ec9 [DBcc D1, #] 6673
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6674] 5bce [DBcc D6, #] 6675
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6689] 58cf [DBcc D7, #] 6690
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6690] 5bcd [DBcc D5, #] 6691
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6696] 52c8 [DBcc D0, #] 6697
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6707] 55cf [DBcc D7, #] 6708
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6715] 59cf [DBcc D7, #] 6716
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6716] 5dcc [DBcc D4, #] 6717
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6717] 57ce [DBcc D6, #] 6718
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6718] 51c8 [DBcc D0, #] 6719
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6722] 55c9 [DBcc D1, #] 6723
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6728] 55cf [DBcc D7, #] 6729
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6734] 58ca [DBcc D2, #] 6735
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6736] 51cf [DBcc D7, #] 6737
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6738] 5ecb [DBcc D3, #] 6739
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6739] 51c9 [DBcc D1, #] 6740
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6742] 5ecf [DBcc D7, #] 6743
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6743] 56cc [DBcc D4, #] 6744
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6751] 5aca [DBcc D2, #] 6752
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6753] 5ec8 [DBcc D0, #] 6754
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6756] 52cf [DBcc D7, #] 6757
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6762] 57cd [DBcc D5, #] 6763
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6763] 57ca [DBcc D2, #] 6764
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6765] 5ace [DBcc D6, #] 6766
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6766] 58cb [DBcc D3, #] 6767
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6768] 51cc [DBcc D4, #] 6769
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6773] 5bca [DBcc D2, #] 6774
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6774] 5ccf [DBcc D7, #] 6775
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6779] 5ec9 [DBcc D1, #] 6780
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6780] 53cf [DBcc D7, #] 6781
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6784] 57cc [DBcc D4, #] 6785
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6788] 5dcf [DBcc D7, #] 6789
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6792] 5ecc [DBcc D4, #] 6793
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6795] 59cd [DBcc D5, #] 6796
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6800] 52c8 [DBcc D0, #] 6801
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6802] 5dca [DBcc D2, #] 6803
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6807] 5dca [DBcc D2, #] 6808
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6810] 5dc8 [DBcc D0, #] 6811
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6812] 53c8 [DBcc D0, #] 6813
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6813] 56c8 [DBcc D0, #] 6814
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6816] 5ccd [DBcc D5, #] 6817
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6818] 55cf [DBcc D7, #] 6819
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6827] 51c8 [DBcc D0, #] 6828
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6831] 54cf [DBcc D7, #] 6832
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6833] 5bca [DBcc D2, #] 6834
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6838] 55cf [DBcc D7, #] 6839
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6848] 51c9 [DBcc D1, #] 6849
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6850] 5acb [DBcc D3, #] 6851
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6855] 57c8 [DBcc D0, #] 6856
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6859] 5bcd [DBcc D5, #] 6860
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6860] 51cb [DBcc D3, #] 6861
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6863] 5ccc [DBcc D4, #] 6864
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6864] 5dcc [DBcc D4, #] 6865
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6865] 5ecd [DBcc D5, #] 6866
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6867] 55ce [DBcc D6, #] 6868
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6868] 5fc9 [DBcc D1, #] 6869
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6870] 5ecf [DBcc D7, #] 6871
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6877] 5fce [DBcc D6, #] 6878
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6886] 5ccc [DBcc D4, #] 6887
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6887] 59cd [DBcc D5, #] 6888
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6889] 54cd [DBcc D5, #] 6890
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6892] 5acb [DBcc D3, #] 6893
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6899] 54c8 [DBcc D0, #] 6900
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6901] 58cd [DBcc D5, #] 6902
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6904] 5ece [DBcc D6, #] 6905
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6925] 52ce [DBcc D6, #] 6926
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6938] 5bcb [DBcc D3, #] 6939
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6941] 58cd [DBcc D5, #] 6942
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6946] 59c9 [DBcc D1, #] 6947
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6953] 5cc8 [DBcc D0, #] 6954
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6961] 57cf [DBcc D7, #] 6962
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6962] 51c8 [DBcc D0, #] 6963
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6968] 51c8 [DBcc D0, #] 6969
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6969] 5fcc [DBcc D4, #] 6970
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6975] 5ccf [DBcc D7, #] 6976
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6978] 51cc [DBcc D4, #] 6979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6980] 52c8 [DBcc D0, #] 6981
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6983] 5eca [DBcc D2, #] 6984
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6984] 56cf [DBcc D7, #] 6985
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [6986] 5fc8 [DBcc D0, #] 6987
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7001] 5ecf [DBcc D7, #] 7002
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7005] 57cd [DBcc D5, #] 7006
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7008] 5ccd [DBcc D5, #] 7009
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7009] 5ecc [DBcc D4, #] 7010
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7011] 5ecc [DBcc D4, #] 7012
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7027] 5ec8 [DBcc D0, #] 7028
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7030] 5fcc [DBcc D4, #] 7031
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7035] 5acb [DBcc D3, #] 7036
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7039] 51cf [DBcc D7, #] 7040
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7041] 56cb [DBcc D3, #] 7042
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7042] 51c8 [DBcc D0, #] 7043
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7045] 5ccd [DBcc D5, #] 7046
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7052] 52cb [DBcc D3, #] 7053
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7053] 59cb [DBcc D3, #] 7054
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7056] 57cb [DBcc D3, #] 7057
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7057] 5ac8 [DBcc D0, #] 7058
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7058] 56ce [DBcc D6, #] 7059
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7064] 5ac9 [DBcc D1, #] 7065
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7070] 5ecd [DBcc D5, #] 7071
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7072] 51cb [DBcc D3, #] 7073
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7076] 57cf [DBcc D7, #] 7077
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7077] 59c8 [DBcc D0, #] 7078
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7079] 58cb [DBcc D3, #] 7080
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7084] 58c9 [DBcc D1, #] 7085
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7087] 5ecf [DBcc D7, #] 7088
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7089] 55ce [DBcc D6, #] 7090
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7093] 51cb [DBcc D3, #] 7094
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7096] 55c9 [DBcc D1, #] 7097
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7099] 51ca [DBcc D2, #] 7100
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7100] 59cb [DBcc D3, #] 7101
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7102] 59cb [DBcc D3, #] 7103
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7105] 56cd [DBcc D5, #] 7106
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7115] 55cf [DBcc D7, #] 7116
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7116] 5ece [DBcc D6, #] 7117
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7121] 54c8 [DBcc D0, #] 7122
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7122] 5ccd [DBcc D5, #] 7123
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7127] 56cb [DBcc D3, #] 7128
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7128] 58cf [DBcc D7, #] 7129
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7131] 55cc [DBcc D4, #] 7132
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7133] 57c9 [DBcc D1, #] 7134
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7138] 52ca [DBcc D2, #] 7139
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7151] 5acf [DBcc D7, #] 7152
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7152] 52cd [DBcc D5, #] 7153
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7153] 57ca [DBcc D2, #] 7154
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7159] 54ca [DBcc D2, #] 7160
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7163] 54ca [DBcc D2, #] 7164
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7164] 5dcc [DBcc D4, #] 7165
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7169] 52cf [DBcc D7, #] 7170
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7171] 53c9 [DBcc D1, #] 7172
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7176] 59c9 [DBcc D1, #] 7177
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7180] 54ca [DBcc D2, #] 7181
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7181] 55c8 [DBcc D0, #] 7182
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7185] 51ca [DBcc D2, #] 7186
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7192] 5fce [DBcc D6, #] 7193
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7196] 53ca [DBcc D2, #] 7197
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7198] 5acb [DBcc D3, #] 7199
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7200] 5dc9 [DBcc D1, #] 7201
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7203] 59cd [DBcc D5, #] 7204
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7205] 5bcf [DBcc D7, #] 7206
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7212] 59cf [DBcc D7, #] 7213
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7214] 51cc [DBcc D4, #] 7215
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7219] 54ca [DBcc D2, #] 7220
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7222] 51c9 [DBcc D1, #] 7223
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7223] 5dcd [DBcc D5, #] 7224
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7226] 51cd [DBcc D5, #] 7227
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7227] 51cf [DBcc D7, #] 7228
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7233] 5dcb [DBcc D3, #] 7234
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7235] 51cf [DBcc D7, #] 7236
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7236] 51c9 [DBcc D1, #] 7237
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7239] 5cc9 [DBcc D1, #] 7240
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7240] 54cc [DBcc D4, #] 7241
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7252] 57ce [DBcc D6, #] 7253
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7265] 51cf [DBcc D7, #] 7266
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7267] 5dc9 [DBcc D1, #] 7268
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7268] 5ecf [DBcc D7, #] 7269
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7269] 5bcb [DBcc D3, #] 7270
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7270] 59cf [DBcc D7, #] 7271
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7271] 5acb [DBcc D3, #] 7272
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7279] 5ecc [DBcc D4, #] 7280
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7280] 5dc9 [DBcc D1, #] 7281
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7285] 5ccf [DBcc D7, #] 7286
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7287] 57c8 [DBcc D0, #] 7288
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7291] 51cf [DBcc D7, #] 7292
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7295] 5ecd [DBcc D5, #] 7296
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7299] 5ec8 [DBcc D0, #] 7300
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7301] 5bcc [DBcc D4, #] 7302
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7303] 58cf [DBcc D7, #] 7304
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7309] 5cc8 [DBcc D0, #] 7310
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7313] 57cb [DBcc D3, #] 7314
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7316] 55c9 [DBcc D1, #] 7317
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7322] 5acf [DBcc D7, #] 7323
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7323] 57cb [DBcc D3, #] 7324
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7328] 58ca [DBcc D2, #] 7329
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7337] 5bcc [DBcc D4, #] 7338
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7341] 5cce [DBcc D6, #] 7342
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7349] 52c9 [DBcc D1, #] 7350
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7350] 56c8 [DBcc D0, #] 7351
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7351] 56cb [DBcc D3, #] 7352
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7354] 52ca [DBcc D2, #] 7355
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7356] 59c9 [DBcc D1, #] 7357
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7362] 58ce [DBcc D6, #] 7363
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7371] 5dcc [DBcc D4, #] 7372
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7375] 5fcf [DBcc D7, #] 7376
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7380] 5dcb [DBcc D3, #] 7381
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7381] 51cb [DBcc D3, #] 7382
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7382] 5bc8 [DBcc D0, #] 7383
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7388] 55cf [DBcc D7, #] 7389
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7389] 5dcd [DBcc D5, #] 7390
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7391] 58c8 [DBcc D0, #] 7392
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7393] 53cf [DBcc D7, #] 7394
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7395] 5ecf [DBcc D7, #] 7396
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7396] 51c8 [DBcc D0, #] 7397
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7404] 59cd [DBcc D5, #] 7405
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7405] 57cf [DBcc D7, #] 7406
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7406] 54cb [DBcc D3, #] 7407
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7408] 51c8 [DBcc D0, #] 7409
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7411] 5bc8 [DBcc D0, #] 7412
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7413] 5dce [DBcc D6, #] 7414
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7416] 59ca [DBcc D2, #] 7417
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7417] 54ce [DBcc D6, #] 7418
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7421] 55ca [DBcc D2, #] 7422
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7422] 55ce [DBcc D6, #] 7423
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7423] 57cf [DBcc D7, #] 7424
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7424] 54cd [DBcc D5, #] 7425
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7425] 5bc8 [DBcc D0, #] 7426
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7427] 5bc9 [DBcc D1, #] 7428
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7434] 59ce [DBcc D6, #] 7435
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7437] 57c9 [DBcc D1, #] 7438
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7438] 52ca [DBcc D2, #] 7439
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7441] 5dcb [DBcc D3, #] 7442
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7442] 52c9 [DBcc D1, #] 7443
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7443] 5eca [DBcc D2, #] 7444
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7446] 51c9 [DBcc D1, #] 7447
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7455] 5eca [DBcc D2, #] 7456
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7458] 51ce [DBcc D6, #] 7459
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7466] 51cc [DBcc D4, #] 7467
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7468] 5ecf [DBcc D7, #] 7469
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7472] 55ca [DBcc D2, #] 7473
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7475] 51cb [DBcc D3, #] 7476
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7478] 56cc [DBcc D4, #] 7479
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7484] 56cd [DBcc D5, #] 7485
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7488] 5ece [DBcc D6, #] 7489
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7490] 58cf [DBcc D7, #] 7491
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7495] 51c9 [DBcc D1, #] 7496
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7498] 5ac8 [DBcc D0, #] 7499
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7508] 5ecf [DBcc D7, #] 7509
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7512] 55ce [DBcc D6, #] 7513
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7518] 51cb [DBcc D3, #] 7519
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7523] 5acc [DBcc D4, #] 7524
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7526] 58c8 [DBcc D0, #] 7527
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7527] 52ce [DBcc D6, #] 7528
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7532] 59cc [DBcc D4, #] 7533
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7541] 55cf [DBcc D7, #] 7542
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7544] 51c8 [DBcc D0, #] 7545
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7550] 5ec9 [DBcc D1, #] 7551
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7563] 5cc8 [DBcc D0, #] 7564
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7564] 55ca [DBcc D2, #] 7565
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7565] 59cb [DBcc D3, #] 7566
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7573] 5eca [DBcc D2, #] 7574
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7578] 5ccf [DBcc D7, #] 7579
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7580] 5cca [DBcc D2, #] 7581
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7581] 54cc [DBcc D4, #] 7582
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7583] 51c8 [DBcc D0, #] 7584
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7584] 57cd [DBcc D5, #] 7585
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7591] 54c8 [DBcc D0, #] 7592
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7593] 58cc [DBcc D4, #] 7594
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7594] 5ecd [DBcc D5, #] 7595
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7595] 54cc [DBcc D4, #] 7596
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7604] 59c9 [DBcc D1, #] 7605
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7607] 57cc [DBcc D4, #] 7608
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7611] 56cf [DBcc D7, #] 7612
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7614] 5fc9 [DBcc D1, #] 7615
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7620] 51c8 [DBcc D0, #] 7621
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7621] 58cf [DBcc D7, #] 7622
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7623] 59cc [DBcc D4, #] 7624
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7624] 5ccf [DBcc D7, #] 7625
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7626] 53c9 [DBcc D1, #] 7627
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7630] 51cb [DBcc D3, #] 7631
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7636] 51cb [DBcc D3, #] 7637
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7637] 59cf [DBcc D7, #] 7638
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7638] 51c9 [DBcc D1, #] 7639
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7642] 58cc [DBcc D4, #] 7643
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7643] 51ca [DBcc D2, #] 7644
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7647] 59c9 [DBcc D1, #] 7648
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7648] 58ce [DBcc D6, #] 7649
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7651] 5ec9 [DBcc D1, #] 7652
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7652] 5bcc [DBcc D4, #] 7653
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7655] 55cd [DBcc D5, #] 7656
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7658] 51c9 [DBcc D1, #] 7659
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7660] 54ca [DBcc D2, #] 7661
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7662] 52cb [DBcc D3, #] 7663
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7666] 57cb [DBcc D3, #] 7667
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7668] 5dcc [DBcc D4, #] 7669
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7675] 58c8 [DBcc D0, #] 7676
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7677] 52c8 [DBcc D0, #] 7678
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7678] 53cb [DBcc D3, #] 7679
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7679] 58cf [DBcc D7, #] 7680
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7683] 5eca [DBcc D2, #] 7684
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7685] 5dcb [DBcc D3, #] 7686
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7688] 51cb [DBcc D3, #] 7689
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7690] 52cd [DBcc D5, #] 7691
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7695] 58ca [DBcc D2, #] 7696
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7700] 5ece [DBcc D6, #] 7701
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7703] 59ce [DBcc D6, #] 7704
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7704] 5dcc [DBcc D4, #] 7705
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7705] 57c9 [DBcc D1, #] 7706
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7713] 5cca [DBcc D2, #] 7714
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7720] 52cf [DBcc D7, #] 7721
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7722] 5bcf [DBcc D7, #] 7723
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7726] 57c9 [DBcc D1, #] 7727
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7733] 5cca [DBcc D2, #] 7734
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7735] 56ce [DBcc D6, #] 7736
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7748] 56c8 [DBcc D0, #] 7749
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7751] 56cf [DBcc D7, #] 7752
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7752] 5ecd [DBcc D5, #] 7753
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7757] 54c8 [DBcc D0, #] 7758
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7759] 5bc8 [DBcc D0, #] 7760
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7760] 57cc [DBcc D4, #] 7761
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7770] 56cf [DBcc D7, #] 7771
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7787] 5ccb [DBcc D3, #] 7788
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7789] 5ecd [DBcc D5, #] 7790
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7792] 5acf [DBcc D7, #] 7793
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7795] 51cc [DBcc D4, #] 7796
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7801] 52cf [DBcc D7, #] 7802
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7809] 5ece [DBcc D6, #] 7810
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7810] 5cc9 [DBcc D1, #] 7811
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7814] 5ecc [DBcc D4, #] 7815
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7822] 5aca [DBcc D2, #] 7823
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7823] 52cd [DBcc D5, #] 7824
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7828] 55ca [DBcc D2, #] 7829
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7831] 5ecb [DBcc D3, #] 7832
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7833] 58cc [DBcc D4, #] 7834
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7837] 5ec8 [DBcc D0, #] 7838
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7839] 59cc [DBcc D4, #] 7840
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7841] 52c8 [DBcc D0, #] 7842
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7843] 5bcc [DBcc D4, #] 7844
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7849] 5bcd [DBcc D5, #] 7850
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7853] 58c9 [DBcc D1, #] 7854
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7856] 57ce [DBcc D6, #] 7857
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7863] 52ce [DBcc D6, #] 7864
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7865] 5bcb [DBcc D3, #] 7866
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7866] 5fcc [DBcc D4, #] 7867
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7867] 5ec8 [DBcc D0, #] 7868
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7872] 59cd [DBcc D5, #] 7873
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7875] 5ccd [DBcc D5, #] 7876
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7879] 58cc [DBcc D4, #] 7880
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7887] 5dc8 [DBcc D0, #] 7888
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7898] 51c8 [DBcc D0, #] 7899
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7914] 55c8 [DBcc D0, #] 7915
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7915] 5ccd [DBcc D5, #] 7916
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7916] 5ac8 [DBcc D0, #] 7917
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7922] 5fc9 [DBcc D1, #] 7923
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7923] 5ac8 [DBcc D0, #] 7924
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7924] 5fcb [DBcc D3, #] 7925
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7927] 58ce [DBcc D6, #] 7928
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7937] 59ce [DBcc D6, #] 7938
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7941] 5dc8 [DBcc D0, #] 7942
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7946] 5ece [DBcc D6, #] 7947
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7947] 56c9 [DBcc D1, #] 7948
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7948] 52cf [DBcc D7, #] 7949
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7952] 54ca [DBcc D2, #] 7953
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7956] 54cc [DBcc D4, #] 7957
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7959] 58c8 [DBcc D0, #] 7960
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7965] 54cc [DBcc D4, #] 7966
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7969] 59cd [DBcc D5, #] 7970
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7971] 51ca [DBcc D2, #] 7972
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7978] 5acf [DBcc D7, #] 7979
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7980] 5ecc [DBcc D4, #] 7981
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [7999] 53cc [DBcc D4, #] 8000
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8001] 56ca [DBcc D2, #] 8002
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8007] 5acb [DBcc D3, #] 8008
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8013] 58ce [DBcc D6, #] 8014
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8019] 52c8 [DBcc D0, #] 8020
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8020] 54ca [DBcc D2, #] 8021
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8025] 56cf [DBcc D7, #] 8026
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8026] 55cf [DBcc D7, #] 8027
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8034] 58cf [DBcc D7, #] 8035
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8039] 55c9 [DBcc D1, #] 8040
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8040] 5bc9 [DBcc D1, #] 8041
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8053] 5acd [DBcc D5, #] 8054
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8062] 56cd [DBcc D5, #] 8063
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+FAIL [8064] 5ac8 [DBcc D0, #] 8065
+  ram[0007f3]	expected        222 (0xde) 	got         30 (0x1e)
+6101 passed, 1964 failed
