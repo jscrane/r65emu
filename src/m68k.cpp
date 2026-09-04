@@ -2300,6 +2300,21 @@ void m68k::roxr_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		return;
 	}
 	case 0b01: {	// ROXR.w
+		uint16_t val = (uint16_t)v;
+		bool x = is_set(X_FLAG);
+		uint32_t state = ((uint32_t)(x ? 1 : 0) << 16) | val;
+		shift_count = shift_count % 17;
+		uint32_t rotated = shift_count
+			? (((state >> shift_count) | (state << (17 - shift_count))) & 0x1ffff)
+			: state;
+
+		uint16_t res = (uint16_t)(rotated & 0xffff);
+		x = rotated & 0x10000;
+
+		d(dreg, (v & 0xffff0000) | res);
+		set_nz((int16_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, x);
 		return;
 	}
 	case 0b10: {	// ROXR.l
