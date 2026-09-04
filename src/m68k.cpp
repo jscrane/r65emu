@@ -2180,10 +2180,17 @@ void m68k::shift_rotate_memory(uint16_t op) {
 	case 0b100: {	// ROXR
 		return;
 	}
+	*/
 	case 0b101: {	// ROXL
+		uint16_t high_bit = (val >> 15) & 1;
+		bool x = is_set(X_FLAG);
+		uint16_t res = (val << 1) | (x? 1: 0);
+		write_word(ea, res);
+		set_nz((int16_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, high_bit);
 		return;
 	}
-	*/
 	case 0b110: {	// ROR
 		uint16_t low_bit = val & 1;
 		uint16_t res = (val >> 1) | (low_bit << 15);
@@ -2295,6 +2302,21 @@ void m68k::roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		return;
 	}
 	case 0b01: {	// ROXL.w
+		uint16_t val = (uint16_t)v;
+		bool x = is_set(X_FLAG);
+		uint32_t state = ((uint32_t)(x ? 1 : 0) << 16) | val;
+		shift_count = shift_count % 17;
+		uint32_t rotated = shift_count
+			? (((state << shift_count) | (state >> (17 - shift_count))) & 0x1ffff)
+			: state;
+
+		uint16_t res = (uint16_t)(rotated & 0xffff);
+		x = rotated & 0x10000;
+
+		d(dreg, (v & 0xffff0000) | res);
+		set_nz((int16_t)res);
+		clr_flag(V_FLAG);
+		set_flag(C_FLAG | X_FLAG, x);
 		return;
 	}
 	case 0b10: {	// ROXL.l
