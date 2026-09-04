@@ -12,6 +12,7 @@ TESTS="${*:-ADDA.l ADDA.w ADD.b ADD.l ADD.w ADDX.b ADDX.l ADDX.w AND.b ANDItoCCR
 	RTE RTR RTS Scc SUBA.l SUBA.w SUB.b SUB.l SUB.w SUBX.b SUBX.l SUBX.w \
 	SWAP TAS TRAP TRAPV TST.b TST.l TST.w UNLINK}"
 
+# NYI: ABCD BCHG BCLR BSET DIVS DIVU MOVEM MOVEP MULS MULU ROXL ROXR
 for t in $TESTS; do
 	echo -n "$t: "
 	if $(./sstests ${TESTDIR}/$t.json.gz -k | cmp -s - results/$t); then

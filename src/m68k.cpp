@@ -2616,7 +2616,7 @@ void m68k::asl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 			for (int i = 0; i < shift_count; i++) {
 				uint16_t newx = x << 1;
 				if ((x ^ newx) & 0x8000)
-				overflow = true;
+					overflow = true;
 				x = newx;
 			}
 			cxflag = (val >> (16 - shift_count)) & 1;
