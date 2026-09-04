@@ -2406,6 +2406,7 @@ void m68k::ror_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 	int dreg = op & 7;
 	uint32_t v = d(dreg);
+	bool cflag;
 
 	if (shift_count == 0) {
 		if (size == 0) set_nz((int8_t)v);
@@ -2418,7 +2419,6 @@ void m68k::ror_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 	switch (size) {
 	case 0b00: {	// ROR.b
 		uint8_t val = (uint8_t)v, res;
-		bool cflag;
 
 		shift_count = shift_count % 8;
 		if (shift_count == 0) {
@@ -2430,13 +2430,10 @@ void m68k::ror_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		}
 		d(dreg, (v & 0xffffff00) | res);
 		set_nz((int8_t)res);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, cflag);
-		return;
+		break;
 	}
 	case 0b01: {	// ROR.w
 		uint16_t val = (uint16_t)v, res;
-		bool cflag;
 
 		shift_count = shift_count % 16;
 		if (shift_count == 0) {
@@ -2448,13 +2445,10 @@ void m68k::ror_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		}
 		d(dreg, (v & 0xffff0000) | res);
 		set_nz((int16_t)res);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, cflag);
-		return;
+		break;
 	}
 	case 0b10: {	// ROR.l
 		uint32_t val = v, res;
-		bool cflag;
 
 		shift_count = shift_count % 32;
 		if (shift_count == 0) {
@@ -2466,17 +2460,18 @@ void m68k::ror_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		}
 		d(dreg, res);
 		set_nz((int32_t)res);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, cflag);
-		return;
+		break;
 	}
 	}
+	clr_flag(V_FLAG);
+	set_flag(C_FLAG, cflag);
 }
 
 void m68k::rol_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 
 	int dreg = op & 7;
 	uint32_t v = d(dreg);
+	bool cflag;
 
 	if (shift_count == 0) {
 		if (size == 0) set_nz((int8_t)v);
@@ -2489,7 +2484,6 @@ void m68k::rol_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 	switch (size) {
 	case 0b00: {	// ROL.b
 		uint8_t val = (uint8_t)v, res;
-		bool cflag;
 
 		shift_count = shift_count % 8;
 		if (shift_count == 0) {
@@ -2501,13 +2495,10 @@ void m68k::rol_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		}
 		d(dreg, (v & 0xffffff00) | res);
 		set_nz((int8_t)res);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, cflag);
-		return;
+		break;
 	}
 	case 0b01: {	// ROL.w
 		uint16_t val = (uint16_t)v, res;
-		bool cflag;
 
 		shift_count = shift_count % 16;
 		if (shift_count == 0) {
@@ -2519,13 +2510,10 @@ void m68k::rol_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		}
 		d(dreg, (v & 0xffff0000) | res);
 		set_nz((int16_t)res);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, cflag);
-		return;
+		break;
 	}
 	case 0b10: {	// ROL.l
 		uint32_t val = v, res;
-		bool cflag;
 
 		shift_count = shift_count % 32;
 		if (shift_count == 0) {
@@ -2537,11 +2525,11 @@ void m68k::rol_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
 		}
 		d(dreg, res);
 		set_nz((int32_t)res);
-		clr_flag(V_FLAG);
-		set_flag(C_FLAG, cflag);
-		return;
+		break;
 	}
 	}
+	clr_flag(V_FLAG);
+	set_flag(C_FLAG, cflag);
 }
 
 void m68k::lsl_reg(uint16_t op, uint8_t size, uint8_t shift_count) {
