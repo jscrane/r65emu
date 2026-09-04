@@ -23,7 +23,6 @@ all previously-passing tests. It fails fast.
 
 ## Current Failures
 - NBCD
-- SBCD
 
 ## Testsuite Bugs
 - ASL.b: `1582` and `1760`.
