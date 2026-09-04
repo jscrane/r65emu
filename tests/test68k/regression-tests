@@ -16,7 +16,7 @@ shift $((OPTIND - 1))
 if [ $# -gt 0 ]; then
 	TESTS="$*"
 else
-	TESTS="$(ls -1 ${TESTDIR} | sed -e 's/.json.gz//')"
+	TESTS="$(ls -1 ${TESTDIR} | grep "json.gz" | sed -e 's/.json.gz//')"
 fi
 
 for t in $TESTS; do

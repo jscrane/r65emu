@@ -172,14 +172,14 @@ private:
 
 	void shift_rotate_memory(uint16_t op);
 	void shift_rotate_register(uint16_t op);
-	void asr_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void lsr_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void roxr_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void ror_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void asl_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void lsl_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void roxl_reg(uint16_t op, uint8_t size, uint8_t shift_count);
-	void rol_reg(uint16_t op, uint8_t size, uint8_t shift_count);
+	void asr_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void lsr_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void roxr_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void ror_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void asl_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void lsl_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void roxl_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void rol_reg(int dreg, uint8_t size, uint8_t shift_count);
 
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
