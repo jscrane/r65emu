@@ -354,8 +354,43 @@ void m68k::immediate(uint16_t op) {
 	}
 	}
 
-	int mode = (op >> 3) & 7;
 	int reg = op & 7;
+
+	if ((op & 0xf138) == 0x0108) {	// MOVEP
+		uint8_t dreg = (op >> 9) & 7, mode = (op >> 6) & 7;
+		uint32_t addr = a(reg) + (int16_t)fetch16();
+		uint32_t val = d(dreg);
+
+		switch (mode) {
+		case 0b100: {	// MOVEP.w Memory to Register
+			uint8_t b0 = read8(addr), b1 = read8(addr + 2);
+			d(dreg, (val & 0xffff0000) | ((uint16_t)b0 << 8) | b1);
+			return;
+		}
+		case 0b110: {	// MOVEP.w Register to Memory
+			write8(addr, (val >> 8) & 0xff);
+			write8(addr + 2, val & 0xff);
+			return;
+		}
+		case 0b101: {	// MOVEP.l Memory to Register
+			uint8_t b0 = read8(addr), b1 = read8(addr + 2), b2 = read8(addr + 4), b3 = read8(addr + 6);
+			d(dreg, ((uint32_t)b0 << 24) | ((uint32_t)b1 << 16) | ((uint32_t)b2 << 8) | b3);
+			return;
+		}
+		case 0b111: {	// MOVEP.l Register to Memory
+			write8(addr, (val >> 24) & 0xff);
+			write8(addr + 2, (val >> 16) & 0xff);
+			write8(addr + 4, (val >> 8) & 0xff);
+			write8(addr + 6, val & 0xff);
+			return;
+		}
+		default:
+			illegal(op);
+			return;
+		}
+	}
+
+	int mode = (op >> 3) & 7;
 
 	switch (op & 0xffc0) {
 	case 0x0000: {	// ORI.b
@@ -1169,12 +1204,15 @@ void m68k::misc(uint16_t op) {
 
 		if (!_trapped) {
 			int x = is_set(X_FLAG);
-			int lo = (u & 0x0f), hi = (u & 0xf0) >> 4;
-			int dec = 10*hi + lo;
-			int res = 100 - dec - x;
-			bool borrow = (res < 100);
-			if (res >= 100) res -= 100;
-			uint8_t v = ((res / 10) << 4) | (res % 10);
+			int val = 0;
+			int res = val - u - x;
+
+			if (((val ^ u ^ res) & 0x10) || ((u & 0x0f) > 9))
+				res -= 6;
+			if ((res & 0x100) || ((u & 0xf0) > 0x90))
+				res -= 0x60;
+			uint8_t v = (uint8_t)(res & 0xff);
+			bool borrow = (u + x);
 			write_byte(src, v);
 			// V is documented as undefined on real 68000 for BCD ops
 			// (NBCD/ABCD/SBCD) -- checked three candidate formulas against
@@ -1182,6 +1220,7 @@ void m68k::misc(uint16_t op) {
 			// before) and none matched cleanly; treating as an accepted
 			// gap, same category as the address-error SSW residual bits.
 			// Leaving V untouched here rather than guessing further.
+			// (however, see here: https://github.com/kstenerud/Musashi/blob/master/m68k_in.c, lines 7768...)
 			set_flag(C_FLAG | X_FLAG, borrow);
 			set_flag(N_FLAG, v & 0x80);
 			if (v != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
