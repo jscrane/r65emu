@@ -1,11 +1,21 @@
 #!/bin/bash
 
+KEEP_GOING=false
+
+while getopts "k" opt; do
+	case "$opt" in
+		k) KEEP_GOING=true;;
+		*) echo "Usage: $0 [-k] [tests...]"; exit 1;;
+	esac
+done
+
+shift $((OPTIND - 1))
+
 TESTDIR=~/src/680x0/68000/v1
-ALL_TESTS=$(ls -1 ${TESTDIR} | sed -e 's/.json.gz//')
 if [ $# -gt 0 ]; then
 	TESTS="$*"
 else
-	TESTS="$ALL_TESTS"
+	TESTS="$(ls -1 ${TESTDIR} | sed -e 's/.json.gz//')"
 fi
 
 for t in $TESTS; do
@@ -18,6 +28,6 @@ for t in $TESTS; do
 		echo "PASS"
 	else
 		echo "FAIL"
-		exit -1
+		$KEEP_GOING || exit 1
 	fi
 done

@@ -15,11 +15,12 @@ Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/commen
 ## Regression Testing
 
 ```shell
-./regression-tests.sh [some-tests]
+./regression-tests [-k] [some-tests]
 ```
 
-If `some-tests` is present, runs them and compares their output against previously-passing output. Otherwise runs
-all previously-passing tests. It fails fast.
+- if `some-tests` is present, runs them and compares their output against previously-passing output
+- otherwise runs all tests discovered in the directory `~/src/680x0/68000/v1/`
+- if the `-k` flag is given it keeps going on failure; default is fail fast
 
 ## Current Failures
 - NBCD
