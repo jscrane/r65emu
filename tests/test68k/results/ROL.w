@@ -1,2816 +1,2975 @@
-/home/steve/src/680x0/68000/v1/ASL.w.json.gz: 8065 tests
-FAIL [7] e1eb [ASL.w (d16, A3)] 8
+/home/steve/src/680x0/68000/v1/ROL.w.json.gz: 8065 tests
+FAIL [5] e7f4 [ROL.w (d8, A4, Xn)] 6
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [30] e1e3 [ASL.w -(A3)] 31
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [33] e1e3 [ASL.w -(A3)] 34
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [34] e1e3 [ASL.w -(A3)] 35
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [40] e1d6 [ASL.w (A6)] 41
+FAIL [14] e7dd [ROL.w (A5)+] 15
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [44] e1ea [ASL.w (d16, A2)] 45
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [57] e1d6 [ASL.w (A6)] 58
+FAIL [20] e7d2 [ROL.w (A2)] 21
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [62] e1ec [ASL.w (d16, A4)] 63
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [66] e1ef [ASL.w (d16, A7)] 67
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [72] e1de [ASL.w (A6)+] 73
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [93] e1ea [ASL.w (d16, A2)] 94
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [96] e1dd [ASL.w (A5)+] 97
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [103] e1d9 [ASL.w (A1)+] 104
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [106] e1f0 [ASL.w (d8, A0, Xn)] 107
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [128] e1ee [ASL.w (d16, A6)] 129
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [141] e1f2 [ASL.w (d8, A2, Xn)] 142
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [145] e1f3 [ASL.w (d8, A3, Xn)] 146
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [151] e1d8 [ASL.w (A0)+] 152
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [152] e1d3 [ASL.w (A3)] 153
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [171] e1dd [ASL.w (A5)+] 172
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [173] e1e6 [ASL.w -(A6)] 174
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [184] e1ee [ASL.w (d16, A6)] 185
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [188] e1f3 [ASL.w (d8, A3, Xn)] 189
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [200] e1f5 [ASL.w (d8, A5, Xn)] 201
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [212] e1f7 [ASL.w (d8, A7, Xn)] 213
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [219] e1f7 [ASL.w (d8, A7, Xn)] 220
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [221] e1f3 [ASL.w (d8, A3, Xn)] 222
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [222] e1e6 [ASL.w -(A6)] 223
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [230] e1f9 [ASL.w (xxx).l] 231
+FAIL [26] e7f9 [ROL.w (xxx).l] 27
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [236] e1ea [ASL.w (d16, A2)] 237
+FAIL [30] e7e1 [ROL.w -(A1)] 31
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [35] e7d0 [ROL.w (A0)] 36
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [38] e7ee [ROL.w (d16, A6)] 39
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [259] e1dc [ASL.w (A4)+] 260
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+FAIL [40] e7e2 [ROL.w -(A2)] 41
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [270] e1f1 [ASL.w (d8, A1, Xn)] 271
+FAIL [41] e7f0 [ROL.w (d8, A0, Xn)] 42
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [281] e1d2 [ASL.w (A2)] 282
+FAIL [57] e7e0 [ROL.w -(A0)] 58
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [58] e7e6 [ROL.w -(A6)] 59
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [67] e7da [ROL.w (A2)+] 68
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [290] e1ee [ASL.w (d16, A6)] 291
+FAIL [93] e7d4 [ROL.w (A4)] 94
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [99] e7e1 [ROL.w -(A1)] 100
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [103] e7f7 [ROL.w (d8, A7, Xn)] 104
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [310] e1d4 [ASL.w (A4)] 311
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [323] e1f0 [ASL.w (d8, A0, Xn)] 324
+FAIL [134] e7e8 [ROL.w (d16, A0)] 135
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [337] e1f9 [ASL.w (xxx).l] 338
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [348] e1da [ASL.w (A2)+] 349
+FAIL [145] e7d1 [ROL.w (A1)] 146
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [359] e1f9 [ASL.w (xxx).l] 360
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [365] e1de [ASL.w (A6)+] 366
+FAIL [147] e7d0 [ROL.w (A0)] 148
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [376] e1d9 [ASL.w (A1)+] 377
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [392] e1f6 [ASL.w (d8, A6, Xn)] 393
+FAIL [159] e7ec [ROL.w (d16, A4)] 160
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [393] e1f8 [ASL.w (xxx).w] 394
+FAIL [167] e7e9 [ROL.w (d16, A1)] 168
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [396] e1dd [ASL.w (A5)+] 397
+FAIL [188] e7d8 [ROL.w (A0)+] 189
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [399] e1f2 [ASL.w (d8, A2, Xn)] 400
+FAIL [192] e7d5 [ROL.w (A5)] 193
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [197] e7e9 [ROL.w (d16, A1)] 198
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [400] e1d1 [ASL.w (A1)] 401
+FAIL [200] e7d4 [ROL.w (A4)] 201
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [407] e1ec [ASL.w (d16, A4)] 408
+FAIL [222] e7ed [ROL.w (d16, A5)] 223
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [408] e1d6 [ASL.w (A6)] 409
+FAIL [230] e7d4 [ROL.w (A4)] 231
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [409] e1d2 [ASL.w (A2)] 410
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [416] e1f0 [ASL.w (d8, A0, Xn)] 417
+FAIL [231] e7f3 [ROL.w (d8, A3, Xn)] 232
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [427] e1f7 [ASL.w (d8, A7, Xn)] 428
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [430] e1d1 [ASL.w (A1)] 431
+FAIL [233] e7de [ROL.w (A6)+] 234
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [460] e1ec [ASL.w (d16, A4)] 461
+FAIL [247] e7ed [ROL.w (d16, A5)] 248
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [476] e1f4 [ASL.w (d8, A4, Xn)] 477
+FAIL [252] e7ec [ROL.w (d16, A4)] 253
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [480] e1eb [ASL.w (d16, A3)] 481
+FAIL [261] e7d4 [ROL.w (A4)] 262
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [283] e7f0 [ROL.w (d8, A0, Xn)] 284
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [489] e1e9 [ASL.w (d16, A1)] 490
+FAIL [288] e7d3 [ROL.w (A3)] 289
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [292] e7f0 [ROL.w (d8, A0, Xn)] 293
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [504] e1ee [ASL.w (d16, A6)] 505
+FAIL [299] e7e1 [ROL.w -(A1)] 300
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [306] e7d5 [ROL.w (A5)] 307
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [309] e7f6 [ROL.w (d8, A6, Xn)] 310
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [527] e1d2 [ASL.w (A2)] 528
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [532] e1e0 [ASL.w -(A0)] 533
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [535] e1dd [ASL.w (A5)+] 536
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [542] e1ec [ASL.w (d16, A4)] 543
+FAIL [321] e7f2 [ROL.w (d8, A2, Xn)] 322
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [556] e1ea [ASL.w (d16, A2)] 557
+FAIL [335] e7db [ROL.w (A3)+] 336
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [339] e7db [ROL.w (A3)+] 340
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [378] e7d1 [ROL.w (A1)] 379
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [379] e7ea [ROL.w (d16, A2)] 380
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [558] e1f4 [ASL.w (d8, A4, Xn)] 559
+FAIL [382] e7ed [ROL.w (d16, A5)] 383
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [579] e1ef [ASL.w (d16, A7)] 580
+FAIL [385] e7ef [ROL.w (d16, A7)] 386
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [591] e1e0 [ASL.w -(A0)] 592
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [601] e1d1 [ASL.w (A1)] 602
+FAIL [420] e7d6 [ROL.w (A6)] 421
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [608] e1eb [ASL.w (d16, A3)] 609
+FAIL [422] e7eb [ROL.w (d16, A3)] 423
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [610] e1f9 [ASL.w (xxx).l] 611
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [612] e1e0 [ASL.w -(A0)] 613
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [617] e1f7 [ASL.w (d8, A7, Xn)] 618
+FAIL [424] e7f8 [ROL.w (xxx).w] 425
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [640] e1e6 [ASL.w -(A6)] 641
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [645] e1d2 [ASL.w (A2)] 646
+FAIL [425] e7dc [ROL.w (A4)+] 426
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [654] e1e2 [ASL.w -(A2)] 655
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [674] e1ef [ASL.w (d16, A7)] 675
+FAIL [427] e7f5 [ROL.w (d8, A5, Xn)] 428
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [701] e1f3 [ASL.w (d8, A3, Xn)] 702
+FAIL [439] e7dc [ROL.w (A4)+] 440
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [450] e7d1 [ROL.w (A1)] 451
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [461] e7de [ROL.w (A6)+] 462
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [462] e7e8 [ROL.w (d16, A0)] 463
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [703] e1db [ASL.w (A3)+] 704
+FAIL [477] e7e1 [ROL.w -(A1)] 478
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [486] e7de [ROL.w (A6)+] 487
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [709] e1f0 [ASL.w (d8, A0, Xn)] 710
+FAIL [497] e7d1 [ROL.w (A1)] 498
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [518] e7de [ROL.w (A6)+] 519
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [519] e7eb [ROL.w (d16, A3)] 520
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [714] e1d0 [ASL.w (A0)] 715
+FAIL [541] e7d4 [ROL.w (A4)] 542
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [729] e1dd [ASL.w (A5)+] 730
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [748] e1d0 [ASL.w (A0)] 749
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [756] e1e5 [ASL.w -(A5)] 757
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [760] e1dd [ASL.w (A5)+] 761
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [766] e1f7 [ASL.w (d8, A7, Xn)] 767
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [769] e1da [ASL.w (A2)+] 770
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [771] e1e3 [ASL.w -(A3)] 772
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [782] e1d6 [ASL.w (A6)] 783
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [784] e1ee [ASL.w (d16, A6)] 785
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [785] e1e5 [ASL.w -(A5)] 786
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [786] e1d5 [ASL.w (A5)] 787
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [787] e1ec [ASL.w (d16, A4)] 788
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [797] e1d6 [ASL.w (A6)] 798
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [810] e1f6 [ASL.w (d8, A6, Xn)] 811
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [813] e1e9 [ASL.w (d16, A1)] 814
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [817] e1ec [ASL.w (d16, A4)] 818
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [829] e1f6 [ASL.w (d8, A6, Xn)] 830
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [848] e1d5 [ASL.w (A5)] 849
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [854] e1f1 [ASL.w (d8, A1, Xn)] 855
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [860] e1e6 [ASL.w -(A6)] 861
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [861] e1d1 [ASL.w (A1)] 862
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [875] e1e4 [ASL.w -(A4)] 876
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [883] e1e8 [ASL.w (d16, A0)] 884
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [887] e1de [ASL.w (A6)+] 888
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [891] e1d0 [ASL.w (A0)] 892
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [897] e1da [ASL.w (A2)+] 898
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [900] e1d6 [ASL.w (A6)] 901
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [901] e1d5 [ASL.w (A5)] 902
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [902] e1d8 [ASL.w (A0)+] 903
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [911] e1da [ASL.w (A2)+] 912
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [917] e1d4 [ASL.w (A4)] 918
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [923] e1f9 [ASL.w (xxx).l] 924
+FAIL [545] e7f9 [ROL.w (xxx).l] 546
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [929] e1f0 [ASL.w (d8, A0, Xn)] 930
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [940] e1de [ASL.w (A6)+] 941
+FAIL [546] e7d8 [ROL.w (A0)+] 547
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [945] e1d9 [ASL.w (A1)+] 946
+FAIL [558] e7e4 [ROL.w -(A4)] 559
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [562] e7e3 [ROL.w -(A3)] 563
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [571] e7e0 [ROL.w -(A0)] 572
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [581] e7d2 [ROL.w (A2)] 582
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [946] e1e4 [ASL.w -(A4)] 947
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [951] e1e4 [ASL.w -(A4)] 952
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [959] e1f4 [ASL.w (d8, A4, Xn)] 960
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [962] e1dc [ASL.w (A4)+] 963
+FAIL [592] e7d9 [ROL.w (A1)+] 593
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [979] e1f1 [ASL.w (d8, A1, Xn)] 980
+FAIL [595] e7f8 [ROL.w (xxx).w] 596
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [985] e1f1 [ASL.w (d8, A1, Xn)] 986
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [989] e1d5 [ASL.w (A5)] 990
+FAIL [596] e7de [ROL.w (A6)+] 597
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [991] e1d5 [ASL.w (A5)] 992
+FAIL [597] e7d8 [ROL.w (A0)+] 598
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [993] e1dd [ASL.w (A5)+] 994
+FAIL [599] e7d8 [ROL.w (A0)+] 600
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [998] e1e1 [ASL.w -(A1)] 999
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1009] e1f7 [ASL.w (d8, A7, Xn)] 1010
+FAIL [615] e7f0 [ROL.w (d8, A0, Xn)] 616
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1010] e1e6 [ASL.w -(A6)] 1011
+FAIL [633] e7e8 [ROL.w (d16, A0)] 634
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [634] e7e4 [ROL.w -(A4)] 635
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1013] e1e3 [ASL.w -(A3)] 1014
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1020] e1de [ASL.w (A6)+] 1021
+FAIL [643] e7dc [ROL.w (A4)+] 644
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1048] e1e2 [ASL.w -(A2)] 1049
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1051] e1f8 [ASL.w (xxx).w] 1052
+FAIL [645] e7ee [ROL.w (d16, A6)] 646
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1053] e1eb [ASL.w (d16, A3)] 1054
+FAIL [651] e7eb [ROL.w (d16, A3)] 652
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1054] e1db [ASL.w (A3)+] 1055
+FAIL [657] e7d4 [ROL.w (A4)] 658
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1060] e1de [ASL.w (A6)+] 1061
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1074] e1ec [ASL.w (d16, A4)] 1075
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1081] e1ed [ASL.w (d16, A5)] 1082
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1082] e1e6 [ASL.w -(A6)] 1083
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1083] e1e4 [ASL.w -(A4)] 1084
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1092] e1f2 [ASL.w (d8, A2, Xn)] 1093
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1094] e1e9 [ASL.w (d16, A1)] 1095
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1112] e1e4 [ASL.w -(A4)] 1113
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1121] e1f3 [ASL.w (d8, A3, Xn)] 1122
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1127] e1ea [ASL.w (d16, A2)] 1128
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1131] e1d0 [ASL.w (A0)] 1132
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1133] e1f7 [ASL.w (d8, A7, Xn)] 1134
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1136] e1ee [ASL.w (d16, A6)] 1137
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1150] e1e8 [ASL.w (d16, A0)] 1151
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1153] e1e0 [ASL.w -(A0)] 1154
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1179] e1e0 [ASL.w -(A0)] 1180
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1181] e1de [ASL.w (A6)+] 1182
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1184] e1d5 [ASL.w (A5)] 1185
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1188] e1e3 [ASL.w -(A3)] 1189
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1207] e1f3 [ASL.w (d8, A3, Xn)] 1208
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1210] e1e8 [ASL.w (d16, A0)] 1211
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1231] e1ef [ASL.w (d16, A7)] 1232
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1245] e1ea [ASL.w (d16, A2)] 1246
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1251] e1e9 [ASL.w (d16, A1)] 1252
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1256] e1f1 [ASL.w (d8, A1, Xn)] 1257
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1257] e1f8 [ASL.w (xxx).w] 1258
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1263] e1f5 [ASL.w (d8, A5, Xn)] 1264
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1267] e1d3 [ASL.w (A3)] 1268
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1281] e1e3 [ASL.w -(A3)] 1282
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1288] e1e4 [ASL.w -(A4)] 1289
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1296] e1f7 [ASL.w (d8, A7, Xn)] 1297
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1299] e1ef [ASL.w (d16, A7)] 1300
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1305] e1e8 [ASL.w (d16, A0)] 1306
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1328] e1dd [ASL.w (A5)+] 1329
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1347] e1ea [ASL.w (d16, A2)] 1348
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1369] e1f4 [ASL.w (d8, A4, Xn)] 1370
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1371] e1f2 [ASL.w (d8, A2, Xn)] 1372
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1376] e1e9 [ASL.w (d16, A1)] 1377
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1413] e1ef [ASL.w (d16, A7)] 1414
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1417] e1d9 [ASL.w (A1)+] 1418
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1418] e1ed [ASL.w (d16, A5)] 1419
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1419] e1dc [ASL.w (A4)+] 1420
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1425] e1d1 [ASL.w (A1)] 1426
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1426] e1de [ASL.w (A6)+] 1427
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1435] e1eb [ASL.w (d16, A3)] 1436
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1441] e1d5 [ASL.w (A5)] 1442
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1490] e1de [ASL.w (A6)+] 1491
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1494] e1e9 [ASL.w (d16, A1)] 1495
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1510] e1ec [ASL.w (d16, A4)] 1511
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1511] e1d4 [ASL.w (A4)] 1512
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1514] e1f3 [ASL.w (d8, A3, Xn)] 1515
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1517] e1e9 [ASL.w (d16, A1)] 1518
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1524] e1f0 [ASL.w (d8, A0, Xn)] 1525
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1527] e1ef [ASL.w (d16, A7)] 1528
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1542] e1f9 [ASL.w (xxx).l] 1543
+FAIL [665] e7f9 [ROL.w (xxx).l] 666
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1553] e1d5 [ASL.w (A5)] 1554
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1568] e1f6 [ASL.w (d8, A6, Xn)] 1569
+FAIL [687] e7e9 [ROL.w (d16, A1)] 688
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1595] e1e3 [ASL.w -(A3)] 1596
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1599] e1f0 [ASL.w (d8, A0, Xn)] 1600
+FAIL [688] e7ed [ROL.w (d16, A5)] 689
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1605] e1e6 [ASL.w -(A6)] 1606
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+FAIL [697] e7db [ROL.w (A3)+] 698
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1612] e1f4 [ASL.w (d8, A4, Xn)] 1613
+FAIL [701] e7f2 [ROL.w (d8, A2, Xn)] 702
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1645] e1dd [ASL.w (A5)+] 1646
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1655] e1d4 [ASL.w (A4)] 1656
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1665] e1ee [ASL.w (d16, A6)] 1666
+FAIL [713] e7f8 [ROL.w (xxx).w] 714
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1675] e1d0 [ASL.w (A0)] 1676
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1686] e1ed [ASL.w (d16, A5)] 1687
+FAIL [714] e7f0 [ROL.w (d8, A0, Xn)] 715
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1691] e1e0 [ASL.w -(A0)] 1692
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1700] e1ef [ASL.w (d16, A7)] 1701
+FAIL [716] e7f0 [ROL.w (d8, A0, Xn)] 717
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1707] e1d8 [ASL.w (A0)+] 1708
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1709] e1e6 [ASL.w -(A6)] 1710
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1716] e1d0 [ASL.w (A0)] 1717
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1727] e1d5 [ASL.w (A5)] 1728
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1735] e1f2 [ASL.w (d8, A2, Xn)] 1736
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1738] e1ea [ASL.w (d16, A2)] 1739
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1750] e1e8 [ASL.w (d16, A0)] 1751
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1761] e1de [ASL.w (A6)+] 1762
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1762] e1eb [ASL.w (d16, A3)] 1763
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1779] e1dd [ASL.w (A5)+] 1780
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1795] e1f7 [ASL.w (d8, A7, Xn)] 1796
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1796] e1ef [ASL.w (d16, A7)] 1797
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1797] e1de [ASL.w (A6)+] 1798
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1804] e1d1 [ASL.w (A1)] 1805
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1806] e1e8 [ASL.w (d16, A0)] 1807
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1812] e1d6 [ASL.w (A6)] 1813
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1817] e1dd [ASL.w (A5)+] 1818
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1865] e1f9 [ASL.w (xxx).l] 1866
+FAIL [724] e7f9 [ROL.w (xxx).l] 725
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1867] e1e4 [ASL.w -(A4)] 1868
+FAIL [730] e7e5 [ROL.w -(A5)] 731
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1870] e1f8 [ASL.w (xxx).w] 1871
+FAIL [735] e7e8 [ROL.w (d16, A0)] 736
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1887] e1e3 [ASL.w -(A3)] 1888
+FAIL [743] e7f4 [ROL.w (d8, A4, Xn)] 744
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1889] e1e6 [ASL.w -(A6)] 1890
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [744] e7f4 [ROL.w (d8, A4, Xn)] 745
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1890] e1e1 [ASL.w -(A1)] 1891
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [789] e7ee [ROL.w (d16, A6)] 790
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1904] e1de [ASL.w (A6)+] 1905
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [793] e7ef [ROL.w (d16, A7)] 794
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [809] e7f7 [ROL.w (d8, A7, Xn)] 810
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [810] e7d5 [ROL.w (A5)] 811
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1905] e1f3 [ASL.w (d8, A3, Xn)] 1906
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1914] e1f2 [ASL.w (d8, A2, Xn)] 1915
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1938] e1f6 [ASL.w (d8, A6, Xn)] 1939
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1946] e1d9 [ASL.w (A1)+] 1947
+FAIL [814] e7dc [ROL.w (A4)+] 815
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [1953] e1f3 [ASL.w (d8, A3, Xn)] 1954
+FAIL [818] e7f6 [ROL.w (d8, A6, Xn)] 819
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1960] e1f7 [ASL.w (d8, A7, Xn)] 1961
+FAIL [831] e7ee [ROL.w (d16, A6)] 832
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1992] e1ee [ASL.w (d16, A6)] 1993
+FAIL [841] e7f0 [ROL.w (d8, A0, Xn)] 842
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1996] e1e9 [ASL.w (d16, A1)] 1997
+FAIL [852] e7e5 [ROL.w -(A5)] 853
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2004] e1ea [ASL.w (d16, A2)] 2005
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2038] e1d9 [ASL.w (A1)+] 2039
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [859] e7d4 [ROL.w (A4)] 860
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2044] e1e8 [ASL.w (d16, A0)] 2045
+FAIL [861] e7e0 [ROL.w -(A0)] 862
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [865] e7e1 [ROL.w -(A1)] 866
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [866] e7e4 [ROL.w -(A4)] 867
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [876] e7e8 [ROL.w (d16, A0)] 877
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2055] e1d8 [ASL.w (A0)+] 2056
+FAIL [892] e7ef [ROL.w (d16, A7)] 893
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [894] e7ee [ROL.w (d16, A6)] 895
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [899] e7e5 [ROL.w -(A5)] 900
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [904] e7da [ROL.w (A2)+] 905
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2071] e1f9 [ASL.w (xxx).l] 2072
+FAIL [905] e7eb [ROL.w (d16, A3)] 906
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [909] e7d0 [ROL.w (A0)] 910
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [913] e7ec [ROL.w (d16, A4)] 914
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [917] e7f1 [ROL.w (d8, A1, Xn)] 918
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [919] e7e1 [ROL.w -(A1)] 920
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [928] e7e2 [ROL.w -(A2)] 929
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [929] e7e0 [ROL.w -(A0)] 930
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [938] e7f6 [ROL.w (d8, A6, Xn)] 939
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [940] e7e3 [ROL.w -(A3)] 941
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [941] e7d0 [ROL.w (A0)] 942
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [946] e7f6 [ROL.w (d8, A6, Xn)] 947
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [951] e7f4 [ROL.w (d8, A4, Xn)] 952
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [959] e7e6 [ROL.w -(A6)] 960
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [968] e7ef [ROL.w (d16, A7)] 969
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [980] e7d2 [ROL.w (A2)] 981
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [986] e7f8 [ROL.w (xxx).w] 987
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [991] e7d0 [ROL.w (A0)] 992
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [995] e7f2 [ROL.w (d8, A2, Xn)] 996
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1014] e7d3 [ROL.w (A3)] 1015
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1019] e7d0 [ROL.w (A0)] 1020
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1028] e7d1 [ROL.w (A1)] 1029
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1033] e7d3 [ROL.w (A3)] 1034
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1057] e7d3 [ROL.w (A3)] 1058
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1058] e7eb [ROL.w (d16, A3)] 1059
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1067] e7e4 [ROL.w -(A4)] 1068
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1082] e7ed [ROL.w (d16, A5)] 1083
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1097] e7e3 [ROL.w -(A3)] 1098
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1098] e7eb [ROL.w (d16, A3)] 1099
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1103] e7d0 [ROL.w (A0)] 1104
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1116] e7ea [ROL.w (d16, A2)] 1117
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1127] e7e1 [ROL.w -(A1)] 1128
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1133] e7f9 [ROL.w (xxx).l] 1134
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2080] e1e2 [ASL.w -(A2)] 2081
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2083] e1d6 [ASL.w (A6)] 2084
+FAIL [1149] e7d4 [ROL.w (A4)] 1150
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2086] e1e5 [ASL.w -(A5)] 2087
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2104] e1f9 [ASL.w (xxx).l] 2105
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2114] e1d6 [ASL.w (A6)] 2115
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2130] e1e0 [ASL.w -(A0)] 2131
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2133] e1e9 [ASL.w (d16, A1)] 2134
+FAIL [1160] e7ec [ROL.w (d16, A4)] 1161
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2147] e1eb [ASL.w (d16, A3)] 2148
+FAIL [1162] e7dd [ROL.w (A5)+] 1163
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1170] e7f1 [ROL.w (d8, A1, Xn)] 1171
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2151] e1f0 [ASL.w (d8, A0, Xn)] 2152
+FAIL [1184] e7d8 [ROL.w (A0)+] 1185
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1185] e7d8 [ROL.w (A0)+] 1186
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1186] e7e3 [ROL.w -(A3)] 1187
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1213] e7ec [ROL.w (d16, A4)] 1214
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2164] e1dd [ASL.w (A5)+] 2165
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2182] e1e8 [ASL.w (d16, A0)] 2183
+FAIL [1217] e7f2 [ROL.w (d8, A2, Xn)] 1218
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2188] e1de [ASL.w (A6)+] 2189
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2200] e1e5 [ASL.w -(A5)] 2201
+FAIL [1233] e7e2 [ROL.w -(A2)] 1234
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2201] e1d3 [ASL.w (A3)] 2202
+FAIL [1235] e7dd [ROL.w (A5)+] 1236
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2202] e1eb [ASL.w (d16, A3)] 2203
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2217] e1e2 [ASL.w -(A2)] 2218
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2224] e1dd [ASL.w (A5)+] 2225
+FAIL [1238] e7dd [ROL.w (A5)+] 1239
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2226] e1f2 [ASL.w (d8, A2, Xn)] 2227
+FAIL [1263] e7e2 [ROL.w -(A2)] 1264
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1265] e7d4 [ROL.w (A4)] 1266
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1270] e7f8 [ROL.w (xxx).w] 1271
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2229] e1e9 [ASL.w (d16, A1)] 2230
+FAIL [1284] e7e8 [ROL.w (d16, A0)] 1285
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2232] e1d3 [ASL.w (A3)] 2233
+FAIL [1293] e7dc [ROL.w (A4)+] 1294
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2237] e1de [ASL.w (A6)+] 2238
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2243] e1d9 [ASL.w (A1)+] 2244
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2266] e1d8 [ASL.w (A0)+] 2267
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2286] e1f2 [ASL.w (d8, A2, Xn)] 2287
+FAIL [1301] e7ee [ROL.w (d16, A6)] 1302
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2311] e1db [ASL.w (A3)+] 2312
+FAIL [1303] e7ec [ROL.w (d16, A4)] 1304
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1316] e7f1 [ROL.w (d8, A1, Xn)] 1317
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1329] e7d8 [ROL.w (A0)+] 1330
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2315] e1e2 [ASL.w -(A2)] 2316
+FAIL [1354] e7e3 [ROL.w -(A3)] 1355
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2325] e1f9 [ASL.w (xxx).l] 2326
+FAIL [1361] e7f6 [ROL.w (d8, A6, Xn)] 1362
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1384] e7e1 [ROL.w -(A1)] 1385
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1385] e7ee [ROL.w (d16, A6)] 1386
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1396] e7f9 [ROL.w (xxx).l] 1397
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2333] e1ec [ASL.w (d16, A4)] 2334
+FAIL [1402] e7d1 [ROL.w (A1)] 1403
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1407] e7e9 [ROL.w (d16, A1)] 1408
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2337] e1d1 [ASL.w (A1)] 2338
+FAIL [1414] e7d1 [ROL.w (A1)] 1415
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2345] e1f5 [ASL.w (d8, A5, Xn)] 2346
+FAIL [1424] e7d8 [ROL.w (A0)+] 1425
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1428] e7e0 [ROL.w -(A0)] 1429
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1439] e7e9 [ROL.w (d16, A1)] 1440
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2347] e1d1 [ASL.w (A1)] 2348
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2375] e1d9 [ASL.w (A1)+] 2376
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2384] e1e6 [ASL.w -(A6)] 2385
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2388] e1eb [ASL.w (d16, A3)] 2389
+FAIL [1444] e7f4 [ROL.w (d8, A4, Xn)] 1445
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2393] e1d6 [ASL.w (A6)] 2394
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2396] e1d4 [ASL.w (A4)] 2397
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2402] e1f1 [ASL.w (d8, A1, Xn)] 2403
+FAIL [1470] e7ef [ROL.w (d16, A7)] 1471
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2403] e1f5 [ASL.w (d8, A5, Xn)] 2404
+FAIL [1476] e7eb [ROL.w (d16, A3)] 1477
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2421] e1f3 [ASL.w (d8, A3, Xn)] 2422
+FAIL [1483] e7e2 [ROL.w -(A2)] 1484
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1501] e7f2 [ROL.w (d8, A2, Xn)] 1502
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2431] e1d4 [ASL.w (A4)] 2432
+FAIL [1520] e7d2 [ROL.w (A2)] 1521
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2449] e1dc [ASL.w (A4)+] 2450
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2455] e1e5 [ASL.w -(A5)] 2456
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2456] e1d4 [ASL.w (A4)] 2457
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2475] e1f1 [ASL.w (d8, A1, Xn)] 2476
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2476] e1de [ASL.w (A6)+] 2477
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2477] e1eb [ASL.w (d16, A3)] 2478
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2485] e1d0 [ASL.w (A0)] 2486
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2496] e1e3 [ASL.w -(A3)] 2497
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2506] e1d0 [ASL.w (A0)] 2507
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2507] e1f5 [ASL.w (d8, A5, Xn)] 2508
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2508] e1e6 [ASL.w -(A6)] 2509
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2524] e1f6 [ASL.w (d8, A6, Xn)] 2525
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2530] e1d4 [ASL.w (A4)] 2531
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2537] e1e0 [ASL.w -(A0)] 2538
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2549] e1e8 [ASL.w (d16, A0)] 2550
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2552] e1f5 [ASL.w (d8, A5, Xn)] 2553
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2557] e1e6 [ASL.w -(A6)] 2558
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2568] e1d8 [ASL.w (A0)+] 2569
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2576] e1dc [ASL.w (A4)+] 2577
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2580] e1d3 [ASL.w (A3)] 2581
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2613] e1e6 [ASL.w -(A6)] 2614
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2614] e1f4 [ASL.w (d8, A4, Xn)] 2615
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2616] e1d6 [ASL.w (A6)] 2617
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2628] e1f3 [ASL.w (d8, A3, Xn)] 2629
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2632] e1d0 [ASL.w (A0)] 2633
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2642] e1d0 [ASL.w (A0)] 2643
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2649] e1e5 [ASL.w -(A5)] 2650
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2650] e1e9 [ASL.w (d16, A1)] 2651
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2654] e1dc [ASL.w (A4)+] 2655
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2659] e1e3 [ASL.w -(A3)] 2660
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2660] e1d9 [ASL.w (A1)+] 2661
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2704] e1ef [ASL.w (d16, A7)] 2705
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2715] e1d9 [ASL.w (A1)+] 2716
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2746] e1dd [ASL.w (A5)+] 2747
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2757] e1d3 [ASL.w (A3)] 2758
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2766] e1e2 [ASL.w -(A2)] 2767
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2790] e1ef [ASL.w (d16, A7)] 2791
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2796] e1ea [ASL.w (d16, A2)] 2797
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2801] e1d6 [ASL.w (A6)] 2802
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2803] e1f2 [ASL.w (d8, A2, Xn)] 2804
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2809] e1f5 [ASL.w (d8, A5, Xn)] 2810
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2810] e1d2 [ASL.w (A2)] 2811
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2819] e1d0 [ASL.w (A0)] 2820
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2825] e1d5 [ASL.w (A5)] 2826
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2844] e1ec [ASL.w (d16, A4)] 2845
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2846] e1d3 [ASL.w (A3)] 2847
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2849] e1e8 [ASL.w (d16, A0)] 2850
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2860] e1e2 [ASL.w -(A2)] 2861
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2864] e1d8 [ASL.w (A0)+] 2865
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2865] e1e2 [ASL.w -(A2)] 2866
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2867] e1e2 [ASL.w -(A2)] 2868
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2895] e1da [ASL.w (A2)+] 2896
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2903] e1f5 [ASL.w (d8, A5, Xn)] 2904
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2907] e1ef [ASL.w (d16, A7)] 2908
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2913] e1f1 [ASL.w (d8, A1, Xn)] 2914
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2920] e1e0 [ASL.w -(A0)] 2921
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2930] e1e8 [ASL.w (d16, A0)] 2931
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2933] e1d9 [ASL.w (A1)+] 2934
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2940] e1ee [ASL.w (d16, A6)] 2941
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2949] e1ec [ASL.w (d16, A4)] 2950
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2950] e1d1 [ASL.w (A1)] 2951
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [2956] e1f3 [ASL.w (d8, A3, Xn)] 2957
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2958] e1eb [ASL.w (d16, A3)] 2959
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2962] e1e9 [ASL.w (d16, A1)] 2963
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2965] e1e3 [ASL.w -(A3)] 2966
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3001] e1dd [ASL.w (A5)+] 3002
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3008] e1d2 [ASL.w (A2)] 3009
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3009] e1da [ASL.w (A2)+] 3010
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3014] e1d9 [ASL.w (A1)+] 3015
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3021] e1e2 [ASL.w -(A2)] 3022
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3037] e1f3 [ASL.w (d8, A3, Xn)] 3038
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3043] e1d8 [ASL.w (A0)+] 3044
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3044] e1d8 [ASL.w (A0)+] 3045
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3045] e1e1 [ASL.w -(A1)] 3046
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3050] e1de [ASL.w (A6)+] 3051
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3060] e1ec [ASL.w (d16, A4)] 3061
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3063] e1d6 [ASL.w (A6)] 3064
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3069] e1e6 [ASL.w -(A6)] 3070
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3085] e1db [ASL.w (A3)+] 3086
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3092] e1ed [ASL.w (d16, A5)] 3093
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3094] e1f6 [ASL.w (d8, A6, Xn)] 3095
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3098] e1ee [ASL.w (d16, A6)] 3099
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3099] e1f6 [ASL.w (d8, A6, Xn)] 3100
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3104] e1d4 [ASL.w (A4)] 3105
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3124] e1e0 [ASL.w -(A0)] 3125
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3135] e1eb [ASL.w (d16, A3)] 3136
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3152] e1f8 [ASL.w (xxx).w] 3153
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3164] e1d4 [ASL.w (A4)] 3165
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3167] e1ea [ASL.w (d16, A2)] 3168
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3171] e1ea [ASL.w (d16, A2)] 3172
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3173] e1e1 [ASL.w -(A1)] 3174
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3192] e1f7 [ASL.w (d8, A7, Xn)] 3193
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3195] e1f1 [ASL.w (d8, A1, Xn)] 3196
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3200] e1d4 [ASL.w (A4)] 3201
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3228] e1f9 [ASL.w (xxx).l] 3229
+FAIL [1524] e7f9 [ROL.w (xxx).l] 1525
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3258] e1d2 [ASL.w (A2)] 3259
+FAIL [1528] e7e9 [ROL.w (d16, A1)] 1529
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1534] e7f4 [ROL.w (d8, A4, Xn)] 1535
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1552] e7dd [ROL.w (A5)+] 1553
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3269] e1db [ASL.w (A3)+] 3270
+FAIL [1553] e7f3 [ROL.w (d8, A3, Xn)] 1554
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1555] e7dd [ROL.w (A5)+] 1556
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3271] e1de [ASL.w (A6)+] 3272
+FAIL [1578] e7d4 [ROL.w (A4)] 1579
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3281] e1e1 [ASL.w -(A1)] 3282
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3288] e1d5 [ASL.w (A5)] 3289
+FAIL [1591] e7d5 [ROL.w (A5)] 1592
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3290] e1d4 [ASL.w (A4)] 3291
+FAIL [1593] e7e8 [ROL.w (d16, A0)] 1594
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1626] e7d1 [ROL.w (A1)] 1627
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3294] e1d5 [ASL.w (A5)] 3295
+FAIL [1637] e7ed [ROL.w (d16, A5)] 1638
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1640] e7ed [ROL.w (d16, A5)] 1641
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1653] e7f5 [ROL.w (d8, A5, Xn)] 1654
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1659] e7dd [ROL.w (A5)+] 1660
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3312] e1f5 [ASL.w (d8, A5, Xn)] 3313
+FAIL [1679] e7f6 [ROL.w (d8, A6, Xn)] 1680
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3320] e1f5 [ASL.w (d8, A5, Xn)] 3321
+FAIL [1699] e7ee [ROL.w (d16, A6)] 1700
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3327] e1e6 [ASL.w -(A6)] 3328
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3333] e1ed [ASL.w (d16, A5)] 3334
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3341] e1f3 [ASL.w (d8, A3, Xn)] 3342
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3343] e1dd [ASL.w (A5)+] 3344
+FAIL [1706] e7d2 [ROL.w (A2)] 1707
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3345] e1d8 [ASL.w (A0)+] 3346
+FAIL [1714] e7d5 [ROL.w (A5)] 1715
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3352] e1d8 [ASL.w (A0)+] 3353
+FAIL [1715] e7d3 [ROL.w (A3)] 1716
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3355] e1eb [ASL.w (d16, A3)] 3356
+FAIL [1720] e7f6 [ROL.w (d8, A6, Xn)] 1721
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3368] e1f5 [ASL.w (d8, A5, Xn)] 3369
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3374] e1f1 [ASL.w (d8, A1, Xn)] 3375
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3377] e1d0 [ASL.w (A0)] 3378
+FAIL [1721] e7da [ROL.w (A2)+] 1722
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3380] e1de [ASL.w (A6)+] 3381
+FAIL [1724] e7f0 [ROL.w (d8, A0, Xn)] 1725
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1728] e7ec [ROL.w (d16, A4)] 1729
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1730] e7ea [ROL.w (d16, A2)] 1731
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1739] e7de [ROL.w (A6)+] 1740
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3392] e1e2 [ASL.w -(A2)] 3393
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3395] e1d3 [ASL.w (A3)] 3396
+FAIL [1746] e7de [ROL.w (A6)+] 1747
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3401] e1f6 [ASL.w (d8, A6, Xn)] 3402
+FAIL [1754] e7f8 [ROL.w (xxx).w] 1755
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3404] e1e0 [ASL.w -(A0)] 3405
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3421] e1f3 [ASL.w (d8, A3, Xn)] 3422
+FAIL [1756] e7ee [ROL.w (d16, A6)] 1757
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3431] e1d2 [ASL.w (A2)] 3432
+FAIL [1769] e7f1 [ROL.w (d8, A1, Xn)] 1770
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1775] e7e8 [ROL.w (d16, A0)] 1776
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1778] e7d5 [ROL.w (A5)] 1779
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3466] e1e3 [ASL.w -(A3)] 3467
+FAIL [1798] e7e2 [ROL.w -(A2)] 1799
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3470] e1de [ASL.w (A6)+] 3471
+FAIL [1821] e7d5 [ROL.w (A5)] 1822
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3476] e1dd [ASL.w (A5)+] 3477
+FAIL [1825] e7e3 [ROL.w -(A3)] 1826
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1827] e7eb [ROL.w (d16, A3)] 1828
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1828] e7f4 [ROL.w (d8, A4, Xn)] 1829
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1830] e7f6 [ROL.w (d8, A6, Xn)] 1831
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1831] e7e0 [ROL.w -(A0)] 1832
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1857] e7f7 [ROL.w (d8, A7, Xn)] 1858
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1858] e7f1 [ROL.w (d8, A1, Xn)] 1859
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1866] e7dc [ROL.w (A4)+] 1867
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3481] e1f8 [ASL.w (xxx).w] 3482
+FAIL [1868] e7f5 [ROL.w (d8, A5, Xn)] 1869
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3482] e1d8 [ASL.w (A0)+] 3483
+FAIL [1869] e7eb [ROL.w (d16, A3)] 1870
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1872] e7ef [ROL.w (d16, A7)] 1873
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1889] e7e1 [ROL.w -(A1)] 1890
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1898] e7e5 [ROL.w -(A5)] 1899
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [1904] e7f0 [ROL.w (d8, A0, Xn)] 1905
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1912] e7f6 [ROL.w (d8, A6, Xn)] 1913
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1916] e7eb [ROL.w (d16, A3)] 1917
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1920] e7f2 [ROL.w (d8, A2, Xn)] 1921
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1926] e7d3 [ROL.w (A3)] 1927
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3493] e1ea [ASL.w (d16, A2)] 3494
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3499] e1dc [ASL.w (A4)+] 3500
+FAIL [1928] e7d6 [ROL.w (A6)] 1929
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3529] e1de [ASL.w (A6)+] 3530
+FAIL [1932] e7ea [ROL.w (d16, A2)] 1933
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1933] e7f2 [ROL.w (d8, A2, Xn)] 1934
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1940] e7ed [ROL.w (d16, A5)] 1941
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1951] e7f4 [ROL.w (d8, A4, Xn)] 1952
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1954] e7d2 [ROL.w (A2)] 1955
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3559] e1e3 [ASL.w -(A3)] 3560
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3564] e1e6 [ASL.w -(A6)] 3565
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3575] e1d9 [ASL.w (A1)+] 3576
+FAIL [1963] e7d1 [ROL.w (A1)] 1964
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3613] e1d1 [ASL.w (A1)] 3614
+FAIL [1976] e7e8 [ROL.w (d16, A0)] 1977
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1979] e7d6 [ROL.w (A6)] 1980
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3618] e1d5 [ASL.w (A5)] 3619
+FAIL [1980] e7f3 [ROL.w (d8, A3, Xn)] 1981
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [1992] e7d6 [ROL.w (A6)] 1993
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3637] e1f2 [ASL.w (d8, A2, Xn)] 3638
+FAIL [1993] e7eb [ROL.w (d16, A3)] 1994
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3642] e1f3 [ASL.w (d8, A3, Xn)] 3643
+FAIL [1999] e7f2 [ROL.w (d8, A2, Xn)] 2000
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3646] e1e4 [ASL.w -(A4)] 3647
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3652] e1f3 [ASL.w (d8, A3, Xn)] 3653
+FAIL [2016] e7e8 [ROL.w (d16, A0)] 2017
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3655] e1f8 [ASL.w (xxx).w] 3656
+FAIL [2035] e7f1 [ROL.w (d8, A1, Xn)] 2036
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3661] e1f3 [ASL.w (d8, A3, Xn)] 3662
+FAIL [2050] e7f0 [ROL.w (d8, A0, Xn)] 2051
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3672] e1e2 [ASL.w -(A2)] 3673
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3679] e1d8 [ASL.w (A0)+] 3680
+FAIL [2051] e7d0 [ROL.w (A0)] 2052
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3680] e1f4 [ASL.w (d8, A4, Xn)] 3681
+FAIL [2057] e7f3 [ROL.w (d8, A3, Xn)] 2058
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3690] e1f6 [ASL.w (d8, A6, Xn)] 3691
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3721] e1d5 [ASL.w (A5)] 3722
+FAIL [2060] e7d4 [ROL.w (A4)] 2061
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3725] e1e1 [ASL.w -(A1)] 3726
+FAIL [2081] e7f7 [ROL.w (d8, A7, Xn)] 2082
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2105] e7e0 [ROL.w -(A0)] 2106
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3733] e1d8 [ASL.w (A0)+] 3734
+FAIL [2107] e7f0 [ROL.w (d8, A0, Xn)] 2108
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2123] e7e4 [ROL.w -(A4)] 2124
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2126] e7dc [ROL.w (A4)+] 2127
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3745] e1d1 [ASL.w (A1)] 3746
+FAIL [2127] e7d2 [ROL.w (A2)] 2128
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3759] e1e9 [ASL.w (d16, A1)] 3760
+FAIL [2131] e7ee [ROL.w (d16, A6)] 2132
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3760] e1f6 [ASL.w (d8, A6, Xn)] 3761
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3763] e1e8 [ASL.w (d16, A0)] 3764
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3769] e1e8 [ASL.w (d16, A0)] 3770
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3780] e1e5 [ASL.w -(A5)] 3781
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3788] e1dd [ASL.w (A5)+] 3789
+FAIL [2140] e7d3 [ROL.w (A3)] 2141
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3789] e1e9 [ASL.w (d16, A1)] 3790
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3842] e1e4 [ASL.w -(A4)] 3843
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3846] e1f4 [ASL.w (d8, A4, Xn)] 3847
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3848] e1d4 [ASL.w (A4)] 3849
+FAIL [2141] e7d6 [ROL.w (A6)] 2142
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3849] e1d4 [ASL.w (A4)] 3850
+FAIL [2149] e7ef [ROL.w (d16, A7)] 2150
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2152] e7ea [ROL.w (d16, A2)] 2153
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2161] e7ec [ROL.w (d16, A4)] 2162
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2164] e7ec [ROL.w (d16, A4)] 2165
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2171] e7e8 [ROL.w (d16, A0)] 2172
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2199] e7ed [ROL.w (d16, A5)] 2200
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2215] e7e8 [ROL.w (d16, A0)] 2216
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2220] e7d0 [ROL.w (A0)] 2221
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3858] e1f0 [ASL.w (d8, A0, Xn)] 3859
+FAIL [2233] e7f2 [ROL.w (d8, A2, Xn)] 2234
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3876] e1eb [ASL.w (d16, A3)] 3877
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3881] e1f6 [ASL.w (d8, A6, Xn)] 3882
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3905] e1ee [ASL.w (d16, A6)] 3906
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3908] e1f8 [ASL.w (xxx).w] 3909
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3922] e1e4 [ASL.w -(A4)] 3923
+FAIL [2236] e7e4 [ROL.w -(A4)] 2237
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3940] e1e2 [ASL.w -(A2)] 3941
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3954] e1f3 [ASL.w (d8, A3, Xn)] 3955
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3959] e1e2 [ASL.w -(A2)] 3960
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3961] e1e0 [ASL.w -(A0)] 3962
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [3973] e1e8 [ASL.w (d16, A0)] 3974
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3995] e1f3 [ASL.w (d8, A3, Xn)] 3996
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4003] e1f0 [ASL.w (d8, A0, Xn)] 4004
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4007] e1e3 [ASL.w -(A3)] 4008
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4015] e1e2 [ASL.w -(A2)] 4016
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4016] e1eb [ASL.w (d16, A3)] 4017
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4019] e1e0 [ASL.w -(A0)] 4020
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4025] e1db [ASL.w (A3)+] 4026
+FAIL [2243] e7d4 [ROL.w (A4)] 2244
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4034] e1f8 [ASL.w (xxx).w] 4035
+FAIL [2245] e7f7 [ROL.w (d8, A7, Xn)] 2246
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4035] e1d2 [ASL.w (A2)] 4036
+FAIL [2257] e7e2 [ROL.w -(A2)] 2258
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2259] e7e6 [ROL.w -(A6)] 2260
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2307] e7dd [ROL.w (A5)+] 2308
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4038] e1f5 [ASL.w (d8, A5, Xn)] 4039
+FAIL [2315] e7e8 [ROL.w (d16, A0)] 2316
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4045] e1d3 [ASL.w (A3)] 4046
+FAIL [2327] e7f2 [ROL.w (d8, A2, Xn)] 2328
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2330] e7f4 [ROL.w (d8, A4, Xn)] 2331
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2340] e7ea [ROL.w (d16, A2)] 2341
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2344] e7ed [ROL.w (d16, A5)] 2345
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2345] e7ee [ROL.w (d16, A6)] 2346
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2349] e7f4 [ROL.w (d8, A4, Xn)] 2350
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2357] e7f3 [ROL.w (d8, A3, Xn)] 2358
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2361] e7d2 [ROL.w (A2)] 2362
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4058] e1ee [ASL.w (d16, A6)] 4059
+FAIL [2384] e7f5 [ROL.w (d8, A5, Xn)] 2385
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4062] e1ef [ASL.w (d16, A7)] 4063
+FAIL [2386] e7f6 [ROL.w (d8, A6, Xn)] 2387
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4067] e1e0 [ASL.w -(A0)] 4068
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4069] e1e3 [ASL.w -(A3)] 4070
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4083] e1d2 [ASL.w (A2)] 4084
+FAIL [2388] e7d9 [ROL.w (A1)+] 2389
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4093] e1ed [ASL.w (d16, A5)] 4094
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4113] e1d3 [ASL.w (A3)] 4114
+FAIL [2392] e7d8 [ROL.w (A0)+] 2393
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4120] e1d8 [ASL.w (A0)+] 4121
+FAIL [2413] e7d0 [ROL.w (A0)] 2414
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4146] e1e6 [ASL.w -(A6)] 4147
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4148] e1ec [ASL.w (d16, A4)] 4149
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4151] e1f6 [ASL.w (d8, A6, Xn)] 4152
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4161] e1ec [ASL.w (d16, A4)] 4162
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4165] e1d9 [ASL.w (A1)+] 4166
+FAIL [2431] e7dd [ROL.w (A5)+] 2432
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4171] e1d9 [ASL.w (A1)+] 4172
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4180] e1d1 [ASL.w (A1)] 4181
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4202] e1d1 [ASL.w (A1)] 4203
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4210] e1d8 [ASL.w (A0)+] 4211
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4213] e1e9 [ASL.w (d16, A1)] 4214
+FAIL [2438] e7f4 [ROL.w (d8, A4, Xn)] 2439
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4228] e1d3 [ASL.w (A3)] 4229
+FAIL [2445] e7d2 [ROL.w (A2)] 2446
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4229] e1f6 [ASL.w (d8, A6, Xn)] 4230
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4235] e1e6 [ASL.w -(A6)] 4236
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4236] e1f1 [ASL.w (d8, A1, Xn)] 4237
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4239] e1e4 [ASL.w -(A4)] 4240
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4242] e1d6 [ASL.w (A6)] 4243
+FAIL [2448] e7d5 [ROL.w (A5)] 2449
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4258] e1ef [ASL.w (d16, A7)] 4259
+FAIL [2452] e7e5 [ROL.w -(A5)] 2453
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4260] e1eb [ASL.w (d16, A3)] 4261
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4267] e1da [ASL.w (A2)+] 4268
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2455] e7da [ROL.w (A2)+] 2456
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4276] e1da [ASL.w (A2)+] 4277
+FAIL [2463] e7e6 [ROL.w -(A6)] 2464
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2464] e7e4 [ROL.w -(A4)] 2465
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2475] e7ed [ROL.w (d16, A5)] 2476
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2490] e7d1 [ROL.w (A1)] 2491
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4277] e1e5 [ASL.w -(A5)] 4278
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4284] e1e9 [ASL.w (d16, A1)] 4285
+FAIL [2506] e7f7 [ROL.w (d8, A7, Xn)] 2507
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4302] e1d1 [ASL.w (A1)] 4303
+FAIL [2517] e7db [ROL.w (A3)+] 2518
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4308] e1f2 [ASL.w (d8, A2, Xn)] 4309
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4322] e1dc [ASL.w (A4)+] 4323
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4330] e1dc [ASL.w (A4)+] 4331
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4332] e1e2 [ASL.w -(A2)] 4333
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4355] e1e6 [ASL.w -(A6)] 4356
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4375] e1eb [ASL.w (d16, A3)] 4376
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4391] e1da [ASL.w (A2)+] 4392
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4400] e1ee [ASL.w (d16, A6)] 4401
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4405] e1f1 [ASL.w (d8, A1, Xn)] 4406
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4412] e1e9 [ASL.w (d16, A1)] 4413
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4438] e1d1 [ASL.w (A1)] 4439
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4445] e1f1 [ASL.w (d8, A1, Xn)] 4446
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4458] e1d2 [ASL.w (A2)] 4459
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4463] e1de [ASL.w (A6)+] 4464
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4476] e1f0 [ASL.w (d8, A0, Xn)] 4477
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4479] e1f7 [ASL.w (d8, A7, Xn)] 4480
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4483] e1dc [ASL.w (A4)+] 4484
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4484] e1d1 [ASL.w (A1)] 4485
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4489] e1e9 [ASL.w (d16, A1)] 4490
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4502] e1e5 [ASL.w -(A5)] 4503
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4505] e1e9 [ASL.w (d16, A1)] 4506
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4517] e1e0 [ASL.w -(A0)] 4518
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4530] e1e0 [ASL.w -(A0)] 4531
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4548] e1e3 [ASL.w -(A3)] 4549
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4553] e1e1 [ASL.w -(A1)] 4554
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4561] e1f9 [ASL.w (xxx).l] 4562
+FAIL [2526] e7f9 [ROL.w (xxx).l] 2527
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4571] e1d8 [ASL.w (A0)+] 4572
+FAIL [2543] e7e1 [ROL.w -(A1)] 2544
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2551] e7f7 [ROL.w (d8, A7, Xn)] 2552
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2554] e7d1 [ROL.w (A1)] 2555
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4592] e1f9 [ASL.w (xxx).l] 4593
+FAIL [2561] e7e6 [ROL.w -(A6)] 2562
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2565] e7e4 [ROL.w -(A4)] 2566
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2572] e7d9 [ROL.w (A1)+] 2573
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2578] e7eb [ROL.w (d16, A3)] 2579
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2593] e7f5 [ROL.w (d8, A5, Xn)] 2594
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2595] e7dc [ROL.w (A4)+] 2596
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2597] e7e1 [ROL.w -(A1)] 2598
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2600] e7ed [ROL.w (d16, A5)] 2601
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2613] e7eb [ROL.w (d16, A3)] 2614
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2622] e7e1 [ROL.w -(A1)] 2623
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2629] e7d8 [ROL.w (A0)+] 2630
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2637] e7f9 [ROL.w (xxx).l] 2638
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4594] e1d3 [ASL.w (A3)] 4595
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4595] e1d6 [ASL.w (A6)] 4596
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4605] e1d0 [ASL.w (A0)] 4606
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4609] e1e2 [ASL.w -(A2)] 4610
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4633] e1d8 [ASL.w (A0)+] 4634
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4635] e1ec [ASL.w (d16, A4)] 4636
+FAIL [2646] e7f6 [ROL.w (d8, A6, Xn)] 2647
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4642] e1de [ASL.w (A6)+] 4643
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4655] e1f8 [ASL.w (xxx).w] 4656
+FAIL [2649] e7eb [ROL.w (d16, A3)] 2650
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4663] e1e3 [ASL.w -(A3)] 4664
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4666] e1e6 [ASL.w -(A6)] 4667
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4681] e1d1 [ASL.w (A1)] 4682
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4693] e1e6 [ASL.w -(A6)] 4694
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4694] e1d5 [ASL.w (A5)] 4695
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4703] e1f4 [ASL.w (d8, A4, Xn)] 4704
+FAIL [2655] e7eb [ROL.w (d16, A3)] 2656
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4717] e1f9 [ASL.w (xxx).l] 4718
+FAIL [2665] e7e6 [ROL.w -(A6)] 2666
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2668] e7ec [ROL.w (d16, A4)] 2669
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2670] e7e4 [ROL.w -(A4)] 2671
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2685] e7e5 [ROL.w -(A5)] 2686
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2690] e7ef [ROL.w (d16, A7)] 2691
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2691] e7f6 [ROL.w (d8, A6, Xn)] 2692
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2694] e7d6 [ROL.w (A6)] 2695
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2704] e7d2 [ROL.w (A2)] 2705
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2705] e7d1 [ROL.w (A1)] 2706
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2720] e7f2 [ROL.w (d8, A2, Xn)] 2721
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2723] e7da [ROL.w (A2)+] 2724
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2725] e7f2 [ROL.w (d8, A2, Xn)] 2726
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2728] e7e6 [ROL.w -(A6)] 2729
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2743] e7ea [ROL.w (d16, A2)] 2744
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2754] e7f0 [ROL.w (d8, A0, Xn)] 2755
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2761] e7ee [ROL.w (d16, A6)] 2762
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2777] e7ea [ROL.w (d16, A2)] 2778
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2793] e7f3 [ROL.w (d8, A3, Xn)] 2794
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2803] e7dd [ROL.w (A5)+] 2804
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2823] e7d0 [ROL.w (A0)] 2824
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2834] e7d9 [ROL.w (A1)+] 2835
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2839] e7de [ROL.w (A6)+] 2840
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2850] e7f7 [ROL.w (d8, A7, Xn)] 2851
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2853] e7dd [ROL.w (A5)+] 2854
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2873] e7e3 [ROL.w -(A3)] 2874
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2874] e7e8 [ROL.w (d16, A0)] 2875
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2892] e7f5 [ROL.w (d8, A5, Xn)] 2893
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2907] e7f2 [ROL.w (d8, A2, Xn)] 2908
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2923] e7d5 [ROL.w (A5)] 2924
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2927] e7db [ROL.w (A3)+] 2928
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2952] e7f6 [ROL.w (d8, A6, Xn)] 2953
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2958] e7f6 [ROL.w (d8, A6, Xn)] 2959
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2960] e7e4 [ROL.w -(A4)] 2961
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2963] e7e8 [ROL.w (d16, A0)] 2964
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [2967] e7d8 [ROL.w (A0)+] 2968
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2975] e7db [ROL.w (A3)+] 2976
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [2992] e7d9 [ROL.w (A1)+] 2993
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3025] e7ea [ROL.w (d16, A2)] 3026
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3030] e7e3 [ROL.w -(A3)] 3031
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3038] e7f5 [ROL.w (d8, A5, Xn)] 3039
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3066] e7e2 [ROL.w -(A2)] 3067
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3074] e7e2 [ROL.w -(A2)] 3075
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3076] e7e0 [ROL.w -(A0)] 3077
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3080] e7f1 [ROL.w (d8, A1, Xn)] 3081
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3082] e7e4 [ROL.w -(A4)] 3083
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3086] e7f9 [ROL.w (xxx).l] 3087
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4724] e1ed [ASL.w (d16, A5)] 4725
+FAIL [3087] e7e9 [ROL.w (d16, A1)] 3088
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4726] e1ea [ASL.w (d16, A2)] 4727
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4738] e1d2 [ASL.w (A2)] 4739
+FAIL [3100] e7d0 [ROL.w (A0)] 3101
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4756] e1de [ASL.w (A6)+] 4757
+FAIL [3118] e7d1 [ROL.w (A1)] 3119
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4759] e1f0 [ASL.w (d8, A0, Xn)] 4760
+FAIL [3122] e7db [ROL.w (A3)+] 3123
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3134] e7d0 [ROL.w (A0)] 3135
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3144] e7f8 [ROL.w (xxx).w] 3145
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4761] e1ee [ASL.w (d16, A6)] 4762
+FAIL [3159] e7d2 [ROL.w (A2)] 3160
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3167] e7d5 [ROL.w (A5)] 3168
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3174] e7f2 [ROL.w (d8, A2, Xn)] 3175
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4785] e1f0 [ASL.w (d8, A0, Xn)] 4786
+FAIL [3187] e7e5 [ROL.w -(A5)] 3188
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3188] e7e9 [ROL.w (d16, A1)] 3189
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4786] e1f9 [ASL.w (xxx).l] 4787
+FAIL [3202] e7f5 [ROL.w (d8, A5, Xn)] 3203
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3211] e7db [ROL.w (A3)+] 3212
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3215] e7dc [ROL.w (A4)+] 3216
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3217] e7d1 [ROL.w (A1)] 3218
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3219] e7e1 [ROL.w -(A1)] 3220
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3241] e7e5 [ROL.w -(A5)] 3242
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3254] e7ee [ROL.w (d16, A6)] 3255
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3260] e7f7 [ROL.w (d8, A7, Xn)] 3261
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3280] e7d6 [ROL.w (A6)] 3281
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3283] e7f8 [ROL.w (xxx).w] 3284
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3286] e7f0 [ROL.w (d8, A0, Xn)] 3287
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3288] e7dc [ROL.w (A4)+] 3289
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3305] e7ea [ROL.w (d16, A2)] 3306
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3306] e7de [ROL.w (A6)+] 3307
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3307] e7da [ROL.w (A2)+] 3308
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3315] e7d9 [ROL.w (A1)+] 3316
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3332] e7e0 [ROL.w -(A0)] 3333
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3361] e7f4 [ROL.w (d8, A4, Xn)] 3362
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3363] e7d6 [ROL.w (A6)] 3364
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3370] e7de [ROL.w (A6)+] 3371
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3372] e7da [ROL.w (A2)+] 3373
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3374] e7db [ROL.w (A3)+] 3375
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3375] e7d0 [ROL.w (A0)] 3376
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3376] e7f4 [ROL.w (d8, A4, Xn)] 3377
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3386] e7f8 [ROL.w (xxx).w] 3387
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3399] e7dc [ROL.w (A4)+] 3400
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3404] e7f6 [ROL.w (d8, A6, Xn)] 3405
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3412] e7eb [ROL.w (d16, A3)] 3413
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3422] e7d9 [ROL.w (A1)+] 3423
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3434] e7ed [ROL.w (d16, A5)] 3435
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3445] e7e9 [ROL.w (d16, A1)] 3446
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3451] e7e3 [ROL.w -(A3)] 3452
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3460] e7e9 [ROL.w (d16, A1)] 3461
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3462] e7f9 [ROL.w (xxx).l] 3463
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4802] e1d6 [ASL.w (A6)] 4803
+FAIL [3484] e7ec [ROL.w (d16, A4)] 3485
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3487] e7e8 [ROL.w (d16, A0)] 3488
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3491] e7da [ROL.w (A2)+] 3492
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4807] e1ef [ASL.w (d16, A7)] 4808
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4811] e1dd [ASL.w (A5)+] 4812
+FAIL [3498] e7d6 [ROL.w (A6)] 3499
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4824] e1d6 [ASL.w (A6)] 4825
+FAIL [3499] e7d9 [ROL.w (A1)+] 3500
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4829] e1d8 [ASL.w (A0)+] 4830
+FAIL [3529] e7f4 [ROL.w (d8, A4, Xn)] 3530
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3556] e7f8 [ROL.w (xxx).w] 3557
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3561] e7de [ROL.w (A6)+] 3562
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4834] e1d4 [ASL.w (A4)] 4835
+FAIL [3576] e7f5 [ROL.w (d8, A5, Xn)] 3577
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3600] e7d0 [ROL.w (A0)] 3601
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4840] e1e1 [ASL.w -(A1)] 4841
+FAIL [3608] e7e1 [ROL.w -(A1)] 3609
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4865] e1de [ASL.w (A6)+] 4866
+FAIL [3609] e7d2 [ROL.w (A2)] 3610
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4882] e1f7 [ASL.w (d8, A7, Xn)] 4883
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4884] e1e3 [ASL.w -(A3)] 4885
+FAIL [3610] e7e0 [ROL.w -(A0)] 3611
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4892] e1f0 [ASL.w (d8, A0, Xn)] 4893
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4910] e1d3 [ASL.w (A3)] 4911
+FAIL [3621] e7d5 [ROL.w (A5)] 3622
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4915] e1eb [ASL.w (d16, A3)] 4916
+FAIL [3653] e7db [ROL.w (A3)+] 3654
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3656] e7eb [ROL.w (d16, A3)] 3657
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4927] e1ec [ASL.w (d16, A4)] 4928
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4933] e1ee [ASL.w (d16, A6)] 4934
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4944] e1e1 [ASL.w -(A1)] 4945
+FAIL [3662] e7d0 [ROL.w (A0)] 3663
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3666] e7e6 [ROL.w -(A6)] 3667
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4949] e1ee [ASL.w (d16, A6)] 4950
+FAIL [3673] e7d2 [ROL.w (A2)] 3674
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3681] e7d1 [ROL.w (A1)] 3682
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3684] e7f1 [ROL.w (d8, A1, Xn)] 3685
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4950] e1f7 [ASL.w (d8, A7, Xn)] 4951
+FAIL [3695] e7db [ROL.w (A3)+] 3696
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3752] e7e4 [ROL.w -(A4)] 3753
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3754] e7db [ROL.w (A3)+] 3755
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3759] e7d1 [ROL.w (A1)] 3760
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3766] e7e6 [ROL.w -(A6)] 3767
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3777] e7e4 [ROL.w -(A4)] 3778
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3780] e7f7 [ROL.w (d8, A7, Xn)] 3781
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4963] e1f9 [ASL.w (xxx).l] 4964
+FAIL [3783] e7f2 [ROL.w (d8, A2, Xn)] 3784
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3791] e7e5 [ROL.w -(A5)] 3792
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3800] e7f2 [ROL.w (d8, A2, Xn)] 3801
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3805] e7d5 [ROL.w (A5)] 3806
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3812] e7e6 [ROL.w -(A6)] 3813
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3815] e7f9 [ROL.w (xxx).l] 3816
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4974] e1ee [ASL.w (d16, A6)] 4975
+FAIL [3819] e7e0 [ROL.w -(A0)] 3820
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3838] e7e6 [ROL.w -(A6)] 3839
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3840] e7f7 [ROL.w (d8, A7, Xn)] 3841
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4976] e1d4 [ASL.w (A4)] 4977
+FAIL [3841] e7f6 [ROL.w (d8, A6, Xn)] 3842
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3847] e7de [ROL.w (A6)+] 3848
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [4978] e1f5 [ASL.w (d8, A5, Xn)] 4979
+FAIL [3855] e7f0 [ROL.w (d8, A0, Xn)] 3856
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4979] e1f3 [ASL.w (d8, A3, Xn)] 4980
+FAIL [3863] e7e3 [ROL.w -(A3)] 3864
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4990] e1f8 [ASL.w (xxx).w] 4991
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4999] e1d5 [ASL.w (A5)] 5000
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3875] e7d6 [ROL.w (A6)] 3876
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5001] e1e1 [ASL.w -(A1)] 5002
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5010] e1f4 [ASL.w (d8, A4, Xn)] 5011
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5013] e1e0 [ASL.w -(A0)] 5014
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5016] e1d2 [ASL.w (A2)] 5017
+FAIL [3886] e7d1 [ROL.w (A1)] 3887
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5026] e1ef [ASL.w (d16, A7)] 5027
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5036] e1d3 [ASL.w (A3)] 5037
+FAIL [3892] e7de [ROL.w (A6)+] 3893
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5039] e1d2 [ASL.w (A2)] 5040
+FAIL [3896] e7da [ROL.w (A2)+] 3897
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5052] e1ef [ASL.w (d16, A7)] 5053
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5053] e1f1 [ASL.w (d8, A1, Xn)] 5054
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5067] e1e9 [ASL.w (d16, A1)] 5068
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5076] e1f6 [ASL.w (d8, A6, Xn)] 5077
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5086] e1f8 [ASL.w (xxx).w] 5087
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5090] e1d6 [ASL.w (A6)] 5091
+FAIL [3902] e7d3 [ROL.w (A3)] 3903
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5098] e1f0 [ASL.w (d8, A0, Xn)] 5099
+FAIL [3904] e7ec [ROL.w (d16, A4)] 3905
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5100] e1d6 [ASL.w (A6)] 5101
+FAIL [3910] e7db [ROL.w (A3)+] 3911
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5121] e1d8 [ASL.w (A0)+] 5122
+FAIL [3923] e7db [ROL.w (A3)+] 3924
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5145] e1d0 [ASL.w (A0)] 5146
+FAIL [3938] e7eb [ROL.w (d16, A3)] 3939
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3940] e7e5 [ROL.w -(A5)] 3941
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3954] e7e0 [ROL.w -(A0)] 3955
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3957] e7e4 [ROL.w -(A4)] 3958
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [3960] e7d5 [ROL.w (A5)] 3961
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5148] e1f7 [ASL.w (d8, A7, Xn)] 5149
+FAIL [3963] e7e9 [ROL.w (d16, A1)] 3964
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5152] e1f3 [ASL.w (d8, A3, Xn)] 5153
+FAIL [3966] e7ea [ROL.w (d16, A2)] 3967
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5165] e1f1 [ASL.w (d8, A1, Xn)] 5166
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5166] e1e5 [ASL.w -(A5)] 5167
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5170] e1e9 [ASL.w (d16, A1)] 5171
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5171] e1f6 [ASL.w (d8, A6, Xn)] 5172
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5190] e1f6 [ASL.w (d8, A6, Xn)] 5191
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5210] e1ed [ASL.w (d16, A5)] 5211
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5217] e1e1 [ASL.w -(A1)] 5218
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5219] e1e3 [ASL.w -(A3)] 5220
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5236] e1e2 [ASL.w -(A2)] 5237
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5245] e1d5 [ASL.w (A5)] 5246
+FAIL [3968] e7d3 [ROL.w (A3)] 3969
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5321] e1d2 [ASL.w (A2)] 5322
+FAIL [3976] e7f5 [ROL.w (d8, A5, Xn)] 3977
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3978] e7f3 [ROL.w (d8, A3, Xn)] 3979
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [3983] e7f2 [ROL.w (d8, A2, Xn)] 3984
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4006] e7de [ROL.w (A6)+] 4007
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5322] e1eb [ASL.w (d16, A3)] 5323
+FAIL [4007] e7f3 [ROL.w (d8, A3, Xn)] 4008
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5325] e1d0 [ASL.w (A0)] 5326
+FAIL [4021] e7f8 [ROL.w (xxx).w] 4022
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4023] e7dc [ROL.w (A4)+] 4024
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5328] e1f6 [ASL.w (d8, A6, Xn)] 5329
+FAIL [4035] e7ed [ROL.w (d16, A5)] 4036
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5351] e1ea [ASL.w (d16, A2)] 5352
+FAIL [4048] e7e8 [ROL.w (d16, A0)] 4049
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5360] e1e1 [ASL.w -(A1)] 5361
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5363] e1f8 [ASL.w (xxx).w] 5364
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5373] e1d6 [ASL.w (A6)] 5374
+FAIL [4050] e7d1 [ROL.w (A1)] 4051
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5395] e1f3 [ASL.w (d8, A3, Xn)] 5396
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5403] e1ee [ASL.w (d16, A6)] 5404
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5405] e1f1 [ASL.w (d8, A1, Xn)] 5406
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5426] e1e0 [ASL.w -(A0)] 5427
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5432] e1ed [ASL.w (d16, A5)] 5433
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5446] e1e6 [ASL.w -(A6)] 5447
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5451] e1e9 [ASL.w (d16, A1)] 5452
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5460] e1d9 [ASL.w (A1)+] 5461
+FAIL [4053] e7d2 [ROL.w (A2)] 4054
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5461] e1f3 [ASL.w (d8, A3, Xn)] 5462
+FAIL [4054] e7ec [ROL.w (d16, A4)] 4055
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5467] e1d9 [ASL.w (A1)+] 5468
+FAIL [4060] e7e8 [ROL.w (d16, A0)] 4061
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4062] e7e1 [ROL.w -(A1)] 4063
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4067] e7e2 [ROL.w -(A2)] 4068
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4077] e7e3 [ROL.w -(A3)] 4078
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4078] e7d9 [ROL.w (A1)+] 4079
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5487] e1f2 [ASL.w (d8, A2, Xn)] 5488
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5491] e1da [ASL.w (A2)+] 5492
+FAIL [4081] e7d9 [ROL.w (A1)+] 4082
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5523] e1d4 [ASL.w (A4)] 5524
+FAIL [4082] e7f3 [ROL.w (d8, A3, Xn)] 4083
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4084] e7ea [ROL.w (d16, A2)] 4085
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4094] e7d0 [ROL.w (A0)] 4095
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5524] e1d2 [ASL.w (A2)] 5525
+FAIL [4103] e7ea [ROL.w (d16, A2)] 4104
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4106] e7d6 [ROL.w (A6)] 4107
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5531] e1d3 [ASL.w (A3)] 5532
+FAIL [4109] e7d6 [ROL.w (A6)] 4110
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5548] e1d2 [ASL.w (A2)] 5549
+FAIL [4114] e7f4 [ROL.w (d8, A4, Xn)] 4115
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4117] e7d8 [ROL.w (A0)+] 4118
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5549] e1da [ASL.w (A2)+] 5550
+FAIL [4129] e7d2 [ROL.w (A2)] 4130
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5554] e1f0 [ASL.w (d8, A0, Xn)] 5555
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5559] e1d8 [ASL.w (A0)+] 5560
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5562] e1e6 [ASL.w -(A6)] 5563
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5569] e1e5 [ASL.w -(A5)] 5570
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5571] e1ed [ASL.w (d16, A5)] 5572
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5573] e1d5 [ASL.w (A5)] 5574
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5574] e1d0 [ASL.w (A0)] 5575
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5580] e1e6 [ASL.w -(A6)] 5581
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5583] e1dc [ASL.w (A4)+] 5584
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5589] e1d3 [ASL.w (A3)] 5590
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5605] e1d1 [ASL.w (A1)] 5606
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5608] e1ec [ASL.w (d16, A4)] 5609
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5612] e1f2 [ASL.w (d8, A2, Xn)] 5613
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5617] e1f5 [ASL.w (d8, A5, Xn)] 5618
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5625] e1f5 [ASL.w (d8, A5, Xn)] 5626
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5637] e1d9 [ASL.w (A1)+] 5638
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5641] e1ec [ASL.w (d16, A4)] 5642
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5642] e1dc [ASL.w (A4)+] 5643
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5646] e1e2 [ASL.w -(A2)] 5647
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5651] e1e5 [ASL.w -(A5)] 5652
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5662] e1ee [ASL.w (d16, A6)] 5663
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5674] e1f4 [ASL.w (d8, A4, Xn)] 5675
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5679] e1e2 [ASL.w -(A2)] 5680
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5681] e1f3 [ASL.w (d8, A3, Xn)] 5682
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5682] e1f3 [ASL.w (d8, A3, Xn)] 5683
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5685] e1eb [ASL.w (d16, A3)] 5686
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5713] e1d3 [ASL.w (A3)] 5714
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5719] e1e0 [ASL.w -(A0)] 5720
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5726] e1d8 [ASL.w (A0)+] 5727
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5729] e1e0 [ASL.w -(A0)] 5730
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5731] e1d1 [ASL.w (A1)] 5732
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5732] e1f4 [ASL.w (d8, A4, Xn)] 5733
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5737] e1dc [ASL.w (A4)+] 5738
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5743] e1d4 [ASL.w (A4)] 5744
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5745] e1ef [ASL.w (d16, A7)] 5746
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5746] e1f8 [ASL.w (xxx).w] 5747
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5755] e1d9 [ASL.w (A1)+] 5756
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5757] e1d6 [ASL.w (A6)] 5758
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5761] e1ef [ASL.w (d16, A7)] 5762
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5766] e1f4 [ASL.w (d8, A4, Xn)] 5767
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5768] e1de [ASL.w (A6)+] 5769
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5773] e1f0 [ASL.w (d8, A0, Xn)] 5774
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5777] e1f8 [ASL.w (xxx).w] 5778
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5787] e1f4 [ASL.w (d8, A4, Xn)] 5788
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5795] e1e6 [ASL.w -(A6)] 5796
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5811] e1de [ASL.w (A6)+] 5812
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5846] e1eb [ASL.w (d16, A3)] 5847
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5859] e1dd [ASL.w (A5)+] 5860
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5865] e1ee [ASL.w (d16, A6)] 5866
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5880] e1f8 [ASL.w (xxx).w] 5881
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5884] e1e8 [ASL.w (d16, A0)] 5885
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5885] e1f4 [ASL.w (d8, A4, Xn)] 5886
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5889] e1eb [ASL.w (d16, A3)] 5890
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5905] e1d6 [ASL.w (A6)] 5906
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5915] e1ea [ASL.w (d16, A2)] 5916
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5916] e1dd [ASL.w (A5)+] 5917
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5917] e1d2 [ASL.w (A2)] 5918
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5923] e1ea [ASL.w (d16, A2)] 5924
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5928] e1d0 [ASL.w (A0)] 5929
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5929] e1d2 [ASL.w (A2)] 5930
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5952] e1f7 [ASL.w (d8, A7, Xn)] 5953
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5963] e1db [ASL.w (A3)+] 5964
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [5985] e1f1 [ASL.w (d8, A1, Xn)] 5986
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5988] e1e3 [ASL.w -(A3)] 5989
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6005] e1f9 [ASL.w (xxx).l] 6006
+FAIL [4141] e7f9 [ROL.w (xxx).l] 4142
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6013] e1f8 [ASL.w (xxx).w] 6014
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6015] e1f6 [ASL.w (d8, A6, Xn)] 6016
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6025] e1e1 [ASL.w -(A1)] 6026
+FAIL [4142] e7e6 [ROL.w -(A6)] 4143
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6029] e1f9 [ASL.w (xxx).l] 6030
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6033] e1f7 [ASL.w (d8, A7, Xn)] 6034
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6043] e1d0 [ASL.w (A0)] 6044
+FAIL [4143] e7de [ROL.w (A6)+] 4144
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6047] e1e3 [ASL.w -(A3)] 6048
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6050] e1f0 [ASL.w (d8, A0, Xn)] 6051
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6086] e1d9 [ASL.w (A1)+] 6087
+FAIL [4153] e7d6 [ROL.w (A6)] 4154
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6099] e1d8 [ASL.w (A0)+] 6100
+FAIL [4154] e7ef [ROL.w (d16, A7)] 4155
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4168] e7e9 [ROL.w (d16, A1)] 4169
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4183] e7f8 [ROL.w (xxx).w] 4184
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4188] e7e3 [ROL.w -(A3)] 4189
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4191] e7ef [ROL.w (d16, A7)] 4192
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4233] e7f1 [ROL.w (d8, A1, Xn)] 4234
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4237] e7e9 [ROL.w (d16, A1)] 4238
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4256] e7ec [ROL.w (d16, A4)] 4257
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4262] e7ee [ROL.w (d16, A6)] 4263
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4270] e7f7 [ROL.w (d8, A7, Xn)] 4271
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4274] e7de [ROL.w (A6)+] 4275
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6101] e1f2 [ASL.w (d8, A2, Xn)] 6102
+FAIL [4276] e7e8 [ROL.w (d16, A0)] 4277
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6105] e1d2 [ASL.w (A2)] 6106
+FAIL [4297] e7d1 [ROL.w (A1)] 4298
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6120] e1f3 [ASL.w (d8, A3, Xn)] 6121
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6126] e1f0 [ASL.w (d8, A0, Xn)] 6127
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6127] e1d2 [ASL.w (A2)] 6128
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6131] e1ef [ASL.w (d16, A7)] 6132
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6154] e1f9 [ASL.w (xxx).l] 6155
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6162] e1f5 [ASL.w (d8, A5, Xn)] 6163
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6166] e1d1 [ASL.w (A1)] 6167
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6173] e1e8 [ASL.w (d16, A0)] 6174
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6186] e1f7 [ASL.w (d8, A7, Xn)] 6187
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6189] e1d2 [ASL.w (A2)] 6190
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6199] e1d1 [ASL.w (A1)] 6200
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6211] e1d6 [ASL.w (A6)] 6212
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6217] e1e3 [ASL.w -(A3)] 6218
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6220] e1e3 [ASL.w -(A3)] 6221
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6234] e1e8 [ASL.w (d16, A0)] 6235
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6238] e1d6 [ASL.w (A6)] 6239
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6248] e1f0 [ASL.w (d8, A0, Xn)] 6249
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6261] e1e5 [ASL.w -(A5)] 6262
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6265] e1e6 [ASL.w -(A6)] 6266
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6272] e1f3 [ASL.w (d8, A3, Xn)] 6273
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6274] e1d9 [ASL.w (A1)+] 6275
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6291] e1dc [ASL.w (A4)+] 6292
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6315] e1ec [ASL.w (d16, A4)] 6316
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6317] e1d8 [ASL.w (A0)+] 6318
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6321] e1dc [ASL.w (A4)+] 6322
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6323] e1f8 [ASL.w (xxx).w] 6324
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6326] e1e2 [ASL.w -(A2)] 6327
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6331] e1e5 [ASL.w -(A5)] 6332
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6333] e1f7 [ASL.w (d8, A7, Xn)] 6334
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6338] e1f6 [ASL.w (d8, A6, Xn)] 6339
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6351] e1dd [ASL.w (A5)+] 6352
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6368] e1f4 [ASL.w (d8, A4, Xn)] 6369
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6371] e1f3 [ASL.w (d8, A3, Xn)] 6372
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6393] e1f6 [ASL.w (d8, A6, Xn)] 6394
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6395] e1f6 [ASL.w (d8, A6, Xn)] 6396
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6416] e1f6 [ASL.w (d8, A6, Xn)] 6417
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6443] e1e0 [ASL.w -(A0)] 6444
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6448] e1e5 [ASL.w -(A5)] 6449
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6454] e1f4 [ASL.w (d8, A4, Xn)] 6455
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6467] e1d1 [ASL.w (A1)] 6468
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6471] e1e2 [ASL.w -(A2)] 6472
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6473] e1f3 [ASL.w (d8, A3, Xn)] 6474
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6476] e1f9 [ASL.w (xxx).l] 6477
+FAIL [4302] e7f9 [ROL.w (xxx).l] 4303
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6502] e1e2 [ASL.w -(A2)] 6503
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6507] e1de [ASL.w (A6)+] 6508
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6519] e1d8 [ASL.w (A0)+] 6520
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6528] e1e5 [ASL.w -(A5)] 6529
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6529] e1d0 [ASL.w (A0)] 6530
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6541] e1de [ASL.w (A6)+] 6542
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6543] e1ea [ASL.w (d16, A2)] 6544
+FAIL [4308] e7ec [ROL.w (d16, A4)] 4309
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6554] e1f7 [ASL.w (d8, A7, Xn)] 6555
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6562] e1ee [ASL.w (d16, A6)] 6563
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6567] e1f4 [ASL.w (d8, A4, Xn)] 6568
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6572] e1de [ASL.w (A6)+] 6573
+FAIL [4310] e7da [ROL.w (A2)+] 4311
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6578] e1eb [ASL.w (d16, A3)] 6579
+FAIL [4315] e7e3 [ROL.w -(A3)] 4316
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4323] e7ec [ROL.w (d16, A4)] 4324
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6584] e1ec [ASL.w (d16, A4)] 6585
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6587] e1e6 [ASL.w -(A6)] 6588
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6589] e1d3 [ASL.w (A3)] 6590
+FAIL [4371] e7d4 [ROL.w (A4)] 4372
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6600] e1e2 [ASL.w -(A2)] 6601
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6607] e1d1 [ASL.w (A1)] 6608
+FAIL [4386] e7d5 [ROL.w (A5)] 4387
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6608] e1e5 [ASL.w -(A5)] 6609
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6612] e1dd [ASL.w (A5)+] 6613
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6614] e1f3 [ASL.w (d8, A3, Xn)] 6615
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6620] e1d4 [ASL.w (A4)] 6621
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6622] e1f6 [ASL.w (d8, A6, Xn)] 6623
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6632] e1f9 [ASL.w (xxx).l] 6633
+FAIL [4406] e7f9 [ROL.w (xxx).l] 4407
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6638] e1d8 [ASL.w (A0)+] 6639
+FAIL [4412] e7d5 [ROL.w (A5)] 4413
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6644] e1f6 [ASL.w (d8, A6, Xn)] 6645
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6651] e1f2 [ASL.w (d8, A2, Xn)] 6652
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6669] e1e9 [ASL.w (d16, A1)] 6670
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6671] e1f6 [ASL.w (d8, A6, Xn)] 6672
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6688] e1e9 [ASL.w (d16, A1)] 6689
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6707] e1ea [ASL.w (d16, A2)] 6708
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6708] e1d8 [ASL.w (A0)+] 6709
+FAIL [4414] e7db [ROL.w (A3)+] 4415
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6719] e1f3 [ASL.w (d8, A3, Xn)] 6720
+FAIL [4429] e7f8 [ROL.w (xxx).w] 4430
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6734] e1e1 [ASL.w -(A1)] 6735
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6736] e1d9 [ASL.w (A1)+] 6737
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6741] e1ee [ASL.w (d16, A6)] 6742
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6761] e1f9 [ASL.w (xxx).l] 6762
+FAIL [4442] e7f9 [ROL.w (xxx).l] 4443
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6781] e1f7 [ASL.w (d8, A7, Xn)] 6782
+FAIL [4454] e7f3 [ROL.w (d8, A3, Xn)] 4455
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6782] e1d5 [ASL.w (A5)] 6783
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6786] e1d2 [ASL.w (A2)] 6787
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6788] e1d0 [ASL.w (A0)] 6789
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6795] e1dc [ASL.w (A4)+] 6796
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6796] e1ea [ASL.w (d16, A2)] 6797
+FAIL [4474] e7f8 [ROL.w (xxx).w] 4475
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6803] e1ee [ASL.w (d16, A6)] 6804
+FAIL [4476] e7f2 [ROL.w (d8, A2, Xn)] 4477
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6813] e1d3 [ASL.w (A3)] 6814
+FAIL [4480] e7dc [ROL.w (A4)+] 4481
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6815] e1d0 [ASL.w (A0)] 6816
+FAIL [4483] e7d6 [ROL.w (A6)] 4484
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6822] e1d0 [ASL.w (A0)] 6823
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6839] e1d8 [ASL.w (A0)+] 6840
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6846] e1d8 [ASL.w (A0)+] 6847
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6865] e1d9 [ASL.w (A1)+] 6866
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6867] e1f6 [ASL.w (d8, A6, Xn)] 6868
+FAIL [4485] e7ed [ROL.w (d16, A5)] 4486
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6869] e1d3 [ASL.w (A3)] 6870
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6881] e1d8 [ASL.w (A0)+] 6882
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6884] e1e3 [ASL.w -(A3)] 6885
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6892] e1f9 [ASL.w (xxx).l] 6893
+FAIL [4486] e7f9 [ROL.w (xxx).l] 4487
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6893] e1d9 [ASL.w (A1)+] 6894
+FAIL [4502] e7d3 [ROL.w (A3)] 4503
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6908] e1e0 [ASL.w -(A0)] 6909
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6927] e1dc [ASL.w (A4)+] 6928
+FAIL [4514] e7d8 [ROL.w (A0)+] 4515
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6935] e1f3 [ASL.w (d8, A3, Xn)] 6936
+FAIL [4537] e7eb [ROL.w (d16, A3)] 4538
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6941] e1ee [ASL.w (d16, A6)] 6942
+FAIL [4542] e7ec [ROL.w (d16, A4)] 4543
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6943] e1d0 [ASL.w (A0)] 6944
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6944] e1ed [ASL.w (d16, A5)] 6945
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6949] e1d8 [ASL.w (A0)+] 6950
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6953] e1d4 [ASL.w (A4)] 6954
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6958] e1d1 [ASL.w (A1)] 6959
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [6965] e1e5 [ASL.w -(A5)] 6966
+FAIL [4553] e7e4 [ROL.w -(A4)] 4554
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7005] e1d8 [ASL.w (A0)+] 7006
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7010] e1f9 [ASL.w (xxx).l] 7011
+FAIL [4568] e7f9 [ROL.w (xxx).l] 4569
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7018] e1e2 [ASL.w -(A2)] 7019
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7057] e1e0 [ASL.w -(A0)] 7058
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7058] e1e8 [ASL.w (d16, A0)] 7059
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7064] e1e4 [ASL.w -(A4)] 7065
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7066] e1f6 [ASL.w (d8, A6, Xn)] 7067
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7067] e1d0 [ASL.w (A0)] 7068
+FAIL [4570] e7d1 [ROL.w (A1)] 4571
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7075] e1e0 [ASL.w -(A0)] 7076
+FAIL [4574] e7e6 [ROL.w -(A6)] 4575
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7077] e1f6 [ASL.w (d8, A6, Xn)] 7078
+FAIL [4577] e7ec [ROL.w (d16, A4)] 4578
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7093] e1e6 [ASL.w -(A6)] 7094
+FAIL [4578] e7f7 [ROL.w (d8, A7, Xn)] 4579
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4585] e7ed [ROL.w (d16, A5)] 4586
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4597] e7e4 [ROL.w -(A4)] 4598
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7098] e1d8 [ASL.w (A0)+] 7099
+FAIL [4607] e7d8 [ROL.w (A0)+] 4608
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7099] e1e5 [ASL.w -(A5)] 7100
+FAIL [4608] e7ea [ROL.w (d16, A2)] 4609
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7104] e1d9 [ASL.w (A1)+] 7105
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4609] e7da [ROL.w (A2)+] 4610
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7121] e1d5 [ASL.w (A5)] 7122
+FAIL [4612] e7d9 [ROL.w (A1)+] 4613
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7144] e1dc [ASL.w (A4)+] 7145
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7149] e1ea [ASL.w (d16, A2)] 7150
+FAIL [4626] e7f3 [ROL.w (d8, A3, Xn)] 4627
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7170] e1d9 [ASL.w (A1)+] 7171
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7171] e1d9 [ASL.w (A1)+] 7172
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7172] e1d2 [ASL.w (A2)] 7173
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7175] e1f2 [ASL.w (d8, A2, Xn)] 7176
+FAIL [4631] e7eb [ROL.w (d16, A3)] 4632
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7178] e1e8 [ASL.w (d16, A0)] 7179
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7179] e1f3 [ASL.w (d8, A3, Xn)] 7180
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7202] e1f0 [ASL.w (d8, A0, Xn)] 7203
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7209] e1d9 [ASL.w (A1)+] 7210
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7225] e1f7 [ASL.w (d8, A7, Xn)] 7226
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7232] e1d5 [ASL.w (A5)] 7233
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7236] e1ec [ASL.w (d16, A4)] 7237
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7261] e1d6 [ASL.w (A6)] 7262
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7265] e1f7 [ASL.w (d8, A7, Xn)] 7266
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7267] e1e2 [ASL.w -(A2)] 7268
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7268] e1f8 [ASL.w (xxx).w] 7269
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7306] e1ed [ASL.w (d16, A5)] 7307
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7307] e1dc [ASL.w (A4)+] 7308
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7308] e1e2 [ASL.w -(A2)] 7309
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7316] e1e3 [ASL.w -(A3)] 7317
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7317] e1d0 [ASL.w (A0)] 7318
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7324] e1f2 [ASL.w (d8, A2, Xn)] 7325
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7325] e1f1 [ASL.w (d8, A1, Xn)] 7326
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7338] e1e5 [ASL.w -(A5)] 7339
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7341] e1da [ASL.w (A2)+] 7342
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7365] e1f5 [ASL.w (d8, A5, Xn)] 7366
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7369] e1d5 [ASL.w (A5)] 7370
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7373] e1d9 [ASL.w (A1)+] 7374
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7381] e1dc [ASL.w (A4)+] 7382
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7389] e1d9 [ASL.w (A1)+] 7390
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7397] e1ef [ASL.w (d16, A7)] 7398
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7416] e1ec [ASL.w (d16, A4)] 7417
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7431] e1db [ASL.w (A3)+] 7432
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7442] e1ed [ASL.w (d16, A5)] 7443
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7464] e1dc [ASL.w (A4)+] 7465
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7467] e1ec [ASL.w (d16, A4)] 7468
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7471] e1e8 [ASL.w (d16, A0)] 7472
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7473] e1ec [ASL.w (d16, A4)] 7474
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7474] e1e2 [ASL.w -(A2)] 7475
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7478] e1f9 [ASL.w (xxx).l] 7479
+FAIL [4647] e7f9 [ROL.w (xxx).l] 4648
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7494] e1ec [ASL.w (d16, A4)] 7495
+FAIL [4650] e7ee [ROL.w (d16, A6)] 4651
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7497] e1e8 [ASL.w (d16, A0)] 7498
+FAIL [4661] e7e5 [ROL.w -(A5)] 4662
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4662] e7e3 [ROL.w -(A3)] 4663
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4674] e7f2 [ROL.w (d8, A2, Xn)] 4675
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7498] e1da [ASL.w (A2)+] 7499
+FAIL [4685] e7d5 [ROL.w (A5)] 4686
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7502] e1d3 [ASL.w (A3)] 7503
+FAIL [4697] e7d4 [ROL.w (A4)] 4698
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7504] e1d2 [ASL.w (A2)] 7505
+FAIL [4698] e7d3 [ROL.w (A3)] 4699
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7511] e1f2 [ASL.w (d8, A2, Xn)] 7512
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7516] e1d6 [ASL.w (A6)] 7517
+FAIL [4707] e7d5 [ROL.w (A5)] 4708
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7524] e1f1 [ASL.w (d8, A1, Xn)] 7525
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7529] e1ea [ASL.w (d16, A2)] 7530
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7535] e1e1 [ASL.w -(A1)] 7536
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7542] e1ee [ASL.w (d16, A6)] 7543
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7553] e1f7 [ASL.w (d8, A7, Xn)] 7554
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7556] e1d4 [ASL.w (A4)] 7557
+FAIL [4708] e7d6 [ROL.w (A6)] 4709
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7560] e1dd [ASL.w (A5)+] 7561
+FAIL [4714] e7d1 [ROL.w (A1)] 4715
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7563] e1f1 [ASL.w (d8, A1, Xn)] 7564
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7579] e1f5 [ASL.w (d8, A5, Xn)] 7580
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7590] e1f0 [ASL.w (d8, A0, Xn)] 7591
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7607] e1ee [ASL.w (d16, A6)] 7608
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7615] e1ef [ASL.w (d16, A7)] 7616
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7616] e1f7 [ASL.w (d8, A7, Xn)] 7617
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7633] e1e2 [ASL.w -(A2)] 7634
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7641] e1e3 [ASL.w -(A3)] 7642
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7657] e1f6 [ASL.w (d8, A6, Xn)] 7658
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7668] e1d9 [ASL.w (A1)+] 7669
+FAIL [4715] e7d4 [ROL.w (A4)] 4716
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7674] e1d9 [ASL.w (A1)+] 7675
+FAIL [4716] e7dc [ROL.w (A4)+] 4717
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7682] e1dd [ASL.w (A5)+] 7683
+FAIL [4720] e7e2 [ROL.w -(A2)] 4721
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4730] e7eb [ROL.w (d16, A3)] 4731
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4734] e7ea [ROL.w (d16, A2)] 4735
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4736] e7f2 [ROL.w (d8, A2, Xn)] 4737
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4744] e7d5 [ROL.w (A5)] 4745
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7698] e1eb [ASL.w (d16, A3)] 7699
+FAIL [4746] e7eb [ROL.w (d16, A3)] 4747
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7706] e1e6 [ASL.w -(A6)] 7707
+FAIL [4760] e7e2 [ROL.w -(A2)] 4761
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7709] e1f2 [ASL.w (d8, A2, Xn)] 7710
+FAIL [4784] e7ea [ROL.w (d16, A2)] 4785
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7715] e1e8 [ASL.w (d16, A0)] 7716
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7719] e1f1 [ASL.w (d8, A1, Xn)] 7720
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7724] e1f5 [ASL.w (d8, A5, Xn)] 7725
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7727] e1d2 [ASL.w (A2)] 7728
+FAIL [4785] e7d1 [ROL.w (A1)] 4786
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7732] e1f4 [ASL.w (d8, A4, Xn)] 7733
+FAIL [4825] e7e4 [ROL.w -(A4)] 4826
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4830] e7f6 [ROL.w (d8, A6, Xn)] 4831
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7733] e1e5 [ASL.w -(A5)] 7734
+FAIL [4831] e7f6 [ROL.w (d8, A6, Xn)] 4832
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7738] e1e0 [ASL.w -(A0)] 7739
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7740] e1d4 [ASL.w (A4)] 7741
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4865] e7d6 [ROL.w (A6)] 4866
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7742] e1f4 [ASL.w (d8, A4, Xn)] 7743
+FAIL [4867] e7f1 [ROL.w (d8, A1, Xn)] 4868
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7743] e1db [ASL.w (A3)+] 7744
+FAIL [4872] e7db [ROL.w (A3)+] 4873
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7756] e1f2 [ASL.w (d8, A2, Xn)] 7757
+FAIL [4874] e7e2 [ROL.w -(A2)] 4875
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7764] e1dc [ASL.w (A4)+] 7765
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [4877] e7de [ROL.w (A6)+] 4878
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7800] e1eb [ASL.w (d16, A3)] 7801
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7807] e1e4 [ASL.w -(A4)] 7808
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7811] e1f0 [ASL.w (d8, A0, Xn)] 7812
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7819] e1f5 [ASL.w (d8, A5, Xn)] 7820
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7820] e1d5 [ASL.w (A5)] 7821
+FAIL [4878] e7d3 [ROL.w (A3)] 4879
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7840] e1e6 [ASL.w -(A6)] 7841
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7856] e1f0 [ASL.w (d8, A0, Xn)] 7857
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7867] e1f5 [ASL.w (d8, A5, Xn)] 7868
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7871] e1e5 [ASL.w -(A5)] 7872
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7874] e1ea [ASL.w (d16, A2)] 7875
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7880] e1f0 [ASL.w (d8, A0, Xn)] 7881
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7883] e1f3 [ASL.w (d8, A3, Xn)] 7884
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7890] e1e2 [ASL.w -(A2)] 7891
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7897] e1dd [ASL.w (A5)+] 7898
+FAIL [4881] e7db [ROL.w (A3)+] 4882
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7899] e1de [ASL.w (A6)+] 7900
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7916] e1f4 [ASL.w (d8, A4, Xn)] 7917
+FAIL [4899] e7ea [ROL.w (d16, A2)] 4900
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7920] e1de [ASL.w (A6)+] 7921
+FAIL [4903] e7db [ROL.w (A3)+] 4904
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7922] e1db [ASL.w (A3)+] 7923
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7933] e1e5 [ASL.w -(A5)] 7934
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7936] e1f7 [ASL.w (d8, A7, Xn)] 7937
+FAIL [4919] e7f8 [ROL.w (xxx).w] 4920
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7945] e1d1 [ASL.w (A1)] 7946
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7953] e1f8 [ASL.w (xxx).w] 7954
+FAIL [4932] e7ec [ROL.w (d16, A4)] 4933
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7954] e1ea [ASL.w (d16, A2)] 7955
+FAIL [4936] e7ed [ROL.w (d16, A5)] 4937
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7964] e1d0 [ASL.w (A0)] 7965
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7966] e1e9 [ASL.w (d16, A1)] 7967
+FAIL [4937] e7ef [ROL.w (d16, A7)] 4938
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7989] e1f0 [ASL.w (d8, A0, Xn)] 7990
+FAIL [4948] e7f6 [ROL.w (d8, A6, Xn)] 4949
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7990] e1d8 [ASL.w (A0)+] 7991
-  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7993] e1e6 [ASL.w -(A6)] 7994
+FAIL [4967] e7f6 [ROL.w (d8, A6, Xn)] 4968
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [7997] e1d4 [ASL.w (A4)] 7998
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [4976] e7d1 [ROL.w (A1)] 4977
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [8000] e1f9 [ASL.w (xxx).l] 8001
+FAIL [4989] e7f9 [ROL.w (xxx).l] 4990
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [8009] e1ec [ASL.w (d16, A4)] 8010
+FAIL [4996] e7f6 [ROL.w (d8, A6, Xn)] 4997
   ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [8012] e1e8 [ASL.w (d16, A0)] 8013
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [8021] e1e3 [ASL.w -(A3)] 8022
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [8022] e1f9 [ASL.w (xxx).l] 8023
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [8026] e1e3 [ASL.w -(A3)] 8027
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-FAIL [8034] e1f2 [ASL.w (d8, A2, Xn)] 8035
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [8041] e1eb [ASL.w (d16, A3)] 8042
-  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [8053] e1dd [ASL.w (A5)+] 8054
+FAIL [5002] e7d9 [ROL.w (A1)+] 5003
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
-7127 passed, 938 failed
+FAIL [5008] e7ef [ROL.w (d16, A7)] 5009
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5016] e7d5 [ROL.w (A5)] 5017
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5023] e7de [ROL.w (A6)+] 5024
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5024] e7f1 [ROL.w (d8, A1, Xn)] 5025
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5035] e7d4 [ROL.w (A4)] 5036
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5049] e7e1 [ROL.w -(A1)] 5050
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5051] e7e4 [ROL.w -(A4)] 5052
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5069] e7f0 [ROL.w (d8, A0, Xn)] 5070
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5079] e7ea [ROL.w (d16, A2)] 5080
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5084] e7eb [ROL.w (d16, A3)] 5085
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5085] e7e1 [ROL.w -(A1)] 5086
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5088] e7f1 [ROL.w (d8, A1, Xn)] 5089
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5094] e7f0 [ROL.w (d8, A0, Xn)] 5095
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5106] e7d0 [ROL.w (A0)] 5107
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5107] e7ef [ROL.w (d16, A7)] 5108
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5118] e7ef [ROL.w (d16, A7)] 5119
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5122] e7e2 [ROL.w -(A2)] 5123
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5124] e7ed [ROL.w (d16, A5)] 5125
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5130] e7ee [ROL.w (d16, A6)] 5131
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5136] e7ec [ROL.w (d16, A4)] 5137
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5144] e7de [ROL.w (A6)+] 5145
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5148] e7dc [ROL.w (A4)+] 5149
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5156] e7e0 [ROL.w -(A0)] 5157
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5161] e7d3 [ROL.w (A3)] 5162
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5168] e7e6 [ROL.w -(A6)] 5169
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5176] e7d6 [ROL.w (A6)] 5177
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5193] e7d5 [ROL.w (A5)] 5194
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5195] e7ed [ROL.w (d16, A5)] 5196
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5202] e7eb [ROL.w (d16, A3)] 5203
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5231] e7e8 [ROL.w (d16, A0)] 5232
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5234] e7d2 [ROL.w (A2)] 5235
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5245] e7f4 [ROL.w (d8, A4, Xn)] 5246
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5247] e7de [ROL.w (A6)+] 5248
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5256] e7e0 [ROL.w -(A0)] 5257
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5261] e7e0 [ROL.w -(A0)] 5262
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5272] e7f3 [ROL.w (d8, A3, Xn)] 5273
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5283] e7d3 [ROL.w (A3)] 5284
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5284] e7ee [ROL.w (d16, A6)] 5285
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5291] e7f8 [ROL.w (xxx).w] 5292
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5310] e7e1 [ROL.w -(A1)] 5311
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5316] e7d6 [ROL.w (A6)] 5317
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5323] e7e8 [ROL.w (d16, A0)] 5324
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5336] e7ea [ROL.w (d16, A2)] 5337
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5347] e7ef [ROL.w (d16, A7)] 5348
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5353] e7d8 [ROL.w (A0)+] 5354
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5362] e7eb [ROL.w (d16, A3)] 5363
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5372] e7f2 [ROL.w (d8, A2, Xn)] 5373
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5374] e7e2 [ROL.w -(A2)] 5375
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5383] e7e9 [ROL.w (d16, A1)] 5384
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5393] e7f4 [ROL.w (d8, A4, Xn)] 5394
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5404] e7e9 [ROL.w (d16, A1)] 5405
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5417] e7d9 [ROL.w (A1)+] 5418
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5419] e7e6 [ROL.w -(A6)] 5420
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5438] e7e9 [ROL.w (d16, A1)] 5439
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5439] e7ea [ROL.w (d16, A2)] 5440
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5441] e7de [ROL.w (A6)+] 5442
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5448] e7e2 [ROL.w -(A2)] 5449
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5450] e7d8 [ROL.w (A0)+] 5451
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5490] e7d9 [ROL.w (A1)+] 5491
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5496] e7d5 [ROL.w (A5)] 5497
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5500] e7e0 [ROL.w -(A0)] 5501
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5510] e7dc [ROL.w (A4)+] 5511
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5511] e7e3 [ROL.w -(A3)] 5512
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5525] e7f3 [ROL.w (d8, A3, Xn)] 5526
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5533] e7e1 [ROL.w -(A1)] 5534
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5536] e7eb [ROL.w (d16, A3)] 5537
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5537] e7de [ROL.w (A6)+] 5538
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5538] e7f7 [ROL.w (d8, A7, Xn)] 5539
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5542] e7d9 [ROL.w (A1)+] 5543
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5549] e7ef [ROL.w (d16, A7)] 5550
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5550] e7d2 [ROL.w (A2)] 5551
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5553] e7d8 [ROL.w (A0)+] 5554
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5578] e7f0 [ROL.w (d8, A0, Xn)] 5579
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5585] e7e5 [ROL.w -(A5)] 5586
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5586] e7d6 [ROL.w (A6)] 5587
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5595] e7f4 [ROL.w (d8, A4, Xn)] 5596
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5600] e7e2 [ROL.w -(A2)] 5601
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5611] e7f7 [ROL.w (d8, A7, Xn)] 5612
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5621] e7e4 [ROL.w -(A4)] 5622
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5626] e7da [ROL.w (A2)+] 5627
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5627] e7da [ROL.w (A2)+] 5628
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5637] e7f1 [ROL.w (d8, A1, Xn)] 5638
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5644] e7e0 [ROL.w -(A0)] 5645
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5649] e7ec [ROL.w (d16, A4)] 5650
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5650] e7f7 [ROL.w (d8, A7, Xn)] 5651
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5668] e7d8 [ROL.w (A0)+] 5669
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5677] e7e9 [ROL.w (d16, A1)] 5678
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5699] e7d6 [ROL.w (A6)] 5700
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5701] e7e2 [ROL.w -(A2)] 5702
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5703] e7e0 [ROL.w -(A0)] 5704
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5709] e7de [ROL.w (A6)+] 5710
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5720] e7ec [ROL.w (d16, A4)] 5721
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5723] e7da [ROL.w (A2)+] 5724
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5734] e7f8 [ROL.w (xxx).w] 5735
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5737] e7ec [ROL.w (d16, A4)] 5738
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5739] e7e5 [ROL.w -(A5)] 5740
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5745] e7f9 [ROL.w (xxx).l] 5746
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [5754] e7de [ROL.w (A6)+] 5755
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5770] e7de [ROL.w (A6)+] 5771
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5774] e7e3 [ROL.w -(A3)] 5775
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5784] e7d6 [ROL.w (A6)] 5785
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5786] e7e6 [ROL.w -(A6)] 5787
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5789] e7d2 [ROL.w (A2)] 5790
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5798] e7da [ROL.w (A2)+] 5799
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5801] e7f5 [ROL.w (d8, A5, Xn)] 5802
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5808] e7d4 [ROL.w (A4)] 5809
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5829] e7f9 [ROL.w (xxx).l] 5830
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [5832] e7f4 [ROL.w (d8, A4, Xn)] 5833
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5833] e7e2 [ROL.w -(A2)] 5834
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5839] e7d1 [ROL.w (A1)] 5840
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5841] e7e0 [ROL.w -(A0)] 5842
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5847] e7ec [ROL.w (d16, A4)] 5848
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5850] e7ee [ROL.w (d16, A6)] 5851
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5852] e7d3 [ROL.w (A3)] 5853
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5880] e7f2 [ROL.w (d8, A2, Xn)] 5881
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5888] e7f9 [ROL.w (xxx).l] 5889
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [5890] e7ec [ROL.w (d16, A4)] 5891
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5904] e7e4 [ROL.w -(A4)] 5905
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5906] e7f8 [ROL.w (xxx).w] 5907
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5920] e7ec [ROL.w (d16, A4)] 5921
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5925] e7e3 [ROL.w -(A3)] 5926
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5936] e7ed [ROL.w (d16, A5)] 5937
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5945] e7d9 [ROL.w (A1)+] 5946
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5946] e7e6 [ROL.w -(A6)] 5947
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5971] e7f9 [ROL.w (xxx).l] 5972
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [5975] e7e8 [ROL.w (d16, A0)] 5976
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [5992] e7d1 [ROL.w (A1)] 5993
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [5994] e7e3 [ROL.w -(A3)] 5995
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6003] e7d9 [ROL.w (A1)+] 6004
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6019] e7f2 [ROL.w (d8, A2, Xn)] 6020
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6023] e7de [ROL.w (A6)+] 6024
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6029] e7e1 [ROL.w -(A1)] 6030
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6033] e7db [ROL.w (A3)+] 6034
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6037] e7f8 [ROL.w (xxx).w] 6038
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6042] e7e1 [ROL.w -(A1)] 6043
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6043] e7ea [ROL.w (d16, A2)] 6044
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6053] e7e0 [ROL.w -(A0)] 6054
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6058] e7e1 [ROL.w -(A1)] 6059
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6062] e7f0 [ROL.w (d8, A0, Xn)] 6063
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6066] e7eb [ROL.w (d16, A3)] 6067
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6071] e7ed [ROL.w (d16, A5)] 6072
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6097] e7ed [ROL.w (d16, A5)] 6098
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6103] e7d1 [ROL.w (A1)] 6104
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6109] e7e8 [ROL.w (d16, A0)] 6110
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6114] e7e8 [ROL.w (d16, A0)] 6115
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6119] e7dc [ROL.w (A4)+] 6120
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6120] e7da [ROL.w (A2)+] 6121
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6124] e7d3 [ROL.w (A3)] 6125
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6137] e7ec [ROL.w (d16, A4)] 6138
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6138] e7e9 [ROL.w (d16, A1)] 6139
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6144] e7f1 [ROL.w (d8, A1, Xn)] 6145
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6151] e7d4 [ROL.w (A4)] 6152
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6161] e7e5 [ROL.w -(A5)] 6162
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6180] e7dd [ROL.w (A5)+] 6181
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6187] e7f2 [ROL.w (d8, A2, Xn)] 6188
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6196] e7d5 [ROL.w (A5)] 6197
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6197] e7ef [ROL.w (d16, A7)] 6198
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6199] e7d9 [ROL.w (A1)+] 6200
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6200] e7e3 [ROL.w -(A3)] 6201
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6202] e7f1 [ROL.w (d8, A1, Xn)] 6203
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6208] e7f1 [ROL.w (d8, A1, Xn)] 6209
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6215] e7da [ROL.w (A2)+] 6216
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6217] e7e1 [ROL.w -(A1)] 6218
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6227] e7da [ROL.w (A2)+] 6228
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6233] e7d8 [ROL.w (A0)+] 6234
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6246] e7dc [ROL.w (A4)+] 6247
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6254] e7f9 [ROL.w (xxx).l] 6255
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [6258] e7d3 [ROL.w (A3)] 6259
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6260] e7f9 [ROL.w (xxx).l] 6261
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [6263] e7da [ROL.w (A2)+] 6264
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6264] e7e5 [ROL.w -(A5)] 6265
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6266] e7e5 [ROL.w -(A5)] 6267
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6268] e7ef [ROL.w (d16, A7)] 6269
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6271] e7f9 [ROL.w (xxx).l] 6272
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [6274] e7f8 [ROL.w (xxx).w] 6275
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6285] e7e5 [ROL.w -(A5)] 6286
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6289] e7e4 [ROL.w -(A4)] 6290
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6302] e7e1 [ROL.w -(A1)] 6303
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6311] e7d4 [ROL.w (A4)] 6312
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6317] e7f8 [ROL.w (xxx).w] 6318
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6321] e7f9 [ROL.w (xxx).l] 6322
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [6333] e7e1 [ROL.w -(A1)] 6334
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6359] e7e6 [ROL.w -(A6)] 6360
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6361] e7e2 [ROL.w -(A2)] 6362
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6362] e7f1 [ROL.w (d8, A1, Xn)] 6363
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6364] e7dd [ROL.w (A5)+] 6365
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6367] e7eb [ROL.w (d16, A3)] 6368
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6368] e7e0 [ROL.w -(A0)] 6369
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6378] e7e6 [ROL.w -(A6)] 6379
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6379] e7f1 [ROL.w (d8, A1, Xn)] 6380
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6380] e7f7 [ROL.w (d8, A7, Xn)] 6381
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6401] e7e5 [ROL.w -(A5)] 6402
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6402] e7f7 [ROL.w (d8, A7, Xn)] 6403
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6410] e7d0 [ROL.w (A0)] 6411
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6429] e7f8 [ROL.w (xxx).w] 6430
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6435] e7f3 [ROL.w (d8, A3, Xn)] 6436
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6441] e7eb [ROL.w (d16, A3)] 6442
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6459] e7d3 [ROL.w (A3)] 6460
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6462] e7db [ROL.w (A3)+] 6463
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6464] e7eb [ROL.w (d16, A3)] 6465
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6474] e7dc [ROL.w (A4)+] 6475
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6475] e7ed [ROL.w (d16, A5)] 6476
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6480] e7f3 [ROL.w (d8, A3, Xn)] 6481
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6483] e7de [ROL.w (A6)+] 6484
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6485] e7e4 [ROL.w -(A4)] 6486
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6489] e7d2 [ROL.w (A2)] 6490
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6492] e7f9 [ROL.w (xxx).l] 6493
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [6495] e7d3 [ROL.w (A3)] 6496
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6506] e7f4 [ROL.w (d8, A4, Xn)] 6507
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6515] e7e0 [ROL.w -(A0)] 6516
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6527] e7e9 [ROL.w (d16, A1)] 6528
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6539] e7de [ROL.w (A6)+] 6540
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6541] e7e4 [ROL.w -(A4)] 6542
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6544] e7e8 [ROL.w (d16, A0)] 6545
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6548] e7f7 [ROL.w (d8, A7, Xn)] 6549
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6552] e7d8 [ROL.w (A0)+] 6553
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6563] e7f3 [ROL.w (d8, A3, Xn)] 6564
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6568] e7e3 [ROL.w -(A3)] 6569
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6569] e7ea [ROL.w (d16, A2)] 6570
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6572] e7e6 [ROL.w -(A6)] 6573
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6574] e7e5 [ROL.w -(A5)] 6575
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6575] e7e2 [ROL.w -(A2)] 6576
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6580] e7dc [ROL.w (A4)+] 6581
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6591] e7d8 [ROL.w (A0)+] 6592
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6596] e7f6 [ROL.w (d8, A6, Xn)] 6597
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6600] e7ef [ROL.w (d16, A7)] 6601
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6618] e7da [ROL.w (A2)+] 6619
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6622] e7e2 [ROL.w -(A2)] 6623
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6636] e7d0 [ROL.w (A0)] 6637
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6655] e7ef [ROL.w (d16, A7)] 6656
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6672] e7d6 [ROL.w (A6)] 6673
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6678] e7da [ROL.w (A2)+] 6679
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6688] e7e9 [ROL.w (d16, A1)] 6689
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6718] e7d8 [ROL.w (A0)+] 6719
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6720] e7d5 [ROL.w (A5)] 6721
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6722] e7da [ROL.w (A2)+] 6723
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6726] e7f4 [ROL.w (d8, A4, Xn)] 6727
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6727] e7e8 [ROL.w (d16, A0)] 6728
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6732] e7e9 [ROL.w (d16, A1)] 6733
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6742] e7f5 [ROL.w (d8, A5, Xn)] 6743
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6750] e7f0 [ROL.w (d8, A0, Xn)] 6751
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6751] e7e5 [ROL.w -(A5)] 6752
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6755] e7da [ROL.w (A2)+] 6756
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6766] e7f7 [ROL.w (d8, A7, Xn)] 6767
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6767] e7d6 [ROL.w (A6)] 6768
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6780] e7f6 [ROL.w (d8, A6, Xn)] 6781
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6785] e7e2 [ROL.w -(A2)] 6786
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6790] e7d2 [ROL.w (A2)] 6791
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6796] e7e6 [ROL.w -(A6)] 6797
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6802] e7ef [ROL.w (d16, A7)] 6803
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6806] e7d9 [ROL.w (A1)+] 6807
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6811] e7dc [ROL.w (A4)+] 6812
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6818] e7d3 [ROL.w (A3)] 6819
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6820] e7ee [ROL.w (d16, A6)] 6821
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6840] e7f7 [ROL.w (d8, A7, Xn)] 6841
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6850] e7f2 [ROL.w (d8, A2, Xn)] 6851
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6870] e7f9 [ROL.w (xxx).l] 6871
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [6881] e7ee [ROL.w (d16, A6)] 6882
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6886] e7f7 [ROL.w (d8, A7, Xn)] 6887
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6920] e7d8 [ROL.w (A0)+] 6921
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6921] e7f2 [ROL.w (d8, A2, Xn)] 6922
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6926] e7ec [ROL.w (d16, A4)] 6927
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6935] e7dc [ROL.w (A4)+] 6936
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6938] e7d6 [ROL.w (A6)] 6939
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6940] e7f7 [ROL.w (d8, A7, Xn)] 6941
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6941] e7d9 [ROL.w (A1)+] 6942
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6967] e7e0 [ROL.w -(A0)] 6968
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6970] e7dd [ROL.w (A5)+] 6971
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6973] e7f0 [ROL.w (d8, A0, Xn)] 6974
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6980] e7e3 [ROL.w -(A3)] 6981
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6982] e7f2 [ROL.w (d8, A2, Xn)] 6983
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [6993] e7de [ROL.w (A6)+] 6994
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [6997] e7f6 [ROL.w (d8, A6, Xn)] 6998
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7012] e7d3 [ROL.w (A3)] 7013
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7045] e7f3 [ROL.w (d8, A3, Xn)] 7046
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7058] e7f3 [ROL.w (d8, A3, Xn)] 7059
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7064] e7e3 [ROL.w -(A3)] 7065
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7072] e7f8 [ROL.w (xxx).w] 7073
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7077] e7f8 [ROL.w (xxx).w] 7078
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7079] e7e6 [ROL.w -(A6)] 7080
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7084] e7d4 [ROL.w (A4)] 7085
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7085] e7f5 [ROL.w (d8, A5, Xn)] 7086
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7091] e7db [ROL.w (A3)+] 7092
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7104] e7d3 [ROL.w (A3)] 7105
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7116] e7d2 [ROL.w (A2)] 7117
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7123] e7de [ROL.w (A6)+] 7124
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7126] e7f7 [ROL.w (d8, A7, Xn)] 7127
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7158] e7d0 [ROL.w (A0)] 7159
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7163] e7e0 [ROL.w -(A0)] 7164
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7168] e7f1 [ROL.w (d8, A1, Xn)] 7169
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7174] e7ee [ROL.w (d16, A6)] 7175
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7182] e7f7 [ROL.w (d8, A7, Xn)] 7183
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7186] e7f6 [ROL.w (d8, A6, Xn)] 7187
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7187] e7d0 [ROL.w (A0)] 7188
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7188] e7ee [ROL.w (d16, A6)] 7189
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7197] e7d4 [ROL.w (A4)] 7198
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7200] e7e8 [ROL.w (d16, A0)] 7201
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7207] e7d9 [ROL.w (A1)+] 7208
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7209] e7ef [ROL.w (d16, A7)] 7210
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7216] e7e5 [ROL.w -(A5)] 7217
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7218] e7f5 [ROL.w (d8, A5, Xn)] 7219
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7220] e7de [ROL.w (A6)+] 7221
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7228] e7f8 [ROL.w (xxx).w] 7229
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7231] e7eb [ROL.w (d16, A3)] 7232
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7246] e7d2 [ROL.w (A2)] 7247
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7260] e7d2 [ROL.w (A2)] 7261
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7277] e7f2 [ROL.w (d8, A2, Xn)] 7278
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7284] e7ee [ROL.w (d16, A6)] 7285
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7299] e7da [ROL.w (A2)+] 7300
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7301] e7e6 [ROL.w -(A6)] 7302
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7302] e7e9 [ROL.w (d16, A1)] 7303
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7307] e7f4 [ROL.w (d8, A4, Xn)] 7308
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7320] e7d1 [ROL.w (A1)] 7321
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7358] e7f0 [ROL.w (d8, A0, Xn)] 7359
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7362] e7e3 [ROL.w -(A3)] 7363
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7379] e7f5 [ROL.w (d8, A5, Xn)] 7380
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7384] e7e9 [ROL.w (d16, A1)] 7385
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7386] e7e5 [ROL.w -(A5)] 7387
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7401] e7f7 [ROL.w (d8, A7, Xn)] 7402
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7406] e7e6 [ROL.w -(A6)] 7407
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7413] e7dd [ROL.w (A5)+] 7414
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7420] e7e8 [ROL.w (d16, A0)] 7421
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7421] e7ea [ROL.w (d16, A2)] 7422
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7431] e7e0 [ROL.w -(A0)] 7432
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7444] e7f1 [ROL.w (d8, A1, Xn)] 7445
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7467] e7d5 [ROL.w (A5)] 7468
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7469] e7db [ROL.w (A3)+] 7470
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7471] e7d3 [ROL.w (A3)] 7472
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7472] e7dc [ROL.w (A4)+] 7473
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7479] e7ef [ROL.w (d16, A7)] 7480
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7491] e7f1 [ROL.w (d8, A1, Xn)] 7492
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7493] e7e2 [ROL.w -(A2)] 7494
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7494] e7f9 [ROL.w (xxx).l] 7495
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [7503] e7d1 [ROL.w (A1)] 7504
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7517] e7e0 [ROL.w -(A0)] 7518
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7520] e7e6 [ROL.w -(A6)] 7521
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7521] e7ee [ROL.w (d16, A6)] 7522
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7534] e7f1 [ROL.w (d8, A1, Xn)] 7535
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7543] e7d1 [ROL.w (A1)] 7544
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7554] e7e3 [ROL.w -(A3)] 7555
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7556] e7d5 [ROL.w (A5)] 7557
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7563] e7d9 [ROL.w (A1)+] 7564
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7567] e7db [ROL.w (A3)+] 7568
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7574] e7d0 [ROL.w (A0)] 7575
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7589] e7da [ROL.w (A2)+] 7590
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7592] e7ee [ROL.w (d16, A6)] 7593
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7596] e7dc [ROL.w (A4)+] 7597
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7598] e7f0 [ROL.w (d8, A0, Xn)] 7599
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7615] e7f2 [ROL.w (d8, A2, Xn)] 7616
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7627] e7eb [ROL.w (d16, A3)] 7628
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7630] e7f2 [ROL.w (d8, A2, Xn)] 7631
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7635] e7f8 [ROL.w (xxx).w] 7636
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7641] e7e4 [ROL.w -(A4)] 7642
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7647] e7d1 [ROL.w (A1)] 7648
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7649] e7f3 [ROL.w (d8, A3, Xn)] 7650
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7682] e7d1 [ROL.w (A1)] 7683
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7684] e7de [ROL.w (A6)+] 7685
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7686] e7d9 [ROL.w (A1)+] 7687
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7699] e7d0 [ROL.w (A0)] 7700
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7700] e7e5 [ROL.w -(A5)] 7701
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7709] e7f4 [ROL.w (d8, A4, Xn)] 7710
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7712] e7d8 [ROL.w (A0)+] 7713
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7719] e7e0 [ROL.w -(A0)] 7720
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7727] e7ed [ROL.w (d16, A5)] 7728
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7728] e7e4 [ROL.w -(A4)] 7729
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7730] e7ec [ROL.w (d16, A4)] 7731
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7741] e7e1 [ROL.w -(A1)] 7742
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7758] e7e6 [ROL.w -(A6)] 7759
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7764] e7ea [ROL.w (d16, A2)] 7765
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7774] e7e9 [ROL.w (d16, A1)] 7775
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7796] e7d6 [ROL.w (A6)] 7797
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7808] e7e8 [ROL.w (d16, A0)] 7809
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7815] e7ea [ROL.w (d16, A2)] 7816
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7818] e7f8 [ROL.w (xxx).w] 7819
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7825] e7eb [ROL.w (d16, A3)] 7826
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7832] e7f7 [ROL.w (d8, A7, Xn)] 7833
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7849] e7f4 [ROL.w (d8, A4, Xn)] 7850
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7866] e7d3 [ROL.w (A3)] 7867
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7877] e7f3 [ROL.w (d8, A3, Xn)] 7878
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7879] e7f8 [ROL.w (xxx).w] 7880
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7886] e7f1 [ROL.w (d8, A1, Xn)] 7887
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7901] e7ee [ROL.w (d16, A6)] 7902
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7910] e7e2 [ROL.w -(A2)] 7911
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7928] e7f8 [ROL.w (xxx).w] 7929
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7943] e7f9 [ROL.w (xxx).l] 7944
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [7964] e7e9 [ROL.w (d16, A1)] 7965
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7967] e7ee [ROL.w (d16, A6)] 7968
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [7968] e7da [ROL.w (A2)+] 7969
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [7978] e7ed [ROL.w (d16, A5)] 7979
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [8008] e7d1 [ROL.w (A1)] 8009
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [8015] e7f9 [ROL.w (xxx).l] 8016
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
+FAIL [8016] e7f1 [ROL.w (d8, A1, Xn)] 8017
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [8018] e7e6 [ROL.w -(A6)] 8019
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [8020] e7e4 [ROL.w -(A4)] 8021
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [8025] e7ed [ROL.w (d16, A5)] 8026
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [8031] e7eb [ROL.w (d16, A3)] 8032
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [8037] e7f0 [ROL.w (d8, A0, Xn)] 8038
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [8043] e7d0 [ROL.w (A0)] 8044
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [8045] e7d6 [ROL.w (A6)] 8046
+  ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+FAIL [8049] e7e8 [ROL.w (d16, A0)] 8050
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
+FAIL [8064] e7e1 [ROL.w -(A1)] 8065
+  ram[0007f3]	expected        245 (0xf5) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
+7074 passed, 991 failed

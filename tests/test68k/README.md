@@ -15,18 +15,14 @@ Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/commen
 ## Regression Testing
 
 ```shell
-./regression-tests.sh
+./regression-tests.sh [some-tests]
 ```
 
-This runs all known-good tests and compares their output against previously-passing output.
-It fails fast.
+If `some-tests` is present, runs them and compares their output against previously-passing output. Otherwise runs
+all previously-passing tests. It fails fast.
 
 ## Current Failures
-- ADDX.l
 - NBCD
-- SBCD
-- SUBX.l
 
 ## Testsuite Bugs
 - ASL.b: `1582` and `1760`.
-- ASL.w
