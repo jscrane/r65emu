@@ -90,7 +90,11 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b1100:		// EXG / AND / MULU / MULS
 		if (is_exg(op))
 			exg(op);
-		else if ((op & 0x00c0) != 0x00c0)
+		else if ((op & 0x01c0) == 0x00c0)
+			mulu(op);
+		else if ((op & 0x01c0) == 0x01c0)
+			muls(op);
+		else
 			bit_and(op);
 		break;
 	case 0b1101:		// ADD / ADDX
@@ -2076,6 +2080,40 @@ void m68k::exg(uint16_t op) {
 		}
 		return;
 	}
+	}
+}
+
+void m68k::mulu(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg  = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t u = read_word(ea);
+
+	commit_postinc(ea);
+	if (!_trapped) {
+		uint16_t v = (uint16_t)(d(dreg) & 0xffff);
+		uint32_t res = (uint32_t)u * (uint32_t)v;
+		d(dreg, res);
+		set_nz(res);
+		clr_vc();
+	}
+}
+
+void m68k::muls(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg  = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t u = read_word(ea);
+
+	commit_postinc(ea);
+	if (!_trapped) {
+		uint16_t v = (uint16_t)(d(dreg) & 0xffff);
+		int32_t res = (int32_t)(int16_t)u * (int32_t)(int16_t)v;
+		d(dreg, res);
+		set_nz(res);
+		clr_vc();
 	}
 }
 
