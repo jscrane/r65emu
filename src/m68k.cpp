@@ -69,8 +69,12 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0111:		// MOVEQ
 		moveq(op);
 		break;
-	case 0b1000:
-		if ((op & 0x00c0) != 0x00c0)
+	case 0b1000:		// OR / DIVU / DIVS
+		if ((op & 0x01c0) == 0x00c0)
+			divu(op);
+		else if ((op & 0x01c0) == 0x01c0)
+			divs(op);
+		else
 			bit_or(op);
 		break;
 	case 0b1001:		// SUB / SUBX
@@ -2083,10 +2087,68 @@ void m68k::exg(uint16_t op) {
 	}
 }
 
+void m68k::divu(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t divisor = read_word(ea);
+
+	commit_postinc(ea);
+	if (_trapped) return;
+
+	if (divisor == 0) {
+		raise_exception(DIVIDE_BY_ZERO);
+		return;
+	}
+	uint32_t dividend = d(dreg);
+	uint32_t upper_word = dividend >> 16;
+	if (upper_word >= divisor) {
+		set_flag(V_FLAG, true);
+		clr_flag(C_FLAG);
+		return;
+	}
+	uint32_t quotient = dividend / divisor;
+	uint32_t remainder = dividend % divisor;
+	uint32_t res = (remainder << 16) | (quotient & 0xffff);
+	d(dreg, res);
+	set_nz((int16_t)(uint16_t)quotient);
+	clr_vc();
+}
+
+void m68k::divs(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	int16_t divisor = (int16_t)read_word(ea);
+
+	commit_postinc(ea);
+	if (_trapped) return;
+
+	if (divisor == 0) {
+		raise_exception(DIVIDE_BY_ZERO);
+		return;
+	}
+	int32_t dividend = (int32_t)d(dreg);
+	int32_t q = dividend / (int32_t)divisor;
+	if (q < -32768 || q > 32767) {
+		set_flag(V_FLAG, true);
+		clr_flag(C_FLAG);
+		return;
+	}
+	int16_t quotient = (int16_t)q;
+	int16_t remainder = dividend % divisor;
+	uint32_t res = ((uint32_t)(uint16_t)remainder << 16) | (uint32_t)(uint16_t)quotient;
+	d(dreg, res);
+	set_nz(quotient);
+	clr_vc();
+}
+
 void m68k::mulu(uint16_t op) {
 	uint8_t dreg = (op >> 9) & 7;
 	uint8_t mode = (op >> 3) & 7;
-	uint8_t reg  = op & 7;
+	uint8_t reg = op & 7;
 	EA ea = decode_ea(mode, reg, 2);
 	uint16_t u = read_word(ea);
 
@@ -2103,7 +2165,7 @@ void m68k::mulu(uint16_t op) {
 void m68k::muls(uint16_t op) {
 	uint8_t dreg = (op >> 9) & 7;
 	uint8_t mode = (op >> 3) & 7;
-	uint8_t reg  = op & 7;
+	uint8_t reg = op & 7;
 	EA ea = decode_ea(mode, reg, 2);
 	uint16_t u = read_word(ea);
 
