@@ -1,4 +1,4 @@
-# 68k tests
+# m68k tests
 
 A test harness to run [SingleStepTests](https://github.com/SingleStepTests/680x0) against
 the `m68k` implementation.
@@ -28,3 +28,4 @@ Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/commen
 
 ## Testsuite Bugs
 - ASL.b: `1582` and `1760`.
+- DIVU: `5744`.
