@@ -69,8 +69,12 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0111:		// MOVEQ
 		moveq(op);
 		break;
-	case 0b1000:
-		if ((op & 0x00c0) != 0x00c0)
+	case 0b1000:		// OR / DIVU / DIVS
+		if ((op & 0x01c0) == 0x00c0)
+			divu(op);
+		else if ((op & 0x01c0) == 0x01c0)
+			divs(op);
+		else
 			bit_or(op);
 		break;
 	case 0b1001:		// SUB / SUBX
@@ -90,7 +94,11 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b1100:		// EXG / AND / MULU / MULS
 		if (is_exg(op))
 			exg(op);
-		else if ((op & 0x00c0) != 0x00c0)
+		else if ((op & 0x01c0) == 0x00c0)
+			mulu(op);
+		else if ((op & 0x01c0) == 0x01c0)
+			muls(op);
+		else
 			bit_and(op);
 		break;
 	case 0b1101:		// ADD / ADDX
@@ -392,6 +400,21 @@ void m68k::immediate(uint16_t op) {
 
 	int mode = (op >> 3) & 7;
 
+	uint16_t dbop = (op & 0x0140);		// dynamic bit operations
+	if (dbop == 0x0100 || dbop == 0x0140 || dbop == 0x0180 || dbop == 0x01c0) {
+		uint8_t type = (op >> 6) & 3;	// 0=BTST, 1=BCHG, 2=BCLR, 3=BSET
+		uint32_t bit = d((op >> 9) & 7);
+		bit_operation(mode, reg, bit, type);
+		return;
+	}
+
+	if ((op & 0x0f00) == 0x0800) {		// static bit operations
+		uint8_t type = (op >> 6) & 3;	// 0=BTST, 1=BCHG, 2=BCLR, 3=BSET
+		uint32_t bit = fetch16() & 0xff;
+		bit_operation(mode, reg, bit, type);
+		return;
+	}
+
 	switch (op & 0xffc0) {
 	case 0x0000: {	// ORI.b
 		uint8_t imm = (uint8_t)fetch16();
@@ -650,6 +673,49 @@ void m68k::immediate(uint16_t op) {
 		}
 		return;
 	}
+	}
+}
+
+void m68k::bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type) {
+
+	if (mode == 0) {	// destination is Dn (long)
+		uint32_t val = d(reg);
+		bit_num &= 31;
+		uint32_t bit = (1U << bit_num);
+		set_flag(Z_FLAG, (val & bit) == 0);
+		switch (type) {
+		case 0:		// BTST
+			break;
+		case 1:		// BCHG
+			d(reg, val ^ bit);
+			break;
+		case 2:		// BCLR
+			d(reg, val & ~bit);
+			break;
+		case 3:		// BSET
+			d(reg, val | bit);
+			break;
+		}
+	} else {		// destination is memory (byte)
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t val = read_byte(ea);
+		bit_num &= 7;
+		uint8_t bit = (1 << bit_num);
+		set_flag(Z_FLAG, (val & bit) == 0);
+		switch (type) {
+		case 0:		// BTST
+			break;
+		case 1:		// BCHG
+			write_byte(ea, val ^ bit);
+			break;
+		case 2:		// BCLR
+			write_byte(ea, val & ~bit);
+			break;
+		case 3:		// BSET
+			write_byte(ea, val | bit);
+			break;
+		}
+		commit_postinc(ea);
 	}
 }
 
@@ -2076,6 +2142,98 @@ void m68k::exg(uint16_t op) {
 		}
 		return;
 	}
+	}
+}
+
+void m68k::divu(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t divisor = read_word(ea);
+
+	commit_postinc(ea);
+	if (_trapped) return;
+
+	if (divisor == 0) {
+		raise_exception(DIVIDE_BY_ZERO);
+		return;
+	}
+	uint32_t dividend = d(dreg);
+	uint32_t upper_word = dividend >> 16;
+	if (upper_word >= divisor) {
+		set_flag(V_FLAG, true);
+		clr_flag(C_FLAG);
+		return;
+	}
+	uint32_t quotient = dividend / divisor;
+	uint32_t remainder = dividend % divisor;
+	uint32_t res = (remainder << 16) | (quotient & 0xffff);
+	d(dreg, res);
+	set_nz((int16_t)(uint16_t)quotient);
+	clr_vc();
+}
+
+void m68k::divs(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	int16_t divisor = (int16_t)read_word(ea);
+
+	commit_postinc(ea);
+	if (_trapped) return;
+
+	if (divisor == 0) {
+		raise_exception(DIVIDE_BY_ZERO);
+		return;
+	}
+	int32_t dividend = (int32_t)d(dreg);
+	int32_t q = dividend / (int32_t)divisor;
+	if (q < -32768 || q > 32767) {
+		set_flag(V_FLAG, true);
+		clr_flag(C_FLAG);
+		return;
+	}
+	int16_t quotient = (int16_t)q;
+	int16_t remainder = dividend % divisor;
+	uint32_t res = ((uint32_t)(uint16_t)remainder << 16) | (uint32_t)(uint16_t)quotient;
+	d(dreg, res);
+	set_nz(quotient);
+	clr_vc();
+}
+
+void m68k::mulu(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t u = read_word(ea);
+
+	commit_postinc(ea);
+	if (!_trapped) {
+		uint16_t v = (uint16_t)(d(dreg) & 0xffff);
+		uint32_t res = (uint32_t)u * (uint32_t)v;
+		d(dreg, res);
+		set_nz(res);
+		clr_vc();
+	}
+}
+
+void m68k::muls(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t mode = (op >> 3) & 7;
+	uint8_t reg = op & 7;
+	EA ea = decode_ea(mode, reg, 2);
+	uint16_t u = read_word(ea);
+
+	commit_postinc(ea);
+	if (!_trapped) {
+		uint16_t v = (uint16_t)(d(dreg) & 0xffff);
+		int32_t res = (int32_t)(int16_t)u * (int32_t)(int16_t)v;
+		d(dreg, res);
+		set_nz(res);
+		clr_vc();
 	}
 }
 
