@@ -185,6 +185,7 @@ private:
 	void lsl_reg(int dreg, uint8_t size, uint8_t shift_count);
 	void roxl_reg(int dreg, uint8_t size, uint8_t shift_count);
 	void rol_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type);
 
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);

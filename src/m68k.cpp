@@ -400,6 +400,21 @@ void m68k::immediate(uint16_t op) {
 
 	int mode = (op >> 3) & 7;
 
+	uint16_t dbop = (op & 0x0140);		// dynamic bit operations
+	if (dbop == 0x0100 || dbop == 0x0140 || dbop == 0x0180 || dbop == 0x01c0) {
+		uint8_t type = (op >> 6) & 3;	// 0=BTST, 1=BCHG, 2=BCLR, 3=BSET
+		uint32_t bit = d((op >> 9) & 7);
+		bit_operation(mode, reg, bit, type);
+		return;
+	}
+
+	if ((op & 0x0f00) == 0x0800) {		// static bit operations
+		uint8_t type = (op >> 6) & 3;	// 0=BTST, 1=BCHG, 2=BCLR, 3=BSET
+		uint32_t bit = fetch16() & 0xff;
+		bit_operation(mode, reg, bit, type);
+		return;
+	}
+
 	switch (op & 0xffc0) {
 	case 0x0000: {	// ORI.b
 		uint8_t imm = (uint8_t)fetch16();
@@ -658,6 +673,49 @@ void m68k::immediate(uint16_t op) {
 		}
 		return;
 	}
+	}
+}
+
+void m68k::bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type) {
+
+	if (mode == 0) {	// destination is Dn (long)
+		uint32_t val = d(reg);
+		bit_num &= 31;
+		uint32_t bit = (1U << bit_num);
+		set_flag(Z_FLAG, (val & bit) == 0);
+		switch (type) {
+		case 0:		// BTST
+			break;
+		case 1:		// BCHG
+			d(reg, val ^ bit);
+			break;
+		case 2:		// BCLR
+			d(reg, val & ~bit);
+			break;
+		case 3:		// BSET
+			d(reg, val | bit);
+			break;
+		}
+	} else {		// destination is memory (byte)
+		EA ea = decode_ea(mode, reg, 1);
+		uint8_t val = read_byte(ea);
+		bit_num &= 7;
+		uint8_t bit = (1 << bit_num);
+		set_flag(Z_FLAG, (val & bit) == 0);
+		switch (type) {
+		case 0:		// BTST
+			break;
+		case 1:		// BCHG
+			write_byte(ea, val ^ bit);
+			break;
+		case 2:		// BCLR
+			write_byte(ea, val & ~bit);
+			break;
+		case 3:		// BSET
+			write_byte(ea, val | bit);
+			break;
+		}
+		commit_postinc(ea);
 	}
 }
 
