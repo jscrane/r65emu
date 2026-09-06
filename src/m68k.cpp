@@ -1303,6 +1303,49 @@ void m68k::misc(uint16_t op) {
 			push32(src.addr);
 		return;
 	}
+	case 0x4880: {	// MOVEM.w Register to Memory
+		uint16_t mask = fetch16();
+		EA ea = decode_ea(mode, reg, 2);
+		if (mode == 4) {
+			for (int r = 0; r < 16; r++)
+				if (mask & (1 << r)) {
+					uint16_t val = (r < 8) ? (uint16_t)a(7 - r) : (uint16_t)d(15 - r);
+					write16(ea.addr, val);
+					if (_trapped) break;
+					ea.addr -= 2;
+				}
+			a(reg, ea.addr+2);
+		} else
+			for (int r = 0; r < 16; r++)
+				if (mask & (1 << r)) {
+					uint16_t val = (r >= 8) ? (uint16_t)a(r - 8) : (uint16_t)d(r);
+					write16(ea.addr, val);
+					if (_trapped) break;
+					ea.addr += 2;
+				}
+		return;
+	}
+	case 0x48c0: {	// MOVEM.l Register to Memory
+		break;
+	}
+	case 0x4c80: {	// MOVEM.w Memory to Register
+		uint16_t mask = fetch16();
+		EA ea = decode_ea(mode, reg, 2);
+		for (int r = 0; r < 16; r++)
+			if (mask & (1 << r)) {
+				uint32_t val = (uint32_t)(int32_t)(int16_t)read16(ea.addr);
+				ea.addr += 2;
+				if (_trapped) break;
+				if (r >= 8) a(r-8, val);
+				else d(r, val);
+			}
+		if (mode == 3)
+			a(reg, ea.addr);
+		return;
+	}
+	case 0x4cc0: {	// MOVEM.l Memory to Register
+		break;
+	}
 	case 0x4a00: {	// TST.b
 		EA src = decode_ea(mode, reg, 1);
 		uint8_t v = read_byte(src);
