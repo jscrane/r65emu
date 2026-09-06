@@ -39,6 +39,7 @@
 //   uint16_t sr() const;               void sr(uint16_t v);
 //   void pc(Memory::address a);        // Memory::address pc() const is in CPU
 //
+#include <algorithm>
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
@@ -141,6 +142,8 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 			diffs.push_back({ field, expected, actual });
 		}
 	}
+
+	std::sort(diffs.begin(), diffs.end(), [](const Mismatch &a, const Mismatch &b) { return a.field < b.field; });
 
 	return diffs.empty();
 }
