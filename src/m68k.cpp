@@ -1269,27 +1269,19 @@ void m68k::misc(uint16_t op) {
 		commit_postinc(src);
 
 		if (!_trapped) {
-			int x = is_set(X_FLAG);
-			int val = 0;
-			int res = val - u - x;
+			int x = (_sr & X_FLAG) ? 1 : 0;
+			int unadjusted = 0 - u - x;			// full-width reference, NOT nibble-masked
+			int lo = 0 - (u & 0xf) - x;
+			int lo_c = (lo < 0) ? lo - 6 : lo;
+			int top = 0 - (u & 0xf0);
+			int result = lo_c + top - ((unadjusted < 0) ? 0x60 : 0);
+			uint8_t res = (uint8_t)result;
 
-			if (((val ^ u ^ res) & 0x10) || ((u & 0x0f) > 9))
-				res -= 6;
-			if ((res & 0x100) || ((u & 0xf0) > 0x90))
-				res -= 0x60;
-			uint8_t v = (uint8_t)(res & 0xff);
-			bool borrow = (u + x);
-			write_byte(src, v);
-			// V is documented as undefined on real 68000 for BCD ops
-			// (NBCD/ABCD/SBCD) -- checked three candidate formulas against
-			// real vectors (binary-NEG overflow, mirrors C, preserved from
-			// before) and none matched cleanly; treating as an accepted
-			// gap, same category as the address-error SSW residual bits.
-			// Leaving V untouched here rather than guessing further.
-			// (however, see here: https://github.com/kstenerud/Musashi/blob/master/m68k_in.c, lines 7768...)
-			set_flag(C_FLAG | X_FLAG, borrow);
-			set_flag(N_FLAG, v & 0x80);
-			if (v != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
+			write_byte(src, res);
+			set_flag(N_FLAG, res & 0x80);
+			if (res != 0) _sr &= ~Z_FLAG;			// sticky, unchanged from before
+			set_flag(V_FLAG, unadjusted & ~result & 0x80);	// NOW DEFINITIVE, not a guess
+			set_flag(C_FLAG | X_FLAG, unadjusted < 0);
 		}
 		return;
 	}
