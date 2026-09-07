@@ -27,5 +27,5 @@ Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/commen
 See [issues](https://github.com/jscrane/r65emu/issues).
 
 ## Testsuite Bugs
-- ASL.b: `1582` and `1760`.
+- ASL.b: `1582` and `1760`. (See this [issue](https://github.com/SingleStepTests/680x0/issues/4).)
 - DIVU: `5744`.
