@@ -1316,8 +1316,7 @@ void m68k::misc(uint16_t op) {
 		} else
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
-					uint16_t val = (r >= 8)? (uint16_t)a(r - 8): (uint16_t)d(r);
-					write16(ea.addr, val);
+					write16(ea.addr, read_movem_reg(r));
 					if (_trapped) break;
 					ea.addr += 2;
 				}
@@ -1344,8 +1343,7 @@ void m68k::misc(uint16_t op) {
 		} else
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
-					uint32_t val = (r >= 8)? a(r - 8): d(r);
-					write32(ea.addr, val);
+					write32(ea.addr, read_movem_reg(r));
 					if (_trapped) break;
 					ea.addr += 4;
 				}
@@ -1359,8 +1357,7 @@ void m68k::misc(uint16_t op) {
 				uint32_t val = (uint32_t)(int32_t)(int16_t)read16(ea.addr);
 				ea.addr += 2;
 				if (_trapped) break;
-				if (r >= 8) a(r - 8, val);
-				else d(r, val);
+				write_movem_reg(r, val);
 			}
 		if (mode == 3)
 			a(reg, ea.addr);
@@ -1375,8 +1372,7 @@ void m68k::misc(uint16_t op) {
 				ea.addr += 2;
 				if (_trapped) break;
 				ea.addr += 2;
-				if (r >= 8) a(r - 8, val);
-				else d(r, val);
+				write_movem_reg(r, val);
 			}
 		if (mode == 3)
 			a(reg, ea.addr);

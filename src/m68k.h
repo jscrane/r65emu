@@ -95,6 +95,13 @@ private:
 	void write16(uint32_t, uint16_t);
 	void write32(uint32_t, uint32_t);
 
+	inline uint32_t read_movem_reg(int r) const {
+		return (r >= 8)? a(r - 8): d(r);
+	}
+	inline void write_movem_reg(int r, uint32_t val) {
+		if (r >= 8) a(r - 8, val); else d(r, val);
+	}
+
 	static constexpr int ADDRESS_ERROR = 3;
 	static constexpr int DIVIDE_BY_ZERO = 5;
 	static constexpr int CHECK = 6;
