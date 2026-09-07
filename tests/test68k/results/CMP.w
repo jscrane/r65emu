@@ -75,8 +75,8 @@ FAIL [67] b656 [CMP.w (A6), D3] 68
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [70] b14e [CMP.w (A6)+, (A0)+] 71
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [71] 0c6c [CMP.w #, (d16, A4)] 72
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)

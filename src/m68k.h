@@ -177,6 +177,8 @@ private:
 	void divs(uint16_t op);
 	void mulu(uint16_t op);
 	void muls(uint16_t op);
+	void abcd(uint16_t op);
+	void sbcd(uint16_t op);
 	void bit_and(uint16_t op);
 	void bit_or(uint16_t op);
 	void bit_eor(uint16_t op);

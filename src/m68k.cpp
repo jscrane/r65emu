@@ -69,11 +69,13 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0111:		// MOVEQ
 		moveq(op);
 		break;
-	case 0b1000:		// OR / DIVU / DIVS
+	case 0b1000:		// OR / DIVU / DIVS / SBCD
 		if ((op & 0x01c0) == 0x00c0)
 			divu(op);
 		else if ((op & 0x01c0) == 0x01c0)
 			divs(op);
+		else if ((op & 0x01f0) == 0x0100)
+			sbcd(op);
 		else
 			bit_or(op);
 		break;
@@ -91,13 +93,15 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			bit_eor(op);
 		break;
-	case 0b1100:		// EXG / AND / MULU / MULS
+	case 0b1100:		// EXG / AND / MULU / MULS / ABCD
 		if (is_exg(op))
 			exg(op);
 		else if ((op & 0x01c0) == 0x00c0)
 			mulu(op);
 		else if ((op & 0x01c0) == 0x01c0)
 			muls(op);
+		else if ((op & 0x01f0) == 0x0100)
+			abcd(op);
 		else
 			bit_and(op);
 		break;
@@ -2318,6 +2322,84 @@ void m68k::muls(uint16_t op) {
 		set_nz(res);
 		clr_vc();
 	}
+}
+
+void m68k::sbcd(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t reg = op & 7;
+	bool is_mem = (op >> 3) & 1;
+	uint8_t src, dst;
+	EA dea;
+
+	if (is_mem) {
+		EA sea = decode_ea(4, reg, 1);
+		src = read_byte(sea);
+		dea = decode_ea(4, dreg, 1);
+		dst = read_byte(dea);
+	} else {
+		src = (uint8_t)d(reg);
+		dst = (uint8_t)d(dreg);
+	}
+	int x = is_set(X_FLAG)? 1: 0;
+	int unadjusted = dst - src - x;
+	int lo = (dst & 0xf) - (src & 0xf) - x;
+	int lo_c, xc_bits;
+	if (lo & 0xf0) {
+		lo_c = lo - 6;
+		xc_bits = (unadjusted - 6) & 0x300;
+	} else {
+		lo_c = lo;
+		xc_bits = unadjusted & 0x300;
+	}
+	int top = (dst & 0xf0) - (src & 0xf0);
+	if (unadjusted & 0x100) top -= 0x60;
+	int result = lo_c + top;
+	uint8_t res = (uint8_t)result;
+
+	if (is_mem)
+		write_byte(dea, res);
+	else
+		d(dreg, (d(dreg) & 0xffffff00) | res);
+
+	set_flag(N_FLAG, res & 0x80);
+	if (res != 0) clr_flag(Z_FLAG);		// sticky: only clears
+	set_flag(V_FLAG, unadjusted & ~result & 0x80);
+	set_flag(C_FLAG | X_FLAG, xc_bits);
+}
+
+void m68k::abcd(uint16_t op) {
+	uint8_t dreg = (op >> 9) & 7;
+	uint8_t reg = op & 7;
+	bool is_mem = (op >> 3) & 1;
+	uint8_t src, dst;
+	EA dea;
+
+	if (is_mem) {
+		EA sea = decode_ea(4, reg, 1);
+		src = read_byte(sea);
+		dea = decode_ea(4, dreg, 1);
+		dst = read_byte(dea);
+	} else {
+		src = (uint8_t)d(reg);
+		dst = (uint8_t)d(dreg);
+	}
+	int x = is_set(X_FLAG)? 1: 0;
+	int unadjusted = dst + src + x;
+	int lo = (dst & 0xf) + (src & 0xf) + x;
+	int lo_c = (lo > 9) ? lo + 6 : lo;
+	int top = (dst & 0xf0) + (src & 0xf0);
+	int result = lo_c + top + ((unadjusted > 0x99) ? 0x60 : 0);
+	uint8_t res = (uint8_t)result;
+
+	if (is_mem)
+		write_byte(dea, res);
+	else
+		d(dreg, (d(dreg) & 0xffffff00) | res);
+
+	set_flag(N_FLAG, res & 0x80);
+	if (res != 0) clr_flag(Z_FLAG);		// sticky: only clears
+	set_flag(V_FLAG, ~unadjusted & result & 0x80);
+	set_flag(C_FLAG | X_FLAG, unadjusted > 0x99);
 }
 
 void m68k::bit_and(uint16_t op) {
