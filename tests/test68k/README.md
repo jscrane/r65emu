@@ -24,7 +24,7 @@ Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/commen
 - the `-t` flag is used to specify where the tests can be found; default is `~/src/680x0/68000/v1`
 
 ## Current Failures
-- NBCD
+See [issues](https://github.com/jscrane/r65emu/issues).
 
 ## Testsuite Bugs
 - ASL.b: `1582` and `1760`.

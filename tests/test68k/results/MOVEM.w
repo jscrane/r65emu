@@ -14,8 +14,6 @@ FAIL [7] 4cb9 [MOVEM.w (xxx).l, #] 8
 FAIL [8] 48a5 [MOVEM.w #, -(A5)] 9
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [9] 48a5 [MOVEM.w #, -(A5)] 10
-  ram[a3c655]	expected         88 (0x58) 	got         86 (0x56)
 FAIL [11] 4c9d [MOVEM.w (A5)+, #] 12
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -28,9 +26,6 @@ FAIL [16] 4cab [MOVEM.w (d16, A3), #] 17
 FAIL [17] 4c9b [MOVEM.w (A3)+, #] 18
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [19] 48a7 [MOVEM.w #, -(A7)] 20
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [21] 48ac [MOVEM.w #, (d16, A4)] 22
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -70,8 +65,6 @@ FAIL [50] 4c9a [MOVEM.w (A2)+, #] 51
 FAIL [51] 48ac [MOVEM.w #, (d16, A4)] 52
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [54] 48a3 [MOVEM.w #, -(A3)] 55
-  ram[3b56ab]	expected        174 (0xae) 	got        172 (0xac)
 FAIL [55] 48b6 [MOVEM.w #, (d8, A6, Xn)] 56
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -81,8 +74,6 @@ FAIL [57] 4890 [MOVEM.w #, (A0)] 58
 FAIL [59] 48a5 [MOVEM.w #, -(A5)] 60
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [62] 48a2 [MOVEM.w #, -(A2)] 63
-  ram[cc3307]	expected         12 (0xc) 	got         10 (0xa)
 FAIL [65] 48a3 [MOVEM.w #, -(A3)] 66
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -248,16 +239,12 @@ FAIL [175] 4891 [MOVEM.w #, (A1)] 176
 FAIL [182] 4c94 [MOVEM.w (A4), #] 183
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [183] 48a3 [MOVEM.w #, -(A3)] 184
-  ram[646ae9]	expected        240 (0xf0) 	got        238 (0xee)
 FAIL [184] 48b2 [MOVEM.w #, (d8, A2, Xn)] 185
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [185] 4c9e [MOVEM.w (A6)+, #] 186
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [186] 48a5 [MOVEM.w #, -(A5)] 187
-  ram[0cad41]	expected         68 (0x44) 	got         66 (0x42)
 FAIL [188] 4ca8 [MOVEM.w (d16, A0), #] 189
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -315,9 +302,6 @@ FAIL [217] 48b1 [MOVEM.w #, (d8, A1, Xn)] 218
 FAIL [218] 4894 [MOVEM.w #, (A4)] 219
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [222] 48a7 [MOVEM.w #, -(A7)] 223
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [223] 4c9c [MOVEM.w (A4)+, #] 224
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -399,8 +383,6 @@ FAIL [281] 4892 [MOVEM.w #, (A2)] 282
 FAIL [282] 4cae [MOVEM.w (d16, A6), #] 283
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [283] 48a5 [MOVEM.w #, -(A5)] 284
-  ram[408007]	expected         12 (0xc) 	got         10 (0xa)
 FAIL [288] 4c9c [MOVEM.w (A4)+, #] 289
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -437,16 +419,9 @@ FAIL [308] 48a8 [MOVEM.w #, (d16, A0)] 309
 FAIL [309] 48ac [MOVEM.w #, (d16, A4)] 310
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [310] 48a7 [MOVEM.w #, -(A7)] 311
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
-FAIL [312] 48a1 [MOVEM.w #, -(A1)] 313
-  ram[dc4257]	expected         94 (0x5e) 	got         92 (0x5c)
 FAIL [316] 48b3 [MOVEM.w #, (d8, A3, Xn)] 317
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [318] 48a5 [MOVEM.w #, -(A5)] 319
-  ram[52f227]	expected         42 (0x2a) 	got         40 (0x28)
 FAIL [320] 48b8 [MOVEM.w #, (xxx).w] 321
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -591,9 +566,6 @@ FAIL [404] 4cb6 [MOVEM.w (d8, A6, Xn), #] 405
 FAIL [405] 4890 [MOVEM.w #, (A0)] 406
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [406] 48a7 [MOVEM.w #, -(A7)] 407
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [408] 4cb3 [MOVEM.w (d8, A3, Xn), #] 409
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -606,8 +578,6 @@ FAIL [410] 4cb9 [MOVEM.w (xxx).l, #] 411
 FAIL [412] 4893 [MOVEM.w #, (A3)] 413
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [414] 48a1 [MOVEM.w #, -(A1)] 415
-  ram[fa3537]	expected         62 (0x3e) 	got         60 (0x3c)
 FAIL [417] 4cb0 [MOVEM.w (d8, A0, Xn), #] 418
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -776,8 +746,6 @@ FAIL [529] 4cb8 [MOVEM.w (xxx).w, #] 530
 FAIL [530] 4c94 [MOVEM.w (A4), #] 531
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [532] 48a3 [MOVEM.w #, -(A3)] 533
-  ram[8a6cad]	expected        180 (0xb4) 	got        178 (0xb2)
 FAIL [533] 48ac [MOVEM.w #, (d16, A4)] 534
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -928,9 +896,6 @@ FAIL [629] 4893 [MOVEM.w #, (A3)] 630
 FAIL [630] 4c9a [MOVEM.w (A2)+, #] 631
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [631] 48a7 [MOVEM.w #, -(A7)] 632
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [632] 4c9b [MOVEM.w (A3)+, #] 633
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -976,16 +941,12 @@ FAIL [659] 48ab [MOVEM.w #, (d16, A3)] 660
 FAIL [660] 4c9b [MOVEM.w (A3)+, #] 661
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [661] 48a0 [MOVEM.w #, -(A0)] 662
-  ram[0e2f4f]	expected         90 (0x5a) 	got         88 (0x58)
 FAIL [663] 4ca8 [MOVEM.w (d16, A0), #] 664
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [664] 4892 [MOVEM.w #, (A2)] 665
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [665] 48a5 [MOVEM.w #, -(A5)] 666
-  ram[084d15]	expected         24 (0x18) 	got         22 (0x16)
 FAIL [666] 48a9 [MOVEM.w #, (d16, A1)] 667
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1064,8 +1025,6 @@ FAIL [707] 4cb2 [MOVEM.w (d8, A2, Xn), #] 708
 FAIL [708] 4c94 [MOVEM.w (A4), #] 709
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [710] 48a0 [MOVEM.w #, -(A0)] 711
-  ram[da6313]	expected         22 (0x16) 	got         20 (0x14)
 FAIL [711] 48a3 [MOVEM.w #, -(A3)] 712
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1126,8 +1085,6 @@ FAIL [743] 48b4 [MOVEM.w #, (d8, A4, Xn)] 744
 FAIL [747] 48ad [MOVEM.w #, (d16, A5)] 748
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [750] 48a1 [MOVEM.w #, -(A1)] 751
-  ram[5a96c5]	expected        206 (0xce) 	got        204 (0xcc)
 FAIL [751] 4c92 [MOVEM.w (A2), #] 752
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1149,8 +1106,6 @@ FAIL [761] 48a8 [MOVEM.w #, (d16, A0)] 762
 FAIL [764] 4894 [MOVEM.w #, (A4)] 765
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [765] 48a0 [MOVEM.w #, -(A0)] 766
-  ram[c84b2f]	expected         52 (0x34) 	got         50 (0x32)
 FAIL [767] 48ab [MOVEM.w #, (d16, A3)] 768
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1232,8 +1187,6 @@ FAIL [804] 4cb5 [MOVEM.w (d8, A5, Xn), #] 805
 FAIL [807] 4c93 [MOVEM.w (A3), #] 808
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [809] 48a1 [MOVEM.w #, -(A1)] 810
-  ram[f7193f]	expected         70 (0x46) 	got         68 (0x44)
 FAIL [811] 48b9 [MOVEM.w #, (xxx).l] 812
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
@@ -1306,8 +1259,6 @@ FAIL [861] 48a5 [MOVEM.w #, -(A5)] 862
 FAIL [862] 48b5 [MOVEM.w #, (d8, A5, Xn)] 863
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [867] 48a0 [MOVEM.w #, -(A0)] 868
-  ram[54e0a9]	expected        176 (0xb0) 	got        174 (0xae)
 FAIL [868] 4ca8 [MOVEM.w (d16, A0), #] 869
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1365,8 +1316,6 @@ FAIL [909] 4caf [MOVEM.w (d16, A7), #] 910
 FAIL [910] 48b0 [MOVEM.w #, (d8, A0, Xn)] 911
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [912] 48a0 [MOVEM.w #, -(A0)] 913
-  ram[fe9dc7]	expected        214 (0xd6) 	got        212 (0xd4)
 FAIL [915] 48a1 [MOVEM.w #, -(A1)] 916
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1379,9 +1328,6 @@ FAIL [917] 4cb4 [MOVEM.w (d8, A4, Xn), #] 918
 FAIL [918] 48a8 [MOVEM.w #, (d16, A0)] 919
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [921] 48a7 [MOVEM.w #, -(A7)] 922
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [922] 48b0 [MOVEM.w #, (d8, A0, Xn)] 923
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1490,8 +1436,6 @@ FAIL [977] 4c9e [MOVEM.w (A6)+, #] 978
 FAIL [981] 4cb2 [MOVEM.w (d8, A2, Xn), #] 982
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [984] 48a4 [MOVEM.w #, -(A4)] 985
-  ram[c48d29]	expected         46 (0x2e) 	got         44 (0x2c)
 FAIL [985] 48b7 [MOVEM.w #, (d8, A7, Xn)] 986
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1510,8 +1454,6 @@ FAIL [1004] 4cb3 [MOVEM.w (d8, A3, Xn), #] 1005
 FAIL [1006] 4c9b [MOVEM.w (A3)+, #] 1007
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1009] 48a5 [MOVEM.w #, -(A5)] 1010
-  ram[6b49a7]	expected        172 (0xac) 	got        170 (0xaa)
 FAIL [1010] 4c95 [MOVEM.w (A5), #] 1011
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1548,8 +1490,6 @@ FAIL [1034] 48b5 [MOVEM.w #, (d8, A5, Xn)] 1035
 FAIL [1035] 48a9 [MOVEM.w #, (d16, A1)] 1036
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1037] 48a2 [MOVEM.w #, -(A2)] 1038
-  ram[ec9f13]	expected         28 (0x1c) 	got         26 (0x1a)
 FAIL [1043] 4c9c [MOVEM.w (A4)+, #] 1044
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1559,17 +1499,12 @@ FAIL [1045] 4cb0 [MOVEM.w (d8, A0, Xn), #] 1046
 FAIL [1048] 4cac [MOVEM.w (d16, A4), #] 1049
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1049] 48a7 [MOVEM.w #, -(A7)] 1050
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1050] 4c96 [MOVEM.w (A6), #] 1051
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [1051] 48b1 [MOVEM.w #, (d8, A1, Xn)] 1052
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1052] 48a0 [MOVEM.w #, -(A0)] 1053
-  ram[6c43d7]	expected        222 (0xde) 	got        220 (0xdc)
 FAIL [1053] 4c9a [MOVEM.w (A2)+, #] 1054
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1594,8 +1529,6 @@ FAIL [1068] 4cba [MOVEM.w (d16, PC), #] 1069
 FAIL [1069] 4c92 [MOVEM.w (A2), #] 1070
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1073] 48a5 [MOVEM.w #, -(A5)] 1074
-  ram[6f0a61]	expected        102 (0x66) 	got        100 (0x64)
 FAIL [1075] 48b6 [MOVEM.w #, (d8, A6, Xn)] 1076
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1614,8 +1547,6 @@ FAIL [1084] 4890 [MOVEM.w #, (A0)] 1085
 FAIL [1086] 4cb3 [MOVEM.w (d8, A3, Xn), #] 1087
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1087] 48a3 [MOVEM.w #, -(A3)] 1088
-  ram[c4cd77]	expected        124 (0x7c) 	got        122 (0x7a)
 FAIL [1090] 48a0 [MOVEM.w #, -(A0)] 1091
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1628,8 +1559,6 @@ FAIL [1092] 4cb9 [MOVEM.w (xxx).l, #] 1093
 FAIL [1095] 4890 [MOVEM.w #, (A0)] 1096
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1096] 48a2 [MOVEM.w #, -(A2)] 1097
-  ram[efd06b]	expected        112 (0x70) 	got        110 (0x6e)
 FAIL [1097] 48b0 [MOVEM.w #, (d8, A0, Xn)] 1098
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1651,8 +1580,6 @@ FAIL [1106] 4c9a [MOVEM.w (A2)+, #] 1107
 FAIL [1107] 4cad [MOVEM.w (d16, A5), #] 1108
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1109] 48a0 [MOVEM.w #, -(A0)] 1110
-  ram[c6187f]	expected        138 (0x8a) 	got        136 (0x88)
 FAIL [1110] 4893 [MOVEM.w #, (A3)] 1111
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1665,13 +1592,9 @@ FAIL [1113] 4cb0 [MOVEM.w (d8, A0, Xn), #] 1114
 FAIL [1115] 48a2 [MOVEM.w #, -(A2)] 1116
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1119] 48a6 [MOVEM.w #, -(A6)] 1120
-  ram[f702b9]	expected        188 (0xbc) 	got        186 (0xba)
 FAIL [1120] 48a8 [MOVEM.w #, (d16, A0)] 1121
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1121] 48a1 [MOVEM.w #, -(A1)] 1122
-  ram[ff6909]	expected         18 (0x12) 	got         16 (0x10)
 FAIL [1122] 4ca9 [MOVEM.w (d16, A1), #] 1123
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1690,8 +1613,6 @@ FAIL [1128] 4cb9 [MOVEM.w (xxx).l, #] 1129
 FAIL [1130] 4cba [MOVEM.w (d16, PC), #] 1131
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1132] 48a1 [MOVEM.w #, -(A1)] 1133
-  ram[b4e343]	expected         76 (0x4c) 	got         74 (0x4a)
 FAIL [1139] 48a2 [MOVEM.w #, -(A2)] 1140
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1821,13 +1742,9 @@ FAIL [1222] 48b2 [MOVEM.w #, (d8, A2, Xn)] 1223
 FAIL [1226] 48b0 [MOVEM.w #, (d8, A0, Xn)] 1227
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1228] 48a6 [MOVEM.w #, -(A6)] 1229
-  ram[357fd7]	expected        216 (0xd8) 	got        214 (0xd6)
 FAIL [1229] 48a0 [MOVEM.w #, -(A0)] 1230
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1230] 48a6 [MOVEM.w #, -(A6)] 1231
-  ram[ddb0ab]	expected        172 (0xac) 	got        170 (0xaa)
 FAIL [1231] 48a6 [MOVEM.w #, -(A6)] 1232
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1912,8 +1829,6 @@ FAIL [1282] 4ca8 [MOVEM.w (d16, A0), #] 1283
 FAIL [1286] 48b7 [MOVEM.w #, (d8, A7, Xn)] 1287
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1288] 48a4 [MOVEM.w #, -(A4)] 1289
-  ram[3eb507]	expected         10 (0xa) 	got          8 (0x8)
 FAIL [1289] 4cb6 [MOVEM.w (d8, A6, Xn), #] 1290
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1923,9 +1838,6 @@ FAIL [1290] 4c9b [MOVEM.w (A3)+, #] 1291
 FAIL [1291] 48b8 [MOVEM.w #, (xxx).w] 1292
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1292] 48a7 [MOVEM.w #, -(A7)] 1293
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1294] 48a9 [MOVEM.w #, (d16, A1)] 1295
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -1938,8 +1850,6 @@ FAIL [1296] 4cb8 [MOVEM.w (xxx).w, #] 1297
 FAIL [1298] 48aa [MOVEM.w #, (d16, A2)] 1299
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1302] 48a1 [MOVEM.w #, -(A1)] 1303
-  ram[5c78ff]	expected          6 (0x6) 	got          4 (0x4)
 FAIL [1309] 4893 [MOVEM.w #, (A3)] 1310
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1970,8 +1880,6 @@ FAIL [1322] 48a3 [MOVEM.w #, -(A3)] 1323
 FAIL [1324] 4ca9 [MOVEM.w (d16, A1), #] 1325
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1325] 48a1 [MOVEM.w #, -(A1)] 1326
-  ram[166f7b]	expected        134 (0x86) 	got        132 (0x84)
 FAIL [1326] 4c9d [MOVEM.w (A5)+, #] 1327
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -1996,9 +1904,6 @@ FAIL [1340] 4cad [MOVEM.w (d16, A5), #] 1341
 FAIL [1342] 48b9 [MOVEM.w #, (xxx).l] 1343
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
-FAIL [1344] 48a7 [MOVEM.w #, -(A7)] 1345
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1345] 48a2 [MOVEM.w #, -(A2)] 1346
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2008,8 +1913,6 @@ FAIL [1348] 48aa [MOVEM.w #, (d16, A2)] 1349
 FAIL [1352] 4c91 [MOVEM.w (A1), #] 1353
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1353] 48a1 [MOVEM.w #, -(A1)] 1354
-  ram[15d521]	expected         34 (0x22) 	got         32 (0x20)
 FAIL [1355] 48a2 [MOVEM.w #, -(A2)] 1356
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2145,9 +2048,6 @@ FAIL [1456] 4c9d [MOVEM.w (A5)+, #] 1457
 FAIL [1457] 4c99 [MOVEM.w (A1)+, #] 1458
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1460] 48a7 [MOVEM.w #, -(A7)] 1461
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1462] 48af [MOVEM.w #, (d16, A7)] 1463
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2172,8 +2072,6 @@ FAIL [1478] 4cae [MOVEM.w (d16, A6), #] 1479
 FAIL [1479] 4cae [MOVEM.w (d16, A6), #] 1480
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1480] 48a5 [MOVEM.w #, -(A5)] 1481
-  ram[f07137]	expected         60 (0x3c) 	got         58 (0x3a)
 FAIL [1481] 48b3 [MOVEM.w #, (d8, A3, Xn)] 1482
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2234,8 +2132,6 @@ FAIL [1524] 4c94 [MOVEM.w (A4), #] 1525
 FAIL [1526] 48b8 [MOVEM.w #, (xxx).w] 1527
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1529] 48a1 [MOVEM.w #, -(A1)] 1530
-  ram[c7e957]	expected         90 (0x5a) 	got         88 (0x58)
 FAIL [1530] 4c9e [MOVEM.w (A6)+, #] 1531
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2275,8 +2171,6 @@ FAIL [1550] 48ab [MOVEM.w #, (d16, A3)] 1551
 FAIL [1551] 4cb1 [MOVEM.w (d8, A1, Xn), #] 1552
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1552] 48a3 [MOVEM.w #, -(A3)] 1553
-  ram[545ff5]	expected        248 (0xf8) 	got        246 (0xf6)
 FAIL [1554] 4c96 [MOVEM.w (A6), #] 1555
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2358,9 +2252,6 @@ FAIL [1608] 48b0 [MOVEM.w #, (d8, A0, Xn)] 1609
 FAIL [1609] 4c95 [MOVEM.w (A5), #] 1610
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1611] 48a7 [MOVEM.w #, -(A7)] 1612
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1612] 48a2 [MOVEM.w #, -(A2)] 1613
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2442,8 +2333,6 @@ FAIL [1662] 4890 [MOVEM.w #, (A0)] 1663
 FAIL [1666] 4cb2 [MOVEM.w (d8, A2, Xn), #] 1667
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1670] 48a4 [MOVEM.w #, -(A4)] 1671
-  ram[2eebd1]	expected        210 (0xd2) 	got        208 (0xd0)
 FAIL [1671] 48a9 [MOVEM.w #, (d16, A1)] 1672
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2561,8 +2450,6 @@ FAIL [1746] 48a6 [MOVEM.w #, -(A6)] 1747
 FAIL [1748] 48ad [MOVEM.w #, (d16, A5)] 1749
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1750] 48a0 [MOVEM.w #, -(A0)] 1751
-  ram[bb5d73]	expected        126 (0x7e) 	got        124 (0x7c)
 FAIL [1751] 4cab [MOVEM.w (d16, A3), #] 1752
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2590,8 +2477,6 @@ FAIL [1764] 4cbb [MOVEM.w (d8, PC, Xn), #] 1765
 FAIL [1765] 4c96 [MOVEM.w (A6), #] 1766
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1766] 48a1 [MOVEM.w #, -(A1)] 1767
-  ram[7cd8f5]	expected        250 (0xfa) 	got        248 (0xf8)
 FAIL [1767] 48a2 [MOVEM.w #, -(A2)] 1768
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2610,8 +2495,6 @@ FAIL [1774] 4cb3 [MOVEM.w (d8, A3, Xn), #] 1775
 FAIL [1775] 48b4 [MOVEM.w #, (d8, A4, Xn)] 1776
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1777] 48a4 [MOVEM.w #, -(A4)] 1778
-  ram[d21c1b]	expected         28 (0x1c) 	got         26 (0x1a)
 FAIL [1778] 48b2 [MOVEM.w #, (d8, A2, Xn)] 1779
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2621,8 +2504,6 @@ FAIL [1780] 4cb1 [MOVEM.w (d8, A1, Xn), #] 1781
 FAIL [1783] 4c9b [MOVEM.w (A3)+, #] 1784
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1784] 48a1 [MOVEM.w #, -(A1)] 1785
-  ram[d4065b]	expected        104 (0x68) 	got        102 (0x66)
 FAIL [1786] 48a9 [MOVEM.w #, (d16, A1)] 1787
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2644,8 +2525,6 @@ FAIL [1794] 4c93 [MOVEM.w (A3), #] 1795
 FAIL [1796] 48a5 [MOVEM.w #, -(A5)] 1797
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1797] 48a2 [MOVEM.w #, -(A2)] 1798
-  ram[deaff3]	expected        246 (0xf6) 	got        244 (0xf4)
 FAIL [1801] 4cb8 [MOVEM.w (xxx).w, #] 1802
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2682,9 +2561,6 @@ FAIL [1819] 48a2 [MOVEM.w #, -(A2)] 1820
 FAIL [1820] 48b7 [MOVEM.w #, (d8, A7, Xn)] 1821
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1822] 48a7 [MOVEM.w #, -(A7)] 1823
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1823] 48b3 [MOVEM.w #, (d8, A3, Xn)] 1824
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2751,9 +2627,6 @@ FAIL [1865] 4cad [MOVEM.w (d16, A5), #] 1866
 FAIL [1866] 48b5 [MOVEM.w #, (d8, A5, Xn)] 1867
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1867] 48a7 [MOVEM.w #, -(A7)] 1868
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [1868] 4c93 [MOVEM.w (A3), #] 1869
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2769,8 +2642,6 @@ FAIL [1877] 4893 [MOVEM.w #, (A3)] 1878
 FAIL [1879] 48a4 [MOVEM.w #, -(A4)] 1880
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1880] 48a0 [MOVEM.w #, -(A0)] 1881
-  ram[84c2df]	expected        228 (0xe4) 	got        226 (0xe2)
 FAIL [1881] 48b7 [MOVEM.w #, (d8, A7, Xn)] 1882
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2804,8 +2675,6 @@ FAIL [1896] 48b0 [MOVEM.w #, (d8, A0, Xn)] 1897
 FAIL [1898] 4c93 [MOVEM.w (A3), #] 1899
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1899] 48a2 [MOVEM.w #, -(A2)] 1900
-  ram[18afd7]	expected        226 (0xe2) 	got        224 (0xe0)
 FAIL [1900] 4c93 [MOVEM.w (A3), #] 1901
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2821,8 +2690,6 @@ FAIL [1903] 4cb1 [MOVEM.w (d8, A1, Xn), #] 1904
 FAIL [1906] 4caf [MOVEM.w (d16, A7), #] 1907
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1908] 48a2 [MOVEM.w #, -(A2)] 1909
-  ram[7a09b7]	expected        190 (0xbe) 	got        188 (0xbc)
 FAIL [1909] 4c98 [MOVEM.w (A0)+, #] 1910
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -2883,8 +2750,6 @@ FAIL [1937] 4891 [MOVEM.w #, (A1)] 1938
 FAIL [1938] 4c9d [MOVEM.w (A5)+, #] 1939
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [1939] 48a0 [MOVEM.w #, -(A0)] 1940
-  ram[741cd7]	expected        222 (0xde) 	got        220 (0xdc)
 FAIL [1940] 48ae [MOVEM.w #, (d16, A6)] 1941
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -2951,8 +2816,6 @@ FAIL [1986] 4ca8 [MOVEM.w (d16, A0), #] 1987
 FAIL [1987] 48b1 [MOVEM.w #, (d8, A1, Xn)] 1988
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [1988] 48a0 [MOVEM.w #, -(A0)] 1989
-  ram[0b256b]	expected        114 (0x72) 	got        112 (0x70)
 FAIL [1989] 4c91 [MOVEM.w (A1), #] 1990
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3010,8 +2873,6 @@ FAIL [2029] 4c92 [MOVEM.w (A2), #] 2030
 FAIL [2030] 48b4 [MOVEM.w #, (d8, A4, Xn)] 2031
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2031] 48a2 [MOVEM.w #, -(A2)] 2032
-  ram[843977]	expected        126 (0x7e) 	got        124 (0x7c)
 FAIL [2033] 4ca8 [MOVEM.w (d16, A0), #] 2034
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3096,9 +2957,6 @@ FAIL [2089] 48a4 [MOVEM.w #, -(A4)] 2090
 FAIL [2090] 4c98 [MOVEM.w (A0)+, #] 2091
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2091] 48a7 [MOVEM.w #, -(A7)] 2092
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2092] 4cb5 [MOVEM.w (d8, A5, Xn), #] 2093
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3144,9 +3002,6 @@ FAIL [2119] 4cbb [MOVEM.w (d8, PC, Xn), #] 2120
 FAIL [2120] 48b4 [MOVEM.w #, (d8, A4, Xn)] 2121
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2121] 48a7 [MOVEM.w #, -(A7)] 2122
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2122] 4cb6 [MOVEM.w (d8, A6, Xn), #] 2123
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3267,9 +3122,6 @@ FAIL [2202] 4894 [MOVEM.w #, (A4)] 2203
 FAIL [2204] 48b8 [MOVEM.w #, (xxx).w] 2205
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2210] 48a7 [MOVEM.w #, -(A7)] 2211
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2211] 4cad [MOVEM.w (d16, A5), #] 2212
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3285,8 +3137,6 @@ FAIL [2218] 4c9c [MOVEM.w (A4)+, #] 2219
 FAIL [2219] 4cae [MOVEM.w (d16, A6), #] 2220
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2220] 48a1 [MOVEM.w #, -(A1)] 2221
-  ram[48d0c3]	expected        200 (0xc8) 	got        198 (0xc6)
 FAIL [2222] 4cb3 [MOVEM.w (d8, A3, Xn), #] 2223
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3344,8 +3194,6 @@ FAIL [2255] 4c98 [MOVEM.w (A0)+, #] 2256
 FAIL [2259] 48b4 [MOVEM.w #, (d8, A4, Xn)] 2260
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2260] 48a6 [MOVEM.w #, -(A6)] 2261
-  ram[885273]	expected        118 (0x76) 	got        116 (0x74)
 FAIL [2262] 4894 [MOVEM.w #, (A4)] 2263
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3358,8 +3206,6 @@ FAIL [2271] 48b5 [MOVEM.w #, (d8, A5, Xn)] 2272
 FAIL [2273] 48a2 [MOVEM.w #, -(A2)] 2274
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2277] 48a1 [MOVEM.w #, -(A1)] 2278
-  ram[1ef115]	expected         28 (0x1c) 	got         26 (0x1a)
 FAIL [2278] 4cb5 [MOVEM.w (d8, A5, Xn), #] 2279
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3369,8 +3215,6 @@ FAIL [2282] 4caf [MOVEM.w (d16, A7), #] 2283
 FAIL [2283] 4cb6 [MOVEM.w (d8, A6, Xn), #] 2284
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2285] 48a3 [MOVEM.w #, -(A3)] 2286
-  ram[c6425d]	expected        100 (0x64) 	got         98 (0x62)
 FAIL [2289] 4cab [MOVEM.w (d16, A3), #] 2290
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3380,8 +3224,6 @@ FAIL [2294] 48b8 [MOVEM.w #, (xxx).w] 2295
 FAIL [2295] 48ac [MOVEM.w #, (d16, A4)] 2296
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2296] 48a4 [MOVEM.w #, -(A4)] 2297
-  ram[1719af]	expected        178 (0xb2) 	got        176 (0xb0)
 FAIL [2299] 4c94 [MOVEM.w (A4), #] 2300
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3394,8 +3236,6 @@ FAIL [2301] 4cba [MOVEM.w (d16, PC), #] 2302
 FAIL [2302] 4c9c [MOVEM.w (A4)+, #] 2303
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2303] 48a2 [MOVEM.w #, -(A2)] 2304
-  ram[da15d7]	expected        222 (0xde) 	got        220 (0xdc)
 FAIL [2304] 4892 [MOVEM.w #, (A2)] 2305
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3450,8 +3290,6 @@ FAIL [2330] 48a3 [MOVEM.w #, -(A3)] 2331
 FAIL [2335] 4caf [MOVEM.w (d16, A7), #] 2336
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2338] 48a1 [MOVEM.w #, -(A1)] 2339
-  ram[4b3dcb]	expected        210 (0xd2) 	got        208 (0xd0)
 FAIL [2340] 4cb6 [MOVEM.w (d8, A6, Xn), #] 2341
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3548,9 +3386,6 @@ FAIL [2393] 48b2 [MOVEM.w #, (d8, A2, Xn)] 2394
 FAIL [2394] 4caf [MOVEM.w (d16, A7), #] 2395
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2395] 48a7 [MOVEM.w #, -(A7)] 2396
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2397] 48a2 [MOVEM.w #, -(A2)] 2398
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3590,8 +3425,6 @@ FAIL [2418] 48b7 [MOVEM.w #, (d8, A7, Xn)] 2419
 FAIL [2421] 4cba [MOVEM.w (d16, PC), #] 2422
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2424] 48a4 [MOVEM.w #, -(A4)] 2425
-  ram[2a2a89]	expected        140 (0x8c) 	got        138 (0x8a)
 FAIL [2429] 48b7 [MOVEM.w #, (d8, A7, Xn)] 2430
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3625,16 +3458,12 @@ FAIL [2440] 4c9b [MOVEM.w (A3)+, #] 2441
 FAIL [2441] 4c95 [MOVEM.w (A5), #] 2442
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2447] 48a5 [MOVEM.w #, -(A5)] 2448
-  ram[a34ffd]	expected        254 (0xfe) 	got        252 (0xfc)
 FAIL [2449] 48ae [MOVEM.w #, (d16, A6)] 2450
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2456] 48a5 [MOVEM.w #, -(A5)] 2457
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2462] 48a2 [MOVEM.w #, -(A2)] 2463
-  ram[8b4239]	expected         62 (0x3e) 	got         60 (0x3c)
 FAIL [2465] 48a5 [MOVEM.w #, -(A5)] 2466
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3692,8 +3521,6 @@ FAIL [2498] 4cbb [MOVEM.w (d8, PC, Xn), #] 2499
 FAIL [2500] 4cb6 [MOVEM.w (d8, A6, Xn), #] 2501
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2506] 48a6 [MOVEM.w #, -(A6)] 2507
-  ram[e075e5]	expected        230 (0xe6) 	got        228 (0xe4)
 FAIL [2509] 48a5 [MOVEM.w #, -(A5)] 2510
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3724,15 +3551,9 @@ FAIL [2523] 4896 [MOVEM.w #, (A6)] 2524
 FAIL [2524] 48a5 [MOVEM.w #, -(A5)] 2525
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2526] 48a4 [MOVEM.w #, -(A4)] 2527
-  ram[96aeef]	expected        244 (0xf4) 	got        242 (0xf2)
-FAIL [2532] 48a5 [MOVEM.w #, -(A5)] 2533
-  ram[e19705]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [2533] 48a3 [MOVEM.w #, -(A3)] 2534
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2534] 48a2 [MOVEM.w #, -(A2)] 2535
-  ram[1de171]	expected        120 (0x78) 	got        118 (0x76)
 FAIL [2535] 4890 [MOVEM.w #, (A0)] 2536
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -3943,8 +3764,6 @@ FAIL [2687] 4cb3 [MOVEM.w (d8, A3, Xn), #] 2688
 FAIL [2690] 48ad [MOVEM.w #, (d16, A5)] 2691
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2692] 48a0 [MOVEM.w #, -(A0)] 2693
-  ram[1408db]	expected        226 (0xe2) 	got        224 (0xe0)
 FAIL [2694] 48ad [MOVEM.w #, (d16, A5)] 2695
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3966,8 +3785,6 @@ FAIL [2710] 48b1 [MOVEM.w #, (d8, A1, Xn)] 2711
 FAIL [2713] 4c9b [MOVEM.w (A3)+, #] 2714
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2716] 48a3 [MOVEM.w #, -(A3)] 2717
-  ram[f34d03]	expected         10 (0xa) 	got          8 (0x8)
 FAIL [2717] 4cae [MOVEM.w (d16, A6), #] 2718
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -3992,9 +3809,6 @@ FAIL [2736] 4ca9 [MOVEM.w (d16, A1), #] 2737
 FAIL [2737] 48b5 [MOVEM.w #, (d8, A5, Xn)] 2738
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2738] 48a7 [MOVEM.w #, -(A7)] 2739
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2739] 4cb7 [MOVEM.w (d8, A7, Xn), #] 2740
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4010,9 +3824,6 @@ FAIL [2742] 4c93 [MOVEM.w (A3), #] 2743
 FAIL [2744] 4cae [MOVEM.w (d16, A6), #] 2745
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2747] 48a7 [MOVEM.w #, -(A7)] 2748
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2753] 4c95 [MOVEM.w (A5), #] 2754
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4046,16 +3857,12 @@ FAIL [2769] 48b3 [MOVEM.w #, (d8, A3, Xn)] 2770
 FAIL [2770] 48ac [MOVEM.w #, (d16, A4)] 2771
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2772] 48a2 [MOVEM.w #, -(A2)] 2773
-  ram[b9d9f3]	expected        248 (0xf8) 	got        246 (0xf6)
 FAIL [2776] 4c93 [MOVEM.w (A3), #] 2777
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2777] 48a9 [MOVEM.w #, (d16, A1)] 2778
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2778] 48a1 [MOVEM.w #, -(A1)] 2779
-  ram[dee181]	expected        140 (0x8c) 	got        138 (0x8a)
 FAIL [2781] 4894 [MOVEM.w #, (A4)] 2782
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4122,8 +3929,6 @@ FAIL [2813] 4caa [MOVEM.w (d16, A2), #] 2814
 FAIL [2815] 4caf [MOVEM.w (d16, A7), #] 2816
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2816] 48a3 [MOVEM.w #, -(A3)] 2817
-  ram[b68c99]	expected        158 (0x9e) 	got        156 (0x9c)
 FAIL [2818] 4894 [MOVEM.w #, (A4)] 2819
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4163,25 +3968,18 @@ FAIL [2833] 4c90 [MOVEM.w (A0), #] 2834
 FAIL [2835] 4cba [MOVEM.w (d16, PC), #] 2836
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2836] 48a3 [MOVEM.w #, -(A3)] 2837
-  ram[44ade3]	expected        236 (0xec) 	got        234 (0xea)
 FAIL [2837] 48b7 [MOVEM.w #, (d8, A7, Xn)] 2838
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2841] 4c9a [MOVEM.w (A2)+, #] 2842
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2843] 48a7 [MOVEM.w #, -(A7)] 2844
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [2845] 4cab [MOVEM.w (d16, A3), #] 2846
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2848] 4ca9 [MOVEM.w (d16, A1), #] 2849
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2849] 48a0 [MOVEM.w #, -(A0)] 2850
-  ram[f3470d]	expected         22 (0x16) 	got         20 (0x14)
 FAIL [2851] 48a4 [MOVEM.w #, -(A4)] 2852
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4233,8 +4031,6 @@ FAIL [2887] 4890 [MOVEM.w #, (A0)] 2888
 FAIL [2888] 4c91 [MOVEM.w (A1), #] 2889
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2889] 48a4 [MOVEM.w #, -(A4)] 2890
-  ram[d0b10b]	expected         14 (0xe) 	got         12 (0xc)
 FAIL [2892] 4895 [MOVEM.w #, (A5)] 2893
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4262,8 +4058,6 @@ FAIL [2905] 4c99 [MOVEM.w (A1)+, #] 2906
 FAIL [2906] 4cb6 [MOVEM.w (d8, A6, Xn), #] 2907
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2907] 48a6 [MOVEM.w #, -(A6)] 2908
-  ram[b2f995]	expected        150 (0x96) 	got        148 (0x94)
 FAIL [2908] 4cb7 [MOVEM.w (d8, A7, Xn), #] 2909
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4285,8 +4079,6 @@ FAIL [2918] 4cb6 [MOVEM.w (d8, A6, Xn), #] 2919
 FAIL [2919] 48ae [MOVEM.w #, (d16, A6)] 2920
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2921] 48a5 [MOVEM.w #, -(A5)] 2922
-  ram[59156b]	expected        110 (0x6e) 	got        108 (0x6c)
 FAIL [2922] 4c9b [MOVEM.w (A3)+, #] 2923
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4314,8 +4106,6 @@ FAIL [2931] 4894 [MOVEM.w #, (A4)] 2932
 FAIL [2932] 48b1 [MOVEM.w #, (d8, A1, Xn)] 2933
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [2933] 48a2 [MOVEM.w #, -(A2)] 2934
-  ram[e1c0bd]	expected        196 (0xc4) 	got        194 (0xc2)
 FAIL [2934] 48ab [MOVEM.w #, (d16, A3)] 2935
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4337,8 +4127,6 @@ FAIL [2944] 48a5 [MOVEM.w #, -(A5)] 2945
 FAIL [2948] 4890 [MOVEM.w #, (A0)] 2949
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [2951] 48a6 [MOVEM.w #, -(A6)] 2952
-  ram[3dbbcd]	expected        206 (0xce) 	got        204 (0xcc)
 FAIL [2952] 48b1 [MOVEM.w #, (d8, A1, Xn)] 2953
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4450,8 +4238,6 @@ FAIL [3028] 4890 [MOVEM.w #, (A0)] 3029
 FAIL [3032] 48ab [MOVEM.w #, (d16, A3)] 3033
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3033] 48a1 [MOVEM.w #, -(A1)] 3034
-  ram[c152a1]	expected        170 (0xaa) 	got        168 (0xa8)
 FAIL [3035] 4c91 [MOVEM.w (A1), #] 3036
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4476,8 +4262,6 @@ FAIL [3044] 4c99 [MOVEM.w (A1)+, #] 3045
 FAIL [3045] 4896 [MOVEM.w #, (A6)] 3046
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3046] 48a2 [MOVEM.w #, -(A2)] 3047
-  ram[ed9edf]	expected        228 (0xe4) 	got        226 (0xe2)
 FAIL [3048] 48ab [MOVEM.w #, (d16, A3)] 3049
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4544,9 +4328,6 @@ FAIL [3087] 4890 [MOVEM.w #, (A0)] 3088
 FAIL [3089] 48b6 [MOVEM.w #, (d8, A6, Xn)] 3090
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3092] 48a7 [MOVEM.w #, -(A7)] 3093
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [3093] 4caa [MOVEM.w (d16, A2), #] 3094
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4592,8 +4373,6 @@ FAIL [3116] 4890 [MOVEM.w #, (A0)] 3117
 FAIL [3119] 48b1 [MOVEM.w #, (d8, A1, Xn)] 3120
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3120] 48a1 [MOVEM.w #, -(A1)] 3121
-  ram[07c14f]	expected         86 (0x56) 	got         84 (0x54)
 FAIL [3122] 4cb4 [MOVEM.w (d8, A4, Xn), #] 3123
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4693,8 +4472,6 @@ FAIL [3179] 4891 [MOVEM.w #, (A1)] 3180
 FAIL [3181] 4c94 [MOVEM.w (A4), #] 3182
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3184] 48a5 [MOVEM.w #, -(A5)] 3185
-  ram[103e31]	expected         52 (0x34) 	got         50 (0x32)
 FAIL [3185] 4c95 [MOVEM.w (A5), #] 3186
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4731,8 +4508,6 @@ FAIL [3204] 4c93 [MOVEM.w (A3), #] 3205
 FAIL [3207] 48b3 [MOVEM.w #, (d8, A3, Xn)] 3208
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3208] 48a5 [MOVEM.w #, -(A5)] 3209
-  ram[705021]	expected         36 (0x24) 	got         34 (0x22)
 FAIL [3209] 4cad [MOVEM.w (d16, A5), #] 3210
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4790,16 +4565,12 @@ FAIL [3238] 4cb6 [MOVEM.w (d8, A6, Xn), #] 3239
 FAIL [3240] 48b0 [MOVEM.w #, (d8, A0, Xn)] 3241
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3242] 48a3 [MOVEM.w #, -(A3)] 3243
-  ram[5d727f]	expected        132 (0x84) 	got        130 (0x82)
 FAIL [3243] 4894 [MOVEM.w #, (A4)] 3244
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3246] 4caa [MOVEM.w (d16, A2), #] 3247
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3248] 48a1 [MOVEM.w #, -(A1)] 3249
-  ram[ea3707]	expected         14 (0xe) 	got         12 (0xc)
 FAIL [3254] 4cac [MOVEM.w (d16, A4), #] 3255
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4842,13 +4613,9 @@ FAIL [3276] 4cb8 [MOVEM.w (xxx).w, #] 3277
 FAIL [3277] 48b8 [MOVEM.w #, (xxx).w] 3278
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3278] 48a4 [MOVEM.w #, -(A4)] 3279
-  ram[91a61d]	expected         32 (0x20) 	got         30 (0x1e)
 FAIL [3279] 48b0 [MOVEM.w #, (d8, A0, Xn)] 3280
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3280] 48a4 [MOVEM.w #, -(A4)] 3281
-  ram[641a53]	expected         88 (0x58) 	got         86 (0x56)
 FAIL [3281] 48b4 [MOVEM.w #, (d8, A4, Xn)] 3282
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -4951,8 +4718,6 @@ FAIL [3340] 48a9 [MOVEM.w #, (d16, A1)] 3341
 FAIL [3341] 48b3 [MOVEM.w #, (d8, A3, Xn)] 3342
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3342] 48a0 [MOVEM.w #, -(A0)] 3343
-  ram[300ecb]	expected        210 (0xd2) 	got        208 (0xd0)
 FAIL [3344] 4c92 [MOVEM.w (A2), #] 3345
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -4977,8 +4742,6 @@ FAIL [3356] 4896 [MOVEM.w #, (A6)] 3357
 FAIL [3358] 4cad [MOVEM.w (d16, A5), #] 3359
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3359] 48a0 [MOVEM.w #, -(A0)] 3360
-  ram[42b393]	expected        156 (0x9c) 	got        154 (0x9a)
 FAIL [3360] 4cae [MOVEM.w (d16, A6), #] 3361
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5033,8 +4796,6 @@ FAIL [3391] 4895 [MOVEM.w #, (A5)] 3392
 FAIL [3393] 4c93 [MOVEM.w (A3), #] 3394
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3397] 48a5 [MOVEM.w #, -(A5)] 3398
-  ram[b788df]	expected        226 (0xe2) 	got        224 (0xe0)
 FAIL [3398] 48a2 [MOVEM.w #, -(A2)] 3399
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -5104,10 +4865,6 @@ FAIL [3435] 4cb1 [MOVEM.w (d8, A1, Xn), #] 3436
 FAIL [3436] 48b1 [MOVEM.w #, (d8, A1, Xn)] 3437
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3437] 48a3 [MOVEM.w #, -(A3)] 3438
-  ram[64572d]	expected         50 (0x32) 	got         48 (0x30)
-FAIL [3440] 48a5 [MOVEM.w #, -(A5)] 3441
-  ram[ee50a1]	expected        164 (0xa4) 	got        162 (0xa2)
 FAIL [3443] 48b7 [MOVEM.w #, (d8, A7, Xn)] 3444
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5198,9 +4955,6 @@ FAIL [3522] 4895 [MOVEM.w #, (A5)] 3523
 FAIL [3525] 48b6 [MOVEM.w #, (d8, A6, Xn)] 3526
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3526] 48a7 [MOVEM.w #, -(A7)] 3527
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [3527] 48a9 [MOVEM.w #, (d16, A1)] 3528
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5213,8 +4967,6 @@ FAIL [3530] 4896 [MOVEM.w #, (A6)] 3531
 FAIL [3534] 48b8 [MOVEM.w #, (xxx).w] 3535
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3535] 48a3 [MOVEM.w #, -(A3)] 3536
-  ram[046df5]	expected        252 (0xfc) 	got        250 (0xfa)
 FAIL [3537] 4c9a [MOVEM.w (A2)+, #] 3538
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -5260,19 +5012,12 @@ FAIL [3569] 4cb8 [MOVEM.w (xxx).w, #] 3570
 FAIL [3570] 4cae [MOVEM.w (d16, A6), #] 3571
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3572] 48a7 [MOVEM.w #, -(A7)] 3573
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [3574] 4890 [MOVEM.w #, (A0)] 3575
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3575] 48a1 [MOVEM.w #, -(A1)] 3576
-  ram[4fb6ab]	expected        182 (0xb6) 	got        180 (0xb4)
 FAIL [3579] 48b3 [MOVEM.w #, (d8, A3, Xn)] 3580
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3580] 48a0 [MOVEM.w #, -(A0)] 3581
-  ram[1756c9]	expected        206 (0xce) 	got        204 (0xcc)
 FAIL [3581] 4c94 [MOVEM.w (A4), #] 3582
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -5525,13 +5270,9 @@ FAIL [3757] 4cbb [MOVEM.w (d8, PC, Xn), #] 3758
 FAIL [3759] 4c96 [MOVEM.w (A6), #] 3760
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3760] 48a6 [MOVEM.w #, -(A6)] 3761
-  ram[c6c6e3]	expected        230 (0xe6) 	got        228 (0xe4)
 FAIL [3761] 48a6 [MOVEM.w #, -(A6)] 3762
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3765] 48a3 [MOVEM.w #, -(A3)] 3766
-  ram[44d2a3]	expected        170 (0xaa) 	got        168 (0xa8)
 FAIL [3766] 4cbb [MOVEM.w (d8, PC, Xn), #] 3767
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5601,8 +5342,6 @@ FAIL [3803] 48b2 [MOVEM.w #, (d8, A2, Xn)] 3804
 FAIL [3804] 48b5 [MOVEM.w #, (d8, A5, Xn)] 3805
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3805] 48a0 [MOVEM.w #, -(A0)] 3806
-  ram[39c7dd]	expected        234 (0xea) 	got        232 (0xe8)
 FAIL [3810] 48a1 [MOVEM.w #, -(A1)] 3811
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -5669,9 +5408,6 @@ FAIL [3858] 4c9b [MOVEM.w (A3)+, #] 3859
 FAIL [3859] 4cb8 [MOVEM.w (xxx).w, #] 3860
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3860] 48a7 [MOVEM.w #, -(A7)] 3861
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [3867] 4c9e [MOVEM.w (A6)+, #] 3868
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -5696,8 +5432,6 @@ FAIL [3879] 48a9 [MOVEM.w #, (d16, A1)] 3880
 FAIL [3881] 48a5 [MOVEM.w #, -(A5)] 3882
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [3882] 48a1 [MOVEM.w #, -(A1)] 3883
-  ram[145f59]	expected         96 (0x60) 	got         94 (0x5e)
 FAIL [3884] 4ca8 [MOVEM.w (d16, A0), #] 3885
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5824,8 +5558,6 @@ FAIL [3973] 4c90 [MOVEM.w (A0), #] 3974
 FAIL [3978] 48ae [MOVEM.w #, (d16, A6)] 3979
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [3979] 48a5 [MOVEM.w #, -(A5)] 3980
-  ram[84647b]	expected        126 (0x7e) 	got        124 (0x7c)
 FAIL [3980] 4cae [MOVEM.w (d16, A6), #] 3981
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5877,9 +5609,6 @@ FAIL [4012] 4cad [MOVEM.w (d16, A5), #] 4013
 FAIL [4013] 4cba [MOVEM.w (d16, PC), #] 4014
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4014] 48a7 [MOVEM.w #, -(A7)] 4015
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [4015] 4c96 [MOVEM.w (A6), #] 4016
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -5904,8 +5633,6 @@ FAIL [4030] 4c9e [MOVEM.w (A6)+, #] 4031
 FAIL [4031] 4cb9 [MOVEM.w (xxx).l, #] 4032
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
-FAIL [4033] 48a2 [MOVEM.w #, -(A2)] 4034
-  ram[d25271]	expected        122 (0x7a) 	got        120 (0x78)
 FAIL [4035] 4cb1 [MOVEM.w (d8, A1, Xn), #] 4036
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -5978,8 +5705,6 @@ FAIL [4085] 4c96 [MOVEM.w (A6), #] 4086
 FAIL [4088] 48a8 [MOVEM.w #, (d16, A0)] 4089
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4089] 48a5 [MOVEM.w #, -(A5)] 4090
-  ram[53f729]	expected         44 (0x2c) 	got         42 (0x2a)
 FAIL [4092] 48ae [MOVEM.w #, (d16, A6)] 4093
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6244,8 +5969,6 @@ FAIL [4287] 4cbb [MOVEM.w (d8, PC, Xn), #] 4288
 FAIL [4290] 4cb1 [MOVEM.w (d8, A1, Xn), #] 4291
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4292] 48a6 [MOVEM.w #, -(A6)] 4293
-  ram[8eb10f]	expected         16 (0x10) 	got         14 (0xe)
 FAIL [4293] 4894 [MOVEM.w #, (A4)] 4294
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6261,8 +5984,6 @@ FAIL [4296] 4cb0 [MOVEM.w (d8, A0, Xn), #] 4297
 FAIL [4299] 48a5 [MOVEM.w #, -(A5)] 4300
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4300] 48a0 [MOVEM.w #, -(A0)] 4301
-  ram[7831ef]	expected        252 (0xfc) 	got        250 (0xfa)
 FAIL [4301] 4caa [MOVEM.w (d16, A2), #] 4302
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6350,8 +6071,6 @@ FAIL [4349] 48a0 [MOVEM.w #, -(A0)] 4350
 FAIL [4350] 48b9 [MOVEM.w #, (xxx).l] 4351
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
-FAIL [4351] 48a4 [MOVEM.w #, -(A4)] 4352
-  ram[ed01d1]	expected        212 (0xd4) 	got        210 (0xd2)
 FAIL [4353] 4893 [MOVEM.w #, (A3)] 4354
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6367,16 +6086,12 @@ FAIL [4358] 4c95 [MOVEM.w (A5), #] 4359
 FAIL [4361] 4c93 [MOVEM.w (A3), #] 4362
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4364] 48a4 [MOVEM.w #, -(A4)] 4365
-  ram[8067ef]	expected        246 (0xf6) 	got        244 (0xf4)
 FAIL [4369] 4cb7 [MOVEM.w (d8, A7, Xn), #] 4370
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4371] 4cae [MOVEM.w (d16, A6), #] 4372
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4373] 48a4 [MOVEM.w #, -(A4)] 4374
-  ram[e9ca1d]	expected         30 (0x1e) 	got         28 (0x1c)
 FAIL [4374] 4c9d [MOVEM.w (A5)+, #] 4375
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6404,8 +6119,6 @@ FAIL [4390] 4cb0 [MOVEM.w (d8, A0, Xn), #] 4391
 FAIL [4391] 4caf [MOVEM.w (d16, A7), #] 4392
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4392] 48a3 [MOVEM.w #, -(A3)] 4393
-  ram[34db49]	expected         80 (0x50) 	got         78 (0x4e)
 FAIL [4395] 4cb6 [MOVEM.w (d8, A6, Xn), #] 4396
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6436,8 +6149,6 @@ FAIL [4409] 48af [MOVEM.w #, (d16, A7)] 4410
 FAIL [4410] 48b6 [MOVEM.w #, (d8, A6, Xn)] 4411
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4412] 48a3 [MOVEM.w #, -(A3)] 4413
-  ram[65dd59]	expected         92 (0x5c) 	got         90 (0x5a)
 FAIL [4413] 4cae [MOVEM.w (d16, A6), #] 4414
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6492,8 +6203,6 @@ FAIL [4450] 48b6 [MOVEM.w #, (d8, A6, Xn)] 4451
 FAIL [4452] 4cad [MOVEM.w (d16, A5), #] 4453
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4453] 48a4 [MOVEM.w #, -(A4)] 4454
-  ram[59cc89]	expected        140 (0x8c) 	got        138 (0x8a)
 FAIL [4455] 48b5 [MOVEM.w #, (d8, A5, Xn)] 4456
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6554,8 +6263,6 @@ FAIL [4485] 48a1 [MOVEM.w #, -(A1)] 4486
 FAIL [4491] 4cad [MOVEM.w (d16, A5), #] 4492
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4492] 48a0 [MOVEM.w #, -(A0)] 4493
-  ram[882a4b]	expected         84 (0x54) 	got         82 (0x52)
 FAIL [4493] 48ae [MOVEM.w #, (d16, A6)] 4494
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6610,8 +6317,6 @@ FAIL [4524] 48a5 [MOVEM.w #, -(A5)] 4525
 FAIL [4525] 48b8 [MOVEM.w #, (xxx).w] 4526
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4526] 48a3 [MOVEM.w #, -(A3)] 4527
-  ram[c1b839]	expected         60 (0x3c) 	got         58 (0x3a)
 FAIL [4527] 4cb7 [MOVEM.w (d8, A7, Xn), #] 4528
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6621,14 +6326,9 @@ FAIL [4529] 4cb4 [MOVEM.w (d8, A4, Xn), #] 4530
 FAIL [4531] 4c96 [MOVEM.w (A6), #] 4532
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4532] 48a7 [MOVEM.w #, -(A7)] 4533
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [4534] 4cb5 [MOVEM.w (d8, A5, Xn), #] 4535
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4535] 48a6 [MOVEM.w #, -(A6)] 4536
-  ram[525013]	expected         20 (0x14) 	got         18 (0x12)
 FAIL [4536] 4ca9 [MOVEM.w (d16, A1), #] 4537
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6656,9 +6356,6 @@ FAIL [4553] 4cab [MOVEM.w (d16, A3), #] 4554
 FAIL [4558] 4c99 [MOVEM.w (A1)+, #] 4559
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4561] 48a7 [MOVEM.w #, -(A7)] 4562
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [4563] 4c9c [MOVEM.w (A4)+, #] 4564
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6677,15 +6374,9 @@ FAIL [4575] 4cab [MOVEM.w (d16, A3), #] 4576
 FAIL [4579] 4c9a [MOVEM.w (A2)+, #] 4580
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4581] 48a5 [MOVEM.w #, -(A5)] 4582
-  ram[0fd7fa]	expected        216 (0xd8) 	got        215 (0xd7)
-  ram[0fd7fb]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [4584] 48a3 [MOVEM.w #, -(A3)] 4585
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4585] 48a7 [MOVEM.w #, -(A7)] 4586
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [4586] 48a8 [MOVEM.w #, (d16, A0)] 4587
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6701,9 +6392,6 @@ FAIL [4589] 4c9d [MOVEM.w (A5)+, #] 4590
 FAIL [4590] 48b4 [MOVEM.w #, (d8, A4, Xn)] 4591
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4592] 48a7 [MOVEM.w #, -(A7)] 4593
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [4597] 48b8 [MOVEM.w #, (xxx).w] 4598
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6731,8 +6419,6 @@ FAIL [4613] 4cb5 [MOVEM.w (d8, A5, Xn), #] 4614
 FAIL [4614] 48b1 [MOVEM.w #, (d8, A1, Xn)] 4615
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4615] 48a0 [MOVEM.w #, -(A0)] 4616
-  ram[8ef2f7]	expected        252 (0xfc) 	got        250 (0xfa)
 FAIL [4619] 4cb5 [MOVEM.w (d8, A5, Xn), #] 4620
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6757,8 +6443,6 @@ FAIL [4628] 4894 [MOVEM.w #, (A4)] 4629
 FAIL [4631] 4c9d [MOVEM.w (A5)+, #] 4632
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4632] 48a1 [MOVEM.w #, -(A1)] 4633
-  ram[7a2087]	expected        140 (0x8c) 	got        138 (0x8a)
 FAIL [4633] 4c92 [MOVEM.w (A2), #] 4634
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6789,8 +6473,6 @@ FAIL [4652] 4c9c [MOVEM.w (A4)+, #] 4653
 FAIL [4653] 4ca8 [MOVEM.w (d16, A0), #] 4654
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4657] 48a2 [MOVEM.w #, -(A2)] 4658
-  ram[956b0f]	expected         24 (0x18) 	got         22 (0x16)
 FAIL [4659] 4cac [MOVEM.w (d16, A4), #] 4660
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6809,8 +6491,6 @@ FAIL [4664] 4caa [MOVEM.w (d16, A2), #] 4665
 FAIL [4665] 4c98 [MOVEM.w (A0)+, #] 4666
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [4667] 48a4 [MOVEM.w #, -(A4)] 4668
-  ram[098e5d]	expected        100 (0x64) 	got         98 (0x62)
 FAIL [4669] 4cb8 [MOVEM.w (xxx).w, #] 4670
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6835,8 +6515,6 @@ FAIL [4688] 4cb1 [MOVEM.w (d8, A1, Xn), #] 4689
 FAIL [4692] 4cb9 [MOVEM.w (xxx).l, #] 4693
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
-FAIL [4693] 48a5 [MOVEM.w #, -(A5)] 4694
-  ram[eb2cd9]	expected        220 (0xdc) 	got        218 (0xda)
 FAIL [4695] 4c9e [MOVEM.w (A6)+, #] 4696
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6936,8 +6614,6 @@ FAIL [4749] 4c96 [MOVEM.w (A6), #] 4750
 FAIL [4752] 4cba [MOVEM.w (d16, PC), #] 4753
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4753] 48a0 [MOVEM.w #, -(A0)] 4754
-  ram[2a795f]	expected        102 (0x66) 	got        100 (0x64)
 FAIL [4754] 4cab [MOVEM.w (d16, A3), #] 4755
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -6953,8 +6629,6 @@ FAIL [4763] 4cb4 [MOVEM.w (d8, A4, Xn), #] 4764
 FAIL [4764] 48ac [MOVEM.w #, (d16, A4)] 4765
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4766] 48a5 [MOVEM.w #, -(A5)] 4767
-  ram[5dd389]	expected        142 (0x8e) 	got        140 (0x8c)
 FAIL [4768] 4cac [MOVEM.w (d16, A4), #] 4769
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7075,8 +6749,6 @@ FAIL [4844] 4896 [MOVEM.w #, (A6)] 4845
 FAIL [4845] 48ab [MOVEM.w #, (d16, A3)] 4846
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4847] 48a5 [MOVEM.w #, -(A5)] 4848
-  ram[120599]	expected        158 (0x9e) 	got        156 (0x9c)
 FAIL [4848] 4cb5 [MOVEM.w (d8, A5, Xn), #] 4849
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7203,8 +6875,6 @@ FAIL [4943] 4cba [MOVEM.w (d16, PC), #] 4944
 FAIL [4945] 4cb2 [MOVEM.w (d8, A2, Xn), #] 4946
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4946] 48a0 [MOVEM.w #, -(A0)] 4947
-  ram[5bf09f]	expected        166 (0xa6) 	got        164 (0xa4)
 FAIL [4948] 48ae [MOVEM.w #, (d16, A6)] 4949
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7247,8 +6917,6 @@ FAIL [4979] 4c90 [MOVEM.w (A0), #] 4980
 FAIL [4980] 48a8 [MOVEM.w #, (d16, A0)] 4981
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [4981] 48a4 [MOVEM.w #, -(A4)] 4982
-  ram[f25aa9]	expected        174 (0xae) 	got        172 (0xac)
 FAIL [4984] 48a4 [MOVEM.w #, -(A4)] 4985
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -7297,8 +6965,6 @@ FAIL [5013] 48ab [MOVEM.w #, (d16, A3)] 5014
 FAIL [5014] 48ab [MOVEM.w #, (d16, A3)] 5015
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5015] 48a4 [MOVEM.w #, -(A4)] 5016
-  ram[cf7f05]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [5018] 4890 [MOVEM.w #, (A0)] 5019
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -7416,8 +7082,6 @@ FAIL [5102] 4c95 [MOVEM.w (A5), #] 5103
 FAIL [5103] 4cb4 [MOVEM.w (d8, A4, Xn), #] 5104
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5104] 48a6 [MOVEM.w #, -(A6)] 5105
-  ram[e328a9]	expected        170 (0xaa) 	got        168 (0xa8)
 FAIL [5106] 4c99 [MOVEM.w (A1)+, #] 5107
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -7430,8 +7094,6 @@ FAIL [5108] 4cab [MOVEM.w (d16, A3), #] 5109
 FAIL [5109] 4ca8 [MOVEM.w (d16, A0), #] 5110
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5111] 48a5 [MOVEM.w #, -(A5)] 5112
-  ram[31b79b]	expected        160 (0xa0) 	got        158 (0x9e)
 FAIL [5112] 4cad [MOVEM.w (d16, A5), #] 5113
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7462,8 +7124,6 @@ FAIL [5132] 4cb3 [MOVEM.w (d8, A3, Xn), #] 5133
 FAIL [5133] 4cb0 [MOVEM.w (d8, A0, Xn), #] 5134
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5134] 48a4 [MOVEM.w #, -(A4)] 5135
-  ram[dbbd99]	expected        156 (0x9c) 	got        154 (0x9a)
 FAIL [5136] 4c9d [MOVEM.w (A5)+, #] 5137
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -7488,9 +7148,6 @@ FAIL [5152] 4ca9 [MOVEM.w (d16, A1), #] 5153
 FAIL [5154] 4c99 [MOVEM.w (A1)+, #] 5155
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5155] 48a7 [MOVEM.w #, -(A7)] 5156
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [5156] 4c92 [MOVEM.w (A2), #] 5157
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -7572,8 +7229,6 @@ FAIL [5202] 4cb5 [MOVEM.w (d8, A5, Xn), #] 5203
 FAIL [5203] 4cb2 [MOVEM.w (d8, A2, Xn), #] 5204
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5206] 48a0 [MOVEM.w #, -(A0)] 5207
-  ram[b95fd7]	expected        220 (0xdc) 	got        218 (0xda)
 FAIL [5208] 48ae [MOVEM.w #, (d16, A6)] 5209
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7706,8 +7361,6 @@ FAIL [5283] 48aa [MOVEM.w #, (d16, A2)] 5284
 FAIL [5285] 4894 [MOVEM.w #, (A4)] 5286
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5286] 48a2 [MOVEM.w #, -(A2)] 5287
-  ram[a3eeb1]	expected        182 (0xb6) 	got        180 (0xb4)
 FAIL [5287] 4cb3 [MOVEM.w (d8, A3, Xn), #] 5288
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7783,8 +7436,6 @@ FAIL [5331] 4caa [MOVEM.w (d16, A2), #] 5332
 FAIL [5334] 48b3 [MOVEM.w #, (d8, A3, Xn)] 5335
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5335] 48a4 [MOVEM.w #, -(A4)] 5336
-  ram[148b1f]	expected         34 (0x22) 	got         32 (0x20)
 FAIL [5339] 4cad [MOVEM.w (d16, A5), #] 5340
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7905,8 +7556,6 @@ FAIL [5407] 4cbb [MOVEM.w (d8, PC, Xn), #] 5408
 FAIL [5410] 4893 [MOVEM.w #, (A3)] 5411
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5415] 48a4 [MOVEM.w #, -(A4)] 5416
-  ram[62b7a5]	expected        166 (0xa6) 	got        164 (0xa4)
 FAIL [5416] 4c92 [MOVEM.w (A2), #] 5417
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -7925,9 +7574,6 @@ FAIL [5420] 48a0 [MOVEM.w #, -(A0)] 5421
 FAIL [5421] 4cac [MOVEM.w (d16, A4), #] 5422
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5422] 48a7 [MOVEM.w #, -(A7)] 5423
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [5430] 48ae [MOVEM.w #, (d16, A6)] 5431
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7952,8 +7598,6 @@ FAIL [5444] 48ab [MOVEM.w #, (d16, A3)] 5445
 FAIL [5445] 4c9a [MOVEM.w (A2)+, #] 5446
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5446] 48a3 [MOVEM.w #, -(A3)] 5447
-  ram[5209ad]	expected        180 (0xb4) 	got        178 (0xb2)
 FAIL [5449] 48b4 [MOVEM.w #, (d8, A4, Xn)] 5450
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -7969,8 +7613,6 @@ FAIL [5453] 4cb2 [MOVEM.w (d8, A2, Xn), #] 5454
 FAIL [5455] 4c92 [MOVEM.w (A2), #] 5456
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5456] 48a1 [MOVEM.w #, -(A1)] 5457
-  ram[3abe2f]	expected         56 (0x38) 	got         54 (0x36)
 FAIL [5459] 48a4 [MOVEM.w #, -(A4)] 5460
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8007,8 +7649,6 @@ FAIL [5479] 4c9e [MOVEM.w (A6)+, #] 5480
 FAIL [5480] 4890 [MOVEM.w #, (A0)] 5481
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5481] 48a3 [MOVEM.w #, -(A3)] 5482
-  ram[8dd405]	expected         10 (0xa) 	got          8 (0x8)
 FAIL [5484] 4895 [MOVEM.w #, (A5)] 5485
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8051,9 +7691,6 @@ FAIL [5508] 4cb7 [MOVEM.w (d8, A7, Xn), #] 5509
 FAIL [5509] 4ca8 [MOVEM.w (d16, A0), #] 5510
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5510] 48a7 [MOVEM.w #, -(A7)] 5511
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [5511] 4c9a [MOVEM.w (A2)+, #] 5512
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8075,8 +7712,6 @@ FAIL [5522] 4cb4 [MOVEM.w (d8, A4, Xn), #] 5523
 FAIL [5523] 4c9d [MOVEM.w (A5)+, #] 5524
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5524] 48a1 [MOVEM.w #, -(A1)] 5525
-  ram[282bc5]	expected        206 (0xce) 	got        204 (0xcc)
 FAIL [5525] 4cb3 [MOVEM.w (d8, A3, Xn), #] 5526
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8122,8 +7757,6 @@ FAIL [5555] 4cb2 [MOVEM.w (d8, A2, Xn), #] 5556
 FAIL [5560] 48b6 [MOVEM.w #, (d8, A6, Xn)] 5561
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5561] 48a0 [MOVEM.w #, -(A0)] 5562
-  ram[10ecc9]	expected        214 (0xd6) 	got        212 (0xd4)
 FAIL [5564] 4cad [MOVEM.w (d16, A5), #] 5565
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8166,8 +7799,6 @@ FAIL [5591] 4cba [MOVEM.w (d16, PC), #] 5592
 FAIL [5592] 4ca9 [MOVEM.w (d16, A1), #] 5593
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5593] 48a0 [MOVEM.w #, -(A0)] 5594
-  ram[184537]	expected         60 (0x3c) 	got         58 (0x3a)
 FAIL [5595] 4cb0 [MOVEM.w (d8, A0, Xn), #] 5596
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8207,16 +7838,12 @@ FAIL [5619] 48a3 [MOVEM.w #, -(A3)] 5620
 FAIL [5620] 48a2 [MOVEM.w #, -(A2)] 5621
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5621] 48a1 [MOVEM.w #, -(A1)] 5622
-  ram[5cf74b]	expected         82 (0x52) 	got         80 (0x50)
 FAIL [5624] 4cad [MOVEM.w (d16, A5), #] 5625
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5625] 4c9a [MOVEM.w (A2)+, #] 5626
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5627] 48a3 [MOVEM.w #, -(A3)] 5628
-  ram[d58401]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5628] 4c9a [MOVEM.w (A2)+, #] 5629
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8226,8 +7853,6 @@ FAIL [5631] 4c92 [MOVEM.w (A2), #] 5632
 FAIL [5633] 4c9b [MOVEM.w (A3)+, #] 5634
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5634] 48a3 [MOVEM.w #, -(A3)] 5635
-  ram[ecc00d]	expected         18 (0x12) 	got         16 (0x10)
 FAIL [5635] 4c94 [MOVEM.w (A4), #] 5636
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8342,8 +7967,6 @@ FAIL [5706] 48a8 [MOVEM.w #, (d16, A0)] 5707
 FAIL [5707] 4cb2 [MOVEM.w (d8, A2, Xn), #] 5708
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5711] 48a2 [MOVEM.w #, -(A2)] 5712
-  ram[f9bda5]	expected        172 (0xac) 	got        170 (0xaa)
 FAIL [5716] 4cb9 [MOVEM.w (xxx).l, #] 5717
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
@@ -8389,8 +8012,6 @@ FAIL [5735] 4c94 [MOVEM.w (A4), #] 5736
 FAIL [5738] 48a6 [MOVEM.w #, -(A6)] 5739
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5740] 48a5 [MOVEM.w #, -(A5)] 5741
-  ram[f14bf9]	expected        254 (0xfe) 	got        252 (0xfc)
 FAIL [5741] 4890 [MOVEM.w #, (A0)] 5742
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8400,8 +8021,6 @@ FAIL [5749] 4cb2 [MOVEM.w (d8, A2, Xn), #] 5750
 FAIL [5752] 48ae [MOVEM.w #, (d16, A6)] 5753
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5753] 48a0 [MOVEM.w #, -(A0)] 5754
-  ram[ad6591]	expected        150 (0x96) 	got        148 (0x94)
 FAIL [5755] 4cb9 [MOVEM.w (xxx).l, #] 5756
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
@@ -8429,12 +8048,6 @@ FAIL [5776] 4892 [MOVEM.w #, (A2)] 5777
 FAIL [5777] 48b9 [MOVEM.w #, (xxx).l] 5778
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
-FAIL [5781] 48a7 [MOVEM.w #, -(A7)] 5782
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
-FAIL [5783] 48a7 [MOVEM.w #, -(A7)] 5784
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [5784] 4cb5 [MOVEM.w (d8, A5, Xn), #] 5785
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8468,8 +8081,6 @@ FAIL [5796] 48af [MOVEM.w #, (d16, A7)] 5797
 FAIL [5797] 4892 [MOVEM.w #, (A2)] 5798
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5799] 48a1 [MOVEM.w #, -(A1)] 5800
-  ram[3ce4ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [5800] 48a9 [MOVEM.w #, (d16, A1)] 5801
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8488,8 +8099,6 @@ FAIL [5804] 4896 [MOVEM.w #, (A6)] 5805
 FAIL [5805] 4caf [MOVEM.w (d16, A7), #] 5806
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5808] 48a0 [MOVEM.w #, -(A0)] 5809
-  ram[087db3]	expected        184 (0xb8) 	got        182 (0xb6)
 FAIL [5813] 4c90 [MOVEM.w (A0), #] 5814
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8526,8 +8135,6 @@ FAIL [5827] 4890 [MOVEM.w #, (A0)] 5828
 FAIL [5828] 4890 [MOVEM.w #, (A0)] 5829
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5829] 48a6 [MOVEM.w #, -(A6)] 5830
-  ram[cb4e75]	expected        120 (0x78) 	got        118 (0x76)
 FAIL [5830] 4cbb [MOVEM.w (d8, PC, Xn), #] 5831
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8579,8 +8186,6 @@ FAIL [5866] 4cb0 [MOVEM.w (d8, A0, Xn), #] 5867
 FAIL [5868] 48a9 [MOVEM.w #, (d16, A1)] 5869
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5869] 48a0 [MOVEM.w #, -(A0)] 5870
-  ram[516417]	expected         32 (0x20) 	got         30 (0x1e)
 FAIL [5870] 48ab [MOVEM.w #, (d16, A3)] 5871
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8620,9 +8225,6 @@ FAIL [5889] 48b6 [MOVEM.w #, (d8, A6, Xn)] 5890
 FAIL [5890] 48b2 [MOVEM.w #, (d8, A2, Xn)] 5891
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5891] 48a7 [MOVEM.w #, -(A7)] 5892
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [5893] 4c98 [MOVEM.w (A0)+, #] 5894
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8671,8 +8273,6 @@ FAIL [5926] 48aa [MOVEM.w #, (d16, A2)] 5927
 FAIL [5927] 4c9a [MOVEM.w (A2)+, #] 5928
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5928] 48a3 [MOVEM.w #, -(A3)] 5929
-  ram[6e0cb9]	expected        188 (0xbc) 	got        186 (0xba)
 FAIL [5929] 4cba [MOVEM.w (d16, PC), #] 5930
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8688,8 +8288,6 @@ FAIL [5940] 4890 [MOVEM.w #, (A0)] 5941
 FAIL [5941] 4896 [MOVEM.w #, (A6)] 5942
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5946] 48a5 [MOVEM.w #, -(A5)] 5947
-  ram[867463]	expected        102 (0x66) 	got        100 (0x64)
 FAIL [5948] 4cae [MOVEM.w (d16, A6), #] 5949
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8708,8 +8306,6 @@ FAIL [5955] 48b1 [MOVEM.w #, (d8, A1, Xn)] 5956
 FAIL [5957] 48b2 [MOVEM.w #, (d8, A2, Xn)] 5958
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5961] 48a5 [MOVEM.w #, -(A5)] 5962
-  ram[90505b]	expected         92 (0x5c) 	got         90 (0x5a)
 FAIL [5962] 4c96 [MOVEM.w (A6), #] 5963
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8725,9 +8321,6 @@ FAIL [5972] 4cb3 [MOVEM.w (d8, A3, Xn), #] 5973
 FAIL [5973] 4cb1 [MOVEM.w (d8, A1, Xn), #] 5974
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [5977] 48a7 [MOVEM.w #, -(A7)] 5978
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [5980] 4cb6 [MOVEM.w (d8, A6, Xn), #] 5981
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -8755,9 +8348,6 @@ FAIL [5996] 4cb1 [MOVEM.w (d8, A1, Xn), #] 5997
 FAIL [5997] 4c92 [MOVEM.w (A2), #] 5998
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [5998] 48a7 [MOVEM.w #, -(A7)] 5999
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6001] 4c9d [MOVEM.w (A5)+, #] 6002
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8797,13 +8387,9 @@ FAIL [6024] 48a0 [MOVEM.w #, -(A0)] 6025
 FAIL [6025] 48b3 [MOVEM.w #, (d8, A3, Xn)] 6026
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6027] 48a1 [MOVEM.w #, -(A1)] 6028
-  ram[1c7205]	expected         14 (0xe) 	got         12 (0xc)
 FAIL [6028] 4caf [MOVEM.w (d16, A7), #] 6029
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6030] 48a0 [MOVEM.w #, -(A0)] 6031
-  ram[db0287]	expected        142 (0x8e) 	got        140 (0x8c)
 FAIL [6031] 48a1 [MOVEM.w #, -(A1)] 6032
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -8909,8 +8495,6 @@ FAIL [6096] 4cac [MOVEM.w (d16, A4), #] 6097
 FAIL [6097] 48a9 [MOVEM.w #, (d16, A1)] 6098
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6098] 48a3 [MOVEM.w #, -(A3)] 6099
-  ram[657841]	expected         70 (0x46) 	got         68 (0x44)
 FAIL [6099] 4c90 [MOVEM.w (A0), #] 6100
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9076,8 +8660,6 @@ FAIL [6199] 4cb9 [MOVEM.w (xxx).l, #] 6200
 FAIL [6200] 48ae [MOVEM.w #, (d16, A6)] 6201
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6203] 48a5 [MOVEM.w #, -(A5)] 6204
-  ram[dd8dbd]	expected        192 (0xc0) 	got        190 (0xbe)
 FAIL [6204] 48b7 [MOVEM.w #, (d8, A7, Xn)] 6205
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9138,8 +8720,6 @@ FAIL [6238] 48b0 [MOVEM.w #, (d8, A0, Xn)] 6239
 FAIL [6239] 4c92 [MOVEM.w (A2), #] 6240
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6241] 48a6 [MOVEM.w #, -(A6)] 6242
-  ram[f87679]	expected        122 (0x7a) 	got        120 (0x78)
 FAIL [6244] 48b5 [MOVEM.w #, (d8, A5, Xn)] 6245
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9161,8 +8741,6 @@ FAIL [6250] 48a4 [MOVEM.w #, -(A4)] 6251
 FAIL [6252] 48b2 [MOVEM.w #, (d8, A2, Xn)] 6253
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6253] 48a4 [MOVEM.w #, -(A4)] 6254
-  ram[ec42dd]	expected        224 (0xe0) 	got        222 (0xde)
 FAIL [6254] 4892 [MOVEM.w #, (A2)] 6255
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9211,8 +8789,6 @@ FAIL [6273] 4cb4 [MOVEM.w (d8, A4, Xn), #] 6274
 FAIL [6274] 4cae [MOVEM.w (d16, A6), #] 6275
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6275] 48a1 [MOVEM.w #, -(A1)] 6276
-  ram[cc415b]	expected        100 (0x64) 	got         98 (0x62)
 FAIL [6277] 48a0 [MOVEM.w #, -(A0)] 6278
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9222,8 +8798,6 @@ FAIL [6283] 48a6 [MOVEM.w #, -(A6)] 6284
 FAIL [6284] 4c9e [MOVEM.w (A6)+, #] 6285
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6288] 48a5 [MOVEM.w #, -(A5)] 6289
-  ram[7c630f]	expected         18 (0x12) 	got         16 (0x10)
 FAIL [6289] 4c9d [MOVEM.w (A5)+, #] 6290
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9245,8 +8819,6 @@ FAIL [6298] 4ca9 [MOVEM.w (d16, A1), #] 6299
 FAIL [6299] 48a3 [MOVEM.w #, -(A3)] 6300
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6301] 48a0 [MOVEM.w #, -(A0)] 6302
-  ram[9e9e6d]	expected        116 (0x74) 	got        114 (0x72)
 FAIL [6303] 48ac [MOVEM.w #, (d16, A4)] 6304
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9268,8 +8840,6 @@ FAIL [6317] 4c9e [MOVEM.w (A6)+, #] 6318
 FAIL [6321] 48a1 [MOVEM.w #, -(A1)] 6322
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6323] 48a2 [MOVEM.w #, -(A2)] 6324
-  ram[09d251]	expected         86 (0x56) 	got         84 (0x54)
 FAIL [6324] 4c99 [MOVEM.w (A1)+, #] 6325
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9291,8 +8861,6 @@ FAIL [6331] 4ca9 [MOVEM.w (d16, A1), #] 6332
 FAIL [6332] 4c92 [MOVEM.w (A2), #] 6333
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6333] 48a5 [MOVEM.w #, -(A5)] 6334
-  ram[97b489]	expected        140 (0x8c) 	got        138 (0x8a)
 FAIL [6334] 48b4 [MOVEM.w #, (d8, A4, Xn)] 6335
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9308,8 +8876,6 @@ FAIL [6337] 4cad [MOVEM.w (d16, A5), #] 6338
 FAIL [6338] 48a5 [MOVEM.w #, -(A5)] 6339
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6341] 48a0 [MOVEM.w #, -(A0)] 6342
-  ram[374e1f]	expected         40 (0x28) 	got         38 (0x26)
 FAIL [6343] 4ca8 [MOVEM.w (d16, A0), #] 6344
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9388,8 +8954,6 @@ FAIL [6387] 4cb9 [MOVEM.w (xxx).l, #] 6388
 FAIL [6388] 48b2 [MOVEM.w #, (d8, A2, Xn)] 6389
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6389] 48a3 [MOVEM.w #, -(A3)] 6390
-  ram[f5b80d]	expected         16 (0x10) 	got         14 (0xe)
 FAIL [6393] 48ad [MOVEM.w #, (d16, A5)] 6394
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9567,8 +9131,6 @@ FAIL [6500] 48b1 [MOVEM.w #, (d8, A1, Xn)] 6501
 FAIL [6502] 48b4 [MOVEM.w #, (d8, A4, Xn)] 6503
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6504] 48a2 [MOVEM.w #, -(A2)] 6505
-  ram[a7c7a5]	expected        172 (0xac) 	got        170 (0xaa)
 FAIL [6507] 4c92 [MOVEM.w (A2), #] 6508
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9623,8 +9185,6 @@ FAIL [6536] 4cac [MOVEM.w (d16, A4), #] 6537
 FAIL [6537] 4896 [MOVEM.w #, (A6)] 6538
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6538] 48a5 [MOVEM.w #, -(A5)] 6539
-  ram[2f300f]	expected         18 (0x12) 	got         16 (0x10)
 FAIL [6540] 48aa [MOVEM.w #, (d16, A2)] 6541
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9682,8 +9242,6 @@ FAIL [6566] 4cb6 [MOVEM.w (d8, A6, Xn), #] 6567
 FAIL [6567] 4c98 [MOVEM.w (A0)+, #] 6568
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6569] 48a3 [MOVEM.w #, -(A3)] 6570
-  ram[86cbe7]	expected        238 (0xee) 	got        236 (0xec)
 FAIL [6570] 48ad [MOVEM.w #, (d16, A5)] 6571
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9786,8 +9344,6 @@ FAIL [6629] 4cbb [MOVEM.w (d8, PC, Xn), #] 6630
 FAIL [6630] 4cad [MOVEM.w (d16, A5), #] 6631
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6631] 48a0 [MOVEM.w #, -(A0)] 6632
-  ram[559267]	expected        112 (0x70) 	got        110 (0x6e)
 FAIL [6633] 4c95 [MOVEM.w (A5), #] 6634
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9809,8 +9365,6 @@ FAIL [6642] 48aa [MOVEM.w #, (d16, A2)] 6643
 FAIL [6646] 4c9a [MOVEM.w (A2)+, #] 6647
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6647] 48a5 [MOVEM.w #, -(A5)] 6648
-  ram[c8a69f]	expected        160 (0xa0) 	got        158 (0x9e)
 FAIL [6652] 4895 [MOVEM.w #, (A5)] 6653
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9838,8 +9392,6 @@ FAIL [6664] 4c96 [MOVEM.w (A6), #] 6665
 FAIL [6665] 4cac [MOVEM.w (d16, A4), #] 6666
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6666] 48a0 [MOVEM.w #, -(A0)] 6667
-  ram[bfb8b9]	expected        194 (0xc2) 	got        192 (0xc0)
 FAIL [6667] 48a4 [MOVEM.w #, -(A4)] 6668
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9858,13 +9410,9 @@ FAIL [6673] 48af [MOVEM.w #, (d16, A7)] 6674
 FAIL [6674] 4cbb [MOVEM.w (d8, PC, Xn), #] 6675
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6676] 48a3 [MOVEM.w #, -(A3)] 6677
-  ram[3b13ab]	expected        176 (0xb0) 	got        174 (0xae)
 FAIL [6680] 48ad [MOVEM.w #, (d16, A5)] 6681
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6681] 48a4 [MOVEM.w #, -(A4)] 6682
-  ram[5c6dd1]	expected        210 (0xd2) 	got        208 (0xd0)
 FAIL [6685] 48ad [MOVEM.w #, (d16, A5)] 6686
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9892,9 +9440,6 @@ FAIL [6695] 4ca9 [MOVEM.w (d16, A1), #] 6696
 FAIL [6696] 4c9c [MOVEM.w (A4)+, #] 6697
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6698] 48a7 [MOVEM.w #, -(A7)] 6699
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6701] 4c9a [MOVEM.w (A2)+, #] 6702
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -9904,10 +9449,6 @@ FAIL [6704] 48b7 [MOVEM.w #, (d8, A7, Xn)] 6705
 FAIL [6705] 4895 [MOVEM.w #, (A5)] 6706
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6707] 48a0 [MOVEM.w #, -(A0)] 6708
-  ram[ac5c49]	expected         78 (0x4e) 	got         76 (0x4c)
-FAIL [6714] 48a4 [MOVEM.w #, -(A4)] 6715
-  ram[26efe7]	expected        234 (0xea) 	got        232 (0xe8)
 FAIL [6716] 4cb3 [MOVEM.w (d8, A3, Xn), #] 6717
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9932,9 +9473,6 @@ FAIL [6730] 4cbb [MOVEM.w (d8, PC, Xn), #] 6731
 FAIL [6733] 4894 [MOVEM.w #, (A4)] 6734
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6734] 48a7 [MOVEM.w #, -(A7)] 6735
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6737] 4cb5 [MOVEM.w (d8, A5, Xn), #] 6738
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9947,19 +9485,12 @@ FAIL [6746] 48a3 [MOVEM.w #, -(A3)] 6747
 FAIL [6747] 4ca9 [MOVEM.w (d16, A1), #] 6748
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6748] 48a3 [MOVEM.w #, -(A3)] 6749
-  ram[d70f19]	expected         28 (0x1c) 	got         26 (0x1a)
 FAIL [6752] 4cb6 [MOVEM.w (d8, A6, Xn), #] 6753
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6755] 4c9d [MOVEM.w (A5)+, #] 6756
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6763] 48a7 [MOVEM.w #, -(A7)] 6764
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
-FAIL [6764] 48a0 [MOVEM.w #, -(A0)] 6765
-  ram[27c937]	expected         62 (0x3e) 	got         60 (0x3c)
 FAIL [6765] 48ab [MOVEM.w #, (d16, A3)] 6766
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -9987,9 +9518,6 @@ FAIL [6778] 4cac [MOVEM.w (d16, A4), #] 6779
 FAIL [6779] 4cb0 [MOVEM.w (d8, A0, Xn), #] 6780
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6781] 48a7 [MOVEM.w #, -(A7)] 6782
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6785] 48a5 [MOVEM.w #, -(A5)] 6786
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -10068,9 +9596,6 @@ FAIL [6826] 48b3 [MOVEM.w #, (d8, A3, Xn)] 6827
 FAIL [6828] 4c92 [MOVEM.w (A2), #] 6829
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6829] 48a7 [MOVEM.w #, -(A7)] 6830
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6831] 4cb6 [MOVEM.w (d8, A6, Xn), #] 6832
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10107,9 +9632,6 @@ FAIL [6855] 4c98 [MOVEM.w (A0)+, #] 6856
 FAIL [6856] 48aa [MOVEM.w #, (d16, A2)] 6857
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6857] 48a7 [MOVEM.w #, -(A7)] 6858
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6861] 4cba [MOVEM.w (d16, PC), #] 6862
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10173,8 +9695,6 @@ FAIL [6897] 4cb2 [MOVEM.w (d8, A2, Xn), #] 6898
 FAIL [6898] 4cb6 [MOVEM.w (d8, A6, Xn), #] 6899
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6900] 48a1 [MOVEM.w #, -(A1)] 6901
-  ram[c47bc7]	expected        204 (0xcc) 	got        202 (0xca)
 FAIL [6901] 4891 [MOVEM.w #, (A1)] 6902
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -10226,9 +9746,6 @@ FAIL [6935] 4c94 [MOVEM.w (A4), #] 6936
 FAIL [6936] 4cba [MOVEM.w (d16, PC), #] 6937
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6937] 48a7 [MOVEM.w #, -(A7)] 6938
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6941] 4cb5 [MOVEM.w (d8, A5, Xn), #] 6942
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10244,9 +9761,6 @@ FAIL [6950] 4895 [MOVEM.w #, (A5)] 6951
 FAIL [6952] 48a4 [MOVEM.w #, -(A4)] 6953
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6954] 48a7 [MOVEM.w #, -(A7)] 6955
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6957] 4c96 [MOVEM.w (A6), #] 6958
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -10292,14 +9806,9 @@ FAIL [6978] 4896 [MOVEM.w #, (A6)] 6979
 FAIL [6979] 4cb1 [MOVEM.w (d8, A1, Xn), #] 6980
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6982] 48a3 [MOVEM.w #, -(A3)] 6983
-  ram[07ce99]	expected        154 (0x9a) 	got        152 (0x98)
 FAIL [6983] 4c92 [MOVEM.w (A2), #] 6984
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [6986] 48a7 [MOVEM.w #, -(A7)] 6987
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [6987] 48b5 [MOVEM.w #, (d8, A5, Xn)] 6988
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10318,9 +9827,6 @@ FAIL [6994] 48ac [MOVEM.w #, (d16, A4)] 6995
 FAIL [6998] 48a9 [MOVEM.w #, (d16, A1)] 6999
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [6999] 48a7 [MOVEM.w #, -(A7)] 7000
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7003] 4cb3 [MOVEM.w (d8, A3, Xn), #] 7004
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10342,8 +9848,6 @@ FAIL [7011] 4c9c [MOVEM.w (A4)+, #] 7012
 FAIL [7012] 48a5 [MOVEM.w #, -(A5)] 7013
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7015] 48a6 [MOVEM.w #, -(A6)] 7016
-  ram[11773f]	expected         64 (0x40) 	got         62 (0x3e)
 FAIL [7019] 48a3 [MOVEM.w #, -(A3)] 7020
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -10407,8 +9911,6 @@ FAIL [7059] 48b4 [MOVEM.w #, (d8, A4, Xn)] 7060
 FAIL [7062] 4c95 [MOVEM.w (A5), #] 7063
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7066] 48a0 [MOVEM.w #, -(A0)] 7067
-  ram[eaf475]	expected        132 (0x84) 	got        130 (0x82)
 FAIL [7070] 4cb5 [MOVEM.w (d8, A5, Xn), #] 7071
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10724,14 +10226,9 @@ FAIL [7269] 4cab [MOVEM.w (d16, A3), #] 7270
 FAIL [7270] 48af [MOVEM.w #, (d16, A7)] 7271
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7271] 48a7 [MOVEM.w #, -(A7)] 7272
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7274] 48a9 [MOVEM.w #, (d16, A1)] 7275
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7277] 48a5 [MOVEM.w #, -(A5)] 7278
-  ram[6598e7]	expected        234 (0xea) 	got        232 (0xe8)
 FAIL [7281] 48a2 [MOVEM.w #, -(A2)] 7282
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -10792,8 +10289,6 @@ FAIL [7314] 48b5 [MOVEM.w #, (d8, A5, Xn)] 7315
 FAIL [7315] 4c94 [MOVEM.w (A4), #] 7316
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7317] 48a2 [MOVEM.w #, -(A2)] 7318
-  ram[2cc71b]	expected         30 (0x1e) 	got         28 (0x1c)
 FAIL [7321] 48ae [MOVEM.w #, (d16, A6)] 7322
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10803,9 +10298,6 @@ FAIL [7322] 4cb5 [MOVEM.w (d8, A5, Xn), #] 7323
 FAIL [7323] 4894 [MOVEM.w #, (A4)] 7324
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7325] 48a7 [MOVEM.w #, -(A7)] 7326
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7326] 4cb1 [MOVEM.w (d8, A1, Xn), #] 7327
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10833,8 +10325,6 @@ FAIL [7338] 48b2 [MOVEM.w #, (d8, A2, Xn)] 7339
 FAIL [7340] 48ad [MOVEM.w #, (d16, A5)] 7341
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7343] 48a2 [MOVEM.w #, -(A2)] 7344
-  ram[3b61bb]	expected        190 (0xbe) 	got        188 (0xbc)
 FAIL [7347] 4cb6 [MOVEM.w (d8, A6, Xn), #] 7348
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -10901,14 +10391,9 @@ FAIL [7390] 4cb3 [MOVEM.w (d8, A3, Xn), #] 7391
 FAIL [7391] 4c9a [MOVEM.w (A2)+, #] 7392
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7395] 48a7 [MOVEM.w #, -(A7)] 7396
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7398] 4cba [MOVEM.w (d16, PC), #] 7399
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7399] 48a2 [MOVEM.w #, -(A2)] 7400
-  ram[d84525]	expected         46 (0x2e) 	got         44 (0x2c)
 FAIL [7400] 4cb6 [MOVEM.w (d8, A6, Xn), #] 7401
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11131,11 +10616,6 @@ FAIL [7547] 48a0 [MOVEM.w #, -(A0)] 7548
 FAIL [7549] 4c95 [MOVEM.w (A5), #] 7550
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7550] 48a7 [MOVEM.w #, -(A7)] 7551
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
-FAIL [7553] 48a4 [MOVEM.w #, -(A4)] 7554
-  ram[524815]	expected         24 (0x18) 	got         22 (0x16)
 FAIL [7554] 4c9e [MOVEM.w (A6)+, #] 7555
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11160,8 +10640,6 @@ FAIL [7566] 4c90 [MOVEM.w (A0), #] 7567
 FAIL [7567] 4caa [MOVEM.w (d16, A2), #] 7568
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7570] 48a2 [MOVEM.w #, -(A2)] 7571
-  ram[67afc3]	expected        198 (0xc6) 	got        196 (0xc4)
 FAIL [7573] 4895 [MOVEM.w #, (A5)] 7574
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11210,8 +10688,6 @@ FAIL [7598] 48b2 [MOVEM.w #, (d8, A2, Xn)] 7599
 FAIL [7601] 4c92 [MOVEM.w (A2), #] 7602
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7603] 48a6 [MOVEM.w #, -(A6)] 7604
-  ram[df0e67]	expected        104 (0x68) 	got        102 (0x66)
 FAIL [7604] 48a2 [MOVEM.w #, -(A2)] 7605
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11236,9 +10712,6 @@ FAIL [7617] 4c95 [MOVEM.w (A5), #] 7618
 FAIL [7620] 48ad [MOVEM.w #, (d16, A5)] 7621
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7622] 48a7 [MOVEM.w #, -(A7)] 7623
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7625] 48b3 [MOVEM.w #, (d8, A3, Xn)] 7626
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11257,9 +10730,6 @@ FAIL [7635] 4cb9 [MOVEM.w (xxx).l, #] 7636
 FAIL [7637] 4cb7 [MOVEM.w (d8, A7, Xn), #] 7638
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7640] 48a7 [MOVEM.w #, -(A7)] 7641
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7642] 48b9 [MOVEM.w #, (xxx).l] 7643
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
@@ -11344,8 +10814,6 @@ FAIL [7683] 4cb5 [MOVEM.w (d8, A5, Xn), #] 7684
 FAIL [7684] 48ab [MOVEM.w #, (d16, A3)] 7685
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7686] 48a6 [MOVEM.w #, -(A6)] 7687
-  ram[8ab939]	expected         60 (0x3c) 	got         58 (0x3a)
 FAIL [7687] 4cae [MOVEM.w (d16, A6), #] 7688
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11364,19 +10832,12 @@ FAIL [7692] 48b6 [MOVEM.w #, (d8, A6, Xn)] 7693
 FAIL [7693] 48a0 [MOVEM.w #, -(A0)] 7694
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7694] 48a4 [MOVEM.w #, -(A4)] 7695
-  ram[c7c205]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [7696] 48a5 [MOVEM.w #, -(A5)] 7697
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7700] 48a7 [MOVEM.w #, -(A7)] 7701
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7702] 4c9a [MOVEM.w (A2)+, #] 7703
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7703] 48a0 [MOVEM.w #, -(A0)] 7704
-  ram[e78397]	expected        160 (0xa0) 	got        158 (0x9e)
 FAIL [7706] 48b1 [MOVEM.w #, (d8, A1, Xn)] 7707
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11386,16 +10847,12 @@ FAIL [7707] 48b6 [MOVEM.w #, (d8, A6, Xn)] 7708
 FAIL [7709] 4c90 [MOVEM.w (A0), #] 7710
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7710] 48a3 [MOVEM.w #, -(A3)] 7711
-  ram[6be9e3]	expected        232 (0xe8) 	got        230 (0xe6)
 FAIL [7712] 48a9 [MOVEM.w #, (d16, A1)] 7713
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7713] 4cb7 [MOVEM.w (d8, A7, Xn), #] 7714
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7715] 48a2 [MOVEM.w #, -(A2)] 7716
-  ram[b69ee5]	expected        238 (0xee) 	got        236 (0xec)
 FAIL [7716] 4cbb [MOVEM.w (d8, PC, Xn), #] 7717
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11405,13 +10862,9 @@ FAIL [7719] 4cac [MOVEM.w (d16, A4), #] 7720
 FAIL [7721] 48b4 [MOVEM.w #, (d8, A4, Xn)] 7722
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7723] 48a0 [MOVEM.w #, -(A0)] 7724
-  ram[be9245]	expected         78 (0x4e) 	got         76 (0x4c)
 FAIL [7724] 4c93 [MOVEM.w (A3), #] 7725
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7726] 48a4 [MOVEM.w #, -(A4)] 7727
-  ram[c2a98b]	expected        142 (0x8e) 	got        140 (0x8c)
 FAIL [7732] 4cb7 [MOVEM.w (d8, A7, Xn), #] 7733
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11448,8 +10901,6 @@ FAIL [7746] 4cb6 [MOVEM.w (d8, A6, Xn), #] 7747
 FAIL [7747] 4cae [MOVEM.w (d16, A6), #] 7748
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7749] 48a3 [MOVEM.w #, -(A3)] 7750
-  ram[cad61f]	expected         32 (0x20) 	got         30 (0x1e)
 FAIL [7751] 4cb4 [MOVEM.w (d8, A4, Xn), #] 7752
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11540,8 +10991,6 @@ FAIL [7813] 4895 [MOVEM.w #, (A5)] 7814
 FAIL [7818] 4cb4 [MOVEM.w (d8, A4, Xn), #] 7819
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7819] 48a5 [MOVEM.w #, -(A5)] 7820
-  ram[c8ee77]	expected        122 (0x7a) 	got        120 (0x78)
 FAIL [7820] 4cb8 [MOVEM.w (xxx).w, #] 7821
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11557,8 +11006,6 @@ FAIL [7826] 4896 [MOVEM.w #, (A6)] 7827
 FAIL [7827] 4c93 [MOVEM.w (A3), #] 7828
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7828] 48a0 [MOVEM.w #, -(A0)] 7829
-  ram[41e0e5]	expected        238 (0xee) 	got        236 (0xec)
 FAIL [7830] 48ad [MOVEM.w #, (d16, A5)] 7831
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11610,16 +11057,12 @@ FAIL [7852] 4cba [MOVEM.w (d16, PC), #] 7853
 FAIL [7854] 48b4 [MOVEM.w #, (d8, A4, Xn)] 7855
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7855] 48a5 [MOVEM.w #, -(A5)] 7856
-  ram[01a083]	expected        136 (0x88) 	got        134 (0x86)
 FAIL [7856] 4c92 [MOVEM.w (A2), #] 7857
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7857] 48a6 [MOVEM.w #, -(A6)] 7858
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7862] 48a0 [MOVEM.w #, -(A0)] 7863
-  ram[400315]	expected         26 (0x1a) 	got         24 (0x18)
 FAIL [7864] 48a8 [MOVEM.w #, (d16, A0)] 7865
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11653,12 +11096,6 @@ FAIL [7879] 48a3 [MOVEM.w #, -(A3)] 7880
 FAIL [7880] 4c96 [MOVEM.w (A6), #] 7881
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7882] 48a7 [MOVEM.w #, -(A7)] 7883
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
-FAIL [7884] 48a7 [MOVEM.w #, -(A7)] 7885
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7885] 4cbb [MOVEM.w (d8, PC, Xn), #] 7886
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11677,9 +11114,6 @@ FAIL [7889] 4ca8 [MOVEM.w (d16, A0), #] 7890
 FAIL [7890] 48af [MOVEM.w #, (d16, A7)] 7891
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7895] 48a7 [MOVEM.w #, -(A7)] 7896
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7896] 4cab [MOVEM.w (d16, A3), #] 7897
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
@@ -11719,16 +11153,12 @@ FAIL [7920] 48a1 [MOVEM.w #, -(A1)] 7921
 FAIL [7923] 4cb8 [MOVEM.w (xxx).w, #] 7924
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7924] 48a2 [MOVEM.w #, -(A2)] 7925
-  ram[a572a1]	expected        168 (0xa8) 	got        166 (0xa6)
 FAIL [7931] 4cab [MOVEM.w (d16, A3), #] 7932
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7932] 48b2 [MOVEM.w #, (d8, A2, Xn)] 7933
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7934] 48a5 [MOVEM.w #, -(A5)] 7935
-  ram[dd9e8d]	expected        146 (0x92) 	got        144 (0x90)
 FAIL [7935] 4c95 [MOVEM.w (A5), #] 7936
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11786,9 +11216,6 @@ FAIL [7968] 4c91 [MOVEM.w (A1), #] 7969
 FAIL [7970] 4c98 [MOVEM.w (A0)+, #] 7971
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
-FAIL [7971] 48a7 [MOVEM.w #, -(A7)] 7972
-  ram[0007fe]	expected          8 (0x8) 	got          7 (0x7)
-  ram[0007ff]	expected          0 (0x0) 	got        254 (0xfe)
 FAIL [7972] 4894 [MOVEM.w #, (A4)] 7973
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11828,8 +11255,6 @@ FAIL [7990] 4ca9 [MOVEM.w (d16, A1), #] 7991
 FAIL [7995] 4cbb [MOVEM.w (d8, PC, Xn), #] 7996
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-FAIL [7998] 48a4 [MOVEM.w #, -(A4)] 7999
-  ram[e4c3bd]	expected        194 (0xc2) 	got        192 (0xc0)
 FAIL [8000] 48a6 [MOVEM.w #, -(A6)] 8001
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11917,8 +11342,6 @@ FAIL [8051] 4cbb [MOVEM.w (d8, PC, Xn), #] 8052
 FAIL [8053] 48b9 [MOVEM.w #, (xxx).l] 8054
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
   ram[0007ff]	expected          6 (0x6) 	got          8 (0x8)
-FAIL [8056] 48a0 [MOVEM.w #, -(A0)] 8057
-  ram[f788f3]	expected        254 (0xfe) 	got        252 (0xfc)
 FAIL [8058] 4892 [MOVEM.w #, (A2)] 8059
   ram[0007f3]	expected        133 (0x85) 	got          5 (0x5)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -11928,4 +11351,4 @@ FAIL [8061] 4cb1 [MOVEM.w (d8, A1, Xn), #] 8062
 FAIL [8064] 4cb1 [MOVEM.w (d8, A1, Xn), #] 8065
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
-4022 passed, 4043 failed
+4281 passed, 3784 failed

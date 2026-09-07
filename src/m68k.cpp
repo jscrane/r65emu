@@ -1301,16 +1301,22 @@ void m68k::misc(uint16_t op) {
 		if (mode == 4) {
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
-					uint16_t val = (r < 8) ? (uint16_t)a(7 - r) : (uint16_t)d(15 - r);
+					uint16_t val;
+					if (r < 8) {
+						uint8_t ar = 7-r;
+						val = (uint16_t)a(ar);
+						if (ar == reg) val += 2;
+					} else
+						val = (uint16_t)d(15 - r);
 					write16(ea.addr, val);
 					if (_trapped) break;
 					ea.addr -= 2;
 				}
-			a(reg, ea.addr+2);
+			a(reg, ea.addr + 2);
 		} else
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
-					uint16_t val = (r >= 8) ? (uint16_t)a(r - 8) : (uint16_t)d(r);
+					uint16_t val = (r >= 8)? (uint16_t)a(r - 8): (uint16_t)d(r);
 					write16(ea.addr, val);
 					if (_trapped) break;
 					ea.addr += 2;
@@ -1318,7 +1324,32 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x48c0: {	// MOVEM.l Register to Memory
-		break;
+		uint16_t mask = fetch16();
+		EA ea = decode_ea(mode, reg, 4);
+		if (mode == 4) {
+			for (int r = 0; r < 16; r++)
+				if (mask & (1 << r)) {
+					uint32_t val;
+					if (r < 8) {
+						uint8_t ar = 7-r;
+						val = a(ar);
+						if (ar == reg) val += 4;
+					} else
+						val = d(15 - r);
+					write32(ea.addr, val);
+					if (_trapped) break;
+					ea.addr -= 4;
+				}
+			a(reg, ea.addr + 4);
+		} else
+			for (int r = 0; r < 16; r++)
+				if (mask & (1 << r)) {
+					uint32_t val = (r >= 8)? a(r - 8): d(r);
+					write32(ea.addr, val);
+					if (_trapped) break;
+					ea.addr += 4;
+				}
+		return;
 	}
 	case 0x4c80: {	// MOVEM.w Memory to Register
 		uint16_t mask = fetch16();
@@ -1328,7 +1359,7 @@ void m68k::misc(uint16_t op) {
 				uint32_t val = (uint32_t)(int32_t)(int16_t)read16(ea.addr);
 				ea.addr += 2;
 				if (_trapped) break;
-				if (r >= 8) a(r-8, val);
+				if (r >= 8) a(r - 8, val);
 				else d(r, val);
 			}
 		if (mode == 3)
@@ -1336,7 +1367,20 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4cc0: {	// MOVEM.l Memory to Register
-		break;
+		uint16_t mask = fetch16();
+		EA ea = decode_ea(mode, reg, 4);
+		for (int r = 0; r < 16; r++)
+			if (mask & (1 << r)) {
+				uint32_t val = read32(ea.addr);
+				ea.addr += 2;
+				if (_trapped) break;
+				ea.addr += 2;
+				if (r >= 8) a(r - 8, val);
+				else d(r, val);
+			}
+		if (mode == 3)
+			a(reg, ea.addr);
+		return;
 	}
 	case 0x4a00: {	// TST.b
 		EA src = decode_ea(mode, reg, 1);
