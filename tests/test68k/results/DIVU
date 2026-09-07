@@ -6582,9 +6582,7 @@ FAIL [5738] 8ed4 [DIVU (A4), D7] 5739
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5744] 80ef [DIVU (d16, A7), D0] 5745
-  sr      	expected      10000 (0x2710) 	got      10013 (0x271d)
   ram[0007ff]	expected          0 (0x0) 	got          4 (0x4)
-  ram[0007fb]	expected         16 (0x10) 	got         29 (0x1d)
 FAIL [5745] 80d2 [DIVU (A2), D0] 5746
   ram[0007f3]	expected        213 (0xd5) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)

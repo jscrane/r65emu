@@ -2231,6 +2231,12 @@ void m68k::divu(uint16_t op) {
 	if (_trapped) return;
 
 	if (divisor == 0) {
+		// confirmed against real vectors: divide-by-zero trap entry clears
+		// N/Z/C/V as part of the trap sequence itself, distinct from the
+		// normal computation path -- NOT a general "DIVU always starts by
+		// clearing these" behavior (that placement was tried and regresses
+		// every address-error-faulting DIVU case instead)
+		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
@@ -2260,6 +2266,8 @@ void m68k::divs(uint16_t op) {
 	if (_trapped) return;
 
 	if (divisor == 0) {
+		// see comment above
+		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
