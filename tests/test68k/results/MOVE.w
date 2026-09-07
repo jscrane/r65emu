@@ -6419,8 +6419,8 @@ FAIL [4010] 3966 [MOVE.w -(A6), (d16, A4)] 4011
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4012] 3cd5 [MOVE.w (A5), (A6)+] 4013
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        197 (0xc5) 	got          5 (0x5)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4013] 3f33 [MOVE.w (d8, A3, Xn), -(A7)] 4014
   ram[0007f3]	expected         53 (0x35) 	got         21 (0x15)
   ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
@@ -6609,8 +6609,8 @@ FAIL [4145] 3577 [MOVE.w (d8, A7, Xn), (d16, A2)] 4146
   ram[0007f3]	expected        101 (0x65) 	got          5 (0x5)
   ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4146] 36a0 [MOVE.w -(A0), (A3)] 4147
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        165 (0xa5) 	got          5 (0x5)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4148] 3acb [MOVE.w A3, (A5)+] 4149
   ram[0007f3]	expected        197 (0xc5) 	got          5 (0x5)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)

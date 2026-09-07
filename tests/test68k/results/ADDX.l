@@ -93,8 +93,8 @@ FAIL [105] dd8e [ADDX.l -(A6), -(A6)] 106
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [108] d388 [ADDX.l -(A0), -(A1)] 109
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [109] dd88 [ADDX.l -(A0), -(A6)] 110
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -180,8 +180,8 @@ FAIL [195] d38f [ADDX.l -(A7), -(A1)] 196
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [197] d988 [ADDX.l -(A0), -(A4)] 198
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [202] d789 [ADDX.l -(A1), -(A3)] 203
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -978,8 +978,8 @@ FAIL [1061] d38a [ADDX.l -(A2), -(A1)] 1062
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [1062] d18e [ADDX.l -(A6), -(A0)] 1063
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [1063] d78d [ADDX.l -(A5), -(A3)] 1064
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -2160,8 +2160,8 @@ FAIL [2264] d589 [ADDX.l -(A1), -(A2)] 2265
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2267] d988 [ADDX.l -(A0), -(A4)] 2268
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2272] dd8b [ADDX.l -(A3), -(A6)] 2273
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -2514,8 +2514,8 @@ FAIL [2684] db8e [ADDX.l -(A6), -(A5)] 2685
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2685] d18b [ADDX.l -(A3), -(A0)] 2686
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2686] d789 [ADDX.l -(A1), -(A3)] 2687
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -2679,8 +2679,8 @@ FAIL [2840] d989 [ADDX.l -(A1), -(A4)] 2841
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2842] d789 [ADDX.l -(A1), -(A3)] 2843
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2843] d58c [ADDX.l -(A4), -(A2)] 2844
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -2853,8 +2853,8 @@ FAIL [3027] d189 [ADDX.l -(A1), -(A0)] 3028
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3028] d58e [ADDX.l -(A6), -(A2)] 3029
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3029] db88 [ADDX.l -(A0), -(A5)] 3030
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -3180,8 +3180,8 @@ FAIL [3398] d18e [ADDX.l -(A6), -(A0)] 3399
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3401] dd8c [ADDX.l -(A4), -(A6)] 3402
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3404] db88 [ADDX.l -(A0), -(A5)] 3405
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -3537,8 +3537,8 @@ FAIL [3795] dd89 [ADDX.l -(A1), -(A6)] 3796
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3797] d38c [ADDX.l -(A4), -(A1)] 3798
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3799] df88 [ADDX.l -(A0), -(A7)] 3800
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -4245,8 +4245,8 @@ FAIL [4461] d989 [ADDX.l -(A1), -(A4)] 4462
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4464] d58c [ADDX.l -(A4), -(A2)] 4465
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4467] dd8f [ADDX.l -(A7), -(A6)] 4468
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
@@ -4434,8 +4434,8 @@ FAIL [4654] dd88 [ADDX.l -(A0), -(A6)] 4655
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4658] d78e [ADDX.l -(A6), -(A3)] 4659
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4661] db8f [ADDX.l -(A7), -(A5)] 4662
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
@@ -5043,8 +5043,8 @@ FAIL [5249] db8a [ADDX.l -(A2), -(A5)] 5250
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5255] db8c [ADDX.l -(A4), -(A5)] 5256
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5256] db89 [ADDX.l -(A1), -(A5)] 5257
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5529,8 +5529,8 @@ FAIL [5755] d98a [ADDX.l -(A2), -(A4)] 5756
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5756] d18b [ADDX.l -(A3), -(A0)] 5757
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5759] db8c [ADDX.l -(A4), -(A5)] 5760
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5634,8 +5634,8 @@ FAIL [5846] d58c [ADDX.l -(A4), -(A2)] 5847
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5848] d58c [ADDX.l -(A4), -(A2)] 5849
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5850] d58c [ADDX.l -(A4), -(A2)] 5851
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6066,8 +6066,8 @@ FAIL [6280] d78c [ADDX.l -(A4), -(A3)] 6281
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6282] db8a [ADDX.l -(A2), -(A5)] 6283
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6283] d38d [ADDX.l -(A5), -(A1)] 6284
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6078,8 +6078,8 @@ FAIL [6291] d588 [ADDX.l -(A0), -(A2)] 6292
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6294] d18a [ADDX.l -(A2), -(A0)] 6295
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6295] d98c [ADDX.l -(A4), -(A4)] 6296
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6135,8 +6135,8 @@ FAIL [6367] d18f [ADDX.l -(A7), -(A0)] 6368
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6368] db8b [ADDX.l -(A3), -(A5)] 6369
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6371] d58f [ADDX.l -(A7), -(A2)] 6372
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
@@ -6210,8 +6210,8 @@ FAIL [6435] db89 [ADDX.l -(A1), -(A5)] 6436
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6440] d388 [ADDX.l -(A0), -(A1)] 6441
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6441] d78a [ADDX.l -(A2), -(A3)] 6442
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6405,8 +6405,8 @@ FAIL [6613] d78e [ADDX.l -(A6), -(A3)] 6614
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6617] d189 [ADDX.l -(A1), -(A0)] 6618
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6620] d18c [ADDX.l -(A4), -(A0)] 6621
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6684,8 +6684,8 @@ FAIL [6913] d18b [ADDX.l -(A3), -(A0)] 6914
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6918] dd89 [ADDX.l -(A1), -(A6)] 6919
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6920] d98f [ADDX.l -(A7), -(A4)] 6921
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
@@ -6861,8 +6861,8 @@ FAIL [7097] d788 [ADDX.l -(A0), -(A3)] 7098
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7099] d38c [ADDX.l -(A4), -(A1)] 7100
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7104] d18e [ADDX.l -(A6), -(A0)] 7105
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6984,8 +6984,8 @@ FAIL [7219] d18d [ADDX.l -(A5), -(A0)] 7220
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7221] d388 [ADDX.l -(A0), -(A1)] 7222
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7225] db8b [ADDX.l -(A3), -(A5)] 7226
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -7467,8 +7467,8 @@ FAIL [7718] df8e [ADDX.l -(A6), -(A7)] 7719
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7719] d18d [ADDX.l -(A5), -(A0)] 7720
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7721] db8d [ADDX.l -(A5), -(A5)] 7722
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)

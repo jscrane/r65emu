@@ -312,8 +312,8 @@ FAIL [339] 9b8a [SUBX.l -(A2), -(A5)] 340
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [340] 958d [SUBX.l -(A5), -(A2)] 341
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [345] 9789 [SUBX.l -(A1), -(A3)] 346
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -1308,8 +1308,8 @@ FAIL [1322] 918a [SUBX.l -(A2), -(A0)] 1323
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [1330] 9d8c [SUBX.l -(A4), -(A6)] 1331
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [1333] 9588 [SUBX.l -(A0), -(A2)] 1334
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -1575,8 +1575,8 @@ FAIL [1599] 9788 [SUBX.l -(A0), -(A3)] 1600
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [1601] 998e [SUBX.l -(A6), -(A4)] 1602
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [1603] 978d [SUBX.l -(A5), -(A3)] 1604
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -2859,8 +2859,8 @@ FAIL [2852] 9b8c [SUBX.l -(A4), -(A5)] 2853
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2853] 9d8c [SUBX.l -(A4), -(A6)] 2854
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [2859] 938b [SUBX.l -(A3), -(A1)] 2860
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -3138,8 +3138,8 @@ FAIL [3174] 9789 [SUBX.l -(A1), -(A3)] 3175
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3178] 978d [SUBX.l -(A5), -(A3)] 3179
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3180] 958d [SUBX.l -(A5), -(A2)] 3181
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -3780,8 +3780,8 @@ FAIL [3830] 978e [SUBX.l -(A6), -(A3)] 3831
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3831] 9589 [SUBX.l -(A1), -(A2)] 3832
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3833] 958b [SUBX.l -(A3), -(A2)] 3834
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -3810,8 +3810,8 @@ FAIL [3856] 9589 [SUBX.l -(A1), -(A2)] 3857
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3858] 978a [SUBX.l -(A2), -(A3)] 3859
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [3859] 978a [SUBX.l -(A2), -(A3)] 3860
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -4236,8 +4236,8 @@ FAIL [4290] 938a [SUBX.l -(A2), -(A1)] 4291
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4292] 9789 [SUBX.l -(A1), -(A3)] 4293
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4295] 9d8d [SUBX.l -(A5), -(A6)] 4296
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -4428,8 +4428,8 @@ FAIL [4462] 9f8b [SUBX.l -(A3), -(A7)] 4463
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4464] 918d [SUBX.l -(A5), -(A0)] 4465
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4474] 9588 [SUBX.l -(A0), -(A2)] 4475
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -4440,8 +4440,8 @@ FAIL [4478] 9d8a [SUBX.l -(A2), -(A6)] 4479
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4482] 9b8b [SUBX.l -(A3), -(A5)] 4483
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4485] 9f8b [SUBX.l -(A3), -(A7)] 4486
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -4701,8 +4701,8 @@ FAIL [4763] 918a [SUBX.l -(A2), -(A0)] 4764
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4765] 9988 [SUBX.l -(A0), -(A4)] 4766
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [4768] 9d8e [SUBX.l -(A6), -(A6)] 4769
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5154,8 +5154,8 @@ FAIL [5254] 9f8d [SUBX.l -(A5), -(A7)] 5255
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5261] 9d89 [SUBX.l -(A1), -(A6)] 5262
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5263] 9389 [SUBX.l -(A1), -(A1)] 5264
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5253,8 +5253,8 @@ FAIL [5381] 9188 [SUBX.l -(A0), -(A0)] 5382
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5383] 9d8c [SUBX.l -(A4), -(A6)] 5384
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5385] 958c [SUBX.l -(A4), -(A2)] 5386
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5265,8 +5265,8 @@ FAIL [5397] 9d8a [SUBX.l -(A2), -(A6)] 5398
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5398] 9b89 [SUBX.l -(A1), -(A5)] 5399
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5406] 9d88 [SUBX.l -(A0), -(A6)] 5407
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5364,8 +5364,8 @@ FAIL [5492] 978c [SUBX.l -(A4), -(A3)] 5493
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5497] 938c [SUBX.l -(A4), -(A1)] 5498
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5504] 998a [SUBX.l -(A2), -(A4)] 5505
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5643,8 +5643,8 @@ FAIL [5846] 9d8e [SUBX.l -(A6), -(A6)] 5847
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5847] 918b [SUBX.l -(A3), -(A0)] 5848
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5848] 978b [SUBX.l -(A3), -(A3)] 5849
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5787,8 +5787,8 @@ FAIL [5978] 958f [SUBX.l -(A7), -(A2)] 5979
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5979] 9189 [SUBX.l -(A1), -(A0)] 5980
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [5981] 978e [SUBX.l -(A6), -(A3)] 5982
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -5862,8 +5862,8 @@ FAIL [6051] 9d8a [SUBX.l -(A2), -(A6)] 6052
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6052] 9b8a [SUBX.l -(A2), -(A5)] 6053
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [6054] 9b8d [SUBX.l -(A5), -(A5)] 6055
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6795,8 +6795,8 @@ FAIL [7031] 978f [SUBX.l -(A7), -(A3)] 7032
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7035] 998b [SUBX.l -(A3), -(A4)] 7036
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7038] 998b [SUBX.l -(A3), -(A4)] 7039
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6840,8 +6840,8 @@ FAIL [7078] 9189 [SUBX.l -(A1), -(A0)] 7079
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7082] 938a [SUBX.l -(A2), -(A1)] 7083
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7084] 938c [SUBX.l -(A4), -(A1)] 7085
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -6978,8 +6978,8 @@ FAIL [7251] 9188 [SUBX.l -(A0), -(A0)] 7252
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7253] 998d [SUBX.l -(A5), -(A4)] 7254
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7254] 9f8c [SUBX.l -(A4), -(A7)] 7255
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -7035,8 +7035,8 @@ FAIL [7305] 978a [SUBX.l -(A2), -(A3)] 7306
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7306] 978c [SUBX.l -(A4), -(A3)] 7307
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7307] 918f [SUBX.l -(A7), -(A0)] 7308
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
@@ -7092,8 +7092,8 @@ FAIL [7367] 9388 [SUBX.l -(A0), -(A1)] 7368
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7368] 9b8e [SUBX.l -(A6), -(A5)] 7369
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [7369] 9b8e [SUBX.l -(A6), -(A5)] 7370
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
@@ -7689,8 +7689,8 @@ FAIL [8004] 9588 [SUBX.l -(A0), -(A2)] 8005
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [8006] 978a [SUBX.l -(A2), -(A3)] 8007
-  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
+  ram[0007ff]	expected          0 (0x0) 	got          2 (0x2)
 FAIL [8010] 938f [SUBX.l -(A7), -(A1)] 8011
   ram[0007ef]	expected        149 (0x95) 	got         21 (0x15)
   ram[0007fb]	expected          0 (0x0) 	got          2 (0x2)
