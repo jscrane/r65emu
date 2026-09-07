@@ -95,7 +95,15 @@ private:
 	void write16(uint32_t, uint16_t);
 	void write32(uint32_t, uint32_t);
 
+	inline uint32_t read_movem_reg(int r) const {
+		return (r >= 8)? a(r - 8): d(r);
+	}
+	inline void write_movem_reg(int r, uint32_t val) {
+		if (r >= 8) a(r - 8, val); else d(r, val);
+	}
+
 	static constexpr int ADDRESS_ERROR = 3;
+	static constexpr int DIVIDE_BY_ZERO = 5;
 	static constexpr int CHECK = 6;
 	static constexpr int TRAPV = 7;
 	static constexpr int PRIVILEGE_VIOLATION = 8;
@@ -165,6 +173,10 @@ private:
 	void sub(uint16_t op);
 	void subx(uint16_t op);
 	void exg(uint16_t op);
+	void divu(uint16_t op);
+	void divs(uint16_t op);
+	void mulu(uint16_t op);
+	void muls(uint16_t op);
 	void bit_and(uint16_t op);
 	void bit_or(uint16_t op);
 	void bit_eor(uint16_t op);
@@ -180,6 +192,7 @@ private:
 	void lsl_reg(int dreg, uint8_t size, uint8_t shift_count);
 	void roxl_reg(int dreg, uint8_t size, uint8_t shift_count);
 	void rol_reg(int dreg, uint8_t size, uint8_t shift_count);
+	void bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type);
 
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
