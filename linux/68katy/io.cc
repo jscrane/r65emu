@@ -3,16 +3,10 @@
 
 #include <machine.h>
 #include <memory.h>
-#include <CPU.h>
-#include <m68k.h>
 #include <serial_dsp.h>
 #include <serial_kbd.h>
 
 #include "io.h"
-
-void IO::poll() {
-	_cpu.set_interrupt_level(_kbd.available()? 2: 0);
-}
 
 void IO::write(Memory::address addr, uint8_t b) {
 	switch (addr) {

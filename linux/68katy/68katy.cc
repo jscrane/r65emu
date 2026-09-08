@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	m68k cpu(memory);
 	Keyboard kbd;
 	Screen scr;
-	IO io(cpu, kbd, scr);
+	IO io(kbd, scr);
 	Linux machine(cpu);
 
 	memory.put(ro, 0x00000);
@@ -47,7 +47,13 @@ int main(int argc, char *argv[]) {
 	cpu.reset();
 
 	machine.set_cpu_debugging([debug]() { return debug; });
-	machine.register_pollable(io);
+	machine.interval_timer(10000, [&cpu, &io, level = 5] () mutable {
+		uint8_t lvl = level;
+		if (io.rx_data_available() && lvl == 0)
+			lvl = 2;
+		cpu.set_interrupt_level(lvl);
+		level = level == 5? 0: 5;
+	});
 
 	while (!cpu.halted())
 		machine.run(1);
