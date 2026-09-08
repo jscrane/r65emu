@@ -18,7 +18,10 @@ Keyboard::Keyboard() {
 	struct termios t = term;
 	cfmakeraw(&t);
 	t.c_oflag |= OPOST | ONLCR;
-	tcsetattr(in, 0, &t);
+	if (0 > tcsetattr(in, 0, &t)) {
+		perror("tcsetattr");
+		exit(-1);
+	}
 }
 
 Keyboard::~Keyboard() {

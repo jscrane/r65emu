@@ -1,11 +1,11 @@
 TARGET := z80cpm
 SRCDIR := ../../src
 CPMDIR := ../../../../cpm80
-CPPFLAGS:=-I$(SRCDIR) -I$(CPMDIR) -DUNDOCUMENTED_OPS
+CPPFLAGS:=-I$(SRCDIR) -I$(CPMDIR) -I.. -DUNDOCUMENTED_OPS
 CXXFLAGS:=-g -fno-operator-names -Wall
 OBJECTS := z80cpm.o console.o disk.o z80.o memory.o machine.o deltaq.o linuxmachine.o banked_memory.o io.o linux_disk.o
 
-vpath %.cc .
+vpath %.cc .:..
 vpath %.cpp $(SRCDIR):$(CPMDIR)
 
 $(TARGET): $(OBJECTS)

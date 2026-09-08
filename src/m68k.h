@@ -20,6 +20,7 @@ public:
 	inline uint16_t sr() const { return _sr; }
 	inline uint8_t ccr() const { return _sr & 0xff; }
 	inline uint32_t pc() const { return PC; }
+	inline uint32_t sp() const { return a(7); }
 
 	inline void d(uint8_t n, uint32_t v) { D[n] = v; }
 	inline void a(uint8_t n, uint32_t v) {
@@ -36,6 +37,7 @@ public:
 		_illegal_instruction_handler = fn;
 	}
 
+	inline void set_interrupt_level(uint8_t ipl) { if (ipl < 8) _ipl = ipl; }
 private:
 	inline void step() {
 		_trapped = false;
@@ -58,7 +60,7 @@ private:
 		int  postinc_step = 0;
 	};
 
-	static constexpr uint32_t ADDRESS_MASK = (1u << 24) - 1;
+	static constexpr uint32_t ADDRESS_MASK = (1u << MEMORY_ADDRESS_WIDTH) - 1;
 	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr }; }
 	inline uint32_t bus_addr(uint32_t addr) const { return addr & ADDRESS_MASK; }
 
@@ -102,12 +104,21 @@ private:
 		if (r >= 8) a(r - 8, val); else d(r, val);
 	}
 
+	static constexpr int INITIAL_SSP = 0;
+	static constexpr int INITIAL_PC = 1;
 	static constexpr int ADDRESS_ERROR = 3;
 	static constexpr int DIVIDE_BY_ZERO = 5;
 	static constexpr int CHECK = 6;
 	static constexpr int TRAPV = 7;
 	static constexpr int PRIVILEGE_VIOLATION = 8;
+	static constexpr int AUTO_VECTORS = 24;
 	static constexpr int TRAP_VECTORS = 32;
+	uint8_t _ipl = 0;
+
+	inline bool is_interrupted() const {
+		uint8_t mask = (_sr >> 8) & 7;
+		return _ipl > mask;
+	}
 
 	bool check_aligned(uint32_t addr, bool is_read);
 	void trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_fetch = false);
@@ -119,20 +130,38 @@ private:
 		pc(addr);
 		return true;
 	}
+	inline uint32_t vector(int num) {
+		return num * 4;
+	}
 	inline void jump_to_vector(int num) {
-		uint32_t vaddr = num * 4;
+		uint32_t vaddr = vector(num);
 		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
 				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
 		pc(vec);
 	}
-	inline void raise_exception(int num) {
+	inline void raise_exception(uint8_t num) {
 		uint32_t ret = pc();
 		uint16_t sr = _sr;
+
 		set_flag(S_FLAG);
 		clr_flag(T_FLAG);
+
 		push32(ret);
 		push16(sr);
 		jump_to_vector(num);
+	}
+	inline void take_interrupt(uint8_t level) {
+		uint32_t ret = pc();
+		uint16_t sr = _sr;
+
+		set_flag(S_FLAG);
+		clr_flag(T_FLAG);
+
+		_sr = (_sr & ~0x0700) | (level << 8);
+
+		push32(ret);
+		push16(sr);
+		jump_to_vector(AUTO_VECTORS + level);
 	}
 
 	bool  _trapped = false;

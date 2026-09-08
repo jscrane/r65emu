@@ -17,15 +17,19 @@ m68k::m68k(Memory &m): CPU(m) {
 void m68k::reset() {
 
 	_halted = false;
-	// FIXME: real 68000 reset also loads SSP from vector 0 and PC from
-	// vector 1 -- not needed yet since the test harness sets these
-	// explicitly after reset()
+
+	ssp(read32(vector(INITIAL_SSP)));
+	pc(read32(vector(INITIAL_PC)));
+	sr(0x2700);
 }
 
 void m68k::run(unsigned clocks) {
 
-	while (!halted() && clocks--)
+	while (!halted() && clocks--) {
+		if (is_interrupted())
+			take_interrupt(_ipl);
 		step();
+	}
 }
 
 void m68k::illegal(uint16_t op) {
@@ -3221,7 +3225,21 @@ void m68k::write32(uint32_t addr, uint32_t v) {
 }
 
 void m68k::status(bool hdr) {
-	// FIXME
+#if DEBUGGING & DEBUG_CPU
+	if (hdr)
+		DBG_CPU("--pc-- -op- --sp-- -sr- -ccr--");
+
+	Memory::address addr = bus_addr(pc());
+	uint16_t op = read16(addr);
+	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c",
+		addr, op, bus_addr(sp()), sr(),
+		is_set(S_FLAG)? 'S':'-',
+		is_set(X_FLAG)? 'X':'-',
+		is_set(N_FLAG)? 'N':'-',
+		is_set(Z_FLAG)? 'Z':'-',
+		is_set(V_FLAG)? 'V':'-',
+		is_set(C_FLAG)? 'C':'-');
+#endif
 }
 
 void m68k::checkpoint(Checkpoint &c) {
