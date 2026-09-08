@@ -23,7 +23,7 @@ uint8_t IO::read(Memory::address addr) {
 	case 0x0000:
 		return _kbd.read();
 	case 0x4000:
-		return _kbd.available();
+		return _kbd.available()? 0: 1;
 	case 0x5000:
 		return 0;	// tx_fifo_full()? 1: 0
 	}

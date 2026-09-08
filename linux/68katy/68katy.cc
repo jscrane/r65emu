@@ -44,17 +44,20 @@ int main(int argc, char *argv[]) {
 	memory.put(ro, 0x00000);
 	memory.put(io, 0x78000);
 	memory.put(rw, 0x80000);
+	machine.set_cpu_debugging([debug]() { return debug; });
 	cpu.reset();
 
-	machine.set_cpu_debugging([debug]() { return debug; });
-	machine.interval_timer(10000, [&cpu, &io, level = 5] () mutable {
-		uint8_t lvl = level;
-		if (io.rx_data_available() && lvl == 0)
-			lvl = 2;
-		cpu.set_interrupt_level(lvl);
-		level = level == 5? 0: 5;
-	});
+	static bool timer = false;
+	machine.interval_timer(10000, []() { timer = true; });
 
-	while (!cpu.halted())
+	while (!cpu.halted()) {
+		if (timer) {
+			cpu.set_interrupt_level(5);
+			timer = false;
+		} else if (io.rx_data_available())
+			cpu.set_interrupt_level(2);
+		else
+			cpu.set_interrupt_level(0);
 		machine.run(1);
+	}
 }
