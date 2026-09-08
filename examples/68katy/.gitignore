@@ -1,0 +1,4 @@
+.build
+*.txt.mk
+serialout.txt
+.*.swp

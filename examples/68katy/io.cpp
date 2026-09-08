@@ -1,4 +1,5 @@
-#include <Arduino.h>
+#include <cstdint>
+#include <cstdio>
 
 #include <machine.h>
 #include <memory.h>
@@ -7,17 +8,10 @@
 
 #include "io.h"
 
-void IO::begin() {
-	if (!_serial) {
-		_serial.begin(TERMINAL_SPEED);
-		while (!_serial);
-	}
-}
-
 void IO::write(Memory::address addr, uint8_t b) {
 	switch (addr) {
 	case 0x2000:
-		_serial.print((char)b);
+		_dsp.write(b);
 		break;
 	case 0x6000:	// LEDs
 		break;
@@ -27,11 +21,11 @@ void IO::write(Memory::address addr, uint8_t b) {
 uint8_t IO::read(Memory::address addr) {
 	switch (addr) {
 	case 0x0000:
-		return rx_data_available()? _serial.read(): 0;
+		return _kbd.read();
 	case 0x4000:
-		return rx_data_available()? 0: 1;
+		return _kbd.available()? 0: 1;
 	case 0x5000:
-		return _serial.availableForWrite()? 0: 1;
+		return 0;	// tx_fifo_full()? 1: 0
 	}
 	return 0xff;
 }

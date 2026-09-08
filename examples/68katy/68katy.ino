@@ -9,7 +9,9 @@ Memory memory;
 dram<512*1024> rw;
 prom ro(katyrom, sizeof(katyrom));
 m68k cpu(memory);
-IO io(Serial);
+hw_serial_kbd kbd(Serial);
+hw_serial_dsp dsp(Serial);
+IO io(kbd, dsp);
 Arduino machine(cpu);
 bool timer;
 
@@ -17,7 +19,6 @@ void setup() {
 
 	machine.begin();
 	rw.begin();
-	io.begin();
 
 	memory.put(ro, 0x00000);
 	memory.put(io, 0x78000);
