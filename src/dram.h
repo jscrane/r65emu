@@ -8,7 +8,7 @@ public:
 	dram(): Memory::Device(N) {}
 
 	void begin() {
-		_mem = (uint8_t *)calloc(N, 1);
+		_mem = (uint8_t *)malloc(N);
 	}
 
 	virtual ~dram() {
