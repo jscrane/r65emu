@@ -38,26 +38,18 @@ int main(int argc, char *argv[]) {
 	m68k cpu(memory);
 	Keyboard kbd;
 	Screen scr;
-	IO io(kbd, scr);
+	IO io(cpu, kbd, scr);
 	Linux machine(cpu);
 
 	memory.put(ro, 0x00000);
 	memory.put(io, 0x78000);
 	memory.put(rw, 0x80000);
 	machine.set_cpu_debugging([debug]() { return debug; });
+	machine.register_pollable(io);
 	cpu.reset();
 
-	static bool timer = false;
-	machine.interval_timer(10000, []() { timer = true; });
+	machine.interval_timer(10000, [&io]() { io.tick(); });
 
-	while (!cpu.halted()) {
-		if (timer) {
-			cpu.set_interrupt_level(5);
-			timer = false;
-		} else if (io.rx_data_available())
-			cpu.set_interrupt_level(2);
-		else
-			cpu.set_interrupt_level(0);
+	while (!cpu.halted())
 		machine.run(1);
-	}
 }
