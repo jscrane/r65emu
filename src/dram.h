@@ -21,9 +21,9 @@ public:
 	void checkpoint(Checkpoint &s) override { s.write(_mem, N); }
 	void restore(Checkpoint &s) override { s.read(_mem, N); }
 
-private:
 	inline void set(Memory::address a, uint8_t b) { _mem[a] = b; }
 	inline uint8_t get(Memory::address a) { return _mem[a]; }
 
+private:
 	uint8_t *_mem;
 };
