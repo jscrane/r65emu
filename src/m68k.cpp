@@ -130,7 +130,8 @@ void m68k::decode_execute(uint16_t op) {
 static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destination) {
 	switch (mode) {
 	case 0: case 1: case 2: return 0;
-	case 3: case 4: return 1;			// phantom -- no real content, verified
+	case 3: return 0;				// (An)+ -- true count, both src and dst
+	case 4: return is_destination ? 1 : 0;		// -(An) -- phantom only as destination
 	case 5: case 6: return 1;
 	case 7:
 		switch (reg) {
@@ -3269,15 +3270,14 @@ void m68k::status(bool hdr) {
 
 	Memory::address addr = bus_addr(pc());
 	uint16_t op = read16(addr);
-	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c %08x %08x",
+	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c",
 		addr, op, bus_addr(sp()), sr(),
 		is_set(S_FLAG)? 'S':'-',
 		is_set(X_FLAG)? 'X':'-',
 		is_set(N_FLAG)? 'N':'-',
 		is_set(Z_FLAG)? 'Z':'-',
 		is_set(V_FLAG)? 'V':'-',
-		is_set(C_FLAG)? 'C':'-',
-		d(0), d(1));
+		is_set(C_FLAG)? 'C':'-');
 #endif
 }
 
