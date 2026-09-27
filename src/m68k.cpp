@@ -159,7 +159,6 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination) {
 		words = fault_pc_words_for_mode(mode, reg, size, is_destination);
 	}
 	_fault_pc_words += words;
-	//_fault_pc_words += fault_pc_words_for_mode(mode, reg, size, is_destination);
 
 	switch (mode) {
 	case 0: return EA{ EA::RegD, reg };
@@ -467,7 +466,7 @@ void m68k::immediate(uint16_t op) {
 	switch (op & 0xffc0) {
 	case 0x0000: {	// ORI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -480,7 +479,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0040: {	// ORI.w
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -493,7 +492,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0080: {	// ORI.l
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -506,7 +505,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0200: {	// ANDI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -519,7 +518,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0240: {	// ANDI.w
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -532,7 +531,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0280: {	// ANDI.l
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -545,7 +544,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0400: {	// SUBI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -561,7 +560,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0440: {	// SUBI.w
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -577,7 +576,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0480: {	// SUBI.l
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -593,7 +592,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0600: {	// ADDI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -609,7 +608,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0640: {	// ADDI.w
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -625,7 +624,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0680: {	// ADDI.l
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -641,7 +640,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0a00: {	// EORI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -654,7 +653,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0a40: {	// EORI.w
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -667,7 +666,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0a80: {	// EORI.l
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -680,7 +679,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0c00: {	// CMPI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -695,7 +694,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0c40: {	// CMPI.w
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -710,7 +709,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0c80: {	// CMPI.l
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {

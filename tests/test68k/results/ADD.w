@@ -197,7 +197,6 @@ FAIL [262] d45d [ADD.w (A5)+, D2] 263
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [267] 0660 [ADD.w #, -(A0)] 268
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [269] db62 [ADD.w D5, -(A2)] 270
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [275] da5a [ADD.w (A2)+, D5] 276
@@ -258,7 +257,6 @@ FAIL [342] 5060 [ADD.w Q, -(A0)] 343
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [346] 0666 [ADD.w #, -(A6)] 347
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [347] 5270 [ADD.w Q, (d8, A0, Xn)] 348
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [354] db62 [ADD.w D5, -(A2)] 355
@@ -893,7 +891,6 @@ FAIL [1165] dc7b [ADD.w (d8, PC, Xn), D6] 1166
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1166] 0661 [ADD.w #, -(A1)] 1167
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1173] d978 [ADD.w D4, (xxx).w] 1174
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1174] d077 [ADD.w (d8, A7, Xn), D0] 1175
@@ -1539,7 +1536,6 @@ FAIL [2047] db78 [ADD.w D5, (xxx).w] 2048
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2048] 0661 [ADD.w #, -(A1)] 2049
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2050] d871 [ADD.w (d8, A1, Xn), D4] 2051
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2052] de58 [ADD.w (A0)+, D7] 2053
@@ -1554,7 +1550,6 @@ FAIL [2060] 565e [ADD.w Q, (A6)+] 2061
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2067] 0664 [ADD.w #, -(A4)] 2068
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2068] dd51 [ADD.w D6, (A1)] 2069
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2074] d75b [ADD.w D3, (A3)+] 2075
@@ -2085,7 +2080,6 @@ FAIL [2846] dc5d [ADD.w (A5)+, D6] 2847
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2847] 0663 [ADD.w #, -(A3)] 2848
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2851] dd6d [ADD.w D6, (d16, A5)] 2852
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2853] d365 [ADD.w D1, -(A5)] 2854
@@ -2348,7 +2342,6 @@ FAIL [3193] de6e [ADD.w (d16, A6), D7] 3194
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3198] 0664 [ADD.w #, -(A4)] 3199
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3199] d772 [ADD.w D3, (d8, A2, Xn)] 3200
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3200] d055 [ADD.w (A5), D0] 3201
@@ -2363,7 +2356,6 @@ FAIL [3221] d75a [ADD.w D3, (A2)+] 3222
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3224] 0663 [ADD.w #, -(A3)] 3225
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3225] 586c [ADD.w Q, (d16, A4)] 3226
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3227] de66 [ADD.w -(A6), D7] 3228
@@ -2558,7 +2550,6 @@ FAIL [3461] 5c6d [ADD.w Q, (d16, A5)] 3462
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3472] 0661 [ADD.w #, -(A1)] 3473
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3473] db56 [ADD.w D5, (A6)] 3474
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3478] 565b [ADD.w Q, (A3)+] 3479
@@ -3232,7 +3223,6 @@ FAIL [4353] d25c [ADD.w (A4)+, D1] 4354
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4355] 0661 [ADD.w #, -(A1)] 4356
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4360] dc62 [ADD.w -(A2), D6] 4361
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4361] d774 [ADD.w D3, (d8, A4, Xn)] 4362
@@ -3667,7 +3657,6 @@ FAIL [4917] dc5e [ADD.w (A6)+, D6] 4918
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4918] 0663 [ADD.w #, -(A3)] 4919
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4923] 5678 [ADD.w Q, (xxx).w] 4924
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4929] 5051 [ADD.w Q, (A1)] 4930
@@ -3713,7 +3702,6 @@ FAIL [4973] d063 [ADD.w -(A3), D0] 4974
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4975] 0662 [ADD.w #, -(A2)] 4976
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4978] db5b [ADD.w D5, (A3)+] 4979
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4980] d561 [ADD.w D2, -(A1)] 4981
@@ -3827,7 +3815,6 @@ FAIL [5126] de56 [ADD.w (A6), D7] 5127
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5127] 0660 [ADD.w #, -(A0)] 5128
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5129] d562 [ADD.w D2, -(A2)] 5130
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5131] d176 [ADD.w D0, (d8, A6, Xn)] 5132
@@ -4415,7 +4402,6 @@ FAIL [5878] 5472 [ADD.w Q, (d8, A2, Xn)] 5879
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5880] 0662 [ADD.w #, -(A2)] 5881
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5881] 5865 [ADD.w Q, -(A5)] 5882
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5884] da75 [ADD.w (d8, A5, Xn), D5] 5885
@@ -4884,7 +4870,7 @@ FAIL [6558] d558 [ADD.w D2, (A0)+] 6559
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6560] 0679 [ADD.w #, (xxx).l] 6561
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          6 (0x6) 	got          4 (0x4)
+  ram[0007ff]	expected          6 (0x6) 	got          2 (0x2)
 FAIL [6561] d678 [ADD.w (xxx).w, D3] 6562
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6568] 5853 [ADD.w Q, (A3)] 6569
@@ -4955,7 +4941,6 @@ FAIL [6648] d763 [ADD.w D3, -(A3)] 6649
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6651] 0662 [ADD.w #, -(A2)] 6652
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6656] da6b [ADD.w (d16, A3), D5] 6657
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6664] 5458 [ADD.w Q, (A0)+] 6665
@@ -5199,7 +5184,6 @@ FAIL [6993] d763 [ADD.w D3, -(A3)] 6994
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6996] 0660 [ADD.w #, -(A0)] 6997
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6998] df5c [ADD.w D7, (A4)+] 6999
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7003] df56 [ADD.w D7, (A6)] 7004
@@ -5210,7 +5194,6 @@ FAIL [7007] d472 [ADD.w (d8, A2, Xn), D2] 7008
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7015] 0664 [ADD.w #, -(A4)] 7016
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7018] d164 [ADD.w D0, -(A4)] 7019
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7021] 5054 [ADD.w Q, (A4)] 7022
@@ -5707,7 +5690,6 @@ FAIL [7676] 5a58 [ADD.w Q, (A0)+] 7677
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7678] 0664 [ADD.w #, -(A4)] 7679
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7679] 5a65 [ADD.w Q, -(A5)] 7680
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7684] d968 [ADD.w D4, (d16, A0)] 7685

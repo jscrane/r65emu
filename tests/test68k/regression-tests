@@ -3,13 +3,15 @@
 KEEP_GOING=false
 WRITE=false
 TESTDIR=~/src/680x0/68000/v1
+BRANCH=master
 
-while getopts "kwt:" opt; do
+while getopts "kwt:b:" opt; do
 	case "$opt" in
 		k) KEEP_GOING=true;;
 		t) TESTDIR="$OPTARG";;
 		w) WRITE=true;;
-		*) echo "Usage: $0 [-k] [-w] [-t test-dir] [test-names...]"; exit 1;;
+		b) BRANCH="$OPTARG";;
+		*) echo "Usage: $0 [-k] [-w] [-t test-dir] [-b diff-branch] [test-names...]"; exit 1;;
 	esac
 done
 
@@ -28,7 +30,7 @@ for t in $TESTS; do
 	echo -n "$t: "
 	if [ ${WRITE} ]; then
 		${SSTESTS} ${TESTFILE} -k > ${RESULTFILE}
-		git diff --numstat ${RESULTFILE} | awk '{add+=$1; del+=$2} END {printf "-%d +%d\n", del, add}'
+		git diff ${BRANCH}.. --numstat ${RESULTFILE} | awk '{add+=$1; del+=$2} END {printf "-%d +%d\n", del, add}'
 	elif [ ! -f ${RESULTFILE} ]; then
 		echo "SKIP"
 	elif $(${SSTESTS} ${TESTFILE} -k | cmp -s - ${RESULTFILE}); then
