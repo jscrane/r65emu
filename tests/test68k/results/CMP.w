@@ -25,7 +25,6 @@ FAIL [30] b850 [CMP.w (A0), D4] 31
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [34] 0c72 [CMP.w #, (d8, A2, Xn)] 35
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [37] bd4b [CMP.w (A3)+, (A6)+] 38
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [38] b476 [CMP.w (d8, A6, Xn), D2] 39
@@ -54,7 +53,6 @@ FAIL [70] b14e [CMP.w (A6)+, (A0)+] 71
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [71] 0c6c [CMP.w #, (d16, A4)] 72
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [73] b476 [CMP.w (d8, A6, Xn), D2] 74
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [74] b45b [CMP.w (A3)+, D2] 75
@@ -75,7 +73,6 @@ FAIL [95] b259 [CMP.w (A1)+, D1] 96
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [98] 0c5b [CMP.w #, (A3)+] 99
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [101] b86e [CMP.w (d16, A6), D4] 102
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [106] bc79 [CMP.w (xxx).l, D6] 107
@@ -96,7 +93,6 @@ FAIL [130] b859 [CMP.w (A1)+, D4] 131
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [134] 0c53 [CMP.w #, (A3)] 135
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [137] b34d [CMP.w (A5)+, (A1)+] 138
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [142] b679 [CMP.w (xxx).l, D3] 143
@@ -135,11 +131,11 @@ FAIL [173] b94e [CMP.w (A6)+, (A4)+] 174
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [174] 0c75 [CMP.w #, (d8, A5, Xn)] 175
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [179] bd49 [CMP.w (A1)+, (A6)+] 180
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [181] 0c63 [CMP.w #, -(A3)] 182
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [182] b461 [CMP.w -(A1), D2] 183
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [184] bc55 [CMP.w (A5), D6] 185
@@ -162,7 +158,6 @@ FAIL [200] b453 [CMP.w (A3), D2] 201
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [201] 0c73 [CMP.w #, (d8, A3, Xn)] 202
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [203] b65c [CMP.w (A4)+, D3] 204
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [207] be68 [CMP.w (d16, A0), D7] 208
@@ -173,7 +168,6 @@ FAIL [211] b473 [CMP.w (d8, A3, Xn), D2] 212
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [214] 0c6e [CMP.w #, (d16, A6)] 215
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [215] b06d [CMP.w (d16, A5), D0] 216
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [217] b45c [CMP.w (A4)+, D2] 218
@@ -214,12 +208,10 @@ FAIL [259] b07b [CMP.w (d8, PC, Xn), D0] 260
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [267] 0c6b [CMP.w #, (d16, A3)] 268
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [273] ba68 [CMP.w (d16, A0), D5] 274
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [277] 0c79 [CMP.w #, (xxx).l] 278
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          6 (0x6) 	got          4 (0x4)
 FAIL [285] bc5b [CMP.w (A3)+, D6] 286
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [287] b54e [CMP.w (A6)+, (A2)+] 288
@@ -244,6 +236,7 @@ FAIL [318] b25d [CMP.w (A5)+, D1] 319
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [319] 0c64 [CMP.w #, -(A4)] 320
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [322] b470 [CMP.w (d8, A0, Xn), D2] 323
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [323] be61 [CMP.w -(A1), D7] 324
@@ -290,10 +283,8 @@ FAIL [390] b46e [CMP.w (d16, A6), D2] 391
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [396] 0c74 [CMP.w #, (d8, A4, Xn)] 397
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [397] 0c50 [CMP.w #, (A0)] 398
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [398] b463 [CMP.w -(A3), D2] 399
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [400] b74a [CMP.w (A2)+, (A3)+] 401
@@ -338,7 +329,6 @@ FAIL [446] bc58 [CMP.w (A0)+, D6] 447
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [449] 0c6b [CMP.w #, (d16, A3)] 450
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [450] b276 [CMP.w (d8, A6, Xn), D1] 451
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [453] b54d [CMP.w (A5)+, (A2)+] 454
@@ -353,6 +343,7 @@ FAIL [461] b86e [CMP.w (d16, A6), D4] 462
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [464] 0c65 [CMP.w #, -(A5)] 465
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [465] b265 [CMP.w -(A5), D1] 466
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [469] b94e [CMP.w (A6)+, (A4)+] 470
@@ -363,14 +354,12 @@ FAIL [471] b05e [CMP.w (A6)+, D0] 472
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [479] 0c68 [CMP.w #, (d16, A0)] 480
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [480] bc5a [CMP.w (A2)+, D6] 481
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [484] b470 [CMP.w (d8, A0, Xn), D2] 485
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [486] 0c70 [CMP.w #, (d8, A0, Xn)] 487
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [491] bb4b [CMP.w (A3)+, (A5)+] 492
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [498] b062 [CMP.w -(A2), D0] 499
@@ -431,7 +420,6 @@ FAIL [556] ba5b [CMP.w (A3)+, D5] 557
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [563] 0c77 [CMP.w #, (d8, A7, Xn)] 564
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [565] b469 [CMP.w (d16, A1), D2] 566
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [568] b07a [CMP.w (d16, PC), D0] 569
@@ -458,10 +446,8 @@ FAIL [594] b348 [CMP.w (A0)+, (A1)+] 595
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [597] 0c75 [CMP.w #, (d8, A5, Xn)] 598
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [598] 0c68 [CMP.w #, (d16, A0)] 599
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [599] b149 [CMP.w (A1)+, (A0)+] 600
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [600] bf48 [CMP.w (A0)+, (A7)+] 601
@@ -480,11 +466,11 @@ FAIL [610] bc73 [CMP.w (d8, A3, Xn), D6] 611
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [613] 0c60 [CMP.w #, -(A0)] 614
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [615] bb4a [CMP.w (A2)+, (A5)+] 616
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [620] 0c56 [CMP.w #, (A6)] 621
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [624] b470 [CMP.w (d8, A0, Xn), D2] 625
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [625] b064 [CMP.w -(A4), D0] 626
@@ -501,7 +487,6 @@ FAIL [638] b068 [CMP.w (d16, A0), D0] 639
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [639] 0c71 [CMP.w #, (d8, A1, Xn)] 640
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [650] b859 [CMP.w (A1)+, D4] 651
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [654] b86f [CMP.w (d16, A7), D4] 655
@@ -520,17 +505,14 @@ FAIL [676] b46b [CMP.w (d16, A3), D2] 677
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [677] 0c6c [CMP.w #, (d16, A4)] 678
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [681] b075 [CMP.w (d8, A5, Xn), D0] 682
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [682] b07b [CMP.w (d8, PC, Xn), D0] 683
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [684] 0c50 [CMP.w #, (A0)] 685
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [686] 0c71 [CMP.w #, (d8, A1, Xn)] 687
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [692] b278 [CMP.w (xxx).w, D1] 693
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [693] b25b [CMP.w (A3)+, D1] 694
@@ -547,7 +529,6 @@ FAIL [705] be50 [CMP.w (A0), D7] 706
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [707] 0c51 [CMP.w #, (A1)] 708
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [708] b663 [CMP.w -(A3), D3] 709
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [709] b14a [CMP.w (A2)+, (A0)+] 710
@@ -624,20 +605,19 @@ FAIL [776] b656 [CMP.w (A6), D3] 777
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [781] 0c66 [CMP.w #, -(A6)] 782
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [784] b349 [CMP.w (A1)+, (A1)+] 785
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [786] b461 [CMP.w -(A1), D2] 787
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [790] 0c74 [CMP.w #, (d8, A4, Xn)] 791
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [795] b548 [CMP.w (A0)+, (A2)+] 796
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [797] b865 [CMP.w -(A5), D4] 798
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [798] 0c74 [CMP.w #, (d8, A4, Xn)] 799
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [799] b74a [CMP.w (A2)+, (A3)+] 800
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [801] be52 [CMP.w (A2), D7] 802
@@ -742,7 +722,6 @@ FAIL [981] bc60 [CMP.w -(A0), D6] 982
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [985] 0c68 [CMP.w #, (d16, A0)] 986
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [987] b252 [CMP.w (A2), D1] 988
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [988] b679 [CMP.w (xxx).l, D3] 989
@@ -755,7 +734,6 @@ FAIL [992] b077 [CMP.w (d8, A7, Xn), D0] 993
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [995] 0c77 [CMP.w #, (d8, A7, Xn)] 996
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [998] be72 [CMP.w (d8, A2, Xn), D7] 999
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1000] b34a [CMP.w (A2)+, (A1)+] 1001
@@ -778,7 +756,6 @@ FAIL [1023] be59 [CMP.w (A1)+, D7] 1024
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1028] 0c54 [CMP.w #, (A4)] 1029
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1034] b05a [CMP.w (A2)+, D0] 1035
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1037] b052 [CMP.w (A2), D0] 1038
@@ -809,6 +786,7 @@ FAIL [1071] b265 [CMP.w -(A5), D1] 1072
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1076] 0c64 [CMP.w #, -(A4)] 1077
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [1077] ba53 [CMP.w (A3), D5] 1078
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1080] b259 [CMP.w (A1)+, D1] 1081
@@ -845,7 +823,6 @@ FAIL [1122] be7b [CMP.w (d8, PC, Xn), D7] 1123
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1124] 0c5c [CMP.w #, (A4)+] 1125
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1128] b25e [CMP.w (A6)+, D1] 1129
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1133] b748 [CMP.w (A0)+, (A3)+] 1134
@@ -904,7 +881,6 @@ FAIL [1186] b476 [CMP.w (d8, A6, Xn), D2] 1187
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1188] 0c76 [CMP.w #, (d8, A6, Xn)] 1189
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1194] b74c [CMP.w (A4)+, (A3)+] 1195
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1195] b548 [CMP.w (A0)+, (A2)+] 1196
@@ -935,7 +911,6 @@ FAIL [1223] b14e [CMP.w (A6)+, (A0)+] 1224
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1224] 0c73 [CMP.w #, (d8, A3, Xn)] 1225
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1225] b651 [CMP.w (A1), D3] 1226
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1226] b66b [CMP.w (d16, A3), D3] 1227
@@ -1028,7 +1003,6 @@ FAIL [1353] b856 [CMP.w (A6), D4] 1354
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1356] 0c70 [CMP.w #, (d8, A0, Xn)] 1357
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1358] b861 [CMP.w -(A1), D4] 1359
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1360] bc61 [CMP.w -(A1), D6] 1361
@@ -1079,7 +1053,6 @@ FAIL [1418] be60 [CMP.w -(A0), D7] 1419
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1420] 0c5b [CMP.w #, (A3)+] 1421
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1426] ba7a [CMP.w (d16, PC), D5] 1427
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1427] b059 [CMP.w (A1)+, D0] 1428
@@ -1108,12 +1081,10 @@ FAIL [1461] b055 [CMP.w (A5), D0] 1462
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1469] 0c56 [CMP.w #, (A6)] 1470
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1472] b675 [CMP.w (d8, A5, Xn), D3] 1473
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1475] 0c5e [CMP.w #, (A6)+] 1476
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1479] ba6d [CMP.w (d16, A5), D5] 1480
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1483] b54f [CMP.w (A7)+, (A2)+] 1484
@@ -1162,7 +1133,6 @@ FAIL [1538] b663 [CMP.w -(A3), D3] 1539
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1539] 0c6b [CMP.w #, (d16, A3)] 1540
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1541] b85c [CMP.w (A4)+, D4] 1542
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1543] b45b [CMP.w (A3)+, D2] 1544
@@ -1185,7 +1155,6 @@ FAIL [1559] bd4a [CMP.w (A2)+, (A6)+] 1560
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1560] 0c55 [CMP.w #, (A5)] 1561
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1562] bc61 [CMP.w -(A1), D6] 1563
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1569] b469 [CMP.w (d16, A1), D2] 1570
@@ -1196,6 +1165,7 @@ FAIL [1574] bb48 [CMP.w (A0)+, (A5)+] 1575
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1576] 0c65 [CMP.w #, -(A5)] 1577
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [1577] be74 [CMP.w (d8, A4, Xn), D7] 1578
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1578] b459 [CMP.w (A1)+, D2] 1579
@@ -1212,7 +1182,6 @@ FAIL [1599] b465 [CMP.w -(A5), D2] 1600
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1605] 0c71 [CMP.w #, (d8, A1, Xn)] 1606
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1606] b94e [CMP.w (A6)+, (A4)+] 1607
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1609] be66 [CMP.w -(A6), D7] 1610
@@ -1243,7 +1212,6 @@ FAIL [1644] b65e [CMP.w (A6)+, D3] 1645
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1645] 0c76 [CMP.w #, (d8, A6, Xn)] 1646
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1646] b26d [CMP.w (d16, A5), D1] 1647
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1648] bd4b [CMP.w (A3)+, (A6)+] 1649
@@ -1260,7 +1228,6 @@ FAIL [1655] b079 [CMP.w (xxx).l, D0] 1656
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1665] 0c69 [CMP.w #, (d16, A1)] 1666
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1666] bc79 [CMP.w (xxx).l, D6] 1667
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1668] b86b [CMP.w (d16, A3), D4] 1669
@@ -1339,7 +1306,6 @@ FAIL [1756] b071 [CMP.w (d8, A1, Xn), D0] 1757
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1759] 0c75 [CMP.w #, (d8, A5, Xn)] 1760
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1761] ba50 [CMP.w (A0), D5] 1762
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1762] b072 [CMP.w (d8, A2, Xn), D0] 1763
@@ -1368,7 +1334,6 @@ FAIL [1786] be5a [CMP.w (A2)+, D7] 1787
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1788] 0c76 [CMP.w #, (d8, A6, Xn)] 1789
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1789] b870 [CMP.w (d8, A0, Xn), D4] 1790
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1797] b472 [CMP.w (d8, A2, Xn), D2] 1798
@@ -1409,14 +1374,12 @@ FAIL [1826] b34b [CMP.w (A3)+, (A1)+] 1827
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1827] 0c6c [CMP.w #, (d16, A4)] 1828
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1830] bf4a [CMP.w (A2)+, (A7)+] 1831
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1831] b05d [CMP.w (A5)+, D0] 1832
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1837] 0c75 [CMP.w #, (d8, A5, Xn)] 1838
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1839] b05d [CMP.w (A5)+, D0] 1840
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1841] b253 [CMP.w (A3), D1] 1842
@@ -1447,7 +1410,6 @@ FAIL [1869] b655 [CMP.w (A5), D3] 1870
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1871] 0c72 [CMP.w #, (d8, A2, Xn)] 1872
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1875] b34c [CMP.w (A4)+, (A1)+] 1876
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1878] b055 [CMP.w (A5), D0] 1879
@@ -1456,6 +1418,7 @@ FAIL [1879] bc64 [CMP.w -(A4), D6] 1880
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1887] 0c64 [CMP.w #, -(A4)] 1888
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [1891] be63 [CMP.w -(A3), D7] 1892
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1895] b053 [CMP.w (A3), D0] 1896
@@ -1464,7 +1427,6 @@ FAIL [1899] b077 [CMP.w (d8, A7, Xn), D0] 1900
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1900] 0c73 [CMP.w #, (d8, A3, Xn)] 1901
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1904] b478 [CMP.w (xxx).w, D2] 1905
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1906] ba6d [CMP.w (d16, A5), D5] 1907
@@ -1495,7 +1457,6 @@ FAIL [1935] bc6a [CMP.w (d16, A2), D6] 1936
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1936] 0c6c [CMP.w #, (d16, A4)] 1937
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [1938] b87b [CMP.w (d8, PC, Xn), D4] 1939
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1939] b74a [CMP.w (A2)+, (A3)+] 1940
@@ -1516,7 +1477,6 @@ FAIL [1962] b655 [CMP.w (A5), D3] 1963
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1965] 0c55 [CMP.w #, (A5)] 1966
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [1966] bc73 [CMP.w (d8, A3, Xn), D6] 1967
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [1969] b664 [CMP.w -(A4), D3] 1970
@@ -1543,6 +1503,7 @@ FAIL [1988] b25c [CMP.w (A4)+, D1] 1989
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1989] 0c61 [CMP.w #, -(A1)] 1990
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [1991] b258 [CMP.w (A0)+, D1] 1992
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [1994] b876 [CMP.w (d8, A6, Xn), D4] 1995
@@ -1585,7 +1546,6 @@ FAIL [2034] b871 [CMP.w (d8, A1, Xn), D4] 2035
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2036] 0c52 [CMP.w #, (A2)] 2037
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2039] bc79 [CMP.w (xxx).l, D6] 2040
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2041] b05a [CMP.w (A2)+, D0] 2042
@@ -1610,7 +1570,6 @@ FAIL [2069] b54e [CMP.w (A6)+, (A2)+] 2070
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2071] 0c75 [CMP.w #, (d8, A5, Xn)] 2072
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2076] b472 [CMP.w (d8, A2, Xn), D2] 2077
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2077] b452 [CMP.w (A2), D2] 2078
@@ -1645,7 +1604,6 @@ FAIL [2124] bc50 [CMP.w (A0), D6] 2125
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2125] 0c5a [CMP.w #, (A2)+] 2126
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2132] ba65 [CMP.w -(A5), D5] 2133
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2134] b075 [CMP.w (d8, A5, Xn), D0] 2135
@@ -1694,7 +1652,6 @@ FAIL [2187] b079 [CMP.w (xxx).l, D0] 2188
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2188] 0c75 [CMP.w #, (d8, A5, Xn)] 2189
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2189] b273 [CMP.w (d8, A3, Xn), D1] 2190
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2190] b278 [CMP.w (xxx).w, D1] 2191
@@ -1703,7 +1660,6 @@ FAIL [2191] b872 [CMP.w (d8, A2, Xn), D4] 2192
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2193] 0c5a [CMP.w #, (A2)+] 2194
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2194] ba72 [CMP.w (d8, A2, Xn), D5] 2195
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2195] b25e [CMP.w (A6)+, D1] 2196
@@ -1724,7 +1680,6 @@ FAIL [2208] b25e [CMP.w (A6)+, D1] 2209
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2210] 0c5d [CMP.w #, (A5)+] 2211
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2211] bb4d [CMP.w (A5)+, (A5)+] 2212
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2215] b54f [CMP.w (A7)+, (A2)+] 2216
@@ -1739,7 +1694,6 @@ FAIL [2229] b85c [CMP.w (A4)+, D4] 2230
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2231] 0c59 [CMP.w #, (A1)+] 2232
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2233] b268 [CMP.w (d16, A0), D1] 2234
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2235] ba51 [CMP.w (A1), D5] 2236
@@ -1770,12 +1724,10 @@ FAIL [2270] b060 [CMP.w -(A0), D0] 2271
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2273] 0c6e [CMP.w #, (d16, A6)] 2274
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2278] b277 [CMP.w (d8, A7, Xn), D1] 2279
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2281] 0c51 [CMP.w #, (A1)] 2282
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2283] b26f [CMP.w (d16, A7), D1] 2284
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2284] ba7a [CMP.w (d16, PC), D5] 2285
@@ -1814,7 +1766,6 @@ FAIL [2331] b66f [CMP.w (d16, A7), D3] 2332
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2332] 0c5e [CMP.w #, (A6)+] 2333
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2333] b949 [CMP.w (A1)+, (A4)+] 2334
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2335] b474 [CMP.w (d8, A4, Xn), D2] 2336
@@ -1843,7 +1794,6 @@ FAIL [2374] bc6b [CMP.w (d16, A3), D6] 2375
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2381] 0c55 [CMP.w #, (A5)] 2382
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2388] b261 [CMP.w -(A1), D1] 2389
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2389] b66f [CMP.w (d16, A7), D3] 2390
@@ -1866,7 +1816,6 @@ FAIL [2415] ba60 [CMP.w -(A0), D5] 2416
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2416] 0c55 [CMP.w #, (A5)] 2417
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2418] be5d [CMP.w (A5)+, D7] 2419
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2419] b250 [CMP.w (A0), D1] 2420
@@ -1883,6 +1832,7 @@ FAIL [2430] b34d [CMP.w (A5)+, (A1)+] 2431
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2431] 0c64 [CMP.w #, -(A4)] 2432
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2432] b265 [CMP.w -(A5), D1] 2433
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2433] b07a [CMP.w (d16, PC), D0] 2434
@@ -1895,7 +1845,6 @@ FAIL [2438] be6a [CMP.w (d16, A2), D7] 2439
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2443] 0c72 [CMP.w #, (d8, A2, Xn)] 2444
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2444] b866 [CMP.w -(A6), D4] 2445
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2446] b252 [CMP.w (A2), D1] 2447
@@ -1906,7 +1855,6 @@ FAIL [2450] b45e [CMP.w (A6)+, D2] 2451
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2452] 0c5a [CMP.w #, (A2)+] 2453
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2453] be5b [CMP.w (A3)+, D7] 2454
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2455] bc7b [CMP.w (d8, PC, Xn), D6] 2456
@@ -1945,14 +1893,12 @@ FAIL [2506] b873 [CMP.w (d8, A3, Xn), D4] 2507
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2507] 0c5d [CMP.w #, (A5)+] 2508
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2508] bd49 [CMP.w (A1)+, (A6)+] 2509
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2512] b851 [CMP.w (A1), D4] 2513
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2515] 0c6b [CMP.w #, (d16, A3)] 2516
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2521] ba55 [CMP.w (A5), D5] 2522
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2524] b74b [CMP.w (A3)+, (A3)+] 2525
@@ -1989,7 +1935,6 @@ FAIL [2556] be58 [CMP.w (A0)+, D7] 2557
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2557] 0c6d [CMP.w #, (d16, A5)] 2558
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2558] bc65 [CMP.w -(A5), D6] 2559
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2559] b463 [CMP.w -(A3), D2] 2560
@@ -1998,7 +1943,6 @@ FAIL [2560] be68 [CMP.w (d16, A0), D7] 2561
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2561] 0c54 [CMP.w #, (A4)] 2562
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2564] bc75 [CMP.w (d8, A5, Xn), D6] 2565
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2569] bc59 [CMP.w (A1)+, D6] 2570
@@ -2025,7 +1969,6 @@ FAIL [2604] bb4d [CMP.w (A5)+, (A5)+] 2605
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2605] 0c5e [CMP.w #, (A6)+] 2606
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2607] ba79 [CMP.w (xxx).l, D5] 2608
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2608] bd4e [CMP.w (A6)+, (A6)+] 2609
@@ -2054,7 +1997,6 @@ FAIL [2637] ba5e [CMP.w (A6)+, D5] 2638
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2638] 0c59 [CMP.w #, (A1)+] 2639
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2644] b45e [CMP.w (A6)+, D2] 2645
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2645] b548 [CMP.w (A0)+, (A2)+] 2646
@@ -2063,7 +2005,6 @@ FAIL [2646] b27b [CMP.w (d8, PC, Xn), D1] 2647
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2649] 0c73 [CMP.w #, (d8, A3, Xn)] 2650
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2650] bf4c [CMP.w (A4)+, (A7)+] 2651
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2651] b46d [CMP.w (d16, A5), D2] 2652
@@ -2072,7 +2013,6 @@ FAIL [2652] b85c [CMP.w (A4)+, D4] 2653
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2659] 0c74 [CMP.w #, (d8, A4, Xn)] 2660
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [2663] be5a [CMP.w (A2)+, D7] 2664
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2665] b675 [CMP.w (d8, A5, Xn), D3] 2666
@@ -2081,7 +2021,6 @@ FAIL [2668] b26b [CMP.w (d16, A3), D1] 2669
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2670] 0c52 [CMP.w #, (A2)] 2671
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2671] b67a [CMP.w (d16, PC), D3] 2672
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2672] b149 [CMP.w (A1)+, (A0)+] 2673
@@ -2116,6 +2055,7 @@ FAIL [2697] b74e [CMP.w (A6)+, (A3)+] 2698
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2699] 0c62 [CMP.w #, -(A2)] 2700
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2700] b14b [CMP.w (A3)+, (A0)+] 2701
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2702] b45a [CMP.w (A2)+, D2] 2703
@@ -2124,7 +2064,6 @@ FAIL [2704] be56 [CMP.w (A6), D7] 2705
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2705] 0c50 [CMP.w #, (A0)] 2706
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2707] b651 [CMP.w (A1), D3] 2708
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2708] be5b [CMP.w (A3)+, D7] 2709
@@ -2133,6 +2072,7 @@ FAIL [2710] b34b [CMP.w (A3)+, (A1)+] 2711
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2711] 0c66 [CMP.w #, -(A6)] 2712
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2713] be54 [CMP.w (A4), D7] 2714
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2717] be54 [CMP.w (A4), D7] 2718
@@ -2183,15 +2123,12 @@ FAIL [2776] be73 [CMP.w (d8, A3, Xn), D7] 2777
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2777] 0c59 [CMP.w #, (A1)+] 2778
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2784] b276 [CMP.w (d8, A6, Xn), D1] 2785
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2788] 0c5a [CMP.w #, (A2)+] 2789
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2789] 0c54 [CMP.w #, (A4)] 2790
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2800] b061 [CMP.w -(A1), D0] 2801
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2802] b27b [CMP.w (d8, PC, Xn), D1] 2803
@@ -2210,7 +2147,6 @@ FAIL [2814] b67b [CMP.w (d8, PC, Xn), D3] 2815
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2815] 0c59 [CMP.w #, (A1)+] 2816
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2819] b671 [CMP.w (d8, A1, Xn), D3] 2820
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2821] b458 [CMP.w (A0)+, D2] 2822
@@ -2247,6 +2183,7 @@ FAIL [2854] b072 [CMP.w (d8, A2, Xn), D0] 2855
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2855] 0c62 [CMP.w #, -(A2)] 2856
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2858] b54d [CMP.w (A5)+, (A2)+] 2859
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2860] b06b [CMP.w (d16, A3), D0] 2861
@@ -2285,7 +2222,6 @@ FAIL [2890] b348 [CMP.w (A0)+, (A1)+] 2891
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2892] 0c52 [CMP.w #, (A2)] 2893
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [2894] bc6f [CMP.w (d16, A7), D6] 2895
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2895] be5d [CMP.w (A5)+, D7] 2896
@@ -2320,6 +2256,7 @@ FAIL [2930] b86b [CMP.w (d16, A3), D4] 2931
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2932] 0c66 [CMP.w #, -(A6)] 2933
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2933] bd4b [CMP.w (A3)+, (A6)+] 2934
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2942] b54d [CMP.w (A5)+, (A2)+] 2943
@@ -2352,6 +2289,7 @@ FAIL [2974] b46c [CMP.w (d16, A4), D2] 2975
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [2980] 0c65 [CMP.w #, -(A5)] 2981
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [2985] b653 [CMP.w (A3), D3] 2986
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [2989] b863 [CMP.w -(A3), D4] 2990
@@ -2374,13 +2312,13 @@ FAIL [3005] ba78 [CMP.w (xxx).w, D5] 3006
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3006] 0c66 [CMP.w #, -(A6)] 3007
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3010] ba6e [CMP.w (d16, A6), D5] 3011
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3012] be77 [CMP.w (d8, A7, Xn), D7] 3013
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3013] 0c6f [CMP.w #, (d16, A7)] 3014
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3015] b25d [CMP.w (A5)+, D1] 3016
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3016] b273 [CMP.w (d8, A3, Xn), D1] 3017
@@ -2401,7 +2339,6 @@ FAIL [3030] b45e [CMP.w (A6)+, D2] 3031
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3034] 0c55 [CMP.w #, (A5)] 3035
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3036] b87b [CMP.w (d8, PC, Xn), D4] 3037
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3037] bc59 [CMP.w (A1)+, D6] 3038
@@ -2430,6 +2367,7 @@ FAIL [3073] b274 [CMP.w (d8, A4, Xn), D1] 3074
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3075] 0c60 [CMP.w #, -(A0)] 3076
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3079] ba51 [CMP.w (A1), D5] 3080
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3080] b256 [CMP.w (A6), D1] 3081
@@ -2484,7 +2422,6 @@ FAIL [3137] b748 [CMP.w (A0)+, (A3)+] 3138
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3138] 0c6e [CMP.w #, (d16, A6)] 3139
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3140] b877 [CMP.w (d8, A7, Xn), D4] 3141
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3145] b670 [CMP.w (d8, A0, Xn), D3] 3146
@@ -2507,7 +2444,6 @@ FAIL [3162] b874 [CMP.w (d8, A4, Xn), D4] 3163
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3167] 0c70 [CMP.w #, (d8, A0, Xn)] 3168
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3170] b25a [CMP.w (A2)+, D1] 3171
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3171] b46a [CMP.w (d16, A2), D2] 3172
@@ -2528,15 +2464,12 @@ FAIL [3191] be64 [CMP.w -(A4), D7] 3192
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3192] 0c76 [CMP.w #, (d8, A6, Xn)] 3193
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3195] b94c [CMP.w (A4)+, (A4)+] 3196
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3203] 0c52 [CMP.w #, (A2)] 3204
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3205] 0c72 [CMP.w #, (d8, A2, Xn)] 3206
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3207] b651 [CMP.w (A1), D3] 3208
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3209] bc72 [CMP.w (d8, A2, Xn), D6] 3210
@@ -2595,14 +2528,12 @@ FAIL [3271] bc5d [CMP.w (A5)+, D6] 3272
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3277] 0c74 [CMP.w #, (d8, A4, Xn)] 3278
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3280] b271 [CMP.w (d8, A1, Xn), D1] 3281
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3281] bc70 [CMP.w (d8, A0, Xn), D6] 3282
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3284] 0c72 [CMP.w #, (d8, A2, Xn)] 3285
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3287] b549 [CMP.w (A1)+, (A2)+] 3288
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3293] ba5c [CMP.w (A4)+, D5] 3294
@@ -2629,6 +2560,7 @@ FAIL [3316] b87a [CMP.w (d16, PC), D4] 3317
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3317] 0c64 [CMP.w #, -(A4)] 3318
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3321] b874 [CMP.w (d8, A4, Xn), D4] 3322
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3322] b653 [CMP.w (A3), D3] 3323
@@ -2637,9 +2569,9 @@ FAIL [3325] b66b [CMP.w (d16, A3), D3] 3326
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3328] 0c60 [CMP.w #, -(A0)] 3329
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3329] 0c5c [CMP.w #, (A4)+] 3330
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3331] b068 [CMP.w (d16, A0), D0] 3332
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3332] b065 [CMP.w -(A5), D0] 3333
@@ -2676,7 +2608,6 @@ FAIL [3379] bc62 [CMP.w -(A2), D6] 3380
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3380] 0c6b [CMP.w #, (d16, A3)] 3381
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3381] be74 [CMP.w (d8, A4, Xn), D7] 3382
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3382] b458 [CMP.w (A0)+, D2] 3383
@@ -2715,7 +2646,6 @@ FAIL [3432] be79 [CMP.w (xxx).l, D7] 3433
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3433] 0c5b [CMP.w #, (A3)+] 3434
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3434] b875 [CMP.w (d8, A5, Xn), D4] 3435
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3435] b86f [CMP.w (d16, A7), D4] 3436
@@ -2788,6 +2718,7 @@ FAIL [3518] b87b [CMP.w (d8, PC, Xn), D4] 3519
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3521] 0c65 [CMP.w #, -(A5)] 3522
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3523] be5e [CMP.w (A6)+, D7] 3524
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3526] be71 [CMP.w (d8, A1, Xn), D7] 3527
@@ -2812,7 +2743,7 @@ FAIL [3554] bf48 [CMP.w (A0)+, (A7)+] 3555
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3555] 0c79 [CMP.w #, (xxx).l] 3556
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          6 (0x6) 	got          2 (0x2)
+  ram[0007ff]	expected          6 (0x6) 	got          4 (0x4)
 FAIL [3559] b45c [CMP.w (A4)+, D2] 3560
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3565] b06e [CMP.w (d16, A6), D0] 3566
@@ -2821,7 +2752,6 @@ FAIL [3573] b47b [CMP.w (d8, PC, Xn), D2] 3574
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3576] 0c78 [CMP.w #, (xxx).w] 3577
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3577] b063 [CMP.w -(A3), D0] 3578
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3585] b477 [CMP.w (d8, A7, Xn), D2] 3586
@@ -2836,7 +2766,6 @@ FAIL [3589] b54b [CMP.w (A3)+, (A2)+] 3590
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3590] 0c55 [CMP.w #, (A5)] 3591
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3591] bb4e [CMP.w (A6)+, (A5)+] 3592
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3592] b86d [CMP.w (d16, A5), D4] 3593
@@ -2889,14 +2818,12 @@ FAIL [3654] bb4b [CMP.w (A3)+, (A5)+] 3655
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3658] 0c59 [CMP.w #, (A1)+] 3659
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3659] b666 [CMP.w -(A6), D3] 3660
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3660] b672 [CMP.w (d8, A2, Xn), D3] 3661
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3662] 0c6e [CMP.w #, (d16, A6)] 3663
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3663] b34d [CMP.w (A5)+, (A1)+] 3664
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3668] b948 [CMP.w (A0)+, (A4)+] 3669
@@ -2921,7 +2848,6 @@ FAIL [3679] b465 [CMP.w -(A5), D2] 3680
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3685] 0c69 [CMP.w #, (d16, A1)] 3686
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3690] b94b [CMP.w (A3)+, (A4)+] 3691
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3696] be6f [CMP.w (d16, A7), D7] 3697
@@ -2932,7 +2858,6 @@ FAIL [3698] be68 [CMP.w (d16, A0), D7] 3699
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3700] 0c68 [CMP.w #, (d16, A0)] 3701
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3707] b45e [CMP.w (A6)+, D2] 3708
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3708] b278 [CMP.w (xxx).w, D1] 3709
@@ -2965,12 +2890,10 @@ FAIL [3740] b67a [CMP.w (d16, PC), D3] 3741
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3745] 0c6c [CMP.w #, (d16, A4)] 3746
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3751] b263 [CMP.w -(A3), D1] 3752
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3755] 0c5c [CMP.w #, (A4)+] 3756
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [3756] b54b [CMP.w (A3)+, (A2)+] 3757
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3757] be79 [CMP.w (xxx).l, D7] 3758
@@ -3015,7 +2938,6 @@ FAIL [3821] b079 [CMP.w (xxx).l, D0] 3822
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3822] 0c6c [CMP.w #, (d16, A4)] 3823
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3827] bc68 [CMP.w (d16, A0), D6] 3828
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3830] b46b [CMP.w (d16, A3), D2] 3831
@@ -3036,6 +2958,7 @@ FAIL [3844] be62 [CMP.w -(A2), D7] 3845
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3845] 0c65 [CMP.w #, -(A5)] 3846
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3849] b25d [CMP.w (A5)+, D1] 3850
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [3850] b65c [CMP.w (A4)+, D3] 3851
@@ -3066,6 +2989,7 @@ FAIL [3877] b660 [CMP.w -(A0), D3] 3878
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3878] 0c62 [CMP.w #, -(A2)] 3879
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [3881] bc6c [CMP.w (d16, A4), D6] 3882
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3889] b948 [CMP.w (A0)+, (A4)+] 3890
@@ -3080,7 +3004,6 @@ FAIL [3900] bc77 [CMP.w (d8, A7, Xn), D6] 3901
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3902] 0c6a [CMP.w #, (d16, A2)] 3903
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [3904] b861 [CMP.w -(A1), D4] 3905
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [3905] b34c [CMP.w (A4)+, (A1)+] 3906
@@ -3159,7 +3082,6 @@ FAIL [4017] b253 [CMP.w (A3), D1] 4018
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4019] 0c76 [CMP.w #, (d8, A6, Xn)] 4020
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4022] ba77 [CMP.w (d8, A7, Xn), D5] 4023
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4023] b652 [CMP.w (A2), D3] 4024
@@ -3214,7 +3136,6 @@ FAIL [4097] b458 [CMP.w (A0)+, D2] 4098
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4104] 0c77 [CMP.w #, (d8, A7, Xn)] 4105
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4110] b85b [CMP.w (A3)+, D4] 4111
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4116] bd4b [CMP.w (A3)+, (A6)+] 4117
@@ -3241,6 +3162,7 @@ FAIL [4166] bc52 [CMP.w (A2), D6] 4167
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4168] 0c66 [CMP.w #, -(A6)] 4169
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [4169] b94e [CMP.w (A6)+, (A4)+] 4170
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4179] be65 [CMP.w -(A5), D7] 4180
@@ -3261,7 +3183,6 @@ FAIL [4201] b251 [CMP.w (A1), D1] 4202
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4202] 0c58 [CMP.w #, (A0)+] 4203
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4204] b66a [CMP.w (d16, A2), D3] 4205
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4207] b659 [CMP.w (A1)+, D3] 4208
@@ -3306,7 +3227,6 @@ FAIL [4275] b94b [CMP.w (A3)+, (A4)+] 4276
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4276] 0c5e [CMP.w #, (A6)+] 4277
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4277] b14a [CMP.w (A2)+, (A0)+] 4278
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4279] b94d [CMP.w (A5)+, (A4)+] 4280
@@ -3329,13 +3249,13 @@ FAIL [4295] ba55 [CMP.w (A5), D5] 4296
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4297] 0c65 [CMP.w #, -(A5)] 4298
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [4300] be50 [CMP.w (A0), D7] 4301
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4301] ba6c [CMP.w (d16, A4), D5] 4302
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4304] 0c6b [CMP.w #, (d16, A3)] 4305
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4310] ba6a [CMP.w (d16, A2), D5] 4311
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4311] b27a [CMP.w (d16, PC), D1] 4312
@@ -3344,7 +3264,6 @@ FAIL [4312] be51 [CMP.w (A1), D7] 4313
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4320] 0c52 [CMP.w #, (A2)] 4321
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4322] b476 [CMP.w (d8, A6, Xn), D2] 4323
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4325] b45e [CMP.w (A6)+, D2] 4326
@@ -3357,7 +3276,6 @@ FAIL [4331] b854 [CMP.w (A4), D4] 4332
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4333] 0c68 [CMP.w #, (d16, A0)] 4334
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4334] b86e [CMP.w (d16, A6), D4] 4335
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4336] bb49 [CMP.w (A1)+, (A5)+] 4337
@@ -3400,7 +3318,6 @@ FAIL [4381] b051 [CMP.w (A1), D0] 4382
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4382] 0c73 [CMP.w #, (d8, A3, Xn)] 4383
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4384] b251 [CMP.w (A1), D1] 4385
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4385] ba5a [CMP.w (A2)+, D5] 4386
@@ -3493,7 +3410,6 @@ FAIL [4491] bd4d [CMP.w (A5)+, (A6)+] 4492
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4493] 0c78 [CMP.w #, (xxx).w] 4494
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4497] be71 [CMP.w (d8, A1, Xn), D7] 4498
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4498] bc75 [CMP.w (d8, A5, Xn), D6] 4499
@@ -3506,13 +3422,13 @@ FAIL [4503] b055 [CMP.w (A5), D0] 4504
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4506] 0c6c [CMP.w #, (d16, A4)] 4507
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4508] be63 [CMP.w -(A3), D7] 4509
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4509] ba5d [CMP.w (A5)+, D5] 4510
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4510] 0c64 [CMP.w #, -(A4)] 4511
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [4512] b054 [CMP.w (A4), D0] 4513
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4515] b256 [CMP.w (A6), D1] 4516
@@ -3521,7 +3437,6 @@ FAIL [4519] bf4c [CMP.w (A4)+, (A7)+] 4520
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4521] 0c6c [CMP.w #, (d16, A4)] 4522
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4522] b54d [CMP.w (A5)+, (A2)+] 4523
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4524] b86c [CMP.w (d16, A4), D4] 4525
@@ -3556,7 +3471,6 @@ FAIL [4550] b46d [CMP.w (d16, A5), D2] 4551
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4552] 0c76 [CMP.w #, (d8, A6, Xn)] 4553
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4553] bc50 [CMP.w (A0), D6] 4554
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4555] b54b [CMP.w (A3)+, (A2)+] 4556
@@ -3631,7 +3545,6 @@ FAIL [4633] b46e [CMP.w (d16, A6), D2] 4634
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4637] 0c5e [CMP.w #, (A6)+] 4638
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4640] b864 [CMP.w -(A4), D4] 4641
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4641] b949 [CMP.w (A1)+, (A4)+] 4642
@@ -3740,7 +3653,6 @@ FAIL [4764] b054 [CMP.w (A4), D0] 4765
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4765] 0c5a [CMP.w #, (A2)+] 4766
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4766] bc5b [CMP.w (A3)+, D6] 4767
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4767] b34f [CMP.w (A7)+, (A1)+] 4768
@@ -3803,7 +3715,6 @@ FAIL [4847] be74 [CMP.w (d8, A4, Xn), D7] 4848
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4848] 0c53 [CMP.w #, (A3)] 4849
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4849] b475 [CMP.w (d8, A5, Xn), D2] 4850
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4852] ba5a [CMP.w (A2)+, D5] 4853
@@ -3812,7 +3723,6 @@ FAIL [4855] b54d [CMP.w (A5)+, (A2)+] 4856
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4857] 0c6f [CMP.w #, (d16, A7)] 4858
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4858] ba63 [CMP.w -(A3), D5] 4859
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4859] b271 [CMP.w (d8, A1, Xn), D1] 4860
@@ -3839,7 +3749,6 @@ FAIL [4885] b74c [CMP.w (A4)+, (A3)+] 4886
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4892] 0c76 [CMP.w #, (d8, A6, Xn)] 4893
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4897] b06c [CMP.w (d16, A4), D0] 4898
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4899] b070 [CMP.w (d8, A0, Xn), D0] 4900
@@ -3874,10 +3783,8 @@ FAIL [4932] bc50 [CMP.w (A0), D6] 4933
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4936] 0c73 [CMP.w #, (d8, A3, Xn)] 4937
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4937] 0c55 [CMP.w #, (A5)] 4938
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4939] b948 [CMP.w (A0)+, (A4)+] 4940
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4940] b059 [CMP.w (A1)+, D0] 4941
@@ -3890,7 +3797,6 @@ FAIL [4946] bd49 [CMP.w (A1)+, (A6)+] 4947
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4949] 0c6b [CMP.w #, (d16, A3)] 4950
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4952] b27a [CMP.w (d16, PC), D1] 4953
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4953] b26c [CMP.w (d16, A4), D1] 4954
@@ -3903,7 +3809,6 @@ FAIL [4968] bf4c [CMP.w (A4)+, (A7)+] 4969
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4973] 0c6a [CMP.w #, (d16, A2)] 4974
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [4974] b473 [CMP.w (d8, A3, Xn), D2] 4975
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4976] b660 [CMP.w -(A0), D3] 4977
@@ -3912,7 +3817,6 @@ FAIL [4977] b14a [CMP.w (A2)+, (A0)+] 4978
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [4982] 0c56 [CMP.w #, (A6)] 4983
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [4983] b665 [CMP.w -(A5), D3] 4984
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [4984] b14b [CMP.w (A3)+, (A0)+] 4985
@@ -3975,7 +3879,6 @@ FAIL [5059] ba51 [CMP.w (A1), D5] 5060
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5060] 0c69 [CMP.w #, (d16, A1)] 5061
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5062] b275 [CMP.w (d8, A5, Xn), D1] 5063
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5066] be5c [CMP.w (A4)+, D7] 5067
@@ -3988,7 +3891,6 @@ FAIL [5072] b14d [CMP.w (A5)+, (A0)+] 5073
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5074] 0c78 [CMP.w #, (xxx).w] 5075
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5079] b749 [CMP.w (A1)+, (A3)+] 5080
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5080] b052 [CMP.w (A2), D0] 5081
@@ -4095,7 +3997,6 @@ FAIL [5207] b14a [CMP.w (A2)+, (A0)+] 5208
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5212] 0c5d [CMP.w #, (A5)+] 5213
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5213] ba6d [CMP.w (d16, A5), D5] 5214
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5214] bc50 [CMP.w (A0), D6] 5215
@@ -4106,7 +4007,6 @@ FAIL [5216] b054 [CMP.w (A4), D0] 5217
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5217] 0c5d [CMP.w #, (A5)+] 5218
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5228] b466 [CMP.w -(A6), D2] 5229
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5230] bd4f [CMP.w (A7)+, (A6)+] 5231
@@ -4115,7 +4015,6 @@ FAIL [5234] b058 [CMP.w (A0)+, D0] 5235
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5240] 0c5e [CMP.w #, (A6)+] 5241
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5245] b666 [CMP.w -(A6), D3] 5246
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5246] b656 [CMP.w (A6), D3] 5247
@@ -4126,7 +4025,6 @@ FAIL [5249] be70 [CMP.w (d8, A0, Xn), D7] 5250
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5273] 0c6d [CMP.w #, (d16, A5)] 5274
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5275] b34e [CMP.w (A6)+, (A1)+] 5276
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5277] b54c [CMP.w (A4)+, (A2)+] 5278
@@ -4157,6 +4055,7 @@ FAIL [5314] bc6b [CMP.w (d16, A3), D6] 5315
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5315] 0c65 [CMP.w #, -(A5)] 5316
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [5318] bf49 [CMP.w (A1)+, (A7)+] 5319
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5319] b348 [CMP.w (A0)+, (A1)+] 5320
@@ -4193,7 +4092,6 @@ FAIL [5351] be76 [CMP.w (d8, A6, Xn), D7] 5352
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5352] 0c68 [CMP.w #, (d16, A0)] 5353
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5359] b149 [CMP.w (A1)+, (A0)+] 5360
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5361] b873 [CMP.w (d8, A3, Xn), D4] 5362
@@ -4224,7 +4122,6 @@ FAIL [5382] bc68 [CMP.w (d16, A0), D6] 5383
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5384] 0c50 [CMP.w #, (A0)] 5385
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5387] b45c [CMP.w (A4)+, D2] 5388
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5389] b259 [CMP.w (A1)+, D1] 5390
@@ -4237,10 +4134,9 @@ FAIL [5401] b860 [CMP.w -(A0), D4] 5402
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5404] 0c79 [CMP.w #, (xxx).l] 5405
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          6 (0x6) 	got          2 (0x2)
+  ram[0007ff]	expected          6 (0x6) 	got          4 (0x4)
 FAIL [5405] 0c6f [CMP.w #, (d16, A7)] 5406
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5407] b075 [CMP.w (d8, A5, Xn), D0] 5408
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5408] b65b [CMP.w (A3)+, D3] 5409
@@ -4253,15 +4149,12 @@ FAIL [5418] b748 [CMP.w (A0)+, (A3)+] 5419
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5424] 0c55 [CMP.w #, (A5)] 5425
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5426] b85a [CMP.w (A2)+, D4] 5427
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5427] 0c78 [CMP.w #, (xxx).w] 5428
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5428] 0c6b [CMP.w #, (d16, A3)] 5429
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5430] b74a [CMP.w (A2)+, (A3)+] 5431
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5433] ba59 [CMP.w (A1)+, D5] 5434
@@ -4276,14 +4169,12 @@ FAIL [5447] b659 [CMP.w (A1)+, D3] 5448
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5453] 0c50 [CMP.w #, (A0)] 5454
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5457] b065 [CMP.w -(A5), D0] 5458
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5460] b46f [CMP.w (d16, A7), D2] 5461
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5466] 0c78 [CMP.w #, (xxx).w] 5467
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5471] b462 [CMP.w -(A2), D2] 5472
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5474] b058 [CMP.w (A0)+, D0] 5475
@@ -4298,6 +4189,7 @@ FAIL [5497] b470 [CMP.w (d8, A0, Xn), D2] 5498
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5498] 0c64 [CMP.w #, -(A4)] 5499
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [5500] b461 [CMP.w -(A1), D2] 5501
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5503] b276 [CMP.w (d8, A6, Xn), D1] 5504
@@ -4316,7 +4208,6 @@ FAIL [5511] b66c [CMP.w (d16, A4), D3] 5512
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5514] 0c6c [CMP.w #, (d16, A4)] 5515
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5516] b94d [CMP.w (A5)+, (A4)+] 5517
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5517] b07a [CMP.w (d16, PC), D0] 5518
@@ -4325,7 +4216,6 @@ FAIL [5518] b860 [CMP.w -(A0), D4] 5519
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5521] 0c5b [CMP.w #, (A3)+] 5522
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5524] bf4a [CMP.w (A2)+, (A7)+] 5525
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5526] b74c [CMP.w (A4)+, (A3)+] 5527
@@ -4338,7 +4228,6 @@ FAIL [5535] b86f [CMP.w (d16, A7), D4] 5536
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5537] 0c75 [CMP.w #, (d8, A5, Xn)] 5538
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5543] b74e [CMP.w (A6)+, (A3)+] 5544
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5548] bb4b [CMP.w (A3)+, (A5)+] 5549
@@ -4353,7 +4242,6 @@ FAIL [5572] b749 [CMP.w (A1)+, (A3)+] 5573
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5575] 0c76 [CMP.w #, (d8, A6, Xn)] 5576
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5576] be5b [CMP.w (A3)+, D7] 5577
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5579] bc56 [CMP.w (A6), D6] 5580
@@ -4436,6 +4324,7 @@ FAIL [5688] b464 [CMP.w -(A4), D2] 5689
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5692] 0c64 [CMP.w #, -(A4)] 5693
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [5693] bc7a [CMP.w (d16, PC), D6] 5694
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5695] bc6e [CMP.w (d16, A6), D6] 5696
@@ -4458,7 +4347,6 @@ FAIL [5717] bd4c [CMP.w (A4)+, (A6)+] 5718
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5718] 0c54 [CMP.w #, (A4)] 5719
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5720] bc70 [CMP.w (d8, A0, Xn), D6] 5721
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5721] b462 [CMP.w -(A2), D2] 5722
@@ -4475,7 +4363,6 @@ FAIL [5731] b27b [CMP.w (d8, PC, Xn), D1] 5732
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5734] 0c77 [CMP.w #, (d8, A7, Xn)] 5735
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5739] b26f [CMP.w (d16, A7), D1] 5740
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5740] b860 [CMP.w -(A0), D4] 5741
@@ -4530,7 +4417,6 @@ FAIL [5798] b94c [CMP.w (A4)+, (A4)+] 5799
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5799] 0c52 [CMP.w #, (A2)] 5800
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5802] b26f [CMP.w (d16, A7), D1] 5803
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5805] be70 [CMP.w (d8, A0, Xn), D7] 5806
@@ -4539,10 +4425,8 @@ FAIL [5806] b878 [CMP.w (xxx).w, D4] 5807
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [5807] 0c5d [CMP.w #, (A5)+] 5808
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5809] 0c59 [CMP.w #, (A1)+] 5810
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [5812] b45a [CMP.w (A2)+, D2] 5813
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5815] b07a [CMP.w (d16, PC), D0] 5816
@@ -4627,7 +4511,6 @@ FAIL [5946] b059 [CMP.w (A1)+, D0] 5947
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5948] 0c75 [CMP.w #, (d8, A5, Xn)] 5949
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [5953] bf4a [CMP.w (A2)+, (A7)+] 5954
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [5961] b94e [CMP.w (A6)+, (A4)+] 5962
@@ -4700,9 +4583,9 @@ FAIL [6043] bc6f [CMP.w (d16, A7), D6] 6044
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6045] 0c63 [CMP.w #, -(A3)] 6046
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [6046] 0c72 [CMP.w #, (d8, A2, Xn)] 6047
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6048] b854 [CMP.w (A4), D4] 6049
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6052] b26d [CMP.w (d16, A5), D1] 6053
@@ -4729,11 +4612,11 @@ FAIL [6075] b25a [CMP.w (A2)+, D1] 6076
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6076] 0c61 [CMP.w #, -(A1)] 6077
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [6077] bb4b [CMP.w (A3)+, (A5)+] 6078
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6078] 0c69 [CMP.w #, (d16, A1)] 6079
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6081] b66d [CMP.w (d16, A5), D3] 6082
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6085] b058 [CMP.w (A0)+, D0] 6086
@@ -4748,6 +4631,7 @@ FAIL [6099] b949 [CMP.w (A1)+, (A4)+] 6100
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6101] 0c64 [CMP.w #, -(A4)] 6102
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [6102] b656 [CMP.w (A6), D3] 6103
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6107] bd49 [CMP.w (A1)+, (A6)+] 6108
@@ -4776,12 +4660,10 @@ FAIL [6160] ba64 [CMP.w -(A4), D5] 6161
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6163] 0c53 [CMP.w #, (A3)] 6164
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6164] ba5a [CMP.w (A2)+, D5] 6165
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6165] 0c51 [CMP.w #, (A1)] 6166
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6167] b478 [CMP.w (xxx).w, D2] 6168
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6168] bc77 [CMP.w (d8, A7, Xn), D6] 6169
@@ -4798,6 +4680,7 @@ FAIL [6176] b853 [CMP.w (A3), D4] 6177
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6179] 0c63 [CMP.w #, -(A3)] 6180
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [6181] be62 [CMP.w -(A2), D7] 6182
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6182] bf4e [CMP.w (A6)+, (A7)+] 6183
@@ -4828,14 +4711,12 @@ FAIL [6220] b46a [CMP.w (d16, A2), D2] 6221
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6222] 0c6e [CMP.w #, (d16, A6)] 6223
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6224] b25d [CMP.w (A5)+, D1] 6225
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6230] bc56 [CMP.w (A6), D6] 6231
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6231] 0c69 [CMP.w #, (d16, A1)] 6232
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6234] bb4e [CMP.w (A6)+, (A5)+] 6235
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6235] bc72 [CMP.w (d8, A2, Xn), D6] 6236
@@ -4866,7 +4747,6 @@ FAIL [6266] ba6a [CMP.w (d16, A2), D5] 6267
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6268] 0c54 [CMP.w #, (A4)] 6269
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6270] b471 [CMP.w (d8, A1, Xn), D2] 6271
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6279] ba54 [CMP.w (A4), D5] 6280
@@ -4893,14 +4773,12 @@ FAIL [6309] be5b [CMP.w (A3)+, D7] 6310
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6314] 0c6c [CMP.w #, (d16, A4)] 6315
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6316] b67b [CMP.w (d8, PC, Xn), D3] 6317
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6317] b05a [CMP.w (A2)+, D0] 6318
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6318] 0c5a [CMP.w #, (A2)+] 6319
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6319] bd4f [CMP.w (A7)+, (A6)+] 6320
   ram[0007f5]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6321] b653 [CMP.w (A3), D3] 6322
@@ -4929,7 +4807,6 @@ FAIL [6345] bf4c [CMP.w (A4)+, (A7)+] 6346
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6346] 0c5e [CMP.w #, (A6)+] 6347
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6347] b85c [CMP.w (A4)+, D4] 6348
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6351] be70 [CMP.w (d8, A0, Xn), D7] 6352
@@ -4974,7 +4851,6 @@ FAIL [6395] b670 [CMP.w (d8, A0, Xn), D3] 6396
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6397] 0c59 [CMP.w #, (A1)+] 6398
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6400] b54d [CMP.w (A5)+, (A2)+] 6401
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6404] bb4a [CMP.w (A2)+, (A5)+] 6405
@@ -4987,7 +4863,6 @@ FAIL [6411] bc68 [CMP.w (d16, A0), D6] 6412
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6415] 0c58 [CMP.w #, (A0)+] 6416
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6419] b74c [CMP.w (A4)+, (A3)+] 6420
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6420] bc76 [CMP.w (d8, A6, Xn), D6] 6421
@@ -5030,7 +4905,6 @@ FAIL [6458] bd49 [CMP.w (A1)+, (A6)+] 6459
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6465] 0c72 [CMP.w #, (d8, A2, Xn)] 6466
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6466] b470 [CMP.w (d8, A0, Xn), D2] 6467
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6467] b676 [CMP.w (d8, A6, Xn), D3] 6468
@@ -5043,17 +4917,14 @@ FAIL [6473] b866 [CMP.w -(A6), D4] 6474
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6476] 0c5b [CMP.w #, (A3)+] 6477
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6477] 0c59 [CMP.w #, (A1)+] 6478
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6478] b456 [CMP.w (A6), D2] 6479
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6479] b14a [CMP.w (A2)+, (A0)+] 6480
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6482] 0c5b [CMP.w #, (A3)+] 6483
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6484] b263 [CMP.w -(A3), D1] 6485
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6485] b250 [CMP.w (A0), D1] 6486
@@ -5096,7 +4967,6 @@ FAIL [6536] ba65 [CMP.w -(A5), D5] 6537
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6539] 0c59 [CMP.w #, (A1)+] 6540
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6540] b866 [CMP.w -(A6), D4] 6541
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6543] be71 [CMP.w (d8, A1, Xn), D7] 6544
@@ -5117,19 +4987,16 @@ FAIL [6556] bc50 [CMP.w (A0), D6] 6557
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6557] 0c53 [CMP.w #, (A3)] 6558
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6560] b14c [CMP.w (A4)+, (A0)+] 6561
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6561] b275 [CMP.w (d8, A5, Xn), D1] 6562
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6564] 0c6c [CMP.w #, (d16, A4)] 6565
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6565] b678 [CMP.w (xxx).w, D3] 6566
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6566] 0c6f [CMP.w #, (d16, A7)] 6567
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6568] b54c [CMP.w (A4)+, (A2)+] 6569
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6570] b74e [CMP.w (A6)+, (A3)+] 6571
@@ -5150,7 +5017,6 @@ FAIL [6588] b265 [CMP.w -(A5), D1] 6589
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6590] 0c6b [CMP.w #, (d16, A3)] 6591
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6592] bc5c [CMP.w (A4)+, D6] 6593
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6594] ba78 [CMP.w (xxx).w, D5] 6595
@@ -5163,11 +5029,11 @@ FAIL [6604] b272 [CMP.w (d8, A2, Xn), D1] 6605
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6605] 0c6d [CMP.w #, (d16, A5)] 6606
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6606] be60 [CMP.w -(A0), D7] 6607
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6608] 0c66 [CMP.w #, -(A6)] 6609
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [6613] b653 [CMP.w (A3), D3] 6614
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6614] bd4c [CMP.w (A4)+, (A6)+] 6615
@@ -5196,7 +5062,6 @@ FAIL [6647] b26f [CMP.w (d16, A7), D1] 6648
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6648] 0c50 [CMP.w #, (A0)] 6649
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6650] b462 [CMP.w -(A2), D2] 6651
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6651] ba59 [CMP.w (A1)+, D5] 6652
@@ -5239,7 +5104,6 @@ FAIL [6684] b659 [CMP.w (A1)+, D3] 6685
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6686] 0c55 [CMP.w #, (A5)] 6687
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6687] b87a [CMP.w (d16, PC), D4] 6688
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6688] bd49 [CMP.w (A1)+, (A6)+] 6689
@@ -5314,7 +5178,6 @@ FAIL [6793] b25a [CMP.w (A2)+, D1] 6794
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6794] 0c50 [CMP.w #, (A0)] 6795
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6796] be64 [CMP.w -(A4), D7] 6797
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6801] b850 [CMP.w (A0), D4] 6802
@@ -5383,7 +5246,6 @@ FAIL [6881] b86b [CMP.w (d16, A3), D4] 6882
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6883] 0c5e [CMP.w #, (A6)+] 6884
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6892] ba51 [CMP.w (A1), D5] 6893
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6894] b54d [CMP.w (A5)+, (A2)+] 6895
@@ -5418,7 +5280,6 @@ FAIL [6931] b876 [CMP.w (d8, A6, Xn), D4] 6932
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6935] 0c68 [CMP.w #, (d16, A0)] 6936
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [6939] b27b [CMP.w (d8, PC, Xn), D1] 6940
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6940] bb4b [CMP.w (A3)+, (A5)+] 6941
@@ -5447,7 +5308,6 @@ FAIL [6975] b878 [CMP.w (xxx).w, D4] 6976
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [6979] 0c51 [CMP.w #, (A1)] 6980
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [6987] bd4b [CMP.w (A3)+, (A6)+] 6988
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6989] b468 [CMP.w (d16, A0), D2] 6990
@@ -5462,6 +5322,7 @@ FAIL [6997] b14e [CMP.w (A6)+, (A0)+] 6998
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [6998] 0c65 [CMP.w #, -(A5)] 6999
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7004] bc5d [CMP.w (A5)+, D6] 7005
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7007] bc62 [CMP.w -(A2), D6] 7008
@@ -5474,7 +5335,6 @@ FAIL [7018] ba55 [CMP.w (A5), D5] 7019
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7020] 0c6b [CMP.w #, (d16, A3)] 7021
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7025] b54e [CMP.w (A6)+, (A2)+] 7026
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7027] b263 [CMP.w -(A3), D1] 7028
@@ -5487,7 +5347,6 @@ FAIL [7036] b54e [CMP.w (A6)+, (A2)+] 7037
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7038] 0c53 [CMP.w #, (A3)] 7039
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7042] b670 [CMP.w (d8, A0, Xn), D3] 7043
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7045] bc5a [CMP.w (A2)+, D6] 7046
@@ -5496,7 +5355,6 @@ FAIL [7047] b072 [CMP.w (d8, A2, Xn), D0] 7048
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7048] 0c5c [CMP.w #, (A4)+] 7049
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7049] b46c [CMP.w (d16, A4), D2] 7050
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7051] b66a [CMP.w (d16, A2), D3] 7052
@@ -5509,19 +5367,16 @@ FAIL [7061] b463 [CMP.w -(A3), D2] 7062
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7066] 0c76 [CMP.w #, (d8, A6, Xn)] 7067
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7068] b879 [CMP.w (xxx).l, D4] 7069
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7072] 0c56 [CMP.w #, (A6)] 7073
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7073] b86e [CMP.w (d16, A6), D4] 7074
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7074] bd4b [CMP.w (A3)+, (A6)+] 7075
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7077] 0c6d [CMP.w #, (d16, A5)] 7078
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7078] bc54 [CMP.w (A4), D6] 7079
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7079] ba68 [CMP.w (d16, A0), D5] 7080
@@ -5530,6 +5385,7 @@ FAIL [7083] b46f [CMP.w (d16, A7), D2] 7084
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7091] 0c62 [CMP.w #, -(A2)] 7092
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7098] b064 [CMP.w -(A4), D0] 7099
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7101] b149 [CMP.w (A1)+, (A0)+] 7102
@@ -5664,7 +5520,6 @@ FAIL [7303] b058 [CMP.w (A0)+, D0] 7304
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7305] 0c6b [CMP.w #, (d16, A3)] 7306
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7308] b264 [CMP.w -(A4), D1] 7309
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7312] be7b [CMP.w (d8, PC, Xn), D7] 7313
@@ -5679,7 +5534,6 @@ FAIL [7321] b149 [CMP.w (A1)+, (A0)+] 7322
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7322] 0c70 [CMP.w #, (d8, A0, Xn)] 7323
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7324] b273 [CMP.w (d8, A3, Xn), D1] 7325
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7326] b05c [CMP.w (A4)+, D0] 7327
@@ -5712,6 +5566,7 @@ FAIL [7349] b67b [CMP.w (d8, PC, Xn), D3] 7350
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7357] 0c66 [CMP.w #, -(A6)] 7358
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7359] b45b [CMP.w (A3)+, D2] 7360
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7365] be5c [CMP.w (A4)+, D7] 7366
@@ -5726,6 +5581,7 @@ FAIL [7375] bd4f [CMP.w (A7)+, (A6)+] 7376
   ram[0007f5]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7378] 0c64 [CMP.w #, -(A4)] 7379
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7383] b651 [CMP.w (A1), D3] 7384
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7385] b250 [CMP.w (A0), D1] 7386
@@ -5734,10 +5590,8 @@ FAIL [7388] b878 [CMP.w (xxx).w, D4] 7389
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7390] 0c70 [CMP.w #, (d8, A0, Xn)] 7391
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7391] 0c76 [CMP.w #, (d8, A6, Xn)] 7392
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7392] b266 [CMP.w -(A6), D1] 7393
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7403] b349 [CMP.w (A1)+, (A1)+] 7404
@@ -5806,6 +5660,7 @@ FAIL [7479] ba5d [CMP.w (A5)+, D5] 7480
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7484] 0c66 [CMP.w #, -(A6)] 7485
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7486] b14e [CMP.w (A6)+, (A0)+] 7487
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7487] b749 [CMP.w (A1)+, (A3)+] 7488
@@ -5840,10 +5695,8 @@ FAIL [7527] bc5a [CMP.w (A2)+, D6] 7528
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7528] 0c58 [CMP.w #, (A0)+] 7529
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7533] 0c71 [CMP.w #, (d8, A1, Xn)] 7534
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7541] be70 [CMP.w (d8, A0, Xn), D7] 7542
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7542] b250 [CMP.w (A0), D1] 7543
@@ -5918,7 +5771,6 @@ FAIL [7620] b260 [CMP.w -(A0), D1] 7621
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7622] 0c6d [CMP.w #, (d16, A5)] 7623
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7628] b748 [CMP.w (A0)+, (A3)+] 7629
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7631] b465 [CMP.w -(A5), D2] 7632
@@ -5945,9 +5797,9 @@ FAIL [7664] b14c [CMP.w (A4)+, (A0)+] 7665
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7666] 0c65 [CMP.w #, -(A5)] 7667
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7667] 0c56 [CMP.w #, (A6)] 7668
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7668] ba76 [CMP.w (d8, A6, Xn), D5] 7669
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7672] bc6f [CMP.w (d16, A7), D6] 7673
@@ -5990,10 +5842,8 @@ FAIL [7720] bc65 [CMP.w -(A5), D6] 7721
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7722] 0c68 [CMP.w #, (d16, A0)] 7723
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7724] 0c59 [CMP.w #, (A1)+] 7725
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7728] b469 [CMP.w (d16, A1), D2] 7729
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7729] b34f [CMP.w (A7)+, (A1)+] 7730
@@ -6006,7 +5856,6 @@ FAIL [7740] b879 [CMP.w (xxx).l, D4] 7741
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7746] 0c73 [CMP.w #, (d8, A3, Xn)] 7747
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7747] b348 [CMP.w (A0)+, (A1)+] 7748
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7752] b472 [CMP.w (d8, A2, Xn), D2] 7753
@@ -6039,12 +5888,10 @@ FAIL [7787] b477 [CMP.w (d8, A7, Xn), D2] 7788
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7789] 0c59 [CMP.w #, (A1)+] 7790
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7795] b674 [CMP.w (d8, A4, Xn), D3] 7796
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7796] 0c6e [CMP.w #, (d16, A6)] 7797
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7797] be69 [CMP.w (d16, A1), D7] 7798
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7799] ba5a [CMP.w (A2)+, D5] 7800
@@ -6089,16 +5936,15 @@ FAIL [7853] bc60 [CMP.w -(A0), D6] 7854
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7855] 0c66 [CMP.w #, -(A6)] 7856
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
+  ram[0007ff]	expected          2 (0x2) 	got          4 (0x4)
 FAIL [7857] b276 [CMP.w (d8, A6, Xn), D1] 7858
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7858] 0c73 [CMP.w #, (d8, A3, Xn)] 7859
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7861] be5d [CMP.w (A5)+, D7] 7862
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7865] 0c53 [CMP.w #, (A3)] 7866
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7867] b14d [CMP.w (A5)+, (A0)+] 7868
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7872] b07a [CMP.w (d16, PC), D0] 7873
@@ -6137,12 +5983,10 @@ FAIL [7907] be66 [CMP.w -(A6), D7] 7908
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7908] 0c74 [CMP.w #, (d8, A4, Xn)] 7909
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7909] ba5d [CMP.w (A5)+, D5] 7910
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7912] 0c68 [CMP.w #, (d16, A0)] 7913
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7913] b855 [CMP.w (A5), D4] 7914
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7914] b26a [CMP.w (d16, A2), D1] 7915
@@ -6155,7 +5999,6 @@ FAIL [7920] b348 [CMP.w (A0)+, (A1)+] 7921
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7921] 0c5c [CMP.w #, (A4)+] 7922
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [7923] b266 [CMP.w -(A6), D1] 7924
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
 FAIL [7928] b34c [CMP.w (A4)+, (A1)+] 7929
@@ -6200,7 +6043,6 @@ FAIL [7975] bd4c [CMP.w (A4)+, (A6)+] 7976
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7978] 0c6b [CMP.w #, (d16, A3)] 7979
   ram[0007f3]	expected        117 (0x75) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          2 (0x2)
 FAIL [7981] b254 [CMP.w (A4), D1] 7982
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [7984] be60 [CMP.w -(A0), D7] 7985
@@ -6271,7 +6113,6 @@ FAIL [8052] b859 [CMP.w (A1)+, D4] 8053
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [8056] 0c55 [CMP.w #, (A5)] 8057
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 FAIL [8057] b45b [CMP.w (A3)+, D2] 8058
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [8058] be71 [CMP.w (d8, A1, Xn), D7] 8059
@@ -6282,5 +6123,4 @@ FAIL [8061] ba50 [CMP.w (A0), D5] 8062
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
 FAIL [8062] 0c5e [CMP.w #, (A6)+] 8063
   ram[0007f3]	expected         85 (0x55) 	got         21 (0x15)
-  ram[0007ff]	expected          2 (0x2) 	got          0 (0x0)
 5024 passed, 3041 failed

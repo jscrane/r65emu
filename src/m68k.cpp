@@ -478,6 +478,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0040: {	// ORI.w
+		_fault_pc_words += 1;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -491,6 +492,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0080: {	// ORI.l
+		_fault_pc_words += 2;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -517,6 +519,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0240: {	// ANDI.w
+		_fault_pc_words += 1;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -530,6 +533,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0280: {	// ANDI.l
+		_fault_pc_words += 2;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -559,6 +563,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0440: {	// SUBI.w
+		_fault_pc_words += 1;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -575,6 +580,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0480: {	// SUBI.l
+		_fault_pc_words += 2;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -607,6 +613,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0640: {	// ADDI.w
+		_fault_pc_words += 1;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -623,6 +630,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0680: {	// ADDI.l
+		_fault_pc_words += 2;		// .l immediate = 2 words, bypasses decode_ea entirely
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -652,6 +660,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0a40: {	// EORI.w
+		_fault_pc_words += 1;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -665,6 +674,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0a80: {	// EORI.l
+		_fault_pc_words += 2;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -693,6 +703,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0c40: {	// CMPI.w
+		_fault_pc_words += 1;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -708,6 +719,7 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0c80: {	// CMPI.l
+		_fault_pc_words += 2;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
