@@ -66,7 +66,7 @@ private:
 	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr }; }
 	inline uint32_t bus_addr(uint32_t addr) const { return addr & ADDRESS_MASK; }
 
-	EA decode_ea(int mode, int reg, int size, bool is_destination = false);
+	EA decode_ea(int mode, int reg, int size, bool is_destination = false, bool is_move_destination = false);
 	void commit_postinc(const EA &);
 	uint8_t read_byte(const EA &);
 	void write_byte(const EA &, uint8_t);

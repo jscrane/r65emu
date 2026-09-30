@@ -243,7 +243,6 @@ FAIL [315] 5095 [ADD.l Q, (A5)] 316
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [316] 06a3 [ADD.l #, -(A3)] 317
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [317] d0a0 [ADD.l -(A0), D0] 318
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [318] 5caa [ADD.l Q, (d16, A2)] 319
@@ -736,7 +735,6 @@ FAIL [1049] deb2 [ADD.l (d8, A2, Xn), D7] 1050
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1059] 06a1 [ADD.l #, -(A1)] 1060
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1062] daa1 [ADD.l -(A1), D5] 1063
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1064] d993 [ADD.l D4, (A3)] 1065
@@ -815,7 +813,6 @@ FAIL [1163] d399 [ADD.l D1, (A1)+] 1164
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1164] 06a6 [ADD.l #, -(A6)] 1165
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1165] d79c [ADD.l D3, (A4)+] 1166
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1169] 52a5 [ADD.l Q, -(A5)] 1170
@@ -858,7 +855,6 @@ FAIL [1227] 5caf [ADD.l Q, (d16, A7)] 1228
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1231] 06a3 [ADD.l #, -(A3)] 1232
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1235] d89a [ADD.l (A2)+, D4] 1236
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1236] d89b [ADD.l (A3)+, D4] 1237
@@ -897,7 +893,6 @@ FAIL [1269] 52b6 [ADD.l Q, (d8, A6, Xn)] 1270
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1272] 06a2 [ADD.l #, -(A2)] 1273
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1274] 06af [ADD.l #, (d16, A7)] 1275
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1275] d1af [ADD.l D0, (d16, A7)] 1276
@@ -1408,7 +1403,6 @@ FAIL [1940] d1b3 [ADD.l D0, (d8, A3, Xn)] 1941
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1941] 06a0 [ADD.l #, -(A0)] 1942
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1943] da93 [ADD.l (A3), D5] 1944
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1945] da90 [ADD.l (A0), D5] 1946
@@ -1549,7 +1543,6 @@ FAIL [2145] 5e94 [ADD.l Q, (A4)] 2146
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2147] 06a1 [ADD.l #, -(A1)] 2148
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2149] 069d [ADD.l #, (A5)+] 2150
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2150] d395 [ADD.l D1, (A5)] 2151
@@ -1712,7 +1705,6 @@ FAIL [2341] d6b8 [ADD.l (xxx).w, D3] 2342
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2343] 06a0 [ADD.l #, -(A0)] 2344
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2345] d0b1 [ADD.l (d8, A1, Xn), D0] 2346
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2348] d990 [ADD.l D4, (A0)] 2349
@@ -1855,7 +1847,6 @@ FAIL [2524] dea8 [ADD.l (d16, A0), D7] 2525
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2525] 06a2 [ADD.l #, -(A2)] 2526
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2526] 5090 [ADD.l Q, (A0)] 2527
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2527] d7a0 [ADD.l D3, -(A0)] 2528
@@ -2098,7 +2089,6 @@ FAIL [2913] d298 [ADD.l (A0)+, D1] 2914
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2916] 06a3 [ADD.l #, -(A3)] 2917
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2918] daba [ADD.l (d16, PC), D5] 2919
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2921] d0b2 [ADD.l (d8, A2, Xn), D0] 2922
@@ -2407,7 +2397,6 @@ FAIL [3378] 5693 [ADD.l Q, (A3)] 3379
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3381] 06a3 [ADD.l #, -(A3)] 3382
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3385] dcb6 [ADD.l (d8, A6, Xn), D6] 3386
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3386] d0b1 [ADD.l (d8, A1, Xn), D0] 3387
@@ -2416,7 +2405,6 @@ FAIL [3389] dfaf [ADD.l D7, (d16, A7)] 3390
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3390] 06a4 [ADD.l #, -(A4)] 3391
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3394] d6bb [ADD.l (d8, PC, Xn), D3] 3395
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3398] 5891 [ADD.l Q, (A1)] 3399
@@ -2507,7 +2495,6 @@ FAIL [3516] d199 [ADD.l D0, (A1)+] 3517
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3518] 06a1 [ADD.l #, -(A1)] 3519
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3521] 5698 [ADD.l Q, (A0)+] 3522
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3522] d1b8 [ADD.l D0, (xxx).w] 3523
@@ -2712,7 +2699,6 @@ FAIL [3775] df9e [ADD.l D7, (A6)+] 3776
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3777] 06a0 [ADD.l #, -(A0)] 3778
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3783] 06b6 [ADD.l #, (d8, A6, Xn)] 3784
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3784] d5a2 [ADD.l D2, -(A2)] 3785
@@ -2885,7 +2871,6 @@ FAIL [4004] d1a1 [ADD.l D0, -(A1)] 4005
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4007] 06a0 [ADD.l #, -(A0)] 4008
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4010] d4b2 [ADD.l (d8, A2, Xn), D2] 4011
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4016] d7b5 [ADD.l D3, (d8, A5, Xn)] 4017
@@ -2970,7 +2955,6 @@ FAIL [4096] 50a5 [ADD.l Q, -(A5)] 4097
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4098] 06a5 [ADD.l #, -(A5)] 4099
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4103] d2b2 [ADD.l (d8, A2, Xn), D1] 4104
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4111] dbb5 [ADD.l D5, (d8, A5, Xn)] 4112
@@ -3095,7 +3079,6 @@ FAIL [4278] 5ca0 [ADD.l Q, -(A0)] 4279
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4279] 06a2 [ADD.l #, -(A2)] 4280
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4280] d9a2 [ADD.l D4, -(A2)] 4281
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4281] de96 [ADD.l (A6), D7] 4282
@@ -3120,7 +3103,6 @@ FAIL [4314] 58ae [ADD.l Q, (d16, A6)] 4315
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4316] 06a3 [ADD.l #, -(A3)] 4317
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4317] dda5 [ADD.l D6, -(A5)] 4318
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4318] d9a4 [ADD.l D4, -(A4)] 4319
@@ -3585,7 +3567,6 @@ FAIL [4962] dda8 [ADD.l D6, (d16, A0)] 4963
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4963] 06a3 [ADD.l #, -(A3)] 4964
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4966] d8aa [ADD.l (d16, A2), D4] 4967
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4968] 5c93 [ADD.l Q, (A3)] 4969
@@ -4186,7 +4167,6 @@ FAIL [5782] 54a1 [ADD.l Q, -(A1)] 5783
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5784] 06a3 [ADD.l #, -(A3)] 5785
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5790] 56b1 [ADD.l Q, (d8, A1, Xn)] 5791
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5791] 549a [ADD.l Q, (A2)+] 5792
@@ -4923,7 +4903,6 @@ FAIL [6762] 5ca2 [ADD.l Q, -(A2)] 6763
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6764] 06a1 [ADD.l #, -(A1)] 6765
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6765] dcaa [ADD.l (d16, A2), D6] 6766
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6767] dab4 [ADD.l (d8, A4, Xn), D5] 6768
@@ -5270,7 +5249,6 @@ FAIL [7235] d5aa [ADD.l D2, (d16, A2)] 7236
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7238] 06a5 [ADD.l #, -(A5)] 7239
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7244] 56a3 [ADD.l Q, -(A3)] 7245
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7249] d9b5 [ADD.l D4, (d8, A5, Xn)] 7250
@@ -5417,7 +5395,6 @@ FAIL [7455] d0aa [ADD.l (d16, A2), D0] 7456
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7457] 06a0 [ADD.l #, -(A0)] 7458
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7467] 5291 [ADD.l Q, (A1)] 7468
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7468] d0b4 [ADD.l (d8, A4, Xn), D0] 7469

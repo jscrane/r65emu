@@ -127,24 +127,24 @@ void m68k::decode_execute(uint16_t op) {
 	}
 }
 
-static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destination) {
+static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 	switch (mode) {
 	case 0: case 1: case 2: return 0;
-	case 3: return 0;				// (An)+ -- true count, both src and dst
-	case 4: return is_destination ? 1 : 0;		// -(An) -- phantom only as destination
+	case 3: return 0;						// (An)+ -- true count, both src and dst
+	case 4: return is_destination && is_move_destination? 1: 0;	// -(An) -- phantom only as destination
 	case 5: case 6: return 1;
 	case 7:
 		switch (reg) {
 		case 0: return 1;			// (xxx).w
-		case 1: return is_destination ? 1 : 2;	// (xxx).l -- asymmetric, verified
+		case 1: return is_destination? 1: 2;	// (xxx).l -- asymmetric, verified
 		case 2: case 3: return 1;
-		case 4: return (size == 4) ? 2 : 1;	// #imm
+		case 4: return size == 4? 2: 1;		// #imm
 		}
 	}
 	return 0;
 }
 
-m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination) {
+m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 
 	if (!is_destination) {
 		// Dn, An, #imm need no address-computation unit at all
@@ -156,7 +156,7 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination) {
 		// (xxx).l as destination: cross-operand rule, verified 100%
 		words = _src_needed_ea_computation ? 1 : 2;
 	} else {
-		words = fault_pc_words_for_mode(mode, reg, size, is_destination);
+		words = fault_pc_words_for_mode(mode, reg, size, is_destination, is_move_destination);
 	}
 	_fault_pc_words += words;
 
@@ -479,6 +479,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0040: {	// ORI.w
 		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -493,6 +494,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0080: {	// ORI.l
 		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -520,6 +522,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0240: {	// ANDI.w
 		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -534,6 +537,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0280: {	// ANDI.l
 		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -564,6 +568,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0440: {	// SUBI.w
 		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -581,6 +586,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0480: {	// SUBI.l
 		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -614,6 +620,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0640: {	// ADDI.w
 		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -630,7 +637,8 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0680: {	// ADDI.l
-		_fault_pc_words += 2;		// .l immediate = 2 words, bypasses decode_ea entirely
+		_fault_pc_words += 2;			// .l immediate = 2 words, bypasses decode_ea entirely
+		_src_needed_ea_computation = false;	// immediate source -- never needs EA computation,
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -661,6 +669,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0a40: {	// EORI.w
 		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -675,6 +684,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0a80: {	// EORI.l
 		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -704,6 +714,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0c40: {	// CMPI.w
 		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
 		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
@@ -720,6 +731,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0c80: {	// CMPI.l
 		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
 		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
@@ -814,7 +826,7 @@ void m68k::movew(uint16_t op) {
 	set_nz((int16_t)v);
 	clr_vc();
 
-	EA dst = decode_ea(dmode, dreg, 2, true);
+	EA dst = decode_ea(dmode, dreg, 2, true, true);
 	write_word(dst, v);
 	if (_trapped) return;
 	commit_postinc(dst);   // conditional -- a write's postinc only commits on success
@@ -845,7 +857,7 @@ void m68k::movel(uint16_t op) {
 	if (dmode == 3)      write_long_postinc(dreg, v);
 	else if (dmode == 4) write_long_predec(dreg, v);
 	else {
-		EA dst = decode_ea(dmode, dreg, 4, true);
+		EA dst = decode_ea(dmode, dreg, 4, true, true);
 		write_long(dst, v);
 		if (_trapped) return;
 		commit_postinc(dst);

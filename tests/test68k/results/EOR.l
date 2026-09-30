@@ -65,7 +65,6 @@ FAIL [82] bb95 [EOR.l D5, (A5)] 83
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [92] 0ab9 [EOR.l #, (xxx).l] 93
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [99] b592 [EOR.l D2, (A2)] 100
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [102] b9b1 [EOR.l D4, (d8, A1, Xn)] 103
@@ -84,7 +83,6 @@ FAIL [115] b9a5 [EOR.l D4, -(A5)] 116
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [117] 0aa4 [EOR.l #, -(A4)] 118
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [119] b9ac [EOR.l D4, (d16, A4)] 120
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [121] b9a3 [EOR.l D4, -(A3)] 122
@@ -115,7 +113,6 @@ FAIL [156] bf92 [EOR.l D7, (A2)] 157
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [158] 0aa0 [EOR.l #, -(A0)] 159
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [161] b7a2 [EOR.l D3, -(A2)] 162
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [162] b1a2 [EOR.l D0, -(A2)] 163
@@ -182,7 +179,6 @@ FAIL [221] 0aaf [EOR.l #, (d16, A7)] 222
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [225] 0aa0 [EOR.l #, -(A0)] 226
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [227] b3b0 [EOR.l D1, (d8, A0, Xn)] 228
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [231] b1b5 [EOR.l D0, (d8, A5, Xn)] 232
@@ -227,7 +223,6 @@ FAIL [282] bd99 [EOR.l D6, (A1)+] 283
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [283] 0aa2 [EOR.l #, -(A2)] 284
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [285] b9b1 [EOR.l D4, (d8, A1, Xn)] 286
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [287] b999 [EOR.l D4, (A1)+] 288
@@ -256,7 +251,6 @@ FAIL [302] 0ab6 [EOR.l #, (d8, A6, Xn)] 303
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [304] 0aa0 [EOR.l #, -(A0)] 305
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [308] b79a [EOR.l D3, (A2)+] 309
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [309] bfa9 [EOR.l D7, (d16, A1)] 310
@@ -267,7 +261,6 @@ FAIL [315] b7a5 [EOR.l D3, -(A5)] 316
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [316] 0aa5 [EOR.l #, -(A5)] 317
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [317] bb98 [EOR.l D5, (A0)+] 318
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [318] bfb3 [EOR.l D7, (d8, A3, Xn)] 319
@@ -466,7 +459,6 @@ FAIL [509] bfb5 [EOR.l D7, (d8, A5, Xn)] 510
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [510] 0aa0 [EOR.l #, -(A0)] 511
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [511] b399 [EOR.l D1, (A1)+] 512
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [514] bdb5 [EOR.l D6, (d8, A5, Xn)] 515
@@ -803,7 +795,6 @@ FAIL [940] b9a1 [EOR.l D4, -(A1)] 941
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [943] 0aa6 [EOR.l #, -(A6)] 944
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [944] bba9 [EOR.l D5, (d16, A1)] 945
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [946] b1b0 [EOR.l D0, (d8, A0, Xn)] 947
@@ -832,7 +823,6 @@ FAIL [966] b1b6 [EOR.l D0, (d8, A6, Xn)] 967
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [975] 0ab9 [EOR.l #, (xxx).l] 976
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [976] b5b2 [EOR.l D2, (d8, A2, Xn)] 977
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [978] b9ad [EOR.l D4, (d16, A5)] 979
@@ -863,7 +853,6 @@ FAIL [1003] bda5 [EOR.l D6, -(A5)] 1004
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1004] 0ab9 [EOR.l #, (xxx).l] 1005
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [1006] bd91 [EOR.l D6, (A1)] 1007
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1011] b593 [EOR.l D2, (A3)] 1012
@@ -962,7 +951,6 @@ FAIL [1146] b1aa [EOR.l D0, (d16, A2)] 1147
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1148] 0aa1 [EOR.l #, -(A1)] 1149
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1151] bf9e [EOR.l D7, (A6)+] 1152
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1152] 0aaa [EOR.l #, (d16, A2)] 1153
@@ -981,7 +969,6 @@ FAIL [1172] b794 [EOR.l D3, (A4)] 1173
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1175] 0aa6 [EOR.l #, -(A6)] 1176
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1179] b190 [EOR.l D0, (A0)] 1180
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1180] bba6 [EOR.l D5, -(A6)] 1181
@@ -1114,7 +1101,6 @@ FAIL [1371] b1af [EOR.l D0, (d16, A7)] 1372
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1372] 0aa2 [EOR.l #, -(A2)] 1373
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1375] b598 [EOR.l D2, (A0)+] 1376
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1376] bbb6 [EOR.l D5, (d8, A6, Xn)] 1377
@@ -1163,7 +1149,6 @@ FAIL [1432] b3b4 [EOR.l D1, (d8, A4, Xn)] 1433
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1440] 0aa3 [EOR.l #, -(A3)] 1441
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1442] bdb9 [EOR.l D6, (xxx).l] 1443
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1443] 0aa9 [EOR.l #, (d16, A1)] 1444
@@ -1244,7 +1229,6 @@ FAIL [1529] b99c [EOR.l D4, (A4)+] 1530
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1530] 0aa2 [EOR.l #, -(A2)] 1531
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1531] bd94 [EOR.l D6, (A4)] 1532
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1532] bda4 [EOR.l D6, -(A4)] 1533
@@ -1273,7 +1257,6 @@ FAIL [1563] b79d [EOR.l D3, (A5)+] 1564
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1564] 0aa3 [EOR.l #, -(A3)] 1565
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1565] bda8 [EOR.l D6, (d16, A0)] 1566
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1574] b39d [EOR.l D1, (A5)+] 1575
@@ -1286,7 +1269,6 @@ FAIL [1586] b5ac [EOR.l D2, (d16, A4)] 1587
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1589] 0aa0 [EOR.l #, -(A0)] 1590
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1590] bfa4 [EOR.l D7, -(A4)] 1591
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1592] b5b0 [EOR.l D2, (d8, A0, Xn)] 1593
@@ -1305,12 +1287,10 @@ FAIL [1603] b19d [EOR.l D0, (A5)+] 1604
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1604] 0aa3 [EOR.l #, -(A3)] 1605
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1608] 0a91 [EOR.l #, (A1)] 1609
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1610] 0aa1 [EOR.l #, -(A1)] 1611
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1613] bda8 [EOR.l D6, (d16, A0)] 1614
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1617] bf9a [EOR.l D7, (A2)+] 1618
@@ -1611,7 +1591,6 @@ FAIL [1988] 0aaf [EOR.l #, (d16, A7)] 1989
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [1990] 0aa1 [EOR.l #, -(A1)] 1991
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [1991] b991 [EOR.l D4, (A1)] 1992
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [1995] b3a8 [EOR.l D1, (d16, A0)] 1996
@@ -1700,7 +1679,6 @@ FAIL [2106] b5b3 [EOR.l D2, (d8, A3, Xn)] 2107
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2108] 0aa1 [EOR.l #, -(A1)] 2109
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2111] bdb4 [EOR.l D6, (d8, A4, Xn)] 2112
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2114] bfb0 [EOR.l D7, (d8, A0, Xn)] 2115
@@ -1743,7 +1721,6 @@ FAIL [2171] b596 [EOR.l D2, (A6)] 2172
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2172] 0aa5 [EOR.l #, -(A5)] 2173
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2173] b3a8 [EOR.l D1, (d16, A0)] 2174
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2174] 0ab1 [EOR.l #, (d8, A1, Xn)] 2175
@@ -1792,7 +1769,6 @@ FAIL [2232] bfa5 [EOR.l D7, -(A5)] 2233
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2235] 0aa6 [EOR.l #, -(A6)] 2236
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2236] bb9a [EOR.l D5, (A2)+] 2237
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2239] b393 [EOR.l D1, (A3)] 2240
@@ -1919,7 +1895,6 @@ FAIL [2380] bf95 [EOR.l D7, (A5)] 2381
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2385] 0aa5 [EOR.l #, -(A5)] 2386
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2390] bfa5 [EOR.l D7, -(A5)] 2391
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2395] b7ad [EOR.l D3, (d16, A5)] 2396
@@ -2036,7 +2011,6 @@ FAIL [2546] b9ab [EOR.l D4, (d16, A3)] 2547
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2547] 0aa0 [EOR.l #, -(A0)] 2548
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2548] b3a1 [EOR.l D1, -(A1)] 2549
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2555] b7a0 [EOR.l D3, -(A0)] 2556
@@ -2055,7 +2029,6 @@ FAIL [2578] b790 [EOR.l D3, (A0)] 2579
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [2583] 0ab9 [EOR.l #, (xxx).l] 2584
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [2584] b1a5 [EOR.l D0, -(A5)] 2585
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2585] bdb1 [EOR.l D6, (d8, A1, Xn)] 2586
@@ -2132,7 +2105,6 @@ FAIL [2684] bba4 [EOR.l D5, -(A4)] 2685
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2687] 0aa1 [EOR.l #, -(A1)] 2688
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2689] b5a1 [EOR.l D2, -(A1)] 2690
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2691] bfac [EOR.l D7, (d16, A4)] 2692
@@ -2169,7 +2141,6 @@ FAIL [2715] bdac [EOR.l D6, (d16, A4)] 2716
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2716] 0aa1 [EOR.l #, -(A1)] 2717
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [2717] bdab [EOR.l D6, (d16, A3)] 2718
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [2718] b9af [EOR.l D4, (d16, A7)] 2719
@@ -2418,7 +2389,6 @@ FAIL [3018] bd9a [EOR.l D6, (A2)+] 3019
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3020] 0aa2 [EOR.l #, -(A2)] 3021
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3022] bfa5 [EOR.l D7, -(A5)] 3023
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3024] bfa6 [EOR.l D7, -(A6)] 3025
@@ -2431,7 +2401,6 @@ FAIL [3032] bbb4 [EOR.l D5, (d8, A4, Xn)] 3033
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3034] 0aa3 [EOR.l #, -(A3)] 3035
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3039] bba3 [EOR.l D5, -(A3)] 3040
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3040] b39e [EOR.l D1, (A6)+] 3041
@@ -2566,7 +2535,6 @@ FAIL [3196] bb96 [EOR.l D5, (A6)] 3197
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3199] 0aa4 [EOR.l #, -(A4)] 3200
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3201] bdb3 [EOR.l D6, (d8, A3, Xn)] 3202
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3202] b5a4 [EOR.l D2, -(A4)] 3203
@@ -2817,7 +2785,6 @@ FAIL [3520] b3a1 [EOR.l D1, -(A1)] 3521
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3523] 0aa1 [EOR.l #, -(A1)] 3524
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3527] b5b0 [EOR.l D2, (d8, A0, Xn)] 3528
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3531] b5b8 [EOR.l D2, (xxx).w] 3532
@@ -2834,7 +2801,6 @@ FAIL [3541] b5a4 [EOR.l D2, -(A4)] 3542
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3543] 0aa2 [EOR.l #, -(A2)] 3544
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3551] b9b6 [EOR.l D4, (d8, A6, Xn)] 3552
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3555] b3af [EOR.l D1, (d16, A7)] 3556
@@ -2873,7 +2839,6 @@ FAIL [3600] bfa9 [EOR.l D7, (d16, A1)] 3601
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3605] 0aa4 [EOR.l #, -(A4)] 3606
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3607] b79e [EOR.l D3, (A6)+] 3608
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3610] b7b1 [EOR.l D3, (d8, A1, Xn)] 3611
@@ -2956,7 +2921,6 @@ FAIL [3684] b195 [EOR.l D0, (A5)] 3685
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3688] 0aa2 [EOR.l #, -(A2)] 3689
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3690] b798 [EOR.l D3, (A0)+] 3691
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3693] b7af [EOR.l D3, (d16, A7)] 3694
@@ -2993,7 +2957,6 @@ FAIL [3726] 0ab0 [EOR.l #, (d8, A0, Xn)] 3727
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3732] 0aa3 [EOR.l #, -(A3)] 3733
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3733] b7a3 [EOR.l D3, -(A3)] 3734
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3735] 0a93 [EOR.l #, (A3)] 3736
@@ -3026,7 +2989,6 @@ FAIL [3760] b7af [EOR.l D3, (d16, A7)] 3761
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3763] 0aa6 [EOR.l #, -(A6)] 3764
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3766] b9ac [EOR.l D4, (d16, A4)] 3767
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3769] b7b6 [EOR.l D3, (d8, A6, Xn)] 3770
@@ -3069,7 +3031,6 @@ FAIL [3819] bd98 [EOR.l D6, (A0)+] 3820
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3821] 0aa6 [EOR.l #, -(A6)] 3822
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3823] b99a [EOR.l D4, (A2)+] 3824
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3825] b79d [EOR.l D3, (A5)+] 3826
@@ -3108,7 +3069,6 @@ FAIL [3860] bba4 [EOR.l D5, -(A4)] 3861
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3861] 0aa3 [EOR.l #, -(A3)] 3862
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3862] b7ab [EOR.l D3, (d16, A3)] 3863
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3863] b1a2 [EOR.l D0, -(A2)] 3864
@@ -3183,7 +3143,6 @@ FAIL [3939] b1a0 [EOR.l D0, -(A0)] 3940
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3942] 0aa0 [EOR.l #, -(A0)] 3943
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [3948] bdb0 [EOR.l D6, (d8, A0, Xn)] 3949
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [3956] b192 [EOR.l D0, (A2)] 3957
@@ -3268,7 +3227,6 @@ FAIL [4057] bdae [EOR.l D6, (d16, A6)] 4058
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4058] 0aa3 [EOR.l #, -(A3)] 4059
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4062] b790 [EOR.l D3, (A0)] 4063
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [4063] b1af [EOR.l D0, (d16, A7)] 4064
@@ -3463,7 +3421,6 @@ FAIL [4262] b99d [EOR.l D4, (A5)+] 4263
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [4269] 0aa6 [EOR.l #, -(A6)] 4270
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4274] bb9c [EOR.l D5, (A4)+] 4275
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [4275] bfa9 [EOR.l D7, (d16, A1)] 4276
@@ -3520,7 +3477,6 @@ FAIL [4332] b995 [EOR.l D4, (A5)] 4333
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [4335] 0ab9 [EOR.l #, (xxx).l] 4336
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [4337] b7a8 [EOR.l D3, (d16, A0)] 4338
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4338] bf9a [EOR.l D7, (A2)+] 4339
@@ -3631,7 +3587,6 @@ FAIL [4493] b195 [EOR.l D0, (A5)] 4494
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [4498] 0ab9 [EOR.l #, (xxx).l] 4499
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [4501] b5a6 [EOR.l D2, -(A6)] 4502
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4502] b396 [EOR.l D1, (A6)] 4503
@@ -3714,7 +3669,6 @@ FAIL [4601] b7b7 [EOR.l D3, (d8, A7, Xn)] 4602
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4606] 0aa3 [EOR.l #, -(A3)] 4607
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4607] 0ab3 [EOR.l #, (d8, A3, Xn)] 4608
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4611] b992 [EOR.l D4, (A2)] 4612
@@ -3853,7 +3807,6 @@ FAIL [4770] bdb6 [EOR.l D6, (d8, A6, Xn)] 4771
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4772] 0aa5 [EOR.l #, -(A5)] 4773
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [4773] 0aab [EOR.l #, (d16, A3)] 4774
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4777] b9b1 [EOR.l D4, (d8, A1, Xn)] 4778
@@ -4044,7 +3997,6 @@ FAIL [5028] b1a3 [EOR.l D0, -(A3)] 5029
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5030] 0aa5 [EOR.l #, -(A5)] 5031
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5035] b9ab [EOR.l D4, (d16, A3)] 5036
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5036] b3b7 [EOR.l D1, (d8, A7, Xn)] 5037
@@ -4053,7 +4005,6 @@ FAIL [5039] b7a8 [EOR.l D3, (d16, A0)] 5040
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5040] 0aa2 [EOR.l #, -(A2)] 5041
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5043] bda1 [EOR.l D6, -(A1)] 5044
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5048] bdb2 [EOR.l D6, (d8, A2, Xn)] 5049
@@ -4104,7 +4055,6 @@ FAIL [5089] b39e [EOR.l D1, (A6)+] 5090
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [5091] 0aa6 [EOR.l #, -(A6)] 5092
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5093] b3ad [EOR.l D1, (d16, A5)] 5094
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5099] b5b7 [EOR.l D2, (d8, A7, Xn)] 5100
@@ -4283,7 +4233,6 @@ FAIL [5349] b59a [EOR.l D2, (A2)+] 5350
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [5350] 0aa3 [EOR.l #, -(A3)] 5351
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5352] b791 [EOR.l D3, (A1)] 5353
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [5355] b1a6 [EOR.l D0, -(A6)] 5356
@@ -4322,7 +4271,6 @@ FAIL [5413] b7a0 [EOR.l D3, -(A0)] 5414
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5415] 0aa4 [EOR.l #, -(A4)] 5416
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5417] b9a0 [EOR.l D4, -(A0)] 5418
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5419] bda4 [EOR.l D6, -(A4)] 5420
@@ -4431,7 +4379,6 @@ FAIL [5583] b3a3 [EOR.l D1, -(A3)] 5584
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5590] 0aa1 [EOR.l #, -(A1)] 5591
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5591] bb9a [EOR.l D5, (A2)+] 5592
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [5597] b5a8 [EOR.l D2, (d16, A0)] 5598
@@ -4516,7 +4463,6 @@ FAIL [5686] bbaf [EOR.l D5, (d16, A7)] 5687
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5687] 0aa6 [EOR.l #, -(A6)] 5688
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5692] b7b5 [EOR.l D3, (d8, A5, Xn)] 5693
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5695] b1a2 [EOR.l D0, -(A2)] 5696
@@ -4689,7 +4635,6 @@ FAIL [5919] b391 [EOR.l D1, (A1)] 5920
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [5923] 0aa3 [EOR.l #, -(A3)] 5924
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5925] b5b0 [EOR.l D2, (d8, A0, Xn)] 5926
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5927] b9a5 [EOR.l D4, -(A5)] 5928
@@ -4742,7 +4687,6 @@ FAIL [5992] bbb3 [EOR.l D5, (d8, A3, Xn)] 5993
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5994] 0aa5 [EOR.l #, -(A5)] 5995
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [5996] b1a0 [EOR.l D0, -(A0)] 5997
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [5998] bfb2 [EOR.l D7, (d8, A2, Xn)] 5999
@@ -4779,7 +4723,6 @@ FAIL [6038] b19b [EOR.l D0, (A3)+] 6039
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6042] 0aa0 [EOR.l #, -(A0)] 6043
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6043] bfb9 [EOR.l D7, (xxx).l] 6044
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6044] bdaa [EOR.l D6, (d16, A2)] 6045
@@ -4902,7 +4845,6 @@ FAIL [6189] b998 [EOR.l D4, (A0)+] 6190
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6192] 0aa0 [EOR.l #, -(A0)] 6193
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6194] b79b [EOR.l D3, (A3)+] 6195
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6195] 0a9e [EOR.l #, (A6)+] 6196
@@ -4941,7 +4883,6 @@ FAIL [6231] bbb4 [EOR.l D5, (d8, A4, Xn)] 6232
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6232] 0aa2 [EOR.l #, -(A2)] 6233
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6233] bdb4 [EOR.l D6, (d8, A4, Xn)] 6234
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6234] b3a8 [EOR.l D1, (d16, A0)] 6235
@@ -4984,7 +4925,6 @@ FAIL [6277] b5b4 [EOR.l D2, (d8, A4, Xn)] 6278
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6280] 0aa5 [EOR.l #, -(A5)] 6281
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6282] b796 [EOR.l D3, (A6)] 6283
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6284] bda8 [EOR.l D6, (d16, A0)] 6285
@@ -5009,7 +4949,6 @@ FAIL [6298] b1b7 [EOR.l D0, (d8, A7, Xn)] 6299
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6299] 0aa6 [EOR.l #, -(A6)] 6300
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6304] bb9c [EOR.l D5, (A4)+] 6305
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6309] bf95 [EOR.l D7, (A5)] 6310
@@ -5074,7 +5013,6 @@ FAIL [6395] b5aa [EOR.l D2, (d16, A2)] 6396
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6397] 0aa3 [EOR.l #, -(A3)] 6398
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6402] b1a2 [EOR.l D0, -(A2)] 6403
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6403] bfad [EOR.l D7, (d16, A5)] 6404
@@ -5263,7 +5201,6 @@ FAIL [6656] b99d [EOR.l D4, (A5)+] 6657
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6658] 0ab9 [EOR.l #, (xxx).l] 6659
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [6661] bdb0 [EOR.l D6, (d8, A0, Xn)] 6662
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6663] b9b8 [EOR.l D4, (xxx).w] 6664
@@ -5330,7 +5267,6 @@ FAIL [6733] 0a93 [EOR.l #, (A3)] 6734
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6734] 0aa6 [EOR.l #, -(A6)] 6735
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6739] bb9a [EOR.l D5, (A2)+] 6740
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6743] 0aae [EOR.l #, (d16, A6)] 6744
@@ -5361,7 +5297,6 @@ FAIL [6776] b3b3 [EOR.l D1, (d8, A3, Xn)] 6777
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6779] 0aa1 [EOR.l #, -(A1)] 6780
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6783] b994 [EOR.l D4, (A4)] 6784
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6785] b1a1 [EOR.l D0, -(A1)] 6786
@@ -5426,7 +5361,6 @@ FAIL [6849] b7aa [EOR.l D3, (d16, A2)] 6850
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6850] 0aa2 [EOR.l #, -(A2)] 6851
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6853] b996 [EOR.l D4, (A6)] 6854
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [6854] bd9d [EOR.l D6, (A5)+] 6855
@@ -5471,7 +5405,6 @@ FAIL [6913] b3a0 [EOR.l D1, -(A0)] 6914
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6915] 0aa3 [EOR.l #, -(A3)] 6916
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [6917] 0ab6 [EOR.l #, (d8, A6, Xn)] 6918
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [6919] bbb3 [EOR.l D5, (d8, A3, Xn)] 6920
@@ -5598,7 +5531,6 @@ FAIL [7065] b99c [EOR.l D4, (A4)+] 7066
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7070] 0aa2 [EOR.l #, -(A2)] 7071
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7072] b1b7 [EOR.l D0, (d8, A7, Xn)] 7073
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7073] bfa5 [EOR.l D7, -(A5)] 7074
@@ -5757,7 +5689,6 @@ FAIL [7261] b3a5 [EOR.l D1, -(A5)] 7262
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7264] 0aa1 [EOR.l #, -(A1)] 7265
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7265] bdb5 [EOR.l D6, (d8, A5, Xn)] 7266
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7268] b59c [EOR.l D2, (A4)+] 7269
@@ -5776,7 +5707,6 @@ FAIL [7290] 0ab0 [EOR.l #, (d8, A0, Xn)] 7291
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7294] 0ab9 [EOR.l #, (xxx).l] 7295
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [7298] b5a4 [EOR.l D2, -(A4)] 7299
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7299] b998 [EOR.l D4, (A0)+] 7300
@@ -5805,7 +5735,6 @@ FAIL [7338] bf9a [EOR.l D7, (A2)+] 7339
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7339] 0ab9 [EOR.l #, (xxx).l] 7340
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [7341] b99e [EOR.l D4, (A6)+] 7342
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7342] b598 [EOR.l D2, (A0)+] 7343
@@ -5830,7 +5759,6 @@ FAIL [7371] 0aa8 [EOR.l #, (d16, A0)] 7372
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7375] 0aa6 [EOR.l #, -(A6)] 7376
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7377] bfa9 [EOR.l D7, (d16, A1)] 7378
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7378] b3a0 [EOR.l D1, -(A0)] 7379
@@ -6093,7 +6021,6 @@ FAIL [7676] b7b7 [EOR.l D3, (d8, A7, Xn)] 7677
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7683] 0aa6 [EOR.l #, -(A6)] 7684
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7686] bf96 [EOR.l D7, (A6)] 7687
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7691] b5b5 [EOR.l D2, (d8, A5, Xn)] 7692
@@ -6154,7 +6081,6 @@ FAIL [7751] 0a9d [EOR.l #, (A5)+] 7752
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7753] 0aa3 [EOR.l #, -(A3)] 7754
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7754] b9b5 [EOR.l D4, (d8, A5, Xn)] 7755
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [7755] bfad [EOR.l D7, (d16, A5)] 7756
@@ -6325,7 +6251,6 @@ FAIL [7947] bb94 [EOR.l D5, (A4)] 7948
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7954] 0aa5 [EOR.l #, -(A5)] 7955
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [7959] b998 [EOR.l D4, (A0)+] 7960
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [7961] b1b9 [EOR.l D0, (xxx).l] 7962
@@ -6380,7 +6305,6 @@ FAIL [8040] bdac [EOR.l D6, (d16, A4)] 8041
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [8044] 0aa2 [EOR.l #, -(A2)] 8045
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          4 (0x4) 	got          6 (0x6)
 FAIL [8047] b196 [EOR.l D0, (A6)] 8048
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [8049] b7a6 [EOR.l D3, -(A6)] 8050
