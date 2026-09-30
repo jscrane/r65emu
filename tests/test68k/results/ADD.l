@@ -2205,7 +2205,6 @@ FAIL [3082] d09d [ADD.l (A5)+, D0] 3083
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3083] 06b9 [ADD.l #, (xxx).l] 3084
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [3084] 5490 [ADD.l Q, (A0)] 3085
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [3085] d5b1 [ADD.l D2, (d8, A1, Xn)] 3086
@@ -3010,7 +3009,6 @@ FAIL [4155] 54b0 [ADD.l Q, (d8, A0, Xn)] 4156
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
 FAIL [4156] 06b9 [ADD.l #, (xxx).l] 4157
   ram[0007f3]	expected        181 (0xb5) 	got         21 (0x15)
-  ram[0007ff]	expected          8 (0x8) 	got          6 (0x6)
 FAIL [4162] de98 [ADD.l (A0)+, D7] 4163
   ram[0007f3]	expected        149 (0x95) 	got         21 (0x15)
 FAIL [4163] dab1 [ADD.l (d8, A1, Xn), D5] 4164
