@@ -358,7 +358,6 @@ void m68k::write_long_predec(int reg, uint32_t v) {
 }
 
 void m68k::write_long_postinc(int reg, uint32_t v) {
-	_fault_pc_words += 1;
 	uint32_t addr = a(reg);
 	write16(addr, (uint16_t)(v >> 16));        // high word first, at original address
 	if (_trapped) return;                      // write-postinc: only commit on success
