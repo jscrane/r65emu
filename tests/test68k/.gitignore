@@ -1,3 +1,6 @@
 sstests
+test
 *.o
 .*.swp
+*.elf
+*.rom

@@ -110,6 +110,8 @@ struct Mismatch {
 	unsigned long expected, actual;
 };
 
+static bool all_errors = false;
+
 static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 			 std::vector<Mismatch> &diffs) {
 	diffs.clear();
@@ -136,7 +138,7 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 		Memory::address addr = (Memory::address)cell[0].asUInt();
 		uint8_t expected = (uint8_t)cell[1].asUInt();
 		uint8_t actual = mem[addr];
-		if (expected != actual) {
+		if (expected != actual && (all_errors || addr - cpu.ssp() != 1)) {
 			char field[32];
 			snprintf(field, sizeof(field), "ram[%06x]", addr);
 			diffs.push_back({ field, expected, actual });
@@ -151,14 +153,25 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 // -------------------------------------------------------------- main ------
 
 int main(int argc, char *argv[]) {
-	if (argc < 2) {
-		fprintf(stderr, "Usage: %s tests.json.gz [-k]\n", argv[0]);
-		return -1;
-	}
-	bool keep_going = (argc > 2 && strcmp(argv[2], "-k") == 0);
+
+	int opt;
+	bool keep_going = false;
+
+	while ((opt = getopt(argc, argv, "ka")) != -1)
+		switch (opt) {
+		case 'k':
+			keep_going = true;
+			break;
+		case 'a':
+			all_errors = true;
+			break;
+		case '?':
+			fprintf(stderr, "Usage: %s tests.json.gz [-k] [-a]\n", argv[0]);
+			return -1;
+		}
 
 	std::string data;
-	if (!load_gz(argv[1], data))
+	if (!load_gz(argv[optind], data))
 		return -1;
 
 	Json::Value tests;
@@ -166,10 +179,10 @@ int main(int argc, char *argv[]) {
 	std::string errs;
 	std::istringstream iss(data);
 	if (!Json::parseFromStream(rb, iss, &tests, &errs)) {
-		fprintf(stderr, "%s: %s\n", argv[1], errs.c_str());
+		fprintf(stderr, "%s: %s\n", argv[optind], errs.c_str());
 		return -1;
 	}
-	printf("%s: %u tests\n", argv[1], tests.size());
+	printf("%s: %u tests\n", argv[optind], tests.size());
 
 	Memory memory;
 	static ram<16 * 1024 * 1024> ram; // full 24-bit space
