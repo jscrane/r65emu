@@ -1367,6 +1367,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4880: {	// MOVEM.w Register to Memory
+		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
 		if (mode == 4) {
@@ -1394,6 +1395,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x48c0: {	// MOVEM.l Register to Memory
+		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 4);
 		if (mode == 4) {
@@ -1421,6 +1423,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4c80: {	// MOVEM.w Memory to Register
+		_fault_pc_words += 1;
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
 		for (int r = 0; r < 16; r++)
@@ -1435,6 +1438,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4cc0: {	// MOVEM.l Memory to Register
+		_fault_pc_words += 1;
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 4);
 		for (int r = 0; r < 16; r++)

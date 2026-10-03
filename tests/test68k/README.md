@@ -8,7 +8,9 @@ make
 ./sstests ~/src/680x0/68000/v1/NOP.json.gz
 ```
 
-(The `-k` flag may be added: "keep going after failure".)
+- the `-k` flag may be added: "keep going after failure"
+- by default the low byte of the `SSW` is undefined so failures involving it are "false positives" and ignored by default,
+unless the `-a` flag is given
 
 Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/comment/kptqinm/) discussing that testsuite.
 
