@@ -1087,7 +1087,9 @@ void m68k::misc(uint16_t op) {
 	}
 	case 0x4e50: {	// LINK An, #disp
 		int16_t disp = (int16_t)fetch16();
-		push32(a(reg));
+		uint32_t val = a(reg);
+		if (reg == 7) val -= 4;
+		push32(val);
 		uint32_t sp = a(7);
 		a(reg, sp);
 		a(7, sp + disp);

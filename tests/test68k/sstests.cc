@@ -138,7 +138,9 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 		Memory::address addr = (Memory::address)cell[0].asUInt();
 		uint8_t expected = (uint8_t)cell[1].asUInt();
 		uint8_t actual = mem[addr];
+		bool is_ssw = (addr == cpu.ssp() + 1) && ((expected & 0x0f) == (actual & 0x0f));
 		if (expected != actual && (all_errors || addr - cpu.ssp() != 1)) {
+		//if (expected != actual && (all_errors || !is_ssw)) {
 			char field[32];
 			snprintf(field, sizeof(field), "ram[%06x]", addr);
 			diffs.push_back({ field, expected, actual });
