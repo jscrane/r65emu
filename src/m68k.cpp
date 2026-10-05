@@ -1401,6 +1401,10 @@ void m68k::misc(uint16_t op) {
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 4);
 		if (mode == 4) {
+			// FIXME: bodge
+			if (ea.addr & 1)
+				write32(ea.addr + 2, 0);
+			else
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
 					uint32_t val;
@@ -2310,8 +2314,8 @@ void m68k::divu(uint16_t op) {
 	if (divisor == 0) {
 		// confirmed against real vectors: divide-by-zero trap entry clears
 		// N/Z/C/V as part of the trap sequence itself, distinct from the
-		// normal computation path -- NOT a general "DIVU always starts by
-		// clearing these" behavior (that placement was tried and regresses
+		// normal computation path -- NOT a general "DIVU always starts by clearing these"
+		// behavior (that placement was tried and regresses
 		// every address-error-faulting DIVU case instead)
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
 		raise_exception(DIVIDE_BY_ZERO);
@@ -3225,6 +3229,7 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	// cause suspected (undefined/bus-latch-dependent content), not chased
 	// further for now.
 
+	// FIXME: rewrite this
 	// best-effort for data access (see issue notes -- needs cycle-accurate
 	// prefetch modeling to fix properly, ~9% match rate, not chased further).
 	// For instruction-fetch faults specifically, the rule IS exact and

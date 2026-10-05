@@ -1,4 +1,2 @@
 /home/steve/src/680x0/68000/v1/DIVU.json.gz: 8065 tests
-FAIL [5744] 80ef [DIVU (d16, A7), D0] 5745
-  ram[0007ff]	expected          0 (0x0) 	got          4 (0x4)
-8064 passed, 1 failed
+8065 passed, 0 failed

@@ -138,7 +138,12 @@ private:
 	inline void jump_to_vector(int num) {
 		pc(read_vector(num));
 	}
-	inline void raise_exception(uint8_t num) {
+	inline void raise_exception(uint8_t v) {
+
+		// FIXME: correct? others?
+		if (v == DIVIDE_BY_ZERO)
+			pc(_fault_pc_base);
+
 		uint32_t ret = pc();
 		uint16_t sr = _sr;
 
@@ -147,7 +152,7 @@ private:
 
 		push32(ret);
 		push16(sr);
-		jump_to_vector(num);
+		jump_to_vector(v);
 	}
 	inline void take_interrupt(uint8_t level) {
 		uint32_t ret = pc();
