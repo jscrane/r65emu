@@ -139,32 +139,20 @@ private:
 		pc(read_vector(num));
 	}
 	inline void raise_exception(uint8_t v) {
-
-		// FIXME: correct? others?
-		if (v == DIVIDE_BY_ZERO)
-			pc(_fault_pc_base);
-
-		uint32_t ret = pc();
-		uint16_t sr = _sr;
-
 		set_flag(S_FLAG);
 		clr_flag(T_FLAG);
 
-		push32(ret);
-		push16(sr);
+		push32(pc());
+		push16(_sr);
 		jump_to_vector(v);
 	}
 	inline void take_interrupt(uint8_t level) {
-		uint32_t ret = pc();
-		uint16_t sr = _sr;
-
 		set_flag(S_FLAG);
 		clr_flag(T_FLAG);
 
+		push32(pc());
+		push16(_sr);
 		_sr = (_sr & ~0x0700) | (level << 8);
-
-		push32(ret);
-		push16(sr);
 		jump_to_vector(AUTO_VECTORS + level);
 	}
 

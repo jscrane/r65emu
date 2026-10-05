@@ -2318,6 +2318,7 @@ void m68k::divu(uint16_t op) {
 		// behavior (that placement was tried and regresses
 		// every address-error-faulting DIVU case instead)
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
+		pc(_fault_pc_base);
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
@@ -2349,6 +2350,7 @@ void m68k::divs(uint16_t op) {
 	if (divisor == 0) {
 		// see comment above
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
+		pc(_fault_pc_base);
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
