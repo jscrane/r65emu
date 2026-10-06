@@ -25,9 +25,18 @@ void Memory::Devices::put(Device &dev, address base) {
 	dev.base(base);
 }
 
+void Memory::Null::operator=(uint8_t b) {
+	DBG_MEM("> Null: %04x %02x", _acc, b);
+}
+
+Memory::Null::operator uint8_t() {
+	DBG_MEM("< Null: %04x", _acc);
+	return 0;
+}
+
 void Memory::Devices::operator=(uint8_t b) {
 	unsigned slot = _acc / device_size;
-	DBG_MEM("write: %d %04x %02x", slot, _acc, b);
+	DBG_MEM("> Devices: %d %04x %02x", slot, _acc, b);
 	Device *d = _devices[slot];
 	d->access(_acc);
 	*d = b;
@@ -35,7 +44,7 @@ void Memory::Devices::operator=(uint8_t b) {
 
 Memory::Devices::operator uint8_t() {
 	unsigned slot = _acc / device_size;
-	DBG_MEM("read: %d %04x", slot, _acc);
+	DBG_MEM("< Devices: %d %04x", slot, _acc);
 	Device *d = _devices[slot];
 	d->access(_acc);
 	return (uint8_t)*d;

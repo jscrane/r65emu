@@ -20,6 +20,7 @@ public:
 	inline uint16_t sr() const { return _sr; }
 	inline uint8_t ccr() const { return _sr & 0xff; }
 	inline uint32_t pc() const { return PC; }
+	inline uint32_t base_pc() const { return _fault_pc_base; }
 	inline uint32_t sp() const { return a(7); }
 
 	inline void d(uint8_t n, uint32_t v) { D[n] = v; }

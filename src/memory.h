@@ -56,8 +56,8 @@ public:
 	public:
 		Null(size_t extent): Device(extent) {}
 
-		void operator=(uint8_t) override {}
-		operator uint8_t() override { return 0; }
+		void operator=(uint8_t) override;
+		operator uint8_t() override;
 
 		void checkpoint(Checkpoint &) override {};
 		void restore(Checkpoint &) override {};
