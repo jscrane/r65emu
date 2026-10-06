@@ -346,7 +346,6 @@ uint32_t m68k::read_long_postinc(int reg) {
 }
 
 void m68k::write_long_predec(int reg, uint32_t v) {
-	_fault_pc_words += 1;
 	uint32_t addr = a(reg) - 2;
 	a(reg, addr);                              // predec always commits, even on fault
 	write16(addr, (uint16_t)(v & 0xffff));     // low word first
@@ -853,9 +852,12 @@ void m68k::movel(uint16_t op) {
 	set_nz((int32_t)v);
 	clr_vc();
 
-	if (dmode == 3)      write_long_postinc(dreg, v);
-	else if (dmode == 4) write_long_predec(dreg, v);
-	else {
+	if (dmode == 3)
+		write_long_postinc(dreg, v);
+	else if (dmode == 4) {
+		_fault_pc_words += 1;
+		write_long_predec(dreg, v);
+	} else {
 		EA dst = decode_ea(dmode, dreg, 4, true, true);
 		write_long(dst, v);
 		if (_trapped) return;
@@ -1095,7 +1097,7 @@ void m68k::misc(uint16_t op) {
 		a(7, sp + disp);
 		return;
 	}
-	case 0x4e58: {	// UNLK An
+	case 0x4e58: {	// UNLINK An
 		a(7, a(reg));
 		a(reg, pop32());
 		return;
@@ -1397,35 +1399,31 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x48c0: {	// MOVEM.l Register to Memory
-		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
+		_fault_pc_words += 1;			// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
-		EA ea = decode_ea(mode, reg, 4);
 		if (mode == 4) {
-			// FIXME: bodge
-			if (ea.addr & 1)
-				write32(ea.addr + 2, 0);
-			else
+			uint32_t addr = a(reg);
+			uint32_t orig_val = addr;	// captured BEFORE any decrement, for the self-reference case below
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
 					uint32_t val;
 					if (r < 8) {
 						uint8_t ar = 7-r;
-						val = a(ar);
-						if (ar == reg) val += 4;
+						val = (ar == reg)? orig_val: a(ar);	// self-reference: ALWAYS the pre-instruction value, not loop-position-dependent
 					} else
 						val = d(15 - r);
-					write32(ea.addr, val);
-					if (_trapped) break;
-					ea.addr -= 4;
+					write_long_predec(reg, val);
+					if (_trapped) { a(reg, orig_val); return; }
 				}
-			a(reg, ea.addr + 4);
-		} else
-			for (int r = 0; r < 16; r++)
-				if (mask & (1 << r)) {
-					write32(ea.addr, read_movem_reg(r));
-					if (_trapped) break;
-					ea.addr += 4;
-				}
+			return;
+		}
+		EA ea = decode_ea(mode, reg, 4);
+		for (int r = 0; r < 16; r++)
+			if (mask & (1 << r)) {
+				write32(ea.addr, read_movem_reg(r));
+				if (_trapped) break;
+				ea.addr += 4;
+			}
 		return;
 	}
 	case 0x4c80: {	// MOVEM.w Memory to Register
@@ -2318,7 +2316,7 @@ void m68k::divu(uint16_t op) {
 		// behavior (that placement was tried and regresses
 		// every address-error-faulting DIVU case instead)
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
-		pc(_fault_pc_base);
+		pc(base_pc());
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
@@ -2350,7 +2348,7 @@ void m68k::divs(uint16_t op) {
 	if (divisor == 0) {
 		// see comment above
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
-		pc(_fault_pc_base);
+		pc(base_pc());
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
