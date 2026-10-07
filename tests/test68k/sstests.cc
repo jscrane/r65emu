@@ -1,17 +1,8 @@
-// tests/test68008/test.cc
 //
 // TDD harness for the m68k core, driven by SingleStepTests/680x0 vectors
 // (https://github.com/SingleStepTests/680x0). Each test in a *.json.gz file
 // sets up one instruction's worth of CPU/memory state, executes exactly one
 // instruction, and gives the expected resulting state.
-//
-// Build: needs MEMORY_ADDRESS_WIDTH=24 (68008 has a 20-bit external bus but
-// we're generous and give it the full 68000 24-bit logical space, since the
-// test vectors use addresses up to ~16M), and links against jsoncpp and
-// zlib (`pkg-config --cflags --libs jsoncpp`, `-lz`).
-//
-// Usage: test <file.json.gz> [-k]
-//   -k   keep going after a failure (default: stop at first failure)
 //
 // --- A note on "prefetch" ---
 // The real 68000 always has the current opcode word, and the following
@@ -22,22 +13,6 @@
 // a persistent prefetch queue, we poke prefetch[0] and prefetch[1] into
 // memory at pc and pc+2 ourselves before running. Any further extension
 // words the instruction needs are already present in the "ram" array.
-//
-// We don't otherwise attempt to model or check the prefetch queue or the
-// bus "transactions" log -- only registers and the memory locations named
-// in "final.ram". That's enough to TDD instruction semantics; cycle-exact
-// bus behaviour can follow later.
-//
-// --- Assumed m68k interface (see src/m68k.h) ---
-//   m68k(Memory &mem);
-//   void reset() override;
-//   void run(unsigned n) override;     // executes exactly n instructions
-//   uint32_t d(int n) const;           void d(int n, uint32_t v);   // n=0..7
-//   uint32_t a(int n) const;           void a(int n, uint32_t v);   // n=0..6
-//   uint32_t usp() const;              void usp(uint32_t v);
-//   uint32_t ssp() const;              void ssp(uint32_t v);
-//   uint16_t sr() const;               void sr(uint16_t v);
-//   void pc(Memory::address a);        // Memory::address pc() const is in CPU
 //
 #include <algorithm>
 #include <cstdint>
@@ -56,8 +31,6 @@
 #include "m68k.h"
 #include "ram.h"
 
-// ------------------------------------------------------------- gunzip -----
-
 static bool load_gz(const char *path, std::string &out) {
 	gzFile f = gzopen(path, "rb");
 	if (!f) {
@@ -74,8 +47,6 @@ static bool load_gz(const char *path, std::string &out) {
 	gzclose(f);
 	return ok;
 }
-
-// --------------------------------------------------------- state apply ----
 
 static void apply_state(m68k &cpu, Memory &mem, const Json::Value &s) {
 	for (int i = 0; i < 8; i++)
@@ -102,8 +73,6 @@ static void apply_state(m68k &cpu, Memory &mem, const Json::Value &s) {
 	mem[pc + 0] = w0 >> 8; mem[pc + 1] = w0 & 0xff;
 	mem[pc + 2] = w1 >> 8; mem[pc + 3] = w1 & 0xff;
 }
-
-// -------------------------------------------------------- state check -----
 
 struct Mismatch {
 	std::string field;
@@ -150,8 +119,6 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 
 	return diffs.empty();
 }
-
-// -------------------------------------------------------------- main ------
 
 int main(int argc, char *argv[]) {
 
