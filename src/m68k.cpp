@@ -3216,29 +3216,47 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	uint16_t old_sr = _sr;
 	bool was_supervisor = is_set(S_FLAG);
 
-	// SSW: bit4 = R/W (best-effort -- see issue notes), bit3 = I/N
-	// bits2-0 = function code (supervisor/user data space)
-	uint16_t fc = (was_supervisor ? 0b100 : 0b000) | (is_instr_fetch ? 0b010 : 0b001);
-	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, empirically 100% consistent
+	// SSW: bit4 = R/W, bit3 = I/N, bits2-0 = function code (supervisor/user,
+	// data/program space). All computed and confirmed exact against real
+	// vectors except bit4 (R/W), which only correlates ~87-90% -- left
+	// unexplained, same bucket as the bits5-7 residual below (see issue #173).
+	uint16_t fc  = (was_supervisor ? 0b100 : 0b000) | (is_instr_fetch ? 0b010 : 0b001);
+	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, confirmed 100%
 		| (is_read ? (1u << 4) : 0)
 		| (is_instr_fetch ? (1u << 3) : 0)
 		| fc;
-	// bits 5-7 of the low byte are still unexplained -- varies between samples
-	// (bit5 set in one, bit6 in another) with no pattern found yet. Treating
-	// this as an accepted gap alongside the PC-push timing issue, same root
-	// cause suspected (undefined/bus-latch-dependent content), not chased
-	// further for now.
+	// bits 5-7 of the low byte are architecturally undefined on real hardware
+	// (even Musashi's source labels this "undefined behavior") -- accepted
+	// gap, not chased further. See issue #173.
 
-	// FIXME: rewrite this
-	// best-effort for data access (see issue notes -- needs cycle-accurate
-	// prefetch modeling to fix properly, ~9% match rate, not chased further).
-	// For instruction-fetch faults specifically, the rule IS exact and
-	// deterministic: return_pc = fault_addr - 4, confirmed against thousands
-	// of real JMP/Bcc/BSR vectors with zero exceptions.
+	// return_pc: for instruction-fetch faults (JMP/Bcc/BSR targeting an odd
+	// address), this is exact and deterministic -- confirmed against
+	// thousands of real vectors with zero exceptions: return_pc = fault_addr - 4.
+	//
+	// For data-access faults, return_pc = _fault_pc_base + 2*_fault_pc_words,
+	// where _fault_pc_words is accumulated per-instruction by decode_ea and
+	// by each caller of the raw fetch16()/fetch32()/read_long_predec/
+	// write_long_predec family (anything that consumes instruction-stream
+	// words without going through decode_ea's own tracking needs its own
+	// explicit contribution -- ADDI's immediate, MOVEM's mask word, etc).
+	// Confirmed exact (100%, tens of thousands of real vectors) across
+	// MOVE/MOVEA, ADD/SUB/AND/OR/EOR (register and immediate forms), and
+	// MOVEM, including several real contribution rules that aren't obvious
+	// from the addressing mode alone:
+	//   - auto-inc/dec as a SOURCE: true count (0)
+	//   - auto-inc/dec as MOVE/MOVEA's DESTINATION specifically: phantom +1
+	//   - auto-inc/dec as a read-modify-write instruction's destination
+	//     (ADD/SUB/AND/OR/EOR and their immediate forms): true count (0),
+	//     no phantom -- confirmed this does NOT match MOVE's rule
+	//   - (xxx).l as destination: phantom 1 word if the source needed real
+	//     address computation, else its true count (2) -- cross-operand,
+	//     depends on the OTHER operand's mode, not just its own
+	// Not yet verified: ADDX/SUBX/CMPM's memory forms (LINK is resolved,
+	// not data-access-fault-shaped at all -- it never faults in this corpus).
 	Memory::address return_pc = is_instr_fetch ? (fault_addr - 4) : (_fault_pc_base + 2 * _fault_pc_words);
 
-	set_flag(S_FLAG);		// exceptions always enter supervisor mode
-	clr_flag(T_FLAG);		// exception entry always clears Trace
+	set_flag(S_FLAG);               // exceptions always enter supervisor mode
+	clr_flag(T_FLAG);               // exception entry always clears Trace
 
 	push32(return_pc);
 	push16(old_sr);
