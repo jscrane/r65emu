@@ -20,6 +20,7 @@ public:
 	inline uint16_t sr() const { return _sr; }
 	inline uint8_t ccr() const { return _sr & 0xff; }
 	inline uint32_t pc() const { return PC; }
+	inline uint32_t base_pc() const { return _fault_pc_base; }
 	inline uint32_t sp() const { return a(7); }
 
 	inline void d(uint8_t n, uint32_t v) { D[n] = v; }
@@ -41,6 +42,8 @@ public:
 private:
 	inline void step() {
 		_trapped = false;
+		_fault_pc_words = 0;
+		_fault_pc_base = PC;	// address of the opcode itself, pre-fetch
 		_current_op = fetch16();
 		decode_execute(_current_op);
 	}
@@ -64,7 +67,7 @@ private:
 	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr }; }
 	inline uint32_t bus_addr(uint32_t addr) const { return addr & ADDRESS_MASK; }
 
-	EA decode_ea(int mode, int reg, int size /* bytes: 1,2,4 */);
+	EA decode_ea(int mode, int reg, int size, bool is_destination = false, bool is_move_destination = false);
 	void commit_postinc(const EA &);
 	uint8_t read_byte(const EA &);
 	void write_byte(const EA &, uint8_t);
@@ -130,52 +133,44 @@ private:
 		pc(addr);
 		return true;
 	}
-	inline uint32_t vector(int num) {
-		return num * 4;
+	inline uint32_t read_vector(int num) {
+		return read32(num * 4);
 	}
 	inline void jump_to_vector(int num) {
-		uint32_t vaddr = vector(num);
-		uint32_t vec = ((uint32_t)_mem[vaddr] << 24) | ((uint32_t)_mem[vaddr+1] << 16)
-				| ((uint32_t)_mem[vaddr+2] << 8) |  (uint32_t)_mem[vaddr+3];
-		pc(vec);
+		pc(read_vector(num));
 	}
-	inline void raise_exception(uint8_t num) {
-		uint32_t ret = pc();
+	inline void raise_exception(uint8_t v) {
 		uint16_t sr = _sr;
-
 		set_flag(S_FLAG);
 		clr_flag(T_FLAG);
-
-		push32(ret);
+		push32(pc());
 		push16(sr);
-		jump_to_vector(num);
+		jump_to_vector(v);
 	}
 	inline void take_interrupt(uint8_t level) {
-		uint32_t ret = pc();
 		uint16_t sr = _sr;
-
 		set_flag(S_FLAG);
 		clr_flag(T_FLAG);
-
-		_sr = (_sr & ~0x0700) | (level << 8);
-
-		push32(ret);
+		push32(pc());
 		push16(sr);
+		_sr = (_sr & ~0x0700) | (level << 8);
 		jump_to_vector(AUTO_VECTORS + level);
 	}
 
-	bool  _trapped = false;
+	bool _trapped = false;
 	uint16_t _current_op = 0;
+	Memory::address _fault_pc_base = 0;
+	int _fault_pc_words = 0;
+	bool _src_needed_ea_computation = false;
 
 	inline void push16(uint16_t v) {
 		uint32_t sp = a(7) - 2;
 		a(7, sp);
-		_mem[bus_addr(sp)]     = v >> 8;
-		_mem[bus_addr(sp + 1)] = v & 0xff;
+		write16(sp, v);
 	}
 	inline uint16_t pop16() {
 		uint32_t sp = a(7);
-		uint16_t v = (_mem[bus_addr(sp)] << 8) | _mem[bus_addr(sp + 1)];
+		uint16_t v = read16(sp);
 		a(7, sp + 2);
 		return v;
 	}

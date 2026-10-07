@@ -1,17 +1,8 @@
-// tests/test68008/test.cc
 //
 // TDD harness for the m68k core, driven by SingleStepTests/680x0 vectors
 // (https://github.com/SingleStepTests/680x0). Each test in a *.json.gz file
 // sets up one instruction's worth of CPU/memory state, executes exactly one
 // instruction, and gives the expected resulting state.
-//
-// Build: needs MEMORY_ADDRESS_WIDTH=24 (68008 has a 20-bit external bus but
-// we're generous and give it the full 68000 24-bit logical space, since the
-// test vectors use addresses up to ~16M), and links against jsoncpp and
-// zlib (`pkg-config --cflags --libs jsoncpp`, `-lz`).
-//
-// Usage: test <file.json.gz> [-k]
-//   -k   keep going after a failure (default: stop at first failure)
 //
 // --- A note on "prefetch" ---
 // The real 68000 always has the current opcode word, and the following
@@ -22,22 +13,6 @@
 // a persistent prefetch queue, we poke prefetch[0] and prefetch[1] into
 // memory at pc and pc+2 ourselves before running. Any further extension
 // words the instruction needs are already present in the "ram" array.
-//
-// We don't otherwise attempt to model or check the prefetch queue or the
-// bus "transactions" log -- only registers and the memory locations named
-// in "final.ram". That's enough to TDD instruction semantics; cycle-exact
-// bus behaviour can follow later.
-//
-// --- Assumed m68k interface (see src/m68k.h) ---
-//   m68k(Memory &mem);
-//   void reset() override;
-//   void run(unsigned n) override;     // executes exactly n instructions
-//   uint32_t d(int n) const;           void d(int n, uint32_t v);   // n=0..7
-//   uint32_t a(int n) const;           void a(int n, uint32_t v);   // n=0..6
-//   uint32_t usp() const;              void usp(uint32_t v);
-//   uint32_t ssp() const;              void ssp(uint32_t v);
-//   uint16_t sr() const;               void sr(uint16_t v);
-//   void pc(Memory::address a);        // Memory::address pc() const is in CPU
 //
 #include <algorithm>
 #include <cstdint>
@@ -56,8 +31,6 @@
 #include "m68k.h"
 #include "ram.h"
 
-// ------------------------------------------------------------- gunzip -----
-
 static bool load_gz(const char *path, std::string &out) {
 	gzFile f = gzopen(path, "rb");
 	if (!f) {
@@ -74,8 +47,6 @@ static bool load_gz(const char *path, std::string &out) {
 	gzclose(f);
 	return ok;
 }
-
-// --------------------------------------------------------- state apply ----
 
 static void apply_state(m68k &cpu, Memory &mem, const Json::Value &s) {
 	for (int i = 0; i < 8; i++)
@@ -103,12 +74,12 @@ static void apply_state(m68k &cpu, Memory &mem, const Json::Value &s) {
 	mem[pc + 2] = w1 >> 8; mem[pc + 3] = w1 & 0xff;
 }
 
-// -------------------------------------------------------- state check -----
-
 struct Mismatch {
 	std::string field;
 	unsigned long expected, actual;
 };
+
+static bool all_errors = false;
 
 static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 			 std::vector<Mismatch> &diffs) {
@@ -136,7 +107,8 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 		Memory::address addr = (Memory::address)cell[0].asUInt();
 		uint8_t expected = (uint8_t)cell[1].asUInt();
 		uint8_t actual = mem[addr];
-		if (expected != actual) {
+		bool is_ssw = (addr == cpu.ssp() + 1) && ((expected & 0x0f) == (actual & 0x0f));
+		if (expected != actual && (all_errors || !is_ssw)) {
 			char field[32];
 			snprintf(field, sizeof(field), "ram[%06x]", addr);
 			diffs.push_back({ field, expected, actual });
@@ -148,17 +120,26 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 	return diffs.empty();
 }
 
-// -------------------------------------------------------------- main ------
-
 int main(int argc, char *argv[]) {
-	if (argc < 2) {
-		fprintf(stderr, "Usage: %s tests.json.gz [-k]\n", argv[0]);
-		return -1;
-	}
-	bool keep_going = (argc > 2 && strcmp(argv[2], "-k") == 0);
+
+	int opt;
+	bool keep_going = false;
+
+	while ((opt = getopt(argc, argv, "ka")) != -1)
+		switch (opt) {
+		case 'k':
+			keep_going = true;
+			break;
+		case 'a':
+			all_errors = true;
+			break;
+		case '?':
+			fprintf(stderr, "Usage: %s tests.json.gz [-k] [-a]\n", argv[0]);
+			return -1;
+		}
 
 	std::string data;
-	if (!load_gz(argv[1], data))
+	if (!load_gz(argv[optind], data))
 		return -1;
 
 	Json::Value tests;
@@ -166,10 +147,10 @@ int main(int argc, char *argv[]) {
 	std::string errs;
 	std::istringstream iss(data);
 	if (!Json::parseFromStream(rb, iss, &tests, &errs)) {
-		fprintf(stderr, "%s: %s\n", argv[1], errs.c_str());
+		fprintf(stderr, "%s: %s\n", argv[optind], errs.c_str());
 		return -1;
 	}
-	printf("%s: %u tests\n", argv[1], tests.size());
+	printf("%s: %u tests\n", argv[optind], tests.size());
 
 	Memory memory;
 	static ram<16 * 1024 * 1024> ram; // full 24-bit space

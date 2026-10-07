@@ -18,8 +18,8 @@ void m68k::reset() {
 
 	_halted = false;
 
-	ssp(read32(vector(INITIAL_SSP)));
-	pc(read32(vector(INITIAL_PC)));
+	ssp(read_vector(INITIAL_SSP));
+	pc(read_vector(INITIAL_PC));
 	sr(0x2700);
 }
 
@@ -55,11 +55,11 @@ void m68k::decode_execute(uint16_t op) {
 	case 0b0001:		// move byte
 		moveb(op);
 		break;
-	case 0b0011:		// move word
-		movew(op);
-		break;
 	case 0b0010:		// move long
 		movel(op);
+		break;
+	case 0b0011:		// move word
+		movew(op);
 		break;
 	case 0b0100:
 		misc(op);	// miscellaneous
@@ -127,7 +127,39 @@ void m68k::decode_execute(uint16_t op) {
 	}
 }
 
-m68k::EA m68k::decode_ea(int mode, int reg, int size) {
+static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
+	switch (mode) {
+	case 0: case 1: case 2: return 0;
+	case 3: return 0;						// (An)+ -- true count, both src and dst
+	case 4: return is_destination && is_move_destination? 1: 0;	// -(An) -- phantom only as destination
+	case 5: case 6: return 1;
+	case 7:
+		switch (reg) {
+		case 0: return 1;			// (xxx).w
+		case 1: return is_destination? 1: 2;	// (xxx).l -- asymmetric, verified
+		case 2: case 3: return 1;
+		case 4: return size == 4? 2: 1;		// #imm
+		}
+	}
+	return 0;
+}
+
+m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
+
+	if (!is_destination) {
+		// Dn, An, #imm need no address-computation unit at all
+		_src_needed_ea_computation = !(mode == 0 || mode == 1 || (mode == 7 && reg == 4));
+	}
+
+	int words;
+	if (is_destination && mode == 7 && reg == 1) {
+		// (xxx).l as destination: cross-operand rule, verified 100%
+		words = _src_needed_ea_computation ? 1 : 2;
+	} else {
+		words = fault_pc_words_for_mode(mode, reg, size, is_destination, is_move_destination);
+	}
+	_fault_pc_words += words;
+
 	switch (mode) {
 	case 0: return EA{ EA::RegD, reg };
 	case 1: return EA{ EA::RegA, reg };
@@ -276,6 +308,8 @@ void m68k::write_long(const EA &e, uint32_t v) {
 // access either succeeds completely or faults entirely on the FIRST
 // sub-transaction -- there's no partial-success case.
 uint32_t m68k::read_long_predec(int reg) {
+	// no _fault_pc_words contribution -- source reads are their true count (0), verified
+	_src_needed_ea_computation = true;
 	uint32_t addr = a(reg) - 4;
 	a(reg, addr);		// full decrement commits unconditionally, upfront
 	uint32_t hi = read16(addr);
@@ -286,6 +320,8 @@ uint32_t m68k::read_long_predec(int reg) {
 }
 
 uint32_t m68k::read_long_predec_x(int reg) {
+	// no _fault_pc_words contribution -- source reads are their true count (0), verified
+	_src_needed_ea_computation = true;
 	uint32_t addr = a(reg) - 2;
 	a(reg, addr);		// first sub-decrement commits unconditionally
 	uint32_t lo = read16(addr);
@@ -298,6 +334,8 @@ uint32_t m68k::read_long_predec_x(int reg) {
 }
 
 uint32_t m68k::read_long_postinc(int reg) {
+	// no _fault_pc_words contribution -- source reads are their true count (0), verified
+	_src_needed_ea_computation = true;
 	uint32_t addr = a(reg);
 	a(reg, addr + 4);	// full increment commits unconditionally, upfront
 	uint32_t hi = read16(addr);
@@ -426,7 +464,7 @@ void m68k::immediate(uint16_t op) {
 	switch (op & 0xffc0) {
 	case 0x0000: {	// ORI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -438,8 +476,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0040: {	// ORI.w
+		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -451,8 +491,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0080: {	// ORI.l
+		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -465,7 +507,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0200: {	// ANDI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -477,8 +519,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0240: {	// ANDI.w
+		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -490,8 +534,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0280: {	// ANDI.l
+		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -504,7 +550,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0400: {	// SUBI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -519,8 +565,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0440: {	// SUBI.w
+		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -535,8 +583,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0480: {	// SUBI.l
+		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -552,7 +602,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0600: {	// ADDI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -567,8 +617,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0640: {	// ADDI.w
+		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -583,8 +635,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0680: {	// ADDI.l
+		_fault_pc_words += 2;			// .l immediate = 2 words, bypasses decode_ea entirely
+		_src_needed_ea_computation = false;	// immediate source -- never needs EA computation,
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -600,7 +654,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0a00: {	// EORI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -612,8 +666,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0a40: {	// EORI.w
+		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -625,8 +681,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0a80: {	// EORI.l
+		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -639,7 +697,7 @@ void m68k::immediate(uint16_t op) {
 	}
 	case 0x0c00: {	// CMPI.b
 		uint8_t imm = (uint8_t)fetch16();
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -653,8 +711,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0c40: {	// CMPI.w
+		_fault_pc_words += 1;
+		_src_needed_ea_computation = false;
 		uint16_t imm = fetch16();
-		EA ea = decode_ea(mode, reg, 2);
+		EA ea = decode_ea(mode, reg, 2, true);
 		uint16_t dest = read_word(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -668,8 +728,10 @@ void m68k::immediate(uint16_t op) {
 		return;
 	}
 	case 0x0c80: {	// CMPI.l
+		_fault_pc_words += 2;
+		_src_needed_ea_computation = false;
 		uint32_t imm = fetch32();
-		EA ea = decode_ea(mode, reg, 4);
+		EA ea = decode_ea(mode, reg, 4, true);
 		uint32_t dest = read_long(ea);
 		commit_postinc(ea);
 		if (!_trapped) {
@@ -754,7 +816,7 @@ void m68k::movew(uint16_t op) {
 	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
 	if (_trapped) return;
 
-	if (dmode == 1) {	// movea
+	if (dmode == 1) {	// MOVEA.w
 		a(dreg, (uint32_t)(int16_t)v);
 		return;
 	}
@@ -762,7 +824,7 @@ void m68k::movew(uint16_t op) {
 	set_nz((int16_t)v);
 	clr_vc();
 
-	EA dst = decode_ea(dmode, dreg, 2);
+	EA dst = decode_ea(dmode, dreg, 2, true, true);
 	write_word(dst, v);
 	if (_trapped) return;
 	commit_postinc(dst);   // conditional -- a write's postinc only commits on success
@@ -782,7 +844,7 @@ void m68k::movel(uint16_t op) {
 	}
 	if (_trapped) return;
 
-	if (dmode == 1) {	// movea
+	if (dmode == 1) {	// MOVEA.l
 		a(dreg, v);
 		return;
 	}
@@ -790,10 +852,13 @@ void m68k::movel(uint16_t op) {
 	set_nz((int32_t)v);
 	clr_vc();
 
-	if (dmode == 3)      write_long_postinc(dreg, v);
-	else if (dmode == 4) write_long_predec(dreg, v);
-	else {
-		EA dst = decode_ea(dmode, dreg, 4);
+	if (dmode == 3)
+		write_long_postinc(dreg, v);
+	else if (dmode == 4) {
+		_fault_pc_words += 1;
+		write_long_predec(dreg, v);
+	} else {
+		EA dst = decode_ea(dmode, dreg, 4, true, true);
 		write_long(dst, v);
 		if (_trapped) return;
 		commit_postinc(dst);
@@ -1024,13 +1089,15 @@ void m68k::misc(uint16_t op) {
 	}
 	case 0x4e50: {	// LINK An, #disp
 		int16_t disp = (int16_t)fetch16();
-		push32(a(reg));
+		uint32_t val = a(reg);
+		if (reg == 7) val -= 4;
+		push32(val);
 		uint32_t sp = a(7);
 		a(reg, sp);
 		a(7, sp + disp);
 		return;
 	}
-	case 0x4e58: {	// UNLK An
+	case 0x4e58: {	// UNLINK An
 		a(7, a(reg));
 		a(reg, pop32());
 		return;
@@ -1304,6 +1371,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4880: {	// MOVEM.w Register to Memory
+		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
 		if (mode == 4) {
@@ -1331,33 +1399,35 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x48c0: {	// MOVEM.l Register to Memory
+		_fault_pc_words += 1;			// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
-		EA ea = decode_ea(mode, reg, 4);
 		if (mode == 4) {
+			uint32_t addr = a(reg);
+			uint32_t orig_val = addr;	// captured BEFORE any decrement, for the self-reference case below
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
 					uint32_t val;
 					if (r < 8) {
 						uint8_t ar = 7-r;
-						val = a(ar);
-						if (ar == reg) val += 4;
+						val = (ar == reg)? orig_val: a(ar);	// self-reference: ALWAYS the pre-instruction value, not loop-position-dependent
 					} else
 						val = d(15 - r);
-					write32(ea.addr, val);
-					if (_trapped) break;
-					ea.addr -= 4;
+					write_long_predec(reg, val);
+					if (_trapped) { a(reg, orig_val); return; }
 				}
-			a(reg, ea.addr + 4);
-		} else
-			for (int r = 0; r < 16; r++)
-				if (mask & (1 << r)) {
-					write32(ea.addr, read_movem_reg(r));
-					if (_trapped) break;
-					ea.addr += 4;
-				}
+			return;
+		}
+		EA ea = decode_ea(mode, reg, 4);
+		for (int r = 0; r < 16; r++)
+			if (mask & (1 << r)) {
+				write32(ea.addr, read_movem_reg(r));
+				if (_trapped) break;
+				ea.addr += 4;
+			}
 		return;
 	}
 	case 0x4c80: {	// MOVEM.w Memory to Register
+		_fault_pc_words += 1;
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
 		for (int r = 0; r < 16; r++)
@@ -1372,6 +1442,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4cc0: {	// MOVEM.l Memory to Register
+		_fault_pc_words += 1;
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 4);
 		for (int r = 0; r < 16; r++)
@@ -2241,10 +2312,11 @@ void m68k::divu(uint16_t op) {
 	if (divisor == 0) {
 		// confirmed against real vectors: divide-by-zero trap entry clears
 		// N/Z/C/V as part of the trap sequence itself, distinct from the
-		// normal computation path -- NOT a general "DIVU always starts by
-		// clearing these" behavior (that placement was tried and regresses
+		// normal computation path -- NOT a general "DIVU always starts by clearing these"
+		// behavior (that placement was tried and regresses
 		// every address-error-faulting DIVU case instead)
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
+		pc(base_pc());
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
@@ -2276,6 +2348,7 @@ void m68k::divs(uint16_t op) {
 	if (divisor == 0) {
 		// see comment above
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
+		pc(base_pc());
 		raise_exception(DIVIDE_BY_ZERO);
 		return;
 	}
@@ -3143,28 +3216,47 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	uint16_t old_sr = _sr;
 	bool was_supervisor = is_set(S_FLAG);
 
-	// SSW: bit4 = R/W (best-effort -- see issue notes), bit3 = I/N
-	// bits2-0 = function code (supervisor/user data space)
-	uint16_t fc = (was_supervisor ? 0b100 : 0b000) | (is_instr_fetch ? 0b010 : 0b001);
-	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, empirically 100% consistent
+	// SSW: bit4 = R/W, bit3 = I/N, bits2-0 = function code (supervisor/user,
+	// data/program space). All computed and confirmed exact against real
+	// vectors except bit4 (R/W), which only correlates ~87-90% -- left
+	// unexplained, same bucket as the bits5-7 residual below (see issue #173).
+	uint16_t fc  = (was_supervisor ? 0b100 : 0b000) | (is_instr_fetch ? 0b010 : 0b001);
+	uint16_t ssw = ((uint16_t)(_current_op & 0xff00))   // high byte = opcode's own high byte, confirmed 100%
 		| (is_read ? (1u << 4) : 0)
 		| (is_instr_fetch ? (1u << 3) : 0)
 		| fc;
-	// bits 5-7 of the low byte are still unexplained -- varies between samples
-	// (bit5 set in one, bit6 in another) with no pattern found yet. Treating
-	// this as an accepted gap alongside the PC-push timing issue, same root
-	// cause suspected (undefined/bus-latch-dependent content), not chased
-	// further for now.
+	// bits 5-7 of the low byte are architecturally undefined on real hardware
+	// (even Musashi's source labels this "undefined behavior") -- accepted
+	// gap, not chased further. See issue #173.
 
-	// best-effort for data access (see issue notes -- needs cycle-accurate
-	// prefetch modeling to fix properly, ~9% match rate, not chased further).
-	// For instruction-fetch faults specifically, the rule IS exact and
-	// deterministic: return_pc = fault_addr - 4, confirmed against thousands
-	// of real JMP/Bcc/BSR vectors with zero exceptions.
-	Memory::address return_pc = is_instr_fetch ? (fault_addr - 4) : PC;
+	// return_pc: for instruction-fetch faults (JMP/Bcc/BSR targeting an odd
+	// address), this is exact and deterministic -- confirmed against
+	// thousands of real vectors with zero exceptions: return_pc = fault_addr - 4.
+	//
+	// For data-access faults, return_pc = _fault_pc_base + 2*_fault_pc_words,
+	// where _fault_pc_words is accumulated per-instruction by decode_ea and
+	// by each caller of the raw fetch16()/fetch32()/read_long_predec/
+	// write_long_predec family (anything that consumes instruction-stream
+	// words without going through decode_ea's own tracking needs its own
+	// explicit contribution -- ADDI's immediate, MOVEM's mask word, etc).
+	// Confirmed exact (100%, tens of thousands of real vectors) across
+	// MOVE/MOVEA, ADD/SUB/AND/OR/EOR (register and immediate forms), and
+	// MOVEM, including several real contribution rules that aren't obvious
+	// from the addressing mode alone:
+	//   - auto-inc/dec as a SOURCE: true count (0)
+	//   - auto-inc/dec as MOVE/MOVEA's DESTINATION specifically: phantom +1
+	//   - auto-inc/dec as a read-modify-write instruction's destination
+	//     (ADD/SUB/AND/OR/EOR and their immediate forms): true count (0),
+	//     no phantom -- confirmed this does NOT match MOVE's rule
+	//   - (xxx).l as destination: phantom 1 word if the source needed real
+	//     address computation, else its true count (2) -- cross-operand,
+	//     depends on the OTHER operand's mode, not just its own
+	// Not yet verified: ADDX/SUBX/CMPM's memory forms (LINK is resolved,
+	// not data-access-fault-shaped at all -- it never faults in this corpus).
+	Memory::address return_pc = is_instr_fetch ? (fault_addr - 4) : (_fault_pc_base + 2 * _fault_pc_words);
 
-	set_flag(S_FLAG);		// exceptions always enter supervisor mode
-	clr_flag(T_FLAG);		// exception entry always clears Trace
+	set_flag(S_FLAG);               // exceptions always enter supervisor mode
+	clr_flag(T_FLAG);               // exception entry always clears Trace
 
 	push32(return_pc);
 	push16(old_sr);
@@ -3191,9 +3283,8 @@ uint8_t m68k::read8(uint32_t addr) {
 uint16_t m68k::read16(uint32_t addr) {
 	if (!check_aligned(addr, true))
 		return 0;
-	uint32_t a = bus_addr(addr);
-	uint16_t hi = _mem[a];
-	uint16_t lo = _mem[a+1];
+	uint16_t hi = read8(addr);
+	uint16_t lo = read8(addr+1);
 	return (hi << 8) | lo;
 }
 
@@ -3212,9 +3303,8 @@ void m68k::write8(uint32_t addr, uint8_t v) {
 void m68k::write16(uint32_t addr, uint16_t v) {
 	if (!check_aligned(addr, false))
 		return;
-	uint32_t a = bus_addr(addr);
-	_mem[a] = (v >> 8);
-	_mem[a+1] = (v & 0xff);
+	write8(addr, v >> 8);
+	write8(addr+1, v & 0xff);
 }
 
 void m68k::write32(uint32_t addr, uint32_t v) {
