@@ -9,9 +9,9 @@ int hw_serial_kbd::read() {
 	if (!_serial.available())
 		return -1;
 
-	int k = _serial.read();
-	if ((k >= 0x0e) && (k <= 0x19)) {
-		fnkey(k - 0x0d);
+	int k = _serial.read(), fk = k - 0x0d;
+	if (is_handled(fk)) {
+		fnkey(fk);
 		return -1;
 	}
 	return k;

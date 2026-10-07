@@ -30,9 +30,9 @@ int ps2_serial_kbd::read() {
 
 	uint16_t key = keyboard.read();
 	if (key & PS2_FUNCTION) {
-		uint8_t k = key & 0xff;
-		if ((k >= PS2_KEY_F1) && (k <= PS2_KEY_F12)) {
-			fnkey(k - 0x60);
+		uint8_t k = key & 0xff, fk = k - 0x60;
+		if (is_handled(fk)) {
+			fnkey(fk);
 			return -1;
 		}
 	}
