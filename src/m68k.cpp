@@ -127,18 +127,35 @@ void m68k::decode_execute(uint16_t op) {
 	}
 }
 
+// modes
+static constexpr uint8_t DataReg = 0;		// Dn
+static constexpr uint8_t AddrReg = 1;		// An
+static constexpr uint8_t Indirect = 2;		// (An)
+static constexpr uint8_t PostInc = 3;		// +(An)
+static constexpr uint8_t PreDec = 4;		// (An)-
+static constexpr uint8_t Disp16 = 5;		// (d16, An)
+static constexpr uint8_t Index8 = 6;		// (d8, An, Dn)
+static constexpr uint8_t Absolute = 7;
+
+// EA register within Absolute mode
+static constexpr uint8_t AbsoluteW = 0;		// <addr>.w
+static constexpr uint8_t AbsoluteL = 1;		// <addr>.l
+static constexpr uint8_t PCDisp16 = 2;		// (d16, PC)
+static constexpr uint8_t PCIndex8 = 3;		// (d8, Dn, PC)
+static constexpr uint8_t Immediate = 4;		// #<data>
+
 static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 	switch (mode) {
-	case 0: case 1: case 2: return 0;
-	case 3: return 0;						// (An)+ -- true count, both src and dst
-	case 4: return is_destination && is_move_destination? 1: 0;	// -(An) -- phantom only as destination
-	case 5: case 6: return 1;
-	case 7:
+	case DataReg: case AddrReg: case Indirect: return 0;
+	case PostInc: return 0;							// (An)+ -- true count, both src and dst
+	case PreDec: return is_destination && is_move_destination? 1: 0;	// -(An) -- phantom only as destination
+	case Disp16: case Index8: return 1;
+	case Absolute:
 		switch (reg) {
-		case 0: return 1;			// (xxx).w
-		case 1: return is_destination? 1: 2;	// (xxx).l -- asymmetric, verified
-		case 2: case 3: return 1;
-		case 4: return size == 4? 2: 1;		// #imm
+		case AbsoluteW: return 1;			// (xxx).w
+		case AbsoluteL: return is_destination? 1: 2;	// (xxx).l -- asymmetric, verified
+		case PCDisp16: case PCIndex8: return 1;
+		case Immediate: return size == 4? 2: 1;		// #imm
 		}
 	}
 	return 0;
@@ -148,11 +165,11 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool 
 
 	if (!is_destination) {
 		// Dn, An, #imm need no address-computation unit at all
-		_src_needed_ea_computation = !(mode == 0 || mode == 1 || (mode == 7 && reg == 4));
+		_src_needed_ea_computation = !(mode == DataReg || mode == AddrReg || (mode == Absolute && reg == Immediate));
 	}
 
 	int words;
-	if (is_destination && mode == 7 && reg == 1) {
+	if (is_destination && mode == Absolute && reg == AbsoluteL) {
 		// (xxx).l as destination: cross-operand rule, verified 100%
 		words = _src_needed_ea_computation ? 1 : 2;
 	} else {
@@ -161,13 +178,13 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool 
 	_fault_pc_words += words;
 
 	switch (mode) {
-	case 0: return EA{ EA::RegD, reg };
-	case 1: return EA{ EA::RegA, reg };
+	case DataReg: return EA{ EA::RegD, reg };
+	case AddrReg: return EA{ EA::RegA, reg };
 
-	case 2: // (An)
+	case Indirect: // (An)
 		return mem_ea(a(reg));
 
-	case 3: { // (An)+  -- increment deferred; only commits if the access succeeds
+	case PostInc: { // (An)+  -- increment deferred; only commits if the access succeeds
 		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
 		EA e = mem_ea(addr);
@@ -176,17 +193,17 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool 
 		e.postinc_step = step;
 		return e;
 	}
-	case 4: { // -(An)  -- same A7 rule, decrement happens before use
+	case PreDec: { // -(An)  -- same A7 rule, decrement happens before use
 		uint32_t addr = a(reg);
 		int step = (reg == 7 && size == 1) ? 2 : size;
 		a(reg, addr - step);
 		return mem_ea(a(reg));
 	}
-	case 5: { // (d16,An)
+	case Disp16: { // (d16,An)
 		int16_t disp = (int16_t)fetch16();
 		return mem_ea(a(reg) + disp);
 	}
-	case 6: { // (d8,An,Xn)
+	case Index8: { // (d8,An,Xn)
 		uint16_t ext = fetch16();
 		int  xreg  = (ext >> 12) & 7;
 		bool xIsA  = (ext >> 15) & 1;
@@ -196,21 +213,21 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool 
 		if (!xLong) xval = (int16_t)xval;   // word-sized index sign-extends
 		return mem_ea(a(reg) + xval + disp8);
 	}
-	case 7:
+	case Absolute:
 		switch (reg) {
-		case 0: { // (xxx).w -- sign-extended to 32 bits per the 68k spec
+		case AbsoluteW: { // (xxx).w -- sign-extended to 32 bits per the 68k spec
 			int16_t w = (int16_t)fetch16();
 			return mem_ea((uint32_t)(int32_t)w);
 		}
-		case 1: { // (xxx).l
+		case AbsoluteL: { // (xxx).l
 			return mem_ea(fetch32());
 		}
-		case 2: { // (d16,PC) -- base is the extension word's OWN address
+		case PCDisp16: { // (d16,PC) -- base is the extension word's OWN address
 			Memory::address ext_addr = pc();
 			int16_t disp = (int16_t)fetch16();
 			return mem_ea(ext_addr + disp);
 		}
-		case 3: { // (d8,PC,Xn) -- same PC-relative base rule
+		case PCIndex8: { // (d8,PC,Xn) -- same PC-relative base rule
 			Memory::address ext_addr = pc();
 			uint16_t ext = fetch16();
 			int  xreg  = (ext >> 12) & 7;
@@ -221,7 +238,7 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool 
 			if (!xLong) xval = (int16_t)xval;
 			return mem_ea(ext_addr + xval + disp8);
 		}
-		case 4: { // #imm -- size-dependent: byte/word need one word, long needs two
+		case Immediate: { // #imm -- size-dependent: byte/word need one word, long needs two
 			if (size == 4) {
 				return EA{ EA::Imm, 0, 0, fetch32() };
 			}
@@ -748,7 +765,7 @@ void m68k::immediate(uint16_t op) {
 
 void m68k::bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type) {
 
-	if (mode == 0) {	// destination is Dn (long)
+	if (mode == DataReg) {	// destination is Dn (long)
 		uint32_t val = d(reg);
 		bit_num &= 31;
 		uint32_t bit = (1U << bit_num);
@@ -816,7 +833,7 @@ void m68k::movew(uint16_t op) {
 	commit_postinc(src);   // unconditional -- a read's postinc commits even if the read faults
 	if (_trapped) return;
 
-	if (dmode == 1) {	// MOVEA.w
+	if (dmode == AddrReg) {	// MOVEA.w
 		a(dreg, (uint32_t)(int16_t)v);
 		return;
 	}
@@ -835,8 +852,10 @@ void m68k::movel(uint16_t op) {
 	int smode = (op >> 3) & 7, sreg  =  op       & 7;
 
 	uint32_t v;
-	if (smode == 3)      v = read_long_postinc(sreg);
-	else if (smode == 4) v = read_long_predec(sreg);
+	if (smode == PostInc)
+		v = read_long_postinc(sreg);
+	else if (smode == PreDec)
+		v = read_long_predec(sreg);
 	else {
 		EA src = decode_ea(smode, sreg, 4);
 		v = read_long(src);
@@ -844,7 +863,7 @@ void m68k::movel(uint16_t op) {
 	}
 	if (_trapped) return;
 
-	if (dmode == 1) {	// MOVEA.l
+	if (dmode == AddrReg) {	// MOVEA.l
 		a(dreg, v);
 		return;
 	}
@@ -852,9 +871,9 @@ void m68k::movel(uint16_t op) {
 	set_nz((int32_t)v);
 	clr_vc();
 
-	if (dmode == 3)
+	if (dmode == PostInc)
 		write_long_postinc(dreg, v);
-	else if (dmode == 4) {
+	else if (dmode == PreDec) {
 		_fault_pc_words += 1;
 		write_long_predec(dreg, v);
 	} else {
@@ -906,7 +925,7 @@ void m68k::quick(uint16_t op) {
 		commit_postinc(ea);
 		if (_trapped) return;
 
-		if (mode == 1) {
+		if (mode == AddrReg) {
 			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
 			return;
 		}
@@ -925,7 +944,7 @@ void m68k::quick(uint16_t op) {
 		commit_postinc(ea);
 		if (_trapped) return;
 
-		if (mode == 1) {
+		if (mode == AddrReg) {
 			a(reg, (uint32_t)v);
 			return;
 		}
@@ -980,7 +999,7 @@ void m68k::quick(uint16_t op) {
 		commit_postinc(ea);
 		if (_trapped) return;
 
-		if (mode == 1) {
+		if (mode == AddrReg) {
 			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
 			return;
 		}
@@ -999,7 +1018,7 @@ void m68k::quick(uint16_t op) {
 		commit_postinc(ea);
 		if (_trapped) return;
 
-		if (mode == 1) {
+		if (mode == AddrReg) {
 			a(reg, (uint32_t)v);
 			return;
 		}
@@ -1026,6 +1045,7 @@ void m68k::misc(uint16_t op) {
 		// vectors (register/memory state identical before/after)
 		return;
 	case 0x4e71:	// NOP
+		cycles(4);
 		return;
 	case 0x4e72: {	// STOP
 		if (!(_sr & S_FLAG)) {
@@ -1070,6 +1090,7 @@ void m68k::misc(uint16_t op) {
 		d(reg, v);
 		set_nz((int32_t)v);
 		clr_vc();
+		cycles(4);
 		return;
 	}
 	case 0x4880: {	// EXT.w
@@ -1078,6 +1099,7 @@ void m68k::misc(uint16_t op) {
 		d(reg, (old & 0xffff0000) | (uint16_t)v);
 		set_nz(v);
 		clr_vc();
+		cycles(4);
 		return;
 	}
 	case 0x48c0: {	// EXT.l
@@ -1085,6 +1107,7 @@ void m68k::misc(uint16_t op) {
 		d(reg, (uint32_t)v);
 		set_nz(v);
 		clr_vc();
+		cycles(4);
 		return;
 	}
 	case 0x4e50: {	// LINK An, #disp
@@ -1129,7 +1152,7 @@ void m68k::misc(uint16_t op) {
 
 	switch (op & 0xf1c0) {
 	case 0x4180: {	// CHK <ea>, Dn
-		if (mode == 1) {
+		if (mode == AddrReg) {
 			illegal(op);
 			return;
 		}
@@ -1151,7 +1174,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x41c0: {	// LEA
-		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+		if (mode == DataReg || mode == AddrReg || mode == PostInc || mode == PreDec) {
 			illegal(op);
 			return;
 		}
@@ -1361,7 +1384,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4840: {	// PEA
-		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+		if (mode == DataReg || mode == AddrReg || mode == PostInc || mode == PreDec) {
 			illegal(op);
 			return;
 		}
@@ -1374,7 +1397,7 @@ void m68k::misc(uint16_t op) {
 		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
-		if (mode == 4) {
+		if (mode == PreDec) {
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
 					uint16_t val;
@@ -1401,7 +1424,7 @@ void m68k::misc(uint16_t op) {
 	case 0x48c0: {	// MOVEM.l Register to Memory
 		_fault_pc_words += 1;			// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
-		if (mode == 4) {
+		if (mode == PreDec) {
 			uint32_t addr = a(reg);
 			uint32_t orig_val = addr;	// captured BEFORE any decrement, for the self-reference case below
 			for (int r = 0; r < 16; r++)
@@ -1437,7 +1460,7 @@ void m68k::misc(uint16_t op) {
 				if (_trapped) break;
 				write_movem_reg(r, val);
 			}
-		if (mode == 3)
+		if (mode == PostInc)
 			a(reg, ea.addr);
 		return;
 	}
@@ -1453,7 +1476,7 @@ void m68k::misc(uint16_t op) {
 				ea.addr += 2;
 				write_movem_reg(r, val);
 			}
-		if (mode == 3)
+		if (mode == PostInc)
 			a(reg, ea.addr);
 		return;
 	}
@@ -1499,7 +1522,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e80: {	// JSR
-		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+		if (mode == DataReg || mode == AddrReg || mode == PostInc || mode == PreDec) {
 			illegal(op);
 			return;
 		}
@@ -1510,7 +1533,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4ec0: {	// JMP
-		if (mode == 0 || mode == 1 || mode == 3 || mode == 4) {
+		if (mode == DataReg || mode == AddrReg || mode == PostInc || mode == PreDec) {
 			illegal(op);
 			return;
 		}
@@ -2277,23 +2300,25 @@ void m68k::exg(uint16_t op) {
 
 	switch (opmode) {
 	case 0b101: {	// Dn, Dm and An, Am
-		if (mode == 0) {
+		if (mode == DataReg) {
 			uint32_t tmp = d(dreg);
 			d(dreg, d(reg));
 			d(reg, tmp);
-		} else if (mode == 1) {
+		} else if (mode == AddrReg) {
 			uint32_t tmp = a(dreg);
 			a(dreg, a(reg));
 			a(reg, tmp);
 		}
+		cycles(6);
 		return;
 	}
 	case 0b110: {	// Dn, An
-		if (mode == 1) {
+		if (mode == AddrReg) {
 			uint32_t tmp = d(dreg);
 			d(dreg, a(reg));
 			a(reg, tmp);
 		}
+		cycles(6);
 		return;
 	}
 	}
@@ -2566,7 +2591,7 @@ void m68k::shift_rotate_memory(uint16_t op) {
 
 	uint8_t mode = (op >> 3) & 7, reg = op & 7;
 
-	if (mode == 0 || mode == 1 || (mode == 7 && reg == 4)) {
+	if (mode == DataReg || mode == AddrReg || (mode == Absolute && reg == Immediate)) {
 		illegal(op);
 		return;
 	}
