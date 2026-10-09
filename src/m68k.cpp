@@ -548,12 +548,11 @@ void m68k::immediate(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (dest & imm);
-			write_byte(ea, v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (dest & imm);
+		write_byte(ea, v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(8 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x0240: {	// ANDI.w
@@ -693,12 +692,11 @@ void m68k::immediate(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (dest ^ imm);
-			write_byte(ea, v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (dest ^ imm);
+		write_byte(ea, v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(8 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x0a40: {	// EORI.w
@@ -2189,12 +2187,11 @@ void m68k::bit_eor(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (u ^ d(dreg));
-			write_byte(ea, v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (u ^ d(dreg));
+		write_byte(ea, v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles((mode == DataReg? 4: 8) + ea.cycles);
 		return;
 	}
 	case 0b101: {	// EOR.w Dn, <ea>
@@ -2213,16 +2210,16 @@ void m68k::bit_eor(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint32_t v = (u ^ d(dreg));
-			write_long(ea, v);
-			set_nz((int32_t)v);
-			clr_vc();
-		}
+		uint32_t v = (u ^ d(dreg));
+		write_long(ea, v);
+		set_nz((int32_t)v);
+		clr_vc();
+		cycles(8 + ea.cycles);
 		return;
 	}
 	}
 }
+
 void m68k::bit_or(uint16_t op) {
 
 	int dreg = (op >> 9) & 7;
@@ -2529,12 +2526,11 @@ void m68k::bit_and(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (u & d(dreg));
-			d(dreg, (d(dreg) & 0xffffff00) | v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (u & d(dreg));
+		d(dreg, (d(dreg) & 0xffffff00) | v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(4 + ea.cycles);
 		return;
 	}
 	case 0b001: {	// AND.w <ea>, Dn
@@ -2565,12 +2561,11 @@ void m68k::bit_and(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (u & (uint8_t)d(dreg));
-			write_byte(ea, v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (u & (uint8_t)d(dreg));
+		write_byte(ea, v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(8 + ea.cycles);
 		return;
 	}
 	case 0b101: {	// AND.w Dn, <ea>
