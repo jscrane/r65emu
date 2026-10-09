@@ -668,6 +668,7 @@ void m68k::immediate(uint16_t op) {
 			bool imm_neg = (imm & 0x8000), dest_neg = (dest & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (dest_neg == imm_neg) && (res_neg != imm_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x10000);
+			cycles(8 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -686,6 +687,7 @@ void m68k::immediate(uint16_t op) {
 			bool imm_neg = (imm & 0x80000000), dest_neg = (dest & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (dest_neg == imm_neg) && (res_neg != imm_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+			cycles(16 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -936,13 +938,13 @@ void m68k::quick(uint16_t op) {
 	case 0x5040: {	// ADDQ.w
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
-
 		uint32_t v = (uint32_t)u + quick_data;
 		commit_postinc(ea);
 		if (_trapped) return;
 
 		if (mode == AddrReg) {
 			a(reg, (a(reg) & 0xffff0000) | (uint16_t)v);
+			cycles(8);
 			return;
 		}
 
@@ -950,18 +952,19 @@ void m68k::quick(uint16_t op) {
 		set_nz((int16_t)v);
 		set_flag(V_FLAG, !(u & 0x8000) && is_set(N_FLAG));
 		set_flag(C_FLAG | X_FLAG, v & 0x00010000);
+		cycles(4 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x5080: {	// ADDQ.l
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
-
 		uint64_t v = (uint64_t)u + quick_data;
 		commit_postinc(ea);
 		if (_trapped) return;
 
 		if (mode == AddrReg) {
 			a(reg, (uint32_t)v);
+			cycles(6);
 			return;
 		}
 
@@ -969,6 +972,7 @@ void m68k::quick(uint16_t op) {
 		set_nz((int32_t)v);
 		set_flag(V_FLAG, !(u & 0x80000000) && is_set(N_FLAG));
 		set_flag(C_FLAG | X_FLAG, v & 0x100000000ULL);
+		cycles(8 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x50c0:
@@ -1933,7 +1937,7 @@ void m68k::add(uint16_t op) {
 			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
-			cycles(6 + ea.cycles);
+			cycles(ea.cycles + (ea_is_reg_or_imm(mode, reg)? 8: 6));
 		}
 		return;
 	}
