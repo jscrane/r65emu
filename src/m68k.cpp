@@ -592,15 +592,14 @@ void m68k::immediate(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			int16_t v = (int16_t)dest - (int16_t)imm;
-			uint8_t res = (uint8_t)v;
-			write_byte(ea, res);
-			set_nz((int8_t)res);
-			bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
-		}
+		int16_t v = (int16_t)dest - (int16_t)imm;
+		uint8_t res = (uint8_t)v;
+		write_byte(ea, res);
+		set_nz((int8_t)res);
+		bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
+		cycles(8 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x0440: {	// SUBI.w
@@ -651,7 +650,7 @@ void m68k::immediate(uint16_t op) {
 		bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
 		set_flag(V_FLAG, (dest_neg == imm_neg) && (res_neg != imm_neg));
 		set_flag(C_FLAG | X_FLAG, v & 0x100);
-		cycles(8 + ea.cycles + (mode == DataReg? 0: 4));
+		cycles(8 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x0640: {	// ADDI.w
@@ -933,7 +932,7 @@ void m68k::quick(uint16_t op) {
 		set_nz((int8_t)v);
 		set_flag(V_FLAG, !(u & 0x80) && is_set(N_FLAG));
 		set_flag(C_FLAG | X_FLAG, v & 0x0100);
-		cycles(4 + ea.cycles + (mode == DataReg? 0: 4));
+		cycles(4 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x5040: {	// ADDQ.w
@@ -999,15 +998,13 @@ void m68k::quick(uint16_t op) {
 	case 0x5100: {	// SUBQ.b
 		EA ea = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(ea);
-
 		uint16_t v = (uint16_t)u - quick_data;
 		commit_postinc(ea);
-		if (!_trapped) {
-			write_byte(ea, (uint8_t)v);
-			set_nz((int8_t)v);
-			set_flag(V_FLAG, (u & 0x80) && !is_set(N_FLAG));
-			set_flag(C_FLAG | X_FLAG, v & 0x0100);
-		}
+		write_byte(ea, (uint8_t)v);
+		set_nz((int8_t)v);
+		set_flag(V_FLAG, (u & 0x80) && !is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		cycles(4 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x5140: {	// SUBQ.w
@@ -1773,14 +1770,13 @@ void m68k::sub(uint16_t op) {
 		uint8_t val = d(dreg);
 		int16_t v = (int16_t)val - (int16_t)u;
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t res = (uint8_t)v;
-			d(dreg, (d(dreg) & 0xffffff00) | res);
-			set_nz((int8_t)res);
-			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
-		}
+		uint8_t res = (uint8_t)v;
+		d(dreg, (d(dreg) & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
+		cycles(4 + ea.cycles);
 		return;
 	}
 	case 0b001: {	// SUB.w <ea>, Dn
@@ -1829,14 +1825,13 @@ void m68k::sub(uint16_t op) {
 		uint8_t val = read_byte(ea);
 		int16_t v = (int16_t)val -(int16_t)u;
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t res = (uint8_t)v;
-			write_byte(ea, res);
-			set_nz((int8_t)res);
-			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
-		}
+		uint8_t res = (uint8_t)v;
+		write_byte(ea, res);
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
+		cycles(8 + ea.cycles);
 		return;
 	}
 	case 0b101: {	// SUB.w Dn, <ea>
