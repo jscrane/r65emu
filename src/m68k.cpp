@@ -506,12 +506,11 @@ void m68k::immediate(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (dest | imm);
-			write_byte(ea, v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (dest | imm);
+		write_byte(ea, v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(8 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0x0040: {	// ORI.w
@@ -2236,12 +2235,11 @@ void m68k::bit_or(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (u | d(dreg));
-			d(dreg, (d(dreg) & 0xffffff00) | v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (u | d(dreg));
+		d(dreg, (d(dreg) & 0xffffff00) | v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(4 + ea.cycles);
 		return;
 	}
 	case 0b001: {	// OR.w <ea>, Dn
@@ -2272,12 +2270,11 @@ void m68k::bit_or(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1);
 		uint8_t u = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t v = (u | d(dreg));
-			write_byte(ea, v);
-			set_nz((int8_t)v);
-			clr_vc();
-		}
+		uint8_t v = (u | d(dreg));
+		write_byte(ea, v);
+		set_nz((int8_t)v);
+		clr_vc();
+		cycles(8 + ea.cycles);
 		return;
 	}
 	case 0b101: {	// OR.w Dn, <ea>
