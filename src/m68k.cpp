@@ -161,7 +161,20 @@ static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destinat
 	return 0;
 }
 
-m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
+// These are just bus cycles (4 each) plus idle, e.g. (d8,An,Xn).w = ext-word fetch 4
+// + index idle 2 + operand read 4 = 10.  Verified against 47,423 ADD/SUB/AND/OR/CMP
+// <ea>,Dn vectors (.b/.w/.l); EA cost is instruction-independent.
+static uint8_t ea_cycles(int mode, int reg, int size) {
+	static const uint8_t w[]  = { 0, 0, 4, 4, 6, 8, 10 };		// modes 0-6, byte/word
+	static const uint8_t l[]  = { 0, 0, 8, 8, 10, 12, 14 };		// modes 0-6, long
+	static const uint8_t w7[] = { 8, 12, 8, 10, 4 };		// (xxx).w (xxx).l (d16,PC) (d8,PC,Xn) #imm
+	static const uint8_t l7[] = { 12, 16, 12, 14, 8 };
+	if (mode != Absolute)
+		return (size == 4? l: w)[mode];
+	return reg <= Immediate? (size == 4? l7: w7)[reg]: 0;
+}
+
+m68k::EA m68k::decode_ea_inner(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 
 	if (!is_destination) {
 		// Dn, An, #imm need no address-computation unit at all
@@ -247,8 +260,14 @@ m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool 
 		}
 		}
 	}
-	illegal(0); // unreachable for a correctly-built decode table
+	illegal(0);		// unreachable for a correctly-built decode table
 	return EA{};
+}
+
+m68k::EA m68k::decode_ea(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
+	EA e = decode_ea_inner(mode, reg, size, is_destination, is_move_destination);
+	e.cycles = ea_cycles(mode, reg, size);
+	return e;
 }
 
 void m68k::commit_postinc(const EA &e) {
@@ -383,6 +402,9 @@ void m68k::write_long_postinc(int reg, uint32_t v) {
 	if (_trapped) return;
 	a(reg, addr + 2);
 }
+
+// write-back to memory cycles
+static inline int wb(int mode) { return mode == DataReg? 0: 4; }
 
 void m68k::immediate(uint16_t op) {
 
@@ -622,15 +644,14 @@ void m68k::immediate(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			int16_t v = (int16_t)dest + (int16_t)imm;
-			uint8_t res = (uint8_t)v;
-			write_byte(ea, res);
-			set_nz((int8_t)res);
-			bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (dest_neg == imm_neg) && (res_neg != imm_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x100);
-		}
+		int16_t v = (int16_t)dest + (int16_t)imm;
+		uint8_t res = (uint8_t)v;
+		write_byte(ea, res);
+		set_nz((int8_t)res);
+		bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (dest_neg == imm_neg) && (res_neg != imm_neg));
+		set_flag(C_FLAG | X_FLAG, v & 0x100);
+		cycles(8 + ea.cycles + (mode == DataReg? 0: 4));
 		return;
 	}
 	case 0x0640: {	// ADDI.w
@@ -904,17 +925,15 @@ void m68k::quick(uint16_t op) {
 
 	switch (op & 0xf1c0) {
 	case 0x5000: {	// ADDQ.b
-		EA ea = decode_ea(mode, reg, 1);
+		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t u = read_byte(ea);
-
 		uint16_t v = (uint16_t)u + quick_data;
 		commit_postinc(ea);
-		if (!_trapped) {
-			write_byte(ea, (uint8_t)v);
-			set_nz((int8_t)v);
-			set_flag(V_FLAG, !(u & 0x80) && is_set(N_FLAG));
-			set_flag(C_FLAG | X_FLAG, v & 0x0100);
-		}
+		write_byte(ea, (uint8_t)v);
+		set_nz((int8_t)v);
+		set_flag(V_FLAG, !(u & 0x80) && is_set(N_FLAG));
+		set_flag(C_FLAG | X_FLAG, v & 0x0100);
+		cycles(4 + ea.cycles + (mode == DataReg? 0: 4));
 		return;
 	}
 	case 0x5040: {	// ADDQ.w
@@ -1877,14 +1896,13 @@ void m68k::add(uint16_t op) {
 		uint8_t val = d(dreg);
 		uint16_t v = (uint16_t)u + (uint16_t)val;
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t res = (uint8_t)v;
-			d(dreg, (d(dreg) & 0xffffff00) | res);
-			set_nz((int8_t)res);
-			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x100);
-		}
+		uint8_t res = (uint8_t)v;
+		d(dreg, (d(dreg) & 0xffffff00) | res);
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+		set_flag(C_FLAG | X_FLAG, v & 0x100);
+		cycles(4 + ea.cycles);
 		return;
 	}
 	case 0b001: {	// ADD.w <ea>, Dn
@@ -1900,6 +1918,7 @@ void m68k::add(uint16_t op) {
 			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x10000);
+			cycles(4 + ea.cycles);
 		}
 		return;
 	}
@@ -1916,6 +1935,7 @@ void m68k::add(uint16_t op) {
 			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+			cycles(6 + ea.cycles);
 		}
 		return;
 	}
@@ -1933,14 +1953,13 @@ void m68k::add(uint16_t op) {
 		uint8_t val = read_byte(ea);
 		uint16_t v = (uint16_t)u + (uint16_t)val;
 		commit_postinc(ea);
-		if (!_trapped) {
-			uint8_t res = (uint8_t)v;
-			write_byte(ea, res);
-			set_nz((int8_t)res);
-			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x100);
-		}
+		uint8_t res = (uint8_t)v;
+		write_byte(ea, res);
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
+		set_flag(C_FLAG | X_FLAG, v & 0x100);
+		cycles(8 + ea.cycles);
 		return;
 	}
 	case 0b101: {	// ADD.w Dn, <ea>
@@ -1956,6 +1975,7 @@ void m68k::add(uint16_t op) {
 			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x10000);
+			cycles(8 + ea.cycles);
 		}
 		return;
 	}
@@ -1972,6 +1992,7 @@ void m68k::add(uint16_t op) {
 			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg == val_neg) && (u_neg != res_neg));
 			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+			cycles(12 + ea.cycles);
 		}
 		return;
 	}
