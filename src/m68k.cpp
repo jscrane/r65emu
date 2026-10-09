@@ -734,14 +734,13 @@ void m68k::immediate(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 1, true);
 		uint8_t dest = read_byte(ea);
 		commit_postinc(ea);
-		if (!_trapped) {
-			int16_t v = (int16_t)dest - (int16_t)imm;
-			uint8_t res = (uint8_t)v;
-			set_nz((int8_t)res);
-			bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
-			set_flag(C_FLAG, dest < imm);
-		}
+		int16_t v = (int16_t)dest - (int16_t)imm;
+		uint8_t res = (uint8_t)v;
+		set_nz((int8_t)res);
+		bool imm_neg = (imm & 0x80), dest_neg = (dest & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
+		set_flag(C_FLAG, dest < imm);
+		cycles(8 + ea.cycles);
 		return;
 	}
 	case 0x0c40: {	// CMPI.w
@@ -1631,14 +1630,13 @@ void m68k::cmp(uint16_t op) {
 		uint8_t u = read_byte(ea);
 		uint8_t val = d(dreg);
 		commit_postinc(ea);
-		if (!_trapped) {
-			int16_t v = (int16_t)val - (int16_t)u;
-			uint8_t res = (uint8_t)v;
-			set_nz((int8_t)res);
-			bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
-			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
-			set_flag(C_FLAG, v < 0);
-		}
+		int16_t v = (int16_t)val - (int16_t)u;
+		uint8_t res = (uint8_t)v;
+		set_nz((int8_t)res);
+		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
+		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
+		set_flag(C_FLAG, v < 0);
+		cycles(4 + ea.cycles);
 		return;
 	}
 	case 0b001: {	// CMP.w <ea>, Dn
