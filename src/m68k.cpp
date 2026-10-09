@@ -414,39 +414,45 @@ void m68k::immediate(uint16_t op) {
 	case 0x003c: {	// ORItoCCR
 		uint8_t imm = (uint8_t)fetch16();
 		update_ccr(imm | ccr());
+		cycles(20);
 		return;
 	}
-	case 0x007c: {	// ORItoSR
-		if (is_set(S_FLAG))
-			update_sr(fetch16() | sr());
-		else
+	case 0x007c:	// ORItoSR
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
+		update_sr(fetch16() | sr());
+		cycles(20);
 		return;
-	}
 	case 0x023c: {	// ANDItoCCR
 		uint8_t imm = (uint8_t)fetch16();
 		update_ccr(imm & ccr());
+		cycles(20);
 		return;
 	}
-	case 0x027c: {	// ANDItoSR
-		if (is_set(S_FLAG))
-			update_sr(fetch16() & sr());
-		else
+	case 0x027c:	// ANDItoSR
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
+		update_sr(fetch16() & sr());
+		cycles(20);
 		return;
-	}
 	case 0x0a3c: {	// EORItoCCR
 		uint8_t imm = (uint8_t)fetch16();
 		update_ccr(imm ^ ccr());
+		cycles(20);
 		return;
 	}
-	case 0x0a7c: {	// EORItoSR
-		if (is_set(S_FLAG))
-			update_sr(fetch16() ^ sr());
-		else
+	case 0x0a7c:	// EORItoSR
+		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			return;
+		}
+		update_sr(fetch16() ^ sr());
+		cycles(20);
 		return;
-	}
 	}
 
 	int reg = op & 7;
