@@ -543,6 +543,7 @@ void m68k::immediate(uint16_t op) {
 			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(16 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -586,6 +587,7 @@ void m68k::immediate(uint16_t op) {
 			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(16 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -735,6 +737,7 @@ void m68k::immediate(uint16_t op) {
 			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(16 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -2242,11 +2245,13 @@ void m68k::bit_eor(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
 		commit_postinc(ea);
-		uint32_t v = (u ^ d(dreg));
-		write_long(ea, v);
-		set_nz((int32_t)v);
-		clr_vc();
-		cycles(8 + ea.cycles);
+		if (!_trapped) {
+			uint32_t v = (u ^ d(dreg));
+			write_long(ea, v);
+			set_nz((int32_t)v);
+			clr_vc();
+			cycles(8 + ea.cycles + wb(mode));
+		}
 		return;
 	}
 	}
@@ -2293,6 +2298,7 @@ void m68k::bit_or(uint16_t op) {
 			d(dreg, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(ea.cycles + (ea_is_reg_or_imm(mode, reg)? 8: 6));
 		}
 		return;
 	}
@@ -2329,6 +2335,7 @@ void m68k::bit_or(uint16_t op) {
 			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(12 + ea.cycles);
 		}
 		return;
 	}
@@ -2589,6 +2596,7 @@ void m68k::bit_and(uint16_t op) {
 			d(dreg, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(ea.cycles + (ea_is_reg_or_imm(mode, reg)? 8: 6));
 		}
 		return;
 	}
@@ -2625,6 +2633,7 @@ void m68k::bit_and(uint16_t op) {
 			write_long(ea, v);
 			set_nz((int32_t)v);
 			clr_vc();
+			cycles(12 + ea.cycles);
 		}
 		return;
 	}
