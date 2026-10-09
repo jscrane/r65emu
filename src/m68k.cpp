@@ -763,6 +763,7 @@ void m68k::immediate(uint16_t op) {
 			bool imm_neg = (imm & 0x8000), dest_neg = (dest & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg == imm_neg));
 			set_flag(C_FLAG, dest < imm);
+			cycles(8 + ea.cycles);
 		}
 		return;
 	}
@@ -779,6 +780,7 @@ void m68k::immediate(uint16_t op) {
 			bool imm_neg = (imm & 0x80000000), dest_neg = (dest & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (dest_neg != imm_neg) && (res_neg != dest_neg));
 			set_flag(C_FLAG, dest < imm);
+			cycles(6 + ea.cycles + (ea_is_reg_or_imm(mode, reg)? 8: 6));
 		}
 		return;
 	}
@@ -1663,6 +1665,7 @@ void m68k::cmp(uint16_t op) {
 			bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
 			set_flag(C_FLAG, v < 0);
+			cycles(4 + ea.cycles);
 		}
 		return;
 	}
@@ -1678,6 +1681,7 @@ void m68k::cmp(uint16_t op) {
 			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
 			set_flag(C_FLAG, v < 0);
+			cycles(6 + ea.cycles);
 		}
 		return;
 	}
