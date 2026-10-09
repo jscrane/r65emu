@@ -527,6 +527,7 @@ void m68k::immediate(uint16_t op) {
 			write_word(ea, v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(8 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -569,6 +570,7 @@ void m68k::immediate(uint16_t op) {
 			write_word(ea, v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(8 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -717,6 +719,7 @@ void m68k::immediate(uint16_t op) {
 			write_word(ea, v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(8 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -2219,7 +2222,7 @@ void m68k::bit_eor(uint16_t op) {
 		write_byte(ea, v);
 		set_nz((int8_t)v);
 		clr_vc();
-		cycles((mode == DataReg? 4: 8) + ea.cycles);
+		cycles(4 + ea.cycles + wb(mode));
 		return;
 	}
 	case 0b101: {	// EOR.w Dn, <ea>
@@ -2231,6 +2234,7 @@ void m68k::bit_eor(uint16_t op) {
 			write_word(ea, v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(4 + ea.cycles + wb(mode));
 		}
 		return;
 	}
@@ -2276,6 +2280,7 @@ void m68k::bit_or(uint16_t op) {
 			d(dreg, (d(dreg) & 0xffff0000) | v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(4 + ea.cycles);
 		}
 		return;
 	}
@@ -2311,6 +2316,7 @@ void m68k::bit_or(uint16_t op) {
 			write_word(ea, v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(8 + ea.cycles);
 		}
 		return;
 	}
@@ -2570,6 +2576,7 @@ void m68k::bit_and(uint16_t op) {
 			d(dreg, (d(dreg) & 0xffff0000) | v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(4 + ea.cycles);
 		}
 		return;
 	}
@@ -2605,6 +2612,7 @@ void m68k::bit_and(uint16_t op) {
 			write_word(ea, v);
 			set_nz((int16_t)v);
 			clr_vc();
+			cycles(8 + ea.cycles);
 		}
 		return;
 	}
