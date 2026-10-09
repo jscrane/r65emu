@@ -406,6 +406,8 @@ void m68k::write_long_postinc(int reg, uint32_t v) {
 // write-back to memory cycles
 static inline int wb(int mode) { return mode == DataReg? 0: 4; }
 
+static inline bool ea_is_reg_or_imm(int mode, int reg) { return mode == DataReg || mode == AddrReg || (mode == Absolute && reg == Immediate); }
+
 void m68k::immediate(uint16_t op) {
 
 	switch (op) {
@@ -1669,7 +1671,7 @@ void m68k::cmp(uint16_t op) {
 		}
 		return;
 	}
-	case 0b011: {	// CMPA.w
+	case 0b011: {	// CMPA.w <ea>, An
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
 		uint32_t val = a(dreg);
@@ -1682,6 +1684,7 @@ void m68k::cmp(uint16_t op) {
 			bool u_neg = (extended_u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
 			set_flag(C_FLAG, val < (uint32_t)v);
+			cycles(6 + ea.cycles);
 		}
 		return;
 	}
@@ -1745,6 +1748,7 @@ void m68k::cmp(uint16_t op) {
 			bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 			set_flag(V_FLAG, (u_neg != val_neg) && (res_neg != val_neg));
 			set_flag(C_FLAG, val < u);
+			cycles(6 + ea.cycles);
 		}
 		return;
 	}
@@ -1810,8 +1814,10 @@ void m68k::sub(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
 		commit_postinc(ea);
-		if (!_trapped)
+		if (!_trapped) {
 			a(dreg, a(dreg) - (int32_t)(int16_t)u);
+			cycles(8 + ea.cycles);
+		}
 		return;
 	}
 	case 0b100: {	// SUB.b Dn, <ea>
@@ -1865,8 +1871,10 @@ void m68k::sub(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
 		commit_postinc(ea);
-		if (!_trapped)
+		if (!_trapped) {
 			a(dreg, a(dreg) - u);
+			cycles(ea.cycles + (ea_is_reg_or_imm(mode, reg)? 8: 6));
+		}
 		return;
 	}
 	}
@@ -1933,8 +1941,10 @@ void m68k::add(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 2);
 		uint16_t u = read_word(ea);
 		commit_postinc(ea);
-		if (!_trapped)
+		if (!_trapped) {
 			a(dreg, a(dreg) + (int32_t)(int16_t)u);
+			cycles(8 + ea.cycles);
+		}
 		return;
 	}
 	case 0b100: {	// ADD.b Dn, <ea>
@@ -1990,8 +2000,10 @@ void m68k::add(uint16_t op) {
 		EA ea = decode_ea(mode, reg, 4);
 		uint32_t u = read_long(ea);
 		commit_postinc(ea);
-		if (!_trapped)
+		if (!_trapped) {
 			a(dreg, a(dreg) + u);
+			cycles(ea.cycles + (ea_is_reg_or_imm(mode, reg)? 8: 6));
+		}
 		return;
 	}
 	}
