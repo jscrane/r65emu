@@ -2613,10 +2613,13 @@ void m68k::sbcd(uint16_t op) {
 	int result = lo_c + top;
 	uint8_t res = (uint8_t)result;
 
-	if (is_mem)
+	if (is_mem) {
 		write_byte(dea, res);
-	else
+		cycles(18);
+	} else {
 		d(dreg, (d(dreg) & 0xffffff00) | res);
+		cycles(6);
+	}
 
 	set_flag(N_FLAG, res & 0x80);
 	if (res != 0) clr_flag(Z_FLAG);		// sticky: only clears
@@ -2648,10 +2651,13 @@ void m68k::abcd(uint16_t op) {
 	int result = lo_c + top + ((unadjusted > 0x99) ? 0x60 : 0);
 	uint8_t res = (uint8_t)result;
 
-	if (is_mem)
+	if (is_mem) {
 		write_byte(dea, res);
-	else
+		cycles(18);
+	} else {
 		d(dreg, (d(dreg) & 0xffffff00) | res);
+		cycles(6);
+	}
 
 	set_flag(N_FLAG, res & 0x80);
 	if (res != 0) clr_flag(Z_FLAG);		// sticky: only clears
