@@ -174,6 +174,21 @@ static uint8_t ea_cycles(int mode, int reg, int size) {
 	return reg <= Immediate? (size == 4? l7: w7)[reg]: 0;
 }
 
+// indexed by ctl_index(): (An) (d16,An) (d8,An,Xn) (xxx).w (xxx).l (d16,PC) (d8,PC,Xn)
+static const uint8_t lea_c[] = {  4,  8, 12,  8, 12,  8, 12 };
+static const uint8_t pea_c[] = { 12, 16, 20, 16, 20, 16, 20 };
+static const uint8_t jmp_c[] = {  8, 10, 14, 10, 12, 10, 14 };
+static const uint8_t jsr_c[] = { 16, 18, 22, 18, 20, 18, 22 };
+
+static int ctl_index(int mode, int reg) {
+	switch (mode) {
+	case 2: return 0;
+	case 5: return 1;
+	case 6: return 2;
+	default: return 3 + reg;	// mode 7: reg 0..3 = (xxx).w (xxx).l (d16,PC) (d8,PC,Xn)
+	}
+}
+
 m68k::EA m68k::decode_ea_inner(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 
 	if (!is_destination) {
@@ -1222,6 +1237,7 @@ void m68k::misc(uint16_t op) {
 		}
 		EA src = decode_ea(mode, reg, 4);
 		a((op >> 9) & 7, src.addr);
+		cycles(lea_c[ctl_index(mode, reg)]);
 		return;
 	}
 	}
@@ -1434,8 +1450,10 @@ void m68k::misc(uint16_t op) {
 			return;
 		}
 		EA src = decode_ea(mode, reg, 4);
-		if (!_trapped)
+		if (!_trapped) {
 			push32(src.addr);
+			cycles(pea_c[ctl_index(mode, reg)]);
+		}
 		return;
 	}
 	case 0x4880: {	// MOVEM.w Register to Memory
@@ -1573,8 +1591,10 @@ void m68k::misc(uint16_t op) {
 		}
 		EA src = decode_ea(mode, reg, 4);
 		uint32_t ret = pc();
-		if (jump_to(src.addr))
+		if (jump_to(src.addr)) {
 			push32(ret);
+			cycles(jsr_c[ctl_index(mode, reg)]);
+		}
 		return;
 	}
 	case 0x4ec0: {	// JMP
@@ -1583,7 +1603,8 @@ void m68k::misc(uint16_t op) {
 			return;
 		}
 		EA src = decode_ea(mode, reg, 4);
-		jump_to(src.addr);
+		if (jump_to(src.addr))
+			cycles(jmp_c[ctl_index(mode, reg)]);
 		return;
 	}
 	}
