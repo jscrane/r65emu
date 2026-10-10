@@ -512,16 +512,19 @@ void m68k::immediate(uint16_t op) {
 		case 0b100: {	// MOVEP.w Memory to Register
 			uint8_t b0 = read8(addr), b1 = read8(addr + 2);
 			d(dreg, (val & 0xffff0000) | ((uint16_t)b0 << 8) | b1);
+			cycles(16);
 			return;
 		}
 		case 0b110: {	// MOVEP.w Register to Memory
 			write8(addr, (val >> 8) & 0xff);
 			write8(addr + 2, val & 0xff);
+			cycles(16);
 			return;
 		}
 		case 0b101: {	// MOVEP.l Memory to Register
 			uint8_t b0 = read8(addr), b1 = read8(addr + 2), b2 = read8(addr + 4), b3 = read8(addr + 6);
 			d(dreg, ((uint32_t)b0 << 24) | ((uint32_t)b1 << 16) | ((uint32_t)b2 << 8) | b3);
+			cycles(24);
 			return;
 		}
 		case 0b111: {	// MOVEP.l Register to Memory
@@ -529,6 +532,7 @@ void m68k::immediate(uint16_t op) {
 			write8(addr + 2, (val >> 16) & 0xff);
 			write8(addr + 4, (val >> 8) & 0xff);
 			write8(addr + 6, val & 0xff);
+			cycles(24);
 			return;
 		}
 		default:
@@ -976,6 +980,7 @@ void m68k::moveq(uint16_t op) {
 	set_nz((int8_t)v);
 	clr_vc();
 	d(dreg, (uint32_t)(int32_t)(int8_t)v);
+	cycles(4);
 }
 
 void m68k::quick(uint16_t op) {
@@ -1132,6 +1137,7 @@ void m68k::misc(uint16_t op) {
 		// pulses external RESET* line to peripherals -- no CPU-visible state
 		// change beyond normal instruction completion; confirmed against real
 		// vectors (register/memory state identical before/after)
+		cycles(132);
 		return;
 	case 0x4e71:	// NOP
 		cycles(4);
