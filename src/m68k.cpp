@@ -1147,7 +1147,8 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4e75:	// RTS
-		jump_to(pop32());
+		if (jump_to(pop32()))
+			cycles(16);
 		return;
 	case 0x4e73: {	// RTE
 		if (!is_set(S_FLAG)) {
@@ -1157,16 +1158,21 @@ void m68k::misc(uint16_t op) {
 		uint16_t sr = pop16();
 		uint32_t target = pop32();
 		update_sr(sr);
-		jump_to(target);
+		if (jump_to(target))
+			cycles(20);
 		return;
 	}
 	case 0x4e76:	// TRAPV
-		if (is_set(V_FLAG))
+		if (is_set(V_FLAG)) {
 			raise_exception(TRAPV);
+			return;
+		}
+		cycles(4);
 		return;
 	case 0x4e77:	// RTR
 		update_ccr(pop16());
-		jump_to(pop32());
+		if (jump_to(pop32()))
+			cycles(20);
 		return;
 	}
 
@@ -1207,11 +1213,13 @@ void m68k::misc(uint16_t op) {
 		uint32_t sp = a(7);
 		a(reg, sp);
 		a(7, sp + disp);
+		cycles(16);
 		return;
 	}
 	case 0x4e58: {	// UNLINK An
 		a(7, a(reg));
 		a(reg, pop32());
+		cycles(12);
 		return;
 	}
 	case 0x4e60:	// MOVEtoUSP
@@ -1232,11 +1240,9 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 
-	switch (op & 0xfff0) {
-	case 0x4e40: {	// TRAP
+	if ((op & 0xfff0) == 0x4e40) {	// TRAP
 		raise_exception(TRAP_VECTORS + (op & 0x0f));
 		return;
-	}
 	}
 
 	int mode = (op >> 3) & 7;
@@ -1260,7 +1266,8 @@ void m68k::misc(uint16_t op) {
 			} else if (val > bound) {
 				clr_flag(N_FLAG);
 				raise_exception(CHECK);
-			}
+			} else
+				cycles(10 + src.cycles);
 		}
 		return;
 	}
