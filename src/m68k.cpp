@@ -547,14 +547,14 @@ void m68k::immediate(uint16_t op) {
 	if (dbop == 0x0100 || dbop == 0x0140 || dbop == 0x0180 || dbop == 0x01c0) {
 		uint8_t type = (op >> 6) & 3;	// 0=BTST, 1=BCHG, 2=BCLR, 3=BSET
 		uint32_t bit = d((op >> 9) & 7);
-		bit_operation(mode, reg, bit, type);
+		bit_operation(true, mode, reg, bit, type);
 		return;
 	}
 
 	if ((op & 0x0f00) == 0x0800) {		// static bit operations
 		uint8_t type = (op >> 6) & 3;	// 0=BTST, 1=BCHG, 2=BCLR, 3=BSET
 		uint32_t bit = fetch16() & 0xff;
-		bit_operation(mode, reg, bit, type);
+		bit_operation(false, mode, reg, bit, type);
 		return;
 	}
 
@@ -849,7 +849,7 @@ void m68k::immediate(uint16_t op) {
 	}
 }
 
-void m68k::bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type) {
+void m68k::bit_operation(bool is_dynamic, uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type) {
 
 	if (mode == DataReg) {	// destination is Dn (long)
 		uint32_t val = d(reg);
@@ -858,15 +858,19 @@ void m68k::bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t ty
 		set_flag(Z_FLAG, (val & bit) == 0);
 		switch (type) {
 		case 0:		// BTST
+			cycles(is_dynamic? 6: 10);
 			break;
 		case 1:		// BCHG
 			d(reg, val ^ bit);
+			cycles((is_dynamic? 6: 10) + (bit_num & 16? 2: 0));
 			break;
 		case 2:		// BCLR
 			d(reg, val & ~bit);
+			cycles((is_dynamic? 8: 12) + (bit_num & 16? 2: 0));
 			break;
 		case 3:		// BSET
 			d(reg, val | bit);
+			cycles((is_dynamic? 6: 10) + (bit_num & 16? 2: 0));
 			break;
 		}
 	} else {		// destination is memory (byte)
@@ -877,15 +881,19 @@ void m68k::bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t ty
 		set_flag(Z_FLAG, (val & bit) == 0);
 		switch (type) {
 		case 0:		// BTST
+			cycles((is_dynamic? 4: 8) + (ea.kind == EA::Imm? 2: 0) + ea.cycles);
 			break;
 		case 1:		// BCHG
 			write_byte(ea, val ^ bit);
+			cycles((is_dynamic? 8: 12) + ea.cycles);
 			break;
 		case 2:		// BCLR
 			write_byte(ea, val & ~bit);
+			cycles((is_dynamic? 8: 12) + ea.cycles);
 			break;
 		case 3:		// BSET
 			write_byte(ea, val | bit);
+			cycles((is_dynamic? 8: 12) + ea.cycles);
 			break;
 		}
 		commit_postinc(ea);
