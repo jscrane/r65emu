@@ -2692,6 +2692,8 @@ void m68k::shift_rotate_memory(uint16_t op) {
 	commit_postinc(ea);
 	if (_trapped) return;
 
+	cycles(8 + ea.cycles);
+
 	switch (type) {
 	case 0b000: {	// ASR
 		uint16_t res = ((int16_t)val >> 1);
@@ -2786,6 +2788,8 @@ void m68k::shift_rotate_register(uint16_t op) {
 	int is_reg = (op >> 5) & 1; 	// 0: imm, 1: reg
 	int shift_count = is_reg? d(sreg) & 0x3f: count == 0? 8: count;
 	int dreg = op & 7;
+
+	cycles((size == 4? 8: 6) + 2 * shift_count);
 
 	switch ((dir << 2) | family) {
 	case 0b000:
