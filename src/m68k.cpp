@@ -1348,6 +1348,8 @@ void m68k::misc(uint16_t op) {
 		EA dst = decode_ea(mode, reg, 2, true);
 		write_word(dst, _sr);
 		commit_postinc(dst);	// unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
+		if (!_trapped)
+			cycles(6 + dst.cycles + (mode == DataReg? 0: 2));
 		return;
 	}
 	case 0x4200: {	// CLR.b
