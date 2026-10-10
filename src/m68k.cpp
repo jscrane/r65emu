@@ -144,6 +144,12 @@ static constexpr uint8_t PCDisp16 = 2;		// (d16, PC)
 static constexpr uint8_t PCIndex8 = 3;		// (d8, Dn, PC)
 static constexpr uint8_t Immediate = 4;		// #<data>
 
+// size
+static constexpr uint8_t SizeByte = 0b00;
+static constexpr uint8_t SizeWord = 0b01;
+static constexpr uint8_t SizeLong = 0b10;
+static constexpr uint8_t SizeIllegal = 0b11;
+
 static int fault_pc_words_for_mode(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 	switch (mode) {
 	case DataReg: case AddrReg: case Indirect: return 0;
@@ -189,6 +195,29 @@ static int ctl_index(int mode, int reg) {
 	}
 }
 
+static uint8_t move_dst_cycles(int mode, int reg, int size) {
+	static const uint8_t w[] = { 4, 4,  8,  8,  8, 12, 14 };	// Dn An (An) (An)+ -(An) (d16,An) (d8,An,Xn)
+	static const uint8_t l[] = { 4, 4, 12, 12, 12, 16, 18 };
+	if (mode == Absolute)
+		return (size == 4? 16: 12) + 4 * reg;		// (xxx).w, (xxx).l
+	return (size == 4? l: w)[mode];
+}
+
+static uint8_t movem_base(bool to_regs, int mode, int reg) {
+	//                              Dn An (An) (An)+ -(An) (d16,An) (d8,An,Xn)
+	static const uint8_t rm[]  = {  0, 0,  8,   0,    8,    12,      14 };
+	static const uint8_t mr[]  = {  0, 0, 12,  12,    0,    16,      18 };
+	static const uint8_t rm7[] = { 12, 16 };			// (xxx).w (xxx).l
+	static const uint8_t mr7[] = { 16, 20, 16, 18 };		// (xxx).w (xxx).l (d16,PC) (d8,PC,Xn)
+	if (mode == Absolute)
+		return (to_regs? mr7: rm7)[reg];
+	return (to_regs? mr: rm)[mode];
+}
+
+static inline uint8_t ea_idle(int mode, int reg, bool move_dst) {
+	return ((mode == PreDec && !move_dst) || mode == Index8 || (mode == Absolute && reg == PCIndex8))? 2: 0;
+}
+
 m68k::EA m68k::decode_ea_inner(int mode, int reg, int size, bool is_destination, bool is_move_destination) {
 
 	if (!is_destination) {
@@ -204,6 +233,7 @@ m68k::EA m68k::decode_ea_inner(int mode, int reg, int size, bool is_destination,
 		words = fault_pc_words_for_mode(mode, reg, size, is_destination, is_move_destination);
 	}
 	_fault_pc_words += words;
+	_fault_idle += ea_idle(mode, reg, is_move_destination);
 
 	switch (mode) {
 	case DataReg: return EA{ EA::RegD, reg };
@@ -361,6 +391,7 @@ void m68k::write_long(const EA &e, uint32_t v) {
 uint32_t m68k::read_long_predec(int reg) {
 	// no _fault_pc_words contribution -- source reads are their true count (0), verified
 	_src_needed_ea_computation = true;
+	_fault_idle += 2;
 	uint32_t addr = a(reg) - 4;
 	a(reg, addr);		// full decrement commits unconditionally, upfront
 	uint32_t hi = read16(addr);
@@ -863,16 +894,15 @@ void m68k::moveb(uint16_t op) {
 
 	EA src = decode_ea(smode, sreg, 1);	// consumes source extension word(s)
 	uint8_t v = read_byte(src);
-	commit_postinc(src);			// unconditional -- a read's postinc commits even if the read faults
-	if (_trapped) return;
+	commit_postinc(src);
+	cycles(ea_cycles(smode, sreg, 1) + move_dst_cycles(dmode, dreg, 1));
 
 	set_nz((int8_t)v);
 	clr_vc();
 
 	EA dst = decode_ea(dmode, dreg, 1);	// consumes dest extension word(s)
 	write_byte(dst, v);
-	if (_trapped) return;
-	commit_postinc(dst);			// conditional -- a write's postinc only commits on success
+	commit_postinc(dst);
 }
 
 void m68k::movew(uint16_t op) {
@@ -884,7 +914,9 @@ void m68k::movew(uint16_t op) {
 	commit_postinc(src);			// unconditional -- a read's postinc commits even if the read faults
 	if (_trapped) return;
 
-	if (dmode == AddrReg) {	// MOVEA.w
+	cycles(ea_cycles(smode, sreg, 2) + move_dst_cycles(dmode, dreg, 2));
+
+	if (dmode == AddrReg) {			// MOVEA.w
 		a(dreg, (uint32_t)(int16_t)v);
 		return;
 	}
@@ -914,7 +946,9 @@ void m68k::movel(uint16_t op) {
 	}
 	if (_trapped) return;
 
-	if (dmode == AddrReg) {	// MOVEA.l
+	cycles(ea_cycles(smode, sreg, 4) + move_dst_cycles(dmode, dreg, 4));
+
+	if (dmode == AddrReg) {			// MOVEA.l
 		a(dreg, v);
 		return;
 	}
@@ -936,9 +970,9 @@ void m68k::movel(uint16_t op) {
 }
 
 void m68k::moveq(uint16_t op) {
+	// MOVE.q
 	int dreg = (op >> 9) & 7;
 	uint8_t v = (op & 0xff);
-
 	set_nz((int8_t)v);
 	clr_vc();
 	d(dreg, (uint32_t)(int32_t)(int8_t)v);
@@ -1370,8 +1404,10 @@ void m68k::misc(uint16_t op) {
 		EA src = decode_ea(mode, reg, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
-		if (!_trapped)
+		if (!_trapped) {
 			update_ccr(v);
+			cycles(12 + src.cycles);
+		}
 		return;
 	}
 	case 0x4600: {	// NOT.b
@@ -1419,8 +1455,10 @@ void m68k::misc(uint16_t op) {
 		EA src = decode_ea(mode, reg, 2);
 		uint16_t v = read_word(src);
 		commit_postinc(src);
-		if (!_trapped)
+		if (!_trapped) {
 			update_sr(v);
+			cycles(12 + src.cycles);
+		}
 		return;
 	}
 	case 0x4800: {	// NBCD
@@ -1457,6 +1495,7 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4880: {	// MOVEM.w Register to Memory
+
 		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
@@ -1482,6 +1521,8 @@ void m68k::misc(uint16_t op) {
 					if (_trapped) break;
 					ea.addr += 2;
 				}
+		if (!_trapped)
+			cycles(movem_base(false, mode, reg) + __builtin_popcount(mask) * 4);
 		return;
 	}
 	case 0x48c0: {	// MOVEM.l Register to Memory
@@ -1510,6 +1551,8 @@ void m68k::misc(uint16_t op) {
 				if (_trapped) break;
 				ea.addr += 4;
 			}
+		if (!_trapped)
+			cycles(movem_base(false, mode, reg) + __builtin_popcount(mask) * 8);
 		return;
 	}
 	case 0x4c80: {	// MOVEM.w Memory to Register
@@ -1525,6 +1568,8 @@ void m68k::misc(uint16_t op) {
 			}
 		if (mode == PostInc)
 			a(reg, ea.addr);
+		if (!_trapped)
+			cycles(movem_base(true, mode, reg) + __builtin_popcount(mask) * 4);
 		return;
 	}
 	case 0x4cc0: {	// MOVEM.l Memory to Register
@@ -1541,6 +1586,8 @@ void m68k::misc(uint16_t op) {
 			}
 		if (mode == PostInc)
 			a(reg, ea.addr);
+		if (!_trapped)
+			cycles(movem_base(true, mode, reg) + __builtin_popcount(mask) * 8);
 		return;
 	}
 	case 0x4a00: {	// TST.b
@@ -2776,7 +2823,7 @@ void m68k::shift_rotate_register(uint16_t op) {
 
 	int size = (op >> 6) & 3;
 
-	if (size == 3) {
+	if (size == SizeIllegal) {
 		illegal(op);
 		return;
 	}
@@ -2789,7 +2836,7 @@ void m68k::shift_rotate_register(uint16_t op) {
 	int shift_count = is_reg? d(sreg) & 0x3f: count == 0? 8: count;
 	int dreg = op & 7;
 
-	cycles((size == 4? 8: 6) + 2 * shift_count);
+	cycles((size == SizeLong? 8: 6) + 2 * shift_count);
 
 	switch ((dir << 2) | family) {
 	case 0b000:
@@ -2944,8 +2991,8 @@ void m68k::ror_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	bool cflag;
 
 	if (shift_count == 0) {
-		if (size == 0) set_nz((int8_t)v);
-		else if (size == 1) set_nz((int16_t)v);
+		if (size == SizeByte) set_nz((int8_t)v);
+		else if (size == SizeWord) set_nz((int16_t)v);
 		else set_nz((int32_t)v);
 		clr_vc();
 		return;
@@ -3332,6 +3379,10 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	uint16_t old_sr = _sr;
 	bool was_supervisor = is_set(S_FLAG);
 
+	uint16_t pre = 4 * _fault_pc_words + _fault_data + _fault_idle;
+	if (!is_instr_fetch)
+		_cycles = _cyc_start + 50 + pre;	// overwrite: discards whatever the instruction's table already added
+
 	// SSW: bit4 = R/W, bit3 = I/N, bits2-0 = function code (supervisor/user,
 	// data/program space). All computed and confirmed exact against real
 	// vectors except bit4 (R/W), which only correlates ~87-90% -- left
@@ -3399,6 +3450,7 @@ uint8_t m68k::read8(uint32_t addr) {
 uint16_t m68k::read16(uint32_t addr) {
 	if (!check_aligned(addr, true))
 		return 0;
+	_fault_data += 4;
 	uint16_t hi = read8(addr);
 	uint16_t lo = read8(addr+1);
 	return (hi << 8) | lo;
@@ -3419,6 +3471,7 @@ void m68k::write8(uint32_t addr, uint8_t v) {
 void m68k::write16(uint32_t addr, uint16_t v) {
 	if (!check_aligned(addr, false))
 		return;
+	_fault_data += 4;
 	write8(addr, v >> 8);
 	write8(addr+1, v & 0xff);
 }

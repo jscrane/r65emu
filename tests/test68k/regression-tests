@@ -1,14 +1,16 @@
 #!/bin/bash
 
 KEEP_GOING=false
+CYCLE_CHECK=
 WRITE=false
 TESTDIR=~/src/680x0/68000/v1
 BRANCH=master
 
-while getopts "kwt:b:" opt; do
+while getopts "kwd:b:t" opt; do
 	case "$opt" in
 		k) KEEP_GOING=true;;
-		t) TESTDIR="$OPTARG";;
+		t) CYCLE_CHECK="-t";;
+		d) TESTDIR="$OPTARG";;
 		w) WRITE=true;;
 		b) BRANCH="$OPTARG";;
 		*) echo "Usage: $0 [-k] [-w] [-t test-dir] [-b diff-branch] [test-names...]"; exit 1;;
@@ -28,12 +30,12 @@ for t in $TESTS; do
 	TESTFILE=${TESTDIR}/$t.json.gz
 	RESULTFILE=results/$t
 	echo -n "$t: "
-	if [ ${WRITE} ]; then
-		${SSTESTS} ${TESTFILE} -k > ${RESULTFILE}
+	if "${WRITE}"; then
+		${SSTESTS} ${TESTFILE} -k ${CYCLE_CHECK} > ${RESULTFILE}
 		git diff ${BRANCH}.. --numstat ${RESULTFILE} | awk '{add+=$1; del+=$2} END {printf "-%d +%d\n", del, add}'
 	elif [ ! -f ${RESULTFILE} ]; then
 		echo "SKIP"
-	elif $(${SSTESTS} ${TESTFILE} -k | cmp -s - ${RESULTFILE}); then
+	elif $(${SSTESTS} ${TESTFILE} -k ${CYCLE_CHECK} | cmp -s - ${RESULTFILE}); then
 		echo "PASS"
 	else
 		echo "FAIL"
