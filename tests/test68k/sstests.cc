@@ -120,12 +120,22 @@ static bool check_state(m68k &cpu, Memory &mem, const Json::Value &s,
 	return diffs.empty();
 }
 
+static bool check_timing(uint32_t cycles, const Json::Value &s, std::vector<Mismatch> &diffs) {
+
+	uint32_t length = s.asUInt();
+	if (cycles != length) {
+		diffs.push_back({ "cycles", length, cycles });
+		return false;
+	}
+	return true;
+}
+
 int main(int argc, char *argv[]) {
 
 	int opt;
-	bool keep_going = false;
+	bool keep_going = false, timing = false;
 
-	while ((opt = getopt(argc, argv, "ka")) != -1)
+	while ((opt = getopt(argc, argv, "kat")) != -1)
 		switch (opt) {
 		case 'k':
 			keep_going = true;
@@ -133,8 +143,11 @@ int main(int argc, char *argv[]) {
 		case 'a':
 			all_errors = true;
 			break;
+		case 't':
+			timing = true;
+			break;
 		case '?':
-			fprintf(stderr, "Usage: %s tests.json.gz [-k] [-a]\n", argv[0]);
+			fprintf(stderr, "Usage: %s [-k] [-a] [-t] tests.json.gz\n", argv[0]);
 			return -1;
 		}
 
@@ -166,10 +179,14 @@ int main(int argc, char *argv[]) {
 		cpu.reset();
 		apply_state(cpu, memory, t["initial"]);
 
+		uint64_t start_cycles = cpu.cycles();
+
 		cpu.run(1);
 
+		uint32_t cycles = cpu.cycles() - start_cycles;
+
 		std::vector<Mismatch> diffs;
-		if (check_state(cpu, memory, t["final"], diffs)) {
+		if (check_state(cpu, memory, t["final"], diffs) && (!timing || check_timing(cycles, t["length"], diffs))) {
 			passed++;
 			continue;
 		}

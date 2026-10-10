@@ -61,12 +61,14 @@ private:
 		bool has_postinc = false;
 		int  postinc_reg = 0;
 		int  postinc_step = 0;
+		uint8_t cycles;		// 68000 clocks to compute and read this operand, excluding the instruction's own base cost
 	};
 
 	static constexpr uint32_t ADDRESS_MASK = (1u << MEMORY_ADDRESS_WIDTH) - 1;
 	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr }; }
 	inline uint32_t bus_addr(uint32_t addr) const { return addr & ADDRESS_MASK; }
 
+	EA decode_ea_inner(int mode, int reg, int size, bool is_destination, bool is_move_destination);
 	EA decode_ea(int mode, int reg, int size, bool is_destination = false, bool is_move_destination = false);
 	void commit_postinc(const EA &);
 	uint8_t read_byte(const EA &);
