@@ -466,6 +466,7 @@ void m68k::immediate(uint16_t op) {
 	case 0x007c:	// ORItoSR
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		update_sr(fetch16() | sr());
@@ -480,6 +481,7 @@ void m68k::immediate(uint16_t op) {
 	case 0x027c:	// ANDItoSR
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		update_sr(fetch16() & sr());
@@ -494,6 +496,7 @@ void m68k::immediate(uint16_t op) {
 	case 0x0a7c:	// EORItoSR
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		update_sr(fetch16() ^ sr());
@@ -1143,6 +1146,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4e70:	// RESET
 		if (!(_sr & S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		// pulses external RESET* line to peripherals -- no CPU-visible state
@@ -1156,6 +1160,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4e72: {	// STOP
 		if (!(_sr & S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		uint16_t sr = fetch16();
@@ -1170,6 +1175,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4e73: {	// RTE
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		uint16_t sr = pop16();
@@ -1182,6 +1188,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4e76:	// TRAPV
 		if (is_set(V_FLAG)) {
 			raise_exception(TRAPV);
+			cycles(34);
 			return;
 		}
 		cycles(4);
@@ -1259,6 +1266,7 @@ void m68k::misc(uint16_t op) {
 
 	if ((op & 0xfff0) == 0x4e40) {	// TRAP
 		raise_exception(TRAP_VECTORS + (op & 0x0f));
+		cycles(34);
 		return;
 	}
 
@@ -1476,6 +1484,7 @@ void m68k::misc(uint16_t op) {
 	case 0x46c0: {	// MOVEtoSR
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		EA src = decode_ea(mode, reg, 2);
@@ -2612,17 +2621,9 @@ void m68k::muls(uint16_t op) {
 		set_nz(res);
 		clr_vc();
 
-		// Booth's multiplication algorithm
+		// Booth's multiplication algorithm complexity
 		// https://en.wikipedia.org/wiki/Booth%27s_multiplication_algorithm
-		int n = 0;
-		uint32_t ext = (u << 1);
-		for (int i = 0; i < 16; i++) {
-			int curr = (ext >> i) & 1, next = (ext >> (i+1)) & 1;
-			// 0->1 or 1->0 transition
-			if (curr != next)
-				n++;
-		}
-
+		int n = __builtin_popcount((u ^ (u << 1)) & 0xffff);
 		cycles(38 + 2*n + ea.cycles);
 	}
 }
