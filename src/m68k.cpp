@@ -1834,6 +1834,7 @@ void m68k::cmp(uint16_t op) {
 		bool u_neg = (u & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
 		set_flag(C_FLAG, v < 0);
+		cycles(12);
 		return;
 	}
 	case 0b101: {	// CMPM.w (Ay)+,(Ax)+
@@ -1850,6 +1851,7 @@ void m68k::cmp(uint16_t op) {
 		bool u_neg = (u & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
 		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
 		set_flag(C_FLAG, v < 0);
+		cycles(12);
 		return;
 	}
 	case 0b110: {	// CMPM.l (Ay)+,(Ax)+
@@ -1866,6 +1868,7 @@ void m68k::cmp(uint16_t op) {
 		bool u_neg = (u & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
 		set_flag(V_FLAG, (u_neg != val_neg) && (u_neg == res_neg));
 		set_flag(C_FLAG, val < u);
+		cycles(20);
 		return;
 	}
 	case 0b111: {   // CMPA.l <ea>, An
