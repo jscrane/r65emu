@@ -1072,9 +1072,12 @@ void m68k::quick(uint16_t op) {
 			uint16_t count = d(reg);
 			count--;
 			d(reg, (d(reg) & 0xffff0000) | count);
-			if (count != 0xffff)
+			if (count != 0xffff) {
 				jump_to(base + offset);
-		}
+				cycles(10);
+			}
+		} else
+			cycles(12);
 		return;
 	}
 	case 0x5100: {	// SUBQ.b
@@ -1735,10 +1738,14 @@ void m68k::bcc(uint16_t op) {
 
 	if (cond == 1) {
 		push32(pc());		// BSR
-		jump_to(base + offset);
+		if (jump_to(base + offset))
+			cycles(18);
 
-	} else if (eval_cc(cond))
-		jump_to(base + offset);
+	} else if (eval_cc(cond)) {	// Bcc
+		if (jump_to(base + offset))
+			cycles(10);
+	} else
+		cycles(8);
 }
 
 void m68k::cmp(uint16_t op) {
