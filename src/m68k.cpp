@@ -2152,7 +2152,7 @@ void m68k::subx(uint16_t op) {
 	bool x = is_set(X_FLAG);
 
 	switch (size) {
-	case 0b00: {	// SUBX.b
+	case SizeByte: {	// SUBX.b
 		uint8_t src, val;
 		if (rm_mode == 0) {
 			src = (uint8_t)d(ry_reg);
@@ -2167,8 +2167,13 @@ void m68k::subx(uint16_t op) {
 		}
 		int16_t v = (int16_t)val - (int16_t)src - (x? 1: 0);
 		uint8_t res = (uint8_t)v;
-		if (rm_mode == 0) d(rx_reg, (d(rx_reg) & 0xffffff00) | res);
-		else write8(a(rx_reg), res);
+		if (rm_mode == 0) {
+			d(rx_reg, (d(rx_reg) & 0xffffff00) | res);
+			cycles(4);
+		} else {
+			write8(a(rx_reg), res);
+			cycles(18);
+		}
 
 		bool src_neg = (src & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 		set_flag(N_FLAG, res_neg);
@@ -2240,7 +2245,7 @@ void m68k::addx(uint16_t op) {
 	bool x = is_set(X_FLAG);
 
 	switch (size) {
-	case 0b00: {	// ADDX.b
+	case SizeByte: {	// ADDX.b
 		uint8_t src, val;
 		if (rm_mode == 0) {
 			src = (uint8_t)d(ry_reg);
@@ -2255,8 +2260,13 @@ void m68k::addx(uint16_t op) {
 		}
 		uint16_t v = (uint16_t)src + (uint16_t)val + (x? 1: 0);
 		uint8_t res = (uint8_t)v;
-		if (rm_mode == 0) d(rx_reg, (d(rx_reg) & 0xffffff00) | res);
-		else write8(a(rx_reg), res);
+		if (rm_mode == 0) {
+			d(rx_reg, (d(rx_reg) & 0xffffff00) | res);
+			cycles(4);
+		} else {
+			write8(a(rx_reg), res);
+			cycles(18);
+		}
 
 		bool src_neg = (src & 0x80), val_neg = (val & 0x80), res_neg = (res & 0x80);
 		set_flag(N_FLAG, res_neg);
