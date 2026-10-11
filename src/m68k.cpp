@@ -2593,6 +2593,7 @@ void m68k::mulu(uint16_t op) {
 		d(dreg, res);
 		set_nz(res);
 		clr_vc();
+		cycles(38 + 2*__builtin_popcount(u) + ea.cycles);
 	}
 }
 
@@ -2610,6 +2611,19 @@ void m68k::muls(uint16_t op) {
 		d(dreg, res);
 		set_nz(res);
 		clr_vc();
+
+		// Booth's multiplication algorithm
+		// https://en.wikipedia.org/wiki/Booth%27s_multiplication_algorithm
+		int n = 0;
+		uint32_t ext = (u << 1);
+		for (int i = 0; i < 16; i++) {
+			int curr = (ext >> i) & 1, next = (ext >> (i+1)) & 1;
+			// 0->1 or 1->0 transition
+			if (curr != next)
+				n++;
+		}
+
+		cycles(38 + 2*n + ea.cycles);
 	}
 }
 
