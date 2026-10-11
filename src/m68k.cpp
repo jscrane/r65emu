@@ -2190,23 +2190,26 @@ void m68k::subx(uint16_t op) {
 		} else {
 			a(ry_reg, a(ry_reg) - 2);
 			src = read16(a(ry_reg));
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 			a(rx_reg, a(rx_reg) - 2);
 			val = read16(a(rx_reg));
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 		}
 		int32_t v = (int32_t)val - (int32_t)src - (x? 1: 0);
 		uint16_t res = (uint16_t)v;
-		if (rm_mode == 0) d(rx_reg, (d(rx_reg) & 0xffff0000) | res);
-		else write16(a(rx_reg), res);
-
-		if (!_trapped) {
-			bool src_neg = (src & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
-			set_flag(N_FLAG, res_neg);
-			if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
-			set_flag(V_FLAG, (val_neg != src_neg) && (res_neg == src_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
+		if (rm_mode == 0) {
+			d(rx_reg, (d(rx_reg) & 0xffff0000) | res);
+			cycles(4);
+		} else {
+			write16(a(rx_reg), res);
+			cycles(18);
 		}
+
+		bool src_neg = (src & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+		set_flag(N_FLAG, res_neg);
+		if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
+		set_flag(V_FLAG, (val_neg != src_neg) && (res_neg == src_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
 		return;
 	}
 	case 0b10: {	// SUBX.l
@@ -2216,22 +2219,25 @@ void m68k::subx(uint16_t op) {
 			val = (uint32_t)d(rx_reg);
 		} else {
 			src = read_long_predec_x(ry_reg);
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 			val = read_long_predec_x(rx_reg);
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 		}
 		int64_t v = (int64_t)val - (int64_t)src - (x? 1: 0);
 		uint32_t res = (uint32_t)v;
-		if (rm_mode == 0) d(rx_reg, res);
-		else write32(a(rx_reg), res);
-
-		if (!_trapped) {
-			bool src_neg = (src & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
-			set_flag(N_FLAG, res_neg);
-			if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
-			set_flag(V_FLAG, (val_neg != src_neg) && (res_neg == src_neg));
-			set_flag(C_FLAG | X_FLAG, v < 0);
+		if (rm_mode == 0) {
+			d(rx_reg, res);
+			cycles(8);
+		} else {
+			write32(a(rx_reg), res);
+			cycles(30);
 		}
+
+		bool src_neg = (src & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+		set_flag(N_FLAG, res_neg);
+		if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
+		set_flag(V_FLAG, (val_neg != src_neg) && (res_neg == src_neg));
+		set_flag(C_FLAG | X_FLAG, v < 0);
 		return;
 	}
 	}
@@ -2283,23 +2289,26 @@ void m68k::addx(uint16_t op) {
 		} else {
 			a(ry_reg, a(ry_reg) - 2);
 			src = read16(a(ry_reg));
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 			a(rx_reg, a(rx_reg) - 2);
 			val = read16(a(rx_reg));
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 		}
 		uint32_t v = (uint32_t)src + (uint32_t)val + (x? 1: 0);
 		uint16_t res = (uint16_t)v;
-		if (rm_mode == 0) d(rx_reg, (d(rx_reg) & 0xffff0000) | res);
-		else write16(a(rx_reg), res);
-
-		if (!_trapped) {
-			bool src_neg = (src & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
-			set_flag(N_FLAG, res_neg);
-			if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
-			set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x10000);
+		if (rm_mode == 0) {
+			d(rx_reg, (d(rx_reg) & 0xffff0000) | res);
+			cycles(4);
+		} else {
+			write16(a(rx_reg), res);
+			cycles(18);
 		}
+
+		bool src_neg = (src & 0x8000), val_neg = (val & 0x8000), res_neg = (res & 0x8000);
+		set_flag(N_FLAG, res_neg);
+		if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
+		set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
+		set_flag(C_FLAG | X_FLAG, v & 0x10000);
 		return;
 	}
 	case 0b10: {	// ADDX.l
@@ -2309,22 +2318,25 @@ void m68k::addx(uint16_t op) {
 			val = d(rx_reg);
 		} else {
 			src = read_long_predec_x(ry_reg);
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 			val = read_long_predec_x(rx_reg);
-			if (_trapped) return;
+			if (_trapped) { cycles(2); return; }
 		}
 		uint64_t v = (uint64_t)src + (uint64_t)val + (x? 1: 0);
 		uint32_t res = (uint32_t)v;
-		if (rm_mode == 0) d(rx_reg, res);
-		else write32(a(rx_reg), res);
-
-		if (!_trapped) {
-			bool src_neg = (src & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
-			set_flag(N_FLAG, res_neg);
-			if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
-			set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
-			set_flag(C_FLAG | X_FLAG, v & 0x100000000);
+		if (rm_mode == 0) {
+			d(rx_reg, res);
+			cycles(8);
+		} else {
+			write32(a(rx_reg), res);
+			cycles(30);
 		}
+
+		bool src_neg = (src & 0x80000000), val_neg = (val & 0x80000000), res_neg = (res & 0x80000000);
+		set_flag(N_FLAG, res_neg);
+		if (res != 0) clr_flag(Z_FLAG);	// sticky -- only ever cleared, never forced set
+		set_flag(V_FLAG, (val_neg == src_neg) && (res_neg != src_neg));
+		set_flag(C_FLAG | X_FLAG, v & 0x100000000);
 		return;
 	}
 	}
