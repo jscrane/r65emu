@@ -2539,6 +2539,7 @@ void m68k::divu(uint16_t op) {
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
 		pc(base_pc());
 		raise_exception(DIVIDE_BY_ZERO);
+		cycles(38 + ea.cycles);
 		return;
 	}
 	uint32_t dividend = d(dreg);
@@ -2546,6 +2547,7 @@ void m68k::divu(uint16_t op) {
 	if (upper_word >= divisor) {
 		set_flag(V_FLAG, true);
 		clr_flag(C_FLAG);
+		cycles(10 + ea.cycles);
 		return;
 	}
 	uint32_t quotient = dividend / divisor;
@@ -2571,6 +2573,7 @@ void m68k::divs(uint16_t op) {
 		clr_flag(N_FLAG | Z_FLAG | C_FLAG | V_FLAG);
 		pc(base_pc());
 		raise_exception(DIVIDE_BY_ZERO);
+		cycles(38 + ea.cycles);
 		return;
 	}
 	int32_t dividend = (int32_t)d(dreg);
@@ -2578,6 +2581,7 @@ void m68k::divs(uint16_t op) {
 	if (q < -32768 || q > 32767) {
 		set_flag(V_FLAG, true);
 		clr_flag(C_FLAG);
+		cycles(16 + (dividend < 0? 2: 0) + ea.cycles);
 		return;
 	}
 	int16_t quotient = (int16_t)q;
