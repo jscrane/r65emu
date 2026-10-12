@@ -2194,7 +2194,7 @@ void m68k::subx(uint16_t op) {
 		set_flag(C_FLAG | X_FLAG, v < 0);
 		return;
 	}
-	case 0b01: {	// SUBX.w
+	case SizeWord: {	// SUBX.w
 		uint16_t src, val;
 		if (rm_mode == 0) {
 			src = (uint16_t)d(ry_reg);
@@ -2224,7 +2224,7 @@ void m68k::subx(uint16_t op) {
 		set_flag(C_FLAG | X_FLAG, v < 0);
 		return;
 	}
-	case 0b10: {	// SUBX.l
+	case SizeLong: {	// SUBX.l
 		uint32_t src, val;
 		if (rm_mode == 0) {
 			src = (uint32_t)d(ry_reg);
@@ -2293,7 +2293,7 @@ void m68k::addx(uint16_t op) {
 		set_flag(C_FLAG | X_FLAG, v & 0x100);
 		return;
 	}
-	case 0b01: {	// ADDX.w
+	case SizeWord: {	// ADDX.w
 		uint16_t src, val;
 		if (rm_mode == 0) {
 			src = (uint16_t)d(ry_reg);
@@ -2323,7 +2323,7 @@ void m68k::addx(uint16_t op) {
 		set_flag(C_FLAG | X_FLAG, v & 0x10000);
 		return;
 	}
-	case 0b10: {	// ADDX.l
+	case SizeLong: {	// ADDX.l
 		uint32_t src, val;
 		if (rm_mode == 0) {
 			src = d(ry_reg);
@@ -2556,6 +2556,7 @@ void m68k::divu(uint16_t op) {
 	d(dreg, res);
 	set_nz((int16_t)(uint16_t)quotient);
 	clr_vc();
+	cycles(116 + ea.cycles);	// the median value in the testsuite
 }
 
 void m68k::divs(uint16_t op) {
@@ -2590,6 +2591,7 @@ void m68k::divs(uint16_t op) {
 	d(dreg, res);
 	set_nz(quotient);
 	clr_vc();
+	cycles(140 + ea.cycles);	// the median value in the testsuite
 }
 
 void m68k::mulu(uint16_t op) {
@@ -2954,7 +2956,7 @@ void m68k::roxr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	bool x = is_set(X_FLAG);
 
 	switch (size) {
-	case 0b00: {	// ROXR.b
+	case SizeByte: {	// ROXR.b
 		uint8_t val = (uint8_t)v;
 		uint32_t state = ((uint32_t)(x ? 1 : 0) << 8) | val;
 		shift_count = shift_count % 9;
@@ -2969,7 +2971,7 @@ void m68k::roxr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// ROXR.w
+	case SizeWord: {	// ROXR.w
 		uint16_t val = (uint16_t)v;
 		uint32_t state = ((uint32_t)(x ? 1 : 0) << 16) | val;
 		shift_count = shift_count % 17;
@@ -2984,7 +2986,7 @@ void m68k::roxr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// ROXR.l
+	case SizeLong: {	// ROXR.l
 		uint32_t val = v;
 		uint64_t state = ((uint64_t)(x ? 1 : 0) << 32) | val;
 		shift_count = shift_count % 33;
@@ -3010,7 +3012,7 @@ void m68k::roxl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	bool x = is_set(X_FLAG);
 
 	switch (size) {
-	case 0b00: {	// ROXL.b
+	case SizeByte: {	// ROXL.b
 		uint8_t val = (uint8_t)v;
 
 		// model as a 9-bit value: X in bit8, the byte in bits7-0.
@@ -3030,7 +3032,7 @@ void m68k::roxl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// ROXL.w
+	case SizeWord: {	// ROXL.w
 		uint16_t val = (uint16_t)v;
 		uint32_t state = ((uint32_t)(x ? 1 : 0) << 16) | val;
 		shift_count = shift_count % 17;
@@ -3045,7 +3047,7 @@ void m68k::roxl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// ROXL.l
+	case SizeLong: {	// ROXL.l
 		uint32_t val = v;
 		uint64_t state = ((uint64_t)(x ? 1 : 0) << 32) | val;
 		shift_count = shift_count % 33;
@@ -3079,7 +3081,7 @@ void m68k::ror_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// ROR.b
+	case SizeByte: {	// ROR.b
 		uint8_t val = (uint8_t)v, res;
 
 		shift_count = shift_count % 8;
@@ -3094,7 +3096,7 @@ void m68k::ror_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// ROR.w
+	case SizeWord: {	// ROR.w
 		uint16_t val = (uint16_t)v, res;
 
 		shift_count = shift_count % 16;
@@ -3109,7 +3111,7 @@ void m68k::ror_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// ROR.l
+	case SizeLong: {	// ROR.l
 		uint32_t val = v, res;
 
 		shift_count = shift_count % 32;
@@ -3143,7 +3145,7 @@ void m68k::rol_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// ROL.b
+	case SizeByte: {	// ROL.b
 		uint8_t val = (uint8_t)v, res;
 
 		shift_count = shift_count % 8;
@@ -3158,7 +3160,7 @@ void m68k::rol_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// ROL.w
+	case SizeWord: {	// ROL.w
 		uint16_t val = (uint16_t)v, res;
 
 		shift_count = shift_count % 16;
@@ -3173,7 +3175,7 @@ void m68k::rol_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// ROL.l
+	case SizeLong: {	// ROL.l
 		uint32_t val = v, res;
 
 		shift_count = shift_count % 32;
@@ -3207,7 +3209,7 @@ void m68k::lsl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// LSL.b
+	case SizeByte: {	// LSL.b
 		uint8_t val = (uint8_t)v, res;
 
 		if (shift_count < 8) {
@@ -3221,7 +3223,7 @@ void m68k::lsl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// LSL.w
+	case SizeWord: {	// LSL.w
 		uint16_t val = (uint16_t)v, res;
 
 		if (shift_count < 16) {
@@ -3235,7 +3237,7 @@ void m68k::lsl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// LSL.l
+	case SizeLong: {	// LSL.l
 		uint32_t val = v, res;
 
 		if (shift_count < 32) {
@@ -3268,7 +3270,7 @@ void m68k::lsr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// LSR.b
+	case SizeByte: {	// LSR.b
 		uint8_t val = (uint8_t)v, res;
 
 		if (shift_count < 8) {
@@ -3282,7 +3284,7 @@ void m68k::lsr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// LSR.w
+	case SizeWord: {	// LSR.w
 		uint16_t val = (uint16_t)v, res;
 
 		if (shift_count < 16) {
@@ -3296,7 +3298,7 @@ void m68k::lsr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// LSR.l
+	case SizeLong: {	// LSR.l
 		uint32_t val = v, res;
 
 		if (shift_count < 32) {
@@ -3329,7 +3331,7 @@ void m68k::asl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// ASL.b
+	case SizeByte: {	// ASL.b
 		uint8_t val = (uint8_t)v, res;
 
 		if (shift_count < 8) {
@@ -3352,7 +3354,7 @@ void m68k::asl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int8_t)res);
 		break;
 	}
-	case 0b01: {	// ASL.w
+	case SizeWord: {	// ASL.w
 		uint16_t val = (uint16_t)v, res;
 
 		if (shift_count < 16) {
@@ -3379,7 +3381,7 @@ void m68k::asl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 		set_nz((int16_t)res);
 		break;
 	}
-	case 0b10: {	// ASL.l
+	case SizeLong: {	// ASL.l
 		uint32_t val = v, res;
 
 		if (shift_count < 32) {
@@ -3420,7 +3422,7 @@ void m68k::asr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 	}
 
 	switch (size) {
-	case 0b00: {	// ASR.b
+	case SizeByte: {	// ASR.b
 		uint8_t val = (uint8_t)v;
 		bool is_neg = val & 0x80;
 		uint8_t res = shift_count < 8? (int8_t)val >> shift_count: is_neg? 0xff: 0x00;
@@ -3430,7 +3432,7 @@ void m68k::asr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 			cxflag = (val >> (shift_count - 1)) & 1;
 		break;
 	}
-	case 0b01: {	// ASR.w
+	case SizeWord: {	// ASR.w
 		uint16_t val = (uint16_t)v;
 		bool is_neg = val & 0x8000;
 		uint16_t res = shift_count < 16? (int16_t)val >> shift_count: is_neg? 0xffff: 0x0000;
@@ -3440,7 +3442,7 @@ void m68k::asr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 			cxflag = (val >> (shift_count - 1)) & 1;
 		break;
 	}
-	case 0b10: {	// ASR.l
+	case SizeLong: {	// ASR.l
 		uint32_t val = v;
 		bool is_neg = val & 0x80000000;
 		uint32_t res = shift_count < 32? (int32_t)val >> shift_count: is_neg? 0xffffffff: 0x00000000;
