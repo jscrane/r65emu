@@ -88,9 +88,11 @@ bool Arduino::reset() {
 void Arduino::begin() {
 
 #if DEBUGGING != DEBUG_NONE
-	Serial.begin(TERMINAL_SPEED);
-	while (!Serial);
-	delay(800);
+	bool s = Serial;
+	while (!Serial)
+		Serial.begin(TERMINAL_SPEED);
+	if (!s)
+		delay(800);
 
 	register_debug_print([](const char *lvlstr, const char *msg) {
 		Serial.print(lvlstr);
