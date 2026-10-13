@@ -131,8 +131,8 @@ void m68k::decode_execute(uint16_t op) {
 static constexpr uint8_t DataReg = 0;		// Dn
 static constexpr uint8_t AddrReg = 1;		// An
 static constexpr uint8_t Indirect = 2;		// (An)
-static constexpr uint8_t PostInc = 3;		// +(An)
-static constexpr uint8_t PreDec = 4;		// (An)-
+static constexpr uint8_t PostInc = 3;		// (An)+
+static constexpr uint8_t PreDec = 4;		// -(An)
 static constexpr uint8_t Disp16 = 5;		// (d16, An)
 static constexpr uint8_t Index8 = 6;		// (d8, An, Dn)
 static constexpr uint8_t Absolute = 7;
@@ -1166,11 +1166,12 @@ void m68k::misc(uint16_t op) {
 		uint16_t sr = fetch16();
 		update_sr(sr);
 		halt();
+		cycles(4);
 		return;
 	}
 	case 0x4e75:	// RTS
-		if (jump_to(pop32()))
-			cycles(16);
+		cycles(16);
+		jump_to(pop32());
 		return;
 	case 0x4e73: {	// RTE
 		if (!is_set(S_FLAG)) {
@@ -1181,8 +1182,8 @@ void m68k::misc(uint16_t op) {
 		uint16_t sr = pop16();
 		uint32_t target = pop32();
 		update_sr(sr);
-		if (jump_to(target))
-			cycles(20);
+		cycles(20);
+		jump_to(target);
 		return;
 	}
 	case 0x4e76:	// TRAPV
@@ -1195,8 +1196,8 @@ void m68k::misc(uint16_t op) {
 		return;
 	case 0x4e77:	// RTR
 		update_ccr(pop16());
-		if (jump_to(pop32()))
-			cycles(20);
+		cycles(20);
+		jump_to(pop32());
 		return;
 	}
 
@@ -1249,6 +1250,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4e60:	// MOVEtoUSP
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		_usp = a(reg);
@@ -1257,6 +1259,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4e68:	// MOVEfromUSP
 		if (!is_set(S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
+			cycles(34);
 			return;
 		}
 		a(reg, _usp);
@@ -1577,15 +1580,15 @@ void m68k::misc(uint16_t op) {
 					write_long_predec(reg, val);
 					if (_trapped) { a(reg, orig_val); return; }
 				}
-			return;
+		} else {
+			EA ea = decode_ea(mode, reg, 4);
+			for (int r = 0; r < 16; r++)
+				if (mask & (1 << r)) {
+					write32(ea.addr, read_movem_reg(r));
+					if (_trapped) break;
+					ea.addr += 4;
+				}
 		}
-		EA ea = decode_ea(mode, reg, 4);
-		for (int r = 0; r < 16; r++)
-			if (mask & (1 << r)) {
-				write32(ea.addr, read_movem_reg(r));
-				if (_trapped) break;
-				ea.addr += 4;
-			}
 		if (!_trapped)
 			cycles(movem_base(false, mode, reg) + __builtin_popcount(mask) * 8);
 		return;
@@ -1673,10 +1676,9 @@ void m68k::misc(uint16_t op) {
 		}
 		EA src = decode_ea(mode, reg, 4);
 		uint32_t ret = pc();
-		if (jump_to(src.addr)) {
+		cycles(jsr_c[ctl_index(mode, reg)]);
+		if (jump_to(src.addr))
 			push32(ret);
-			cycles(jsr_c[ctl_index(mode, reg)]);
-		}
 		return;
 	}
 	case 0x4ec0: {	// JMP
@@ -1685,8 +1687,8 @@ void m68k::misc(uint16_t op) {
 			return;
 		}
 		EA src = decode_ea(mode, reg, 4);
-		if (jump_to(src.addr))
-			cycles(jmp_c[ctl_index(mode, reg)]);
+		cycles(jmp_c[ctl_index(mode, reg)]);
+		jump_to(src.addr);
 		return;
 	}
 	}
@@ -1747,14 +1749,14 @@ void m68k::bcc(uint16_t op) {
 
 	if (cond == 1) {
 		push32(pc());		// BSR
-		if (jump_to(base + offset))
-			cycles(18);
+		cycles(18);
+		jump_to(base + offset);
 
 	} else if (eval_cc(cond)) {	// Bcc
-		if (jump_to(base + offset))
-			cycles(10);
+		cycles(10);
+		jump_to(base + offset);
 	} else
-		cycles(8);
+		cycles(disp8? 8: 12);
 }
 
 void m68k::cmp(uint16_t op) {
@@ -3462,7 +3464,9 @@ void m68k::trap_address_error(uint32_t fault_addr, bool is_read, bool is_instr_f
 	bool was_supervisor = is_set(S_FLAG);
 
 	uint16_t pre = 4 * _fault_pc_words + _fault_data + _fault_idle;
-	if (!is_instr_fetch)
+	if (is_instr_fetch)
+		_cycles += ((_current_op & 0xffc0) == 0x4e80)? 34: 42;	// 50 minus the 8 (JSR: 16) that never happened
+	else
 		_cycles = _cyc_start + 50 + pre;	// overwrite: discards whatever the instruction's table already added
 
 	// SSW: bit4 = R/W, bit3 = I/N, bits2-0 = function code (supervisor/user,
