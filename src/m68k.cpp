@@ -1282,21 +1282,23 @@ void m68k::misc(uint16_t op) {
 			return;
 		}
 		EA src = decode_ea(mode, reg, 2);
-		uint16_t b = read_word(src);
+		int16_t bound = (int16_t)read_word(src);
 		commit_postinc(src);	// unconditional
-		if (!_trapped) {
-			int dreg = (op >> 9) & 7;
-			int16_t val = (int16_t)d(dreg), bound = (int16_t)b;
-			clr_flag(Z_FLAG | V_FLAG | C_FLAG);
-			if (val < 0) {
-				set_flag(N_FLAG);
-				raise_exception(CHECK);
-			} else if (val > bound) {
-				clr_flag(N_FLAG);
-				raise_exception(CHECK);
-			} else
-				cycles(10 + src.cycles);
-		}
+		if (_trapped) return;
+
+		int dreg = (op >> 9) & 7;
+		int16_t dn = (int16_t)d(dreg);
+		clr_flag(Z_FLAG | V_FLAG | C_FLAG);
+		if (dn < 0) {
+			set_flag(N_FLAG);
+			raise_exception(CHECK);
+			cycles((dn > bound? 38: 40) + src.cycles);
+		} else if (dn > bound) {
+			clr_flag(N_FLAG);
+			raise_exception(CHECK);
+			cycles(38 + src.cycles);
+		} else
+			cycles(10 + src.cycles);
 		return;
 	}
 	case 0x41c0: {	// LEA
