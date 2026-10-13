@@ -1535,11 +1535,11 @@ void m68k::misc(uint16_t op) {
 		return;
 	}
 	case 0x4880: {	// MOVEM.w Register to Memory
-
 		_fault_pc_words += 1;		// mask word bypasses decode_ea, same gap as ADDI's immediate
 		uint16_t mask = fetch16();
 		EA ea = decode_ea(mode, reg, 2);
 		if (mode == PreDec) {
+			_fault_idle = 0;
 			for (int r = 0; r < 16; r++)
 				if (mask & (1 << r)) {
 					uint16_t val;
