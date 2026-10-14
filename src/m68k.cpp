@@ -2530,7 +2530,6 @@ void m68k::divu(uint16_t op) {
 	uint8_t reg = op & 7;
 	EA ea = decode_ea(mode, reg, 2);
 	uint16_t divisor = read_word(ea);
-
 	commit_postinc(ea);
 	if (_trapped) return;
 
@@ -2560,7 +2559,11 @@ void m68k::divu(uint16_t op) {
 	d(dreg, res);
 	set_nz((int16_t)(uint16_t)quotient);
 	clr_vc();
-	cycles(116 + ea.cycles);	// the median value in the testsuite
+
+	// when divisor < 0x8000, there is an exact closed-form for the cost,
+	// otherwise choose the testsuite median rather than an expensive loop.
+	cycles(ea.cycles + (divisor >= 0x8000? 112:
+				136 - 2*__builtin_popcount(quotient >> 1)));
 }
 
 void m68k::divs(uint16_t op) {
