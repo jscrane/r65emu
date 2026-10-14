@@ -42,6 +42,7 @@ public:
 		_reset_instruction_handler = fn;
 	}
 
+	// handler can return special vectors: 15 (uninitialised) or 24 (spurious)
 	void set_interrupt_acknowledge_handler(std::function<uint8_t(uint8_t)> fn) {
 		_iack = fn;
 	}
@@ -53,14 +54,7 @@ public:
 		}
 	}
 private:
-	inline void step() {
-		_trapped = false;
-		_fault_pc_words = _fault_data = _fault_idle = 0;
-		_fault_pc_base = PC;	// address of the opcode itself, pre-fetch
-		_cyc_start = cycles();
-		_current_op = fetch16();
-		decode_execute(_current_op);
-	}
+	void begin_instruction();
 	void decode_execute(uint16_t op);
 
 	struct EA {	// Effective Address

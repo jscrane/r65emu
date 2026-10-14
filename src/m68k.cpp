@@ -25,18 +25,33 @@ void m68k::reset() {
 	sr(0x2700);
 }
 
+void m68k::begin_instruction() {
+
+	_trapped = false;
+	_fault_pc_words = _fault_data = _fault_idle = 0;
+	_cyc_start = cycles();
+	_fault_pc_base = PC;	// address of the opcode itself, pre-fetch
+}
+
 void m68k::run(unsigned instructions) {
 
 	while (!halted() && instructions--) {
+
+		begin_instruction();
 		if (is_interrupted()) {
-			_stopped = false;
-			take_interrupt(_ipl);
+			uint8_t level = _nmi? 7: _ipl;
+			_nmi = _stopped = false;
+			take_interrupt(level);
 			cycles(44);
+			begin_instruction();	// fresh state for the interrupt's first instruction
+
 		} else if (_stopped) {
 			cycles(4);
 			continue;
 		}
-		step();
+
+		_current_op = fetch16();
+		decode_execute(_current_op);
 	}
 }
 
