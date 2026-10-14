@@ -16,6 +16,7 @@ private:
 	uint8_t read(Memory::address addr);
 
 	bool _timer = false;
+	int _ch = -1;
 	m68k &_cpu;
 	serial_kbd &_kbd;
 	serial_dsp &_dsp;

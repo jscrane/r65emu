@@ -12,15 +12,14 @@
 
 void IO::poll() {
 
-	uint8_t level = 0;
-
 	if (_timer) {
 		_timer = false;
-		level = 5;
-	} else if (_kbd.available())
-		level = 2;
-
-	_cpu.set_interrupt_level(level);
+		_cpu.set_interrupt_level(5);
+	} else if (_ch == -1) {
+		if (_kbd.available())
+			_ch = _kbd.read();
+		_cpu.set_interrupt_level(_ch == -1? 0: 2);
+	}
 }
 
 void IO::write(Memory::address addr, uint8_t b) {
@@ -34,11 +33,15 @@ void IO::write(Memory::address addr, uint8_t b) {
 }
 
 uint8_t IO::read(Memory::address addr) {
+
+	int ch = _ch;
 	switch (addr) {
 	case 0x0000:
-		return _kbd.read();
+		_ch = -1;
+		_cpu.set_interrupt_level(0);
+		return ch == -1? 0: (uint8_t)ch;
 	case 0x4000:
-		return _kbd.available()? 0: 1;
+		return _ch == -1? 1: 0;
 	case 0x5000:
 		return 0;	// tx_fifo_full()? 1: 0
 	}
