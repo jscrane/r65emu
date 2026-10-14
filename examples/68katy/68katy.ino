@@ -16,6 +16,7 @@ Arduino machine(cpu);
 
 void setup() {
 
+	Serial.begin(TERMINAL_SPEED);
 	machine.begin();
 	rw.begin();
 
@@ -29,5 +30,5 @@ void setup() {
 
 void loop() {
 
-	machine.run(1);
+	machine.run(CLK_12MHZ);
 }

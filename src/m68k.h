@@ -42,8 +42,9 @@ public:
 private:
 	inline void step() {
 		_trapped = false;
-		_fault_pc_words = 0;
+		_fault_pc_words = _fault_data = _fault_idle = 0;
 		_fault_pc_base = PC;	// address of the opcode itself, pre-fetch
+		_cyc_start = cycles();
 		_current_op = fetch16();
 		decode_execute(_current_op);
 	}
@@ -61,12 +62,14 @@ private:
 		bool has_postinc = false;
 		int  postinc_reg = 0;
 		int  postinc_step = 0;
+		uint8_t cycles;		// 68000 clocks to compute and read this operand, excluding the instruction's own base cost
 	};
 
 	static constexpr uint32_t ADDRESS_MASK = (1u << MEMORY_ADDRESS_WIDTH) - 1;
 	inline EA mem_ea(uint32_t addr) { return EA{ EA::Mem, 0, addr }; }
 	inline uint32_t bus_addr(uint32_t addr) const { return addr & ADDRESS_MASK; }
 
+	EA decode_ea_inner(int mode, int reg, int size, bool is_destination, bool is_move_destination);
 	EA decode_ea(int mode, int reg, int size, bool is_destination = false, bool is_move_destination = false);
 	void commit_postinc(const EA &);
 	uint8_t read_byte(const EA &);
@@ -160,7 +163,8 @@ private:
 	bool _trapped = false;
 	uint16_t _current_op = 0;
 	Memory::address _fault_pc_base = 0;
-	int _fault_pc_words = 0;
+	int _fault_pc_words = 0, _fault_data = 0, _fault_idle = 0;
+	uint64_t _cyc_start;
 	bool _src_needed_ea_computation = false;
 
 	inline void push16(uint16_t v) {
@@ -218,7 +222,7 @@ private:
 	void lsl_reg(int dreg, uint8_t size, uint8_t shift_count);
 	void roxl_reg(int dreg, uint8_t size, uint8_t shift_count);
 	void rol_reg(int dreg, uint8_t size, uint8_t shift_count);
-	void bit_operation(uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type);
+	void bit_operation(bool is_dynamic, uint8_t mode, uint8_t reg, uint32_t bit_num, uint8_t type);
 
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);

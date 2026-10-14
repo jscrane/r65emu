@@ -51,5 +51,5 @@ int main(int argc, char *argv[]) {
 	machine.interval_timer(10000, [&io]() { io.tick(); });
 
 	while (!cpu.halted())
-		machine.run(1);
+		machine.run(CLK_12MHZ);
 }

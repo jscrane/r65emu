@@ -44,6 +44,7 @@ public:
 #define CLK_2MHZ	2000000
 #define CLK_4MHZ	4000000
 #define CLK_8MHZ	8000000
+#define CLK_12MHZ	12000000
 #define CLK_STOPPED	0
 
 class CPU;
