@@ -17,17 +17,25 @@ m68k::m68k(Memory &m): CPU(m) {
 void m68k::reset() {
 
 	_halted = false;
+	_nmi = false;
+	_stopped = false;
 
 	ssp(read_vector(INITIAL_SSP));
 	pc(read_vector(INITIAL_PC));
 	sr(0x2700);
 }
 
-void m68k::run(unsigned clocks) {
+void m68k::run(unsigned instructions) {
 
-	while (!halted() && clocks--) {
-		if (is_interrupted())
+	while (!halted() && instructions--) {
+		if (is_interrupted()) {
+			_stopped = false;
 			take_interrupt(_ipl);
+			cycles(44);
+		} else if (_stopped) {
+			cycles(4);
+			continue;
+		}
 		step();
 	}
 }
@@ -1152,23 +1160,23 @@ void m68k::misc(uint16_t op) {
 		// pulses external RESET* line to peripherals -- no CPU-visible state
 		// change beyond normal instruction completion; confirmed against real
 		// vectors (register/memory state identical before/after)
+		if (_reset_instruction_handler)
+			_reset_instruction_handler();
 		cycles(132);
 		return;
 	case 0x4e71:	// NOP
 		cycles(4);
 		return;
-	case 0x4e72: {	// STOP
+	case 0x4e72:	// STOP
 		if (!(_sr & S_FLAG)) {
 			raise_exception(PRIVILEGE_VIOLATION);
 			cycles(34);
 			return;
 		}
-		uint16_t sr = fetch16();
-		update_sr(sr);
-		halt();
+		update_sr(fetch16());
+		_stopped = true;
 		cycles(4);
 		return;
-	}
 	case 0x4e75:	// RTS
 		cycles(16);
 		jump_to(pop32());
@@ -3615,6 +3623,9 @@ void m68k::checkpoint(Checkpoint &c) {
 	c.write(_usp);
 	c.write(_ssp);
 	c.write(_sr);
+	c.write(_nmi);
+	c.write(_ipl);
+	c.write(_stopped);
 }
 
 void m68k::restore(Checkpoint &c) {
@@ -3636,4 +3647,7 @@ void m68k::restore(Checkpoint &c) {
 	c.read(_usp);
 	c.read(_ssp);
 	c.read(_sr);
+	c.read(_nmi);
+	c.read(_ipl);
+	c.read(_stopped);
 }

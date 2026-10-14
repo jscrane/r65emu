@@ -38,7 +38,20 @@ public:
 		_illegal_instruction_handler = fn;
 	}
 
-	inline void set_interrupt_level(uint8_t ipl) { if (ipl < 8) _ipl = ipl; }
+	void set_reset_instruction_handler(std::function<void(void)> fn) {
+		_reset_instruction_handler = fn;
+	}
+
+	void set_interrupt_acknowledge_handler(std::function<uint8_t(uint8_t)> fn) {
+		_iack = fn;
+	}
+
+	inline void set_interrupt_level(uint8_t ipl) {
+		if (ipl < 8) {
+			if (ipl == 7 && _ipl != 7) _nmi = true;		// edge into level 7
+			_ipl = ipl;
+		}
+	}
 private:
 	inline void step() {
 		_trapped = false;
@@ -120,10 +133,13 @@ private:
 	static constexpr int AUTO_VECTORS = 24;
 	static constexpr int TRAP_VECTORS = 32;
 	uint8_t _ipl = 0;
+	bool _nmi = false;
+	bool _stopped = false;
+	std::function<uint8_t(uint8_t)> _iack;
 
 	inline bool is_interrupted() const {
 		uint8_t mask = (_sr >> 8) & 7;
-		return _ipl > mask;
+		return _nmi || (_ipl < 7 && _ipl > mask);
 	}
 
 	bool check_aligned(uint32_t addr, bool is_read);
@@ -157,7 +173,7 @@ private:
 		push32(pc());
 		push16(sr);
 		_sr = (_sr & ~0x0700) | (level << 8);
-		jump_to_vector(AUTO_VECTORS + level);
+		jump_to_vector(_iack? _iack(level): AUTO_VECTORS + level);
 	}
 
 	bool _trapped = false;
@@ -228,6 +244,7 @@ private:
 	void illegal(uint16_t op);
 
 	std::function<void(uint16_t)> _illegal_instruction_handler;
+	std::function<void(void)> _reset_instruction_handler;
 	uint32_t D[8], A[7];
 	uint32_t _usp, _ssp;
 
