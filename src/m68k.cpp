@@ -2583,10 +2583,11 @@ void m68k::divs(uint16_t op) {
 	}
 	int32_t dividend = (int32_t)d(dreg);
 	int32_t q = dividend / (int32_t)divisor;
+	uint8_t neg = dividend < 0;
 	if (q < -32768 || q > 32767) {
 		set_flag(V_FLAG, true);
 		clr_flag(C_FLAG);
-		cycles(16 + (dividend < 0? 2: 0) + ea.cycles);
+		cycles(16 + (neg? 2: 0) + ea.cycles);
 		return;
 	}
 	int16_t quotient = (int16_t)q;
@@ -2595,7 +2596,10 @@ void m68k::divs(uint16_t op) {
 	d(dreg, res);
 	set_nz(quotient);
 	clr_vc();
-	cycles(140 + ea.cycles);	// the median value in the testsuite
+
+	uint32_t aq = quotient < 0? -(uint32_t)quotient: quotient;			// |quotient|
+	int adj = divisor >= 0? (neg? 1: -1): 0;
+	cycles(ea.cycles + 2*(76 + neg + adj - __builtin_popcount(aq >> 1)));
 }
 
 void m68k::mulu(uint16_t op) {
