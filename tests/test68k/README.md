@@ -40,5 +40,16 @@ make test simple.rom
 ## Current Failures
 See [issues](https://github.com/jscrane/r65emu/issues).
 
-## Testsuite Bugs
-- ASL.b: `1582` and `1760`. (See this [issue](https://github.com/SingleStepTests/680x0/issues/4).)
+### Testsuite Bugs
+- `ASL.b`: `1582` and `1760`. (See this [issue](https://github.com/SingleStepTests/680x0/issues/4).)
+
+### Timing Errors
+- `DIVU`: picks the testsuite median value for cycles when the divisor exceeds `0x7fff`; the
+alternative would be an expensive loop in the happy-path:
+```
+./sstests -t -k  ~/src/680x0/68000/v1/DIVU.json.gz
+...
+FAIL [8064] 80e8 [DIVU (d16, A0), D0] 8065
+  cycles  	expected        130 (0x82) 	got        120 (0x78)
+6356 passed, 1709 failed
+```
