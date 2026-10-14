@@ -30,5 +30,5 @@ void setup() {
 
 void loop() {
 
-	machine.run(CLK_1MHZ);
+	machine.run(CLK_12MHZ);
 }
