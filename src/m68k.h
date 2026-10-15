@@ -22,6 +22,7 @@ public:
 	inline uint32_t pc() const { return PC; }
 	inline uint32_t base_pc() const { return _fault_pc_base; }
 	inline uint32_t sp() const { return a(7); }
+	inline bool stopped() const { return _stopped; }
 
 	inline void d(uint8_t n, uint32_t v) { D[n] = v; }
 	inline void a(uint8_t n, uint32_t v) {

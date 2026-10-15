@@ -3610,12 +3610,13 @@ void m68k::write32(uint32_t addr, uint32_t v) {
 void m68k::status(bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	if (hdr)
-		DBG_CPU("--pc-- -op- --sp-- -sr- -ccr--");
+		DBG_CPU("--pc-- -op- --sp-- -sr-   -ccr-");
 
 	Memory::address addr = bus_addr(pc());
 	uint16_t op = read16(addr);
-	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c",
+	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c%c",
 		addr, op, bus_addr(sp()), sr(),
+		is_set(T_FLAG)? 'T':'-',
 		is_set(S_FLAG)? 'S':'-',
 		is_set(X_FLAG)? 'X':'-',
 		is_set(N_FLAG)? 'N':'-',
