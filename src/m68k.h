@@ -124,6 +124,7 @@ private:
 	static constexpr int CHECK = 6;
 	static constexpr int TRAPV = 7;
 	static constexpr int PRIVILEGE_VIOLATION = 8;
+	static constexpr int TRACE = 9;
 	static constexpr int AUTO_VECTORS = 24;
 	static constexpr int TRAP_VECTORS = 32;
 	uint8_t _ipl = 0;

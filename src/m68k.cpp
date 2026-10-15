@@ -50,8 +50,14 @@ void m68k::run(unsigned instructions) {
 			continue;
 		}
 
+		bool traced = _sr & T_FLAG;	// sampled at instruction start, after any interrupt entry
 		_current_op = fetch16();
 		decode_execute(_current_op);
+
+		if (traced && !halted() && !_trapped) {
+			raise_exception(TRACE);
+			cycles(34);		// datasheet figure, unverified
+		}
 	}
 }
 
