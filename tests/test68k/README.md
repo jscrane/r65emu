@@ -15,6 +15,8 @@ unless the `-a` flag is given
 
 Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/comment/kptqinm/) discussing that testsuite.
 
+Tests which cover some omissions in the SingleStepTests corpus can be found in `sst-extras`.
+
 ## Regression Testing
 
 ```shell
