@@ -8,12 +8,6 @@
 #include "m68k.h"
 #include "debugging.h"
 
-m68k::m68k(Memory &m): CPU(m) {
-	_illegal_instruction_handler = [this](uint16_t op) {
-		ERR("CPU halted at %06x: illegal instruction: %04x", pc(), op);
-	};
-}
-
 void m68k::reset() {
 
 	_halted = false;
@@ -63,8 +57,8 @@ void m68k::run(unsigned instructions) {
 
 void m68k::illegal(uint16_t op) {
 	PC -= 2;
-	CPU::halt();
-	_illegal_instruction_handler(op);
+	raise_exception(ILLEGAL_INSTRUCTION);
+	cycles(34);
 }
 
 inline bool is_x_shape(uint16_t op) {
@@ -1238,9 +1232,7 @@ void m68k::misc(uint16_t op) {
 	case 0x4afa:	// internal #1
 	case 0x4afb:	// internal #2
 	case 0x4afc:	// ILLEGAL (public)
-		PC -= 2;
-		raise_exception(ILLEGAL_INSTRUCTION);
-		cycles(34);
+		illegal(op);
 		return;
 	}
 
