@@ -121,11 +121,14 @@ private:
 	static constexpr int INITIAL_SSP = 0;
 	static constexpr int INITIAL_PC = 1;
 	static constexpr int ADDRESS_ERROR = 3;
+	static constexpr int ILLEGAL_INSTRUCTION = 4;
 	static constexpr int DIVIDE_BY_ZERO = 5;
 	static constexpr int CHECK = 6;
 	static constexpr int TRAPV = 7;
 	static constexpr int PRIVILEGE_VIOLATION = 8;
 	static constexpr int TRACE = 9;
+	static constexpr int LINE_A_EXCEPTION = 10;
+	static constexpr int LINE_F_EXCEPTION = 11;
 	static constexpr int AUTO_VECTORS = 24;
 	static constexpr int TRAP_VECTORS = 32;
 	uint8_t _ipl = 0;

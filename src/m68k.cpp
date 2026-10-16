@@ -118,6 +118,11 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			sub(op);
 		break;
+	case 0b1010:
+		PC -= 2;
+		raise_exception(LINE_A_EXCEPTION);
+		cycles(34);
+		break;
 	case 0b1011:		// EOR / CMP / CMPA
 		if (!(op & 0x0100) || (op & 0x00c0) == 0x00c0)
 			cmp(op);		// CMP.b/w/l, CMPA.w/l
@@ -150,8 +155,10 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			shift_rotate_register(op);
 		break;
-	default:
-		illegal(op);
+	case 0b1111:
+		PC -= 2;
+		raise_exception(LINE_F_EXCEPTION);
+		cycles(34);
 		break;
 	}
 }
@@ -1227,6 +1234,11 @@ void m68k::misc(uint16_t op) {
 		update_ccr(pop16());
 		cycles(20);
 		jump_to(pop32());
+		return;
+	case 0x4afc:	// ILLEGAL
+		PC -= 2;
+		raise_exception(ILLEGAL_INSTRUCTION);
+		cycles(34);
 		return;
 	}
 
