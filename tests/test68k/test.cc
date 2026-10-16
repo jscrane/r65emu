@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 	}
 	close(fd);
 
-	while (!cpu.halted())
+	while (!cpu.halted() && !cpu.stopped())
 		machine.run(1);
 
 	DBG_EMU("PC=%08x", cpu.pc());
