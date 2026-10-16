@@ -1235,7 +1235,9 @@ void m68k::misc(uint16_t op) {
 		cycles(20);
 		jump_to(pop32());
 		return;
-	case 0x4afc:	// ILLEGAL
+	case 0x4afa:	// internal #1
+	case 0x4afb:	// internal #2
+	case 0x4afc:	// ILLEGAL (public)
 		PC -= 2;
 		raise_exception(ILLEGAL_INSTRUCTION);
 		cycles(34);
@@ -1401,7 +1403,7 @@ void m68k::misc(uint16_t op) {
 		}
 		return;
 	}
-	case 0x40c0: {	// MOVEfromSR
+	case 0x40c0: {	// MOVEfromSR (unprivileged on 68000/68008, privileged on 68010/60020 etc.))
 		EA dst = decode_ea(mode, reg, 2, true);
 		write_word(dst, _sr);
 		commit_postinc(dst);	// unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
