@@ -2,7 +2,7 @@
 
 class m68k: public CPU {
 public:
-	m68k(Memory &);
+	m68k(Memory &mem): CPU(mem) {}
 
 	void run(unsigned) override;
 	void reset() override;
@@ -22,6 +22,7 @@ public:
 	inline uint32_t pc() const { return PC; }
 	inline uint32_t base_pc() const { return _fault_pc_base; }
 	inline uint32_t sp() const { return a(7); }
+	inline bool stopped() const { return _stopped; }
 
 	inline void d(uint8_t n, uint32_t v) { D[n] = v; }
 	inline void a(uint8_t n, uint32_t v) {
@@ -33,10 +34,6 @@ public:
 	inline void ssp(uint32_t v) { _ssp = v; }
 	inline void sr(uint16_t v) { _sr = v; }
 	inline void pc(Memory::address v) { PC = v; }
-
-	void set_illegal_instruction_handler(std::function<void(uint16_t)> fn) {
-		_illegal_instruction_handler = fn;
-	}
 
 	void set_reset_instruction_handler(std::function<void(void)> fn) {
 		_reset_instruction_handler = fn;
@@ -119,13 +116,20 @@ private:
 
 	static constexpr int INITIAL_SSP = 0;
 	static constexpr int INITIAL_PC = 1;
+	static constexpr int BUS_ERROR = 2;
 	static constexpr int ADDRESS_ERROR = 3;
+	static constexpr int ILLEGAL_INSTRUCTION = 4;
 	static constexpr int DIVIDE_BY_ZERO = 5;
 	static constexpr int CHECK = 6;
 	static constexpr int TRAPV = 7;
 	static constexpr int PRIVILEGE_VIOLATION = 8;
+	static constexpr int TRACE = 9;
+	static constexpr int LINE_A_EXCEPTION = 10;
+	static constexpr int LINE_F_EXCEPTION = 11;
+	static constexpr int UNINITIALIZED_INTERRUPT = 15;
 	static constexpr int AUTO_VECTORS = 24;
 	static constexpr int TRAP_VECTORS = 32;
+	static constexpr int USER_VECTORS = 64;
 	uint8_t _ipl = 0;
 	bool _nmi = false;
 	bool _stopped = false;
@@ -237,7 +241,6 @@ private:
 	bool eval_cc(uint8_t cond);
 	void illegal(uint16_t op);
 
-	std::function<void(uint16_t)> _illegal_instruction_handler;
 	std::function<void(void)> _reset_instruction_handler;
 	uint32_t D[8], A[7];
 	uint32_t _usp, _ssp;
