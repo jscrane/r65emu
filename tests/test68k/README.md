@@ -12,8 +12,11 @@ make
 - by default the low byte of the `SSW` is undefined so failures involving it are "false positives" and ignored by default,
 unless the `-a` flag is given
 - the `-t` flag may be added to check "length" vs the number of cycles taken
+- the `json` test specification file can be uncompressed: this is useful during development
 
 Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/comment/kptqinm/) discussing that testsuite.
+
+Tests which cover some omissions in the SingleStepTests corpus can be found in `sst-extras`.
 
 ## Regression Testing
 
@@ -33,8 +36,8 @@ Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/commen
 It is also possible to write m68k assembly programs, compile, load and run them:
 
 ```shell
-make test simple.rom
-./test simple.rom
+make asm-runner simple.rom
+./asm-runner simple.rom
 ```
 
 ## Current Failures

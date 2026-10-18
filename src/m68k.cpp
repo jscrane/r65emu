@@ -8,12 +8,6 @@
 #include "m68k.h"
 #include "debugging.h"
 
-m68k::m68k(Memory &m): CPU(m) {
-	_illegal_instruction_handler = [this](uint16_t op) {
-		ERR("CPU halted at %06x: illegal instruction: %04x", pc(), op);
-	};
-}
-
 void m68k::reset() {
 
 	_halted = false;
@@ -50,15 +44,21 @@ void m68k::run(unsigned instructions) {
 			continue;
 		}
 
+		bool traced = _sr & T_FLAG;	// sampled at instruction start, after any interrupt entry
 		_current_op = fetch16();
 		decode_execute(_current_op);
+
+		if (traced && !halted() && !_trapped) {
+			raise_exception(TRACE);
+			cycles(34);		// datasheet figure, unverified
+		}
 	}
 }
 
 void m68k::illegal(uint16_t op) {
 	PC -= 2;
-	CPU::halt();
-	_illegal_instruction_handler(op);
+	raise_exception(ILLEGAL_INSTRUCTION);
+	cycles(34);
 }
 
 inline bool is_x_shape(uint16_t op) {
@@ -112,6 +112,11 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			sub(op);
 		break;
+	case 0b1010:
+		PC -= 2;
+		raise_exception(LINE_A_EXCEPTION);
+		cycles(34);
+		break;
 	case 0b1011:		// EOR / CMP / CMPA
 		if (!(op & 0x0100) || (op & 0x00c0) == 0x00c0)
 			cmp(op);		// CMP.b/w/l, CMPA.w/l
@@ -144,8 +149,10 @@ void m68k::decode_execute(uint16_t op) {
 		else
 			shift_rotate_register(op);
 		break;
-	default:
-		illegal(op);
+	case 0b1111:
+		PC -= 2;
+		raise_exception(LINE_F_EXCEPTION);
+		cycles(34);
 		break;
 	}
 }
@@ -1222,6 +1229,11 @@ void m68k::misc(uint16_t op) {
 		cycles(20);
 		jump_to(pop32());
 		return;
+	case 0x4afa:	// internal #1
+	case 0x4afb:	// internal #2
+	case 0x4afc:	// ILLEGAL (public)
+		illegal(op);
+		return;
 	}
 
 	int reg = op & 7;
@@ -1383,7 +1395,7 @@ void m68k::misc(uint16_t op) {
 		}
 		return;
 	}
-	case 0x40c0: {	// MOVEfromSR
+	case 0x40c0: {	// MOVEfromSR (unprivileged on 68000/68008, privileged on 68010/60020 etc.)
 		EA dst = decode_ea(mode, reg, 2, true);
 		write_word(dst, _sr);
 		commit_postinc(dst);	// unconditional here -- unlike a normal MOVE's write side, confirmed empirically: real hardware commits this even when the write faults
@@ -3604,12 +3616,13 @@ void m68k::write32(uint32_t addr, uint32_t v) {
 void m68k::status(bool hdr) {
 #if DEBUGGING & DEBUG_CPU
 	if (hdr)
-		DBG_CPU("--pc-- -op- --sp-- -sr- -ccr--");
+		DBG_CPU("--pc-- -op- --sp-- -sr-   -ccr-");
 
 	Memory::address addr = bus_addr(pc());
 	uint16_t op = read16(addr);
-	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c",
+	DBG_CPU("%06x %04x %06x %04x %c%c%c%c%c%c%c",
 		addr, op, bus_addr(sp()), sr(),
+		is_set(T_FLAG)? 'T':'-',
 		is_set(S_FLAG)? 'S':'-',
 		is_set(X_FLAG)? 'X':'-',
 		is_set(N_FLAG)? 'N':'-',

@@ -8,7 +8,7 @@ OBJECTS := m68k.o memory.o machine.o deltaq.o linuxmachine.o
 sstests: sstests.o $(OBJECTS)
 	g++ -o $@ $+ $(LDLIBS)
 
-test: test.o $(OBJECTS)
+asm-runner: asm-runner.o $(OBJECTS)
 	g++ -o $@ $+
 
 %.rom: %.s
@@ -20,4 +20,4 @@ test: test.o $(OBJECTS)
 	g++ $(CXXFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-	rm -f sstests test *.o *.rom $(OBJECTS)
+	rm -f sstests asm-runner *.o *.rom *.elf $(OBJECTS)

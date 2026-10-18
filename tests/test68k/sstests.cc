@@ -57,6 +57,12 @@ static void apply_state(m68k &cpu, Memory &mem, const Json::Value &s) {
 	cpu.ssp(s["ssp"].asUInt());
 	cpu.sr((uint16_t)s["sr"].asUInt());
 
+	// optional interrupt level; always drop to 0 first so that every test starts from a clean
+	// state (reset() deliberately leaves _ipl alone) and a level-7 request is a fresh edge
+	cpu.set_interrupt_level(0);
+	if (s.isMember("ipl"))
+		cpu.set_interrupt_level((uint8_t)s["ipl"].asUInt());
+
 	Memory::address pc = (Memory::address)s["pc"].asUInt();
 	cpu.pc(pc);
 
