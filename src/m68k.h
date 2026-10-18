@@ -116,7 +116,7 @@ private:
 
 	static constexpr int INITIAL_SSP = 0;
 	static constexpr int INITIAL_PC = 1;
-	static constexpr int BUS_ERROR = 2;
+	static constexpr int BUS_ERROR = 2;			// not implemented
 	static constexpr int ADDRESS_ERROR = 3;
 	static constexpr int ILLEGAL_INSTRUCTION = 4;
 	static constexpr int DIVIDE_BY_ZERO = 5;
