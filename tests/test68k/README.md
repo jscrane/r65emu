@@ -12,7 +12,7 @@ make
 - by default the low byte of the `SSW` is undefined so failures involving it are "false positives" and ignored by default,
 unless the `-a` flag is given
 - the `-t` flag may be added to check "length" vs the number of cycles taken
-- the `json` test specification file can be uncompressed
+- the `json` test specification file can be uncompressed: this is useful during development
 
 Here is a [Reddit thread](https://www.reddit.com/r/EmuDev/comments/x7js4r/comment/kptqinm/) discussing that testsuite.
 
