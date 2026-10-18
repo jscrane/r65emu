@@ -20,4 +20,4 @@ asm-runner: asm-runner.o $(OBJECTS)
 	g++ $(CXXFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-	rm -f sstests asm-runner *.o *.rom $(OBJECTS)
+	rm -f sstests asm-runner *.o *.rom *.elf $(OBJECTS)
