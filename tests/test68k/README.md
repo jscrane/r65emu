@@ -36,8 +36,8 @@ Tests which cover some omissions in the SingleStepTests corpus can be found in `
 It is also possible to write m68k assembly programs, compile, load and run them:
 
 ```shell
-make test simple.rom
-./test simple.rom
+make asm-runner simple.rom
+./asm-runner simple.rom
 ```
 
 ## Current Failures
