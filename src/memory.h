@@ -46,7 +46,7 @@ public:
 		virtual operator uint8_t() =0;
 
 	protected:
-		address _acc, _base;
+		address _acc = 0, _base = 0;
 
 	private:
 		size_t _extent;
@@ -109,6 +109,8 @@ public:
 	Memory(): _nd(address_size) {
 		put(_nd, 0x0000);
 	}
+
+	virtual ~Memory() {}
 
 	void checkpoint(Checkpoint &) override;
 
