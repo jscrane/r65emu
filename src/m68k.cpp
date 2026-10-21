@@ -2858,8 +2858,6 @@ void m68k::shift_rotate_memory(uint16_t op) {
 		return;
 	}
 
-	int dir = (op >> 8) & 1;	// 0: right, 1: left
-	int family = (op >> 4) & 3;	// 0: arith, 1: logical, 2: rotate-x, 3: rotate
 	uint8_t type = (op >> 8) & 7;
 
 	EA ea = decode_ea(mode, reg, 2);
@@ -3116,7 +3114,7 @@ void m68k::roxl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 void m68k::ror_reg(int dreg, uint8_t size, uint8_t shift_count) {
 
 	uint32_t v = d(dreg);
-	bool cflag;
+	bool cflag = false;
 
 	if (shift_count == 0) {
 		if (size == SizeByte) set_nz((int8_t)v);
@@ -3180,7 +3178,7 @@ void m68k::ror_reg(int dreg, uint8_t size, uint8_t shift_count) {
 void m68k::rol_reg(int dreg, uint8_t size, uint8_t shift_count) {
 
 	uint32_t v = d(dreg);
-	bool cflag;
+	bool cflag = false;
 
 	if (shift_count == 0) {
 		if (size == 0) set_nz((int8_t)v);
@@ -3244,7 +3242,7 @@ void m68k::rol_reg(int dreg, uint8_t size, uint8_t shift_count) {
 void m68k::lsl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 
 	uint32_t v = d(dreg);
-	bool cxflag;
+	bool cxflag = false;
 
 	if (shift_count == 0) {
 		if (size == 0) set_nz((int8_t)v);
@@ -3305,7 +3303,7 @@ void m68k::lsl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 void m68k::lsr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 
 	uint32_t v = d(dreg);
-	bool cxflag;
+	bool cxflag = false;
 
 	if (shift_count == 0) {
 		if (size == 0) set_nz((int8_t)v);
@@ -3366,7 +3364,7 @@ void m68k::lsr_reg(int dreg, uint8_t size, uint8_t shift_count) {
 void m68k::asl_reg(int dreg, uint8_t size, uint8_t shift_count) {
 
 	uint32_t v = d(dreg);
-	bool overflow, cxflag;
+	bool overflow = false, cxflag = false;
 
 	if (shift_count == 0) {
 		if (size == 0) set_nz((int8_t)v);
