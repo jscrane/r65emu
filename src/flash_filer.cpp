@@ -104,6 +104,46 @@ void flash_filer::stop() {
 #endif
 }
 
+#if USE_STORAGE
+#include <string.h>
+#include <ctype.h>
+
+static bool matchesExtension(const char *filename, const char *extensions) {
+	const char *dot = strrchr(filename, '.');
+	if (!dot || !dot[1]) return false;
+
+	const char *ext = dot + 1;
+	const char *p = extensions;
+
+	while (*p) {
+		// Skip optional leading dots and whitespace.
+		while (*p == '.' || *p == ' ' || *p == '\t')
+			++p;
+
+		const char *start = p;
+		while (*p && *p != ';') ++p;
+
+		// Compare this list entry without copying it.
+		size_t len = p - start;
+		size_t extLen = strlen(ext);
+
+		if (len == extLen) {
+			bool equal = true;
+			for (size_t i = 0; i < len; ++i) {
+				if (tolower((unsigned char)start[i]) != tolower((unsigned char)ext[i])) {
+					equal = false;
+					break;
+				}
+			}
+			if (equal) return true;
+		}
+
+		if (*p == ';') ++p;
+	}
+	return false;
+}
+#endif
+
 const char *flash_filer::advance() {
 #if USE_STORAGE
 	File &f = files[_current];
@@ -114,7 +154,7 @@ const char *flash_filer::advance() {
 		if (f) {
 			if (f.isDirectory())
 				f.close();
-			else
+			else if (!_extensions || matchesExtension(f.name(), _extensions))
 				break;
 		} else if (!rewound) {
 			dir.rewindDirectory();
@@ -164,6 +204,7 @@ const char *flash_filer::checkpoint() {
 	File file = DISK.open(buf, FILE_WRITE);
 	StreamCheckpoint chk(file);
 	_machine->checkpoint(chk);
+	DBG_EMU("flash_filer: checkpoint: %d", chk.pos());
 	file.close();
 	start();
 	return buf;
@@ -180,6 +221,7 @@ void flash_filer::restore(const char *filename) {
 	File file = DISK.open(buf, FILE_READ);
 	StreamCheckpoint chk(file);
 	_machine->restore(chk);
+	DBG_EMU("flash_filer: restore: %d", chk.pos());
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
 	cpid = (n == 1)? 0: cpid+1;

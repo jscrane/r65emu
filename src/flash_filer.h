@@ -26,7 +26,10 @@ public:
 	const char *advance();
 	const char *rewind();
 	const char *filename() const;
-	void next_file() { advance(); }
+	void next_file(const char *extensions = 0) {
+		_extensions = extensions;
+		advance();
+	}
 
 	const char *checkpoint();
 	void restore(const char *);
@@ -42,4 +45,5 @@ private:
 	const char *_programs;
 	uint8_t _current;
 	const uint8_t _max_devices;
+	const char *_extensions = 0;
 };
