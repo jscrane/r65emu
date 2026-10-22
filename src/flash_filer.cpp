@@ -192,14 +192,13 @@ void flash_filer::next_device() {
 
 #if USE_STORAGE
 static char buf[32];
-static char chkpt[] = { "CHKPOINT" };
 static int cpid = 0;
 #endif
 
 const char *flash_filer::checkpoint() {
 #if USE_STORAGE
 	stop();
-	snprintf(buf, sizeof(buf), "%s%s.%03d", _programs, chkpt, cpid++);
+	snprintf(buf, sizeof(buf), "%schk%03d.img", _programs, cpid++);
 
 	File file = DISK.open(buf, FILE_WRITE);
 	StreamCheckpoint chk(file);
@@ -207,7 +206,7 @@ const char *flash_filer::checkpoint() {
 	DBG_EMU("flash_filer: checkpoint: %d", chk.pos());
 	file.close();
 	start();
-	return buf;
+	return buf + strlen(_programs);
 #else
 	return "";
 #endif
@@ -223,8 +222,8 @@ void flash_filer::restore(const char *filename) {
 	_machine->restore(chk);
 	DBG_EMU("flash_filer: restore: %d", chk.pos());
 	file.close();
-	int n = sscanf(buf + strlen(_programs), "%[A-Z0-9].%d", chkpt, &cpid);
-	cpid = (n == 1)? 0: cpid+1;
+	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.img", &cpid);
+	cpid = (n == 0)? 0: cpid+1;
 #endif
 	start();
 }
