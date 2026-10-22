@@ -23,8 +23,13 @@ public:
 	virtual size_t write(uint64_t);
 	virtual size_t write(bool);
 
+	size_t pos() const { return _pos; }
+
 	template <typename T> size_t write(T) = delete;
 	template <typename T> size_t read(T&) = delete;
+
+protected:
+	size_t _pos = 0;
 };
 
 #if !defined(MAX_POLLABLE)

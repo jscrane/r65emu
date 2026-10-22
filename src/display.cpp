@@ -250,11 +250,11 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 	_cw = _ch = 0;
 
 #if defined(USE_ESPI)
-    #if defined(LOAD_GFXFF)
+	#if defined(LOAD_GFXFF)
 	tft.setFreeFont(ESPI_DEFAULT_FONT);
-    #else
+	#else
 	tft.setTextFont(ESPI_DEFAULT_FONT? (uintptr_t)font: 1);
-    #endif
+	#endif
 	DBG_DSP("ESPI");
 
 #elif defined(USE_DVI)
@@ -266,31 +266,30 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 		_height = HEIGHT = dvi.height();
 		init = true;
 	}
-#if DVI_BIT_DEPTH == 8
+	#if DVI_BIT_DEPTH == 8
 	for (int i = 0; i < nextcol; i++)
 		dvi.setColor(i, colours[i]);
-#endif
+	#endif
 	dvi.setFont((const GFXfont *)DVI_DEFAULT_FONT);
 	DBG_DSP("DVI: %s %d %s (%d)", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, STR(DVI_CONFIG), success);
 
 #elif defined(USE_VGA)
-	static bool init;
+	static bool init = false;
 	if (!init) {
-#if VGA_BIT_DEPTH == 6
+		DBG_DSP("VGA: resolution: %s font: %s bit-depth: %d", STR(VGA_RESOLUTION), STR(VGA_DEFAULT_FONT), VGA_BIT_DEPTH);
+		#if VGA_BIT_DEPTH == 6
 		Mode mode = VGAMode::VGA_RESOLUTION;
 		vga.init(mode, R0_PIN, R1_PIN, G0_PIN, G1_PIN, B0_PIN, B1_PIN, HSYNC_PIN, VSYNC_PIN);
-#elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
+		#elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
 		vga.init(VGAMode::VGA_RESOLUTION, R0_PIN, G0_PIN, B0_PIN, HSYNC_PIN, VSYNC_PIN);
-#endif
+		#endif
 		init = true;
 	}
 	vga.setFont(VGA_DEFAULT_FONT);
-	DBG_DSP("VGA: %s %d", STR(VGA_RESOLUTION), VGA_BIT_DEPTH);
 
 #else
 	DBG_DSP("display???");
 #endif
-
 	setRotation(orient);
 	setTextColor(fg, bg);
 	_oxstat = _width;

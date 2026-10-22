@@ -20,6 +20,7 @@ Machine::Machine(CPU &cpu): _cpu(cpu) {
 
 void Machine::checkpoint(Checkpoint &s) {
 
+	DBG_EMU("machine: checkpoint");
 	s.write(_batch_size);
 	_cpu.memory().checkpoint(s);
 	_cpu.checkpoint(s);
@@ -27,6 +28,7 @@ void Machine::checkpoint(Checkpoint &s) {
 
 void Machine::restore(Checkpoint &s) {
 
+	DBG_EMU("machine: restore");
 	s.read(_batch_size);
 	_cpu.memory().restore(s);
 	_cpu.restore(s);

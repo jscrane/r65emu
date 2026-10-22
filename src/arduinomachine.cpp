@@ -62,7 +62,7 @@ bool Arduino::reset() {
 		DBG_INI("SD_SPI: %d: begin failed", SD_SPI);
 #else
 	success = SD.begin(SD_CS);
-	DBG_INI("SD: %d: %d", SD_CS, success);
+	DBG_INI("machine reset: SD: %d: %d", SD_CS, success);
 #endif
 
 #elif defined(USE_SPIFFS)
@@ -112,22 +112,27 @@ void Arduino::begin() {
 	DBG_DISK("enabled");
 
 #if defined(PWM_SOUND) && PWM_SOUND >= 0
+	DBG_INI("pwm sound: %d", PWM_SOUND);
 	pinMode(PWM_SOUND, OUTPUT);
 #endif
 
 #if defined(TFT_BACKLIGHT)
+	DBG_INI("tft backlight: %d", TFT_BACKLIGHT);
 	pinMode(TFT_BACKLIGHT, OUTPUT);
 #endif
 
 #if defined(USE_SD)
+	DBG_INI("sd cs: %d", SD_CS);
 	pinMode(SD_CS, OUTPUT);
 	digitalWrite(SD_CS, HIGH);
 #endif
 
 #if defined(USE_SPIRAM)
+	DBG_INI("spiram cs: %d", SPIRAM_CS);
 	pinMode(SPIRAM_CS, OUTPUT);
 	digitalWrite(SPIRAM_CS, HIGH);
 #endif
+	DBG_INI("initialised");
 }
 
 uint32_t Arduino::microseconds() { return micros(); }

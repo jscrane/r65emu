@@ -48,5 +48,5 @@ int main(int argc, const char *argv[]) {
 	cpu.reset();
 
 	while (!cpu.halted())
-		machine.run(CLK_1MHZ);
+		machine.run(CLK_4MHZ);
 }
