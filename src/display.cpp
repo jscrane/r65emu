@@ -37,7 +37,7 @@ static VGA3Bit vga;
 #elif VGA_BIT_DEPTH == 1
 static VGA1BitI vga;
 #endif
-Display::Display(): Adafruit_GFX(VGAMode::VGA_RESOLUTION.hRes, VGAMode::VGA_RESOLUTION.vRes / VGAMode::VGA_RESOLUTION.vDiv) {}
+Display::Display(): Adafruit_GFX(VGA_RESOLUTION.hRes, VGA_RESOLUTION.vRes / VGA_RESOLUTION.vDiv) {}
 
 static uint8_t toVGAColour(uint16_t c) {
     // 1. Extract 5-bit Red, 6-bit Green, 5-bit Blue
@@ -275,15 +275,19 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 #elif defined(USE_VGA)
 	static bool init = false;
+	bool success = false;
 	if (!init) {
-		DBG_DSP("VGA: resolution: %s font: %s bit-depth: %d", STR(VGA_RESOLUTION), STR(VGA_DEFAULT_FONT), VGA_BIT_DEPTH);
+		DBG_DSP("VGA: mode: %s font: %s bit-depth: %d", STR(VGA_RESOLUTION), STR(VGA_DEFAULT_FONT), VGA_BIT_DEPTH);
 		#if VGA_BIT_DEPTH == 6
-		Mode mode = VGAMode::VGA_RESOLUTION;
-		vga.init(mode, R0_PIN, R1_PIN, G0_PIN, G1_PIN, B0_PIN, B1_PIN, HSYNC_PIN, VSYNC_PIN);
+		Mode mode = VGA_RESOLUTION;
+		success = vga.init(mode, R0_PIN, R1_PIN, G0_PIN, G1_PIN, B0_PIN, B1_PIN, HSYNC_PIN, VSYNC_PIN);
 		#elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
-		vga.init(VGAMode::VGA_RESOLUTION, R0_PIN, G0_PIN, B0_PIN, HSYNC_PIN, VSYNC_PIN);
+		success = vga.init(VGA_RESOLUTION, R0_PIN, G0_PIN, B0_PIN, HSYNC_PIN, VSYNC_PIN);
+		#else
+		#pragma error "Unsupported bit-depth!"
 		#endif
 		init = true;
+		DBG_DSP("VGA: success: %d", success);
 	}
 	vga.setFont(VGA_DEFAULT_FONT);
 
