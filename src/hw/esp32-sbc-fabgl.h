@@ -5,9 +5,8 @@
 #if !defined(USE_OWN_DISPLAY) && !defined(USE_HOST_DISPLAY)
 
 // ESP32Lib by Bitluni, these have been tested:
-// -DVGA_RESOLUTION=MODE640x480 -DVGA_BIT_DEPTH=1
-// -DVGA_RESOLUTION=MODE400x300 -DVGA_BIT_DEPTH=3
-// -DVGA_RESOLUTION=MODE320x240 -DVGA_BIT_DEPTH=6
+// -DVGA_RESOLUTION=VGAMode::MODE640x480 -DVGA_BIT_DEPTH=1
+// -DVGA_RESOLUTION=VGAMode::MODE400x300 -DVGA_BIT_DEPTH=3
 #define USE_VGA
 
 #if !defined(VGA_BIT_DEPTH)
@@ -15,7 +14,9 @@
 #endif
 
 #if !defined(VGA_RESOLUTION)
-#define VGA_RESOLUTION		MODE320x240
+// builtin VGAMode::MODE320x240 doesn't work properly on this board
+#include <VGA/Mode.h>
+#define VGA_RESOLUTION		Mode(8, 48, 24, 320, 11, 2, 31, 480, 2, 12100000, 1, 1)
 #endif
 
 #if !defined(VGA_DEFAULT_FONT)
