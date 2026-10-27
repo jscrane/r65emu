@@ -13,10 +13,14 @@
 #define VGA_BIT_DEPTH	6
 #endif
 
-#if !defined(VGA_RESOLUTION)
 // builtin VGAMode::MODE320x240 doesn't work properly on this board
 #include <VGA/Mode.h>
-#define VGA_RESOLUTION		Mode(8, 48, 24, 320, 11, 2, 31, 480, 2, 12100000, 1, 1)
+#define VGA_320x240	Mode(8, 48, 24, 320, 11, 2, 31, 480, 2, 12100000, 1, 1)
+#define VGA_400x300	VGAMode::MODE400x300
+#define VGA_640x480	VGAMode::MODE640x480
+
+#if !defined(VGA_RESOLUTION)
+#define VGA_RESOLUTION	VGA_320x240
 #endif
 
 #if !defined(VGA_DEFAULT_FONT)

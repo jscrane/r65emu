@@ -54,11 +54,12 @@ public:
 
 	void setRotation(uint8_t);
 
-	void begin(uint16_t bg, uint16_t fg, orientation_t o, uint16_t sx, uint16_t sy, uint8_t centering = CENTER_SCREEN) {
-		begin(bg, fg, o);
-		setScreen(sx, sy, centering);
+	bool begin(uint16_t bg, uint16_t fg, orientation_t o, uint16_t sx, uint16_t sy, uint8_t centering = CENTER_SCREEN) {
+		bool success = begin(bg, fg, o);
+		if (success) setScreen(sx, sy, centering);
+		return success;
 	}
-	void begin(uint16_t bg, uint16_t fg, orientation_t o);
+	bool begin(uint16_t bg, uint16_t fg, orientation_t o);
 
 	void setScreenChars(uint16_t cols, uint16_t rows, uint8_t centering = CENTER_SCREEN) {
 		setScreen(cols * charWidth(), rows * charHeight(), centering);

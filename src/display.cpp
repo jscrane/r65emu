@@ -244,8 +244,9 @@ uint16_t Display::charWidth() {
 	return _cw;
 }
 
-void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
+bool Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
+	bool success = true;
 	_sox = _soy = 0;
 	_cw = _ch = 0;
 
@@ -259,7 +260,6 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 #elif defined(USE_DVI)
 	static bool init;
-	bool success = true;
 	if (!init) {
 		success = dvi.begin();
 		_width = WIDTH = dvi.width();
@@ -275,7 +275,6 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 #elif defined(USE_VGA)
 	static bool init = false;
-	bool success = false;
 	if (!init) {
 		DBG_DSP("VGA: mode: %s font: %s bit-depth: %d", STR(VGA_RESOLUTION), STR(VGA_DEFAULT_FONT), VGA_BIT_DEPTH);
 		#if VGA_BIT_DEPTH == 6
@@ -293,11 +292,13 @@ void Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
 #else
 	DBG_DSP("display???");
+	success = false;
 #endif
 	setRotation(orient);
 	setTextColor(fg, bg);
 	_oxstat = _width;
-	DBG_INI("display: initialised: %d x %d", _width, _height);
+	DBG_INI("display: initialised: %d %dx%d", success, _width, _height);
+	return success;
 }
 
 void Display::fillScreen(uint16_t col) {
