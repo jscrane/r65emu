@@ -2,8 +2,6 @@
 #include <stdint.h>
 
 #include "machine.h"
-#include "serialio.h"
-#include "filer.h"
 #include "serial_filer.h"
 
 const unsigned speeds[] = {
@@ -20,8 +18,8 @@ const char *serial_filer::advance() {
 	return itoa(s, buf, 10);
 }
 
-void serial_filer::write(uint8_t b) {
-	_serial.write(b);
+size_t serial_filer::write(uint8_t b) {
+	return _serial.write(b);
 }
 
 uint8_t serial_filer::read() {

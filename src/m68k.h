@@ -1,5 +1,7 @@
 #pragma once
 
+#include <CPU.h>
+
 class m68k: public CPU {
 public:
 	m68k(Memory &mem): CPU(mem) {}

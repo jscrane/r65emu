@@ -1,5 +1,7 @@
 #pragma once
 
+#include <filer.h>
+
 // see https://playground.arduino.cc/Interfacing/LinuxTTY
 // FIXME: do this in minicom config file
 class serial_filer: public filer {
@@ -17,7 +19,7 @@ public:
 
 	uint8_t read();
 	bool more();
-	void write(uint8_t);
+	size_t write(uint8_t);
 
 private:
 	HardwareSerial &_serial;

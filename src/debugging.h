@@ -41,3 +41,11 @@
 #define DBG_TEST(...)	_DBG(DEBUG_TEST, "TEST" __VA_OPT__(,) __VA_ARGS__)
 
 #define MAX_MESSAGE_LEN	256
+
+inline const char *success(bool b) {
+#if DEBUGGING == DEBUG_NONE
+	return 0;
+#else
+	return b? "ok": "failed";
+#endif
+}

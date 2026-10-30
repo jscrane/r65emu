@@ -38,7 +38,7 @@ bool Arduino::reset() {
 
 	DBG_INI("machine reset");
 
-	bool success = false;
+	bool ok = false;
 
 #if defined(USE_SPIRAM)
 	SPIRAM_DEV.begin();
@@ -56,22 +56,22 @@ bool Arduino::reset() {
 #if defined(SD_SPI)
 	static SPIClass sdspi(SD_SPI);
 	if (sdspi.begin(SD_CLK, SD_MISO, SD_MOSI, SD_CS)) {
-		success = SD.begin(SD_CS, sdspi);
-		DBG_INI("SD: %d %d %d %d: %d", SD_CLK, SD_MISO, SD_MOSI, SD_CS, success);
+		ok = SD.begin(SD_CS, sdspi);
+		DBG_INI("SD: %d %d %d %d: %s", SD_CLK, SD_MISO, SD_MOSI, SD_CS, success(ok));
 	} else
 		DBG_INI("SD_SPI: %d: begin failed", SD_SPI);
 #else
-	success = SD.begin(SD_CS);
-	DBG_INI("machine reset: SD: %d: %d", SD_CS, success);
+	ok = SD.begin(SD_CS);
+	DBG_INI("machine reset: SD: %d: %s", SD_CS, success(ok));
 #endif
 
 #elif defined(USE_SPIFFS)
-	success = SPIFFS.begin(true);
-	DBG_INI("machine reset: SPIFFS: %d", success);
+	ok = SPIFFS.begin(true);
+	DBG_INI("machine reset: SPIFFS: %s", success(ok));
 
 #elif defined(USE_LITTLEFS)
-	success = LittleFS.begin();
-	DBG_INI("machine reset: LittleFS: %d", success);
+	ok = LittleFS.begin();
+	DBG_INI("machine reset: LittleFS: %s", success(ok));
 #endif
 
 #if defined(TFT_BACKLIGHT)
@@ -80,9 +80,9 @@ bool Arduino::reset() {
 
 	_cpu.reset();
 
-	if (_reset_handler) _reset_handler(success);
+	if (_reset_handler) _reset_handler(ok);
 
-	return success;
+	return ok;
 }
 
 void Arduino::begin() {

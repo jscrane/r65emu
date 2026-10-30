@@ -16,12 +16,6 @@
 #elif defined(USE_LITTLEFS)
 #include <FS.h>
 #include <LittleFS.h>
-#if !defined(FILE_READ)
-#define FILE_READ "r"
-#endif
-#if !defined(FILE_WRITE)
-#define FILE_WRITE "w"
-#endif
 #define DISK LittleFS
 #pragma message "LittleFS configured"
 
@@ -34,11 +28,20 @@
 #pragma message "No Storage configured"
 #endif
 
-#include "serialio.h"
-#include "filer.h"
 #include "flash_filer.h"
 
 #if USE_STORAGE
+
+#if !defined(FILE_READ)
+#define FILE_READ "r"
+#endif
+#if !defined(FILE_WRITE)
+#define FILE_WRITE "w"
+#endif
+#if !defined(FILE_READWRITE)
+#define FILE_READWRITE "r+"
+#endif
+
 static File files[MAX_FILES];
 static File dir;
 #endif
@@ -48,6 +51,12 @@ bool flash_file::seek(uint32_t pos) {
 	return files[_fd].seek(pos);
 #else
 	return false;
+#endif
+}
+
+void flash_file::flush() {
+#if USE_STORAGE
+	files[_fd].flush();
 #endif
 }
 
@@ -83,9 +92,11 @@ uint32_t flash_file::size() const {
 #endif
 }
 
-void flash_file::write(uint8_t b) {
+size_t flash_file::write(uint8_t b) {
 #if USE_STORAGE
-	files[_fd].write(b);
+	return files[_fd].write(b);
+#else
+	return -1;
 #endif
 }
 
@@ -150,7 +161,7 @@ const char *flash_filer::advance() {
 	f.close();
 	bool rewound = false;
 	while (true) {
-		f = dir.openNextFile();
+		f = dir.openNextFile(_mode == readwrite? FILE_READWRITE: FILE_READ);
 		if (f) {
 			if (f.isDirectory())
 				f.close();

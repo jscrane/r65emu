@@ -246,7 +246,7 @@ uint16_t Display::charWidth() {
 
 bool Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 
-	bool success = true;
+	bool ok = true;
 	_sox = _soy = 0;
 	_cw = _ch = 0;
 
@@ -261,7 +261,7 @@ bool Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 #elif defined(USE_DVI)
 	static bool init;
 	if (!init) {
-		success = dvi.begin();
+		ok = dvi.begin();
 		_width = WIDTH = dvi.width();
 		_height = HEIGHT = dvi.height();
 		init = true;
@@ -271,34 +271,33 @@ bool Display::begin(uint16_t bg, uint16_t fg, orientation_t orient) {
 		dvi.setColor(i, colours[i]);
 	#endif
 	dvi.setFont((const GFXfont *)DVI_DEFAULT_FONT);
-	DBG_DSP("DVI: %s %d %s (%d)", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, STR(DVI_CONFIG), success);
+	DBG_DSP("DVI: %s %d %s: %s", STR(DVI_RESOLUTION), DVI_BIT_DEPTH, STR(DVI_CONFIG), success(ok));
 
 #elif defined(USE_VGA)
 	static bool init = false;
 	if (!init) {
-		DBG_DSP("VGA: mode: %s font: %s bit-depth: %d", STR(VGA_RESOLUTION), STR(VGA_DEFAULT_FONT), VGA_BIT_DEPTH);
 		#if VGA_BIT_DEPTH == 6
 		Mode mode = VGA_RESOLUTION;
-		success = vga.init(mode, R0_PIN, R1_PIN, G0_PIN, G1_PIN, B0_PIN, B1_PIN, HSYNC_PIN, VSYNC_PIN);
+		ok = vga.init(mode, R0_PIN, R1_PIN, G0_PIN, G1_PIN, B0_PIN, B1_PIN, HSYNC_PIN, VSYNC_PIN);
 		#elif VGA_BIT_DEPTH == 3 || VGA_BIT_DEPTH == 1
-		success = vga.init(VGA_RESOLUTION, R0_PIN, G0_PIN, B0_PIN, HSYNC_PIN, VSYNC_PIN);
+		ok = vga.init(VGA_RESOLUTION, R0_PIN, G0_PIN, B0_PIN, HSYNC_PIN, VSYNC_PIN);
 		#else
 		#pragma error "Unsupported bit-depth!"
 		#endif
 		init = true;
-		DBG_DSP("VGA: success: %d", success);
+		DBG_DSP("VGA: mode: %s font: %s bit-depth: %d: %s", STR(VGA_RESOLUTION), STR(VGA_DEFAULT_FONT), VGA_BIT_DEPTH, success(ok));
 	}
 	vga.setFont(VGA_DEFAULT_FONT);
 
 #else
 	DBG_DSP("display???");
-	success = false;
+	ok = false;
 #endif
 	setRotation(orient);
 	setTextColor(fg, bg);
 	_oxstat = _width;
-	DBG_INI("display: initialised: %d %dx%d", success, _width, _height);
-	return success;
+	DBG_INI("display: %dx%d: %s", _width, _height, success(ok));
+	return ok;
 }
 
 void Display::fillScreen(uint16_t col) {

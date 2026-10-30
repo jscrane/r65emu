@@ -1,5 +1,7 @@
 #pragma once
 
+#include <serialio.h>
+
 class filer: virtual public serialio {
 public:
 	virtual const char *advance() =0;
