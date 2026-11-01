@@ -77,6 +77,7 @@ public:
 	virtual uint32_t microseconds() =0;
 	virtual void sleep(uint32_t) =0;
 	virtual void yield() =0;
+	virtual class keyboard &console_keyboard() =0;
 
 	void debug(const char *lvlstr, const char *fmt, ...);
 	void register_debug_print(std::function<void(const char *, const char *)> fn) { _debug_print = fn; }

@@ -3,6 +3,8 @@
 An implementation of [68 katy](https://www.bigmessowires.com/68-katy/) to test
 the `m68k` processor.
 
+Press any function key to exit.
+
 ```
 Boot from RESET vector
 

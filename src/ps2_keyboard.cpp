@@ -2,8 +2,8 @@
 
 #include "hardware.h"
 
-#if defined(USE_PS2_KBD) && defined(PS2_SERIAL_KBD)
-#pragma message "PS/2 keyboard '" PS2_SERIAL_KBD "' configured"
+#if defined(USE_PS2_KBD) && defined(PS2_KEYMAP)
+#pragma message "PS/2 keyboard '" PS2_KEYMAP "' configured"
 
 #include <PS2KeyAdvanced.h>
 #include <PS2KeyMap.h>
@@ -15,7 +15,7 @@ static PS2KeyMap keymap;
 void ps2_keyboard::reset() {
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 	keyboard.setNoBreak(1);
-	keymap.selectMap((char *)PS2_SERIAL_KBD);
+	keymap.selectMap((char *)PS2_KEYMAP);
 }
 
 bool ps2_keyboard::available() {

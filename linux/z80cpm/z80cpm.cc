@@ -14,8 +14,8 @@
 #include "debugging.h"
 #include "z80.h"
 #include "ram.h"
-#include "serial_kbd.h"
 #include "serial_dsp.h"
+#include "fnkey_kbd.h"
 
 #include "disk.h"
 #include "linux_disk.h"
@@ -31,12 +31,13 @@ int main(int argc, const char *argv[]) {
 	}
 
 	BankedMemory memory;
-	Keyboard kbd;
-	Screen scr;
-	LinuxDisk disk(--argc, ++argv);
-	IO io(memory, kbd, scr, disk);
 	z80 cpu(memory);
 	Linux machine(cpu);
+	Screen scr;
+	LinuxDisk disk(--argc, ++argv);
+	fnkey_kbd fk(machine.console_keyboard());
+	fk.register_fnkey_handler([](uint8_t) { ::exit(0); });
+	IO io(memory, fk, scr, disk);
 
 	ram<65536> ram;
 	memory.put(ram, 0x0000);

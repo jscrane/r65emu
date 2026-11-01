@@ -3,10 +3,9 @@
 
 #include <machine.h>
 #include <memory.h>
-#include <CPU.h>
 #include <m68k.h>
 #include <serial_dsp.h>
-#include <serial_kbd.h>
+#include <keyboard.h>
 
 #include "io.h"
 

@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstdlib>
 #include <unistd.h>
 #include <stdio.h>
 
@@ -11,7 +12,8 @@
 #include "ram.h"
 #include "prom.h"
 #include "serial_dsp.h"
-#include "serial_kbd.h"
+#include "keyboard.h"
+#include "fnkey_kbd.h"
 
 #include "katyrom.h"
 #include "console.h"
@@ -36,10 +38,11 @@ int main(int argc, char *argv[]) {
 	ram<512*1024> rw;
 	prom ro(katyrom, sizeof(katyrom));
 	m68k cpu(memory);
-	Keyboard kbd;
-	Screen scr;
-	IO io(cpu, kbd, scr);
 	Linux machine(cpu);
+	Screen scr;
+	fnkey_kbd fk(machine.console_keyboard());
+	fk.register_fnkey_handler([](uint8_t) { ::exit(0); });
+	IO io(cpu, fk, scr);
 
 	memory.put(ro, 0x00000);
 	memory.put(io, 0x78000);

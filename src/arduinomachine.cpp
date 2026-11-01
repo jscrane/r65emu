@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include "keyboard.h"
 #include "machine.h"
 #include "memory.h"
 #include "debugging.h"
@@ -140,3 +141,21 @@ uint32_t Arduino::microseconds() { return micros(); }
 void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
+
+#if defined(USE_PS2_KBD) && defined(PS2_KEYMAP)
+#include "ps2_keyboard.h"
+static ps2_keyboard kbd;
+
+#elif defined(USE_HOST_KBD)
+#include "hw_serial_kbd.h"
+static hw_serial_kbd kbd(Serial);
+
+#else
+#pragma message "No keyboard!"
+static no_keyboard kbd;
+#endif
+#include "ansi_kbd.h"
+static ansi_kbd ansi(kbd);
+
+keyboard &Arduino::console_keyboard() { return ansi; }
+

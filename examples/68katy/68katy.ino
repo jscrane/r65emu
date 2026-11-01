@@ -1,6 +1,7 @@
 #include <r65emu.h>
 #include <m68k.h>
 #include <dram.h>
+#include <hw_serial_dsp.h>
 
 #include "io.h"
 #include "katyrom.h"
@@ -9,10 +10,9 @@ Memory memory;
 dram<512*1024> rw;
 prom ro(katyrom, sizeof(katyrom));
 m68k cpu(memory);
-hw_serial_kbd kbd(Serial);
-hw_serial_dsp dsp(Serial);
-IO io(cpu, kbd, dsp);
 Arduino machine(cpu);
+hw_serial_dsp dsp(Serial);
+IO io(cpu, machine.console_keyboard(), dsp);
 
 void setup() {
 

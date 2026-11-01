@@ -4,6 +4,9 @@
 #undef inch
 #undef SP
 
+#include <CPU.h>
+#include <debugging.h>
+
 class z80: public CPU {
 public:
 	z80(Memory &m): CPU(m) {}
