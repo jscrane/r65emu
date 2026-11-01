@@ -7,23 +7,22 @@
 
 #include <PS2KeyAdvanced.h>
 #include <PS2KeyMap.h>
-#include "serial_kbd.h"
-#include "ps2_serial_kbd.h"
+#include "ps2_keyboard.h"
 
 static PS2KeyAdvanced keyboard;
 static PS2KeyMap keymap;
 
-void ps2_serial_kbd::reset() {
+void ps2_keyboard::reset() {
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 	keyboard.setNoBreak(1);
 	keymap.selectMap((char *)PS2_SERIAL_KBD);
 }
 
-bool ps2_serial_kbd::available() {
+bool ps2_keyboard::available() {
 	return keyboard.available();
 }
 
-int ps2_serial_kbd::read() {
+int ps2_keyboard::read() {
 
 	if (!keyboard.available())
 		return -1;

@@ -1,12 +1,12 @@
 #pragma once
 
-#include <serial_kbd.h>
+#include <keyboard.h>
 
 /*
  * A serial keyboard based around the hardware serial port ("Serial")
  * 12 Function keys: ^N .. ^Y inclusive
  */
-class hw_serial_kbd: public serial_kbd {
+class hw_serial_kbd: public keyboard {
 public:
 	hw_serial_kbd(HardwareSerial &serial): _serial(serial) {}
 

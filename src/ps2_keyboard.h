@@ -1,8 +1,8 @@
 #pragma once
 
-#include <serial_kbd.h>
+#include <keyboard.h>
 
-class ps2_serial_kbd: public serial_kbd {
+class ps2_keyboard: public keyboard {
 public:
 	int read() override;
 	bool available() override;

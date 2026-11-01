@@ -1,19 +1,11 @@
 #include <HardwareSerial.h>
 
 #include "hardware.h"
-#include "serial_kbd.h"
 #include "hw_serial_kbd.h"
 
 int hw_serial_kbd::read() {
 
-	if (!_serial.available())
-		return -1;
-
-	int k = _serial.read(), fk = k - 0x0d;
-	if (handle_fnkey(fk))
-		return -1;
-
-	return k;
+	return _serial.read();
 }
 
 bool hw_serial_kbd::available() {

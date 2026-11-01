@@ -1,8 +1,6 @@
 #pragma once
 
-#include <function_keys.h>
-
-class serial_kbd: public function_keys {
+class keyboard {
 public:
 	virtual int read() = 0;
 	virtual bool available() = 0;
