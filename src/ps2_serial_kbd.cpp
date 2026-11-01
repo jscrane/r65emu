@@ -31,10 +31,8 @@ int ps2_serial_kbd::read() {
 	uint16_t key = keyboard.read();
 	if (key & PS2_FUNCTION) {
 		uint8_t k = key & 0xff, fk = k - 0x60;
-		if (is_handled(fk)) {
-			fnkey(fk);
+		if (handle_fnkey(fk))
 			return -1;
-		}
 	}
 
 	uint16_t code = keymap.remapKey(key);
