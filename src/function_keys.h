@@ -20,6 +20,7 @@ constexpr uint16_t F12 = fkey(12);
 
 using fnkey_handler = std::function<void(uint8_t)>;
 
+// deprecated: ps2_raw_kbd still needs it, however this functionality belongs on fnkey_kbd
 class function_keys {
 public:
 	void register_fnkey_handler(fnkey_handler f) { register_fnkey_handler(all_keys, std::move(f)); }

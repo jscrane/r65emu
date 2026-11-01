@@ -7,20 +7,16 @@
 #include <string.h>
 #include <functional>
 
-#include "machine.h"
 #include "linuxmachine.h"
 #include "memory.h"
-#include "CPU.h"
 #include "debugging.h"
 #include "z80.h"
 #include "ram.h"
-#include "serial_dsp.h"
 #include "fnkey_kbd.h"
 
 #include "disk.h"
 #include "linux_disk.h"
 #include "banked_memory.h"
-#include "console.h"
 #include "io.h"
 
 int main(int argc, const char *argv[]) {
@@ -33,7 +29,7 @@ int main(int argc, const char *argv[]) {
 	BankedMemory memory;
 	z80 cpu(memory);
 	Linux machine(cpu);
-	Screen scr;
+	Linux::Screen scr;
 	LinuxDisk disk(--argc, ++argv);
 	fnkey_kbd fk(machine.console_keyboard());
 	fk.register_fnkey_handler([](uint8_t) { ::exit(0); });

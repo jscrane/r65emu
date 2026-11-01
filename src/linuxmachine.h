@@ -1,6 +1,8 @@
 #pragma once
 
+#include <machine.h>
 #include <keyboard.h>
+#include <serial_dsp.h>
 
 class Linux: public Machine {
 public:
@@ -18,5 +20,10 @@ public:
 
 		int read() override;
 		bool available() override;
+	};
+
+	class Screen: public serial_dsp {
+	public:
+		void write(uint8_t) override;
 	};
 };

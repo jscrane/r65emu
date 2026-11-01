@@ -37,6 +37,20 @@ void Linux::sleep(uint32_t dt) {
 static struct termios term;
 static int in = fileno(stdin), out = fileno(stdout);
 
+void Linux::Screen::write(uint8_t b) {
+
+	ssize_t n;
+
+	do
+		n = ::write(out, &b, 1);
+	while (n == -1 && errno == EINTR);
+
+	if (n == -1) {
+		perror("write");
+		exit(-1);
+	}
+}
+
 Linux::Keyboard::Keyboard() {
 
 	if (0 > tcgetattr(in, &term)) {

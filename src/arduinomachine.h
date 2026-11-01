@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <machine.h>
 
 #if !defined(TERMINAL_SPEED)
 #define TERMINAL_SPEED		115200
