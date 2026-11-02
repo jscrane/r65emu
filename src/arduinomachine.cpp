@@ -148,14 +148,14 @@ static ps2_keyboard kbd;
 
 #elif defined(USE_HOST_KBD)
 #include "hw_serial_kbd.h"
-static hw_serial_kbd kbd(Serial);
+#include "ansi_kbd.h"
+static hw_serial_kbd ser(Serial);
+static ansi_kbd kbd(ser);
 
 #else
 #pragma message "No keyboard!"
 static no_keyboard kbd;
 #endif
-#include "ansi_kbd.h"
-static ansi_kbd ansi(kbd);
 
-keyboard &Arduino::console_keyboard() { return ansi; }
+keyboard &Arduino::console_keyboard() { return kbd; }
 

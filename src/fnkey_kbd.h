@@ -21,9 +21,9 @@ public:
 
 private:
 	bool claimed(int c) {
-		if (c & ~keys::KEY_MASK)	// modified: leave for the guest
+		if (keys::has_modifiers(c))
 			return false;
-		return c >= keys::KEY_F1 && c <= keys::KEY_F12 && handle_fnkey(c - keys::KEY_F1 + 1);
+		return keys::is_function(c) && handle_fnkey(keys::function_index(c));
 	}
 
 	keyboard &_src;

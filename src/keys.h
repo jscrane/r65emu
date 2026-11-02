@@ -15,4 +15,10 @@ namespace keys {
 		MOD_ALT   = 0x2000,
 		MOD_CTRL  = 0x4000,
 	};
+
+	inline bool is_function(int k) { return k >= KEY_F1 && k <= KEY_F12; }
+
+	inline bool has_modifiers(int k) { return k & ~KEY_MASK; }
+
+	inline int function_index(int k) { return k - KEY_F1 + 1; }
 };
