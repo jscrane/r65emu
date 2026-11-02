@@ -1,5 +1,7 @@
 #pragma once
 
+#include <serial_dsp.h>
+
 class hw_serial_dsp: public serial_dsp {
 public:
 	hw_serial_dsp(Print &p): _print(p) {}

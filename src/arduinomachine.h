@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <machine.h>
 
 #if !defined(TERMINAL_SPEED)
 #define TERMINAL_SPEED		115200
@@ -54,6 +55,7 @@ public:
 	uint32_t microseconds() override;
 	void sleep(uint32_t dt) override;
 	void yield() override;
+	keyboard &console_keyboard() override;
 
 private:
 	std::function<void(bool)> _reset_handler;

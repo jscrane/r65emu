@@ -4,6 +4,8 @@
 #undef cli
 #undef sei
 
+#include <CPU.h>
+
 class r6502: public CPU {
 public:
 	r6502(Memory &m);

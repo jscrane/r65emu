@@ -8,6 +8,8 @@ This implements [cpmsim's](https://github.com/udo-munk/z80pack) I/O port interfa
 Its primary purpose is to speed up bugfixing of this library's z80 core and its applications, primarily 
 [Fuzix](https://github.com/EtchedPixels/FUZIX).
 
+Press any function key to exit.
+
 ## Build and run
 
 ```

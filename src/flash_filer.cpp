@@ -161,7 +161,11 @@ const char *flash_filer::advance() {
 	f.close();
 	bool rewound = false;
 	while (true) {
+#if !defined(FS_OPENNEXTFILE_NOARG)
 		f = dir.openNextFile(_mode == readwrite? FILE_READWRITE: FILE_READ);
+#else
+		f = dir.openNextFile();
+#endif
 		if (f) {
 			if (f.isDirectory())
 				f.close();

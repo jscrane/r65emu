@@ -1,6 +1,6 @@
 #include "hardware.h"
 
-#if defined(USE_PS2_KBD) && !defined(PS2_SERIAL_KBD)
+#if defined(USE_PS2_KBD) && !defined(PS2_KEYMAP)
 #pragma message "PS/2 RAW keyboard configured"
 
 #include <PS2KeyRaw.h>
@@ -60,12 +60,12 @@ bool ps2_raw_kbd::read(uint16_t &scan) {
 		return false;
 	}
 
-	uint8_t f = fn(k);
-	if (f >= 1) {
-		if (brk)
-			fnkey(f);
-		brk = false;
-		return false;
+	if (brk) {
+		uint8_t f = fn(k);
+		if (handle_fnkey(f)) {
+			brk = false;
+			return false;
+		}
 	}
 	scan = brk? (0x8000 | k): k;
 	brk = false;
