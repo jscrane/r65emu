@@ -38,9 +38,9 @@ int main(int argc, char *argv[]) {
 	m68k cpu(memory);
 	Linux machine(cpu);
 	Linux::Screen scr;
-	fnkey_kbd fk(machine.console_keyboard());
-	fk.register_fnkey_handler([](uint8_t) { ::exit(0); });
-	IO io(cpu, fk, scr);
+	fnkey_kbd kbd(machine.console_keyboard());
+	kbd.register_fnkey_handler([](uint8_t) { ::exit(0); });
+	IO io(cpu, kbd, scr);
 
 	memory.put(ro, 0x00000);
 	memory.put(io, 0x78000);

@@ -11,5 +11,4 @@ class no_keyboard: public keyboard {
 public:
 	bool available() override { return false; }
 	int read() override { return -1; }
-	void reset() override {}
 };
