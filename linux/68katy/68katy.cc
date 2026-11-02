@@ -15,7 +15,6 @@
 #include "fnkey_kbd.h"
 
 #include "katyrom.h"
-#include "console.h"
 #include "io.h"
 
 int main(int argc, char *argv[]) {
