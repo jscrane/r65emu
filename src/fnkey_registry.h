@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <cstdint>
+#include <keys.h>
 
 constexpr uint16_t fkey(uint8_t k) { return uint16_t(1u << k); }
 
@@ -20,25 +21,34 @@ constexpr uint16_t F12 = fkey(12);
 
 using fnkey_handler = std::function<void(uint8_t)>;
 
-// deprecated: ps2_raw_kbd still needs it, however this functionality belongs on fnkey_kbd
-class function_keys {
+class fnkey_registry {
 public:
 	void register_fnkey_handler(fnkey_handler f) { register_fnkey_handler(all_keys, std::move(f)); }
 
-	void register_fnkey_handler(uint16_t keys, fnkey_handler f) { _keys = keys & all_keys; _f = f; }
+	void register_fnkey_handler(uint16_t mask, fnkey_handler f) { _keys = mask & all_keys; _f = f; }
 
 protected:
-	bool handle_fnkey(uint8_t k) const {
-		if (!_f || !is_handled(k))
+	bool claimed(int c) {
+		if (!_f || !keys::is_function(c) || keys::has_modifiers(c))
 			return false;
+
+		return dispatch(keys::function_index(c));
+	}
+
+	bool wants(uint8_t k) {
+		return _f && k >= 1 && k <= 12 && (_keys & fkey(k));
+	}
+
+	bool dispatch(uint8_t k) {
+		if (!wants(k))
+			return false;
+
 		_f(k);
 		return true;
 	}
 
 private:
 	static constexpr uint16_t all_keys = 0x1ffe;	// 1 to 12
-
-	bool is_handled(uint8_t k) const { return k <= 12 && (_keys & fkey(k)); }
 
 	fnkey_handler _f;
 

@@ -60,12 +60,12 @@ bool ps2_raw_kbd::read(uint16_t &scan) {
 		return false;
 	}
 
-	if (brk) {
-		uint8_t f = fn(k);
-		if (handle_fnkey(f)) {
-			brk = false;
-			return false;
-		}
+	uint8_t f = fn(k);
+	if (wants(f)) {		// a hotkey: never reaches the matrix
+		if (brk)
+			dispatch(f);
+		brk = false;
+		return false;
 	}
 	scan = brk? (0x8000 | k): k;
 	brk = false;
