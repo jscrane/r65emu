@@ -44,9 +44,8 @@ static uint8_t fn(uint8_t key) {
 	return 0;
 }
 
-static bool brk = false;
-
 bool ps2_raw_kbd::read(uint16_t &scan) {
+
 	if (!available())
 		return false;
 
@@ -54,37 +53,74 @@ bool ps2_raw_kbd::read(uint16_t &scan) {
 	if (s < 0)
 		return false;
 
-	uint8_t k = (s & 0xff);
-	if (k == 0xf0) {
-		brk = true;
+	return decode(ps2_key(s), scan);
+}
+
+bool ps2_raw_kbd::decode(uint8_t k, uint16_t &scan) {
+
+	// swallow pause
+	if (_pause) {
+		_pause--;
 		return false;
 	}
 
-	uint8_t f = fn(k);
-	if (wants(f)) {		// a hotkey: never reaches the matrix
-		if (brk)
-			dispatch(f);
-		brk = false;
+	if (k == PS2_PAUSE) {
+		_pause = 7;
+		_brk = _ext = false;
 		return false;
 	}
-	scan = brk? (0x8000 | k): k;
-	brk = false;
+
+	if (k == PS2_BRK) {
+		_brk = true;
+		return false;
+	}
+	if (k == PS2_EXT) {
+		_ext = true;
+		return false;
+	}
+
+	// drop fake shifts
+	if (_ext && (k == PS2_LSHIFT || k == PS2_RSHIFT)) {
+		_brk = _ext = false;
+		return false;
+	}
+
+	uint8_t f = _ext? 0: fn(k);
+	if (wants(f)) {		// a hotkey: never reaches the matrix
+		if (_brk)
+			dispatch(f);
+		_brk = _ext = false;
+		return false;
+	}
+
+	scan = k;
+	if (_brk) {
+		scan |= PS2_MOD_BRK;
+		_brk = false;
+	}
+	if (_ext) {
+		scan |= PS2_MOD_EXT;
+		_ext = false;
+	}
 	return true;
 }
 
 void ps2_raw_kbd::reset() {
+
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
 	_m.reset();
+
+	_ext = _brk = false;
+	_pause = 0;
 }
 
 void ps2_raw_kbd::poll() {
 	uint16_t scan;
 	if (read(scan)) {
-		uint8_t k = (scan & 0xff);
-		if (scan & 0x8000)
-			_m.up(k);
+		if (scan & PS2_MOD_BRK)
+			_m.up(scan & ~PS2_MOD_BRK);
 		else
-			_m.down(k);
+			_m.down(scan);
 	}
 }
 
