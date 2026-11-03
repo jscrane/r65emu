@@ -29,6 +29,10 @@ public:
 #define PS2_LGUI	(PS2_MOD_EXT | 0x1f)
 #define PS2_RGUI	(PS2_MOD_EXT | 0x27)
 #define PS2_APPS	(PS2_MOD_EXT | 0x2f)
+#define PS2_INS		(PS2_MOD_EXT | 0x70)
+#define PS2_DEL		(PS2_MOD_EXT | 0x71)
+#define PS2_HOME	(PS2_MOD_EXT | 0x6c)
+#define PS2_END		(PS2_MOD_EXT | 0x69)
 #define PS2_SPACE	0x29
 #define PS2_KEY_1	0x16
 #define PS2_KEY_2	0x1e

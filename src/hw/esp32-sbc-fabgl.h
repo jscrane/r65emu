@@ -15,7 +15,7 @@
 #define VGA_320x240	Mode(8, 48, 24, 320, 11, 2, 31, 480, 2, 12100000, 1, 1)
 #define VGA_400x300	VGAMode::MODE400x300
 #define VGA_640x480	VGAMode::MODE640x480
-#define VGA_552x288	Mode(0, 24, 40, 552, 3, 3, 18, 576, 2, 20800000, 0, 0)		// bespoke mode for QL
+#define VGA_552x288	Mode(0, 24, 40, 552, 3, 3, 18, 576, 2, 20800000, 0, 0)
 
 #if !defined(VGA_RESOLUTION)
 #define VGA_RESOLUTION	VGA_320x240

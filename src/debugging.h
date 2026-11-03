@@ -1,5 +1,7 @@
 #pragma once
 
+#include <machine.h>
+
 #define DEBUG_NONE	0x00000000
 #define DEBUG_CPU	0x00000001
 #define DEBUG_INI	0x00000002
