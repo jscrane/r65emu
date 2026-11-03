@@ -13,19 +13,6 @@ bool ps2_raw_kbd::available() {
 	return keyboard.available();
 }
 
-#define PS2_F1  0x05
-#define PS2_F2  0x06
-#define PS2_F3  0x04
-#define PS2_F4  0x0C
-#define PS2_F5  0x03
-#define PS2_F6  0x0B
-#define PS2_F7  0x83
-#define PS2_F8  0x0A
-#define PS2_F9  0x01
-#define PS2_F10 0x09
-#define PS2_F11 0x78
-#define PS2_F12 0x07
-
 static uint8_t fn(uint8_t key) {
 	switch(key) {
 	case PS2_F1: return 1;
@@ -79,6 +66,16 @@ bool ps2_raw_kbd::decode(uint8_t k, uint16_t &scan) {
 		return false;
 	}
 
+	// self-test status: pass and fail
+	if (k == 0xaa || k == 0xfc) {
+		reset();
+		return false;
+	}
+
+	// filter other status bytes
+	if (k == 0xfa || k == 0xfe || k == 0xee || k == 0xff || k == 0x00)
+		return false;
+
 	// drop fake shifts
 	if (_ext && (k == PS2_LSHIFT || k == PS2_RSHIFT)) {
 		_brk = _ext = false;
@@ -105,11 +102,14 @@ bool ps2_raw_kbd::decode(uint8_t k, uint16_t &scan) {
 	return true;
 }
 
-void ps2_raw_kbd::reset() {
+void ps2_raw_kbd::begin() {
 
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
-	_m.reset();
+	reset();
+}
 
+void ps2_raw_kbd::reset() {
+	_m.reset();
 	_ext = _brk = false;
 	_pause = 0;
 }

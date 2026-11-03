@@ -41,10 +41,24 @@ public:
 #define PS2_KEYPAD_4	0x6b
 #define PS2_KEYPAD_6	0x74
 #define PS2_KEYPAD_8	0x75
+#define PS2_KEYPAD_ENTER	(PS2_MOD_EXT | 0x5a)
+#define PS2_KEYPAD_SLASH	(PS2_MOD_EXT | 0x4a)
 #define PS2_DOWN	(PS2_MOD_EXT | PS2_KEYPAD_2)
 #define PS2_LEFT	(PS2_MOD_EXT | PS2_KEYPAD_4)
 #define PS2_RIGHT	(PS2_MOD_EXT | PS2_KEYPAD_6)
 #define PS2_UP		(PS2_MOD_EXT | PS2_KEYPAD_8)
+#define PS2_F1  	0x05
+#define PS2_F2  	0x06
+#define PS2_F3  	0x04
+#define PS2_F4  	0x0c
+#define PS2_F5  	0x03
+#define PS2_F6  	0x0b
+#define PS2_F7  	0x83
+#define PS2_F8  	0x0a
+#define PS2_F9  	0x01
+#define PS2_F10 	0x09
+#define PS2_F11 	0x78
+#define PS2_F12 	0x07
 
 inline bool is_ps2_shift(uint16_t scan) { return scan == PS2_LSHIFT || scan == PS2_RSHIFT; }
 
@@ -55,6 +69,7 @@ inline uint8_t ps2_key(uint16_t scan) { return scan & 0xff; }
 class ps2_raw_kbd: public Pollable, public fnkey_registry {
 public:
 	ps2_raw_kbd(matrix_keyboard &m): _m(m) {}
+	void begin();
 
 	void poll() override;
 	void reset();
