@@ -197,6 +197,10 @@ void Display::setScreen(uint16_t swidth, uint16_t sheight, uint8_t centering) {
 
 	int16_t dwidth = _width, dheight = _height;
 
+	_sw = dwidth;
+	_sh = dheight;
+	_sox = _soy = 0;
+
 #if defined(USE_VGA)
 	if (rotation & 1) {
 		uint16_t t = dwidth;
@@ -327,8 +331,8 @@ void Display::status(const char *s) {
 	uint16_t w, h;
 	getTextBounds(s, 0, 0, &x, &y, &w, &h);
 
-	x = _sw - w;
-	y = _sh - h;
+	x = _sw - w - _sox;
+	y = _sh - h - _soy;
 	fillRect(min(x, _oxstat), y, w, h, textbgcolor);
 
 	setCursor(x, y);

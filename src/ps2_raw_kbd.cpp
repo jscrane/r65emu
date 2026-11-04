@@ -13,19 +13,6 @@ bool ps2_raw_kbd::available() {
 	return keyboard.available();
 }
 
-#define PS2_F1  0x05
-#define PS2_F2  0x06
-#define PS2_F3  0x04
-#define PS2_F4  0x0C
-#define PS2_F5  0x03
-#define PS2_F6  0x0B
-#define PS2_F7  0x83
-#define PS2_F8  0x0A
-#define PS2_F9  0x01
-#define PS2_F10 0x09
-#define PS2_F11 0x78
-#define PS2_F12 0x07
-
 static uint8_t fn(uint8_t key) {
 	switch(key) {
 	case PS2_F1: return 1;
@@ -44,9 +31,8 @@ static uint8_t fn(uint8_t key) {
 	return 0;
 }
 
-static bool brk = false;
-
 bool ps2_raw_kbd::read(uint16_t &scan) {
+
 	if (!available())
 		return false;
 
@@ -54,37 +40,87 @@ bool ps2_raw_kbd::read(uint16_t &scan) {
 	if (s < 0)
 		return false;
 
-	uint8_t k = (s & 0xff);
-	if (k == 0xf0) {
-		brk = true;
+	return decode(ps2_key(s), scan);
+}
+
+bool ps2_raw_kbd::decode(uint8_t k, uint16_t &scan) {
+
+	// swallow pause
+	if (_pause) {
+		_pause--;
 		return false;
 	}
 
-	if (brk) {
-		uint8_t f = fn(k);
-		if (handle_fnkey(f)) {
-			brk = false;
-			return false;
-		}
+	if (k == PS2_PAUSE) {
+		_pause = 7;
+		_brk = _ext = false;
+		return false;
 	}
-	scan = brk? (0x8000 | k): k;
-	brk = false;
+
+	if (k == PS2_BRK) {
+		_brk = true;
+		return false;
+	}
+	if (k == PS2_EXT) {
+		_ext = true;
+		return false;
+	}
+
+	// self-test status: pass and fail
+	if (k == 0xaa || k == 0xfc) {
+		reset();
+		return false;
+	}
+
+	// filter other status bytes
+	if (k == 0xfa || k == 0xfe || k == 0xee || k == 0xff || k == 0x00)
+		return false;
+
+	// drop fake shifts
+	if (_ext && (k == PS2_LSHIFT || k == PS2_RSHIFT)) {
+		_brk = _ext = false;
+		return false;
+	}
+
+	uint8_t f = _ext? 0: fn(k);
+	if (wants(f)) {		// a hotkey: never reaches the matrix
+		if (_brk)
+			dispatch(f);
+		_brk = _ext = false;
+		return false;
+	}
+
+	scan = k;
+	if (_brk) {
+		scan |= PS2_MOD_BRK;
+		_brk = false;
+	}
+	if (_ext) {
+		scan |= PS2_MOD_EXT;
+		_ext = false;
+	}
 	return true;
 }
 
-void ps2_raw_kbd::reset() {
+void ps2_raw_kbd::begin() {
+
 	keyboard.begin(PS2_KBD_DATA, PS2_KBD_IRQ);
+	reset();
+}
+
+void ps2_raw_kbd::reset() {
 	_m.reset();
+	_ext = _brk = false;
+	_pause = 0;
 }
 
 void ps2_raw_kbd::poll() {
 	uint16_t scan;
 	if (read(scan)) {
-		uint8_t k = (scan & 0xff);
-		if (scan & 0x8000)
-			_m.up(k);
+		if (scan & PS2_MOD_BRK)
+			_m.up(scan & ~PS2_MOD_BRK);
 		else
-			_m.down(k);
+			_m.down(scan);
 	}
 }
 

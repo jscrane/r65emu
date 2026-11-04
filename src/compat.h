@@ -5,4 +5,5 @@
 #else
 #define PROGMEM
 #define pgm_read_byte(x)	*(uint8_t *)(x)
+#define pgm_read_word(x)	*(uint16_t *)(x)
 #endif

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stddef.h>
 
 class Checkpoint;
 
@@ -31,6 +32,8 @@ public:
 
 	static const size_t address_size = (1 << address_bits);
 	static const size_t page_size = (1 << page_bits);
+
+	static const unsigned address_mask = address_size - 1;
 
 	class Device: public Checkpointable {
 	public:
@@ -101,6 +104,7 @@ public:
 	}
 
 	Device &operator[](address a) const {
+		a &= address_mask;
 		Device *d = get(a);
 		d->access(a);
 		return *d;

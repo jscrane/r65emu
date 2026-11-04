@@ -39,7 +39,7 @@ bool Arduino::reset() {
 
 	DBG_INI("machine reset");
 
-	bool ok = false;
+	bool ok = true;
 
 #if defined(USE_SPIRAM)
 	SPIRAM_DEV.begin();

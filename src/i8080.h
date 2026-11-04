@@ -4,6 +4,8 @@
 #undef PC
 #undef SP
 
+#include <CPU.h>
+
 uint8_t parity(uint8_t);
 
 class i8080: public CPU {
