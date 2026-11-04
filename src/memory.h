@@ -1,7 +1,5 @@
 #pragma once
 
-#include <debugging.h>
-
 class Checkpoint;
 
 class Checkpointable {
