@@ -333,7 +333,7 @@ void Display::status(const char *s) {
 
 	x = _sw - w - _sox;
 	y = _sh - h - _soy;
-	fillRect(min(x, _oxstat), y, w, h, textbgcolor);
+	fillRect(min(x, _oxstat), y, _width, h, textbgcolor);
 
 	setCursor(x, y);
 	print(s);
