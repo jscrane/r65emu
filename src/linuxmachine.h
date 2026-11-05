@@ -2,6 +2,7 @@
 
 #include <machine.h>
 #include <keyboard.h>
+#include <pwm_sound.h>
 #include <serial_dsp.h>
 
 class Linux: public Machine {
@@ -12,6 +13,7 @@ public:
 	void sleep(uint32_t dt) override;
 	void yield() override {}
 	keyboard &console_keyboard() override;
+	sound_sink &sound_pwm() override;
 
 	class Keyboard: public keyboard {
 	public:

@@ -106,3 +106,6 @@ static ansi_kbd ansi(kbd);
 
 keyboard &Linux::console_keyboard() { return ansi; }
 #endif
+
+static sound_sink sound;
+sound_sink &Linux::sound_pwm() { return sound; }

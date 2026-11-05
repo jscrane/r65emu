@@ -7,6 +7,7 @@
 #include "memory.h"
 #include "debugging.h"
 #include "hardware.h"
+#include "pwm_sound.h"
 #include "arduinomachine.h"
 
 #if defined(USE_SD) || defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SPIRAM)
@@ -159,3 +160,10 @@ static no_keyboard kbd;
 
 keyboard &Arduino::console_keyboard() { return kbd; }
 
+#if defined(PWM_SOUND) && PWM_SOUND >= 0
+static pwm_sound sound(PWM_SOUND);
+#else
+static sound_sink sound;
+#endif
+
+sound_sink &Arduino::sound_pwm() { return sound; }
