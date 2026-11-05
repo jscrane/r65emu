@@ -56,6 +56,7 @@ public:
 	void sleep(uint32_t dt) override;
 	void yield() override;
 	keyboard &console_keyboard() override;
+	sound_sink &sound_pwm() override;
 
 private:
 	std::function<void(bool)> _reset_handler;
