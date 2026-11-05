@@ -4,6 +4,7 @@ class sound_sink {
 public:
 	virtual void tone(unsigned hz) {}
 	virtual void off() {}
+	virtual ~sound_sink() {}
 };
 
 class pwm_sound: public sound_sink {
