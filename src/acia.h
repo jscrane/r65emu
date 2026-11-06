@@ -21,6 +21,10 @@ public:
 		write_data_handler = fn;
 	}
 
+	void register_write_data_bit_handler(std::function<void(bool)> fn) {
+		write_data_bit = fn;
+	}
+
 	void register_read_data_handler(std::function<uint8_t(void)> fn) {
 		read_data_handler = fn;
 	}
@@ -92,10 +96,7 @@ private:
 		return read_data_handler? read_data_handler(): 0;
 	}
 
-	void write_data(uint8_t b) {
-		if (write_data_handler)
-			write_data_handler(b);
-	}
+	void write_data(uint8_t);
 
 	void device_reset() {
 
@@ -106,6 +107,7 @@ private:
 	}
 
 	std::function<void(uint8_t)> write_data_handler;
+	std::function<void(bool)> write_data_bit;
 	std::function<uint8_t(void)> read_data_handler;
 	std::function<void(void)> reset_handler;
 	std::function<void(uint8_t)> framing_handler;
@@ -113,4 +115,5 @@ private:
 	std::function<void(bool)> irq_handler;
 
 	bool rx_irq_enable, tx_irq_enable;
+	uint8_t ws;
 };
