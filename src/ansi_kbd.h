@@ -35,9 +35,9 @@ public:
 
 private:
 	static constexpr uint8_t ESC = 0x1b;
-	static constexpr uint8_t queue_size = 4;	// power of two
+	static constexpr uint8_t queue_size = 4;		// power of two
 
-	enum state_t : uint8_t { GROUND, ESCAPE, SEQUENCE };
+	enum state_t : uint8_t { GROUND, ESCAPE, SEQUENCE, UTF8 };
 
 	void param(uint8_t c);
 
@@ -56,6 +56,7 @@ private:
 
 	int _q[queue_size];
 	uint8_t _head = 0, _count = 0;
+	uint8_t _lead = 0, _skip = 0;
 };
 
 class ansi_kbd: public keyboard {

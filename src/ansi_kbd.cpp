@@ -14,8 +14,24 @@ void ansi_decoder::feed(uint8_t c, uint32_t now) {
 		case GROUND:
 			if (c == ESC)
 				_state = ESCAPE;
-			else
+			else if (c >= 0xc2 && c <= 0xf4) {	// UTF-8 lead byte
+				_lead = c;
+				_skip = c >= 0xf0 ? 3 : c >= 0xe0 ? 2 : 1;
+				_state = UTF8;
+			} else
 				push(c);
+			return;
+
+		case UTF8:
+			if ((c & 0xc0) != 0x80) {		// malformed: drop the lead,
+				_state = GROUND;		// reprocess this byte
+				continue;
+			}
+			if (--_skip == 0) {
+				_state = GROUND;
+				if (_lead <= 0xc3)		// U+0080..U+00FF
+					push(((_lead & 3) << 6) | (c & 0x3f));
+			}
 			return;
 
 		case ESCAPE:
