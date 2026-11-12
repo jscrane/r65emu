@@ -102,7 +102,7 @@ size_t flash_file::write(uint8_t b) {
 
 bool flash_filer::start() {
 #if USE_STORAGE
-	dir = DISK.open(_programs, FILE_READ);
+	if (!dir) dir = DISK.open(_programs, FILE_READ);
 	return (bool)dir;
 #endif
 	return false;
@@ -112,6 +112,7 @@ void flash_filer::stop() {
 #if USE_STORAGE
 	for (int i = 0; i < MAX_FILES; i++)
 		files[i].close();
+	dir.close();
 #endif
 }
 
