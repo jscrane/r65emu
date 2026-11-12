@@ -58,6 +58,8 @@ class CPU;
 inline bool debug_never() { return false; }
 inline bool debug_always() { return true; }
 
+using Clock = uint32_t(*)();
+
 class Machine {
 public:
 	Machine(CPU &cpu);
@@ -80,6 +82,7 @@ public:
 	virtual void yield() =0;
 	virtual class keyboard &console_keyboard() =0;
 	virtual class sound_sink &sound() =0;
+	virtual Clock clock() =0;
 
 	void debug(const char *lvlstr, const char *fmt, ...);
 	void register_debug_print(std::function<void(const char *, const char *)> fn) { _debug_print = fn; }

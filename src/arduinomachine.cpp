@@ -146,6 +146,8 @@ void Arduino::begin() {
 
 uint32_t Arduino::microseconds() { return micros(); }
 
+Clock Arduino::clock() { return micros; }
+
 void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
 void Arduino::yield() { ::yield(); }
@@ -158,7 +160,7 @@ static ps2_keyboard kbd;
 #include "hw_serial_kbd.h"
 #include "ansi_kbd.h"
 static hw_serial_kbd ser(Serial);
-static ansi_kbd kbd(ser);
+static ansi_kbd kbd(ser, micros);
 
 #else
 #pragma message "No keyboard!"

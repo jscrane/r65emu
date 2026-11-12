@@ -57,6 +57,7 @@ public:
 	void yield() override;
 	keyboard &console_keyboard() override;
 	sound_sink &sound() override;
+	Clock clock() override;
 
 private:
 	std::function<void(bool)> _reset_handler;
