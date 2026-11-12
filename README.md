@@ -6,13 +6,14 @@ Arduino emulation library for 8-bit microcomputers based on 6502, i8080 and z80.
 Sample Emulations
 -----------------
 - [Apple-1](https://github.com/jscrane/Apple1) and [Apple-II](https://github.com/jscrane/Apple-II)
-- [CPM](https://github.com/jscrane/cpm80)
+- [CP/M](https://github.com/jscrane/cpm80)
 - [Space Invaders](https://github.com/jscrane/invaders)
 - [Pacman](https://github.com/jscrane/pacman)
 - [Commodore PET](https://github.com/jscrane/PET)
 - [Compukit UK101](https://github.com/jscrane/UK101) and Grant Searle's [MicroUK101](https://github.com/jscrane/MicroUK101)
 - [Commodore Chessmate](https://github.com/jscrane/Chessmate)
 - Jeff Tranter's [6502 Single Board Computer](https://github.com/jscrane/TranterSBC)
+- [Sinclair QL](https://github.com/jscrane/QL)
 
 Configuration for Arduino
 --------------
@@ -49,7 +50,8 @@ Display
 --------
 Depending on target board, one of:
 - [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
-- [ESP32Lib](https://github.com/jscrane/ESP32Lib)
+- [ESP32Lib](https://github.com/bitluni/ESP32Lib)
+- [PicoDVI](https://github.com/Wren6991/picodvi)
 
 Storage
 --------
@@ -60,6 +62,6 @@ Hardware
 ---------
 - An ESP8266 board, e.g., [WeMOS](https://www.wemos.cc/en/latest/d1/d1_mini.html), _or_
 ESP32-based board, e.g., [Node32s](https://www.esp32.com/viewtopic.php?t=459),
-- A 23k256 SPI RAM chip (optional),
-- A supported TFT screen (if not using a board with VGA),
+- A 23k256 SPI RAM chip (optional but useful for ESP8266),
+- A supported TFT screen (if not using a board with VGA or DVI),
 - A PS/2 keyboard (if not using a Serial interface).
