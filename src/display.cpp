@@ -36,6 +36,8 @@ static VGA6Bit vga;
 static VGA3Bit vga;
 #elif VGA_BIT_DEPTH == 1
 static VGA1BitI vga;
+#else
+#pragma error "VGA_BIT_DEPTH not defined!"
 #endif
 Display::Display(): Adafruit_GFX(VGA_RESOLUTION.hRes, VGA_RESOLUTION.vRes / VGA_RESOLUTION.vDiv) {}
 
