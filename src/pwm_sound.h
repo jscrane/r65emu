@@ -2,7 +2,7 @@
 
 class sound_sink {
 public:
-	virtual void tone(unsigned hz) {}
+	virtual void tone(unsigned) {}
 	virtual void off() {}
 	virtual ~sound_sink() {}
 };
