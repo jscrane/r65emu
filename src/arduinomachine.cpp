@@ -36,6 +36,12 @@ static SpiRAM spiRam(SPIRAM_DEV, SPIRAM_CS);
 spiram sram(spiRam, SPIRAM_SIZE);
 #endif
 
+#if defined(PWM_SOUND) && PWM_SOUND >= 0
+static pwm_sound snd(PWM_SOUND);
+#else
+static sound_sink snd;
+#endif
+
 bool Arduino::reset() {
 
 	DBG_INI("machine reset");
@@ -79,6 +85,7 @@ bool Arduino::reset() {
 #if defined(TFT_BACKLIGHT)
 	digitalWrite(TFT_BACKLIGHT, HIGH);
 #endif
+	snd.off();
 
 	_cpu.reset();
 
@@ -155,15 +162,9 @@ static ansi_kbd kbd(ser);
 
 #else
 #pragma message "No keyboard!"
-static no_keyboard kbd;
+static keyboard kbd;
 #endif
 
 keyboard &Arduino::console_keyboard() { return kbd; }
 
-#if defined(PWM_SOUND) && PWM_SOUND >= 0
-static pwm_sound sound(PWM_SOUND);
-#else
-static sound_sink sound;
-#endif
-
-sound_sink &Arduino::sound_pwm() { return sound; }
+sound_sink &Arduino::sound() { return snd; }

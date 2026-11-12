@@ -13,7 +13,7 @@ public:
 	void sleep(uint32_t dt) override;
 	void yield() override {}
 	keyboard &console_keyboard() override;
-	sound_sink &sound_pwm() override;
+	sound_sink &sound() override;
 
 	class Keyboard: public keyboard {
 	public:
