@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <keyboard.h>
+#include <machine.h>
 
 /*
  * Decodes the escape sequences a terminal sends for the cursor keys
@@ -61,7 +62,7 @@ private:
 
 class ansi_kbd: public keyboard {
 public:
-	ansi_kbd(keyboard &src): _src(src) {}
+	ansi_kbd(keyboard &src, Clock clk): _src(src), _now(clk) {}
 
 	bool available() override {
 		return _dec.available() || _dec.pending() || _src.available();
@@ -72,6 +73,8 @@ public:
 	void reset() override { _src.reset(); _dec.reset(); };
 
 private:
+	inline uint32_t now() const { return _now() / 1000; }
 	keyboard &_src;
+	Clock _now;
 	ansi_decoder _dec;
 };
