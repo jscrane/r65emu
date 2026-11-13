@@ -120,7 +120,9 @@ void flash_filer::stop() {
 #include <string.h>
 #include <ctype.h>
 
-static bool matchesExtension(const char *filename, const char *extensions) {
+static bool matches_extension(const char *filename, const char *extensions) {
+	if (!extensions) return true;
+
 	const char *dot = strrchr(filename, '.');
 	if (!dot || !dot[1]) return false;
 
@@ -154,6 +156,20 @@ static bool matchesExtension(const char *filename, const char *extensions) {
 	}
 	return false;
 }
+
+static void reopen_readwrite(const char *dir, File &f) {
+
+	const char *fname = f.name();
+	if (fname[0] == '/')
+		fname++;
+
+	size_t dirlen = strlen(dir);
+	const char *sep = (dirlen > 0 && dir[dirlen - 1] == '/')? "": "/";
+	char filepath[128];
+	snprintf(filepath, sizeof(filepath), "%s%s%s", dir, sep, fname);
+	f.close();
+	f = DISK.open(filepath, FILE_READWRITE);
+}
 #endif
 
 const char *flash_filer::advance() {
@@ -162,16 +178,17 @@ const char *flash_filer::advance() {
 	f.close();
 	bool rewound = false;
 	while (true) {
-#if !defined(FS_OPENNEXTFILE_NOARG)
-		f = dir.openNextFile(_mode == readwrite? FILE_READWRITE: FILE_READ);
-#else
 		f = dir.openNextFile();
-#endif
 		if (f) {
 			if (f.isDirectory())
 				f.close();
-			else if (!_extensions || matchesExtension(f.name(), _extensions))
+			else if (matches_extension(f.name(), _extensions)) {
+				if (_mode == readwrite) {
+					DBG_DISK("reopening %s rw", f.name());
+					reopen_readwrite(_programs, f);
+				}
 				break;
+			}
 		} else if (!rewound) {
 			dir.rewindDirectory();
 			rewound = true;
@@ -219,7 +236,7 @@ const char *flash_filer::checkpoint() {
 	File file = DISK.open(buf, FILE_WRITE);
 	StreamCheckpoint chk(file);
 	_machine->checkpoint(chk);
-	DBG_EMU("flash_filer: checkpoint: %d", chk.pos());
+	DBG_DISK("flash_filer: checkpoint: %d", chk.pos());
 	file.close();
 	start();
 	return buf + strlen(_programs);
@@ -236,7 +253,7 @@ void flash_filer::restore(const char *filename) {
 	File file = DISK.open(buf, FILE_READ);
 	StreamCheckpoint chk(file);
 	_machine->restore(chk);
-	DBG_EMU("flash_filer: restore: %d", chk.pos());
+	DBG_DISK("flash_filer: restore: %d", chk.pos());
 	file.close();
 	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.img", &cpid);
 	cpid = (n == 0)? 0: cpid+1;
