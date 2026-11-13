@@ -42,7 +42,6 @@
 
 // storage
 #if !defined(NO_STORAGE)
-#define FS_OPENNEXTFILE_NOARG
 #if !defined(USE_SD) && !defined(USE_LITTLEFS) && !defined(USE_SPIFFS)
 #define USE_LITTLEFS
 #endif
