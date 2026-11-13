@@ -21,7 +21,7 @@ Linux::Linux(CPU &c): Machine(c) {
 	});
 }
 
-uint32_t Linux::microseconds() {
+static uint32_t micros() {
 	struct timespec ts;
 	// CLOCK_MONOTONIC is preferred for measuring intervals
 	clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -29,6 +29,10 @@ uint32_t Linux::microseconds() {
 	// Convert to microseconds and cast to uint32_t for rollover compatibility
 	return (uint32_t)(ts.tv_sec * 1000000UL + ts.tv_nsec / 1000UL);
 }
+
+uint32_t Linux::microseconds() { return micros(); }
+
+Clock Linux::clock() { return micros; }
 
 void Linux::sleep(uint32_t dt) {
 	usleep(dt);
@@ -102,7 +106,7 @@ int Linux::Keyboard::read() {
 static Linux::Keyboard kbd;
 
 #include "ansi_kbd.h"
-static ansi_kbd ansi(kbd);
+static ansi_kbd ansi(kbd, micros);
 
 keyboard &Linux::console_keyboard() { return ansi; }
 #endif

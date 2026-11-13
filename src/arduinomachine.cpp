@@ -42,23 +42,9 @@ static pwm_sound snd(PWM_SOUND);
 static sound_sink snd;
 #endif
 
-bool Arduino::reset() {
-
-	DBG_INI("machine reset");
+static bool init_storage() {
 
 	bool ok = true;
-
-#if defined(USE_SPIRAM)
-	SPIRAM_DEV.begin();
-#if defined(SPIRAM_MODULE)
-	SPIRAM_DEV.setModule(SPIRAM_MODULE);
-#endif
-#if defined(SPIRAM_CLKDIV)
-	SPIRAM_DEV.setClockDivider(SPIRAM_CLKDIV);
-#endif
-	SPIRAM_DEV.setDataMode(SPI_MODE0);
-	DBG_INI("machine reset: SPIRAM");
-#endif
 
 #if defined(USE_SD)
 #if defined(SD_SPI)
@@ -70,17 +56,26 @@ bool Arduino::reset() {
 		DBG_INI("SD_SPI: %d: begin failed", SD_SPI);
 #else
 	ok = SD.begin(SD_CS);
-	DBG_INI("machine reset: SD: %d: %s", SD_CS, success(ok));
+	DBG_INI("SD: %d: %s", SD_CS, success(ok));
 #endif
 
 #elif defined(USE_SPIFFS)
 	ok = SPIFFS.begin(true);
-	DBG_INI("machine reset: SPIFFS: %s", success(ok));
+	DBG_INI("SPIFFS: %s", success(ok));
 
 #elif defined(USE_LITTLEFS)
 	ok = LittleFS.begin();
-	DBG_INI("machine reset: LittleFS: %s", success(ok));
+	DBG_INI("LittleFS: %s", success(ok));
 #endif
+
+	return ok;
+}
+
+bool Arduino::reset() {
+
+	DBG_INI("machine reset");
+
+	bool ok = init_storage();
 
 #if defined(TFT_BACKLIGHT)
 	digitalWrite(TFT_BACKLIGHT, HIGH);
@@ -140,11 +135,17 @@ void Arduino::begin() {
 	DBG_INI("spiram cs: %d", SPIRAM_CS);
 	pinMode(SPIRAM_CS, OUTPUT);
 	digitalWrite(SPIRAM_CS, HIGH);
+	SPIRAM_DEV.begin();
+	SPIRAM_DEV.setDataMode(SPI_MODE0);
 #endif
 	DBG_INI("initialised");
 }
 
-uint32_t Arduino::microseconds() { return micros(); }
+static inline uint32_t clk() { return ::micros(); }
+
+uint32_t Arduino::microseconds() { return clk(); }
+
+Clock Arduino::clock() { return clk; }
 
 void Arduino::sleep(uint32_t dt) { delayMicroseconds(dt); }
 
@@ -158,7 +159,7 @@ static ps2_keyboard kbd;
 #include "hw_serial_kbd.h"
 #include "ansi_kbd.h"
 static hw_serial_kbd ser(Serial);
-static ansi_kbd kbd(ser);
+static ansi_kbd kbd(ser, clk);
 
 #else
 #pragma message "No keyboard!"

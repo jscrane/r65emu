@@ -131,10 +131,6 @@ void ansi_decoder::dispatch(uint8_t final) {
 	push(key);
 }
 
-static inline uint32_t now() {
-	return _machine->microseconds() / 1000;
-}
-
 int ansi_kbd::read() {
 	while (_dec.can_accept() && _src.available()) {
 		int c = _src.read();

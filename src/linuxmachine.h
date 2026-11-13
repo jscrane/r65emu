@@ -14,6 +14,7 @@ public:
 	void yield() override {}
 	keyboard &console_keyboard() override;
 	sound_sink &sound() override;
+	Clock clock() override;
 
 	class Keyboard: public keyboard {
 	public:
