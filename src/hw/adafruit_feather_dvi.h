@@ -1,27 +1,26 @@
 // Adafruit Feather DVI
 // https://www.adafruit.com/product/5710
+#pragma once
 
 // FIXME:
 // #define DAC_SOUND
 // see https://arduino-pico.readthedocs.io/en/stable/i2s.html
 
 #if !defined(PWM_SOUND)
-#define PWM_SOUND	25
+#define PWM_SOUND	6
 #endif
 
 // PS/2 keyboard
 // Note: this requires the keyboard to operate at 3.3v (e.g., Dell QuietKey)
 // https://github.com/lurk101/pico-ps2kbd
-// GPIO14 is labelled SCK and GPIO15 MO on the board
-// https://learn.adafruit.com/assets/119662
 #if !defined(USE_OWN_KBD) && !defined(USE_HOST_KBD) && !defined(USE_PS2_KBD)
 #define USE_PS2_KBD
 #endif
 #if !defined(PS2_KBD_DATA)
-#define PS2_KBD_DATA    14
+#define PS2_KBD_DATA    24
 #endif
 #if !defined(PS2_KBD_IRQ)
-#define PS2_KBD_IRQ     15
+#define PS2_KBD_IRQ     25
 #endif
 
 // Display
@@ -61,7 +60,19 @@
 #define RAM_SIZE	0x10000u
 
 #if !defined(NO_STORAGE)
+// default to SD card on this board because writing to flash causes a lockup
 #if !defined(USE_SD) && !defined(USE_LITTLEFS) && !defined(USE_SPIFFS)
-#define USE_LITTLEFS
+#define USE_SD
+#endif
+
+#if defined(USE_SD)
+#if !defined(SD_CS)
+#define SD_CS	9
+#endif
+#endif
+
+#if defined(USE_LITTLEFS) && defined(USE_DVI)
+// https://github.com/jscrane/r65emu/issues/34
+#warning "writing to flash with PicoDVI not recommended"
 #endif
 #endif
