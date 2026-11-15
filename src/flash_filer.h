@@ -6,6 +6,10 @@
 
 #include "flash_storage.h"
 
+#if !defined(MAX_DEVICES)
+#define MAX_DEVICES	5
+#endif
+
 // A single open file on the configured storage. Owns its handle.
 class flash_file: virtual public serialio {
 public:
@@ -65,12 +69,15 @@ private:
 class flash_filer: public filer {
 
 public:
-	flash_filer(const char *programs, flash_device **devs, uint8_t n):
-		_programs(programs), _devs(devs), _n(n), _current(0) {}
-
-	template<size_t N>
-	flash_filer(const char *programs, flash_device *(&devs)[N]):
-		flash_filer(programs, devs, N) {}
+	// Takes the devices as references: flash_filer files(PROGRAMS, tape, d1, d2);
+	// Their addresses are stored, so they must outlive the filer. The
+	// number of devices is checked at compile time.
+	template<typename... Devs>
+	flash_filer(const char *programs, Devs &... devs):
+		_programs(programs), _devs{ &devs... }, _n(sizeof...(Devs)), _current(0) {
+		static_assert(sizeof...(Devs) > 0, "flash_filer needs at least one device");
+		static_assert(sizeof...(Devs) <= MAX_DEVICES, "too many devices: raise MAX_DEVICES");
+	}
 
 	// serialio, via filer
 	bool more() override { return current().more(); }
@@ -96,7 +103,7 @@ public:
 
 private:
 	const char *_programs;
-	flash_device **_devs;
-	const uint8_t _n;
+	flash_device *_devs[MAX_DEVICES];
+	uint8_t _n;
 	uint8_t _current;
 };
