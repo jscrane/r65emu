@@ -1,54 +1,31 @@
 #include <Stream.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 #include "machine.h"
 #include "arduinomachine.h"
 #include "debugging.h"
 #include "hardware.h"
 
-#define USE_STORAGE (defined(USE_SPIFFS) || defined(USE_LITTLEFS) || defined(USE_SD))
+#include "flash_filer.h"
 
 #if defined(USE_SPIFFS)
-#include <SPIFFS.h>
-#define DISK SPIFFS
 #pragma message "SPIFFS configured"
-
 #elif defined(USE_LITTLEFS)
-#include <FS.h>
-#include <LittleFS.h>
-#define DISK LittleFS
 #pragma message "LittleFS configured"
-
 #elif defined(USE_SD)
-#include <SD.h>
-#define DISK SD
 #pragma message "SD configured"
-
 #else
 #pragma message "No Storage configured"
 #endif
 
-#include "flash_filer.h"
-
-#if USE_STORAGE
-
-#if !defined(FILE_READ)
-#define FILE_READ "r"
-#endif
-#if !defined(FILE_WRITE)
-#define FILE_WRITE "w"
-#endif
-#if !defined(FILE_READWRITE)
-#define FILE_READWRITE "r+"
-#endif
-
-static File files[MAX_FILES];
-static File dir;
-#endif
+// ---- flash_file ----
 
 bool flash_file::seek(uint32_t pos) {
 #if USE_STORAGE
-	return files[_fd].seek(pos);
+	return _file.seek(pos);
 #else
 	return false;
 #endif
@@ -56,13 +33,19 @@ bool flash_file::seek(uint32_t pos) {
 
 void flash_file::flush() {
 #if USE_STORAGE
-	files[_fd].flush();
+	_file.flush();
+#endif
+}
+
+void flash_file::close() {
+#if USE_STORAGE
+	_file.close();
 #endif
 }
 
 bool flash_file::more() {
 #if USE_STORAGE
-	return files[_fd].available() > 0;
+	return _file.available() > 0;
 #else
 	return false;
 #endif
@@ -70,7 +53,7 @@ bool flash_file::more() {
 
 uint8_t flash_file::read() {
 #if USE_STORAGE
-	return files[_fd].read();
+	return _file.read();
 #else
 	return 0xff;
 #endif
@@ -78,7 +61,7 @@ uint8_t flash_file::read() {
 
 flash_file::operator bool() const {
 #if USE_STORAGE
-	return files[_fd];
+	return _file;
 #else
 	return false;
 #endif
@@ -86,7 +69,7 @@ flash_file::operator bool() const {
 
 uint32_t flash_file::size() const {
 #if USE_STORAGE
-	return files[_fd].size();
+	return _file.size();
 #else
 	return 0;
 #endif
@@ -94,31 +77,15 @@ uint32_t flash_file::size() const {
 
 size_t flash_file::write(uint8_t b) {
 #if USE_STORAGE
-	return files[_fd].write(b);
+	return _file.write(b);
 #else
 	return -1;
 #endif
 }
 
-bool flash_filer::start() {
-#if USE_STORAGE
-	if (!dir) dir = DISK.open(_programs, FILE_READ);
-	return (bool)dir;
-#endif
-	return false;
-}
-
-void flash_filer::stop() {
-#if USE_STORAGE
-	for (int i = 0; i < MAX_FILES; i++)
-		files[i].close();
-	dir.close();
-#endif
-}
+// ---- flash_device ----
 
 #if USE_STORAGE
-#include <string.h>
-#include <ctype.h>
 
 static bool matches_extension(const char *filename, const char *extensions) {
 	if (!extensions) return true;
@@ -157,80 +124,106 @@ static bool matches_extension(const char *filename, const char *extensions) {
 	return false;
 }
 
-static void reopen_readwrite(const char *dir, File &f) {
+static void reopen_readwrite(const char *programs, File &f) {
 
 	const char *fname = f.name();
 	if (fname[0] == '/')
 		fname++;
 
-	size_t dirlen = strlen(dir);
-	const char *sep = (dirlen > 0 && dir[dirlen - 1] == '/')? "": "/";
+	size_t dirlen = strlen(programs);
+	const char *sep = (dirlen > 0 && programs[dirlen - 1] == '/')? "": "/";
 	char filepath[128];
-	snprintf(filepath, sizeof(filepath), "%s%s%s", dir, sep, fname);
+	snprintf(filepath, sizeof(filepath), "%s%s%s", programs, sep, fname);
 	f.close();
 	f = DISK.open(filepath, FILE_READWRITE);
 }
 #endif
 
-const char *flash_filer::advance() {
+bool flash_device::start(const char *programs) {
+	_programs = programs;
 #if USE_STORAGE
-	File &f = files[_current];
-	f.close();
+	if (!_dir) _dir = DISK.open(_programs, FILE_READ);
+	return (bool)_dir;
+#else
+	return false;
+#endif
+}
+
+void flash_device::stop() {
+#if USE_STORAGE
+	_file.close();
+	_dir.close();
+#endif
+}
+
+const char *flash_device::advance() {
+#if USE_STORAGE
+	_file.close();
 	bool rewound = false;
 	while (true) {
-		f = dir.openNextFile();
-		if (f) {
-			if (f.isDirectory())
-				f.close();
-			else if (matches_extension(f.name(), _extensions)) {
+		_file = _dir.openNextFile();
+		if (_file) {
+			if (_file.isDirectory())
+				_file.close();
+			else if (matches_extension(_file.name(), _extensions)) {
 				if (_mode == readwrite) {
-					DBG_DISK("reopening %s rw", f.name());
-					reopen_readwrite(_programs, f);
+					DBG_DISK("reopening %s rw", _file.name());
+					reopen_readwrite(_programs, _file);
 				}
 				break;
 			}
 		} else if (!rewound) {
-			dir.rewindDirectory();
+			_dir.rewindDirectory();
 			rewound = true;
 		} else
 			return 0;
 	}
-	return f.name();
+	return _file.name();
 #else
 	return 0;
 #endif
 }
 
-const char *flash_filer::rewind() {
+const char *flash_device::rewind() {
 #if USE_STORAGE
-	dir.rewindDirectory();
+	_dir.rewindDirectory();
 #endif
 	return advance();
 }
 
-const char *flash_filer::filename() const {
+const char *flash_device::filename() const {
 #if USE_STORAGE
-	File &f = files[_current];
-	if (f)
-		return f.name();
+	if (_file)
+		return _file.name();
 #endif
 	return 0;
 }
 
-void flash_filer::next_device() {
-	_current++;
-	if (_current == _max_devices)
-		_current = 0;
-}
+// ---- flash_filer ----
 
 #if USE_STORAGE
-static char buf[32];
+static char buf[64];
 static int cpid = 0;
 #endif
 
+bool flash_filer::start() {
+	bool ok = true;
+	for (uint8_t i = 0; i < _n; i++)
+		ok &= _devs[i]->start(_programs);
+	return ok;
+}
+
+void flash_filer::stop() {
+	for (uint8_t i = 0; i < _n; i++)
+		_devs[i]->stop();
+}
+
+// NB: unlike the old implementation, checkpoint/restore no longer stop()
+// every device: only the checkpoint image is opened and closed here, so
+// every device keeps its open file and directory position.
+
 const char *flash_filer::checkpoint() {
 #if USE_STORAGE
-	stop();
 	snprintf(buf, sizeof(buf), "%schk%03d.img", _programs, cpid++);
 
 	File file = DISK.open(buf, FILE_WRITE);
@@ -238,7 +231,6 @@ const char *flash_filer::checkpoint() {
 	_machine->checkpoint(chk);
 	DBG_DISK("flash_filer: checkpoint: %d", chk.pos());
 	file.close();
-	start();
 	return buf + strlen(_programs);
 #else
 	return "";
@@ -247,7 +239,6 @@ const char *flash_filer::checkpoint() {
 
 void flash_filer::restore(const char *filename) {
 #if USE_STORAGE
-	stop();
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
 
 	File file = DISK.open(buf, FILE_READ);
@@ -258,5 +249,4 @@ void flash_filer::restore(const char *filename) {
 	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.img", &cpid);
 	cpid = (n == 0)? 0: cpid+1;
 #endif
-	start();
 }
