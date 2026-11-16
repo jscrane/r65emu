@@ -97,8 +97,10 @@ int ansi_decoder::tilde_key(int n) {
 	case 4: case 8:  return KEY_END;
 	case 5:          return KEY_PGUP;
 	case 6:          return KEY_PGDN;
-	case 11: case 12: case 13: case 14: case 15:
+	case 11: case 12: case 13: case 14:
 		return KEY_F1 + (n - 11);
+	case 15: case 16:	// xterm sends 15, minicom 16
+		return KEY_F5;
 	case 17: case 18: case 19: case 20: case 21:
 		return KEY_F6 + (n - 17);
 	case 23: case 24:
