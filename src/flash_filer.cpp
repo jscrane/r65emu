@@ -224,7 +224,7 @@ void flash_filer::stop() {
 
 const char *flash_filer::checkpoint() {
 #if USE_STORAGE
-	snprintf(buf, sizeof(buf), "%schk%03d.img", _programs, cpid++);
+	snprintf(buf, sizeof(buf), "%schk%03d.%s", _programs, cpid++, CHK);
 
 	File file = DISK.open(buf, FILE_WRITE);
 	StreamCheckpoint chk(file);
@@ -246,7 +246,7 @@ void flash_filer::restore(const char *filename) {
 	_machine->restore(chk);
 	DBG_DISK("flash_filer: restore: %d", chk.pos());
 	file.close();
-	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.img", &cpid);
+	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.%s", &cpid, CHK);
 	cpid = (n == 0)? 0: cpid+1;
 #endif
 }

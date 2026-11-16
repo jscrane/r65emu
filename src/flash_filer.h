@@ -88,6 +88,7 @@ public:
 	const char *rewind() override { return current().rewind(); }
 	const char *filename() const { return current().filename(); }
 
+	static constexpr const char *CHK = "chk";
 	const char *checkpoint() override;
 	void restore(const char *) override;
 
