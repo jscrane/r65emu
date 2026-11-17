@@ -1,5 +1,8 @@
-#include "debugging.h"
+#include "hardware.h"
 #include "flash_storage.h"
+
+#if USE_STORAGE
+#include "debugging.h"
 #include "arduinomachine.h"
 
 bool flash_checkpoint(const char *filename) {
@@ -27,3 +30,4 @@ bool flash_restore(const char *filename) {
 	chk.close();
 	return true;
 }
+#endif
