@@ -31,3 +31,6 @@
 #define FILE_READWRITE "r+"
 #endif
 #endif
+
+bool flash_checkpoint(const char *filename);
+bool flash_restore(const char *filename);

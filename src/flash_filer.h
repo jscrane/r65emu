@@ -1,17 +1,16 @@
 #pragma once
 
 #include <stdint.h>
-#include <stddef.h>
-#include <filer.h>
 
 #include "flash_storage.h"
+#include "serialio.h"
 
 #if !defined(MAX_DEVICES)
 #define MAX_DEVICES	5
 #endif
 
 // A single open file on the configured storage. Owns its handle.
-class flash_file: virtual public serialio {
+class flash_file: public serialio {
 public:
 	bool more() override;
 	uint8_t read() override;
@@ -64,10 +63,9 @@ private:
 #endif
 };
 
-// Holds a set of flash_devices and steps through them. Serial I/O and
-// file navigation are forwarded to the current device.
-class flash_filer: public filer {
-
+// Holds a set of flash_devices and steps through them.
+// File navigation is forwarded to the current device.
+class flash_filer {
 public:
 	// Takes the devices as references: flash_filer files(PROGRAMS, tape, d1, d2);
 	// Their addresses are stored, so they must outlive the filer. The
@@ -79,26 +77,19 @@ public:
 		static_assert(sizeof...(Devs) <= MAX_DEVICES, "too many devices: raise MAX_DEVICES");
 	}
 
-	// serialio, via filer
-	bool more() override { return current().more(); }
-	uint8_t read() override { return current().read(); }
-	size_t write(uint8_t b) override { return current().write(b); }
-
-	const char *advance() override { return current().advance(); }
-	const char *rewind() override { return current().rewind(); }
+	const char *advance() { return current().advance(); }
+	const char *rewind() { return current().rewind(); }
 	const char *filename() const { return current().filename(); }
 
 	static constexpr const char *CHK = "chk";
-	const char *checkpoint() override;
-	void restore(const char *) override;
+	const char *checkpoint();
+	void restore(const char *);
 
-	bool start() override;
-	void stop() override;
+	bool start();
+	void stop();
 	void reset() { stop(); start(); }
 
 	void next_device() { if (++_current == _n) _current = 0; }
-	uint8_t device() const { return _current; }
-
 	flash_device &current() { return *_devs[_current]; }
 	const flash_device &current() const { return *_devs[_current]; }
 

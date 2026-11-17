@@ -201,11 +201,6 @@ const char *flash_device::filename() const {
 
 // ---- flash_filer ----
 
-#if USE_STORAGE
-static char buf[64];
-static int cpid = 0;
-#endif
-
 bool flash_filer::start() {
 	bool ok = true;
 	for (uint8_t i = 0; i < _n; i++)
@@ -218,20 +213,15 @@ void flash_filer::stop() {
 		_devs[i]->stop();
 }
 
-// NB: unlike the old implementation, checkpoint/restore no longer stop()
-// every device: only the checkpoint image is opened and closed here, so
-// every device keeps its open file and directory position.
+#if USE_STORAGE
+static char buf[64];
+static int cpid = 0;
+#endif
 
 const char *flash_filer::checkpoint() {
 #if USE_STORAGE
-	snprintf(buf, sizeof(buf), "%schk%03d.%s", _programs, cpid++, CHK);
-
-	File file = DISK.open(buf, FILE_WRITE);
-	StreamCheckpoint chk(file);
-	_machine->checkpoint(chk);
-	DBG_DISK("flash_filer: checkpoint: %d", chk.pos());
-	file.close();
-	return buf + strlen(_programs);
+	snprintf(buf, sizeof(buf), "%s%d.%s", _programs, cpid++, CHK);
+	return flash_checkpoint(buf)? buf + strlen(_programs): "";
 #else
 	return "";
 #endif
@@ -240,13 +230,10 @@ const char *flash_filer::checkpoint() {
 void flash_filer::restore(const char *filename) {
 #if USE_STORAGE
 	snprintf(buf, sizeof(buf), "%s%s", _programs, filename);
+	if (!flash_restore(buf))
+		return;
 
-	File file = DISK.open(buf, FILE_READ);
-	StreamCheckpoint chk(file);
-	_machine->restore(chk);
-	DBG_DISK("flash_filer: restore: %d", chk.pos());
-	file.close();
-	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.%s", &cpid, CHK);
+	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.chk", &cpid);
 	cpid = (n == 0)? 0: cpid+1;
 #endif
 }
