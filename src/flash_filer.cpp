@@ -246,7 +246,7 @@ void flash_filer::restore(const char *filename) {
 	_machine->restore(chk);
 	DBG_DISK("flash_filer: restore: %d", chk.pos());
 	file.close();
-	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.%s", &cpid, CHK);
+	int n = sscanf(buf + strlen(_programs), "%*[^0-9]%d.chk", &cpid);
 	cpid = (n == 0)? 0: cpid+1;
 #endif
 }
