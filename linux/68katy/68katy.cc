@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 	Linux machine(cpu);
 	Linux::Screen scr;
 	fnkey_kbd kbd(machine.console_keyboard());
-	kbd.register_fnkey_handler([](uint8_t) { ::exit(0); });
+	kbd.register_fnkey_handler([](uint16_t) { ::exit(0); });
 	IO io(cpu, kbd, scr);
 
 	memory.put(ro, 0x00000);

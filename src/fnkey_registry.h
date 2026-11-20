@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <keys.h>
 
-constexpr uint16_t fnkey(uint8_t k) { return uint16_t(1u << k); }
+static constexpr uint16_t fnkey(uint8_t k) { return uint16_t(1u << (k-1)); }
 
 constexpr uint16_t F1  = fnkey(1);
 constexpr uint16_t F2  = fnkey(2);
@@ -29,26 +29,25 @@ public:
 
 protected:
 	bool claimed(int c) {
-		if (!_f || !keys::is_function(c) || keys::has_modifiers(c))
+		int k = c & keys::KEY_MASK;
+		if (!_f || !keys::is_function(k))
 			return false;
 
-		return dispatch(keys::function_index(c));
+		return dispatch(fnkey(keys::function_index(k)) | (c & ~keys::KEY_MASK));
 	}
 
-	bool wants(uint8_t k) {
-		return _f && k >= 1 && k <= 12 && (_keys & fnkey(k));
-	}
+	bool wants(uint16_t code) const { return _f && (_keys & code & keys::KEY_MASK); }
 
-	bool dispatch(uint8_t k) {
-		if (!wants(k))
+	bool dispatch(uint16_t code) {
+		if (!wants(code))
 			return false;
 
-		_f(fnkey(k));
+		_f(code);
 		return true;
 	}
 
 private:
-	static constexpr uint16_t all_keys = 0x1ffe;	// 1 to 12
+	static constexpr uint16_t all_keys = 0x0fff;
 
 	fnkey_handler _f;
 
