@@ -78,9 +78,12 @@ private:
 	bool read(uint16_t &scan);
 	bool available();
 	bool decode(uint8_t k, uint16_t &scan);
+	uint16_t mods() const;
 
 	matrix_keyboard &_m;
 
 	bool _brk = false, _ext = false;
 	int _pause = 0;
+	uint8_t _modkeys = 0;
+	uint16_t _fn_mods[12];
 };

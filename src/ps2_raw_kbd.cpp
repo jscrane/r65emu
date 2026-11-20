@@ -13,6 +13,26 @@ bool ps2_raw_kbd::available() {
 	return keyboard.available();
 }
 
+static int mod_bit(uint16_t sc) {
+	switch (sc) {
+	case PS2_LSHIFT: return 0;
+	case PS2_RSHIFT: return 1;
+	case PS2_LCTRL:  return 2;
+	case PS2_RCTRL:  return 3;
+	case PS2_LALT:   return 4;
+	case PS2_RALT:   return 5;
+	}
+	return -1;
+}
+
+uint16_t ps2_raw_kbd::mods() const {
+	uint16_t m = 0;
+	if (_modkeys & 0x03) m |= keys::MOD_SHIFT;
+	if (_modkeys & 0x0c) m |= keys::MOD_CTRL;
+	if (_modkeys & 0x30) m |= keys::MOD_ALT;
+	return m;
+}
+
 static uint8_t fn(uint8_t key) {
 	switch(key) {
 	case PS2_F1: return 1;
@@ -82,10 +102,18 @@ bool ps2_raw_kbd::decode(uint8_t k, uint16_t &scan) {
 		return false;
 	}
 
-	uint8_t f = _ext? 0: fn(k);
-	if (wants(f)) {		// a hotkey: never reaches the matrix
+	int b = mod_bit(k | (_ext? PS2_MOD_EXT: 0));
+	if (b >= 0) {
+		if (_brk) _modkeys &= ~(1 << b);
+		else _modkeys |= 1 << b;
+	}
+
+	uint8_t f = _ext? 0: fn(k);	// fn() still returns 1..12 or 0
+	if (f && wants(fnkey(f))) {	// a hotkey: never reaches the matrix
 		if (_brk)
-			dispatch(f);
+			dispatch(fnkey(f) | _fn_mods[f-1]);
+		else
+			_fn_mods[f-1] = mods();	// snapshot at press
 		_brk = _ext = false;
 		return false;
 	}
@@ -112,6 +140,9 @@ void ps2_raw_kbd::reset() {
 	_m.reset();
 	_ext = _brk = false;
 	_pause = 0;
+	_modkeys = 0;
+	for (int i = 0; i < 12; i++)
+		_fn_mods[i] = 0;
 }
 
 void ps2_raw_kbd::poll() {
