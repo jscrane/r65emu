@@ -102,6 +102,12 @@ bool ps2_raw_kbd::decode(uint8_t k, uint16_t &scan) {
 		return false;
 	}
 
+	int b = mod_bit(k | (_ext? PS2_MOD_EXT: 0));
+	if (b >= 0) {
+		if (_brk) _modkeys &= ~(1 << b);
+		else _modkeys |= 1 << b;
+	}
+
 	uint8_t f = _ext? 0: fn(k);	// fn() still returns 1..12 or 0
 	if (f && wants(fnkey(f))) {	// a hotkey: never reaches the matrix
 		if (_brk)
