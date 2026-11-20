@@ -176,6 +176,7 @@ private:
 		jump_to_vector(_iack? _iack(level): AUTO_VECTORS + level);
 	}
 
+	// per-instruction state --- ignored by checkpoint()/restore()
 	bool _trapped = false;
 	uint16_t _current_op = 0;
 	Memory::address _fault_pc_base = 0;
