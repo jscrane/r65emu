@@ -109,7 +109,7 @@ static Linux::Keyboard kbd;
 static ansi_kbd ansi(kbd, micros);
 
 keyboard &Linux::console_keyboard() { return ansi; }
-#endif
 
 static sound_sink snd;
 sound_sink &Linux::sound() { return snd; }
+#endif
