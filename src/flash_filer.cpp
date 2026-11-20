@@ -199,6 +199,13 @@ const char *flash_device::filename() const {
 	return 0;
 }
 
+bool flash_device::select(const char *name) {
+	for (const char *f = rewind(); f; f = advance())
+		if (!strcmp(f, name))
+			return true;
+	return false;
+}
+
 // ---- flash_filer ----
 
 bool flash_filer::start() {
