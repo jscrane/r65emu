@@ -24,7 +24,8 @@ void m68k::begin_instruction() {
 	_trapped = false;
 	_fault_pc_words = _fault_data = _fault_idle = 0;
 	_cyc_start = cycles();
-	_fault_pc_base = PC;	// address of the opcode itself, pre-fetch
+	_fault_pc_base = PC;			// address of the opcode itself, pre-fetch
+	_src_needed_ea_computation = false;	// "no EA-computing source seen yet" -- the right default for ADDQ, ADD Dn,<ea>, etc.
 }
 
 void m68k::run(unsigned instructions) {

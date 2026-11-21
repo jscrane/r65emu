@@ -1,11 +1,8 @@
 #pragma once
 
 #include <functional>
+#include <Stream.h>
 #include <machine.h>
-
-#if !defined(TERMINAL_SPEED)
-#define TERMINAL_SPEED		115200
-#endif
 
 class StreamCheckpoint: public Checkpoint {
 public:
