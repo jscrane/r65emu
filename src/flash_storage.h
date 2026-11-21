@@ -1,4 +1,5 @@
 #pragma once
+#include "hardware.h"
 
 // Selects the filesystem backing flash_file/flash_device/flash_filer.
 // Defines DISK, USE_STORAGE and the FILE_* mode strings.

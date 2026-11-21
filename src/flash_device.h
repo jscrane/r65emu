@@ -48,8 +48,11 @@ public:
 	const char *name() const { return _name; }
 	file_mode_t mode() const { return _mode; }
 	const char *extensions() const { return _extensions; }
-	const char *path() const { return _programs; }
 	bool select(const char *filename);
+
+protected:
+	const char *path() const { return _programs; }
+	const char *sep() const;
 
 private:
 	const char *_name;

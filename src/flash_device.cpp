@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "hardware.h"
 #include "flash_filer.h"
 #include "debugging.h"
@@ -115,14 +117,12 @@ static bool matches_extension(const char *filename, const char *extensions) {
 	return false;
 }
 
-static void reopen_readwrite(const char *programs, File &f) {
+static void reopen_readwrite(const char *programs, const char *sep, File &f) {
 
 	const char *fname = f.name();
 	if (fname[0] == '/')
 		fname++;
 
-	size_t dirlen = strlen(programs);
-	const char *sep = (dirlen > 0 && programs[dirlen - 1] == '/')? "": "/";
 	char filepath[128];
 	snprintf(filepath, sizeof(filepath), "%s%s%s", programs, sep, fname);
 	f.close();
@@ -147,6 +147,11 @@ void flash_device::stop() {
 #endif
 }
 
+const char *flash_device::sep() const {
+	size_t dirlen = strlen(_programs);
+	return (dirlen > 0 && _programs[dirlen - 1] == '/')? "": "/";
+}
+
 const char *flash_device::advance() {
 #if USE_STORAGE
 	_file.close();
@@ -159,7 +164,7 @@ const char *flash_device::advance() {
 			else if (matches_extension(_file.name(), _extensions)) {
 				if (_mode == readwrite) {
 					DBG_DISK("reopening %s rw", _file.name());
-					reopen_readwrite(_programs, _file);
+					reopen_readwrite(_programs, sep(), _file);
 				}
 				break;
 			}

@@ -10,5 +10,6 @@ public:
 	bool restore();
 
 private:
+	const char *fullpath(char *, size_t, const char *);
 	int _id = 0;
 };
