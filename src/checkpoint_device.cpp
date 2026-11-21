@@ -14,14 +14,17 @@ bool checkpoint_device::save(bool create) {
 #if USE_STORAGE
 	char fullname[64];
 	const char *filename = flash_device::filename();
+	DBG_DISK("save: %d %s", create, filename);
 	if (!create && filename)
 		return flash_checkpoint(fullpath(fullname, sizeof(fullname), filename));
 
 	for (; _id < 100; _id++) {
 		char filename[16];
 		snprintf(filename, sizeof(filename), "%d.chk", _id);
-		if (!DISK.exists(fullname))
-			return flash_checkpoint(fullpath(fullname, sizeof(fullname), filename)) && flash_device::select(filename);
+		const char *full = fullpath(fullname, sizeof(fullname), filename);
+		DBG_DISK("full: %s", full);
+		if (!DISK.exists(full))
+			return flash_checkpoint(full) && flash_device::select(filename);
 	}
 #endif
 	return false;
