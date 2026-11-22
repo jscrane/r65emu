@@ -3,7 +3,7 @@ CPPFLAGS = -I$(SRCDIR) -DMEMORY_ADDRESS_WIDTH=24
 CPPFLAGS += -DDEBUGGING=0x21
 CXXFLAGS:= -g $(shell pkg-config --cflags jsoncpp)
 LDLIBS := -ljsoncpp -lz
-OBJECTS := m68k.o memory.o machine.o deltaq.o linuxmachine.o
+OBJECTS := m68k.o memory.o machine.o deltaq.o linuxmachine.o ansi_kbd.o
 
 sstests: sstests.o $(OBJECTS)
 	g++ -o $@ $+ $(LDLIBS)

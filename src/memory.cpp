@@ -52,38 +52,38 @@ Memory::Devices::operator uint8_t() {
 
 void Memory::Devices::checkpoint(Checkpoint &c) {
 
-	for (size_t i = 0; i < page_size / device_size; ) {
-		Device *d = _devices[i];
-		d->checkpoint(c);
-		i += slots(d);
+	for (size_t i = 0; i < page_size / device_size; i++) {
+		Device *dev = _devices[i];
+		if (dev->base() == i * device_size)
+			dev->checkpoint(c);
 	}
 }
 
 void Memory::Devices::restore(Checkpoint &c) {
 
-	for (size_t i = 0; i < page_size / device_size; ) {
-		Device *d = _devices[i];
-		d->restore(c);
-		i += slots(d);
+	for (size_t i = 0; i < page_size / device_size; i++) {
+		Device *dev = _devices[i];
+		if (dev->base() == i * device_size)
+			dev->restore(c);
 	}
 }
 
 void Memory::checkpoint(Checkpoint &c) {
 
-	for (uint16_t page = 0; page < address_size / page_size; ) {
-		Device *dev = get(page * page_size);
-		dev->checkpoint(c);
-		page += pages(dev->extent());
+	for (address addr = 0; addr < address_size; addr += page_size) {
+		Device *dev = get(addr);
+		if (dev->base() == addr)
+			dev->checkpoint(c);
 		_machine->yield();
 	}
 }
 
 void Memory::restore(Checkpoint &c) {
 
-	for (uint16_t page = 0; page < address_size / page_size; ) {
-		Device *dev = get(page * page_size);
-		dev->restore(c);
-		page += pages(dev->extent());
+	for (address addr = 0; addr < address_size; addr += page_size) {
+		Device *dev = get(addr);
+		if (dev->base() == addr)
+			dev->restore(c);
 		_machine->yield();
 	}
 }

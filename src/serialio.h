@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstddef>
+
 enum parity {
 	none,
 	even,
