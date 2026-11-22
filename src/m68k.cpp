@@ -3632,6 +3632,7 @@ void m68k::status(bool hdr) {
 }
 
 void m68k::checkpoint(Checkpoint &c) {
+	CPU::checkpoint(c);
 	c.write(D[0]);
 	c.write(D[1]);
 	c.write(D[2]);
@@ -3656,6 +3657,7 @@ void m68k::checkpoint(Checkpoint &c) {
 }
 
 void m68k::restore(Checkpoint &c) {
+	CPU::restore(c);
 	c.read(D[0]);
 	c.read(D[1]);
 	c.read(D[2]);
